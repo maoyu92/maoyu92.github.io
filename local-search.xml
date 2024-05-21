@@ -4,6 +4,62 @@
   
   
   <entry>
+    <title>宝藏网站推荐-封面图片生成器</title>
+    <link href="/2024/05/21/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E5%AE%9D%E8%97%8F%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90-%E5%B0%81%E9%9D%A2%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E5%99%A8/"/>
+    <url>/2024/05/21/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E5%AE%9D%E8%97%8F%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90-%E5%B0%81%E9%9D%A2%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E5%99%A8/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>封面图片生成器：<a href="https://spacexcode.com/coverview">封面图生成器 | 太空编程 (spacexcode.com)</a><br>最近爱上了写文案，在网上冲浪的时候发现一个宝藏网站。Spacecode，一个大神维护的个人网站，含有前端知识库、个人博客及他做的开源项目。<br>其中封面图片生成器简单好用，完全免费，自来水一下。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211851977.png" alt="image.png"><br>其他作品，如毛玻璃效果生成器、代码图片生成器、文字卡片等等，都非常棒。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211852301.png" alt="image.png"><br>作者的开源项目做的很好，从他的简介也可以看出，是个很棒的家伙，向他学习。<br>Build in public，learn in public。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具推荐</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>工具推荐</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>从 CAD 到 ArcGIS：高精度DEM 数字高程文件生成</title>
+    <link href="/2024/05/21/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/ArcGIS%E5%AF%BC%E5%85%A5autoCAD%E5%9C%B0%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%B9%B6%E6%95%B4%E7%90%86/"/>
+    <url>/2024/05/21/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/ArcGIS%E5%AF%BC%E5%85%A5autoCAD%E5%9C%B0%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%B9%B6%E6%95%B4%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在日常工作中，我们常需要对特定区域地形进行深入分析。易于获得的地形数据为 30 m 精度，有时无法满足项目要求，需要更高精度的地形资料，而这些资料通常以 AutoCAD 文件的形式存在。<br>这些数据需经过 GIS 系统处理，以生成所需的 dem 数据。本篇文章将循序渐进，从 CAD 地形图层常用名称开始，详尽阐述在 ArcGIS 平台上，如何处理 AutoCAD 地形文件，最终产出高精度的 DEM（数字高程模型），希望对你有所帮助。</p><h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="DEM"><a href="#DEM" class="headerlink" title="DEM"></a>DEM</h3><p><strong>DEM（Digital Elevation Model）</strong>：即数字高程模型，是通过有限的地形高程数据实现对地面地形的数字化模拟。是数字地形模型（Digital Terrain Model，简称 DTM）的一个分支。狭义的 dem 是栅格数据，在水文分析中，dem 数据可以用来生成坡向、坡度、水系、分水岭、泄水点等信息。</p><h3 id="TIN"><a href="#TIN" class="headerlink" title="TIN"></a>TIN</h3><p><strong>TIN（Triangular Irregular Network）</strong>：即不规则三角网，是基于矢量的数字地理数据的一种形式，通过将一系列折点组成的三角形来构建。各折点通过由一系列边进行连接，最终形成一个三角网。TIN 是一种更为精细的表示方法，适用于复杂地形的精确表示和分析。</p><h3 id="CAD-图层常用名称"><a href="#CAD-图层常用名称" class="headerlink" title="CAD 图层常用名称"></a>CAD 图层常用名称</h3><p>以下是常用的 CAD 地形图常用图层名称。</p><ol><li>DGX–等高线</li><li>DLSS–道路设施</li><li>DLDW–独立地物</li><li>DMTZ–地貌特征</li><li>GCD–高程点</li><li>JMD–居民地</li><li>SXSS–水系设施</li><li>ZBTZ–植被特征</li><li>GXYZ–管线设施</li><li>TK–图框</li></ol><h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h3 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h3><p>新建 ArcGIS 项目，不要在已有坐标系的文件中添加。<br>在导入前，设置好坐标系，这需要问资料来源方。<br>右键-属性-常规-编辑，选择合适的坐标系。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211514712.png" alt="image.png"><br>将 CAD 文件拖入 ArcGIS。</p><h3 id="确定要保留的图层"><a href="#确定要保留的图层" class="headerlink" title="确定要保留的图层"></a>确定要保留的图层</h3><p>导入 CAD 文件后，会发现有很多文件，<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211516876.png" alt="image.png"><br>分别为：</p><ul><li>Annotation 注释</li><li>Point 点</li><li>Polyline 多段线</li><li>Polygon 多边形</li><li>MultiPatch 3 D 几何图形</li></ul><p>一般需要关注的是 Polyline 、Point、Polygon 根据自己的需要整理对应的数据。地形数据在 Polyline 中，通过查询工具，点击对应的图层可以查询其图层名称。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211526491.png" alt="image.png"><br>比如，地形图层为 DGX。<br>右键 Polyline-属性-绘制图层-选择 DGX。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211528230.png" alt="image.png"><br>右键 Polyline-打开属性表-点击表选项-按属性选择, 输入表达式<br>“Elevation” &gt;0，可根据自己的文件属性，定义筛选表达式。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211531228.png" alt="image.png"><br>导出数据，右键 Polyline-数据-导出数据，导出所选要素。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211534372.png" alt="image.png"><br>可以用同样的方法将需要的图层导出 GIS 图层数据。<br>如地貌特征（DMTZ） 、水系设施（SXSS）、居民地（JMD）、道路设施（DLSS）等, 选择不同的图层时，记得提前在显示区域右键-清楚所选区域。<br>在本文示例文件中，因为是农业区域地貌特征和等高线都有高程信息，为提高精度，将两者合并导出图层精细分析。</p><h3 id="创建-TIN"><a href="#创建-TIN" class="headerlink" title="创建 TIN"></a>创建 TIN</h3><p>工具搜索-创建 TIN，高度字段输入 Elevation，注意在创建之前，最好打开属性表，观察 Elevation 值的范围，从 CAD 导入的数据可能存在异常。因此需要用前面表达式筛选的方式，选择合适的等高线范围。例如本示例需要将 Elevation 控制在 0-500 之间，500 以上的异常值去掉。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211629026.png" alt="image.png"><br>点击属性-符号系统选择分区及配色。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211647927.png" alt="image.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211707784.png" alt="image.png"></p><h3 id="TIN-转-dem"><a href="#TIN-转-dem" class="headerlink" title="TIN 转 dem"></a>TIN 转 dem</h3><p>使用 TIN 转栅格工具，转出的数据就是我们需要的 dem 数据。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211711236.png" alt="image.png"><br>得到区域 dem 数据如下，完成。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211711285.png" alt="image.png"></p><p>用查询工具点击 dem 可得到精度信息。对比下载的 dem 数据，拉伸值在 48~70 之间，cad 生成的，精度有所提高。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211717057.png" alt="image.png"></p><p>有了 dem 数据，我们就能做很多工作了，如水文分析的河流水系、坡度、坡向、产流量、河流链接、分水岭、流域等等。后续也会整理 dem 水文分析的操作步骤。</p><h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>本方法实际精度与 DWG 文件质量关系很大，例如示例文件中，由于地貌特征图层文件，大部分高指为 0，无法参与 dem 结果生成，降低了最终生成文件的效果。若深入探究，还可以用克里金插值等方法，提高精度。<br>总之，以上就是用 CAD 文件生产 DEM 的过程，如果有帮助到你，可以关注本博客以及我的公众号。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>生态环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>arcgis</tag>
+      
+      <tag>水文分析</tag>
+      
+      <tag>地形数据</tag>
+      
+      <tag>经验分享</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>免费图片素材网站推荐</title>
     <link href="/2024/05/19/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E5%85%8D%E8%B4%B9%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/"/>
     <url>/2024/05/19/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E5%85%8D%E8%B4%B9%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/</url>
@@ -20,9 +76,9 @@
     
     <tags>
       
-      <tag>工具推荐</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>工具推荐</tag>
       
       <tag>素材</tag>
       
@@ -49,9 +105,9 @@
     
     <tags>
       
-      <tag>工具推荐</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>工具推荐</tag>
       
       <tag>AIGC</tag>
       
@@ -79,33 +135,6 @@
     <tags>
       
       <tag>工具推荐</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>信息收集方法合集 第1期</title>
-    <link href="/2024/05/19/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86%20%E7%AC%AC1%E6%9C%9F/"/>
-    <url>/2024/05/19/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86%20%E7%AC%AC1%E6%9C%9F/</url>
-    
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在工作中，经常被问到某个文件怎么下载，原文来自哪里。索性把我知道的所有信息收集方法全部整理一遍，希望对大家有用，如果有帮助到你，非常荣幸，我会坚持分享我的学习、工作经验。</p><p><strong>信息种类</strong>：包括法律法规、标准导则、中英文论文、书籍、专利、环评、验收报告以及其他公开的资料。<br>信息收集框架结构如下图，我会分两期介绍所有信息的获取方法，第一期讲法律法规标准导则、论文、书籍等资料的获取，第二期讲百度文库、淘豆网、豆丁网、道客巴巴、原创力文档及专利的获取，还包括搜索信息的注意事项。随后会持续出关于文献知识库管理的内容，欢迎关注哦。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111825908.png" alt="image.png"></p><h3 id="法律法规、标准导则"><a href="#法律法规、标准导则" class="headerlink" title="法律法规、标准导则"></a>法律法规、标准导则</h3><p>通常这些内容是公开的，在政府网站上可以查到，这里推荐在聚合的网站上去下载，比如环评云助手、国家标准全文公开系统、环保小智等，这些网站不光可以查文件，还可是查询是否有效。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111432139.png" alt="image.png"></p><h3 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h3><p>论文也是我们获取高质量信息的来源，中文文献一般是知网、万方、维普等平台最多，但这些网站一旦出了大学获取就比较困难，这里推荐一个网站，书童图书馆，需要购买账号，可以很低价的方式获得一个长期的会员，可以下载所有的文献。<br>推荐之前先叠个甲，这部分属于灰色地带，但从学习的角度讲，文献公开是对学习研究环境非常有利的，不管政策怎么变，及时这个网址可能被 ban，也有千万个网站出来，就像是 Z-library 一样。</p><p>英文文献推荐 Sci-hub 和 Arxiv。英文文献的获取难度要低于中文，甚至很多文献可以找到代码和数据集，国内做的相对较差。<br>SCI-HUB<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111749350.png" alt="image.png"></p><p>Arxiv 是本是存放物理学、数学、计算机科学、生物学与数理经济学的论文预印本的网站，是没有被同行审议过的文章都先上传在上面，后面上传的论文越来越多人，影响越来越大，目前已经是非常重要的论文网站了。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111759563.png" alt="image.png"></p><h3 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h3><p>获取电子书的方法也很多，首推 Z-library。经常被 ban，目前仍在坚强运营。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111802327.png" alt="image.png"></p><p> Z-library 经常变动网址，有时候需要魔法，嫌麻烦可以用鸠摩搜书先检索，一般书都有。<br>然后是 GitHub，有些开源项目的书会发布在 GitHub 上，比如鸢尾花系列，Python 工匠等。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111804169.png" alt="image.png"><br>最后强烈推荐微信读书，原因有：</p><ol><li>微信读书包含的出版书籍很多，且支持导入 PDF；</li><li>很多出版社做了真人朗读，听书非常方便，</li><li>读书送时长和书币让你基本不需要花钱，让你直接拥有一个图书馆。</li><li>读书笔记与 obsidian 等软件有联动，方便总结归纳，</li><li>多平台适配，书籍无需过多整理，减轻负担。<br>我已经成为微信读书的重度用户了，也欢迎喜欢微信读书的朋友，留言交流，一同进步。</li></ol><p>新人一枚，如果有帮助到你，请点赞关注，非常感谢。</p><h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><a href="/2024/05/12/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86%20%E7%AC%AC2%E6%9C%9F/" title="信息收集方法合集 第2期">信息收集方法合集 第2期</a>]]></content>
-    
-    
-    <categories>
-      
-      <category>经验分享</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>经验分享</tag>
-      
-      <tag>方法论</tag>
       
     </tags>
     
@@ -160,6 +189,8 @@
       <tag>方法论</tag>
       
       <tag>读书笔记</tag>
+      
+      <tag>写作</tag>
       
     </tags>
     
@@ -257,7 +288,34 @@
     <link href="/2024/05/12/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86%20%E7%AC%AC2%E6%9C%9F/"/>
     <url>/2024/05/12/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86%20%E7%AC%AC2%E6%9C%9F/</url>
     
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>好的，我们继续讲所有信息的收集方法，今天讲百度文库、淘豆网、豆丁网、道客巴巴、原创力文档及专利的获取，还包括搜索信息的注意事项。如果有帮助到你，非常荣幸，我会坚持分享我的学习、工作经验。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111825908.png" alt="image.png"></p><h2 id="其他文档"><a href="#其他文档" class="headerlink" title="其他文档"></a>其他文档</h2><p>这里泛指所有上传在百度文库、淘豆网、豆丁网、道客巴巴、原创力文档等网站上的文件，也是使用比较高频的一个方法，这里先叠个甲，我并非不尊重知识产权，只是这些网站的内容大多是在公开资料上爬取然后展示的内容，包括很多标准等等，在用于学习的情况下，下载下来无可厚非，如果以下方法，有侵害到平台权利，我就删掉这篇文章，相信信息只有流转才能产生价值。<br>好的我们继续。</p><p>打开浏览器应用商店，推荐 edge 、chrome浏览器，安装 tampermonkey 插件，点击插件获取新脚本，在 greasy fork 脚本商店中搜索文库下载器，一定要是 waahah 这个做这的脚本，其他也有一些下载脚本，但是我推荐这个是亲测可用的，当然也鼓励大家自己多尝试。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111426186.png" alt="image.png"></p><p>安装好后，打开想要下载的网站，当脚本检测到对应的网站后，会在左上角悬浮蓝色的工具栏，在非百度文库下，先点击自动展开，带文件全部展开后，然后点击导出 PDF。注意如果导出 pdf 效果不好，可以直接在浏览器点击打印, 用虚拟打印机保存为 pdf。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111431609.png" alt="image.png"></p><h2 id="专利"><a href="#专利" class="headerlink" title="专利"></a>专利</h2><p>专利之星只需要注册账号就可以查看公开专利内容，非常好用。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111415055.png" alt="image.png"></p><h2 id="常规搜索方法"><a href="#常规搜索方法" class="headerlink" title="常规搜索方法"></a>常规搜索方法</h2><p>比如在谷歌、百度上搜索，如果精确搜索的话，要想要关键词。比如制定文件格式可以用<br>filetype: pdf 关键词（pdf 可以替换 doc、ppt、jpg 等）<br>还有很多其他比较复杂的搜索关键词，其实用的频率并不高，这里我就不多赘述。<br>谷歌搜索注意用对地址，一般 vpn 的话会默认 vpn 代理地址，下面这个链接可以<br><a href="http://www.google.com/ncr">www.google.com/ncr</a><br>想要查询政府文件或者公开文件，应该熟悉他们的公文结构，了解固定的关键词。<br>比如查询环评原文则在某某报告后面加上”受理”、”公示”字样。</p><p>AI 搜索<br>推荐秘塔搜索，用做主体学习非常不错，可以选择学术、网页、播客三种类型，除了生成分析内容外，更重要的是将相关来源标出，让我们更准确的获取信息。如果<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122017540.png" alt="image.png"></p><p>我获取信息的方法就是这些了，新人一枚，如果有帮助到你，请点赞关注收藏，谢谢！</p><p>最后打个广告，我新开了微信公众号（环境猫 er），坚持发布 python 环境业务解决方案，python 办公自动化，GIS 作图经验，学习笔记，办公技巧，工具分享等内容。<br>坚持 Bulid in public ，希望与你一起加油，一同成长。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405102028570.jpg" alt="qrcode_for_gh_b2ae4cd1414a_258.jpg"></p><h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><a href="/2024/05/19/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86%20%E7%AC%AC1%E6%9C%9F/" title="信息收集方法合集 第1期">信息收集方法合集 第1期</a>]]></content>
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>好的，我们继续讲所有信息的收集方法，今天讲百度文库、淘豆网、豆丁网、道客巴巴、原创力文档及专利的获取，还包括搜索信息的注意事项。如果有帮助到你，非常荣幸，我会坚持分享我的学习、工作经验。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111825908.png" alt="image.png"></p><h2 id="其他文档"><a href="#其他文档" class="headerlink" title="其他文档"></a>其他文档</h2><p>这里泛指所有上传在百度文库、淘豆网、豆丁网、道客巴巴、原创力文档等网站上的文件，也是使用比较高频的一个方法，这里先叠个甲，我并非不尊重知识产权，只是这些网站的内容大多是在公开资料上爬取然后展示的内容，包括很多标准等等，在用于学习的情况下，下载下来无可厚非，如果以下方法，有侵害到平台权利，我就删掉这篇文章，相信信息只有流转才能产生价值。<br>好的我们继续。</p><p>打开浏览器应用商店，推荐 edge 、chrome浏览器，安装 tampermonkey 插件，点击插件获取新脚本，在 greasy fork 脚本商店中搜索文库下载器，一定要是 waahah 这个做这的脚本，其他也有一些下载脚本，但是我推荐这个是亲测可用的，当然也鼓励大家自己多尝试。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111426186.png" alt="image.png"></p><p>安装好后，打开想要下载的网站，当脚本检测到对应的网站后，会在左上角悬浮蓝色的工具栏，在非百度文库下，先点击自动展开，带文件全部展开后，然后点击导出 PDF。注意如果导出 pdf 效果不好，可以直接在浏览器点击打印, 用虚拟打印机保存为 pdf。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111431609.png" alt="image.png"></p><h2 id="专利"><a href="#专利" class="headerlink" title="专利"></a>专利</h2><p>专利之星只需要注册账号就可以查看公开专利内容，非常好用。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111415055.png" alt="image.png"></p><h2 id="常规搜索方法"><a href="#常规搜索方法" class="headerlink" title="常规搜索方法"></a>常规搜索方法</h2><p>比如在谷歌、百度上搜索，如果精确搜索的话，要想要关键词。比如制定文件格式可以用<br>filetype: pdf 关键词（pdf 可以替换 doc、ppt、jpg 等）<br>还有很多其他比较复杂的搜索关键词，其实用的频率并不高，这里我就不多赘述。<br>谷歌搜索注意用对地址，一般 vpn 的话会默认 vpn 代理地址，下面这个链接可以<br><a href="http://www.google.com/ncr">www.google.com/ncr</a><br>想要查询政府文件或者公开文件，应该熟悉他们的公文结构，了解固定的关键词。<br>比如查询环评原文则在某某报告后面加上”受理”、”公示”字样。</p><p>AI 搜索<br>推荐秘塔搜索，用做主体学习非常不错，可以选择学术、网页、播客三种类型，除了生成分析内容外，更重要的是将相关来源标出，让我们更准确的获取信息。如果<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122017540.png" alt="image.png"></p><p>我获取信息的方法就是这些了，新人一枚，如果有帮助到你，请点赞关注收藏，谢谢！</p><p>最后打个广告，我新开了微信公众号（环境猫 er），坚持发布 python 环境业务解决方案，python 办公自动化，GIS 作图经验，学习笔记，办公技巧，工具分享等内容。<br>坚持 Bulid in public ，希望与你一起加油，一同成长。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405102028570.jpg" alt="qrcode_for_gh_b2ae4cd1414a_258.jpg"></p><h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><a href="/2024/05/11/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86%20%E7%AC%AC1%E6%9C%9F/" title="信息收集方法合集 第1期">信息收集方法合集 第1期</a>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>经验分享</tag>
+      
+      <tag>方法论</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>信息收集方法合集 第1期</title>
+    <link href="/2024/05/11/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86%20%E7%AC%AC1%E6%9C%9F/"/>
+    <url>/2024/05/11/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86%20%E7%AC%AC1%E6%9C%9F/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在工作中，经常被问到某个文件怎么下载，原文来自哪里。索性把我知道的所有信息收集方法全部整理一遍，希望对大家有用，如果有帮助到你，非常荣幸，我会坚持分享我的学习、工作经验。</p><p><strong>信息种类</strong>：包括法律法规、标准导则、中英文论文、书籍、专利、环评、验收报告以及其他公开的资料。<br>信息收集框架结构如下图，我会分两期介绍所有信息的获取方法，第一期讲法律法规标准导则、论文、书籍等资料的获取，第二期讲百度文库、淘豆网、豆丁网、道客巴巴、原创力文档及专利的获取，还包括搜索信息的注意事项。随后会持续出关于文献知识库管理的内容，欢迎关注哦。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111825908.png" alt="image.png"></p><h3 id="法律法规、标准导则"><a href="#法律法规、标准导则" class="headerlink" title="法律法规、标准导则"></a>法律法规、标准导则</h3><p>通常这些内容是公开的，在政府网站上可以查到，这里推荐在聚合的网站上去下载，比如环评云助手、国家标准全文公开系统、环保小智等，这些网站不光可以查文件，还可是查询是否有效。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111432139.png" alt="image.png"></p><h3 id="论文"><a href="#论文" class="headerlink" title="论文"></a>论文</h3><p>论文也是我们获取高质量信息的来源，中文文献一般是知网、万方、维普等平台最多，但这些网站一旦出了大学获取就比较困难，这里推荐一个网站，书童图书馆，需要购买账号，可以很低价的方式获得一个长期的会员，可以下载所有的文献。<br>推荐之前先叠个甲，这部分属于灰色地带，但从学习的角度讲，文献公开是对学习研究环境非常有利的，不管政策怎么变，及时这个网址可能被 ban，也有千万个网站出来，就像是 Z-library 一样。</p><p>英文文献推荐 Sci-hub 和 Arxiv。英文文献的获取难度要低于中文，甚至很多文献可以找到代码和数据集，国内做的相对较差。<br>SCI-HUB<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111749350.png" alt="image.png"></p><p>Arxiv 是本是存放物理学、数学、计算机科学、生物学与数理经济学的论文预印本的网站，是没有被同行审议过的文章都先上传在上面，后面上传的论文越来越多人，影响越来越大，目前已经是非常重要的论文网站了。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111759563.png" alt="image.png"></p><h3 id="书籍"><a href="#书籍" class="headerlink" title="书籍"></a>书籍</h3><p>获取电子书的方法也很多，首推 Z-library。经常被 ban，目前仍在坚强运营。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111802327.png" alt="image.png"></p><p> Z-library 经常变动网址，有时候需要魔法，嫌麻烦可以用鸠摩搜书先检索，一般书都有。<br>然后是 GitHub，有些开源项目的书会发布在 GitHub 上，比如鸢尾花系列，Python 工匠等。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405111804169.png" alt="image.png"><br>最后强烈推荐微信读书，原因有：</p><ol><li>微信读书包含的出版书籍很多，且支持导入 PDF；</li><li>很多出版社做了真人朗读，听书非常方便，</li><li>读书送时长和书币让你基本不需要花钱，让你直接拥有一个图书馆。</li><li>读书笔记与 obsidian 等软件有联动，方便总结归纳，</li><li>多平台适配，书籍无需过多整理，减轻负担。<br>我已经成为微信读书的重度用户了，也欢迎喜欢微信读书的朋友，留言交流，一同进步。</li></ol><p>新人一枚，如果有帮助到你，请点赞关注，非常感谢。</p><h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><a href="/2024/05/12/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86%E6%96%B9%E6%B3%95%E5%90%88%E9%9B%86%20%E7%AC%AC2%E6%9C%9F/" title="信息收集方法合集 第2期">信息收集方法合集 第2期</a>]]></content>
     
     
     <categories>
