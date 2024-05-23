@@ -16,12 +16,12 @@
   <meta name="author" content="陈文茂">
   <meta name="keywords" content="python,eco">
   
-    <meta name="description" content="思路  水文分析的资料背景，找一些文献。学习用一下文献笔记的建立。 提示操作中可能出现的问题及注意事项。 梳理框架，用 EXCALIDRAW 做一下图。 进一步做一下水文模型搭建 进一步研究下 python 进行水文分析的可能性 进一步作为 swmm 模型的基础资料如何深入 模型思维，搭建好后，只要修改输入条件就可以一键输出所有水文相关结果 图形化界面，很方便的调整每一步。  前言在地">
+    <meta name="description" content="前言在地理信息系统（GIS）领域，水文分析是一项至关重要的任务，它涉及到对地表水流动路径、河流网络、流域划分等关键水文特征分析。这些分析对于水资源管理、洪水预警、环境规划以及城市排水系统设计等众多领域都具有重要的应用价值。 本文旨在探讨ArcGIS中水文分析的全过程，并展示如何构建一个可复用的水文分析模型。通过本文的学习和实践，读者将能够深入了解ArcGIS在水文分析方面的应用，掌握从数据预处">
 <meta property="og:type" content="article">
 <meta property="og:title" content="详解ArcGIS 水文分析模型构建">
-<meta property="og:url" content="https://maoyu92.github.io/2024/05/22/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/ArcGIS%20%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%AD%E9%9B%80%E5%89%AF%E6%9C%AC/index.html">
+<meta property="og:url" content="https://maoyu92.github.io/2024/05/22/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/ArcGIS%20%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B%E6%9E%84%E5%BB%BA/index.html">
 <meta property="og:site_name" content="wallflowers">
-<meta property="og:description" content="思路  水文分析的资料背景，找一些文献。学习用一下文献笔记的建立。 提示操作中可能出现的问题及注意事项。 梳理框架，用 EXCALIDRAW 做一下图。 进一步做一下水文模型搭建 进一步研究下 python 进行水文分析的可能性 进一步作为 swmm 模型的基础资料如何深入 模型思维，搭建好后，只要修改输入条件就可以一键输出所有水文相关结果 图形化界面，很方便的调整每一步。  前言在地">
+<meta property="og:description" content="前言在地理信息系统（GIS）领域，水文分析是一项至关重要的任务，它涉及到对地表水流动路径、河流网络、流域划分等关键水文特征分析。这些分析对于水资源管理、洪水预警、环境规划以及城市排水系统设计等众多领域都具有重要的应用价值。 本文旨在探讨ArcGIS中水文分析的全过程，并展示如何构建一个可复用的水文分析模型。通过本文的学习和实践，读者将能够深入了解ArcGIS在水文分析方面的应用，掌握从数据预处">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221924998.png">
 <meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231055335.png">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          2.4k 字
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          22 分钟
+          21 分钟
         
       </span>
     
@@ -316,21 +316,6 @@
                 
                 <meta name="referrer" content="no-referrer" />
 
-
-
-
-
-<p>思路</p>
-<ol>
-<li>水文分析的资料背景，找一些文献。学习用一下文献笔记的建立。</li>
-<li>提示操作中可能出现的问题及注意事项。</li>
-<li>梳理框架，用 EXCALIDRAW 做一下图。</li>
-<li>进一步做一下水文模型搭建</li>
-<li>进一步研究下 python 进行水文分析的可能性</li>
-<li>进一步作为 swmm 模型的基础资料如何深入</li>
-<li>模型思维，搭建好后，只要修改输入条件就可以一键输出所有水文相关结果</li>
-<li>图形化界面，很方便的调整每一步。</li>
-</ol>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在地理信息系统（GIS）领域，水文分析是一项至关重要的任务，它涉及到对地表水流动路径、河流网络、流域划分等关键水文特征分析。这些分析对于水资源管理、洪水预警、环境规划以及城市排水系统设计等众多领域都具有重要的应用价值。</p>
 <p>本文旨在探讨ArcGIS中水文分析的全过程，并展示如何构建一个可复用的水文分析模型。通过本文的学习和实践，读者将能够深入了解ArcGIS在水文分析方面的应用，掌握从数据预处理到模型构建、从模型运行到结果输出的整个流程。此外，本文还将介绍如何将ArcGIS模型脚本化，以提高模型的复用性和自动化程度。</p>
 <p>在接下来的章节中，我们将详细介绍水文分析的各个步骤，包括资料背景的准备、操作中可能出现的问题及注意事项、分析框架的梳理、水文模型的搭建、模型思维和图形化界面的构建等。通过这些内容的学习，读者将能够全面掌握 ArcGIS 水文分析的相关知识和技能。</p>
@@ -417,7 +402,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>详解ArcGIS 水文分析模型构建</div>
-      <div>https://maoyu92.github.io/2024/05/22/02 生态环境/ArcGIS 水文分析全流程语雀副本/</div>
+      <div>https://maoyu92.github.io/2024/05/22/02 生态环境/ArcGIS 水文分析模型构建/</div>
     </div>
     <div class="license-meta">
       
