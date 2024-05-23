@@ -4,11 +4,90 @@
   
   
   <entry>
+    <title>QGIS DEM数据快速获取</title>
+    <link href="/2024/05/22/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/QGIS%20DEM%E6%95%B0%E6%8D%AE%E5%BF%AB%E9%80%9F%E8%8E%B7%E5%8F%96/"/>
+    <url>/2024/05/22/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/QGIS%20DEM%E6%95%B0%E6%8D%AE%E5%BF%AB%E9%80%9F%E8%8E%B7%E5%8F%96/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Dem 是非常重要的数据，30 m 的精度也是最容易获取的，目前有很多种方式可以获取，比如地理空间数据云，今天介绍用 QGIS插件获取。<br>这种方式的最大优势是方便快捷，当我们有评价区域范围图层时，更加方便。</p><h2 id="插件下载与安装"><a href="#插件下载与安装" class="headerlink" title="插件下载与安装"></a>插件下载与安装</h2><p>插件-管理并安装插件-搜索下载<br>OpenTopography DEM Downloader<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221855383.png" alt="image.png"></p><p>注册账号并获取 key<br>操作非常简单，没有限制，国内能访问，但有点慢。<br><a href="https://portal.opentopography.org/myopentopo">myOpenTopo Workbench (opentopography.org)</a></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221845374.png" alt="image.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221844472.png" alt="image.png"></p><h2 id="下载-dem"><a href="#下载-dem" class="headerlink" title="下载 dem"></a>下载 dem</h2><p>选着你要下载的区域，点击插件图标<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221846162.png" alt="image.png"><br>选择 dem 类型，推荐 30 m，选择下载范围，然后输入 key，就可以了。<br>选择下载方式可以通过图层、显示范围及手动画范围等三种方式。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221848829.png" alt="image.png"></p><p>成功，注意网站下载的默认是 wgs 84 坐标系，其他坐标系需要自己转换。<br>下载后导入 ArcGIS 使用时，需要定义坐标系。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221850911.png" alt="image.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>生态环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>水文分析</tag>
+      
+      <tag>arcgis</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>详解ArcGIS 水文分析模型构建</title>
+    <link href="/2024/05/22/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/ArcGIS%20%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%AD%E9%9B%80%E5%89%AF%E6%9C%AC/"/>
+    <url>/2024/05/22/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/ArcGIS%20%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E5%85%A8%E6%B5%81%E7%A8%8B%E8%AF%AD%E9%9B%80%E5%89%AF%E6%9C%AC/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>思路</p><ol><li>水文分析的资料背景，找一些文献。学习用一下文献笔记的建立。</li><li>提示操作中可能出现的问题及注意事项。</li><li>梳理框架，用 EXCALIDRAW 做一下图。</li><li>进一步做一下水文模型搭建</li><li>进一步研究下 python 进行水文分析的可能性</li><li>进一步作为 swmm 模型的基础资料如何深入</li><li>模型思维，搭建好后，只要修改输入条件就可以一键输出所有水文相关结果</li><li>图形化界面，很方便的调整每一步。</li></ol><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在地理信息系统（GIS）领域，水文分析是一项至关重要的任务，它涉及到对地表水流动路径、河流网络、流域划分等关键水文特征分析。这些分析对于水资源管理、洪水预警、环境规划以及城市排水系统设计等众多领域都具有重要的应用价值。</p><p>本文旨在探讨ArcGIS中水文分析的全过程，并展示如何构建一个可复用的水文分析模型。通过本文的学习和实践，读者将能够深入了解ArcGIS在水文分析方面的应用，掌握从数据预处理到模型构建、从模型运行到结果输出的整个流程。此外，本文还将介绍如何将ArcGIS模型脚本化，以提高模型的复用性和自动化程度。</p><p>在接下来的章节中，我们将详细介绍水文分析的各个步骤，包括资料背景的准备、操作中可能出现的问题及注意事项、分析框架的梳理、水文模型的搭建、模型思维和图形化界面的构建等。通过这些内容的学习，读者将能够全面掌握 ArcGIS 水文分析的相关知识和技能。</p><h2 id="项目环境、条件"><a href="#项目环境、条件" class="headerlink" title="项目环境、条件"></a>项目环境、条件</h2><p>ArcGIS 10.8 中文包<br>已开启 Spatial Analyst Tools 分析工具<br>Win 10<br>数据集<br>    30 m dem 栅格数据集<br>Tips：可在微信公众号：环境猫 er ，回复 dem ，获取本文实验 dem 。<br>理论上 ArcGIS 10.2 也几乎一样，部分工具可能由翻译问题，建议初学者完全按照本文的文档结构进行。</p><h2 id="Dem-数据预览"><a href="#Dem-数据预览" class="headerlink" title="Dem 数据预览"></a>Dem 数据预览</h2><p> <strong>DEM</strong>（Digital Elevation Model，数字高程模型）是一种用于表示地表地形起伏的数字模型。它通过规则格网的矩阵形式，记录每个格网单元的高程值，从而在计算机中构建出地形的三维模型。DEM 是地理信息系统（GIS）中重要的空间数据类型之一，广泛应用于地形分析、水文模拟、城市规划、地质灾害评估等多个领域。<br> Dem 可以通过地理空间数据云、QGIS 插件、CAD 地形文件生产等多种方式获取。此前有介绍，本文不多赘述。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221924998.png" alt="image.png"></p><h2 id="ArcGIS模型构建器"><a href="#ArcGIS模型构建器" class="headerlink" title="ArcGIS模型构建器"></a>ArcGIS模型构建器</h2><p><strong>ArcGIS模型构建器</strong>是Esri公司开发的ArcGIS软件中的一个强大工具，它允许用户通过图形化界面来创建、编辑和运行一系列自动化的GIS分析模型。模型构建器的核心优势在于能够将复杂的GIS分析流程简化为一系列可视化的步骤，使得用户无需编写代码即可完成复杂的空间分析任务。<br>可以在空白文件夹下，点击按钮打开，也可以在文件夹内，右键打开。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231055335.png" alt="image.png"><br>建议像笔者一样，建立好文件夹框架，依次新建文件数据库-工具集-模型。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231057487.png" alt="image.png"><br>在模型构建器中，数据类型如下，本文将用到项目数据、工具、派生数据和值等类型。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231059219.png" alt="image.png"><br>将数据、工具等可以直接拖入模型界面中，非常方便。</p><h2 id="模型搭建"><a href="#模型搭建" class="headerlink" title="模型搭建"></a>模型搭建</h2><h3 id="填洼"><a href="#填洼" class="headerlink" title="填洼"></a>填洼</h3><p>dem-填洼-fill<br><strong>填洼</strong>（Fill）是去除 dem 中的洼地（sinks）或凹陷（depressions）。这些洼地在地形分析中可能会导致错误的水流方向和流域划分，需要通过填洼操作来纠正。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221609608.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221926917.png" alt="image.png"></p><h3 id="流向"><a href="#流向" class="headerlink" title="流向"></a>流向</h3><p>fill-流向-FlowDirection<br>注意选着 fill 时需要选择蓝色循环的那个，为变量值。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221614049.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221618226.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221930624.png" alt="image.png"></p><h3 id="流量"><a href="#流量" class="headerlink" title="流量"></a>流量</h3><p>FlowDirection-流量-fillacc<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221620132.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221620254.png" alt="image.png"><br>根据栅格数值大小隐约能看出河流的线条。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221934241.png" alt="image.png"><br>点击栅格可以查询该处的数值，通过这种方法判断最小径流的值，后面有用。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221937003.png" alt="image.png"></p><h3 id="河流长度"><a href="#河流长度" class="headerlink" title="河流长度"></a>河流长度</h3><p>FlowDirection-河流长度-flowlength 测量方向选择 upstream，<br>水流长度工具的主要用途是计算给定盆地内最长水流的长度。该度量值常用于计算盆地的聚集时间。这可使用 UPSTREAM 选项来完成。该工具也可通过将权重栅格用作下坡运动的阻抗，来创建假设降雨和径流事件的距离-面积图。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221949623.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230838124.png" alt="image.png"></p><h3 id="栅格计算器"><a href="#栅格计算器" class="headerlink" title="栅格计算器"></a>栅格计算器</h3><p>栅格计算器 或者条件函数<br>栅格计算器（Raster Calculator）  条件函数 Con(FlowAccu&gt;R,1)<br>目的是将流量栅格数据中提取河流的部分，公式为”flowacc” &gt;&#x3D; 1000。<br>在模型构建器中使用左右%代表变量。新增一个变量，作为流量限值 R，建议通过流量栅格 (flowacc), 点击查询河流的最小栅格，我这里根据实际情况，选择输入 1000。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230842687.png" alt="image.png"></p><p>具体公式以自己实验为准，添加变量后，修改为”%fillacc%” &gt;&#x3D;  “%任意值%”<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221641559.png" alt="image.png"><br>记得点击任意值，添加 1000，这样以后只需要修改这个值，就可以调整河流长度了。<br>Acc 1000 结果，可见满足条件的，也就是河流为 1，不满足的为 0.<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230854890.png" alt="image.png"></p><h3 id="河流链接"><a href="#河流链接" class="headerlink" title="河流链接"></a>河流链接</h3><p>acc1000+FlowDirection&#x3D;Streamlink<br>by 河流链接<br>河流链接的作用有：<strong>构建连续的河流网络</strong>：河流链接工具能够识别并连接相邻的河流段，确保河流网络在空间上是连贯和正确的。<strong>分配唯一标识符</strong>：给河流网络中的每个部分分配唯一的 ID，便于管理和进一步分析。这有助于区分不同的河流分支和主流，以及分析它们各自的属性（如流量、长度等）。<strong>优化数据结构</strong>，减少在模型中处理大量独立线段时的复杂性。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221642956.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230924178.png" alt="image.png"></p><h3 id="河网分级"><a href="#河网分级" class="headerlink" title="河网分级"></a>河网分级</h3><p>acc1000+FlowDirection&#x3D;StreamOrder<br>by 河网分级<br>河网结构用于识别河流上下级，常见的河网分级方法有斯特拉勒（Strahler）、希科特（Horton）和谢内（Shreve）等。斯特拉勒法是最常用的，它基于河流交汇规则来分配等级，即每次支流汇入时，如果两支流的等级相同，则合并后的河段等级加1；如果不同，则高等级保持不变。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221635748.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230928380.png" alt="image.png"></p><h3 id="栅格河网矢量化"><a href="#栅格河网矢量化" class="headerlink" title="栅格河网矢量化"></a>栅格河网矢量化</h3><p>StreamOrder+FlowDirection&#x3D;StreamOrder1000<br>by 栅格河网矢量化<br>顾名思义，栅格河网矢量化就是将河流网络的栅格数据转换成矢量数据格式，便于分析、可视化及水文建模应用。注意如果要增加河流长度等字段，需要在投影坐标系下进行。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221824966.png" alt="image.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230932035.png" alt="image.png"></p><h3 id="绘制倾泻点"><a href="#绘制倾泻点" class="headerlink" title="绘制倾泻点"></a>绘制倾泻点</h3><p>StreamOrder 1000+end&#x3D;FeatureVert_1000<br>By要素折点转点<br><strong>倾泻点</strong>是指汇流区域中具有最低高程的边界象元。它标志着水从一个流域流向另一个流域的出口点，或者是水流离开一个封闭流域（如盆地）的地点。<br>可以通过要素折点转点生成，也可以根据自己手工增加，形式是一些离散的点。<br>要素折点转点，顾名思义，指通过矢量线的折点或转点然后生成点，有 all、mindle、end、start、both_ends、dangle（悬挂点，指离散点） 等类型，绘制倾泻选择 end 。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221825292.png" alt="image.png"><br>倾泻点非常关键，是汇水区分析的重要参数，除了自动生成的点外，可以根据实际需要，添加、删除点。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230948266.png" alt="河流与倾泻点"></p><h3 id="栅格流域提取"><a href="#栅格流域提取" class="headerlink" title="栅格流域提取"></a>栅格流域提取</h3><h6 id="集水区"><a href="#集水区" class="headerlink" title="集水区"></a>集水区</h6><p>集水区也就是分水岭，根据流向和倾泻点一起做的汇水范围。有倾泻点的会比盆域分析更细，他与倾泻点的点位有很大关系。<br>FlowDirection+FeatureVert_1000&#x3D;倾泻点字段为空&#x3D;watersh</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221645662.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230956061.png" alt="image.png"></p><h4 id="盆域分析"><a href="#盆域分析" class="headerlink" title="盆域分析"></a>盆域分析</h4><p>流向 FlowDirection 盆域分析&#x3D; basin<br>盆域分析，也就是流域分析，可以理解为没有倾泻点的大范围流域分析。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221647107.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230957148.png" alt="image.png"></p><p>运行模型-成功<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221731875.png" alt="image.png"></p><h3 id="栅格转面"><a href="#栅格转面" class="headerlink" title="栅格转面"></a>栅格转面</h3><p>上述流域栅格，转为矢量图层。用于可视化和计算，作用与栅格河网矢量化类似。<br> basin&#x2F;watersh 栅格转面 RasterT_basin &#x2F;RasterT_watersh</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221727096.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230955132.png" alt="子流域范围.png"></p><p>至此，水文分析基本结束。<br>调试模型，运行成功。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221742623.png" alt="image.png"></p><p>调整模型架构，让连接线不交叉。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231005860.png" alt="image.png"></p><h2 id="模型应用"><a href="#模型应用" class="headerlink" title="模型应用"></a>模型应用</h2><h3 id="导出-py-文件"><a href="#导出-py-文件" class="headerlink" title="导出 py 文件"></a>导出 py 文件</h3><p>可以导出 py 文件，进行模型复用。在 ArcGIS 环境中导入脚本，注意导入前修改绝对地址注意保持一致。另外它基于 ArcPy 模块，一个专为 ArcGIS 设计的空间分析和数据处理库。因此，它的运行环境依赖于 ArcGIS，使用 ArcGIS Python 2.X 环境编写的。不能用于 python 3 中。<br>经过测试，代码并不能直接使用，需要重新编译后才能使用，后续会出一期 python 水文分析的文章。</p><h3 id="完善脚本"><a href="#完善脚本" class="headerlink" title="完善脚本"></a>完善脚本</h3><ol><li>将 dem 输入变为变量，方法为新增变量-栅格数据集，然后选择对应的 dem 位置。</li><li>重命名，将 dem 命名为输入 dem。双精度命名为输入流量下限值。</li><li>完善模型参数，模型-模型属性-参数将输入 dem、输入流量下限值作为必填项</li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231021444.png" alt="image.png"></p><h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p>点击模型打开，输入 dem 和下限值，点击运行。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231038360.png" alt="1716431898456.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231039764.png" alt="image.png"><br>运行成功，结果输出在模型内指定的文件夹。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231040644.png" alt="image.png"><br>重新运行将会替换结果文件，运行一次后，结果移动出来，再次使用。总之，非常方便。</p><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>本文通过详细探讨ArcGIS水文分析的全过程，不仅展示了如何利用ArcGIS模型构建器来创建一个高效、可复用的水文分析模型，还深入介绍了模型构建器的图形化界面和强大功能。通过本文的学习，读者可以清晰地看到，即使是GIS编程新手，也能通过模型构建器实现复杂的空间分析任务，而无需深入代码层面。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>生态环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>水文分析</tag>
+      
+      <tag>arcgis</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>宝藏网站推荐-封面图片生成器</title>
+    <link href="/2024/05/21/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E5%AE%9D%E8%97%8F%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90-%E5%B0%81%E9%9D%A2%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E5%99%A8/"/>
+    <url>/2024/05/21/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E5%AE%9D%E8%97%8F%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90-%E5%B0%81%E9%9D%A2%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E5%99%A8/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>封面图片生成器：<a href="https://spacexcode.com/coverview">封面图生成器 | 太空编程 (spacexcode.com)</a><br>最近爱上了写文案，在网上冲浪的时候发现一个宝藏网站。Spacecode，一个大神维护的个人网站，含有前端知识库、个人博客及他做的开源项目。<br>其中封面图片生成器简单好用，完全免费，自来水一下。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211851977.png" alt="image.png"><br>其他作品，如毛玻璃效果生成器、代码图片生成器、文字卡片等等，都非常棒。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211852301.png" alt="image.png"><br>作者项目做的很好，从他的简介也可以看出，是个很棒的家伙，向他学习。Build in public，learn in public。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具推荐</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>工具推荐</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>宝藏网站推荐-封面图片生成器</title>
     <link href="/2024/05/21/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E5%AE%9D%E8%97%8F%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90-%E5%B0%81%E9%9D%A2%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E5%99%A8/"/>
     <url>/2024/05/21/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E5%AE%9D%E8%97%8F%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90-%E5%B0%81%E9%9D%A2%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E5%99%A8/</url>
     
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>封面图片生成器：<a href="https://spacexcode.com/coverview">封面图生成器 | 太空编程 (spacexcode.com)</a><br>最近爱上了写文案，在网上冲浪的时候发现一个宝藏网站。Spacecode，一个大神维护的个人网站，含有前端知识库、个人博客及他做的开源项目。<br>其中封面图片生成器简单好用，完全免费，自来水一下。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211851977.png" alt="image.png"><br>其他作品，如毛玻璃效果生成器、代码图片生成器、文字卡片等等，都非常棒。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211852301.png" alt="image.png"><br>作者的开源项目做的很好，从他的简介也可以看出，是个很棒的家伙，向他学习。<br>Build in public，learn in public。</p>]]></content>
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405212055308.png" alt="spacexcode-coverview-5514.png"></p><p>封面图片生成器：<a href="https://spacexcode.com/coverview">封面图生成器 | 太空编程 (spacexcode.com)</a><br>最近爱上了写文案，在网上冲浪的时候发现一个宝藏网站。Spacecode，一个大神维护的个人网站，含有前端知识库、个人博客及他做的开源项目。<br>其中封面图片生成器简单好用，完全免费，自来水一下。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211851977.png" alt="image.png"><br>其他作品，如毛玻璃效果生成器、代码图片生成器、文字卡片等等，都非常棒。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211852301.png" alt="image.png"><br>作者的开源项目做的很好，从他的简介也可以看出，是个很棒的家伙，向他学习。<br>Build in public，learn in public。</p>]]></content>
     
     
     <categories>
@@ -33,25 +112,25 @@
     <link href="/2024/05/21/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/ArcGIS%E5%AF%BC%E5%85%A5autoCAD%E5%9C%B0%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%B9%B6%E6%95%B4%E7%90%86/"/>
     <url>/2024/05/21/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/ArcGIS%E5%AF%BC%E5%85%A5autoCAD%E5%9C%B0%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%B9%B6%E6%95%B4%E7%90%86/</url>
     
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在日常工作中，我们常需要对特定区域地形进行深入分析。易于获得的地形数据为 30 m 精度，有时无法满足项目要求，需要更高精度的地形资料，而这些资料通常以 AutoCAD 文件的形式存在。<br>这些数据需经过 GIS 系统处理，以生成所需的 dem 数据。本篇文章将循序渐进，从 CAD 地形图层常用名称开始，详尽阐述在 ArcGIS 平台上，如何处理 AutoCAD 地形文件，最终产出高精度的 DEM（数字高程模型），希望对你有所帮助。</p><h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="DEM"><a href="#DEM" class="headerlink" title="DEM"></a>DEM</h3><p><strong>DEM（Digital Elevation Model）</strong>：即数字高程模型，是通过有限的地形高程数据实现对地面地形的数字化模拟。是数字地形模型（Digital Terrain Model，简称 DTM）的一个分支。狭义的 dem 是栅格数据，在水文分析中，dem 数据可以用来生成坡向、坡度、水系、分水岭、泄水点等信息。</p><h3 id="TIN"><a href="#TIN" class="headerlink" title="TIN"></a>TIN</h3><p><strong>TIN（Triangular Irregular Network）</strong>：即不规则三角网，是基于矢量的数字地理数据的一种形式，通过将一系列折点组成的三角形来构建。各折点通过由一系列边进行连接，最终形成一个三角网。TIN 是一种更为精细的表示方法，适用于复杂地形的精确表示和分析。</p><h3 id="CAD-图层常用名称"><a href="#CAD-图层常用名称" class="headerlink" title="CAD 图层常用名称"></a>CAD 图层常用名称</h3><p>以下是常用的 CAD 地形图常用图层名称。</p><ol><li>DGX–等高线</li><li>DLSS–道路设施</li><li>DLDW–独立地物</li><li>DMTZ–地貌特征</li><li>GCD–高程点</li><li>JMD–居民地</li><li>SXSS–水系设施</li><li>ZBTZ–植被特征</li><li>GXYZ–管线设施</li><li>TK–图框</li></ol><h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h3 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h3><p>新建 ArcGIS 项目，不要在已有坐标系的文件中添加。<br>在导入前，设置好坐标系，这需要问资料来源方。<br>右键-属性-常规-编辑，选择合适的坐标系。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211514712.png" alt="image.png"><br>将 CAD 文件拖入 ArcGIS。</p><h3 id="确定要保留的图层"><a href="#确定要保留的图层" class="headerlink" title="确定要保留的图层"></a>确定要保留的图层</h3><p>导入 CAD 文件后，会发现有很多文件，<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211516876.png" alt="image.png"><br>分别为：</p><ul><li>Annotation 注释</li><li>Point 点</li><li>Polyline 多段线</li><li>Polygon 多边形</li><li>MultiPatch 3 D 几何图形</li></ul><p>一般需要关注的是 Polyline 、Point、Polygon 根据自己的需要整理对应的数据。地形数据在 Polyline 中，通过查询工具，点击对应的图层可以查询其图层名称。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211526491.png" alt="image.png"><br>比如，地形图层为 DGX。<br>右键 Polyline-属性-绘制图层-选择 DGX。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211528230.png" alt="image.png"><br>右键 Polyline-打开属性表-点击表选项-按属性选择, 输入表达式<br>“Elevation” &gt;0，可根据自己的文件属性，定义筛选表达式。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211531228.png" alt="image.png"><br>导出数据，右键 Polyline-数据-导出数据，导出所选要素。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211534372.png" alt="image.png"><br>可以用同样的方法将需要的图层导出 GIS 图层数据。<br>如地貌特征（DMTZ） 、水系设施（SXSS）、居民地（JMD）、道路设施（DLSS）等, 选择不同的图层时，记得提前在显示区域右键-清楚所选区域。<br>在本文示例文件中，因为是农业区域地貌特征和等高线都有高程信息，为提高精度，将两者合并导出图层精细分析。</p><h3 id="创建-TIN"><a href="#创建-TIN" class="headerlink" title="创建 TIN"></a>创建 TIN</h3><p>工具搜索-创建 TIN，高度字段输入 Elevation，注意在创建之前，最好打开属性表，观察 Elevation 值的范围，从 CAD 导入的数据可能存在异常。因此需要用前面表达式筛选的方式，选择合适的等高线范围。例如本示例需要将 Elevation 控制在 0-500 之间，500 以上的异常值去掉。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211629026.png" alt="image.png"><br>点击属性-符号系统选择分区及配色。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211647927.png" alt="image.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211707784.png" alt="image.png"></p><h3 id="TIN-转-dem"><a href="#TIN-转-dem" class="headerlink" title="TIN 转 dem"></a>TIN 转 dem</h3><p>使用 TIN 转栅格工具，转出的数据就是我们需要的 dem 数据。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211711236.png" alt="image.png"><br>得到区域 dem 数据如下，完成。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211711285.png" alt="image.png"></p><p>用查询工具点击 dem 可得到精度信息。对比下载的 dem 数据，拉伸值在 48~70 之间，cad 生成的，精度有所提高。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211717057.png" alt="image.png"></p><p>有了 dem 数据，我们就能做很多工作了，如水文分析的河流水系、坡度、坡向、产流量、河流链接、分水岭、流域等等。后续也会整理 dem 水文分析的操作步骤。</p><h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>本方法实际精度与 DWG 文件质量关系很大，例如示例文件中，由于地貌特征图层文件，大部分高指为 0，无法参与 dem 结果生成，降低了最终生成文件的效果。若深入探究，还可以用克里金插值等方法，提高精度。<br>总之，以上就是用 CAD 文件生产 DEM 的过程，如果有帮助到你，可以关注本博客以及我的公众号。</p>]]></content>
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在日常工作中，我们常需要对特定区域地形进行深入分析。易于获得的地形数据为 30 m 精度，有时无法满足项目要求，需要更高精度的地形资料，而这些资料通常以 AutoCAD 文件的形式存在。<br>这些数据需经过 GIS 系统处理，以生成所需的 dem 数据。本篇文章将循序渐进，从 CAD 地形图层常用名称开始，详尽阐述在 ArcGIS 平台上，如何处理 AutoCAD 地形文件，最终产出高精度的 DEM（数字高程模型），希望对你有所帮助。</p><h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="DEM"><a href="#DEM" class="headerlink" title="DEM"></a>DEM</h3><p><strong>DEM（Digital Elevation Model）</strong>：即数字高程模型，是通过有限的地形高程数据实现对地面地形的数字化模拟。是数字地形模型（Digital Terrain Model，简称 DTM）的一个分支。狭义的 dem 是栅格数据，在水文分析中，dem 数据可以用来生成坡向、坡度、水系、分水岭、泄水点等信息。</p><h3 id="TIN"><a href="#TIN" class="headerlink" title="TIN"></a>TIN</h3><p><strong>TIN（Triangular Irregular Network）</strong>：即不规则三角网，是基于矢量的数字地理数据的一种形式，通过将一系列折点组成的三角形来构建。各折点通过由一系列边进行连接，最终形成一个三角网。TIN 是一种更为精细的表示方法，适用于复杂地形的精确表示和分析。</p><h3 id="CAD-图层常用名称"><a href="#CAD-图层常用名称" class="headerlink" title="CAD 图层常用名称"></a>CAD 图层常用名称</h3><p>以下是常用的 CAD 地形图常用图层名称。</p><ol><li>DGX–等高线</li><li>DLSS–道路设施</li><li>DLDW–独立地物</li><li>DMTZ–地貌特征</li><li>GCD–高程点</li><li>JMD–居民地</li><li>SXSS–水系设施</li><li>ZBTZ–植被特征</li><li>GXYZ–管线设施</li><li>TK–图框</li></ol><h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h3 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h3><p>新建 ArcGIS 项目，不要在已有坐标系的文件中添加。<br>在导入前，设置好坐标系，这需要问资料来源方。<br>右键-属性-常规-编辑，选择合适的坐标系。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211514712.png" alt="image.png"><br>将 CAD 文件拖入 ArcGIS。</p><h3 id="确定要保留的图层"><a href="#确定要保留的图层" class="headerlink" title="确定要保留的图层"></a>确定要保留的图层</h3><p>导入 CAD 文件后，会发现有很多文件，<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211516876.png" alt="image.png"><br>分别为：</p><ul><li>Annotation 注释</li><li>Point 点</li><li>Polyline 多段线</li><li>Polygon 多边形</li><li>MultiPatch 3 D 几何图形<br>一般需要关注的是 Polyline 、Point、Polygon 根据自己的需要整理对应的数据。地形数据在 Polyline 中，通过查询工具，点击对应的图层可以查询其图层名称。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211526491.png" alt="image.png"><br>比如，地形图层为 DGX。<br>右键 Polyline-属性-绘制图层-选择 DGX。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211528230.png" alt="image.png"><br>右键 Polyline-打开属性表-点击表选项-按属性选择, 输入表达式<br>“Elevation” &gt;0，可根据自己的文件属性，定义筛选表达式。</li></ul><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211531228.png" alt="image.png"><br>导出数据，右键 Polyline-数据-导出数据，导出所选要素。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211534372.png" alt="image.png"><br>可以用同样的方法将需要的图层导出 GIS 图层数据。<br>如地貌特征（DMTZ） 、水系设施（SXSS）、居民地（JMD）、道路设施（DLSS）等, 选择不同的图层时，记得提前在显示区域右键-清楚所选区域。<br>在本文示例文件中，因为是农业区域地貌特征和等高线都有高程信息，为提高精度，将两者合并导出图层精细分析。</p><h3 id="创建-TIN"><a href="#创建-TIN" class="headerlink" title="创建 TIN"></a>创建 TIN</h3><p>工具搜索-创建 TIN，高度字段输入 Elevation，注意在创建之前，最好打开属性表，观察 Elevation 值的范围，从 CAD 导入的数据可能存在异常。因此需要用前面表达式筛选的方式，选择合适的等高线范围。例如本示例需要将 Elevation 控制在 0-500 之间，500 以上的异常值去掉。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211629026.png" alt="image.png"><br>点击属性-符号系统选择分区及配色。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211647927.png" alt="image.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211707784.png" alt="image.png"></p><h3 id="TIN-转-dem"><a href="#TIN-转-dem" class="headerlink" title="TIN 转 dem"></a>TIN 转 dem</h3><p>使用 TIN 转栅格工具，转出的数据就是我们需要的 dem 数据。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211711236.png" alt="image.png"><br>得到区域 dem 数据如下，完成。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211711285.png" alt="image.png"></p><p>用查询工具点击 dem 可得到精度信息。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211717057.png" alt="image.png"></p><p>有了 dem 数据，我们就能做很多工作了，如水文分析的河流水系、坡度、坡向、产流量、河流链接、分水岭、流域等等。后续也会整理 dem 水文分析的操作步骤。</p><h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>本方法实际精度与 DWG 文件质量关系很大，例如示例文件中，由于地貌特征图层文件，大部分高指为 0，无法参与 dem 结果生成，降低了最终生成文件的效果。若深入探究，还可以用克里金插值等方法，提高精度。<br>总之，以上就是用 CAD 文件生产 DEM 的过程，如果有帮助到你，请点赞关注。</p>]]></content>
     
     
     <categories>
       
-      <category>生态环境</category>
+      <category>经验分享</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>经验分享</tag>
+      <tag>水文分析</tag>
       
       <tag>arcgis</tag>
       
-      <tag>水文分析</tag>
-      
       <tag>地形数据</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     
@@ -76,9 +155,9 @@
     
     <tags>
       
-      <tag>工具推荐</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>工具推荐</tag>
       
       <tag>素材</tag>
       
@@ -105,11 +184,11 @@
     
     <tags>
       
+      <tag>经验分享</tag>
+      
       <tag>工具推荐</tag>
       
       <tag>AIGC</tag>
-      
-      <tag>经验分享</tag>
       
     </tags>
     
@@ -159,9 +238,9 @@
     
     <tags>
       
-      <tag>方法论</tag>
-      
       <tag>读书笔记</tag>
+      
+      <tag>方法论</tag>
       
     </tags>
     
@@ -186,9 +265,9 @@
     
     <tags>
       
-      <tag>方法论</tag>
-      
       <tag>读书笔记</tag>
+      
+      <tag>方法论</tag>
       
       <tag>写作</tag>
       
