@@ -1,0 +1,766 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  
+    <meta name="description" content="研究背景随着水资源管理需求的日益增长，水质预测模型的精准度成为了评估其有效性的关键因素。本文旨在通过实证研究，探讨自建水质预测模型的实际应用效能，通过与真实监测数据的比对，揭示模型预测精度的真实情况。 数据基础情况数据来源：自研水质模型预测结果时间范围：2023 年全年指标：高锰酸盐指数、总磷、氨氮、氟化物 模型简介本研究采用基于一维水质的机理模型，通过实时监测数据动态调整降解系数与污染物迁移">
+<meta property="og:type" content="article">
+<meta property="og:title" content="水质预测模型精度评估实例">
+<meta property="og:url" content="https://maoyu92.github.io/2024/05/27/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B%E7%B2%BE%E5%BA%A6%E8%AF%84%E4%BC%B0/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="研究背景随着水资源管理需求的日益增长，水质预测模型的精准度成为了评估其有效性的关键因素。本文旨在通过实证研究，探讨自建水质预测模型的实际应用效能，通过与真实监测数据的比对，揭示模型预测精度的真实情况。 数据基础情况数据来源：自研水质模型预测结果时间范围：2023 年全年指标：高锰酸盐指数、总磷、氨氮、氟化物 模型简介本研究采用基于一维水质的机理模型，通过实时监测数据动态调整降解系数与污染物迁移">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405280926129.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405280928978.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405280951942.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405281034254.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405281028472.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405281046534.png">
+<meta property="article:published_time" content="2024-05-27T03:11:00.000Z">
+<meta property="article:modified_time" content="2024-05-27T03:11:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="时间序列模型">
+<meta property="article:tag" content="机理模型">
+<meta property="article:tag" content="生态环境">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405280926129.png">
+  
+  
+  
+  <title>水质预测模型精度评估实例 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="水质预测模型精度评估实例"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-27 11:11" pubdate>
+          2024年5月27日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">水质预测模型精度评估实例</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h2 id="研究背景"><a href="#研究背景" class="headerlink" title="研究背景"></a>研究背景</h2><p>随着水资源管理需求的日益增长，水质预测模型的精准度成为了评估其有效性的关键因素。本文旨在通过实证研究，探讨自建水质预测模型的实际应用效能，通过与真实监测数据的比对，揭示模型预测精度的真实情况。</p>
+<h2 id="数据基础情况"><a href="#数据基础情况" class="headerlink" title="数据基础情况"></a>数据基础情况</h2><p>数据来源：自研水质模型预测结果<br>时间范围：2023 年全年<br>指标：高锰酸盐指数、总磷、氨氮、氟化物</p>
+<h2 id="模型简介"><a href="#模型简介" class="headerlink" title="模型简介"></a>模型简介</h2><p>本研究采用基于一维水质的机理模型，通过实时监测数据动态调整降解系数与污染物迁移速度，实现了单次对高锰酸盐指数、总磷、氨氮、氟化物长达20天以上的高适应性预测，尤其擅长捕捉水质突变事件。</p>
+<h3 id="当前预测界面"><a href="#当前预测界面" class="headerlink" title="当前预测界面"></a>当前预测界面</h3><p>曲线图展示当前最新的预测结果。下部展示预测结果是否超标，峰值及超标时间范围，预测月均值与实际累计月均值。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405280926129.png" srcset="/img/loading.gif" lazyload alt="Fig.1 模型可视化页面"></p>
+<h3 id="模型评价界面"><a href="#模型评价界面" class="headerlink" title="模型评价界面"></a>模型评价界面</h3><p>可以查询历史预测区间的预测结果对比。下部为模型评价，通过多元统计指标（如MAPE、RMSE）深入剖析模型性能，特别是通过准确率区间分布图，多维度验证了模型的稳定性和可靠性。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405280928978.png" srcset="/img/loading.gif" lazyload alt="Fig.2 模型评价界面"></p>
+<h2 id="模型精度评价方法"><a href="#模型精度评价方法" class="headerlink" title="模型精度评价方法"></a>模型精度评价方法</h2><p>为了评估模型的准确率，本文采用比较直观的“预测误差率”来表达，用于评估预测值与真实值之间的接近程度。<br>$$<br>\text{A} &#x3D; 1 - \frac{|Y - \hat{Y}|}{Y}<br>$$<br>A 表示相对准确性，𝑌 是观测到的真实值（或准确值），而 Y^ 是模型预测的值。这个公式量化了预测误差相对于真实值的比例，其逆值给出了预测相对于实际观察值的接近程度，可以视为一种衡量预测准确性的度量，这种表达通常被称为相对误差的倒数或者归一化绝对误差。</p>
+<p>理论情况下，模型每天至少运行一次，预测因子包括高锰酸盐指数、总磷、氨氮、氟化物，每次预测不少于 7 天，模型评价方法是每个因子，每次所有预测结果，依次与监测指标进行比对，单个指标每次每个值得预测准确率计为 A。<br>$$ \bar &#x3D; \frac{1}{N} \sum_{i&#x3D;1}^{N} A_i $$<br>这段公式表示求所有单次单个因子所有预测值的算术平均，其中 N 是预测值的数量。<br>用这种方法观察一年每次预测准确率的变化。</p>
+<h3 id="Python-代码实现"><a href="#Python-代码实现" class="headerlink" title="Python 代码实现"></a>Python 代码实现</h3><p>创建了一个 <code>WaterQualityPredictor</code> 类，该类封装与数据库交互、数据处理、预测数据获取、监测数据获取、准确率计算以及绘图等操作。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> pymysql<br><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> datetime<br><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> mean_absolute_error<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">WaterQualityPredictor</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, db_config</span>):<br>        self.db_config = db_config<br>        self.conn = self._connect_db() <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_connect_db</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-string">&quot;&quot;&quot;连接数据库&quot;&quot;&quot;</span><br>        conn = pymysql.connect(**self.db_config)<br>        <span class="hljs-keyword">return</span> conn<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">fetch_model_data</span>(<span class="hljs-params">self, sql</span>):<br>        <span class="hljs-string">&quot;&quot;&quot;从数据库获取模型数据&quot;&quot;&quot;</span><br>        df = pd.read_sql(sql, self.conn)<br>        <span class="hljs-keyword">return</span> self._process_data(df) <br>    @<span class="hljs-built_in">staticmethod</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">_process_data</span>(<span class="hljs-params">df</span>):<br>        <span class="hljs-string">&quot;&quot;&quot;处理数据，包括时间格式转换和数值处理&quot;&quot;&quot;</span><br>        df[<span class="hljs-string">&quot;create_time&quot;</span>] = pd.to_datetime(df[<span class="hljs-string">&quot;create_time&quot;</span>])<br>        df[<span class="hljs-string">&quot;start_time&quot;</span>] = pd.to_datetime(df[<span class="hljs-string">&quot;start_time&quot;</span>])<br>        df[<span class="hljs-string">&quot;date_time&quot;</span>] = pd.to_datetime(df[<span class="hljs-string">&quot;date_time&quot;</span>])<br>        <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> [<span class="hljs-string">&quot;CODmn&quot;</span>, <span class="hljs-string">&quot;NH3&quot;</span>, <span class="hljs-string">&quot;TP&quot;</span>, <span class="hljs-string">&quot;F&quot;</span>]:<br>            df[col] = df[col].astype(<span class="hljs-built_in">float</span>).<span class="hljs-built_in">round</span>(<span class="hljs-number">3</span>)<br>        <span class="hljs-keyword">return</span> df<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">get_prediction_dataset</span>(<span class="hljs-params">self, factor, create_time, prediction_days=<span class="hljs-number">7</span></span>):<br>        <span class="hljs-string">&quot;&quot;&quot;根据因子和创建时间获取预测数据集&quot;&quot;&quot;</span><br>        subset = self.model_data[(self.model_data[<span class="hljs-string">&quot;create_time&quot;</span>] == create_time) &amp; (self.model_data[factor].notnull())].iloc[:<span class="hljs-number">6</span>*prediction_days]<br>        subset = subset[[<span class="hljs-string">&quot;date_time&quot;</span>, factor]].set_index(<span class="hljs-string">&quot;date_time&quot;</span>).reset_index()<br>        <span class="hljs-keyword">return</span> subset<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">fetch_monitor_data</span>(<span class="hljs-params">self, begin_time, end_time, station, period</span>):<br>        <span class="hljs-string">&quot;&quot;&quot;获取监测数据&quot;&quot;&quot;</span><br>        <span class="hljs-comment"># 这里省略具体的请求逻辑，</span><br>        <span class="hljs-keyword">pass</span> <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">calculate_accuracy</span>(<span class="hljs-params">self, prediction_df, monitor_df, factor</span>):<br>        <span class="hljs-string">&quot;&quot;&quot;计算准确率&quot;&quot;&quot;</span><br>        concatenated_data = pd.merge(prediction_df, monitor_df, on=<span class="hljs-string">&quot;date_time&quot;</span>, suffixes=(<span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-string">&#x27;_y&#x27;</span>))<br>        concatenated_data[<span class="hljs-string">&#x27;Accuracy&#x27;</span>] = <span class="hljs-number">1</span> - (<span class="hljs-built_in">abs</span>(concatenated_data[factor] - concatenated_data[factor+<span class="hljs-string">&#x27;_y&#x27;</span>]) / concatenated_data[factor])<br>        concatenated_data[<span class="hljs-string">&#x27;Accuracy&#x27;</span>] = concatenated_data[<span class="hljs-string">&#x27;Accuracy&#x27;</span>] * <span class="hljs-number">100</span><br>        average_accuracy = concatenated_data[<span class="hljs-string">&#x27;Accuracy&#x27;</span>].mean()<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">round</span>(average_accuracy, <span class="hljs-number">4</span>)<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">plot_comparison</span>(<span class="hljs-params">self, concatenated_data, factor</span>):<br>        <span class="hljs-string">&quot;&quot;&quot;绘制预测值与监测值对比图&quot;&quot;&quot;</span><br>        <span class="hljs-keyword">if</span> concatenated_data[<span class="hljs-string">&#x27;date_time&#x27;</span>].equals(concatenated_data[<span class="hljs-string">&#x27;date_time_y&#x27;</span>]):<br>            plt.figure(figsize=(<span class="hljs-number">10</span>, <span class="hljs-number">6</span>))<br>            plt.plot(concatenated_data[<span class="hljs-string">&#x27;date_time&#x27;</span>], concatenated_data[factor], label=<span class="hljs-string">&#x27;Prediction&#x27;</span>, marker=<span class="hljs-string">&#x27;o&#x27;</span>)<br>            plt.plot(concatenated_data[<span class="hljs-string">&#x27;date_time_y&#x27;</span>], concatenated_data[factor+<span class="hljs-string">&#x27;_y&#x27;</span>], label=<span class="hljs-string">&#x27;Monitor&#x27;</span>, marker=<span class="hljs-string">&#x27;x&#x27;</span>)<br>            plt.xlabel(<span class="hljs-string">&#x27;Date Time&#x27;</span>)<br>            plt.ylabel(factor + <span class="hljs-string">&#x27; Value&#x27;</span>)<br>            plt.title(<span class="hljs-string">f&#x27;Comparison of <span class="hljs-subst">&#123;factor&#125;</span> Prediction and Monitor Values&#x27;</span>)<br>            plt.xticks(rotation=<span class="hljs-number">45</span>)<br>            plt.legend()<br>            plt.show()<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;date_time and date_time_y are not aligned&quot;</span>)<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">run_analysis</span>(<span class="hljs-params">self, factor, create_time, station, period, prediction_days=<span class="hljs-number">7</span></span>):<br>        <span class="hljs-string">&quot;&quot;&quot;执行整个分析流程&quot;&quot;&quot;</span><br>        self.model_data = self.fetch_model_data(<span class="hljs-string">&quot;SELECT * FROM mechanism&quot;</span>)<br>        prediction_df = self.get_prediction_dataset(factor, create_time, prediction_days)<br>        monitor_df = self.fetch_monitor_data(prediction_df[<span class="hljs-string">&quot;date_time&quot;</span>].<span class="hljs-built_in">min</span>(), prediction_df[<span class="hljs-string">&quot;date_time&quot;</span>].<span class="hljs-built_in">max</span>(), station, period)<br>        accuracy = self.calculate_accuracy(prediction_df, monitor_df, factor)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;Average Accuracy: <span class="hljs-subst">&#123;accuracy&#125;</span>%&quot;</span>)<br>        self.plot_comparison(pd.concat([prediction_df, monitor_df], axis=<span class="hljs-number">1</span>), factor) <br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    db_config = &#123;<br>        <span class="hljs-string">&quot;host&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>        <span class="hljs-string">&quot;port&quot;</span>: ,<br>        <span class="hljs-string">&quot;user&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>        <span class="hljs-string">&quot;password&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>        <span class="hljs-string">&quot;db&quot;</span>: <span class="hljs-string">&quot;&quot;</span>,<br>        <span class="hljs-string">&quot;charset&quot;</span>: <span class="hljs-string">&quot;&quot;</span><br>    &#125;<br>    predictor = WaterQualityPredictor(db_config)<br>    predictor.run_analysis(<span class="hljs-string">&quot;factor&quot;</span>, datetime.now() - timedelta(days=<span class="hljs-number">7</span>), <span class="hljs-string">&quot;station&quot;</span>, <span class="hljs-string">&quot;h4&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>实现任意预测时间的单词预测结果对比。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405280951942.png" srcset="/img/loading.gif" lazyload alt="Fig.3单次预测高指预测对比"></p>
+<h3 id="折线图分析准确率变化"><a href="#折线图分析准确率变化" class="headerlink" title="折线图分析准确率变化"></a>折线图分析准确率变化</h3><p>循环计算单词预测结果，取 2023 年整个时间段，四个指标准确率变化分别绘图。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405281034254.png" srcset="/img/loading.gif" lazyload alt="Fig.4 预测精度折线图"><br><em>注：部分预测异常时段，存在站点运行问题，为展示真实预测情况，未对齐进行剔除。从预测异常的频次看出，异常频率并不高。</em></p>
+<h3 id="饼图分析准确率占比"><a href="#饼图分析准确率占比" class="headerlink" title="饼图分析准确率占比"></a>饼图分析准确率占比</h3><p>为了更直观的分析预测准确率的分布，对四个因子准确率的分布划分为（小于40, 40<del>60, 60</del>80, 80~100）四个区间，分别作图如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">prepare_data_for_piechart</span>(<span class="hljs-params">df, column</span>):<br>    bins = [-np.inf, <span class="hljs-number">40</span>, <span class="hljs-number">60</span>, <span class="hljs-number">80</span>, <span class="hljs-number">100</span>]<br>    labels = [<span class="hljs-string">&#x27;&lt;40%&#x27;</span>, <span class="hljs-string">&#x27;40%-60%&#x27;</span>, <span class="hljs-string">&#x27;60%-80%&#x27;</span>, <span class="hljs-string">&#x27;80%-100%&#x27;</span>]<br>    <span class="hljs-comment"># 使用cut函数将数据切分为区间，并计算每个区间内数据点的数量</span><br>    intervals = pd.cut(df[column], bins=bins, labels=labels, include_lowest=<span class="hljs-literal">True</span>)<br>    <span class="hljs-comment"># 计算每个区间的频率</span><br>    frequencies = intervals.value_counts(normalize=<span class="hljs-literal">True</span>) * <span class="hljs-number">100</span><br>    <span class="hljs-keyword">return</span> frequencies<br>columns_to_analyze = df_2023.columns.tolist() <br>fig, axs = plt.subplots(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, figsize=(<span class="hljs-number">12</span>, <span class="hljs-number">8</span>), facecolor=<span class="hljs-string">&#x27;white&#x27;</span>)<br>axs = axs.ravel()  <span class="hljs-comment"># 将2x2的数组展平以便循环 </span><br><span class="hljs-keyword">for</span> i, column <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(columns_to_analyze):<br>    <span class="hljs-keyword">if</span> i &lt; <span class="hljs-built_in">len</span>(axs):  <span class="hljs-comment"># 确保不会超出子图的范围</span><br>        frequencies = prepare_data_for_piechart(df_2023, column)<br>        axs[i].pie(frequencies, labels=frequencies.index, autopct=<span class="hljs-string">&#x27;%1.1f%%&#x27;</span>)<br>        axs[i].set_title(<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;column&#125;</span> Precision Distribution&#x27;</span>)<br>        axs[i].axis(<span class="hljs-string">&#x27;equal&#x27;</span>)  <span class="hljs-comment"># 确保饼图是圆形</span><br><span class="hljs-comment"># 隐藏未使用的子图</span><br><span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(i+<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(axs)):<br>    fig.delaxes(axs[j])<br>plt.tight_layout()<br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405281028472.png" srcset="/img/loading.gif" lazyload alt="Fig.5 预测准确率分布饼图"></p>
+<p>上图表明，高锰酸盐指数准确率超过 60%的比例占比 95.4%，总磷准确率准确率超过 60%的比例 91.7%。详细指标可见下表。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>年平均准确率</th>
+<th>预测天数</th>
+<th>&gt;80%</th>
+<th>80~ 60%</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>高锰酸盐指数</td>
+<td>84.78</td>
+<td>327</td>
+<td>83.2</td>
+<td>14.1</td>
+</tr>
+<tr>
+<td>总磷</td>
+<td>79.52</td>
+<td>327</td>
+<td>70.6</td>
+<td>21.1</td>
+</tr>
+<tr>
+<td>氨氮</td>
+<td>-186</td>
+<td>321</td>
+<td>0.9</td>
+<td>4</td>
+</tr>
+<tr>
+<td>氟化物</td>
+<td>81.27</td>
+<td>119</td>
+<td>36.1</td>
+<td>63.95</td>
+</tr>
+<tr>
+<td><em>注：受站点运行情况影响，部分时段无数据。</em></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="直方图分析准确率分布"><a href="#直方图分析准确率分布" class="headerlink" title="直方图分析准确率分布"></a>直方图分析准确率分布</h3><p>直方图（Histogram）是一个更好的可视化选择，因为它能清晰地展示每个准确率区间内的数据点数量，非常适合观察数据分布特征，如中心趋势、偏斜程度及异常值等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br>bin_width = <span class="hljs-number">10</span><br>bins = <span class="hljs-built_in">list</span>(<span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-number">110</span>, bin_width)) + [<span class="hljs-number">100</span>]  <span class="hljs-comment"># 包含100%的边界</span><br><span class="hljs-comment"># 创建一个2x2的子图网格</span><br>fig, axs = plt.subplots(<span class="hljs-number">2</span>, <span class="hljs-number">2</span>, figsize=(<span class="hljs-number">12</span>, <span class="hljs-number">10</span>))<br><span class="hljs-comment"># 遍历每个因子，并绘制其准确率的直方图</span><br><span class="hljs-keyword">for</span> i, column <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(df_2023.columns):<br>    row = i // <span class="hljs-number">2</span><br>    col = i % <span class="hljs-number">2</span><br>    <span class="hljs-comment"># 绘制直方图</span><br>    axs[row, col].hist(df_2023[column], bins=bins, edgecolor=<span class="hljs-string">&#x27;black&#x27;</span>, alpha=<span class="hljs-number">0.7</span>)<br>    axs[row, col].set_title(<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;column&#125;</span> Accuracy Distribution&#x27;</span>)<br>    axs[row, col].set_xlabel(<span class="hljs-string">&#x27;Accuracy (%)&#x27;</span>)<br>    axs[row, col].set_ylabel(<span class="hljs-string">&#x27;Frequency&#x27;</span>)<br><span class="hljs-comment"># 如果因子少于4个，隐藏多余的子图</span><br><span class="hljs-keyword">for</span> ax <span class="hljs-keyword">in</span> axs.flat[<span class="hljs-built_in">len</span>(df_2023.columns):]:<br>    ax.axis(<span class="hljs-string">&#x27;off&#x27;</span>)<br><span class="hljs-comment"># 紧凑布局</span><br>plt.tight_layout()<br>plt.show()<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405281046534.png" srcset="/img/loading.gif" lazyload alt="Fig.6 预测精度分布直方图"><br>直方图能清晰的看出高锰酸盐指数、总磷预测准确率更好，且分布更集中。</p>
+<p>本模型氨氮预测准确率低的原因是：该目标站点氨氮指标长期较低。月均值波动在 0<del>0.2 之间，小时值可能长期处于 0</del>0.1 之间，即使较小的波动，准确率的值波动也很大。同时氨氮指标该站点与上游站点的关系不密切，只有较大的污染传递才能引起轻微升高。<br>经过长期观察，氨氮并非该站点的重点污染指标。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
+<li>机理模型在某站点高锰酸盐指数、总磷、氟化物等指标 2023 年的预测均有较好的表现。以准确率（归一化绝对误差的逆）评价，累计分别为 84.78%、79.52%、81.27%。</li>
+<li>由于氨氮值较低，且与上游站点变化较弱，对于氨氮指标的预测准确率不高。也因为氨氮值较低并非重点关注对象，若要考虑提高预测精度，可选择大数据模型，如 LSTM、prophet 等。</li>
+<li>准确率（归一化绝对误差的逆）并不是水质模型精度评价的必选指标，只是因为其较为通俗易懂，而受用户认可，仍需注意其具有一定的局限性，作为一个模型评价的参考指标即可，不宜过分求高，水质模型是否准确，应考虑其预测水质变化的能力，水质影响（峰值、污染持续时间）等，是否能够知道业务需要，才是水质模型最重要的指标。</li>
+</ol>
+<p>综上所述，本研究构建的机理模型在多数水质指标预测上展现了良好的效果，尤其在高锰酸盐指数、总磷和氟化物的预测上取得了显著成绩。然而，氨氮预测的挑战凸显了模型对低浓度污染物处理能力的局限，后续将结合先进的机器学习技术以增强特定条件下的预测能力。水质模型的终极目标不仅是追求高精度数值，更重要的是能否有效指导水环境管理和应对策略，确保模型服务于实际的环境治理需求。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="category-chain-item">生态环境</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B/" class="print-no-link">#时间序列模型</a>
+      
+        <a href="/tags/%E6%9C%BA%E7%90%86%E6%A8%A1%E5%9E%8B/" class="print-no-link">#机理模型</a>
+      
+        <a href="/tags/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="print-no-link">#生态环境</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>水质预测模型精度评估实例</div>
+      <div>https://maoyu92.github.io/2024/05/27/02 生态环境/水质预测模型精度评估/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/05/29/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%B5%81%E7%A8%8B%E5%9B%BE%20%E6%B3%B0%E9%85%B7%E5%95%A6%20Excalidraw%20Mermaid%20Syntax/" title="obsidian 文本生成流程图 Excalidraw Mermaid">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">obsidian 文本生成流程图 Excalidraw Mermaid</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/26/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20excaildraw%20%E6%9B%B4%E6%8D%A2%E5%AD%97%E4%BD%93/" title="obsidian Excalidraw 更换字体 最新">
+                        <span class="hidden-mobile">obsidian Excalidraw 更换字体 最新</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aISEcd721UR4FDrgO7lhVO7C-MdYXbMMI","appKey":"baX3M064xYuZCyDdARuS8mOM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://aisecd72.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
