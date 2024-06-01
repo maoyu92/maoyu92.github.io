@@ -65,6 +65,7 @@
 <meta property="article:published_time" content="2024-05-22T06:01:00.000Z">
 <meta property="article:modified_time" content="2024-05-22T06:01:00.000Z">
 <meta property="article:author" content="wenmao">
+<meta property="article:tag" content="用心长文">
 <meta property="article:tag" content="水文分析">
 <meta property="article:tag" content="arcgis">
 <meta name="twitter:card" content="summary_large_image">
@@ -319,7 +320,11 @@
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在地理信息系统（GIS）领域，水文分析是一项至关重要的任务，它涉及到对地表水流动路径、河流网络、流域划分等关键水文特征分析。这些分析对于水资源管理、洪水预警、环境规划以及城市排水系统设计等众多领域都具有重要的应用价值。</p>
 <p>本文旨在探讨ArcGIS中水文分析的全过程，并展示如何构建一个可复用的水文分析模型。通过本文的学习和实践，读者将能够深入了解ArcGIS在水文分析方面的应用，掌握从数据预处理到模型构建、从模型运行到结果输出的整个流程。此外，本文还将介绍如何将ArcGIS模型脚本化，以提高模型的复用性和自动化程度。</p>
 <p>在接下来的章节中，我们将详细介绍水文分析的各个步骤，包括资料背景的准备、操作中可能出现的问题及注意事项、分析框架的梳理、水文模型的搭建、模型思维和图形化界面的构建等。通过这些内容的学习，读者将能够全面掌握 ArcGIS 水文分析的相关知识和技能。</p>
-<h2 id="项目环境、条件"><a href="#项目环境、条件" class="headerlink" title="项目环境、条件"></a>项目环境、条件</h2><p>ArcGIS 10.8 中文包<br>已开启 Spatial Analyst Tools 分析工具<br>Win 10<br>数据集<br>    30 m dem 栅格数据集<br>Tips：可在微信公众号：环境猫 er ，回复 dem ，获取本文实验 dem 。<br>理论上 ArcGIS 10.2 也几乎一样，部分工具可能由翻译问题，建议初学者完全按照本文的文档结构进行。</p>
+<h2 id="项目环境、条件"><a href="#项目环境、条件" class="headerlink" title="项目环境、条件"></a>项目环境、条件</h2><ul>
+<li>ArcGIS 10.8 中文包</li>
+<li>已开启 Spatial Analyst Tools 分析工具</li>
+<li>Win 10<br>理论上 ArcGIS 10.2 也几乎一样，部分工具可能由翻译问题，建议初学者完全按照本文的文档结构进行。</li>
+</ul>
 <h2 id="Dem-数据预览"><a href="#Dem-数据预览" class="headerlink" title="Dem 数据预览"></a>Dem 数据预览</h2><p> <strong>DEM</strong>（Digital Elevation Model，数字高程模型）是一种用于表示地表地形起伏的数字模型。它通过规则格网的矩阵形式，记录每个格网单元的高程值，从而在计算机中构建出地形的三维模型。DEM 是地理信息系统（GIS）中重要的空间数据类型之一，广泛应用于地形分析、水文模拟、城市规划、地质灾害评估等多个领域。<br> Dem 可以通过地理空间数据云、QGIS 插件、CAD 地形文件生产等多种方式获取。此前有介绍，本文不多赘述。</p>
 <p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221924998.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h2 id="ArcGIS模型构建器"><a href="#ArcGIS模型构建器" class="headerlink" title="ArcGIS模型构建器"></a>ArcGIS模型构建器</h2><p><strong>ArcGIS模型构建器</strong>是Esri公司开发的ArcGIS软件中的一个强大工具，它允许用户通过图形化界面来创建、编辑和运行一系列自动化的GIS分析模型。模型构建器的核心优势在于能够将复杂的GIS分析流程简化为一系列可视化的步骤，使得用户无需编写代码即可完成复杂的空间分析任务。<br>可以在空白文件夹下，点击按钮打开，也可以在文件夹内，右键打开。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231055335.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>建议像笔者一样，建立好文件夹框架，依次新建文件数据库-工具集-模型。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231057487.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>在模型构建器中，数据类型如下，本文将用到项目数据、工具、派生数据和值等类型。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231059219.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>将数据、工具等可以直接拖入模型界面中，非常方便。</p>
@@ -386,6 +391,8 @@
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%94%A8%E5%BF%83%E9%95%BF%E6%96%87/" class="print-no-link">#用心长文</a>
       
         <a href="/tags/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90/" class="print-no-link">#水文分析</a>
       

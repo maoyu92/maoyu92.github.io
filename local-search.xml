@@ -4,6 +4,118 @@
   
   
   <entry>
+    <title>obsidian zotero 联动方案 配置记录</title>
+    <link href="/2024/05/29/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20zotero%20%E8%81%94%E5%8A%A8%E6%96%B9%E6%A1%88%20%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/"/>
+    <url>/2024/05/29/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20zotero%20%E8%81%94%E5%8A%A8%E6%96%B9%E6%A1%88%20%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Obsidian 和 zotero 都是非常好用的开源软件，两个软件能做到无缝联动也是很多人的想法，文献笔记可以丝滑的放进 obsidian 中，那多好，网上有很多教程，但能够一步到位讲清楚的很少。我也踩了很多坑才完成部署，希望本文能帮你少走弯路。<br>搭建 zotero 与 Obsidian 联动部署的目的是让我们更加专注做笔记，从来回折腾笔记中抽离出来，让我们更加沉浸的阅读和总结。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405311730349.png"></p><h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h3 id="下载插件"><a href="#下载插件" class="headerlink" title="下载插件"></a>下载插件</h3><p>Obsidian 插件（插件市场搜索下载）</p><ul><li>Zotlit<br>Zotero 插件</li><li>Obsidian Note for Zotero </li><li><strong>Zotero style</strong></li></ul><p>GitHub 搜索 zotero style 或者Obsidian Note for Zotero<br>点击 Releases 选择最新版本 xpi 下载。</p><h3 id="Note-for-Zotero配置"><a href="#Note-for-Zotero配置" class="headerlink" title="Note for Zotero配置"></a>Note for Zotero配置</h3><p>Obsidian Note for Zotero  启动 enable</p><h3 id="Zotero-style-配置"><a href="#Zotero-style-配置" class="headerlink" title="Zotero style 配置"></a>Zotero style 配置</h3><p>Zotero style 功能非常强大，作者在 B 站也做了很详细的讲解，包括自定义文件属性列，修改标签格式，修改标记格式等等，这里不展开讲，主要讲怎么设置标注的颜色和注释。<br>安装后，enable。<br>Shfit+P, 点击或者输入标注<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405301428862.png" alt="image.png"></p><p>点开后默认有 8 种颜色，是以颜色命名的。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405301641250.png" alt="image.png"><br>鼠标移动到颜色标记的位置，长按鼠标左键，进入配置界面，如果点按右键则是删除配置。可以点击下方的加号，再新增。<br>长按后根据自己喜好设置颜色及名称。这是我的设置，其实一般也记不住那么多标记，默认有 8 种分类，太多，根本用不完。设置四种颜色完全够用了，红、蓝、黄、绿，背景色调整低一点。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405301637938.png" alt="image.png"></p><p>安装好 Zotero style 插件后，会对标注进行美化。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405301646817.png" alt="image.png"><br>类似这样，会比之前好看很多。这也大致是导入 obsidian 后的样子。</p><h3 id="Zotlit-设置"><a href="#Zotlit-设置" class="headerlink" title="Zotlit 设置"></a>Zotlit 设置</h3><p>设置各种文件存储、读取位置</p><h4 id="文献笔记位置"><a href="#文献笔记位置" class="headerlink" title="文献笔记位置"></a>文献笔记位置</h4><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405301648497.png" alt="image.png"></p><h4 id="Zotero-数据库位置"><a href="#Zotero-数据库位置" class="headerlink" title="Zotero 数据库位置"></a>Zotero 数据库位置</h4><p>点击 启用服务器enable<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405301649040.png" alt="image.png"></p><h4 id="笔记模板文件位置"><a href="#笔记模板文件位置" class="headerlink" title="笔记模板文件位置"></a>笔记模板文件位置</h4><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405301649890.png" alt="image.png"></p><h4 id="修改模板配置文件"><a href="#修改模板配置文件" class="headerlink" title="修改模板配置文件"></a>修改模板配置文件</h4><p>修改文件名配置代码，用标题就好了<br>修改模板，代码看不懂没关系，可以用已经设置好的。</p><figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dos">&lt;%= it.<span class="hljs-built_in">title</span>%&gt;.<span class="hljs-built_in">md</span><br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405301652660.png" alt="image.png"></p><h4 id="修改代码"><a href="#修改代码" class="headerlink" title="修改代码"></a>修改代码</h4><p>将ZtTemplates 对应文件进行修改。</p><h5 id="Zt-annot-Eta"><a href="#Zt-annot-Eta" class="headerlink" title="Zt-annot. Eta"></a>Zt-annot. Eta</h5><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs livescript">&lt;%<br><span class="hljs-keyword">var</span> colorToLabelMap = &#123;<br>    <span class="hljs-string">&quot; <span class="hljs-subst">#ffd400</span>&quot;</span>: <span class="hljs-string">&quot;重要方法&quot;</span>,<br>    <span class="hljs-string">&quot;<span class="hljs-subst">#ff6666</span>&quot;</span>: <span class="hljs-string">&quot;重要概念&quot;</span>,<br>    <span class="hljs-string">&quot;#5fb236&quot;</span>: <span class="hljs-string">&quot;重要结论&quot;</span>,<br>    <span class="hljs-string">&quot;#2ea8e5&quot;</span>: <span class="hljs-string">&quot;研究背景&quot;</span>,<br>    <span class="hljs-string">&quot;<span class="hljs-subst">#a28ae5</span>&quot;</span>: <span class="hljs-string">&quot;硏究路线&quot;</span>,<br>    <span class="hljs-string">&quot;<span class="hljs-subst">#e56eee</span>&quot;</span>: <span class="hljs-string">&quot;文章素材&quot;</span>,<br>    <span class="hljs-string">&quot;<span class="hljs-subst">#f19837</span>&quot;</span>: <span class="hljs-string">&quot;优秀配图&quot;</span>,<br>    <span class="hljs-string">&quot;<span class="hljs-subst">#aaaaaa</span>&quot;</span>: <span class="hljs-string">&quot;其他&quot;</span>,<br>    <span class="hljs-string">&quot;default&quot;</span>: <span class="hljs-string">&quot;暂时未分类 &quot;</span> <br>&#125;;<br><span class="hljs-keyword">var</span> labelToShow = colorToLabelMap[<span class="hljs-literal">it</span>.color] || colorToLabelMap[<span class="hljs-string">&quot;default&quot;</span>];<br>%&gt;<br><br>[!note] &lt;span style=<span class="hljs-string">&quot; background:&lt;%= it.color %&gt;&quot;</span>&gt;&lt;%= labelToShow %&gt;&lt;/span&gt;<br><br>&lt;font color=<span class="hljs-string">&quot;#000000&quot;</span>&gt;&lt;%= <span class="hljs-literal">it</span>.imgEmbed %&gt;&lt;%= <span class="hljs-literal">it</span>.text %&gt;&lt;/font&gt;<br></code></pre></td></tr></table></figure><h5 id="zt-annots-eta"><a href="#zt-annots-eta" class="headerlink" title="zt-annots.eta"></a>zt-annots.eta</h5><figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs crystal">&lt;% <span class="hljs-keyword">for</span> (const <span class="hljs-keyword">annotation</span> <span class="hljs-title">of</span> <span class="hljs-title">it</span>) &#123; %&gt;<br>&lt;%~ <span class="hljs-keyword">include</span>(<span class="hljs-string">&quot;annotation&quot;</span>, <span class="hljs-keyword">annotation</span>) %&gt;<br>&lt;% &#125; %&gt;<br></code></pre></td></tr></table></figure><h5 id="Zt-field-Eta"><a href="#Zt-field-Eta" class="headerlink" title="Zt-field. Eta"></a>Zt-field. Eta</h5><figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs avrasm"><span class="hljs-symbol">title:</span> <span class="hljs-string">&quot;&lt;%= it.title %&gt;&quot;</span><br><span class="hljs-symbol">citekey:</span> <span class="hljs-string">&quot;&lt;%= it.citekey %&gt;&quot;</span><br><span class="hljs-symbol">itemType:</span> <span class="hljs-string">&quot;&lt;%= it.itemType %&gt;&quot;</span><br>标题翻译: <span class="hljs-string">&quot;&lt;%= it.shortTitle %&gt;&quot;</span><br><span class="hljs-symbol">tags:</span> <span class="hljs-string">&quot;&lt;%= it.tags %&gt;&quot;</span><br>影响因子: <span class="hljs-string">&quot;&lt;%= it.libraryCatalog %&gt;&quot;</span><br><br>出版期刊: <span class="hljs-string">&quot;&lt;%= it.publicationTitle %&gt;&quot;</span><br>出版年份: <span class="hljs-string">&quot;&lt;%= it.date %&gt;&quot;</span><br>修改日期: <span class="hljs-string">&quot;&lt;%= it.dateModified %&gt;&quot;</span><br></code></pre></td></tr></table></figure><h5 id="Zt-note-Eta"><a href="#Zt-note-Eta" class="headerlink" title="Zt-note. Eta"></a>Zt-note. Eta</h5><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs gherkin"><span class="hljs-comment"># &lt;%= it.title %&gt;</span><br><span class="hljs-comment">## 基础信息</span><br><br>|<span class="hljs-string"> 属性           </span>|<span class="hljs-string"> 信息                                 </span>|<br>|<span class="hljs-string"> ------------ </span>|<span class="hljs-string"> ---------------------------------- </span>|<br>|<span class="hljs-string"> **标题翻译**     </span>|<span class="hljs-string"> &lt;%= it.shortTitle %&gt;               </span>|<br>|<span class="hljs-string"> **作者**       </span>|<span class="hljs-string"> &lt;%= it.creators %&gt;                 </span>|<br>|<span class="hljs-string"> **出版年份**     </span>|<span class="hljs-string"> &lt;%= it.date %&gt;                     </span>|<br>|<span class="hljs-string"> **期刊**       </span>|<span class="hljs-string"> &lt;%= it.publicationTitle %&gt;         </span>|<br>|<span class="hljs-string"> **期刊等级**     </span>|<span class="hljs-string"> &lt;%= it.libraryCatalog %&gt;           </span>|<br>|<span class="hljs-string"> **标签**       </span>|<span class="hljs-string"> &lt;%= it.tags %&gt;                     </span>|<br>|<span class="hljs-string"> **附件链接**     </span>|<span class="hljs-string"> &lt;%= it.fileLink %&gt;                 </span>|<br>|<span class="hljs-string"> **zotero跳转** </span>|<span class="hljs-string"> [点这里跳回zotero哈](&lt;%= it.backlink %&gt;) </span>|<br><br>&gt; [!note]- 论文摘要<br>&gt; <span class="hljs-variable">&lt;%= it.abstractNote[[0]].replace(/\n/g, &#x27;&#x27;)   %&gt;</span><br>&gt; <br><br><span class="hljs-comment">## 论文注释</span><br><br><span class="hljs-variable">&lt;%~ include(&quot;annots&quot;, it.annotations) %&gt;</span><br></code></pre></td></tr></table></figure><h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>笔记流程<br>Zotero 做标注笔记，切换到列表视图，右键 obsidian Actions-Create notes。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405301700082.png" alt="image.png"></p><p>Obsidian 中就新建了一条笔记。这个笔记会带有完善的元数据，方便检索。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405311715137.png" alt="image.png"><br>以下是笔记正文：</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406010905743.png" alt="image.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>经验分享</tag>
+      
+      <tag>obsidian</tag>
+      
+      <tag>Zotero</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>obsidian 文本生成流程图 Excalidraw Mermaid</title>
+    <link href="/2024/05/29/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%B5%81%E7%A8%8B%E5%9B%BE%20%E6%B3%B0%E9%85%B7%E5%95%A6%20Excalidraw%20Mermaid%20Syntax/"/>
+    <url>/2024/05/29/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E6%B5%81%E7%A8%8B%E5%9B%BE%20%E6%B3%B0%E9%85%B7%E5%95%A6%20Excalidraw%20Mermaid%20Syntax/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>介绍一个很酷的工具，<strong>Excalidraw Mermaid</strong> 。作用是用代码生成流程图。<br><strong>Mermaid</strong>  是一款强大的、轻量级的文本到图表的转换工具，它允许用户使用简单的Markdown风格的语法编写文本描述，然后通过JavaScript引擎将其转换成美观的图表。Mermaid的设计初衷是为了简化图表的创建过程，让用户能够更专注于内容本身而非复杂的图形界面操作。<br>Obsidian Excalidraw 可以直接用这个作图，而且部分类型图还可以编辑，简直完美。<br>再结合<strong>大预言模型</strong>，我们可以快速做出好看的流程图，还不来看下 QAQ。</p><h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><p>打开 Obsidian Excalidraw 点击工具栏最右侧工具图标，选择 <strong>Mermaid to Excalidraw</strong> </p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405291421743.png" alt="image.png"><br>具体语法在 Mermaid 官网有，我们不需要了解的很深。因为可以借助大预言模型直接抄作业。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405291424197.png" alt="image.png"></p><p>把文本代码微调下，<font color="#ffc000">就可以了</font>。</p><pre><code class=" Mermaid">graph TDStart((开始)) --&gt; QCCheck(质控判断)QCCheck --&gt;|合格| DataAnalysis(数据分析)QCCheck --&gt;|异常| InvalidData(无效数据)DataAnalysis --&gt;|正常| PollutionAnalysis(污染原因分析)DataAnalysis --&gt;|异常| 无效数据PollutionAnalysis --&gt;|污染指标同时上升| 上下游污染传递PollutionAnalysis --&gt;|pH等指标相关性| 藻类影响PollutionAnalysis --&gt;|雨量相关性| 雨污混流</code></pre><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405291424058.png" alt="image.png"><br>然后插入 Excalidraw 中优化下就可以了。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405291428899.png" alt="image.png"><br>不到 3 分钟完成流程图绘制，而且是可以复制的，是不是很方便。</p><p>这个功能远远不止流程图这么简单，还可以绘制，饼图、序列图、甘特图、思维导图、折线图、雷达图，简直是个宝藏功能。其中流程图（Flowchart）、时序图（Sequence Diagram）和类图（Class Diagram）是支持在 Obsidian Excalidraw 中编辑的，其他的只能作为图片插入。当然作为图片插入也很好看~</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405291449838.png" alt="image.png"></p><h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2><p>如果觉得有用，别忘了点赞、收藏、关注、留言、分享哦。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>经验分享</tag>
+      
+      <tag>obsidian</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>obsidian Excalidraw 更换字体 最新</title>
+    <link href="/2024/05/26/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20excaildraw%20%E6%9B%B4%E6%8D%A2%E5%AD%97%E4%BD%93/"/>
+    <url>/2024/05/26/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20excaildraw%20%E6%9B%B4%E6%8D%A2%E5%AD%97%E4%BD%93/</url>
+    
+    <content type="html"><![CDATA[<p>​<meta name="referrer" content="no-referrer" /></p><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Excalidraw 是 obsidian 中最厉害的插件之一，长期霸占插件排行榜第一。以其强悍的性能和灵活的可塑性受到大家的喜爱，可默认的字体对中文并不友好，网上大多数教程要不是过时了，要不是错的，还有就是太复杂，因此本文介绍如何更换本地字体，参考的是 obsidian 官方 YouTube 教程。<br><strong>Obsidian 版本：v 1.5.12</strong></p><p><img src="https://img-blog.csdnimg.cn/img_convert/8ae99ee9eb4634ff04bc243d04d67421.png" alt="默认字体效果预览">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>默认字体效果预览</p><h2 id="文件链接设置"><a href="#文件链接设置" class="headerlink" title="文件链接设置"></a>文件链接设置</h2><p>首先打开设置-文件与链接-开启检测所有类型文件</p><p><img src="https://img-blog.csdnimg.cn/img_convert/bca4ebd36084209275591a06cf1fd35d.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>image.png</p><h2 id="下载并存放本地字体"><a href="#下载并存放本地字体" class="headerlink" title="下载并存放本地字体"></a>下载并存放本地字体</h2><p>下载喜欢的字体，一开始我随便下载字体，比如 <strong>霞鹜文楷</strong>开源字体，但是设置不能生效。 折腾了很久后发现，只能用 Google fonts 网站下载的字体文件才可以。 这个 Google fonts网站真的良心，秒杀国内一众广告字体网站。<br>打开网站，语言选择中文简体，我用的 MaShanZheng 这个字体。</p><p><img src="https://img-blog.csdnimg.cn/img_convert/6f61b35846239ff3eb82a36c07a7e0e7.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>image.png</p><p>文件下载好后，放在 obsidian 任意文件夹下，最好放在Excaildraw 相关文件，便于管理，文件夹命名为 Fonts，obsidian 会自动识别字体。</p><h2 id="修改-excaildraw-设置"><a href="#修改-excaildraw-设置" class="headerlink" title="修改 excaildraw 设置"></a>修改 excaildraw 设置</h2><p>重启 obsidian，打开设置-第三方插件 excalidraw-非 excalildraw 官方支持的特性-自定义字体-开启自定义-选择字体。如果没有看到字体则重启 obsidian</p><p><img src="https://img-blog.csdnimg.cn/img_convert/271ff7c764d3757a3f852a6522d30e4f.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>image.png</p><p>成功。文字元素会对一些功能，可以选择本地字体。</p><p><img src="https://img-blog.csdnimg.cn/img_convert/c4d8e2d61e872494e1779bae876f70f0.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>image.png</p><p><img src="https://img-blog.csdnimg.cn/img_convert/d72dfdf7238ae5b7d6fec3e3da106daf.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>image.png</p><p>希望本文能帮组到你，别忘了点赞，关注，留言哦。</p><p>​</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>经验分享</tag>
+      
+      <tag>obsidian</tag>
+      
+      <tag>excaildraw</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>markdown 文件渲染工具推荐 obsidian publish</title>
+    <link href="/2024/05/24/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/markdown%20%E6%96%87%E4%BB%B6%E6%B8%B2%E6%9F%93%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90%20obsidian%20publish/"/>
+    <url>/2024/05/24/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/markdown%20%E6%96%87%E4%BB%B6%E6%B8%B2%E6%9F%93%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90%20obsidian%20publish/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p> Markdown 是一种轻量级的标记语言，最开始使用它是觉得码字非常方便，从一开始的 word 排版到 markdown ，还不太不习惯，用了 obsidian 把一些文字发在网上后，才逐渐发现他的厉害之处。</p><ol><li>让人更加专注于内容本身，markdown 可以轻松转为 HTML，意味着可以直接生成博客。</li><li>可以配置元数据，无缝对接博客设置标签</li><li>跨平台、易学习，版本控制优化，利用 Git 等版本控制系统，能有效地追踪和管理文档变更。</li><li>Markdown 可以直接转为带有 css 格式的文字，可以直接复制粘贴就是一篇排版精美的文字。也就是今天要推荐的工具。</li><li>很多社区、笔记软件都支持 markdown，意味着你的笔记可以任意迁移，任意传播，不需要多次修改格式。</li><li>有了 markdown 和码字工具 obsidian，那么就可以建立一个丝滑的工作流。</li></ol><h2 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h2><p>![[绘图2024-05-24 21.28.excalidraw]]<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405242138321.png" alt="image.png"></p><h2 id="工具推荐"><a href="#工具推荐" class="headerlink" title="工具推荐"></a>工具推荐</h2><p>要实现快速丝滑的发表在各个平台上，之前都是直接复制 markdown 源码，这也是我喜欢发 CSDN 的原因。<br>近来开了个公众号，才发现，公众号的编辑器是真的拉胯，居然衍生了诸如 96 编辑器、秀米、135 编辑器等诸多编辑器工具，编辑格式费时、费力，违背了重视内容的初衷。</p><p>可总有前辈做了改变的工作，一开始尝试了 B 站大佬孙博士研究所的 obsidian 插件。</p><p><a href="https://github.com/sunbooshi/note-to-mp">https://github.com/sunbooshi/note-to-mp</a></p><p>存在 2 个问题，一是代码超过 10 条数字就异常，二是复制进入公众号后，页面会很窄。</p><p>通过查找，发现了今天的主角。<br><a href="https://md.openwrite.cn/">微信 Markdown 编辑器 (openwrite.cn)</a></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405242146512.png" alt="image.png"></p><p>该编辑器支持 Markdown 语法，实时预览，支持代码高亮，自带样式效果已经够用。</p><p>希望对你有所帮助，通过这些工具建立自己的写作工作流。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具推荐</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>工具推荐</tag>
+      
+      <tag>obsidian</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>QGIS DEM数据快速获取</title>
     <link href="/2024/05/22/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/QGIS%20DEM%E6%95%B0%E6%8D%AE%E5%BF%AB%E9%80%9F%E8%8E%B7%E5%8F%96/"/>
     <url>/2024/05/22/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/QGIS%20DEM%E6%95%B0%E6%8D%AE%E5%BF%AB%E9%80%9F%E8%8E%B7%E5%8F%96/</url>
@@ -35,7 +147,7 @@
     <link href="/2024/05/22/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/ArcGIS%20%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B%E6%9E%84%E5%BB%BA/"/>
     <url>/2024/05/22/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/ArcGIS%20%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%E6%A8%A1%E5%9E%8B%E6%9E%84%E5%BB%BA/</url>
     
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在地理信息系统（GIS）领域，水文分析是一项至关重要的任务，它涉及到对地表水流动路径、河流网络、流域划分等关键水文特征分析。这些分析对于水资源管理、洪水预警、环境规划以及城市排水系统设计等众多领域都具有重要的应用价值。</p><p>本文旨在探讨ArcGIS中水文分析的全过程，并展示如何构建一个可复用的水文分析模型。通过本文的学习和实践，读者将能够深入了解ArcGIS在水文分析方面的应用，掌握从数据预处理到模型构建、从模型运行到结果输出的整个流程。此外，本文还将介绍如何将ArcGIS模型脚本化，以提高模型的复用性和自动化程度。</p><p>在接下来的章节中，我们将详细介绍水文分析的各个步骤，包括资料背景的准备、操作中可能出现的问题及注意事项、分析框架的梳理、水文模型的搭建、模型思维和图形化界面的构建等。通过这些内容的学习，读者将能够全面掌握 ArcGIS 水文分析的相关知识和技能。</p><h2 id="项目环境、条件"><a href="#项目环境、条件" class="headerlink" title="项目环境、条件"></a>项目环境、条件</h2><p>ArcGIS 10.8 中文包<br>已开启 Spatial Analyst Tools 分析工具<br>Win 10<br>数据集<br>    30 m dem 栅格数据集<br>Tips：可在微信公众号：环境猫 er ，回复 dem ，获取本文实验 dem 。<br>理论上 ArcGIS 10.2 也几乎一样，部分工具可能由翻译问题，建议初学者完全按照本文的文档结构进行。</p><h2 id="Dem-数据预览"><a href="#Dem-数据预览" class="headerlink" title="Dem 数据预览"></a>Dem 数据预览</h2><p> <strong>DEM</strong>（Digital Elevation Model，数字高程模型）是一种用于表示地表地形起伏的数字模型。它通过规则格网的矩阵形式，记录每个格网单元的高程值，从而在计算机中构建出地形的三维模型。DEM 是地理信息系统（GIS）中重要的空间数据类型之一，广泛应用于地形分析、水文模拟、城市规划、地质灾害评估等多个领域。<br> Dem 可以通过地理空间数据云、QGIS 插件、CAD 地形文件生产等多种方式获取。此前有介绍，本文不多赘述。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221924998.png" alt="image.png"></p><h2 id="ArcGIS模型构建器"><a href="#ArcGIS模型构建器" class="headerlink" title="ArcGIS模型构建器"></a>ArcGIS模型构建器</h2><p><strong>ArcGIS模型构建器</strong>是Esri公司开发的ArcGIS软件中的一个强大工具，它允许用户通过图形化界面来创建、编辑和运行一系列自动化的GIS分析模型。模型构建器的核心优势在于能够将复杂的GIS分析流程简化为一系列可视化的步骤，使得用户无需编写代码即可完成复杂的空间分析任务。<br>可以在空白文件夹下，点击按钮打开，也可以在文件夹内，右键打开。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231055335.png" alt="image.png"><br>建议像笔者一样，建立好文件夹框架，依次新建文件数据库-工具集-模型。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231057487.png" alt="image.png"><br>在模型构建器中，数据类型如下，本文将用到项目数据、工具、派生数据和值等类型。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231059219.png" alt="image.png"><br>将数据、工具等可以直接拖入模型界面中，非常方便。</p><h2 id="模型搭建"><a href="#模型搭建" class="headerlink" title="模型搭建"></a>模型搭建</h2><h3 id="填洼"><a href="#填洼" class="headerlink" title="填洼"></a>填洼</h3><p>dem-填洼-fill<br><strong>填洼</strong>（Fill）是去除 dem 中的洼地（sinks）或凹陷（depressions）。这些洼地在地形分析中可能会导致错误的水流方向和流域划分，需要通过填洼操作来纠正。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221609608.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221926917.png" alt="image.png"></p><h3 id="流向"><a href="#流向" class="headerlink" title="流向"></a>流向</h3><p>fill-流向-FlowDirection<br>注意选着 fill 时需要选择蓝色循环的那个，为变量值。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221614049.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221618226.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221930624.png" alt="image.png"></p><h3 id="流量"><a href="#流量" class="headerlink" title="流量"></a>流量</h3><p>FlowDirection-流量-fillacc<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221620132.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221620254.png" alt="image.png"><br>根据栅格数值大小隐约能看出河流的线条。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221934241.png" alt="image.png"><br>点击栅格可以查询该处的数值，通过这种方法判断最小径流的值，后面有用。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221937003.png" alt="image.png"></p><h3 id="河流长度"><a href="#河流长度" class="headerlink" title="河流长度"></a>河流长度</h3><p>FlowDirection-河流长度-flowlength 测量方向选择 upstream，<br>水流长度工具的主要用途是计算给定盆地内最长水流的长度。该度量值常用于计算盆地的聚集时间。这可使用 UPSTREAM 选项来完成。该工具也可通过将权重栅格用作下坡运动的阻抗，来创建假设降雨和径流事件的距离-面积图。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221949623.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230838124.png" alt="image.png"></p><h3 id="栅格计算器"><a href="#栅格计算器" class="headerlink" title="栅格计算器"></a>栅格计算器</h3><p>栅格计算器 或者条件函数<br>栅格计算器（Raster Calculator）  条件函数 Con(FlowAccu&gt;R,1)<br>目的是将流量栅格数据中提取河流的部分，公式为”flowacc” &gt;&#x3D; 1000。<br>在模型构建器中使用左右%代表变量。新增一个变量，作为流量限值 R，建议通过流量栅格 (flowacc), 点击查询河流的最小栅格，我这里根据实际情况，选择输入 1000。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230842687.png" alt="image.png"></p><p>具体公式以自己实验为准，添加变量后，修改为”%fillacc%” &gt;&#x3D;  “%任意值%”<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221641559.png" alt="image.png"><br>记得点击任意值，添加 1000，这样以后只需要修改这个值，就可以调整河流长度了。<br>Acc 1000 结果，可见满足条件的，也就是河流为 1，不满足的为 0.<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230854890.png" alt="image.png"></p><h3 id="河流链接"><a href="#河流链接" class="headerlink" title="河流链接"></a>河流链接</h3><p>acc1000+FlowDirection&#x3D;Streamlink<br>by 河流链接<br>河流链接的作用有：<strong>构建连续的河流网络</strong>：河流链接工具能够识别并连接相邻的河流段，确保河流网络在空间上是连贯和正确的。<strong>分配唯一标识符</strong>：给河流网络中的每个部分分配唯一的 ID，便于管理和进一步分析。这有助于区分不同的河流分支和主流，以及分析它们各自的属性（如流量、长度等）。<strong>优化数据结构</strong>，减少在模型中处理大量独立线段时的复杂性。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221642956.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230924178.png" alt="image.png"></p><h3 id="河网分级"><a href="#河网分级" class="headerlink" title="河网分级"></a>河网分级</h3><p>acc1000+FlowDirection&#x3D;StreamOrder<br>by 河网分级<br>河网结构用于识别河流上下级，常见的河网分级方法有斯特拉勒（Strahler）、希科特（Horton）和谢内（Shreve）等。斯特拉勒法是最常用的，它基于河流交汇规则来分配等级，即每次支流汇入时，如果两支流的等级相同，则合并后的河段等级加1；如果不同，则高等级保持不变。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221635748.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230928380.png" alt="image.png"></p><h3 id="栅格河网矢量化"><a href="#栅格河网矢量化" class="headerlink" title="栅格河网矢量化"></a>栅格河网矢量化</h3><p>StreamOrder+FlowDirection&#x3D;StreamOrder1000<br>by 栅格河网矢量化<br>顾名思义，栅格河网矢量化就是将河流网络的栅格数据转换成矢量数据格式，便于分析、可视化及水文建模应用。注意如果要增加河流长度等字段，需要在投影坐标系下进行。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221824966.png" alt="image.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230932035.png" alt="image.png"></p><h3 id="绘制倾泻点"><a href="#绘制倾泻点" class="headerlink" title="绘制倾泻点"></a>绘制倾泻点</h3><p>StreamOrder 1000+end&#x3D;FeatureVert_1000<br>By要素折点转点<br><strong>倾泻点</strong>是指汇流区域中具有最低高程的边界象元。它标志着水从一个流域流向另一个流域的出口点，或者是水流离开一个封闭流域（如盆地）的地点。<br>可以通过要素折点转点生成，也可以根据自己手工增加，形式是一些离散的点。<br>要素折点转点，顾名思义，指通过矢量线的折点或转点然后生成点，有 all、mindle、end、start、both_ends、dangle（悬挂点，指离散点） 等类型，绘制倾泻选择 end 。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221825292.png" alt="image.png"><br>倾泻点非常关键，是汇水区分析的重要参数，除了自动生成的点外，可以根据实际需要，添加、删除点。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230948266.png" alt="河流与倾泻点"></p><h3 id="栅格流域提取"><a href="#栅格流域提取" class="headerlink" title="栅格流域提取"></a>栅格流域提取</h3><h6 id="集水区"><a href="#集水区" class="headerlink" title="集水区"></a>集水区</h6><p>集水区也就是分水岭，根据流向和倾泻点一起做的汇水范围。有倾泻点的会比盆域分析更细，他与倾泻点的点位有很大关系。<br>FlowDirection+FeatureVert_1000&#x3D;倾泻点字段为空&#x3D;watersh</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221645662.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230956061.png" alt="image.png"></p><h4 id="盆域分析"><a href="#盆域分析" class="headerlink" title="盆域分析"></a>盆域分析</h4><p>流向 FlowDirection 盆域分析&#x3D; basin<br>盆域分析，也就是流域分析，可以理解为没有倾泻点的大范围流域分析。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221647107.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230957148.png" alt="image.png"></p><p>运行模型-成功<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221731875.png" alt="image.png"></p><h3 id="栅格转面"><a href="#栅格转面" class="headerlink" title="栅格转面"></a>栅格转面</h3><p>上述流域栅格，转为矢量图层。用于可视化和计算，作用与栅格河网矢量化类似。<br> basin&#x2F;watersh 栅格转面 RasterT_basin &#x2F;RasterT_watersh</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221727096.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230955132.png" alt="子流域范围.png"></p><p>至此，水文分析基本结束。<br>调试模型，运行成功。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221742623.png" alt="image.png"></p><p>调整模型架构，让连接线不交叉。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231005860.png" alt="image.png"></p><h2 id="模型应用"><a href="#模型应用" class="headerlink" title="模型应用"></a>模型应用</h2><h3 id="导出-py-文件"><a href="#导出-py-文件" class="headerlink" title="导出 py 文件"></a>导出 py 文件</h3><p>可以导出 py 文件，进行模型复用。在 ArcGIS 环境中导入脚本，注意导入前修改绝对地址注意保持一致。另外它基于 ArcPy 模块，一个专为 ArcGIS 设计的空间分析和数据处理库。因此，它的运行环境依赖于 ArcGIS，使用 ArcGIS Python 2.X 环境编写的。不能用于 python 3 中。<br>经过测试，代码并不能直接使用，需要重新编译后才能使用，后续会出一期 python 水文分析的文章。</p><h3 id="完善脚本"><a href="#完善脚本" class="headerlink" title="完善脚本"></a>完善脚本</h3><ol><li>将 dem 输入变为变量，方法为新增变量-栅格数据集，然后选择对应的 dem 位置。</li><li>重命名，将 dem 命名为输入 dem。双精度命名为输入流量下限值。</li><li>完善模型参数，模型-模型属性-参数将输入 dem、输入流量下限值作为必填项</li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231021444.png" alt="image.png"></p><h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p>点击模型打开，输入 dem 和下限值，点击运行。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231038360.png" alt="1716431898456.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231039764.png" alt="image.png"><br>运行成功，结果输出在模型内指定的文件夹。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231040644.png" alt="image.png"><br>重新运行将会替换结果文件，运行一次后，结果移动出来，再次使用。总之，非常方便。</p><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>本文通过详细探讨ArcGIS水文分析的全过程，不仅展示了如何利用ArcGIS模型构建器来创建一个高效、可复用的水文分析模型，还深入介绍了模型构建器的图形化界面和强大功能。通过本文的学习，读者可以清晰地看到，即使是GIS编程新手，也能通过模型构建器实现复杂的空间分析任务，而无需深入代码层面。</p>]]></content>
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在地理信息系统（GIS）领域，水文分析是一项至关重要的任务，它涉及到对地表水流动路径、河流网络、流域划分等关键水文特征分析。这些分析对于水资源管理、洪水预警、环境规划以及城市排水系统设计等众多领域都具有重要的应用价值。</p><p>本文旨在探讨ArcGIS中水文分析的全过程，并展示如何构建一个可复用的水文分析模型。通过本文的学习和实践，读者将能够深入了解ArcGIS在水文分析方面的应用，掌握从数据预处理到模型构建、从模型运行到结果输出的整个流程。此外，本文还将介绍如何将ArcGIS模型脚本化，以提高模型的复用性和自动化程度。</p><p>在接下来的章节中，我们将详细介绍水文分析的各个步骤，包括资料背景的准备、操作中可能出现的问题及注意事项、分析框架的梳理、水文模型的搭建、模型思维和图形化界面的构建等。通过这些内容的学习，读者将能够全面掌握 ArcGIS 水文分析的相关知识和技能。</p><h2 id="项目环境、条件"><a href="#项目环境、条件" class="headerlink" title="项目环境、条件"></a>项目环境、条件</h2><ul><li>ArcGIS 10.8 中文包</li><li>已开启 Spatial Analyst Tools 分析工具</li><li>Win 10<br>理论上 ArcGIS 10.2 也几乎一样，部分工具可能由翻译问题，建议初学者完全按照本文的文档结构进行。</li></ul><h2 id="Dem-数据预览"><a href="#Dem-数据预览" class="headerlink" title="Dem 数据预览"></a>Dem 数据预览</h2><p> <strong>DEM</strong>（Digital Elevation Model，数字高程模型）是一种用于表示地表地形起伏的数字模型。它通过规则格网的矩阵形式，记录每个格网单元的高程值，从而在计算机中构建出地形的三维模型。DEM 是地理信息系统（GIS）中重要的空间数据类型之一，广泛应用于地形分析、水文模拟、城市规划、地质灾害评估等多个领域。<br> Dem 可以通过地理空间数据云、QGIS 插件、CAD 地形文件生产等多种方式获取。此前有介绍，本文不多赘述。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221924998.png" alt="image.png"></p><h2 id="ArcGIS模型构建器"><a href="#ArcGIS模型构建器" class="headerlink" title="ArcGIS模型构建器"></a>ArcGIS模型构建器</h2><p><strong>ArcGIS模型构建器</strong>是Esri公司开发的ArcGIS软件中的一个强大工具，它允许用户通过图形化界面来创建、编辑和运行一系列自动化的GIS分析模型。模型构建器的核心优势在于能够将复杂的GIS分析流程简化为一系列可视化的步骤，使得用户无需编写代码即可完成复杂的空间分析任务。<br>可以在空白文件夹下，点击按钮打开，也可以在文件夹内，右键打开。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231055335.png" alt="image.png"><br>建议像笔者一样，建立好文件夹框架，依次新建文件数据库-工具集-模型。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231057487.png" alt="image.png"><br>在模型构建器中，数据类型如下，本文将用到项目数据、工具、派生数据和值等类型。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231059219.png" alt="image.png"><br>将数据、工具等可以直接拖入模型界面中，非常方便。</p><h2 id="模型搭建"><a href="#模型搭建" class="headerlink" title="模型搭建"></a>模型搭建</h2><h3 id="填洼"><a href="#填洼" class="headerlink" title="填洼"></a>填洼</h3><p>dem-填洼-fill<br><strong>填洼</strong>（Fill）是去除 dem 中的洼地（sinks）或凹陷（depressions）。这些洼地在地形分析中可能会导致错误的水流方向和流域划分，需要通过填洼操作来纠正。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221609608.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221926917.png" alt="image.png"></p><h3 id="流向"><a href="#流向" class="headerlink" title="流向"></a>流向</h3><p>fill-流向-FlowDirection<br>注意选着 fill 时需要选择蓝色循环的那个，为变量值。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221614049.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221618226.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221930624.png" alt="image.png"></p><h3 id="流量"><a href="#流量" class="headerlink" title="流量"></a>流量</h3><p>FlowDirection-流量-fillacc<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221620132.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221620254.png" alt="image.png"><br>根据栅格数值大小隐约能看出河流的线条。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221934241.png" alt="image.png"><br>点击栅格可以查询该处的数值，通过这种方法判断最小径流的值，后面有用。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221937003.png" alt="image.png"></p><h3 id="河流长度"><a href="#河流长度" class="headerlink" title="河流长度"></a>河流长度</h3><p>FlowDirection-河流长度-flowlength 测量方向选择 upstream，<br>水流长度工具的主要用途是计算给定盆地内最长水流的长度。该度量值常用于计算盆地的聚集时间。这可使用 UPSTREAM 选项来完成。该工具也可通过将权重栅格用作下坡运动的阻抗，来创建假设降雨和径流事件的距离-面积图。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221949623.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230838124.png" alt="image.png"></p><h3 id="栅格计算器"><a href="#栅格计算器" class="headerlink" title="栅格计算器"></a>栅格计算器</h3><p>栅格计算器 或者条件函数<br>栅格计算器（Raster Calculator）  条件函数 Con(FlowAccu&gt;R,1)<br>目的是将流量栅格数据中提取河流的部分，公式为”flowacc” &gt;&#x3D; 1000。<br>在模型构建器中使用左右%代表变量。新增一个变量，作为流量限值 R，建议通过流量栅格 (flowacc), 点击查询河流的最小栅格，我这里根据实际情况，选择输入 1000。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230842687.png" alt="image.png"></p><p>具体公式以自己实验为准，添加变量后，修改为”%fillacc%” &gt;&#x3D;  “%任意值%”<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221641559.png" alt="image.png"><br>记得点击任意值，添加 1000，这样以后只需要修改这个值，就可以调整河流长度了。<br>Acc 1000 结果，可见满足条件的，也就是河流为 1，不满足的为 0.<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230854890.png" alt="image.png"></p><h3 id="河流链接"><a href="#河流链接" class="headerlink" title="河流链接"></a>河流链接</h3><p>acc1000+FlowDirection&#x3D;Streamlink<br>by 河流链接<br>河流链接的作用有：<strong>构建连续的河流网络</strong>：河流链接工具能够识别并连接相邻的河流段，确保河流网络在空间上是连贯和正确的。<strong>分配唯一标识符</strong>：给河流网络中的每个部分分配唯一的 ID，便于管理和进一步分析。这有助于区分不同的河流分支和主流，以及分析它们各自的属性（如流量、长度等）。<strong>优化数据结构</strong>，减少在模型中处理大量独立线段时的复杂性。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221642956.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230924178.png" alt="image.png"></p><h3 id="河网分级"><a href="#河网分级" class="headerlink" title="河网分级"></a>河网分级</h3><p>acc1000+FlowDirection&#x3D;StreamOrder<br>by 河网分级<br>河网结构用于识别河流上下级，常见的河网分级方法有斯特拉勒（Strahler）、希科特（Horton）和谢内（Shreve）等。斯特拉勒法是最常用的，它基于河流交汇规则来分配等级，即每次支流汇入时，如果两支流的等级相同，则合并后的河段等级加1；如果不同，则高等级保持不变。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221635748.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230928380.png" alt="image.png"></p><h3 id="栅格河网矢量化"><a href="#栅格河网矢量化" class="headerlink" title="栅格河网矢量化"></a>栅格河网矢量化</h3><p>StreamOrder+FlowDirection&#x3D;StreamOrder1000<br>by 栅格河网矢量化<br>顾名思义，栅格河网矢量化就是将河流网络的栅格数据转换成矢量数据格式，便于分析、可视化及水文建模应用。注意如果要增加河流长度等字段，需要在投影坐标系下进行。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221824966.png" alt="image.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230932035.png" alt="image.png"></p><h3 id="绘制倾泻点"><a href="#绘制倾泻点" class="headerlink" title="绘制倾泻点"></a>绘制倾泻点</h3><p>StreamOrder 1000+end&#x3D;FeatureVert_1000<br>By要素折点转点<br><strong>倾泻点</strong>是指汇流区域中具有最低高程的边界象元。它标志着水从一个流域流向另一个流域的出口点，或者是水流离开一个封闭流域（如盆地）的地点。<br>可以通过要素折点转点生成，也可以根据自己手工增加，形式是一些离散的点。<br>要素折点转点，顾名思义，指通过矢量线的折点或转点然后生成点，有 all、mindle、end、start、both_ends、dangle（悬挂点，指离散点） 等类型，绘制倾泻选择 end 。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221825292.png" alt="image.png"><br>倾泻点非常关键，是汇水区分析的重要参数，除了自动生成的点外，可以根据实际需要，添加、删除点。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230948266.png" alt="河流与倾泻点"></p><h3 id="栅格流域提取"><a href="#栅格流域提取" class="headerlink" title="栅格流域提取"></a>栅格流域提取</h3><h6 id="集水区"><a href="#集水区" class="headerlink" title="集水区"></a>集水区</h6><p>集水区也就是分水岭，根据流向和倾泻点一起做的汇水范围。有倾泻点的会比盆域分析更细，他与倾泻点的点位有很大关系。<br>FlowDirection+FeatureVert_1000&#x3D;倾泻点字段为空&#x3D;watersh</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221645662.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230956061.png" alt="image.png"></p><h4 id="盆域分析"><a href="#盆域分析" class="headerlink" title="盆域分析"></a>盆域分析</h4><p>流向 FlowDirection 盆域分析&#x3D; basin<br>盆域分析，也就是流域分析，可以理解为没有倾泻点的大范围流域分析。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221647107.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230957148.png" alt="image.png"></p><p>运行模型-成功<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221731875.png" alt="image.png"></p><h3 id="栅格转面"><a href="#栅格转面" class="headerlink" title="栅格转面"></a>栅格转面</h3><p>上述流域栅格，转为矢量图层。用于可视化和计算，作用与栅格河网矢量化类似。<br> basin&#x2F;watersh 栅格转面 RasterT_basin &#x2F;RasterT_watersh</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221727096.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405230955132.png" alt="子流域范围.png"></p><p>至此，水文分析基本结束。<br>调试模型，运行成功。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405221742623.png" alt="image.png"></p><p>调整模型架构，让连接线不交叉。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231005860.png" alt="image.png"></p><h2 id="模型应用"><a href="#模型应用" class="headerlink" title="模型应用"></a>模型应用</h2><h3 id="导出-py-文件"><a href="#导出-py-文件" class="headerlink" title="导出 py 文件"></a>导出 py 文件</h3><p>可以导出 py 文件，进行模型复用。在 ArcGIS 环境中导入脚本，注意导入前修改绝对地址注意保持一致。另外它基于 ArcPy 模块，一个专为 ArcGIS 设计的空间分析和数据处理库。因此，它的运行环境依赖于 ArcGIS，使用 ArcGIS Python 2.X 环境编写的。不能用于 python 3 中。<br>经过测试，代码并不能直接使用，需要重新编译后才能使用，后续会出一期 python 水文分析的文章。</p><h3 id="完善脚本"><a href="#完善脚本" class="headerlink" title="完善脚本"></a>完善脚本</h3><ol><li>将 dem 输入变为变量，方法为新增变量-栅格数据集，然后选择对应的 dem 位置。</li><li>重命名，将 dem 命名为输入 dem。双精度命名为输入流量下限值。</li><li>完善模型参数，模型-模型属性-参数将输入 dem、输入流量下限值作为必填项</li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231021444.png" alt="image.png"></p><h3 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h3><p>点击模型打开，输入 dem 和下限值，点击运行。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231038360.png" alt="1716431898456.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231039764.png" alt="image.png"><br>运行成功，结果输出在模型内指定的文件夹。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405231040644.png" alt="image.png"><br>重新运行将会替换结果文件，运行一次后，结果移动出来，再次使用。总之，非常方便。</p><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>本文通过详细探讨ArcGIS水文分析的全过程，不仅展示了如何利用ArcGIS模型构建器来创建一个高效、可复用的水文分析模型，还深入介绍了模型构建器的图形化界面和强大功能。通过本文的学习，读者可以清晰地看到，即使是GIS编程新手，也能通过模型构建器实现复杂的空间分析任务，而无需深入代码层面。</p>]]></content>
     
     
     <categories>
@@ -46,6 +158,8 @@
     
     
     <tags>
+      
+      <tag>用心长文</tag>
       
       <tag>水文分析</tag>
       
@@ -99,6 +213,8 @@
     
     <tags>
       
+      <tag>用心长文</tag>
+      
       <tag>水文分析</tag>
       
       <tag>arcgis</tag>
@@ -106,6 +222,35 @@
       <tag>地形数据</tag>
       
       <tag>经验分享</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>卡片笔记写作法 精读笔记 02</title>
+    <link href="/2024/05/20/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E5%8D%A1%E7%89%87%E7%AC%94%E8%AE%B0%E5%86%99%E4%BD%9C%E6%B3%95%20%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0%2002/"/>
+    <url>/2024/05/20/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E5%8D%A1%E7%89%87%E7%AC%94%E8%AE%B0%E5%86%99%E4%BD%9C%E6%B3%95%20%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0%2002/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405271919838.png" alt="image.png"></p><h2 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h2><blockquote><p>[!abstract] 卡片笔记写作法：如何实现从阅读到写作</p><ul><li><img src="https://cdn.weread.qq.com/weread/cover/15/YueWen_39136896/t7_YueWen_39136896.jpg" alt=" 卡片笔记写作法：如何实现从阅读到写作|200"></li><li>书名： 卡片笔记写作法：如何实现从阅读到写作</li><li>作者： 申克·阿伦斯</li><li>简介： 卢曼的“盒中笔记”通常很简短，因为这些只是他庞大繁杂研究中的索引，等需要时，他会借由这些线头进行延伸思考，然后不断链接知识要点，从而形成自己的知识树。你也可以试试。</li><li>出版时间 2021-06-01 00:00:00</li><li>ISBN： 9787115564672</li><li>分类： 文学-语言文字</li><li>出版社： 人民邮电出版社</li><li>PC 地址： <a href="https://weread.qq.com/web/reader/3d8326d072552e803d87c41">https://weread.qq.com/web/reader/3d8326d072552e803d87c41</a></li></ul></blockquote><p>继续这本书后面的部分。</p><h3 id="关于写作，你需要具备的能力"><a href="#关于写作，你需要具备的能力" class="headerlink" title="关于写作，你需要具备的能力"></a>关于写作，你需要具备的能力</h3><p>构建一个<strong>不被干扰、专心思考的笔记系统</strong>。<br>工具箱</p><ul><li>书写工具纸、笔。</li><li>文献管理工具</li><li>卡片系统</li><li>编辑工具<br>目前用的是 obsidian、zotero，其中 obsidian 用的更频繁就是我的卡片盒。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405261639805.png" alt="我的笔记工具"></li></ul><h2 id="关于写作，你需要的注意的几个问题"><a href="#关于写作，你需要的注意的几个问题" class="headerlink" title="关于写作，你需要的注意的几个问题"></a>关于写作，你需要的注意的几个问题</h2><p>不要让卡片笔记盒，沦为思想的坟场，不要只有囤积癖，没有整理的习惯。<br>我自己深有体会，之前用印象笔记 -剪藏插件的时候，会收集很多笔记，然后再也没看过。<br>笔记系统逐渐臃肿，完全不能发挥作用。</p><h3 id="三类笔记的区别"><a href="#三类笔记的区别" class="headerlink" title="三类笔记的区别"></a>三类笔记的区别</h3><p>1.闪念笔记 (Fleeting Notes)：这类笔记只是对收集信息起提醒作用，可以用任何方式来写，最后会在一两天内被扔进垃圾桶。<br>2.永久笔记 (Permanent Notes)：这种笔记以一种永久可以理解的方式包含了必要的信息，并且永远不会被扔掉。它们总是以同样的方式存放在同一个地方，或者是在文献管理系统中，或者按出版标准写好放在卡片盒中。<br>3.项目笔记 (Project Notes)：它们只与某一特定项目有关，保存在特定项目的文件夹内，项目结束后即可丢弃或存档。只有将这三类笔记分开保存，才有可能实现卡片盒笔记的群聚效应，而对这些类别的混淆也是人们写作或发表作品不多的主要原因之一。<br>项目笔记相关内容：与项目有关的文献、大纲、草稿片段、备忘录、待办事项<br>当你结束一天的工作，你的桌面除了纸和笔，没有留下任何东西，说明你已经区分好了三种笔记类型。</p><h3 id="有效写作的四个原则"><a href="#有效写作的四个原则" class="headerlink" title="有效写作的四个原则"></a>有效写作的四个原则</h3><h4 id="写作是唯一重要的事"><a href="#写作是唯一重要的事" class="headerlink" title="写作是唯一重要的事"></a>写作是唯一重要的事</h4><p>没有私密知识，有了想法只有自己知道，就等于没有想法，无法重现的论据就算不上论据。<br>只有成果公布出来，供人阅读，才有意义。专注于写作，同时也要学习与交流。</p><h4 id="简洁是最重要的"><a href="#简洁是最重要的" class="headerlink" title="简洁是最重要的"></a>简洁是最重要的</h4><p>这里指的是卡片盒笔记系统相较于传统笔记的组织方式更简洁。区分好三类笔记，按照不同的处理方式处理，最后形成群聚效应。</p><h4 id="没有人完全从零开始写作"><a href="#没有人完全从零开始写作" class="headerlink" title="没有人完全从零开始写作"></a>没有人完全从零开始写作</h4><p>日常收集整理感兴趣的素材，形成素材库。写作是非线性的，不是自上而下的，功夫在诗外。</p><h4 id="让工作推动你前进"><a href="#让工作推动你前进" class="headerlink" title="让工作推动你前进"></a>让工作推动你前进</h4><p>建立一个良好的工作机制。让工作成为一个良性循环，热爱你从事的工作，做自己喜欢做的事情。不断的形成正反馈。这一点与最近看的&#x3D;&#x3D;《重来》（贾森、戴维）卸负篇&#x3D;&#x3D;-哪来的从错误中学习有联系，我们基本很少从失败中汲取经验，只有成功才能让我们成长。良性的正反馈，是我们不断前进的动力。这里的工作应该是广义的，做你喜欢的事，做好。<br>除了具备成长的心态外，需要周期性的给自己反馈，而不是间隔很长时间的反馈，太长时间难以坚持，短期的反馈更容易让人接受，更能加强理解和改进。</p><h2 id="成功写作的六个步骤"><a href="#成功写作的六个步骤" class="headerlink" title="成功写作的六个步骤"></a>成功写作的六个步骤</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405271912873.png" alt="image.png"></p><h3 id="明确区分独立而又相关联的任务"><a href="#明确区分独立而又相关联的任务" class="headerlink" title="明确区分独立而又相关联的任务"></a>明确区分独立而又相关联的任务</h3><p>不要一心多用<br>不同的任务需要不同的关注度，比如区分写作与校对，两者需要站在不同的角度去看待事物，校对应作为批评家，从逻辑、规范等等方面去思考文章的合理性。在不同的环节需要的关注度和耗费的精力不同。<br>结合自己的经验深有体会，我以前很难做好审稿这个角色，不光是对自己写的，还是同事写的，审查的时候总是很为难，不愿意做，也没有花更多的心思，当然做不好。<br>推而广之，精读与速读，概括与修改提纲都是需要区别对待的工作，都应该有自己的方法论，不应该因为相似就不去总结。<br>艺术和科学都需要“集中的注意力”与“漂浮的注意力”，大多数杰出的科学家也都具备切换不同注意力的能力。杰出科学家解决问题的行为可以在‘对特定概念的超常专注程度’和‘对想法的有趣探索’之间交替进行。这表明，要想成功解决问题，可能需要根据任务和需求灵活地选择应对策略。”<br>有时候我们需要天马行空，而有时候我们要细微严谨，对待不同任务要切换不同的应对策略。不要把自己局限死，以为自己不擅长，而懒得去做。</p><h4 id="做专家，不作计划制定者"><a href="#做专家，不作计划制定者" class="headerlink" title="做专家，不作计划制定者"></a>做专家，不作计划制定者</h4><p>人只有不断的实践，才能积累经验。<br><strong>德雷福斯的技能获取理论</strong>:人类在特定领域习得技能时，从低技能阶段到高技能阶段的认知转变过程，并将这个过程拆分为五个阶段：新手（Novice）、高级新手（Advanced Beginner）、胜任者（Competent）、精通者（Proficient）和专家（Expert）。<br>做详细计划是没有用的，如写什么，什么时候写，怎么写。只有在具体时间中才能形成洞见。<br>同样，&#x3D;&#x3D;《重来》（贾森、戴维）卸负篇&#x3D;&#x3D;-计划即瞎猜，也提到类似的观点，作者对长期计划是呲之以鼻的，建议最多只做周计划，长期计划只是猜想，写的越细致，越是浪费时间。</p><h4 id="写下来为大脑减负"><a href="#写下来为大脑减负" class="headerlink" title="写下来为大脑减负"></a>写下来为大脑减负</h4><p>蔡格尼克效应，即未完成的任务往往会占据我们的短期记忆，直到它们被完成。<br>GTD 的思想，也是把待办事项列出，好腾出精力，一件一件应对。<br>有了想法，或者遇到素材，立马作为笔记记录下来，随后再处理。</p><h4 id="减少做决定"><a href="#减少做决定" class="headerlink" title="减少做决定"></a>减少做决定</h4><p>一般情况下，或一个心理学猜想：我们的大脑存在以下局限性：</p><ol><li>一次只能专注的做一件事。</li><li>一次只能容纳七件事的短期记忆（我感觉我都记不住 7 件）。</li><li>驱动力及意志力有限，再次回复需要时间和休息（类似能量槽）。<br>为了节约有限的意志力资源，我们需要减少做决定，比如少在工具、形式上纠结，专注于记笔记本身。重点放在文章中什么更重要、什么不重要，判断笔记之间的联系，设计文本的结构等难点上。<br>推而广之，对于日常也是，减少对非核心问题的纠结与内耗。<br>休息不仅有助于恢复精力，也对学习至关重要，休息可以让大脑处理信息并将其移入长期记忆，从而可以接受新信息。散散步，甚至打个盹儿，都有助于学习和思考。</li></ol><h3 id="阅读和理解"><a href="#阅读和理解" class="headerlink" title="阅读和理解"></a>阅读和理解</h3><blockquote><p>阅读和理解“我建议你在阅读时手里拿支笔，在小本子上记下你觉得常见的或可能有用的简短提示，因为这将是把这种痕迹印在你的记忆中的最好方法。”——本杰明·富兰克林</p></blockquote><p><strong>好记性不如烂笔头，不记录和整理，任何想法都很快会消失，难以找寻和回溯。</strong></p><h4 id="阅读时要有笔"><a href="#阅读时要有笔" class="headerlink" title="阅读时要有笔"></a>阅读时要有笔</h4><p>如何阅读文献，摘录文件内容时，表明出处，并用自己的语句阐述上下文。<br>根据文献的复杂程度，笔记也要有区分，简单的内容只需要用关键词备注即可，复杂的需要结合上下文尽可能记录清楚。这是一个锻炼自己提炼信息能力的机会。<br>文献笔记的目的是为了变成永久笔记。<br>目前的工作流是通过 zotero 、微信读书结合 obsidian，作为论文、书籍的文献笔记记录方式。<br>在文献上标注、划线等先做文献笔记，然后整理为永久笔记。<br>文献笔记形式不重要，适合自己的即可，文献笔记应该简短、流畅，形式不应太复杂，而分散注意力。<br>重点在文献笔记转换为永久笔记的过程。</p><blockquote><p>如果你说不清楚，就表示你自己也不明白。——John Searle</p></blockquote><h4 id="保持开放的心态"><a href="#保持开放的心态" class="headerlink" title="保持开放的心态"></a>保持开放的心态</h4><p>确认偏差：指人们在处理信息时倾向于寻找、解释、记忆和重视与自己已有信念或假设相一致的信息，而忽略或轻视与之相矛盾的信息。这种偏差会导致人们在决策和评估信息时，无意识地保持自己的先入之见，从而影响客观判断。<br>确实我们很容易掉入这种认知错误中去，总带着一个预设的答案去寻找答案，固执己见、刚愎自用，都是这样的形成的。<br>保持开放的心态，是分析和学习的重要基调，广泛的收集意见（相关的或者矛盾的），审慎的考虑，避免掉入确认偏差，也不要沉浸信息茧房，多与他人讨论学习，认真倾听。<br>知难行易，认识到这个问题已经很重要了。</p><h4 id="推动项目进展的步骤"><a href="#推动项目进展的步骤" class="headerlink" title="推动项目进展的步骤"></a>推动项目进展的步骤</h4><ul><li>确认是否已分解任务，专注于理解阅读的文本或者课程讲解</li><li>为阅读理解的内容做好笔记</li><li>找到笔记的关联，并建立联系<br>我们对将要添加笔记盒的内容无法提前预知，只需要添加相关联的内容，并把他们串联起来就好。</li></ul><h3 id="培养抓住重点的能力"><a href="#培养抓住重点的能力" class="headerlink" title="培养抓住重点的能力"></a>培养抓住重点的能力</h3><blockquote><p>那些拥有大量思考工具并知道如何应用的人是拥有“普世智慧”的人。——查理芒格</p></blockquote><blockquote><p>“阅读学术文章的困难似乎在于短期记忆对我们没有帮助，我们需要长期记忆来提供参考资料，帮助我们区分什么事情重要、什么事情不重要，哪些信息是新的、哪些信息是重复的。但是除非死记硬背，不然我们不可能记住所有的东西。换句话说，我们必须在阅读方面有非常好的选择能力，并能够提取广泛且有联系的参考资料，必须能够跟踪反复出现的问题。只是，如果没有指导，那该如何掌握这样的能力呢？最好的方法可能不是摘录，而是做笔记，就是对所阅读的文本进行浓缩重写。对所阅读的材料进行重写，能够自动地训练人们把注意力转移到文本的框架、模式和类别中来，或者是转移到文本的条件或假设上面，注意到这些以后，你的表述就会变得与之前不同。有效的办法是在阅读过程中时刻谨记以下问题：当文章中提出某个主张时，作者想要说明的是什么，想要排除的又是什么？比如有人提到了‘人权’，他要对比的是什么？是‘没有人权’？还是‘义务’？是一种文化的对比？还是与历史上的那些没有人权概念却依然能和平相处的人们对比？对于这个问题，往往难以从文本中找到直接或明确的答案，只能依靠读者自己的理解。”——卢曼</p></blockquote><p>写作的目标：言简意赅、表达清晰、切中要害。辨别模式、质疑所用框架，并发现不同作品间差异的能力，是进行批判性思考并审视文本或谈话背后观点的先决条件。能够对问题、论断和信息进行重新构架，甚至比拥有广博的学识更重要，因为如果没有这种能力，我们就无法将知识用于实践。<br>只有刻意练习才能达到，快速抓住重点的能力，只有一篇篇笔记被记录，并进行总结和练习，才能逐渐形成这种能力。</p><h3 id="在阅读中学习"><a href="#在阅读中学习" class="headerlink" title="在阅读中学习"></a>在阅读中学习</h3><blockquote><p>只有去做才能学。——泰利·道尔</p></blockquote><p>自己制作大纲，思维导图，不要过分依赖别人总结好的内容，因为这部分工作正是学习的过程。<br>在学习过程中适当增加难度，如增加测试，情景练习，讲解输出等，反而有助于学习，单纯的重复阅读没有任何意义。提取强度比存储强度更有重要，以用促学，以教促学，与费曼学习法相通。<br>回顾毕业后的学习，很多时候真的是假学习，没有记录，没有练习，没有实践，纯粹浪费时间，没有思考的学习是无效的。</p><h2 id="记卡片笔记-养成习惯"><a href="#记卡片笔记-养成习惯" class="headerlink" title="记卡片笔记&#x2F;养成习惯"></a>记卡片笔记&#x2F;养成习惯</h2><h3 id="坚持每天记几条笔记"><a href="#坚持每天记几条笔记" class="headerlink" title="坚持每天记几条笔记"></a>坚持每天记几条笔记</h3><blockquote><p>卢曼的卡片盒里大约有 9 万条笔记，听起来是一个非常庞大的数字，但这仅仅意味着，从他开始使用卡片盒进行工作的那天起，直到他去世，每天也只要写 6 条笔记。</p></blockquote><p>养成记笔记的习惯，养成思考的习惯，相信时间的力量。<br>我计划在 CSDN 、公众号上发表永久笔记，每周 5 篇左右，至少2 篇有深度的文章，3 篇分享工作经验和工具推荐。</p><h3 id="在大脑之外思考"><a href="#在大脑之外思考" class="headerlink" title="在大脑之外思考"></a>在大脑之外思考</h3><p>没有作品是完全复制脑海中的想法形成的，需要转化，从一个语境到另外一个语境，从一种形式到另外一种形式。</p><blockquote><p>将想法写下来，再思考的意义在于，只有在书面形式下，我们才能以一定的距离从字面意思上看待一个论点。我们需要这种距离来思考一个论点，否则，论点本身就会占据我们审视论点所需要的心理资源。</p></blockquote><p>写作的过程就是一个审视想法的过程，有时候有一个想法觉得很好，很兴奋，但当我们实际整理的时候，却发现有很多不成熟的，矛盾的地方，写下来不仅是固定我们飘忽的想法，是让我们在大脑之外思考，更加平和的面对自己的想法，更关心执行。</p><blockquote><p>大脑是“一台能跳跃式得出结论的机器”——丹尼尔·卡尼曼</p></blockquote><h2 id="发展想法"><a href="#发展想法" class="headerlink" title="发展想法"></a>发展想法</h2><p>松散的记录，提纲挈领的总结，根据笔记内容设定主题，以笔记为参考网格，不断联系、丰富和完善。<br>笔记的集合会从复杂逐渐变成有秩序的。<br>谨慎的设置关键词和分类，定期回顾，建立索引，建立文件之间的链接。<br>比较、纠正和区分笔记。审视旧笔记本，有助于我们发展新的想法，纠正曾经错误的想法，事物总在不断发展和进步，以前的笔记很多时候错漏的，需要纠正并建立新的想法。<br>将卡片盒作为思考的工具箱<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405262139869.png" alt="有联系的笔记系统"></p><h2 id="分享你的洞见"><a href="#分享你的洞见" class="headerlink" title="分享你的洞见"></a>分享你的洞见</h2><p>放弃头脑风暴，从笔记中寻找灵感，在兴趣的驱动下完成任务，在完稿后反复修改自己的作品，并分享你的洞见。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>读书笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>方法论</tag>
+      
+      <tag>读书笔记</tag>
+      
+      <tag>写作</tag>
       
     </tags>
     
@@ -172,6 +317,35 @@
   
   
   <entry>
+    <title>ChatGLM 智能体 搭建属于自己的AI知识库</title>
+    <link href="/2024/05/19/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/ChatGLM%20%E6%99%BA%E8%83%BD%E4%BD%93%20%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84AI%E7%9F%A5%E8%AF%86%E5%BA%93/"/>
+    <url>/2024/05/19/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/ChatGLM%20%E6%99%BA%E8%83%BD%E4%BD%93%20%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84AI%E7%9F%A5%E8%AF%86%E5%BA%93/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在看一本书《在线》，将所有数据都需要在线，才有生命力，那么我们的知识库也是。我们现在就可以用先进的大预言模型搭建属于自己的在线 AI 知识库，他就是 ChatGLM 智谱清言智能体。<br>它可以将自己的知识库与 ChatGLM 结合，成为某一方面的专业知识问答系统。当然，市面上有很多类似解决方案，但是智谱清言是我试过国内最好用的一个产品，整体知识库最多免费支持1000个文件（每个100MB），知识库总字数不超过1亿字。完全够用了，而且具备联网功能。</p><p>本文以搭建水文分析智能体为例，讲解如何快速搭建智能体。</p><h2 id="创建智能体"><a href="#创建智能体" class="headerlink" title="创建智能体"></a>创建智能体</h2><p>进入智谱清言，点击创建智能体。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122102223.png" alt="image.png"></p><h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>名称：简介、开场白随便填。<br>配置信息按照需求填，我的水质分析内容如下：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122104516.png" alt="image.png"><br>推荐问题随便填。<br>模型调用建议全点上。<br>知识库文件最关键，建议将你本地知识库全部上传，比如平常写的分析报告，标准导则等等，互联网已经有的文件不用传，文件类型也可以是 url。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122110778.png" alt="微信截图_20240512210752.png"><br>知识库设置可以选择显示段落来源，或者仅从知识库回答。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122111537.png" alt="image.png"><br>添加 API 可以选择一些开源的 API，或者自己创建 API，这里添加了天气查询的 API。那么就能实现查询城市天气的功能。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122112037.png" alt="image.png"></p><p>最后点击发布即可，发布方式可以用邀请的方式，可以定向分享，这样你不想公开的智能体，其他人就无法访问。</p><h2 id="测试智能体"><a href="#测试智能体" class="headerlink" title="测试智能体"></a>测试智能体</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122115270.png" alt="image.png"></p><h2 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h2><p>现在的 AI 发展很快，我们只有不断学习才能跟上时代的脚步，就想这个智能体功能， ChatGLM 也更新的非常快，API 功能也是最近才上线的，感觉非常好用。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具推荐</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>经验分享</tag>
+      
+      <tag>工具推荐</tag>
+      
+      <tag>AIGC</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>图片识别公式神器推荐</title>
     <link href="/2024/05/19/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E5%9B%BE%E7%89%87%E8%AF%86%E5%88%AB%E5%85%AC%E5%BC%8F%E7%A5%9E%E5%99%A8%E6%8E%A8%E8%8D%90/"/>
     <url>/2024/05/19/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E5%9B%BE%E7%89%87%E8%AF%86%E5%88%AB%E5%85%AC%E5%BC%8F%E7%A5%9E%E5%99%A8%E6%8E%A8%E8%8D%90/</url>
@@ -201,7 +375,7 @@
     <link href="/2024/05/19/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E7%9F%A5%E9%81%93%E5%81%9A%E5%88%B0%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
     <url>/2024/05/19/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E7%9F%A5%E9%81%93%E5%81%9A%E5%88%B0%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/</url>
     
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>[[知道做到：跃迁式学习]]</p><h1 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h1><blockquote><p>[!abstract] 知道做到：跃迁式学习</p><ul><li><img src="https://cdn.weread.qq.com/weread/cover/54/3300017554/t7_3300017554.jpg" alt=" 知道做到：跃迁式学习|200"></li><li>书名： 知道做到：跃迁式学习</li><li>作者： 彼得•霍林斯</li><li>简介： 学习是改善你的生活环境、成为你想成为的人的关键。科学的方法能加速学习进程，让你事半功倍。技能、信息和能力永远不会突然降临，需要你自己去寻找它们，这本书将手把手教你如何以效的方式做到这一点：清晰明了的学习思路，切实可行的学习建议，让你更聪明地学习，而不是更努力地学习。在本书中你将学习到：a.学习的理论和原则以及我们做错了什么；b.你的期望比你的才能更重要；c.如何制定计划，战略性地解构和分析信息、技能；d.如何在少工作的同时获得更好的结果；e.如何利用身边人和环境制造惊人的结果；f.自我练习、调整和纠正的艺术；g.如何积累你的技能，使其成为独一无二的资源。一本书带你快速训练大脑、发展肌肉记忆，了解潜在的心理学和生物学。</li><li>出版时间 </li><li>ISBN： 9787504689542</li><li>分类： 经济理财-管理</li><li>出版社： </li><li>PC 地址： <a href="https://weread.qq.com/web/reader/37032360813ab6d5bg014fdd">https://weread.qq.com/web/reader/37032360813ab6d5bg014fdd</a></li></ul></blockquote><h1 id="读后感"><a href="#读后感" class="headerlink" title="读后感"></a>读后感</h1><p>这是一本讲如何学习的书，不厚，很多老生常谈的东西，但对我有用就是好书。<br>读的过程中，我认真梳理了关于如何学习的知识，特意做了学习风格测试（所罗门-费尔德学习方式和偏好指数法）和 16 型人格测试（MBTI 测试），让我更了解自己的优缺点。人是可以改变的，所以我希望通过学习学习方法，提高自己。希望过几年测试我的状态更好。</p><h2 id="学习需要思考的内容"><a href="#学习需要思考的内容" class="headerlink" title="学习需要思考的内容"></a>学习需要思考的内容</h2><ol><li>做这件事对我有什么价值</li><li>做这件事要花费什么成本<ol><li>时间成本</li><li>金钱</li><li>投入产出比</li></ol></li><li>你想在这个领域达到怎样的效果</li><li>你有哪些可以依赖的外部资源<ol><li>[[如何利用环境]]</li><li>你没有的资源是否可以创造和争取</li></ol></li><li>你是否有这方面的天赋（一般以上）</li><li>当前的生活状态是否支持你做这项工作</li></ol><h2 id="学习方法"><a href="#学习方法" class="headerlink" title="学习方法"></a>学习方法</h2><p>再次之前我做了 2 个测试学习风格测试（所罗门-费尔德学习方式和偏好指数法）和 16 型人格测试（MBTI 测试）。我的学习风格偏好 VEPS（视觉、活跃、综合、感觉），人格为表演者-ESFP，荣格认知功能偏好为：主导功能：外倾感觉，辅助功能：内倾情感，第三功能：外倾思考，劣势功能：内倾直觉。测试结果基本符合我的状态，更倾向于外倾感觉，做事流于表面，并不深究。这对我的成长来说并不是好事，因为我也不可能真的成为一个表演者或者销售。因此我要在现有优势的基础上，不断提高自己的理性思考能力。</p><p>以下学习方法主要从书中总结，学习方法远不止于下面这些，以后会不断增加学习方法。我本人是认可费曼学习法的。</p><h3 id="学习金字塔"><a href="#学习金字塔" class="headerlink" title="学习金字塔"></a>学习金字塔</h3><p>学习金字塔理论，由美国学者、著名的学习专家爱德加·戴尔（Edgar Dale）在 1946 年提出，是一种现代学习方式的理论。该理论通过数字形式形象显示了采用不同的学习方式，学习者在两周以后还能记住内容（平均学习保持率）的多少。学习金字塔模型的核心思想在于强调不同学习活动对信息保留效率的影响，并提倡更加互动和主动的学习方法来提高学习效率和记忆持久度。这个模型通过一个逐级展示不同学习方法效果的形象金字塔，揭示了从被动接收到主动参与的学习方式对增强记忆保持的重要性。</p><p>听讲 5%<br>阅读 10%<br>视听 20%<br>演示 30%<br>讨论 50%<br>实践 75%<br>教授给他人 90%</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202404121601505.png" alt="image.png"></p><h4 id="评论"><a href="#评论" class="headerlink" title="评论"></a>评论</h4><p>实际可能并没有那么绝对，应该是多重方法结合，知识教授他人更难，你必须掌握才能教，所以留存更长，另外一个就是坚持，反复练习。</p><h2 id="费曼学习法"><a href="#费曼学习法" class="headerlink" title="费曼学习法"></a><font color="#245bdb">费曼学习法</font></h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202404121708139.png" alt="image.png"></p><p>1. 选择学习目标与概念理解（Concept）<br>2. 回顾与知识梳理（Review）<br>    回顾所学内容，尝试在没有参考资料的情况下，用自己的语言和理解重新阐述该概念。<br>3. 简化与知识重构（Simplify）<br>4. 交给他人（tech）</p><h2 id="布鲁姆分类法"><a href="#布鲁姆分类法" class="headerlink" title="布鲁姆分类法"></a>布鲁姆分类法</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202404121720005.png" alt="image.png"><br>类似于费曼。</p><h2 id="学习的四个具体操作方式"><a href="#学习的四个具体操作方式" class="headerlink" title="学习的四个具体操作方式"></a>学习的四个具体操作方式</h2><h3 id="刻意练习"><a href="#刻意练习" class="headerlink" title="刻意练习"></a>刻意练习</h3><p><strong>专注力决定信息吸收率</strong><br>刻意练习关键在于认真、<strong>专注</strong>、<strong>耐心</strong>，学习慢一点，再慢一点。<br>反复练习而不用心，也没有用，<strong>熟悉不等于掌握</strong><br>学习时，不要被既有经验束缚，以为了解就不深入学习<br>这也适用于健身</p><h4 id="真正的掌握需要不停的练习"><a href="#真正的掌握需要不停的练习" class="headerlink" title="真正的掌握需要不停的练习"></a>真正的掌握需要不停的练习</h4><p>制定 [[每日时刻表]]<br>利用零散的时间进行练习<br>番茄工作法</p><h3 id="交替练习"><a href="#交替练习" class="headerlink" title="交替练习"></a>交替练习</h3><p>将相近的知识交替学习，但要避免打断思考</p><h3 id="间隔重复"><a href="#间隔重复" class="headerlink" title="间隔重复"></a>间隔重复</h3><p>周期学习就像健身一样，每天固定时间点学习</p><h3 id="问题导向式学习法"><a href="#问题导向式学习法" class="headerlink" title="问题导向式学习法"></a>问题导向式学习法</h3><p>问题导向式学习法（Problem-based Learning，简称 PBL）<br>以解题的思路学习，可以是做项目，或者做应用题，然后向上追溯知识点<br>具体步骤：</p><ol><li>明确你的问题。</li><li>明确你已知的信息。</li><li>明确你需要但未知的内容，以及获得这些信息的途径</li><li>列出可行的解决方案，并选择成功几率最大的解决方案。</li><li>将方案<strong>分解</strong>为一个个行动（列出具体的时间计划通常很有用）。</li></ol><h2 id="学习心态调整"><a href="#学习心态调整" class="headerlink" title="学习心态调整"></a>学习心态调整</h2><h3 id="合理自我定位"><a href="#合理自我定位" class="headerlink" title="合理自我定位"></a>合理自我定位</h3><p>认识学习并不是一件简单的事，需要精心设定目标，制定计划。<br><strong>所有的半途而废，都是因为心态错位</strong><br>要乐观，但不要过于乐观<br>战略上藐视敌人，战术上重视敌人<br>饱和式打击，不作无准备之仗<br><strong>保持谦逊</strong>，stay hungry stay foolish<br>养成一个习惯需要 66 天，学习一个技能至少要 25-30 小时</p><h3 id="好奇心"><a href="#好奇心" class="headerlink" title="好奇心"></a>好奇心</h3><p>好奇心不是学习的充分条件，但是可以作为发起学习和自律力耗尽的时候拉你一把。</p><h3 id="提高困惑忍耐力"><a href="#提高困惑忍耐力" class="headerlink" title="提高困惑忍耐力"></a>提高困惑忍耐力</h3><p>当你学习越深入，不知道的越多，要提高困惑忍耐力。试着抽离出来，用全局观，或者短时间沉浸在局部利益，或者调动自己的好奇心，或者给自己打气，或者借助于朋友的宽慰，及时走出困惑沮丧的心境，重新开始学习，切记不要因此放弃当前的学习。这是你突破瓶颈的方法。</p><h2 id="深入学习的方法"><a href="#深入学习的方法" class="headerlink" title="深入学习的方法"></a>深入学习的方法</h2><h3 id="精细提问"><a href="#精细提问" class="headerlink" title="精细提问"></a>精细提问</h3><p>也可以用于讨论<br>六要素提问：who、what、where、when、why、how</p><h2 id="如何利用环境"><a href="#如何利用环境" class="headerlink" title="如何利用环境"></a>如何利用环境</h2><p>我作为一个外倾感觉型的人，非常容易受到环境的影响。<br><strong>与其挑战天性，不如利用环境最高级的自律，是让环境帮你做出正确决策</strong><br>主要是两个方面社会环境和个人环境（大环境和小环境）</p><h3 id="个体环境"><a href="#个体环境" class="headerlink" title="个体环境"></a>个体环境</h3><p>五官感受到的环境，屋子是否整齐，资料夹是否按顺序摆放等等。<br>第一，把资源放在触手可及的地方。<br>第二，把干扰因素关进另一个房间。<br>启动耗能&#x2F;活化能<br>对于较难的工作，即使切换到工作状态都耗费极大的精力。<br>主动抵御沉迷分心事物的冲动，把注意力转移到需要学习或实践的任务上。<br>《心流》（Flow）认为，这种改变环境的方法其实是改变了特定活动的“活化能”。<br>一般来说，对于心生向往的事情，你要降低活化能；对于讨厌的事情，你则要增加活化能。<br>启动学习和练习所需的活化能越少越好。<br>这本书很难做到，我目前也没有到达，只有坚持练习，希望能更丝滑的切换到工作和学习。</p><h3 id="社会环境"><a href="#社会环境" class="headerlink" title="社会环境"></a>社会环境</h3><p>朋友、社会关系<br>积极向上的氛围，相互鼓励的环境。<br>消除不良的氛围，原理刻意贬低和质疑你的人。<br>榜样的力量，向榜样学习<br>向优秀的人和群体靠拢</p>]]></content>
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>[[知道做到：跃迁式学习]]</p><h1 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h1><blockquote><p>[!abstract] 知道做到：跃迁式学习</p><ul><li><img src="https://cdn.weread.qq.com/weread/cover/54/3300017554/t7_3300017554.jpg" alt=" 知道做到：跃迁式学习|200"></li><li>书名： 知道做到：跃迁式学习</li><li>作者： 彼得•霍林斯</li><li>简介： 学习是改善你的生活环境、成为你想成为的人的关键。科学的方法能加速学习进程，让你事半功倍。技能、信息和能力永远不会突然降临，需要你自己去寻找它们，这本书将手把手教你如何以效的方式做到这一点：清晰明了的学习思路，切实可行的学习建议，让你更聪明地学习，而不是更努力地学习。在本书中你将学习到：a.学习的理论和原则以及我们做错了什么；b.你的期望比你的才能更重要；c.如何制定计划，战略性地解构和分析信息、技能；d.如何在少工作的同时获得更好的结果；e.如何利用身边人和环境制造惊人的结果；f.自我练习、调整和纠正的艺术；g.如何积累你的技能，使其成为独一无二的资源。一本书带你快速训练大脑、发展肌肉记忆，了解潜在的心理学和生物学。</li><li>出版时间 </li><li>ISBN： 9787504689542</li><li>分类： 经济理财-管理</li><li>出版社： </li><li>PC 地址： <a href="https://weread.qq.com/web/reader/37032360813ab6d5bg014fdd">https://weread.qq.com/web/reader/37032360813ab6d5bg014fdd</a></li></ul></blockquote><h1 id="读后感"><a href="#读后感" class="headerlink" title="读后感"></a>读后感</h1><p>这是一本讲如何学习的书，不厚，很多老生常谈的东西，但对我有用就是好书。<br>读的过程中，我认真梳理了关于如何学习的知识，特意做了学习风格测试（所罗门-费尔德学习方式和偏好指数法）和 16 型人格测试（MBTI 测试），让我更了解自己的优缺点。人是可以改变的，所以我希望通过学习学习方法，提高自己。希望过几年测试我的状态更好。</p><h2 id="学习需要思考的内容"><a href="#学习需要思考的内容" class="headerlink" title="学习需要思考的内容"></a>学习需要思考的内容</h2><ol><li>做这件事对我有什么价值</li><li>做这件事要花费什么成本<ol><li>时间成本</li><li>金钱</li><li>投入产出比</li></ol></li><li>你想在这个领域达到怎样的效果</li><li>你有哪些可以依赖的外部资源<ol><li>[[如何利用环境]]</li><li>你没有的资源是否可以创造和争取</li></ol></li><li>你是否有这方面的天赋（一般以上）</li><li>当前的生活状态是否支持你做这项工作</li></ol><h2 id="学习方法"><a href="#学习方法" class="headerlink" title="学习方法"></a>学习方法</h2><p>再次之前我做了 2 个测试学习风格测试（所罗门-费尔德学习方式和偏好指数法）和 16 型人格测试（MBTI 测试）。我的学习风格偏好 VEPS（视觉、活跃、综合、感觉），人格为表演者-ESFP，荣格认知功能偏好为：主导功能：外倾感觉，辅助功能：内倾情感，第三功能：外倾思考，劣势功能：内倾直觉。测试结果基本符合我的状态，更倾向于外倾感觉，做事流于表面，并不深究。这对我的成长来说并不是好事，因为我也不可能真的成为一个表演者或者销售。因此我要在现有优势的基础上，不断提高自己的理性思考能力。</p><p>以下学习方法主要从书中总结，学习方法远不止于下面这些，以后会不断增加学习方法。我本人是认可费曼学习法的。</p><h3 id="学习金字塔"><a href="#学习金字塔" class="headerlink" title="学习金字塔"></a>学习金字塔</h3><p>学习金字塔理论，由美国学者、著名的学习专家爱德加·戴尔（Edgar Dale）在 1946 年提出，是一种现代学习方式的理论。该理论通过数字形式形象显示了采用不同的学习方式，学习者在两周以后还能记住内容（平均学习保持率）的多少。学习金字塔模型的核心思想在于强调不同学习活动对信息保留效率的影响，并提倡更加互动和主动的学习方法来提高学习效率和记忆持久度。这个模型通过一个逐级展示不同学习方法效果的形象金字塔，揭示了从被动接收到主动参与的学习方式对增强记忆保持的重要性。</p><p>听讲 5%<br>阅读 10%<br>视听 20%<br>演示 30%<br>讨论 50%<br>实践 75%<br>教授给他人 90%</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202404121601505.png" alt="image.png"></p><h4 id="评论"><a href="#评论" class="headerlink" title="评论"></a>评论</h4><p>实际可能并没有那么绝对，应该是多重方法结合，知识教授他人更难，你必须掌握才能教，所以留存更长，另外一个就是坚持，反复练习。</p><h2 id="费曼学习法"><a href="#费曼学习法" class="headerlink" title="费曼学习法"></a>费曼学习法</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202404121708139.png" alt="image.png"></p><p>1. 选择学习目标与概念理解（Concept）<br>2. 回顾与知识梳理（Review）<br>    回顾所学内容，尝试在没有参考资料的情况下，用自己的语言和理解重新阐述该概念。<br>3. 简化与知识重构（Simplify）<br>4. 教给他人（tech）</p><h2 id="布鲁姆分类法"><a href="#布鲁姆分类法" class="headerlink" title="布鲁姆分类法"></a>布鲁姆分类法</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202404121720005.png" alt="image.png"><br>类似于费曼。</p><h2 id="学习的四个具体操作方式"><a href="#学习的四个具体操作方式" class="headerlink" title="学习的四个具体操作方式"></a>学习的四个具体操作方式</h2><h3 id="刻意练习"><a href="#刻意练习" class="headerlink" title="刻意练习"></a>刻意练习</h3><p><strong>专注力决定信息吸收率</strong><br>刻意练习关键在于认真、<strong>专注</strong>、<strong>耐心</strong>，学习慢一点，再慢一点。<br>反复练习而不用心，也没有用，<strong>熟悉不等于掌握</strong><br>学习时，不要被既有经验束缚，以为了解就不深入学习<br>这也适用于健身</p><h4 id="真正的掌握需要不停的练习"><a href="#真正的掌握需要不停的练习" class="headerlink" title="真正的掌握需要不停的练习"></a>真正的掌握需要不停的练习</h4><p>制定 [[每日时刻表]]<br>利用零散的时间进行练习<br>番茄工作法</p><h3 id="交替练习"><a href="#交替练习" class="headerlink" title="交替练习"></a>交替练习</h3><p>将相近的知识交替学习，但要避免打断思考</p><h3 id="间隔重复"><a href="#间隔重复" class="headerlink" title="间隔重复"></a>间隔重复</h3><p>周期学习就像健身一样，每天固定时间点学习</p><h3 id="问题导向式学习法"><a href="#问题导向式学习法" class="headerlink" title="问题导向式学习法"></a>问题导向式学习法</h3><p>问题导向式学习法（Problem-based Learning，简称 PBL）<br>以解题的思路学习，可以是做项目，或者做应用题，然后向上追溯知识点<br>具体步骤：</p><ol><li>明确你的问题。</li><li>明确你已知的信息。</li><li>明确你需要但未知的内容，以及获得这些信息的途径</li><li>列出可行的解决方案，并选择成功几率最大的解决方案。</li><li>将方案<strong>分解</strong>为一个个行动（列出具体的时间计划通常很有用）。</li></ol><h2 id="学习心态调整"><a href="#学习心态调整" class="headerlink" title="学习心态调整"></a>学习心态调整</h2><h3 id="合理自我定位"><a href="#合理自我定位" class="headerlink" title="合理自我定位"></a>合理自我定位</h3><p>认识学习并不是一件简单的事，需要精心设定目标，制定计划。<br><strong>所有的半途而废，都是因为心态错位</strong><br>要乐观，但不要过于乐观<br>战略上藐视敌人，战术上重视敌人<br>饱和式打击，不作无准备之仗<br><strong>保持谦逊</strong>，stay hungry stay foolish<br>养成一个习惯需要 66 天，学习一个技能至少要 25-30 小时</p><h3 id="好奇心"><a href="#好奇心" class="headerlink" title="好奇心"></a>好奇心</h3><p>好奇心不是学习的充分条件，但是可以作为发起学习和自律力耗尽的时候拉你一把。</p><h3 id="提高困惑忍耐力"><a href="#提高困惑忍耐力" class="headerlink" title="提高困惑忍耐力"></a>提高困惑忍耐力</h3><p>当你学习越深入，不知道的越多，要提高困惑忍耐力。试着抽离出来，用全局观，或者短时间沉浸在局部利益，或者调动自己的好奇心，或者给自己打气，或者借助于朋友的宽慰，及时走出困惑沮丧的心境，重新开始学习，切记不要因此放弃当前的学习。这是你突破瓶颈的方法。</p><h2 id="深入学习的方法"><a href="#深入学习的方法" class="headerlink" title="深入学习的方法"></a>深入学习的方法</h2><h3 id="精细提问"><a href="#精细提问" class="headerlink" title="精细提问"></a>精细提问</h3><p>也可以用于讨论<br>六要素提问：who、what、where、when、why、how</p><h2 id="如何利用环境"><a href="#如何利用环境" class="headerlink" title="如何利用环境"></a>如何利用环境</h2><p>我作为一个外倾感觉型的人，非常容易受到环境的影响。<br><strong>与其挑战天性，不如利用环境最高级的自律，是让环境帮你做出正确决策</strong><br>主要是两个方面社会环境和个人环境（大环境和小环境）</p><h3 id="个体环境"><a href="#个体环境" class="headerlink" title="个体环境"></a>个体环境</h3><p>五官感受到的环境，屋子是否整齐，资料夹是否按顺序摆放等等。<br>第一，把资源放在触手可及的地方。<br>第二，把干扰因素关进另一个房间。<br>启动耗能&#x2F;活化能<br>对于较难的工作，即使切换到工作状态都耗费极大的精力。<br>主动抵御沉迷分心事物的冲动，把注意力转移到需要学习或实践的任务上。<br>《心流》（Flow）认为，这种改变环境的方法其实是改变了特定活动的“活化能”。<br>一般来说，对于心生向往的事情，你要降低活化能；对于讨厌的事情，你则要增加活化能。<br>启动学习和练习所需的活化能越少越好。<br>这本书很难做到，我目前也没有到达，只有坚持练习，希望能更丝滑的切换到工作和学习。</p><h3 id="社会环境"><a href="#社会环境" class="headerlink" title="社会环境"></a>社会环境</h3><p>朋友、社会关系<br>积极向上的氛围，相互鼓励的环境。<br>消除不良的氛围，原理刻意贬低和质疑你的人。<br>榜样的力量，向榜样学习<br>向优秀的人和群体靠拢</p>]]></content>
     
     
     <categories>
@@ -213,9 +387,11 @@
     
     <tags>
       
-      <tag>读书笔记</tag>
+      <tag>用心长文</tag>
       
       <tag>方法论</tag>
+      
+      <tag>读书笔记</tag>
       
     </tags>
     
@@ -240,9 +416,11 @@
     
     <tags>
       
-      <tag>读书笔记</tag>
+      <tag>用心长文</tag>
       
       <tag>方法论</tag>
+      
+      <tag>读书笔记</tag>
       
       <tag>写作</tag>
       
@@ -269,9 +447,11 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>python</tag>
+      
+      <tag>用心长文</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>excel</tag>
       
@@ -325,11 +505,13 @@
     
     <tags>
       
-      <tag>时间序列模型</tag>
-      
       <tag>水环境分析</tag>
       
       <tag>python</tag>
+      
+      <tag>用心长文</tag>
+      
+      <tag>时间序列模型</tag>
       
     </tags>
     
@@ -353,6 +535,8 @@
     
     
     <tags>
+      
+      <tag>用心长文</tag>
       
       <tag>经验分享</tag>
       
@@ -381,6 +565,8 @@
     
     <tags>
       
+      <tag>用心长文</tag>
+      
       <tag>经验分享</tag>
       
       <tag>方法论</tag>
@@ -408,11 +594,44 @@
     
     <tags>
       
+      <tag>时间序列</tag>
+      
       <tag>水环境分析</tag>
       
       <tag>python</tag>
       
-      <tag>时间序列</tag>
+      <tag>用心长文</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>obsidian  微信读书 插件 weread 强烈推荐</title>
+    <link href="/2024/04/09/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20%20%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%20%E6%8F%92%E4%BB%B6%20weread%20%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90/"/>
+    <url>/2024/04/09/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20%20%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%20%E6%8F%92%E4%BB%B6%20weread%20%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在用 obsidian，一入 ob 深似海，从此语雀是路人。<br>今天强烈推荐喜欢用微信读书的人，使用它，1+1＞2。两大神级软件助你起飞。</p><h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>第三方软件搜索 weread ，点击下载、启用。</p><h2 id="插件配置"><a href="#插件配置" class="headerlink" title="插件配置"></a>插件配置</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202404100917769.png" alt="image.png"></p><ol><li>微信登录账号</li><li>设置保存位置</li><li>设置文件名模板</li><li>设置文件夹分类</li><li>可自定义文件模板，我并没有修改。</li><li>点击同步左侧书籍按钮即可同步。</li></ol><h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>现将使用效果写在前面。</p><ol><li>一键简单设置，只需要登录即可同步所有微信读书阅读笔记。</li><li>书籍按照分类自动新建笔记和文件夹，体验知识积累的快感</li><li>鼓励做书摘，做卡片笔记。让知识更好的沉淀，而不是写过之后就忘了。</li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202404100919162.png" alt="image.png"></p><p>看着自己阅读的书籍全部展示出来，成就感满满。</p><h2 id="问题及解决方案"><a href="#问题及解决方案" class="headerlink" title="问题及解决方案"></a>问题及解决方案</h2><p>在使用中也发现，不能直接修改同步的文字，因为一旦同步，写在本地的文字也会覆盖。<br>但我们可以通过在本地认真写好读书笔记后，在微信读书上发布，然后再同步，这样就可以两边都有了。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>经验分享</tag>
+      
+      <tag>工具推荐</tag>
+      
+      <tag>obsidian</tag>
+      
+      <tag>微信读书</tag>
       
     </tags>
     

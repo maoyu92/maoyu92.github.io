@@ -1,0 +1,768 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  
+    <meta name="description" content="元数据 [!abstract] 卡片笔记写作法：如何实现从阅读到写作   书名： 卡片笔记写作法：如何实现从阅读到写作 作者： 申克·阿伦斯 简介： 卢曼的“盒中笔记”通常很简短，因为这些只是他庞大繁杂研究中的索引，等需要时，他会借由这些线头进行延伸思考，然后不断链接知识要点，从而形成自己的知识树。你也可以试试。 出版时间 2021-06-01 00:00:00 ISBN： 97871155">
+<meta property="og:type" content="article">
+<meta property="og:title" content="卡片笔记写作法 精读笔记 02">
+<meta property="og:url" content="https://maoyu92.github.io/2024/05/20/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E5%8D%A1%E7%89%87%E7%AC%94%E8%AE%B0%E5%86%99%E4%BD%9C%E6%B3%95%20%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0%2002/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="元数据 [!abstract] 卡片笔记写作法：如何实现从阅读到写作   书名： 卡片笔记写作法：如何实现从阅读到写作 作者： 申克·阿伦斯 简介： 卢曼的“盒中笔记”通常很简短，因为这些只是他庞大繁杂研究中的索引，等需要时，他会借由这些线头进行延伸思考，然后不断链接知识要点，从而形成自己的知识树。你也可以试试。 出版时间 2021-06-01 00:00:00 ISBN： 97871155">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405271919838.png">
+<meta property="og:image" content="https://cdn.weread.qq.com/weread/cover/15/YueWen_39136896/t7_YueWen_39136896.jpg">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405261639805.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405271912873.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405262139869.png">
+<meta property="article:published_time" content="2024-05-20T12:22:00.000Z">
+<meta property="article:modified_time" content="2024-05-20T12:22:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="方法论">
+<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="写作">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405271919838.png">
+  
+  
+  
+  <title>卡片笔记写作法 精读笔记 02 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="卡片笔记写作法 精读笔记 02"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-20 20:22" pubdate>
+          2024年5月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          35 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">卡片笔记写作法 精读笔记 02</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405271919838.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h2><blockquote>
+<p>[!abstract] 卡片笔记写作法：如何实现从阅读到写作</p>
+<ul>
+<li><img src="https://cdn.weread.qq.com/weread/cover/15/YueWen_39136896/t7_YueWen_39136896.jpg" srcset="/img/loading.gif" lazyload alt=" 卡片笔记写作法：如何实现从阅读到写作|200"></li>
+<li>书名： 卡片笔记写作法：如何实现从阅读到写作</li>
+<li>作者： 申克·阿伦斯</li>
+<li>简介： 卢曼的“盒中笔记”通常很简短，因为这些只是他庞大繁杂研究中的索引，等需要时，他会借由这些线头进行延伸思考，然后不断链接知识要点，从而形成自己的知识树。你也可以试试。</li>
+<li>出版时间 2021-06-01 00:00:00</li>
+<li>ISBN： 9787115564672</li>
+<li>分类： 文学-语言文字</li>
+<li>出版社： 人民邮电出版社</li>
+<li>PC 地址： <a target="_blank" rel="noopener" href="https://weread.qq.com/web/reader/3d8326d072552e803d87c41">https://weread.qq.com/web/reader/3d8326d072552e803d87c41</a></li>
+</ul>
+</blockquote>
+<p>继续这本书后面的部分。</p>
+<h3 id="关于写作，你需要具备的能力"><a href="#关于写作，你需要具备的能力" class="headerlink" title="关于写作，你需要具备的能力"></a>关于写作，你需要具备的能力</h3><p>构建一个<strong>不被干扰、专心思考的笔记系统</strong>。<br>工具箱</p>
+<ul>
+<li>书写工具纸、笔。</li>
+<li>文献管理工具</li>
+<li>卡片系统</li>
+<li>编辑工具<br>目前用的是 obsidian、zotero，其中 obsidian 用的更频繁就是我的卡片盒。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405261639805.png" srcset="/img/loading.gif" lazyload alt="我的笔记工具"></li>
+</ul>
+<h2 id="关于写作，你需要的注意的几个问题"><a href="#关于写作，你需要的注意的几个问题" class="headerlink" title="关于写作，你需要的注意的几个问题"></a>关于写作，你需要的注意的几个问题</h2><p>不要让卡片笔记盒，沦为思想的坟场，不要只有囤积癖，没有整理的习惯。<br>我自己深有体会，之前用印象笔记 -剪藏插件的时候，会收集很多笔记，然后再也没看过。<br>笔记系统逐渐臃肿，完全不能发挥作用。</p>
+<h3 id="三类笔记的区别"><a href="#三类笔记的区别" class="headerlink" title="三类笔记的区别"></a>三类笔记的区别</h3><p>1.闪念笔记 (Fleeting Notes)：这类笔记只是对收集信息起提醒作用，可以用任何方式来写，最后会在一两天内被扔进垃圾桶。<br>2.永久笔记 (Permanent Notes)：这种笔记以一种永久可以理解的方式包含了必要的信息，并且永远不会被扔掉。它们总是以同样的方式存放在同一个地方，或者是在文献管理系统中，或者按出版标准写好放在卡片盒中。<br>3.项目笔记 (Project Notes)：它们只与某一特定项目有关，保存在特定项目的文件夹内，项目结束后即可丢弃或存档。只有将这三类笔记分开保存，才有可能实现卡片盒笔记的群聚效应，而对这些类别的混淆也是人们写作或发表作品不多的主要原因之一。<br>项目笔记相关内容：与项目有关的文献、大纲、草稿片段、备忘录、待办事项<br>当你结束一天的工作，你的桌面除了纸和笔，没有留下任何东西，说明你已经区分好了三种笔记类型。</p>
+<h3 id="有效写作的四个原则"><a href="#有效写作的四个原则" class="headerlink" title="有效写作的四个原则"></a>有效写作的四个原则</h3><h4 id="写作是唯一重要的事"><a href="#写作是唯一重要的事" class="headerlink" title="写作是唯一重要的事"></a>写作是唯一重要的事</h4><p>没有私密知识，有了想法只有自己知道，就等于没有想法，无法重现的论据就算不上论据。<br>只有成果公布出来，供人阅读，才有意义。专注于写作，同时也要学习与交流。</p>
+<h4 id="简洁是最重要的"><a href="#简洁是最重要的" class="headerlink" title="简洁是最重要的"></a>简洁是最重要的</h4><p>这里指的是卡片盒笔记系统相较于传统笔记的组织方式更简洁。区分好三类笔记，按照不同的处理方式处理，最后形成群聚效应。</p>
+<h4 id="没有人完全从零开始写作"><a href="#没有人完全从零开始写作" class="headerlink" title="没有人完全从零开始写作"></a>没有人完全从零开始写作</h4><p>日常收集整理感兴趣的素材，形成素材库。写作是非线性的，不是自上而下的，功夫在诗外。</p>
+<h4 id="让工作推动你前进"><a href="#让工作推动你前进" class="headerlink" title="让工作推动你前进"></a>让工作推动你前进</h4><p>建立一个良好的工作机制。让工作成为一个良性循环，热爱你从事的工作，做自己喜欢做的事情。不断的形成正反馈。这一点与最近看的&#x3D;&#x3D;《重来》（贾森、戴维）卸负篇&#x3D;&#x3D;-哪来的从错误中学习有联系，我们基本很少从失败中汲取经验，只有成功才能让我们成长。良性的正反馈，是我们不断前进的动力。这里的工作应该是广义的，做你喜欢的事，做好。<br>除了具备成长的心态外，需要周期性的给自己反馈，而不是间隔很长时间的反馈，太长时间难以坚持，短期的反馈更容易让人接受，更能加强理解和改进。</p>
+<h2 id="成功写作的六个步骤"><a href="#成功写作的六个步骤" class="headerlink" title="成功写作的六个步骤"></a>成功写作的六个步骤</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405271912873.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="明确区分独立而又相关联的任务"><a href="#明确区分独立而又相关联的任务" class="headerlink" title="明确区分独立而又相关联的任务"></a>明确区分独立而又相关联的任务</h3><p>不要一心多用<br>不同的任务需要不同的关注度，比如区分写作与校对，两者需要站在不同的角度去看待事物，校对应作为批评家，从逻辑、规范等等方面去思考文章的合理性。在不同的环节需要的关注度和耗费的精力不同。<br>结合自己的经验深有体会，我以前很难做好审稿这个角色，不光是对自己写的，还是同事写的，审查的时候总是很为难，不愿意做，也没有花更多的心思，当然做不好。<br>推而广之，精读与速读，概括与修改提纲都是需要区别对待的工作，都应该有自己的方法论，不应该因为相似就不去总结。<br>艺术和科学都需要“集中的注意力”与“漂浮的注意力”，大多数杰出的科学家也都具备切换不同注意力的能力。杰出科学家解决问题的行为可以在‘对特定概念的超常专注程度’和‘对想法的有趣探索’之间交替进行。这表明，要想成功解决问题，可能需要根据任务和需求灵活地选择应对策略。”<br>有时候我们需要天马行空，而有时候我们要细微严谨，对待不同任务要切换不同的应对策略。不要把自己局限死，以为自己不擅长，而懒得去做。</p>
+<h4 id="做专家，不作计划制定者"><a href="#做专家，不作计划制定者" class="headerlink" title="做专家，不作计划制定者"></a>做专家，不作计划制定者</h4><p>人只有不断的实践，才能积累经验。<br><strong>德雷福斯的技能获取理论</strong>:人类在特定领域习得技能时，从低技能阶段到高技能阶段的认知转变过程，并将这个过程拆分为五个阶段：新手（Novice）、高级新手（Advanced Beginner）、胜任者（Competent）、精通者（Proficient）和专家（Expert）。<br>做详细计划是没有用的，如写什么，什么时候写，怎么写。只有在具体时间中才能形成洞见。<br>同样，&#x3D;&#x3D;《重来》（贾森、戴维）卸负篇&#x3D;&#x3D;-计划即瞎猜，也提到类似的观点，作者对长期计划是呲之以鼻的，建议最多只做周计划，长期计划只是猜想，写的越细致，越是浪费时间。</p>
+<h4 id="写下来为大脑减负"><a href="#写下来为大脑减负" class="headerlink" title="写下来为大脑减负"></a>写下来为大脑减负</h4><p>蔡格尼克效应，即未完成的任务往往会占据我们的短期记忆，直到它们被完成。<br>GTD 的思想，也是把待办事项列出，好腾出精力，一件一件应对。<br>有了想法，或者遇到素材，立马作为笔记记录下来，随后再处理。</p>
+<h4 id="减少做决定"><a href="#减少做决定" class="headerlink" title="减少做决定"></a>减少做决定</h4><p>一般情况下，或一个心理学猜想：我们的大脑存在以下局限性：</p>
+<ol>
+<li>一次只能专注的做一件事。</li>
+<li>一次只能容纳七件事的短期记忆（我感觉我都记不住 7 件）。</li>
+<li>驱动力及意志力有限，再次回复需要时间和休息（类似能量槽）。<br>为了节约有限的意志力资源，我们需要减少做决定，比如少在工具、形式上纠结，专注于记笔记本身。重点放在文章中什么更重要、什么不重要，判断笔记之间的联系，设计文本的结构等难点上。<br>推而广之，对于日常也是，减少对非核心问题的纠结与内耗。<br>休息不仅有助于恢复精力，也对学习至关重要，休息可以让大脑处理信息并将其移入长期记忆，从而可以接受新信息。散散步，甚至打个盹儿，都有助于学习和思考。</li>
+</ol>
+<h3 id="阅读和理解"><a href="#阅读和理解" class="headerlink" title="阅读和理解"></a>阅读和理解</h3><blockquote>
+<p>阅读和理解“我建议你在阅读时手里拿支笔，在小本子上记下你觉得常见的或可能有用的简短提示，因为这将是把这种痕迹印在你的记忆中的最好方法。”——本杰明·富兰克林</p>
+</blockquote>
+<p><strong>好记性不如烂笔头，不记录和整理，任何想法都很快会消失，难以找寻和回溯。</strong></p>
+<h4 id="阅读时要有笔"><a href="#阅读时要有笔" class="headerlink" title="阅读时要有笔"></a>阅读时要有笔</h4><p>如何阅读文献，摘录文件内容时，表明出处，并用自己的语句阐述上下文。<br>根据文献的复杂程度，笔记也要有区分，简单的内容只需要用关键词备注即可，复杂的需要结合上下文尽可能记录清楚。这是一个锻炼自己提炼信息能力的机会。<br>文献笔记的目的是为了变成永久笔记。<br>目前的工作流是通过 zotero 、微信读书结合 obsidian，作为论文、书籍的文献笔记记录方式。<br>在文献上标注、划线等先做文献笔记，然后整理为永久笔记。<br>文献笔记形式不重要，适合自己的即可，文献笔记应该简短、流畅，形式不应太复杂，而分散注意力。<br>重点在文献笔记转换为永久笔记的过程。</p>
+<blockquote>
+<p>如果你说不清楚，就表示你自己也不明白。——John Searle</p>
+</blockquote>
+<h4 id="保持开放的心态"><a href="#保持开放的心态" class="headerlink" title="保持开放的心态"></a>保持开放的心态</h4><p>确认偏差：指人们在处理信息时倾向于寻找、解释、记忆和重视与自己已有信念或假设相一致的信息，而忽略或轻视与之相矛盾的信息。这种偏差会导致人们在决策和评估信息时，无意识地保持自己的先入之见，从而影响客观判断。<br>确实我们很容易掉入这种认知错误中去，总带着一个预设的答案去寻找答案，固执己见、刚愎自用，都是这样的形成的。<br>保持开放的心态，是分析和学习的重要基调，广泛的收集意见（相关的或者矛盾的），审慎的考虑，避免掉入确认偏差，也不要沉浸信息茧房，多与他人讨论学习，认真倾听。<br>知难行易，认识到这个问题已经很重要了。</p>
+<h4 id="推动项目进展的步骤"><a href="#推动项目进展的步骤" class="headerlink" title="推动项目进展的步骤"></a>推动项目进展的步骤</h4><ul>
+<li>确认是否已分解任务，专注于理解阅读的文本或者课程讲解</li>
+<li>为阅读理解的内容做好笔记</li>
+<li>找到笔记的关联，并建立联系<br>我们对将要添加笔记盒的内容无法提前预知，只需要添加相关联的内容，并把他们串联起来就好。</li>
+</ul>
+<h3 id="培养抓住重点的能力"><a href="#培养抓住重点的能力" class="headerlink" title="培养抓住重点的能力"></a>培养抓住重点的能力</h3><blockquote>
+<p>那些拥有大量思考工具并知道如何应用的人是拥有“普世智慧”的人。——查理芒格</p>
+</blockquote>
+<blockquote>
+<p>“阅读学术文章的困难似乎在于短期记忆对我们没有帮助，我们需要长期记忆来提供参考资料，帮助我们区分什么事情重要、什么事情不重要，哪些信息是新的、哪些信息是重复的。但是除非死记硬背，不然我们不可能记住所有的东西。换句话说，我们必须在阅读方面有非常好的选择能力，并能够提取广泛且有联系的参考资料，必须能够跟踪反复出现的问题。只是，如果没有指导，那该如何掌握这样的能力呢？最好的方法可能不是摘录，而是做笔记，就是对所阅读的文本进行浓缩重写。对所阅读的材料进行重写，能够自动地训练人们把注意力转移到文本的框架、模式和类别中来，或者是转移到文本的条件或假设上面，注意到这些以后，你的表述就会变得与之前不同。有效的办法是在阅读过程中时刻谨记以下问题：当文章中提出某个主张时，作者想要说明的是什么，想要排除的又是什么？比如有人提到了‘人权’，他要对比的是什么？是‘没有人权’？还是‘义务’？是一种文化的对比？还是与历史上的那些没有人权概念却依然能和平相处的人们对比？对于这个问题，往往难以从文本中找到直接或明确的答案，只能依靠读者自己的理解。”——卢曼</p>
+</blockquote>
+<p>写作的目标：言简意赅、表达清晰、切中要害。辨别模式、质疑所用框架，并发现不同作品间差异的能力，是进行批判性思考并审视文本或谈话背后观点的先决条件。能够对问题、论断和信息进行重新构架，甚至比拥有广博的学识更重要，因为如果没有这种能力，我们就无法将知识用于实践。<br>只有刻意练习才能达到，快速抓住重点的能力，只有一篇篇笔记被记录，并进行总结和练习，才能逐渐形成这种能力。</p>
+<h3 id="在阅读中学习"><a href="#在阅读中学习" class="headerlink" title="在阅读中学习"></a>在阅读中学习</h3><blockquote>
+<p>只有去做才能学。——泰利·道尔</p>
+</blockquote>
+<p>自己制作大纲，思维导图，不要过分依赖别人总结好的内容，因为这部分工作正是学习的过程。<br>在学习过程中适当增加难度，如增加测试，情景练习，讲解输出等，反而有助于学习，单纯的重复阅读没有任何意义。提取强度比存储强度更有重要，以用促学，以教促学，与费曼学习法相通。<br>回顾毕业后的学习，很多时候真的是假学习，没有记录，没有练习，没有实践，纯粹浪费时间，没有思考的学习是无效的。</p>
+<h2 id="记卡片笔记-养成习惯"><a href="#记卡片笔记-养成习惯" class="headerlink" title="记卡片笔记&#x2F;养成习惯"></a>记卡片笔记&#x2F;养成习惯</h2><h3 id="坚持每天记几条笔记"><a href="#坚持每天记几条笔记" class="headerlink" title="坚持每天记几条笔记"></a>坚持每天记几条笔记</h3><blockquote>
+<p>卢曼的卡片盒里大约有 9 万条笔记，听起来是一个非常庞大的数字，但这仅仅意味着，从他开始使用卡片盒进行工作的那天起，直到他去世，每天也只要写 6 条笔记。</p>
+</blockquote>
+<p>养成记笔记的习惯，养成思考的习惯，相信时间的力量。<br>我计划在 CSDN 、公众号上发表永久笔记，每周 5 篇左右，至少2 篇有深度的文章，3 篇分享工作经验和工具推荐。</p>
+<h3 id="在大脑之外思考"><a href="#在大脑之外思考" class="headerlink" title="在大脑之外思考"></a>在大脑之外思考</h3><p>没有作品是完全复制脑海中的想法形成的，需要转化，从一个语境到另外一个语境，从一种形式到另外一种形式。</p>
+<blockquote>
+<p>将想法写下来，再思考的意义在于，只有在书面形式下，我们才能以一定的距离从字面意思上看待一个论点。我们需要这种距离来思考一个论点，否则，论点本身就会占据我们审视论点所需要的心理资源。</p>
+</blockquote>
+<p>写作的过程就是一个审视想法的过程，有时候有一个想法觉得很好，很兴奋，但当我们实际整理的时候，却发现有很多不成熟的，矛盾的地方，写下来不仅是固定我们飘忽的想法，是让我们在大脑之外思考，更加平和的面对自己的想法，更关心执行。</p>
+<blockquote>
+<p>大脑是“一台能跳跃式得出结论的机器”——丹尼尔·卡尼曼</p>
+</blockquote>
+<h2 id="发展想法"><a href="#发展想法" class="headerlink" title="发展想法"></a>发展想法</h2><p>松散的记录，提纲挈领的总结，根据笔记内容设定主题，以笔记为参考网格，不断联系、丰富和完善。<br>笔记的集合会从复杂逐渐变成有秩序的。<br>谨慎的设置关键词和分类，定期回顾，建立索引，建立文件之间的链接。<br>比较、纠正和区分笔记。审视旧笔记本，有助于我们发展新的想法，纠正曾经错误的想法，事物总在不断发展和进步，以前的笔记很多时候错漏的，需要纠正并建立新的想法。<br>将卡片盒作为思考的工具箱<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405262139869.png" srcset="/img/loading.gif" lazyload alt="有联系的笔记系统"></p>
+<h2 id="分享你的洞见"><a href="#分享你的洞见" class="headerlink" title="分享你的洞见"></a>分享你的洞见</h2><p>放弃头脑风暴，从笔记中寻找灵感，在兴趣的驱动下完成任务，在完稿后反复修改自己的作品，并分享你的洞见。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="category-chain-item">读书笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" class="print-no-link">#方法论</a>
+      
+        <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="print-no-link">#读书笔记</a>
+      
+        <a href="/tags/%E5%86%99%E4%BD%9C/" class="print-no-link">#写作</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>卡片笔记写作法 精读笔记 02</div>
+      <div>https://maoyu92.github.io/2024/05/20/05 读书笔记/卡片笔记写作法 精读笔记 02/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/05/21/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/ArcGIS%E5%AF%BC%E5%85%A5autoCAD%E5%9C%B0%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%B9%B6%E6%95%B4%E7%90%86/" title="从 CAD 到 ArcGIS：高精度DEM 数字高程文件生成">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">从 CAD 到 ArcGIS：高精度DEM 数字高程文件生成</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/19/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E5%85%8D%E8%B4%B9%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/" title="免费图片素材网站推荐">
+                        <span class="hidden-mobile">免费图片素材网站推荐</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aISEcd721UR4FDrgO7lhVO7C-MdYXbMMI","appKey":"baX3M064xYuZCyDdARuS8mOM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://aisecd72.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
