@@ -1,0 +1,778 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  
+    <meta name="description" content="前言离群数据统计检验是数据分析中的一个重要环节，用于识别和处理那些与主体数据集显著不同的数据点。在水质在线数据分析过程中往往会遇到各种异常值，需要我们进行识别。 本文尝试通过对比不同的离群值检验方法，探究适合本地水质在线数据的检验方法。 常用的离群数据统计检验方法有四分位法、Z-Score 方法、孤立森林法、3σ原则等 4 种方法。经过对比分析，Z-Score 与 3σ原则方法是最适合水质">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python 离群值检验算法对比实战">
+<meta property="og:url" content="https://maoyu92.github.io/2024/06/05/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/python%20%E7%A6%BB%E7%BE%A4%E5%80%BC%E6%A3%80%E9%AA%8C%E7%AE%97%E6%B3%95%E5%AF%B9%E6%AF%94%E5%AE%9E%E6%88%98/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="前言离群数据统计检验是数据分析中的一个重要环节，用于识别和处理那些与主体数据集显著不同的数据点。在水质在线数据分析过程中往往会遇到各种异常值，需要我们进行识别。 本文尝试通过对比不同的离群值检验方法，探究适合本地水质在线数据的检验方法。 常用的离群数据统计检验方法有四分位法、Z-Score 方法、孤立森林法、3σ原则等 4 种方法。经过对比分析，Z-Score 与 3σ原则方法是最适合水质">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406051158386.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406051343400.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406051147385.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406051703178.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406051233465.png">
+<meta property="article:published_time" content="2024-06-05T03:37:00.000Z">
+<meta property="article:modified_time" content="2024-06-05T03:37:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="数据分析">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406051158386.png">
+  
+  
+  
+  <title>python 离群值检验算法对比实战 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="python 离群值检验算法对比实战"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-06-05 11:37" pubdate>
+          2024年6月5日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">python 离群值检验算法对比实战</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>离群数据统计检验是数据分析中的一个重要环节，用于识别和处理那些与主体数据集显著不同的数据点。在水质在线数据分析过程中往往会遇到各种异常值，需要我们进行识别。</p>
+<p>本文尝试通过对比不同的离群值检验方法，探究适合本地水质在线数据的检验方法。</p>
+<p>常用的离群数据统计检验方法有四分位法、Z-Score 方法、孤立森林法、3σ原则等 4 种方法。<br>经过对比分析，Z-Score 与 3σ原则方法是最适合水质在线数据离群值检验的方法。具有离群值检验准确，原理清晰易懂，实现简单，配置参数少等优点。</p>
+<h2 id="示例数据集概览"><a href="#示例数据集概览" class="headerlink" title="示例数据集概览"></a>示例数据集概览</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406051158386.png" srcset="/img/loading.gif" lazyload alt="fig1. 数据集折线图"></p>
+<p>上图是一个实际环境中运行的水质变化曲线，可见存在明显的离群值，如果不去除异常值，则是对后续分析是不利的。</p>
+<h2 id="不同离群值检验方法实现"><a href="#不同离群值检验方法实现" class="headerlink" title="不同离群值检验方法实现"></a>不同离群值检验方法实现</h2><h3 id="IQR-法（四分位距）方法"><a href="#IQR-法（四分位距）方法" class="headerlink" title="IQR 法（四分位距）方法"></a>IQR 法（四分位距）方法</h3><p>IQR 方法是识别极端值的非参数方法，不需要数据遵循正态分布。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd <span class="hljs-comment"># Load the uploaded CSV file </span><br>file_path = <span class="hljs-string">&#x27;/mnt/data/2024-06-05T03-18_export.csv&#x27;</span> <br>data = pd.read_csv(file_path)<br><span class="hljs-comment"># Convert &#x27;监测时间&#x27; to datetime format for better plotting</span><br>data[<span class="hljs-string">&#x27;监测时间&#x27;</span>] = pd.to_datetime(data[<span class="hljs-string">&#x27;监测时间&#x27;</span>])<br><span class="hljs-comment"># Sort the data by &#x27;监测时间&#x27; for better visualization in the plot</span><br>data_sorted = data.sort_values(by=<span class="hljs-string">&#x27;监测时间&#x27;</span>)<br><span class="hljs-comment"># Create a boxplot for the &#x27;双河口&#x27; column</span><br>plt.figure(figsize=(<span class="hljs-number">10</span>, <span class="hljs-number">6</span>))<br>plt.boxplot(data_sorted[<span class="hljs-string">&#x27;双河口&#x27;</span>], vert=<span class="hljs-literal">False</span>)<br>plt.title(<span class="hljs-string">&#x27;Box Plot of 双河口&#x27;</span>)<br>plt.xlabel(<span class="hljs-string">&#x27;双河口 Value&#x27;</span>)<br>plt.grid(<span class="hljs-literal">True</span>)<br>plt.show()<br><br><span class="hljs-comment"># Calculate IQR</span><br>Q1 = data_sorted[<span class="hljs-string">&#x27;双河口&#x27;</span>].quantile(<span class="hljs-number">0.25</span>)<br>Q3 = data_sorted[<span class="hljs-string">&#x27;双河口&#x27;</span>].quantile(<span class="hljs-number">0.75</span>)<br>IQR = Q3 - Q1<br><span class="hljs-comment"># Define the boundaries for outliers</span><br>lower_bound = Q1 - <span class="hljs-number">1.5</span> * IQR<br>upper_bound = Q3 + <span class="hljs-number">1.5</span> * IQR<br><span class="hljs-comment"># Filter out the outliers</span><br>outliers = data_sorted[(data_sorted[<span class="hljs-string">&#x27;双河口&#x27;</span>] &lt; lower_bound) | (data_sorted[<span class="hljs-string">&#x27;双河口&#x27;</span>] &gt; upper_bound)]<br><span class="hljs-comment"># Display the outliers</span><br>outliers<br></code></pre></td></tr></table></figure>
+
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406051343400.png" srcset="/img/loading.gif" lazyload alt="fig2.箱线图"></p>
+<h2 id="Z-Score-方法"><a href="#Z-Score-方法" class="headerlink" title="Z-Score 方法"></a>Z-Score 方法</h2><p>Z-Score 方法，也称为标准分数，是一种用于评估数据点相对于数据集平均值的标准偏差的统计方法。这种方法通过计算每个数据点与数据集平均值的偏差，然后除以数据集的标准差，来衡量每个数据点的异常程度。具体来说，Z-Score 的计算公式如下：<br>$$<br>Z &#x3D; \frac{(X - \mu)}{\sigma}<br>$$<br>其中：</p>
+<ul>
+<li>𝑍是标准分数。</li>
+<li>𝑋 是数据点的值。</li>
+<li>𝜇是数据集的平均值。</li>
+<li>𝜎 是数据集的标准差。</li>
+</ul>
+<p>Z-Score 的值可以用于判断数据点是否为离群值。一般来说，如果一个数据点的 Z-Score 大于 3 或小于-3，那么它就被认为是离群值。这是因为，根据正态分布的性质，大约 99.7%的数据点（在正态分布中）的 Z-Score 将落在-3 到 3 之间。因此，Z-Score 大于 3 或小于-3 的数据点可以被认为是异常值。</p>
+<p>总之，Z-Score 方法是一种简单而强大的离群值检测方法，它通过计算数据点与数据集平均值的标准偏差来衡量每个数据点的异常程度。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> scipy <span class="hljs-keyword">import</span> stats<br><span class="hljs-comment"># Calculate Z-Scores for the &#x27;双河口&#x27; column</span><br>data_sorted[<span class="hljs-string">&#x27;z_score&#x27;</span>] = stats.zscore(data_sorted[<span class="hljs-string">&#x27;双河口&#x27;</span>])<br><span class="hljs-comment"># Define the threshold for outliers based on Z-Score</span><br>z_threshold = <span class="hljs-number">3</span><br>outliers_z_score = data_sorted[(data_sorted[<span class="hljs-string">&#x27;z_score&#x27;</span>] &gt; z_threshold) | (data_sorted[<span class="hljs-string">&#x27;z_score&#x27;</span>] &lt; -z_threshold)]<br><span class="hljs-comment"># Display the outliers based on Z-Score</span><br>outliers_z_score[[<span class="hljs-string">&#x27;监测时间&#x27;</span>, <span class="hljs-string">&#x27;双河口&#x27;</span>, <span class="hljs-string">&#x27;z_score&#x27;</span>]]<br><br></code></pre></td></tr></table></figure>
+
+<p>使用 Z-Score 方法检测到的离群值及其对应的监测时间如下：</p>
+<ul>
+<li>2024-04-25 00 时，值为 0.744，Z-Score 为 10.098</li>
+<li>2024-05-03 16 时，值为 0.665，Z-Score 为 8.908</li>
+<li>2024-05-03 20 时，值为 0.694，Z-Score 为 9.345</li>
+<li>2024-05-04 00 时，值为 0.650，Z-Score 为 8.682</li>
+<li>2024-05-04 04 时，值为 0.608，Z-Score 为 8.049</li>
+<li>2024-05-04 08 时，值为 0.717，Z-Score 为 9.691</li>
+<li>2024-05-04 20 时，值为 0.685，Z-Score 为 9.209</li>
+<li>2024-05-07 12 时，值为 0.685，Z-Score 为 9.209</li>
+</ul>
+<p>使用折线图来展示整个时间序列，并使用红圈标出 Z-Score 方法识别出的离群值。这样可以直观地看到这些离群值在整个时间序列中的分布情况。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python">plt.figure(figsize=(<span class="hljs-number">14</span>, <span class="hljs-number">7</span>))<br>plt.plot(data_sorted[<span class="hljs-string">&#x27;监测时间&#x27;</span>], data_sorted[<span class="hljs-string">&#x27;双河口&#x27;</span>], label=<span class="hljs-string">&#x27;双河口 Value&#x27;</span>)<br>outliers_z_score.plot(x=<span class="hljs-string">&#x27;监测时间&#x27;</span>, y=<span class="hljs-string">&#x27;双河口&#x27;</span>, kind=<span class="hljs-string">&#x27;scatter&#x27;</span>, color=<span class="hljs-string">&#x27;red&#x27;</span>, ax=plt.gca(), label=<span class="hljs-string">&#x27;Outliers&#x27;</span>)<br>plt.title(<span class="hljs-string">&#x27;双河口 Time Series with Outliers Highlighted&#x27;</span>)<br>plt.xlabel(<span class="hljs-string">&#x27;Monitoring Time&#x27;</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;双河口 Value&#x27;</span>)<br>plt.legend()<br>plt.grid(<span class="hljs-literal">True</span>)<br>plt.xticks(rotation=<span class="hljs-number">45</span>)  <br>plt.tight_layout()  <br>plt.show()<br><br></code></pre></td></tr></table></figure>
+
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406051147385.png" srcset="/img/loading.gif" lazyload alt="fig3. Z-Score 方法离群值可视化"></p>
+<h3 id="3σ原则"><a href="#3σ原则" class="headerlink" title="3σ原则"></a>3σ原则</h3><p>3σ原则（3 倍标准差原则）是一种用于检测数据集中离群值的经典方法。根据这个原则，如果一个数据点的值大于 𝜇+3𝜎或小于 𝜇−3𝜎（其中 𝜇是数据的平均值，𝜎 是标准差），那么这个数据点就可以被认为是离群值。可以看到 3σ原则与 Z-Score 方法 z_threshold 取 3 意义是一样的，<br>两者的异同点如下：</p>
+<ul>
+<li><strong>相同点：</strong> 两者都依赖于数据的均值 (𝜇) 和标准差 (𝜎)，并且都是用来识别数据中的极端值或离群点。</li>
+<li><strong>不同点：</strong> Z-Score 提供了每个数据点相对于分布中心位置的标准化度量，适用于更广泛的分析场景，包括但不限于离群值检测；而 3σ原则是一个更具体的规则，直接用来界定离群值的界限，且主要基于正态分布的特性。</li>
+<li><strong>适用性：</strong> Z-Score 方法更为灵活，可以用于理解数据点的相对位置，而 3σ原则则是一个快速且直观的筛选工具，尤其适合正态分布数据集的初步离群值识别。</li>
+</ul>
+<p>Python 代码实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 加载CSV文件 </span><br>file_path = <span class="hljs-string">&#x27;/mnt/data/2024-06-05T03-18_export.csv&#x27;</span> <br>df = pd.read_csv(file_path)<br><span class="hljs-comment"># 使用双河口列的数据</span><br>data_column = <span class="hljs-string">&#x27;双河口&#x27;</span><br><span class="hljs-comment"># 计算 mean 和 std</span><br>mean = df[data_column].mean()<br>std = df[data_column].std()<br><br><span class="hljs-comment"># 应用3σ法则来检测离群值</span><br>outliers = <span class="hljs-built_in">abs</span>(df[data_column] - mean) &gt; <span class="hljs-number">3</span> * std<br><span class="hljs-comment"># 将监测时间列转换为日期时间格式</span><br>df[<span class="hljs-string">&#x27;监测时间&#x27;</span>] = pd.to_datetime(df[<span class="hljs-string">&#x27;监测时间&#x27;</span>])<br><br><span class="hljs-comment"># 重新绘制时间序列和离群值</span><br>plt.figure(figsize=(<span class="hljs-number">12</span>, <span class="hljs-number">6</span>))<br>plt.plot(df[<span class="hljs-string">&#x27;监测时间&#x27;</span>], df[data_column], label=<span class="hljs-string">&quot;时间序列&quot;</span>)<br>plt.plot(df[<span class="hljs-string">&#x27;监测时间&#x27;</span>][outliers], df[data_column][outliers], <span class="hljs-string">&#x27;ro&#x27;</span>, label=<span class="hljs-string">&quot;离群值&quot;</span>)  <span class="hljs-comment"># 离群值用红色圆圈标记</span><br>plt.axhline(mean + <span class="hljs-number">3</span> * std, color=<span class="hljs-string">&#x27;r&#x27;</span>, linestyle=<span class="hljs-string">&#x27;--&#x27;</span>, label=<span class="hljs-string">&quot;上界&quot;</span>)<br>plt.axhline(mean - <span class="hljs-number">3</span> * std, color=<span class="hljs-string">&#x27;r&#x27;</span>, linestyle=<span class="hljs-string">&#x27;--&#x27;</span>, label=<span class="hljs-string">&quot;下界&quot;</span>)<br>plt.legend()<br>plt.title(<span class="hljs-string">&quot;时间序列离群值检测&quot;</span>)<br>plt.xlabel(<span class="hljs-string">&quot;监测时间&quot;</span>)<br>plt.ylabel(<span class="hljs-string">&quot;双河口值&quot;</span>)<br>plt.tight_layout()  <span class="hljs-comment"># 调整布局</span><br>plt.show()<br><span class="hljs-comment"># 计算有多少异常值 </span><br>outliers.<span class="hljs-built_in">sum</span>()<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406051703178.png" srcset="/img/loading.gif" lazyload alt="fig4. 3σ原则离群值可视化"></p>
+<p>途中可以看出异常值的分布情况，共检测到了 8 个离群值。与 Z-Score 方法更接近。</p>
+<h3 id="孤立森林法"><a href="#孤立森林法" class="headerlink" title="孤立森林法"></a>孤立森林法</h3><p>孤立森林（Isolation Forest）是一种用于检测离群值的机器学习方法，它适用于高维数据集，并且是一种无监督学习方法，不需要标签数据。但是缺点也很明显，就是配置参数较多，使用不方便。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> IsolationForest<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">detect_outliers_isolation_forest</span>(<span class="hljs-params">data_series</span>):<br>    iso_forest = IsolationForest(n_estimators=<span class="hljs-number">100</span>, random_state=<span class="hljs-number">42</span>)<br>    outliers = iso_forest.fit_predict(data_series.values.reshape(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))<br>    <span class="hljs-keyword">return</span> data_series[outliers == -<span class="hljs-number">1</span>]<br><span class="hljs-comment"># Apply the Isolation Forest method to detect outliers in the &#x27;双河口&#x27; column</span><br>outliers_isolation_forest = detect_outliers_isolation_forest(data_sorted[<span class="hljs-string">&#x27;双河口&#x27;</span>])<br><span class="hljs-comment"># Create a boolean mask for the outliers for plotting</span><br>outliers_mask = data_sorted[<span class="hljs-string">&#x27;双河口&#x27;</span>].isin(outliers_isolation_forest)<br><span class="hljs-comment"># Plot the time series with outliers highlighted using Isolation Forest</span><br>plt.figure(figsize=(<span class="hljs-number">14</span>, <span class="hljs-number">7</span>))<br>plt.plot(data_sorted[<span class="hljs-string">&#x27;监测时间&#x27;</span>], data_sorted[<span class="hljs-string">&#x27;双河口&#x27;</span>], label=<span class="hljs-string">&#x27;双河口 Value&#x27;</span>)<br><span class="hljs-comment"># Highlight the outliers with red circles</span><br>plt.scatter(data_sorted[outliers_mask][<span class="hljs-string">&#x27;监测时间&#x27;</span>], <br>            data_sorted[outliers_mask][<span class="hljs-string">&#x27;双河口&#x27;</span>], <br>            color=<span class="hljs-string">&#x27;red&#x27;</span>, <br>            label=<span class="hljs-string">&#x27;Outliers&#x27;</span>)<br><br>plt.title(<span class="hljs-string">&#x27;双河口 Time Series with Outliers Highlighted by Isolation Forest&#x27;</span>)<br>plt.xlabel(<span class="hljs-string">&#x27;Monitoring Time&#x27;</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;双河口 Value&#x27;</span>)<br>plt.legend()<br>plt.grid(<span class="hljs-literal">True</span>)<br>plt.xticks(rotation=<span class="hljs-number">45</span>)  <span class="hljs-comment"># Rotate x-axis labels for better readability</span><br>plt.tight_layout()  <span class="hljs-comment"># Adjust layout to ensure all labels are displayed</span><br><span class="hljs-comment"># Show the plot</span><br>plt.show()<br><span class="hljs-comment"># Display the outliers detected by Isolation Forest</span><br>outliers_isolation_forest<br><br></code></pre></td></tr></table></figure>
+<p>结果。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406051233465.png" srcset="/img/loading.gif" lazyload alt="fig5. 孤立森林法离群值可视化"></p>
+<p>监测到离群值的数量太多，即使修改参数也很难达到想要的效果。<br>以下是 <code>IsolationForest</code> 算法中一些重要参数的介绍：</p>
+<ol>
+<li><code>n_estimators</code>:    <ul>
+<li>表示决策树的数量。</li>
+<li>增加 <code>n_estimators</code> 的值可以提高模型的稳定性，但同时可能会增加计算成本。</li>
+<li>减少 <code>n_estimators</code> 的值可能会使模型对离群值的检测更加“宽容”，从而减少检测到的离群值数量。</li>
+</ul>
+</li>
+<li><code>max_samples</code>:    <ul>
+<li>表示从数据集中抽取用于训练每棵决策树的最大样本数。</li>
+<li>减少 <code>max_samples</code> 的值可能会使模型对离群值的检测更加“宽容”，因为它限制了每棵树看到的数据点的数量。</li>
+<li>默认值是‘auto’，表示每个节点都会从所有样本中随机抽取一个子样本。</li>
+</ul>
+</li>
+<li><code>contamination</code>:    <ul>
+<li>表示数据集中离群值的比例。</li>
+<li>默认为 0.1，意味着模型会假设数据集中大约 10% 的数据是离群值。</li>
+<li>如果设置为‘auto’，模型会自动估计数据集中的离群值比例。</li>
+</ul>
+</li>
+<li><code>random_state</code>:    <ul>
+<li>表示随机数生成器的种子，用于确保结果的可重复性。</li>
+<li>设置 <code>random_state</code> 为一个固定的值（例如 42），可以确保每次运行模型时，生成的随机数序列是相同的。<br>在使用 <code>IsolationForest</code> 算法时，通常需要根据具体的数据集和应用场景来调整这些参数。在实际应用中，可能需要多次尝试不同的参数设置，以找到最适合特定数据集的配置。</li>
+</ul>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Z-Score 方法和 3σ原则确实是离群值检验中广泛应用且效果显著的方法，尤其在处理水质在线监测数据时展现出其独特的优势。这两种方法之所以成为优选，原因可归纳为以下几点：</p>
+<ol>
+<li><strong>离群值检验准确</strong>：Z-Score 通过将每个数据点转化为标准分数，能够准确反映其相对于数据集平均值的偏离程度，而 3σ原则利用正态分布的特性，能有效识别出极少数的极端值，确保了检验结果的准确性。    </li>
+<li><strong>原理一致且易于理解</strong>：二者均基于正态分布的统计理论，原理相通，易于解释。Z-Score 通过标准化处理使数据间的比较标准化，而 3σ原则直接依据正态分布的性质设定离群值边界，逻辑简洁明了。    </li>
+<li><strong>实现简便，配置参数少</strong>：这两种方法的计算过程相对直接，仅需均值 (𝜇μ) 和标准差 (𝜎σ) 两个基本统计量即可实施，无需复杂的模型训练或调整大量参数，降低了实际操作的技术门槛。    </li>
+<li><strong>适应水质数据特性</strong>：一个重要前提是水质在线数据往往倾向于呈现正态或近似正态分布，这与自然环境因素的随机波动、监测设备的稳定性能等因素有关。因此，基于正态分布假设的 Z-Score 和 3σ原则能够较好地匹配水质数据的特点，有效识别出因设备故障、污染事件或其他异常情况引起的离群值。</li>
+</ol>
+<p>综上所述，Z-Score 方法和 3σ原则凭借其检验准确度高、原理直观、实现便捷以及对水质在线数据特性的良好匹配性，成为了这类数据离群值检验的理想选择，特别是在追求高效实时监控和数据分析的水质管理领域。</p>
+<p>感谢看完，如果对你有用请点赞关注哦。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" class="category-chain-item">时间序列</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" class="print-no-link">#数据分析</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>python 离群值检验算法对比实战</div>
+      <div>https://maoyu92.github.io/2024/06/05/01 时间序列/python 离群值检验算法对比实战/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年6月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/06/05/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E9%94%BB%E7%82%BC%20%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0%2001/" title="锻炼 精读笔记 01">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">锻炼 精读笔记 01</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/05/29/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20zotero%20%E8%81%94%E5%8A%A8%E6%96%B9%E6%A1%88%20%E9%85%8D%E7%BD%AE%E8%AE%B0%E5%BD%95/" title="obsidian zotero 联动方案 配置记录">
+                        <span class="hidden-mobile">obsidian zotero 联动方案 配置记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aISEcd721UR4FDrgO7lhVO7C-MdYXbMMI","appKey":"baX3M064xYuZCyDdARuS8mOM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://aisecd72.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
