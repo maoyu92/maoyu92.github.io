@@ -16,30 +16,30 @@
   <meta name="author" content="陈文茂">
   <meta name="keywords" content="python,eco">
   
-    <meta name="description" content="前言最近在用 obsidian，一入 ob 深似海，从此语雀是路人。今天强烈推荐喜欢用微信读书的人，使用它，1+1＞2。两大神级软件助你起飞。 使用方法第三方软件搜索 weread ，点击下载、启用。 插件配置  微信登录账号 设置保存位置 设置文件名模板 设置文件夹分类 可自定义文件模板，我并没有修改。 点击同步左侧书籍按钮即可同步。  效果现将使用效果写在前面。  一键简单设置，只需要登录">
+    <meta name="description" content="降雨量数据与市政给排水设计、初期污染源控制关系密切，本文以重庆永川某小流域为例，记录暴雨径流产生量的计算过程及芝加哥雨型的生成。下一期介绍用 streamlit 制作暴雨径流及雨型生成器的制作。 本文提到的所有工具及资料均用云盘分享，大家可以直接下载使用。 目的计算重庆永川某小流域，暴雨径流产生量及雨型。 暴雨强度根据《关于发布重庆市暴雨强度修订公式及设计暴雨雨型的通知》（渝建〔2017〕44">
 <meta property="og:type" content="article">
-<meta property="og:title" content="obsidian  微信读书 插件 weread 强烈推荐">
-<meta property="og:url" content="https://maoyu92.github.io/2024/04/09/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20%20%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6%20%E6%8F%92%E4%BB%B6%20weread%20%E5%BC%BA%E7%83%88%E6%8E%A8%E8%8D%90/index.html">
+<meta property="og:title" content="芝加哥雨量计算径流量">
+<meta property="og:url" content="https://maoyu92.github.io/2024/06/14/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E8%8A%9D%E5%8A%A0%E5%93%A5%E9%9B%A8%E9%87%8F%E8%AE%A1%E7%AE%97%E5%BE%84%E6%B5%81%E9%87%8F/index.html">
 <meta property="og:site_name" content="wallflowers">
-<meta property="og:description" content="前言最近在用 obsidian，一入 ob 深似海，从此语雀是路人。今天强烈推荐喜欢用微信读书的人，使用它，1+1＞2。两大神级软件助你起飞。 使用方法第三方软件搜索 weread ，点击下载、启用。 插件配置  微信登录账号 设置保存位置 设置文件名模板 设置文件夹分类 可自定义文件模板，我并没有修改。 点击同步左侧书籍按钮即可同步。  效果现将使用效果写在前面。  一键简单设置，只需要登录">
+<meta property="og:description" content="降雨量数据与市政给排水设计、初期污染源控制关系密切，本文以重庆永川某小流域为例，记录暴雨径流产生量的计算过程及芝加哥雨型的生成。下一期介绍用 streamlit 制作暴雨径流及雨型生成器的制作。 本文提到的所有工具及资料均用云盘分享，大家可以直接下载使用。 目的计算重庆永川某小流域，暴雨径流产生量及雨型。 暴雨强度根据《关于发布重庆市暴雨强度修订公式及设计暴雨雨型的通知》（渝建〔2017〕44">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202404100917769.png">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202404100919162.png">
-<meta property="article:published_time" content="2024-04-08T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-06-01T01:09:00.000Z">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406141147630.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406141610046.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406141610951.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406141340955.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406161744651.png">
+<meta property="article:published_time" content="2024-06-14T03:21:00.000Z">
+<meta property="article:modified_time" content="2024-06-14T03:21:00.000Z">
 <meta property="article:author" content="wenmao">
-<meta property="article:tag" content="经验分享">
-<meta property="article:tag" content="obsidian">
-<meta property="article:tag" content="工具推荐">
-<meta property="article:tag" content="微信读书">
+<meta property="article:tag" content="水文分析">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202404100917769.png">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406141147630.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>obsidian  微信读书 插件 weread 强烈推荐 - wallflowers</title>
+  <title>芝加哥雨量计算径流量 - wallflowers</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -245,7 +245,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="obsidian  微信读书 插件 weread 强烈推荐"></span>
+            <span id="subtitle" data-typed-text="芝加哥雨量计算径流量"></span>
           
         </div>
 
@@ -256,8 +256,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-09 00:00" pubdate>
-          2024年4月9日 凌晨
+        <time datetime="2024-06-14 11:21" pubdate>
+          2024年6月14日 上午
         </time>
       </span>
     
@@ -268,7 +268,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          321 字
+          987 字
         
       </span>
     
@@ -279,7 +279,7 @@
         
         
         
-          3 分钟
+          9 分钟
         
       </span>
     
@@ -324,33 +324,35 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">obsidian  微信读书 插件 weread 强烈推荐</h1>
+            <h1 id="seo-header">芝加哥雨量计算径流量</h1>
             
             
               <div class="markdown-body">
                 
                 <meta name="referrer" content="no-referrer" />
 
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在用 obsidian，一入 ob 深似海，从此语雀是路人。<br>今天强烈推荐喜欢用微信读书的人，使用它，1+1＞2。两大神级软件助你起飞。</p>
-<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>第三方软件搜索 weread ，点击下载、启用。</p>
-<h2 id="插件配置"><a href="#插件配置" class="headerlink" title="插件配置"></a>插件配置</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202404100917769.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<ol>
-<li>微信登录账号</li>
-<li>设置保存位置</li>
-<li>设置文件名模板</li>
-<li>设置文件夹分类</li>
-<li>可自定义文件模板，我并没有修改。</li>
-<li>点击同步左侧书籍按钮即可同步。</li>
-</ol>
-<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>现将使用效果写在前面。</p>
-<ol>
-<li>一键简单设置，只需要登录即可同步所有微信读书阅读笔记。</li>
-<li>书籍按照分类自动新建笔记和文件夹，体验知识积累的快感</li>
-<li>鼓励做书摘，做卡片笔记。让知识更好的沉淀，而不是写过之后就忘了。</li>
-</ol>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202404100919162.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>看着自己阅读的书籍全部展示出来，成就感满满。</p>
-<h2 id="问题及解决方案"><a href="#问题及解决方案" class="headerlink" title="问题及解决方案"></a>问题及解决方案</h2><p>在使用中也发现，不能直接修改同步的文字，因为一旦同步，写在本地的文字也会覆盖。<br>但我们可以通过在本地认真写好读书笔记后，在微信读书上发布，然后再同步，这样就可以两边都有了。</p>
+<p>降雨量数据与市政给排水设计、初期污染源控制关系密切，本文以重庆永川某小流域为例，记录暴雨径流产生量的计算过程及芝加哥雨型的生成。<br>下一期介绍用 streamlit 制作暴雨径流及雨型生成器的制作。</p>
+<p>本文提到的所有工具及资料均用云盘分享，大家可以直接下载使用。</p>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>计算重庆永川某小流域，暴雨径流产生量及雨型。</p>
+<h2 id="暴雨强度"><a href="#暴雨强度" class="headerlink" title="暴雨强度"></a>暴雨强度</h2><p>根据《关于发布重庆市暴雨强度修订公式及设计暴雨雨型的通知》（渝建〔2017〕443 号）可知，<br>重庆永川暴雨流量计算公式：</p>
+<p>$$<br>q&#x3D;\frac{1312(1+0.971 \lg P)}{(t+7.739)^{0.631}}<br>$$</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406141147630.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>式中：<br>P—设计降雨重现期，<br>T—降雨历时 min<br>Q—设计暴雨强度（L&#x2F;s·hm 2）<br>综上，重现期 10 年, 降雨历时 60 分钟, 暴雨强度 180.87 L&#x2F;s·hm 2。</p>
+<h4 id="雨水重现期"><a href="#雨水重现期" class="headerlink" title="雨水重现期"></a>雨水重现期</h4><p>设计雨水重现期按照 4.1.3 规定，项目为农村地区取 10 年。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406141610046.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="降雨历时"><a href="#降雨历时" class="headerlink" title="降雨历时"></a>降雨历时</h4><p>降雨历时取值范围为 1~1440 min，本文取60 min。</p>
+<h2 id="初期雨量计算"><a href="#初期雨量计算" class="headerlink" title="初期雨量计算"></a>初期雨量计算</h2><h3 id="雨水量计算公式"><a href="#雨水量计算公式" class="headerlink" title="雨水量计算公式"></a>雨水量计算公式</h3><p>根据《室外排水设计标准》（GB 50014-2021），初期雨水量计算公式如下 ：<br>$$<br>Q &#x3D; q \times \psi \times F<br>$$<br>Q&#x3D;q×ψ×F<br>    式中：Q─雨水设计流量 （L&#x2F;s）；<br>    ψ─径流系数，取ψ&#x3D;0.45；<br>    F─汇水面积（hm2），为 hm2。<br>    q—暴雨强度（ L&#x2F;s•hm2）  </p>
+<h4 id="径流系数"><a href="#径流系数" class="headerlink" title="径流系数"></a>径流系数</h4><p>室外排水设计标准中径流系数规定如下，并没有以耕地、水田为主的农业区域的径流系数信息。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406141610951.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>在等雨量条件下 ,覆盖度在 95 %以上的耕地 ,径流系数为 0. 23 ,而覆盖度为 15 %的农地径流系数为0. 59<sup>[1]</sup>，根据《重庆市永川区水利发展“十三五”规划》，径流系数为 0.45，综合考虑，本次计算取 0.45。</p>
+<p>综上，重现期10年,降雨历时60分钟, 暴雨强度180.87 L&#x2F;s·hm<sup>2</sup>,流域面积2000.0公顷，径流系数为0.45，流量为 162780.99 L&#x2F;s,累计汇水量586011.58 m³</p>
+<h4 id="芝加哥雨型"><a href="#芝加哥雨型" class="headerlink" title="芝加哥雨型"></a>芝加哥雨型</h4><p>芝加哥雨型是一种用于城市雨洪设施设计的短历时设计雨型，由Keifer和Chu在1957年提出，主要用于模拟短时间内高强度的降雨过程，以评估和设计排水系统的能力。芝加哥雨型通过暴雨强度公式（IDF，Intensity-Duration-Frequency relationship）推导得出，并通过特定的处理方法来表达降雨过程中的峰值和衰减特性。<br>芝加哥雨型的特色在于它将暴雨分为峰前和峰后的两个阶段，通过一个系数 𝑟（介于0到1之间）来确定雨峰的位置，使得降雨过程更符合实际中雨强先增后减的变化规律。<br>一般情况下雨峰系数可取 0.35 。</p>
+<p>通过芝加哥雨型计算可以相对较好的模拟降雨过程，计算累计雨量。<br>直接用芝加哥雨型生成器制作。计算结果可放入 swmm 模型中。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406141340955.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406161744651.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>经过计算，重现期 10 年，降雨历时 60 分钟，累计雨量为 65 毫米。</p>
+<p>下一期将介绍如何用 streamlit 制作暴雨径流及雨型生成器。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>重庆市水土流失的影响因素及防治对策<br>《室外排水设计标准》（GB 50014-2021）<br>《重庆市永川区水利发展“十三五”规划》<br>《关于发布重庆市暴雨强度修订公式及设计暴雨雨型的通知》（渝建〔2017〕443 号）</p>
+<p><a target="_blank" rel="noopener" href="https://www.vivifree.com/rain-model-chicago-formula.html">芝加哥合成暴雨过程线的公式推导 (vivifree.com)</a><br><a target="_blank" rel="noopener" href="https://weather.sz.gov.cn/qixiangfuwu/qihoufuwu/qihouguanceyupinggu/baoyuqiangdugongshi/mindex.html">暴雨强度公式-深圳市气象局（台） (sz.gov.cn)</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43012724/article/details/129505354">【水文模型】11 芝加哥雨型生成器-CSDN博客</a></p>
+<h2 id="资料下载"><a href="#资料下载" class="headerlink" title="资料下载"></a>资料下载</h2><p>链接： <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1qERiyC-kXL0uZoRfErQ63A">https://pan.baidu.com/s/1qERiyC-kXL0uZoRfErQ63A</a><br>提取码：uokm </p>
 
                 
               </div>
@@ -369,7 +371,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  <a href="/categories/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="category-chain-item">生态环境</a>
   
   
 
@@ -384,13 +386,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="print-no-link">#经验分享</a>
-      
-        <a href="/tags/obsidian/" class="print-no-link">#obsidian</a>
-      
-        <a href="/tags/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="print-no-link">#工具推荐</a>
-      
-        <a href="/tags/%E5%BE%AE%E4%BF%A1%E8%AF%BB%E4%B9%A6/" class="print-no-link">#微信读书</a>
+        <a href="/tags/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90/" class="print-no-link">#水文分析</a>
       
     </div>
   
@@ -402,8 +398,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>obsidian  微信读书 插件 weread 强烈推荐</div>
-      <div>https://maoyu92.github.io/2024/04/09/04 经验分享/obsidian  微信读书 插件 weread 强烈推荐/</div>
+      <div>芝加哥雨量计算径流量</div>
+      <div>https://maoyu92.github.io/2024/06/14/02 生态环境/芝加哥雨量计算径流量/</div>
     </div>
     <div class="license-meta">
       
@@ -415,7 +411,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年4月9日</div>
+          <div>2024年6月14日</div>
         </div>
       
       
@@ -447,15 +443,21 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/15/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20%20%E5%9B%BE%E5%BA%8A/" title="Obsidian 图床配置  PicGo+ gitee 精简版">
+                      <a href="/2024/06/16/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/streamlit%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E8%8A%9D%E5%8A%A0%E5%93%A5%E9%9B%A8%E5%9E%8B%E5%BA%94%E7%94%A8/" title="streamlit快速搭建芝加哥雨型应用">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Obsidian 图床配置  PicGo+ gitee 精简版</span>
+                        <span class="hidden-mobile">streamlit快速搭建芝加哥雨型应用</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2024/06/05/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E9%94%BB%E7%82%BC%20%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0%2001/" title="锻炼 精读笔记 01">
+                        <span class="hidden-mobile">锻炼 精读笔记 01</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

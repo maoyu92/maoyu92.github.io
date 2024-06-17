@@ -4,6 +4,66 @@
   
   
   <entry>
+    <title>streamlit快速搭建芝加哥雨型应用</title>
+    <link href="/2024/06/16/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/streamlit%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E8%8A%9D%E5%8A%A0%E5%93%A5%E9%9B%A8%E5%9E%8B%E5%BA%94%E7%94%A8/"/>
+    <url>/2024/06/16/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/streamlit%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%E8%8A%9D%E5%8A%A0%E5%93%A5%E9%9B%A8%E5%9E%8B%E5%BA%94%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>通过streamlit快速搭建芝加哥雨型应用，该应用实现以下功能：</p><ul><li>内置重庆各区县的暴雨强度计算公式，</li><li>支持自定义城市的暴雨公式参数，</li><li>支持雨型生成，输出图片和文字</li><li>提供降雨历时、汇水面积、径流系数输入，支持径流量计算</li><li>在线部署，网页使用。</li></ul><h2 id="原型"><a href="#原型" class="headerlink" title="原型"></a>原型</h2><p>用 obsidian excalidraw 简单绘制原型。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406162135564.png" alt="image.png"></p><h2 id="主要原理"><a href="#主要原理" class="headerlink" title="主要原理"></a>主要原理</h2><ul><li>《关于发布重庆市暴雨强度修订公式及设计暴雨雨型的通知》（渝建〔2017〕443 号）</li><li><a href="https://www.vivifree.com/rain-model-chicago-formula.html">芝加哥合成暴雨过程线的公式推导 (vivifree.com)</a></li></ul><h2 id="主要功能实现"><a href="#主要功能实现" class="headerlink" title="主要功能实现"></a>主要功能实现</h2><h3 id="雨强计算"><a href="#雨强计算" class="headerlink" title="雨强计算"></a>雨强计算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">intensity</span>(<span class="hljs-params">A, B, C, N, t, P</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    雨强计算。</span><br><span class="hljs-string">    参数:</span><br><span class="hljs-string">    - a,b,c,n: 参数。</span><br><span class="hljs-string">    - p (float): 设计重现期（单位：年）。</span><br><span class="hljs-string">    - t (np.ndarray): 分钟数组</span><br><span class="hljs-string">    返回:</span><br><span class="hljs-string">    - its: 雨强（单位：mm/min）。</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    a = A * <span class="hljs-number">0.4</span> * (<span class="hljs-number">1</span> + C * math.log10(P))<br>    its = a * ((<span class="hljs-number">1</span> - N) * t + B) / np.power(t + B, N + <span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">return</span> its<br>    <br>q = (A * (<span class="hljs-number">1</span> + C * math.log10(P))) / ((duration_minutes + B) ** N)<br></code></pre></td></tr></table></figure><h3 id="雨强分布计算"><a href="#雨强分布计算" class="headerlink" title="雨强分布计算"></a>雨强分布计算</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">rainCalc_single_period</span>(<span class="hljs-params">A, B, C, N, T: <span class="hljs-built_in">int</span>, p: <span class="hljs-built_in">float</span>, peak_ratio: <span class="hljs-built_in">float</span></span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    计算单一时段内的降雨强度分布。</span><br><span class="hljs-string">    参数:</span><br><span class="hljs-string">    - T (int): 降雨持续时间（单位：分钟）。</span><br><span class="hljs-string">    - p (float): 设计重现期（单位：年）。</span><br><span class="hljs-string">    - peak_ratio (float): 雨强峰值所在时间占总降雨历时的比例。</span><br><span class="hljs-string">    返回:</span><br><span class="hljs-string">    - np.ndarray: 随时间变化的降雨强度数组（单位：mm/min）。</span><br><span class="hljs-string">    内部参数:</span><br><span class="hljs-string">    - t (np.ndarray): 分钟数组</span><br><span class="hljs-string">    - peak_time (float): 峰值时间</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-comment"># ...函数实现代码...</span><br>    t = np.arange(<span class="hljs-number">0</span>, T)<br>    peak_time = T * peak_ratio<br>    itAr = np.zeros(<span class="hljs-built_in">len</span>(t))<br>    <span class="hljs-comment"># 计算雨强</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(t)):<br>        <span class="hljs-keyword">if</span> t[i] &lt; peak_time:<br>            itAr[i] = intensity(A, B, C, N, (peak_time - t[i]) / peak_ratio, p) / <span class="hljs-number">60</span><br>        <span class="hljs-keyword">else</span>:<br>            itAr[i] = intensity(A, B, C, N, (t[i] - peak_time) / peak_ratio, p) / <span class="hljs-number">60</span><br>    <span class="hljs-keyword">return</span> itAr<br></code></pre></td></tr></table></figure><p>其余功能实现均较为简单，项目所有代码均开源在 GitHub，有兴趣的可以去参观，点个 star 最好了，仓库如下：<br><a href="https://github.com/maoyu92/Chicago_rain_pattern">maoyu92&#x2F;Chicago_rain_pattern (github.com)</a><br>如果发现代码有不对的地方，也留言提醒我一下。</p><h2 id="应用部署"><a href="#应用部署" class="headerlink" title="应用部署"></a>应用部署</h2><p>Streamlit 是非常好用的一个应用框架，支持免费部署一个应用，非常方便。</p><h3 id="部署-GitHub"><a href="#部署-GitHub" class="headerlink" title="部署 GitHub"></a>部署 GitHub</h3><p>应用部署在 GitHub。通过 git 将本地仓库部署在 GitHub 上，具体方法可参考：<br><a href="https://blog.csdn.net/weixin_42984235/article/details/136906942">在vscode中使用git-新手向_新手vscode git-CSDN博客</a><br>这里跳过。</p><h3 id="Streamlit-应用发布"><a href="#Streamlit-应用发布" class="headerlink" title="Streamlit 应用发布"></a>Streamlit 应用发布</h3><p>登录 Streamlit，登录后点击右上角 create app。<br>选择 I have an app。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406162151546.png" alt="image.png"></p><p>在连接上自己的 GitHub 后，依次选择仓库地址，分支，主文件，定义 url 名称，点击 depoly。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406162152131.png" alt="image.png"></p><p>稍等片刻，如果一切顺利就成功了，非常丝滑~</p><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol><li>仓库文件需要包括 requirement.txt，为项目运行需要的环境。</li><li>注意代码引用文件需要用相对应用的方式，不要绝对引用。</li></ol><h3 id="成果预览"><a href="#成果预览" class="headerlink" title="成果预览"></a>成果预览</h3><p>网址：<a href="https://chicagorainpattern-meuiz8zrvbesh32nfm9iv7.streamlit.app/">Streamlit (chicagorainpattern-meuiz8zrvbesh32nfm9iv7.streamlit.app)</a></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406162156332.png" alt="image.png"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>生态环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+      <tag>水文分析</tag>
+      
+      <tag>经验分享</tag>
+      
+      <tag>streamlit</tag>
+      
+      <tag>git</tag>
+      
+      <tag>生态环境</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>芝加哥雨量计算径流量</title>
+    <link href="/2024/06/14/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E8%8A%9D%E5%8A%A0%E5%93%A5%E9%9B%A8%E9%87%8F%E8%AE%A1%E7%AE%97%E5%BE%84%E6%B5%81%E9%87%8F/"/>
+    <url>/2024/06/14/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E8%8A%9D%E5%8A%A0%E5%93%A5%E9%9B%A8%E9%87%8F%E8%AE%A1%E7%AE%97%E5%BE%84%E6%B5%81%E9%87%8F/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>降雨量数据与市政给排水设计、初期污染源控制关系密切，本文以重庆永川某小流域为例，记录暴雨径流产生量的计算过程及芝加哥雨型的生成。<br>下一期介绍用 streamlit 制作暴雨径流及雨型生成器的制作。</p><p>本文提到的所有工具及资料均用云盘分享，大家可以直接下载使用。</p><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>计算重庆永川某小流域，暴雨径流产生量及雨型。</p><h2 id="暴雨强度"><a href="#暴雨强度" class="headerlink" title="暴雨强度"></a>暴雨强度</h2><p>根据《关于发布重庆市暴雨强度修订公式及设计暴雨雨型的通知》（渝建〔2017〕443 号）可知，<br>重庆永川暴雨流量计算公式：</p><p>$$<br>q&#x3D;\frac{1312(1+0.971 \lg P)}{(t+7.739)^{0.631}}<br>$$</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406141147630.png" alt="image.png"><br>式中：<br>P—设计降雨重现期，<br>T—降雨历时 min<br>Q—设计暴雨强度（L&#x2F;s·hm 2）<br>综上，重现期 10 年, 降雨历时 60 分钟, 暴雨强度 180.87 L&#x2F;s·hm 2。</p><h4 id="雨水重现期"><a href="#雨水重现期" class="headerlink" title="雨水重现期"></a>雨水重现期</h4><p>设计雨水重现期按照 4.1.3 规定，项目为农村地区取 10 年。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406141610046.png" alt="image.png"></p><h4 id="降雨历时"><a href="#降雨历时" class="headerlink" title="降雨历时"></a>降雨历时</h4><p>降雨历时取值范围为 1~1440 min，本文取60 min。</p><h2 id="初期雨量计算"><a href="#初期雨量计算" class="headerlink" title="初期雨量计算"></a>初期雨量计算</h2><h3 id="雨水量计算公式"><a href="#雨水量计算公式" class="headerlink" title="雨水量计算公式"></a>雨水量计算公式</h3><p>根据《室外排水设计标准》（GB 50014-2021），初期雨水量计算公式如下 ：<br>$$<br>Q &#x3D; q \times \psi \times F<br>$$<br>Q&#x3D;q×ψ×F<br>    式中：Q─雨水设计流量 （L&#x2F;s）；<br>    ψ─径流系数，取ψ&#x3D;0.45；<br>    F─汇水面积（hm2），为 hm2。<br>    q—暴雨强度（ L&#x2F;s•hm2）  </p><h4 id="径流系数"><a href="#径流系数" class="headerlink" title="径流系数"></a>径流系数</h4><p>室外排水设计标准中径流系数规定如下，并没有以耕地、水田为主的农业区域的径流系数信息。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406141610951.png" alt="image.png"></p><p>在等雨量条件下 ,覆盖度在 95 %以上的耕地 ,径流系数为 0. 23 ,而覆盖度为 15 %的农地径流系数为0. 59<sup>[1]</sup>，根据《重庆市永川区水利发展“十三五”规划》，径流系数为 0.45，综合考虑，本次计算取 0.45。</p><p>综上，重现期10年,降雨历时60分钟, 暴雨强度180.87 L&#x2F;s·hm<sup>2</sup>,流域面积2000.0公顷，径流系数为0.45，流量为 162780.99 L&#x2F;s,累计汇水量586011.58 m³</p><h4 id="芝加哥雨型"><a href="#芝加哥雨型" class="headerlink" title="芝加哥雨型"></a>芝加哥雨型</h4><p>芝加哥雨型是一种用于城市雨洪设施设计的短历时设计雨型，由Keifer和Chu在1957年提出，主要用于模拟短时间内高强度的降雨过程，以评估和设计排水系统的能力。芝加哥雨型通过暴雨强度公式（IDF，Intensity-Duration-Frequency relationship）推导得出，并通过特定的处理方法来表达降雨过程中的峰值和衰减特性。<br>芝加哥雨型的特色在于它将暴雨分为峰前和峰后的两个阶段，通过一个系数 𝑟（介于0到1之间）来确定雨峰的位置，使得降雨过程更符合实际中雨强先增后减的变化规律。<br>一般情况下雨峰系数可取 0.35 。</p><p>通过芝加哥雨型计算可以相对较好的模拟降雨过程，计算累计雨量。<br>直接用芝加哥雨型生成器制作。计算结果可放入 swmm 模型中。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406141340955.png" alt="image.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406161744651.png" alt="image.png"></p><p>经过计算，重现期 10 年，降雨历时 60 分钟，累计雨量为 65 毫米。</p><p>下一期将介绍如何用 streamlit 制作暴雨径流及雨型生成器。</p><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>重庆市水土流失的影响因素及防治对策<br>《室外排水设计标准》（GB 50014-2021）<br>《重庆市永川区水利发展“十三五”规划》<br>《关于发布重庆市暴雨强度修订公式及设计暴雨雨型的通知》（渝建〔2017〕443 号）</p><p><a href="https://www.vivifree.com/rain-model-chicago-formula.html">芝加哥合成暴雨过程线的公式推导 (vivifree.com)</a><br><a href="https://weather.sz.gov.cn/qixiangfuwu/qihoufuwu/qihouguanceyupinggu/baoyuqiangdugongshi/mindex.html">暴雨强度公式-深圳市气象局（台） (sz.gov.cn)</a><br><a href="https://blog.csdn.net/weixin_43012724/article/details/129505354">【水文模型】11 芝加哥雨型生成器-CSDN博客</a></p><h2 id="资料下载"><a href="#资料下载" class="headerlink" title="资料下载"></a>资料下载</h2><p>链接： <a href="https://pan.baidu.com/s/1qERiyC-kXL0uZoRfErQ63A">https://pan.baidu.com/s/1qERiyC-kXL0uZoRfErQ63A</a><br>提取码：uokm </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>生态环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>水文分析</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>锻炼 精读笔记 01</title>
     <link href="/2024/06/05/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E9%94%BB%E7%82%BC%20%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0%2001/"/>
     <url>/2024/06/05/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E9%94%BB%E7%82%BC%20%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0%2001/</url>
@@ -134,9 +194,9 @@
       
       <tag>时间序列模型</tag>
       
-      <tag>机理模型</tag>
-      
       <tag>生态环境</tag>
+      
+      <tag>机理模型</tag>
       
     </tags>
     
@@ -190,9 +250,9 @@
     
     <tags>
       
-      <tag>工具推荐</tag>
-      
       <tag>obsidian</tag>
+      
+      <tag>工具推荐</tag>
       
     </tags>
     
@@ -304,9 +364,9 @@
       
       <tag>arcgis</tag>
       
-      <tag>经验分享</tag>
-      
       <tag>地形数据</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     
@@ -360,9 +420,9 @@
     
     <tags>
       
-      <tag>工具推荐</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>工具推荐</tag>
       
       <tag>素材</tag>
       
@@ -389,11 +449,11 @@
     
     <tags>
       
+      <tag>经验分享</tag>
+      
       <tag>工具推荐</tag>
       
       <tag>AIGC</tag>
-      
-      <tag>经验分享</tag>
       
     </tags>
     
@@ -681,13 +741,13 @@
     
     <tags>
       
-      <tag>工具推荐</tag>
-      
       <tag>经验分享</tag>
       
       <tag>obsidian</tag>
       
       <tag>图床</tag>
+      
+      <tag>工具推荐</tag>
       
     </tags>
     
@@ -712,11 +772,11 @@
     
     <tags>
       
-      <tag>工具推荐</tag>
-      
       <tag>经验分享</tag>
       
       <tag>obsidian</tag>
+      
+      <tag>工具推荐</tag>
       
       <tag>微信读书</tag>
       
