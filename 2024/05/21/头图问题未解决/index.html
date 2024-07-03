@@ -17,27 +17,29 @@
   <meta name="keywords" content="python,eco">
   <meta name="referrer" content="no-referrer" />
   
-    <meta name="description" content="如果你想要一个自定义收藏页面的标签页插件，他没有广告，而且支持很多插件，如股票、时间、倒计时、备忘录，那么我必须推荐你一个插件了。 itab 标签页。  标签页可以分组，可以自定义图标，很多都能自动识别 logo。这类产品很多，但是完成度最高的目前就是 itab，不是广告，纯粹自来水。">
+    <meta name="description" content="背景在日常工作中，我们常需要对特定区域地形进行深入分析。易于获得的地形数据为 30 m 精度，有时无法满足项目要求，需要更高精度的地形资料，而这些资料通常以 AutoCAD 文件的形式存在。这些数据需经过 GIS 系统处理，以生成所需的 dem 数据。本篇文章将循序渐进，从 CAD 地形图层常用名称开始，详尽阐述在 ArcGIS 平台上，如何处理 AutoCAD 地形文件，最终产出高精度的 D">
 <meta property="og:type" content="article">
-<meta property="og:title" content="忍痛分享一个标签页插件">
-<meta property="og:url" content="https://maoyu92.github.io/2024/05/13/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E5%BF%8D%E7%97%9B%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%AA%E6%A0%87%E7%AD%BE%E9%A1%B5%E6%8F%92%E4%BB%B6/index.html">
+<meta property="og:title" content="从 CAD 到 ArcGIS：高精度DEM 数字高程文件生成">
+<meta property="og:url" content="https://maoyu92.github.io/2024/05/21/%E5%A4%B4%E5%9B%BE%E9%97%AE%E9%A2%98%E6%9C%AA%E8%A7%A3%E5%86%B3/index.html">
 <meta property="og:site_name" content="wallflowers">
-<meta property="og:description" content="如果你想要一个自定义收藏页面的标签页插件，他没有广告，而且支持很多插件，如股票、时间、倒计时、备忘录，那么我必须推荐你一个插件了。 itab 标签页。  标签页可以分组，可以自定义图标，很多都能自动识别 logo。这类产品很多，但是完成度最高的目前就是 itab，不是广告，纯粹自来水。">
+<meta property="og:description" content="背景在日常工作中，我们常需要对特定区域地形进行深入分析。易于获得的地形数据为 30 m 精度，有时无法满足项目要求，需要更高精度的地形资料，而这些资料通常以 AutoCAD 文件的形式存在。这些数据需经过 GIS 系统处理，以生成所需的 dem 数据。本篇文章将循序渐进，从 CAD 地形图层常用名称开始，详尽阐述在 ArcGIS 平台上，如何处理 AutoCAD 地形文件，最终产出高精度的 D">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131938405.png">
-<meta property="article:published_time" content="2024-05-13T11:39:00.000Z">
-<meta property="article:modified_time" content="2024-05-13T11:39:00.000Z">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211647927.png">
+<meta property="article:published_time" content="2024-05-21T07:10:00.000Z">
+<meta property="article:modified_time" content="2024-05-21T07:10:00.000Z">
 <meta property="article:author" content="wenmao">
-<meta property="article:tag" content="工具推荐">
-<meta property="article:tag" content="浏览器插件">
+<meta property="article:tag" content="arcgis">
+<meta property="article:tag" content="水文分析">
+<meta property="article:tag" content="地形数据">
+<meta property="article:tag" content="经验分享">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131938405.png">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211647927.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>忍痛分享一个标签页插件 - wallflowers</title>
+  <title>从 CAD 到 ArcGIS：高精度DEM 数字高程文件生成 - wallflowers</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -243,7 +245,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="忍痛分享一个标签页插件"></span>
+            <span id="subtitle" data-typed-text="从 CAD 到 ArcGIS：高精度DEM 数字高程文件生成"></span>
           
         </div>
 
@@ -254,8 +256,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-13 19:39" pubdate>
-          2024年5月13日 晚上
+        <time datetime="2024-05-21 15:10" pubdate>
+          2024年5月21日 下午
         </time>
       </span>
     
@@ -266,7 +268,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          112 字
+          1.1k 字
         
       </span>
     
@@ -277,7 +279,7 @@
         
         
         
-          1 分钟
+          10 分钟
         
       </span>
     
@@ -322,18 +324,49 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">忍痛分享一个标签页插件</h1>
+            <h1 id="seo-header">从 CAD 到 ArcGIS：高精度DEM 数字高程文件生成</h1>
             
             
               <div class="markdown-body">
                 
                 <meta name="referrer" content="no-referrer" />
 
-
-<p>如果你想要一个自定义收藏页面的标签页插件，他没有广告，而且支持很多插件，如股票、时间、倒计时、备忘录，那么我必须推荐你一个插件了。</p>
-<p>itab 标签页。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131938405.png" srcset="/img/loading.gif" lazyload alt="微信截图_20240513193649.png"></p>
-<p>标签页可以分组，可以自定义图标，很多都能自动识别 logo。这类产品很多，但是完成度最高的目前就是 itab，不是广告，纯粹自来水。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>在日常工作中，我们常需要对特定区域地形进行深入分析。易于获得的地形数据为 30 m 精度，有时无法满足项目要求，需要更高精度的地形资料，而这些资料通常以 AutoCAD 文件的形式存在。<br>这些数据需经过 GIS 系统处理，以生成所需的 dem 数据。本篇文章将循序渐进，从 CAD 地形图层常用名称开始，详尽阐述在 ArcGIS 平台上，如何处理 AutoCAD 地形文件，最终产出高精度的 DEM（数字高程模型），希望对你有所帮助。</p>
+<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="DEM"><a href="#DEM" class="headerlink" title="DEM"></a>DEM</h3><p><strong>DEM（Digital Elevation Model）</strong>：即数字高程模型，是通过有限的地形高程数据实现对地面地形的数字化模拟。是数字地形模型（Digital Terrain Model，简称 DTM）的一个分支。狭义的 dem 是栅格数据，在水文分析中，dem 数据可以用来生成坡向、坡度、水系、分水岭、泄水点等信息。</p>
+<h3 id="TIN"><a href="#TIN" class="headerlink" title="TIN"></a>TIN</h3><p><strong>TIN（Triangular Irregular Network）</strong>：即不规则三角网，是基于矢量的数字地理数据的一种形式，通过将一系列折点组成的三角形来构建。各折点通过由一系列边进行连接，最终形成一个三角网。TIN 是一种更为精细的表示方法，适用于复杂地形的精确表示和分析。</p>
+<h3 id="CAD-图层常用名称"><a href="#CAD-图层常用名称" class="headerlink" title="CAD 图层常用名称"></a>CAD 图层常用名称</h3><p>以下是常用的 CAD 地形图常用图层名称。</p>
+<ol>
+<li>DGX–等高线</li>
+<li>DLSS–道路设施</li>
+<li>DLDW–独立地物</li>
+<li>DMTZ–地貌特征</li>
+<li>GCD–高程点</li>
+<li>JMD–居民地</li>
+<li>SXSS–水系设施</li>
+<li>ZBTZ–植被特征</li>
+<li>GXYZ–管线设施</li>
+<li>TK–图框</li>
+</ol>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><h3 id="导入数据"><a href="#导入数据" class="headerlink" title="导入数据"></a>导入数据</h3><p>新建 ArcGIS 项目，不要在已有坐标系的文件中添加。<br>在导入前，设置好坐标系，这需要问资料来源方。<br>右键-属性-常规-编辑，选择合适的坐标系。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211514712.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>将 CAD 文件拖入 ArcGIS。</p>
+<h3 id="确定要保留的图层"><a href="#确定要保留的图层" class="headerlink" title="确定要保留的图层"></a>确定要保留的图层</h3><p>导入 CAD 文件后，会发现有很多文件，<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211516876.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>分别为：</p>
+<ul>
+<li>Annotation 注释</li>
+<li>Point 点</li>
+<li>Polyline 多段线</li>
+<li>Polygon 多边形</li>
+<li>MultiPatch 3 D 几何图形</li>
+</ul>
+<p>一般需要关注的是 Polyline 、Point、Polygon 根据自己的需要整理对应的数据。地形数据在 Polyline 中，通过查询工具，点击对应的图层可以查询其图层名称。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211526491.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>比如，地形图层为 DGX。<br>右键 Polyline-属性-绘制图层-选择 DGX。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211528230.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>右键 Polyline-打开属性表-点击表选项-按属性选择, 输入表达式<br>“Elevation” &gt;0，可根据自己的文件属性，定义筛选表达式。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211531228.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>导出数据，右键 Polyline-数据-导出数据，导出所选要素。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211534372.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>可以用同样的方法将需要的图层导出 GIS 图层数据。<br>如地貌特征（DMTZ） 、水系设施（SXSS）、居民地（JMD）、道路设施（DLSS）等, 选择不同的图层时，记得提前在显示区域右键-清楚所选区域。<br>在本文示例文件中，因为是农业区域地貌特征和等高线都有高程信息，为提高精度，将两者合并导出图层精细分析。</p>
+<h3 id="创建-TIN"><a href="#创建-TIN" class="headerlink" title="创建 TIN"></a>创建 TIN</h3><p>工具搜索-创建 TIN，高度字段输入 Elevation，注意在创建之前，最好打开属性表，观察 Elevation 值的范围，从 CAD 导入的数据可能存在异常。因此需要用前面表达式筛选的方式，选择合适的等高线范围。例如本示例需要将 Elevation 控制在 0-500 之间，500 以上的异常值去掉。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211629026.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>点击属性-符号系统选择分区及配色。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211647927.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211707784.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="TIN-转-dem"><a href="#TIN-转-dem" class="headerlink" title="TIN 转 dem"></a>TIN 转 dem</h3><p>使用 TIN 转栅格工具，转出的数据就是我们需要的 dem 数据。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211711236.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>得到区域 dem 数据如下，完成。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211711285.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>用查询工具点击 dem 可得到精度信息。对比下载的 dem 数据，拉伸值在 48~70 之间，cad 生成的，精度有所提高。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405211717057.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>有了 dem 数据，我们就能做很多工作了，如水文分析的河流水系、坡度、坡向、产流量、河流链接、分水岭、流域等等。后续也会整理 dem 水文分析的操作步骤。</p>
+<h3 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h3><p>本方法实际精度与 DWG 文件质量关系很大，例如示例文件中，由于地貌特征图层文件，大部分高指为 0，无法参与 dem 结果生成，降低了最终生成文件的效果。若深入探究，还可以用克里金插值等方法，提高精度。<br>总之，以上就是用 CAD 文件生产 DEM 的过程，如果有帮助到你，可以关注本博客以及我的公众号。</p>
 
                 
               </div>
@@ -352,7 +385,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="category-chain-item">工具推荐</a>
+  <a href="/categories/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="category-chain-item">生态环境</a>
   
   
 
@@ -367,9 +400,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="print-no-link">#工具推荐</a>
+        <a href="/tags/arcgis/" class="print-no-link">#arcgis</a>
       
-        <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6/" class="print-no-link">#浏览器插件</a>
+        <a href="/tags/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90/" class="print-no-link">#水文分析</a>
+      
+        <a href="/tags/%E5%9C%B0%E5%BD%A2%E6%95%B0%E6%8D%AE/" class="print-no-link">#地形数据</a>
+      
+        <a href="/tags/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="print-no-link">#经验分享</a>
       
     </div>
   
@@ -381,8 +418,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>忍痛分享一个标签页插件</div>
-      <div>https://maoyu92.github.io/2024/05/13/03 工具推荐/忍痛分享一个标签页插件/</div>
+      <div>从 CAD 到 ArcGIS：高精度DEM 数字高程文件生成</div>
+      <div>https://maoyu92.github.io/2024/05/21/头图问题未解决/</div>
     </div>
     <div class="license-meta">
       
@@ -394,7 +431,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年5月13日</div>
+          <div>2024年5月21日</div>
         </div>
       
       
@@ -426,9 +463,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/19/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E5%9C%A8excel%E4%B8%AD%E4%BD%BF%E7%94%A8python%20%E5%BF%AB%E9%80%9F%E4%BD%9C%E5%9B%BE%E7%A4%BA%E4%BE%8B/" title="在excel中使用python 快速作图示例">
+                      <a href="/2024/05/21/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E5%AE%9D%E8%97%8F%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90-%E5%B0%81%E9%9D%A2%E5%9B%BE%E7%89%87%E7%94%9F%E6%88%90%E5%99%A8/" title="宝藏网站推荐-封面图片生成器">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">在excel中使用python 快速作图示例</span>
+                        <span class="hidden-mobile">宝藏网站推荐-封面图片生成器</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -436,8 +473,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/13/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E5%BA%94%E7%94%A8/" title="prophet时间序列模型水质预测应用">
-                        <span class="hidden-mobile">prophet时间序列模型水质预测应用</span>
+                      <a href="/2024/05/21/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/ArcGIS%E5%AF%BC%E5%85%A5autoCAD%E5%9C%B0%E5%BD%A2%E6%95%B0%E6%8D%AE%E5%B9%B6%E6%95%B4%E7%90%86/" title="从 CAD 到 ArcGIS：高精度DEM 数字高程文件生成">
+                        <span class="hidden-mobile">从 CAD 到 ArcGIS：高精度DEM 数字高程文件生成</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
