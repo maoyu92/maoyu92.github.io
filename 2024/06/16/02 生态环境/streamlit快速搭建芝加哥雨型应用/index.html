@@ -12,6 +12,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="陈文茂">
   <meta name="keywords" content="python,eco">
@@ -28,15 +30,20 @@
 <meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406162151546.png">
 <meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406162152131.png">
 <meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406162156332.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406182057691.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406182057740.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406182058701.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406182139227.png">
 <meta property="article:published_time" content="2024-06-16T13:25:00.000Z">
 <meta property="article:modified_time" content="2024-06-16T13:25:00.000Z">
 <meta property="article:author" content="wenmao">
-<meta property="article:tag" content="水文分析">
 <meta property="article:tag" content="经验分享">
 <meta property="article:tag" content="python">
+<meta property="article:tag" content="用心长文">
+<meta property="article:tag" content="生态环境">
+<meta property="article:tag" content="水文分析">
 <meta property="article:tag" content="streamlit">
 <meta property="article:tag" content="git">
-<meta property="article:tag" content="生态环境">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202406162135564.png">
   
@@ -82,7 +89,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -273,7 +280,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          692 字
+          1.2k 字
         
       </span>
     
@@ -284,7 +291,7 @@
         
         
         
-          6 分钟
+          10 分钟
         
       </span>
     
@@ -363,8 +370,44 @@
 <li>仓库文件需要包括 requirement.txt，为项目运行需要的环境。</li>
 <li>注意代码引用文件需要用相对应用的方式，不要绝对引用。</li>
 </ol>
-<h3 id="成果预览"><a href="#成果预览" class="headerlink" title="成果预览"></a>成果预览</h3><p>网址：<a target="_blank" rel="noopener" href="https://chicagorainpattern-meuiz8zrvbesh32nfm9iv7.streamlit.app/">Streamlit (chicagorainpattern-meuiz8zrvbesh32nfm9iv7.streamlit.app)</a></p>
+<h3 id="成果预览"><a href="#成果预览" class="headerlink" title="成果预览"></a>成果预览</h3><p>网址：<a target="_blank" rel="noopener" href="https://chicagorainpattern.streamlit.app/">Streamlit (chicagorainpattern.streamlit.app)</a></p>
 <p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406162156332.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="制作-exe-发布"><a href="#制作-exe-发布" class="headerlink" title="制作 exe 发布"></a>制作 exe 发布</h2><h3 id="nativefier"><a href="#nativefier" class="headerlink" title="nativefier"></a>nativefier</h3><p>安装nativefier<br>如果安装不快或者安装不成功，可以试下先换为阿里源。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arduino">npm config set registry https:<span class="hljs-comment">//registry.npmjs.org/</span><br>npm install -g nativefier<br></code></pre></td></tr></table></figure>
+
+
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-string">nativefier</span> <span class="hljs-built_in">--name</span> <span class="hljs-string">&#x27;&lt;app.exe name&gt;&#x27;</span> <span class="hljs-string">&#x27;&lt;streamlit sharing website url&gt;&#x27;</span> <span class="hljs-built_in">--platform</span> &lt;<span class="hljs-string">&#x27;windows&#x27;</span> <span class="hljs-string">or</span> <span class="hljs-string">&#x27;mac&#x27;</span> <span class="hljs-string">or</span> <span class="hljs-string">&#x27;linux&#x27;</span>&gt;<br><br><span class="hljs-string">nativefier</span> <span class="hljs-built_in">--name</span> <span class="hljs-string">&quot;rainmaker&quot;</span> <span class="hljs-string">&quot;https://chicagorainpattern.streamlit.app/&quot;</span> <span class="hljs-built_in">--platform</span> <span class="hljs-string">windows</span><br></code></pre></td></tr></table></figure>
+
+<p>完成后会在执行命令的目录下生成一个可执行文件。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406182057691.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406182057740.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>点击就可以直接运行<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406182058701.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>这种方法感觉像是内置了一个浏览器，缺点也很明显，只能根据网址生成，如果取消已生成的 web 应用，则无法生效。可能也是防止可以随便生成应用吧。还有就是文件比较大，分享比较麻烦，还不如直接发网址。</p>
+<h4 id="PyInstaller"><a href="#PyInstaller" class="headerlink" title="PyInstaller"></a>PyInstaller</h4><p>包装 PyInstaller包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install pyinstaller<br></code></pre></td></tr></table></figure>
+<p>检查是否安装</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dart">pip <span class="hljs-keyword">show</span> pyinstaller<br></code></pre></td></tr></table></figure>
+<p>将 pyinstaller. exe 路径放入系统变量<br>通常在 C:\ProgramData\anaconda 3\Scripts 这个下面。</p>
+<p>创建一个.spec文件</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css">pyinstaller <span class="hljs-attr">--name</span> rainmaker <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.py</span><br></code></pre></td></tr></table></figure>
+<p>遇到问题<br>pathlib与 pyinstaller 不兼容</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">pip uninstall pathlib</span><br></code></pre></td></tr></table></figure>
+<p>继续执行创建. Spec 文件<br>运行了半天，结束后出现好几个文件<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406182139227.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>修改. Spec 文件<br>主要修改内容</p>
+<ol>
+<li>Pathex 路径正确</li>
+<li>Datas 都包括所有信息和位置关系</li>
+<li>Hookspath 指定自定义 hook 路径</li>
+</ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># -*- mode: python ; coding: utf-8 -*-</span><br><br>block_cipher = None<br><br>a = Analysis(<br>    [<span class="hljs-string">&#x27;main.py&#x27;</span>],<br>    pathex=[<span class="hljs-string">&#x27;D:\\BaiduSyncdisk\\pythonprograms\\rainmaker&#x27;</span>],  # 确保路径正确<br>    binaries=[],<br>    datas=[(<span class="hljs-string">&#x27;raincode.xlsx&#x27;</span>, <span class="hljs-string">&#x27;.&#x27;</span>), (<span class="hljs-string">&#x27;hook/hook-streamlit.py&#x27;</span>, <span class="hljs-string">&#x27;hook&#x27;</span>)],<br>    hiddenimports=[],  # 根据需要添加隐藏导入<br>    hookspath=[<span class="hljs-string">&#x27;./hooks&#x27;</span>],  # 指定自定义hook路径<br>    hooksconfig=&#123;&#125;,<br>    runtime_hooks=[],<br>    excludes=[],<br>    <span class="hljs-attribute">noarchive</span>=<span class="hljs-literal">False</span>,<br>    <span class="hljs-attribute">optimize</span>=0,  # 根据需求调整<br>)<br>pyz = PYZ(a.pure)<br><br>exe = EXE(<br>    pyz,<br>    a.scripts,<br>    [],<br>    <span class="hljs-attribute">exclude_binaries</span>=<span class="hljs-literal">True</span>,<br>    <span class="hljs-attribute">name</span>=<span class="hljs-string">&#x27;rainmaker&#x27;</span>,<br>    <span class="hljs-attribute">debug</span>=<span class="hljs-literal">False</span>,<br>    <span class="hljs-attribute">bootloader_ignore_signals</span>=<span class="hljs-literal">False</span>,<br>    <span class="hljs-attribute">strip</span>=<span class="hljs-literal">False</span>,<br>    <span class="hljs-attribute">upx</span>=<span class="hljs-literal">True</span>,<br>    <span class="hljs-attribute">console</span>=<span class="hljs-literal">True</span>,  # 或<span class="hljs-literal">False</span>，根据应用类型<br>    <span class="hljs-attribute">disable_windowed_traceback</span>=<span class="hljs-literal">False</span>,<br>    <span class="hljs-attribute">argv_emulation</span>=<span class="hljs-literal">False</span>,<br>    <span class="hljs-attribute">target_arch</span>=None,<br>    <span class="hljs-attribute">codesign_identity</span>=None,<br>    <span class="hljs-attribute">entitlements_file</span>=None,<br>)<br>coll = COLLECT(<br>    exe,<br>    a.binaries,<br>    a.datas,<br>    <span class="hljs-attribute">strip</span>=<span class="hljs-literal">False</span>,<br>    <span class="hljs-attribute">upx</span>=<span class="hljs-literal">True</span>,<br>    upx_exclude=[],<br>    <span class="hljs-attribute">name</span>=<span class="hljs-string">&#x27;rainmaker&#x27;</span>,<br>)<br></code></pre></td></tr></table></figure>
+<p>使用. Spec 文件打包</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">pyinstaller rainmaker.<span class="hljs-keyword">spec</span><br></code></pre></td></tr></table></figure>
+
+<p>失败，感觉打包还是有点难度。后面有空继续</p>
+<p>打包完成后，在 <code>dist/ </code>（Windows上可能是 <code>dist/YourAppName.exe</code>）找到可执行文件，并运行它来测试打包是否成功。</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">pyinstaller <span class="hljs-attr">--onefile</span> <span class="hljs-attr">--additional-hooks-dir</span>=./hooks run<span class="hljs-selector-class">.py</span> <span class="hljs-attr">--clean</span><br>pyinstaller <span class="hljs-attr">--onefile</span> <span class="hljs-attr">--additional-hooks-dir</span>=./hooks <span class="hljs-selector-tag">main</span><span class="hljs-selector-class">.py</span> <span class="hljs-attr">--clean</span><br></code></pre></td></tr></table></figure>
+
+
+
 
                 
               </div>
@@ -398,17 +441,19 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90/" class="print-no-link">#水文分析</a>
-      
         <a href="/tags/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="print-no-link">#经验分享</a>
       
         <a href="/tags/python/" class="print-no-link">#python</a>
       
+        <a href="/tags/%E7%94%A8%E5%BF%83%E9%95%BF%E6%96%87/" class="print-no-link">#用心长文</a>
+      
+        <a href="/tags/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="print-no-link">#生态环境</a>
+      
+        <a href="/tags/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90/" class="print-no-link">#水文分析</a>
+      
         <a href="/tags/streamlit/" class="print-no-link">#streamlit</a>
       
         <a href="/tags/git/" class="print-no-link">#git</a>
-      
-        <a href="/tags/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="print-no-link">#生态环境</a>
       
     </div>
   
@@ -464,6 +509,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/06/18/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90%20caj2pdf/" title="软件推荐 caj2pdf">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">软件推荐 caj2pdf</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

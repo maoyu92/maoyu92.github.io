@@ -1,0 +1,955 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="0 引言随着水质自动站的普及，监测频次越来越高，自动监测越来越准确。水质站点增多，连续的水质监测数据，给水质预测提供更多的训练基础。长短时记忆网络(LSTM)适用于多变量、连续、自相关的数据预测。人工神经网络模型特点为的非线性映射，是广泛应用的水质预测方法。   1.长短时记忆网络(LSTM)介绍1.1起源1997年，Hochreiter等提出了长短时记忆网络(LSTM)，作为深度学习的一种，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LSTM水质预测模型实践">
+<meta property="og:url" content="https://maoyu92.github.io/2024/07/03/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/LSTM%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B%E5%AE%9E%E8%B7%B5/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="0 引言随着水质自动站的普及，监测频次越来越高，自动监测越来越准确。水质站点增多，连续的水质监测数据，给水质预测提供更多的训练基础。长短时记忆网络(LSTM)适用于多变量、连续、自相关的数据预测。人工神经网络模型特点为的非线性映射，是广泛应用的水质预测方法。   1.长短时记忆网络(LSTM)介绍1.1起源1997年，Hochreiter等提出了长短时记忆网络(LSTM)，作为深度学习的一种，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1663652672734-10851708-7675-40c3-80f4-0abab324b2c2.png#averageHue=%23efefef&clientId=ufe0eeb19-9d7f-4&from=paste&height=504&id=u21eaafa6&originHeight=504&originWidth=857&originalType=binary&ratio=1&rotation=0&showTitle=true&size=69788&status=done&style=none&taskId=u80d6d931-8107-43cd-9531-08bd4184918&title=%E5%9B%BE1%20LSTM%20%E8%AE%B0%E5%BF%86%E4%BD%93%E7%A4%BA%E6%84%8F%E5%9B%BE&width=857">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1663663432052-55b1e6db-d4ec-4bd9-8631-b2d7b2199bea.png#averageHue=%23f6f3f0&clientId=ufe0eeb19-9d7f-4&from=paste&height=551&id=uc3d05be0&originHeight=551&originWidth=497&originalType=binary&ratio=1&rotation=0&showTitle=false&size=40481&status=done&style=none&taskId=ucec855ed-b6bf-4bdb-a80a-acedeb93734&title=&width=497">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1663663771478-e1661a14-bcac-41f6-a348-90954f4a7142.png#averageHue=%23f7f2f0&clientId=ufe0eeb19-9d7f-4&from=paste&height=626&id=u0a432b18&originHeight=626&originWidth=960&originalType=binary&ratio=1&rotation=0&showTitle=false&size=54023&status=done&style=none&taskId=uf5c4e634-8b83-4f7e-ad9c-c32ddc162a7&title=&width=960">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1663748742440-449f9585-7da7-4cb7-94b3-abd50057295a.png#averageHue=%23fbf9f9&clientId=u7a4f3748-f2cd-4&from=paste&height=775&id=u86202cc0&originHeight=775&originWidth=1495&originalType=binary&ratio=1&rotation=0&showTitle=true&size=180426&status=done&style=none&taskId=ucbe6b03a-dccc-4fc7-88ef-d7315592a3a&title=%E8%8C%A8%E5%9D%9D%E9%AB%98%E6%8C%87%E6%B5%8B%E8%AF%95%E9%9B%86%E9%A2%84%E6%B5%8B%E5%AF%B9%E6%AF%94&width=1495">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1663748769105-f0cd0097-09a1-4d51-8017-c00e7fa2954f.png#averageHue=%23fbf9f9&clientId=u7a4f3748-f2cd-4&from=paste&height=668&id=uc07496b7&originHeight=668&originWidth=1278&originalType=binary&ratio=1&rotation=0&showTitle=true&size=139917&status=done&style=none&taskId=u55750a39-849c-495c-869a-d9d796f0667&title=%E8%8C%A8%E5%9D%9D%E6%B0%A8%E6%B0%AE%E6%B5%8B%E8%AF%95%E9%9B%86%E9%A2%84%E6%B5%8B%E5%AF%B9%E6%AF%94&width=1278">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1663748800563-6bd58632-1cd4-4139-b64f-a79ff1e45b3d.png#averageHue=%23fbf9f9&clientId=u7a4f3748-f2cd-4&from=paste&height=684&id=u660ab49f&originHeight=684&originWidth=1293&originalType=binary&ratio=1&rotation=0&showTitle=true&size=122752&status=done&style=none&taskId=u0e9c73da-d000-46c4-95b8-04afcc7a735&title=%E8%8C%A8%E5%9D%9D%E6%80%BB%E7%A3%B7%E6%B5%8B%E8%AF%95%E9%9B%86%E9%A2%84%E6%B5%8B%E5%AF%B9%E6%AF%94&width=1293">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1663750110262-e079044e-bf26-4ddb-afc5-2294ed2c7e34.png#averageHue=%23fcfbfb&clientId=u7a4f3748-f2cd-4&from=paste&height=692&id=u1651b8bc&originHeight=692&originWidth=1517&originalType=binary&ratio=1&rotation=0&showTitle=true&size=64780&status=done&style=none&taskId=u47331cb8-9abd-484c-a939-22e23994822&title=%E6%80%BB%E7%A3%B7%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C&width=1517">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1663750136399-ca6af9e7-7c7d-48a4-aa17-05441f977fea.png#averageHue=%23fcfbfb&clientId=u7a4f3748-f2cd-4&from=paste&height=674&id=u7c3530d7&originHeight=674&originWidth=1440&originalType=binary&ratio=1&rotation=0&showTitle=true&size=58938&status=done&style=none&taskId=ub5e03c6e-36a6-4d63-aa04-ae31f2f94bd&title=%E9%AB%98%E6%8C%87%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C&width=1440">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1663750153213-46506788-4bb8-4d26-83af-9f7662d09818.png#averageHue=%23fcfbfb&clientId=u7a4f3748-f2cd-4&from=paste&height=576&id=uba2f3d8e&originHeight=576&originWidth=1237&originalType=binary&ratio=1&rotation=0&showTitle=true&size=50652&status=done&style=none&taskId=u09e53097-9ce9-475d-bb56-d1e9eb9e240&title=%E6%B0%A8%E6%B0%AE%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C&width=1237">
+<meta property="article:published_time" content="2024-07-03T10:46:00.000Z">
+<meta property="article:modified_time" content="2024-07-03T10:46:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="用心长文">
+<meta property="article:tag" content="时间序列模型">
+<meta property="article:tag" content="生态环境">
+<meta property="article:tag" content="BP神经网络">
+<meta property="article:tag" content="水质模型">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1663652672734-10851708-7675-40c3-80f4-0abab324b2c2.png#averageHue=%23efefef&clientId=ufe0eeb19-9d7f-4&from=paste&height=504&id=u21eaafa6&originHeight=504&originWidth=857&originalType=binary&ratio=1&rotation=0&showTitle=true&size=69788&status=done&style=none&taskId=u80d6d931-8107-43cd-9531-08bd4184918&title=%E5%9B%BE1%20LSTM%20%E8%AE%B0%E5%BF%86%E4%BD%93%E7%A4%BA%E6%84%8F%E5%9B%BE&width=857">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>LSTM水质预测模型实践 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="LSTM水质预测模型实践"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-03 18:46" pubdate>
+          2024年7月3日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          33 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">LSTM水质预测模型实践</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h2 id="0-引言"><a href="#0-引言" class="headerlink" title="0 引言"></a>0 引言</h2><p>随着水质自动站的普及，监测频次越来越高，自动监测越来越准确。<br>水质站点增多，连续的水质监测数据，给水质预测提供更多的训练基础。<br>长短时记忆网络(LSTM)适用于多变量、连续、自相关的数据预测。<br>人工神经网络模型特点为的非线性映射，是广泛应用的水质预测方法。  </p>
+<h2 id="1-长短时记忆网络-LSTM-介绍"><a href="#1-长短时记忆网络-LSTM-介绍" class="headerlink" title="1.长短时记忆网络(LSTM)介绍"></a>1.长短时记忆网络(LSTM)介绍</h2><h3 id="1-1起源"><a href="#1-1起源" class="headerlink" title="1.1起源"></a>1.1起源</h3><p>1997年，Hochreiter等提出了长短时记忆网络(LSTM)，作为深度学习的一种，LSTM既考虑了多元变量间的非线性映射关系，又可以解决传统人工神经网络不能解决的时间序列长期依赖问题，应用场景包括：金融交易、交通预测、机器翻译、水质预测等。</p>
+<h3 id="1-2原理"><a href="#1-2原理" class="headerlink" title="1.2原理"></a>1.2原理</h3><p>长短时记忆网络(LSTM)是在循环神经网络(ＲNN）的基础上改进而来。<br>循环神经网络(ＲNN)作为深度学习方法的一种，其主要用途是对序列数据处理。ＲNN具有自连接隐层，其t时刻隐层状态依靠t－1时刻隐层状态进行更新，因此能够解决时间序列长期依赖的问题。ＲNN理论上可以进行非线性时间序列的有效处理，但实际对较长时间序列进行建模应用中，存在梯度消失及梯度爆炸的问题。<br>LSTM是ＲNN的一种变体，与ＲNN一样，LSTM隐藏层具有随时间序列的重复节点。LSTM节点相较ＲNN更为复杂，它将ＲNN中隐含层中的神经元替换为记忆体，以此实现序列信息的保留与长期记忆。<br>一个标准的LSTM记忆体见图1。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1663652672734-10851708-7675-40c3-80f4-0abab324b2c2.png#averageHue=%23efefef&clientId=ufe0eeb19-9d7f-4&from=paste&height=504&id=u21eaafa6&originHeight=504&originWidth=857&originalType=binary&ratio=1&rotation=0&showTitle=true&size=69788&status=done&style=none&taskId=u80d6d931-8107-43cd-9531-08bd4184918&title=%E5%9B%BE1%20LSTM%20%E8%AE%B0%E5%BF%86%E4%BD%93%E7%A4%BA%E6%84%8F%E5%9B%BE&width=857" srcset="/img/loading.gif" lazyload alt="图1 LSTM 记忆体示意图" title="图1 LSTM 记忆体示意图"><br>图 1 中，C 为 LSTM 记忆体的细胞状态，h 为节点的隐藏层状态。每个记忆体包含一到多个记忆细胞和 3 种“门”，LSTM 通过记忆细胞进行细胞状态信息存储，门结构负责细胞状态的更新与保持，3 种 “门”包括“遗忘门”“输入门”和“输出门”。“遗忘门”控制历史信息对当前细胞状态的影响。$f_t$ 决定了上一时刻细胞状态 $C_{t -1}$ 的通过程度。<br>$$f_t&#x3D;σ(w_f[h_{t-1},x_i]+bi)\tag{01}$$<br>$C_{t -1}$ 为t － 1 时刻细胞状态；ht － 1为t － 1 时刻隐藏层状态; σ 为sigmoid 激活函数; wf 为输入循环权重; Xt 为当前时刻节点的输入值；bf 为偏置项。“输入门”决定了进入记忆细胞的是哪些信息，“遗忘门”与“输入门”结合可以实现细胞状态Ct 的更新。    </p>
+<p>  $$i_t&#x3D;σ(w_i[h_{t-1},x_i]+b_i)\tag{02}$$</p>
+<p>$$C_t^‘&#x3D;Tanh(w_C[h_{t-1},x_i]+b_C)\tag{03}$$<br>$$C_t&#x3D;f_iC_{t-1}+i_tC_t^‘\tag{04}$$<br>式中it 为输入门向量值; C’t为新信息; Ct 为t 时刻，细胞状态; bi、bC 为偏置项; wC 为输入权重。<br>“输出门”控制细胞状态值的输出，用Tanh 激活函数处理细胞状态后，与记忆单元状态值相乘得到输出信息。<br>$$σ_t&#x3D;σ(w_o[h_{t-1},x_t]+b_o)\tag{05}$$<br>$$h_t&#x3D;o_t×Tanh(C_t)\tag{06}$$<br>式中 $h_t$ 为t 时刻隐藏层状态; $w_o$ 为输入权重; $o_t$ 为输出值; $b_o$ 为偏置项。<br>由上式可以看出，LSTM 节点通过门结构对细胞状态上的信息进行线性修改，从而保证在时间序列变长的情况下，依然能够保持时间相关性不会衰减。  </p>
+<h2 id="2-算法流程及评价指标"><a href="#2-算法流程及评价指标" class="headerlink" title="2.算法流程及评价指标"></a>2.算法流程及评价指标</h2><h3 id="2-1-算法流程"><a href="#2-1-算法流程" class="headerlink" title="2.1 算法流程"></a>2.1 算法流程</h3><p>模型包括2个部分，分别为模型预处理与模型训练与评价。  </p>
+<h4 id="2-1-1-数据预处理"><a href="#2-1-1-数据预处理" class="headerlink" title="2.1.1 数据预处理"></a>2.1.1 数据预处理</h4><p>数据预处理分为引入前处理及引入后处理。  </p>
+<h5 id="引入前处理"><a href="#引入前处理" class="headerlink" title="引入前处理"></a>引入前处理</h5><p>引入前使用sql语句进行预处理，主要是去除0值、空值、异常值。这里异常值判断依据基于设备上下限、及经验。  </p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">select</span>  <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span><br>(<span class="hljs-keyword">SELECT</span><br>            <span class="hljs-keyword">CASE</span> device_id<br>                       <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;87d39a3c&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;站点D&#x27;</span><br>                       <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;2ab9a08e&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;站点C&#x27;</span><br>                       <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;17b96c2b&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;站点B&#x27;</span><br>             <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;e83005a1&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;站点A&#x27;</span><br>                       <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;device_name&#x27;</span> ,<br>                       data_time <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;data_time&#x27;</span>,<br>                       <span class="hljs-keyword">CASE</span> factor_code<br>                       <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;w01003-Avg&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;浊度&#x27;</span><br>                       <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;w21003-Avg&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;氨氮&#x27;</span><br>                       <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;w01010-Avg&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;水温&#x27;</span><br>                       <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;w01014-Avg&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;电导率&#x27;</span><br>                       <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;w01019-Avg&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;高指&#x27;</span><br>                       <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;w01001-Avg&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;PH&#x27;</span><br>                       <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;w21011-Avg&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;总磷&#x27;</span><br>                       <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;w01009-Avg&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;溶解氧&#x27;</span><br>                       <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;w21001-Avg&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">&#x27;总氮&#x27;</span><br>                     <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> <span class="hljs-string">&#x27;fator_code&#x27;</span>,<br>                       <span class="hljs-keyword">value</span> <span class="hljs-keyword">as</span> <span class="hljs-string">&#x27;value&#x27;</span><br>                      <span class="hljs-keyword">FROM</span> iot_devices_detail<br>                      <span class="hljs-keyword">where</span> device_id <span class="hljs-keyword">in</span> (<span class="hljs-string">&#x27;87d39a3c&#x27;</span>,<span class="hljs-string">&#x27;2ab9a08e&#x27;</span>,<span class="hljs-string">&#x27;17b96c2b&#x27;</span>,<span class="hljs-string">&#x27;e83005a1&#x27;</span>)<br>                      <span class="hljs-keyword">and</span> data_time <span class="hljs-operator">&gt;</span> <span class="hljs-string">&#x27;2021-01-01 00:00:00&#x27;</span><br>                      <span class="hljs-keyword">and</span> factor_code <span class="hljs-keyword">in</span> (<span class="hljs-string">&#x27;w21003-Avg&#x27;</span>,<span class="hljs-string">&#x27;w21011-Avg&#x27;</span>,<span class="hljs-string">&#x27;w01019-Avg&#x27;</span>)<br>                      <span class="hljs-keyword">and</span> frequency<span class="hljs-operator">=</span><span class="hljs-string">&#x27;h4&#x27;</span><br>                      <span class="hljs-keyword">and</span> <span class="hljs-keyword">value</span><span class="hljs-operator">&gt;</span><span class="hljs-number">0</span><br>                       <span class="hljs-keyword">AND</span> <span class="hljs-keyword">value</span>  <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">null</span><br>                       <span class="hljs-keyword">and</span>  flag<span class="hljs-operator">=</span><span class="hljs-string">&#x27;1&#x27;</span><br>                       <span class="hljs-keyword">group</span> <span class="hljs-keyword">by</span> data_time,factor_code,device_id<br>                       <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> device_id,factor_code) d<br>                       <span class="hljs-keyword">WHERE</span><br>                         d.fator_code<span class="hljs-operator">=</span><span class="hljs-string">&#x27;高指&#x27;</span> <span class="hljs-keyword">and</span> d.value <span class="hljs-keyword">between</span> <span class="hljs-number">2</span> <span class="hljs-keyword">and</span> <span class="hljs-number">20</span><br>                        <span class="hljs-keyword">or</span>  d.fator_code<span class="hljs-operator">=</span><span class="hljs-string">&#x27;总磷&#x27;</span> <span class="hljs-keyword">and</span> d.value <span class="hljs-keyword">between</span> <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-number">1.5</span><br>                        <span class="hljs-keyword">or</span> d.fator_code<span class="hljs-operator">=</span><span class="hljs-string">&#x27;氨氮&#x27;</span> <span class="hljs-keyword">and</span> d.value <span class="hljs-keyword">between</span> <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-number">150</span><br>                        <span class="hljs-keyword">or</span> d.fator_code<span class="hljs-operator">=</span><span class="hljs-string">&#x27;浊度&#x27;</span> <span class="hljs-keyword">and</span> d.value <span class="hljs-keyword">between</span> <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-number">4000</span><br>                         <span class="hljs-keyword">or</span> d.fator_code<span class="hljs-operator">=</span><span class="hljs-string">&#x27;水温&#x27;</span> <span class="hljs-keyword">and</span> d.value <span class="hljs-keyword">between</span> <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-number">60</span><br>                         <span class="hljs-keyword">or</span> d.fator_code<span class="hljs-operator">=</span><span class="hljs-string">&#x27;电导率&#x27;</span> <span class="hljs-keyword">and</span> d.value <span class="hljs-keyword">between</span> <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-number">2000</span><br>                         <span class="hljs-keyword">or</span> d.fator_code<span class="hljs-operator">=</span><span class="hljs-string">&#x27;PH&#x27;</span> <span class="hljs-keyword">and</span> d.value <span class="hljs-keyword">between</span> <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-number">14</span><br>                         <span class="hljs-keyword">or</span> d.fator_code<span class="hljs-operator">=</span><span class="hljs-string">&#x27;溶解氧&#x27;</span> <span class="hljs-keyword">and</span> d.value <span class="hljs-keyword">between</span> <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-number">20</span><br>                         <span class="hljs-keyword">or</span> d.fator_code<span class="hljs-operator">=</span><span class="hljs-string">&#x27;总氮&#x27;</span> <span class="hljs-keyword">and</span> d.value <span class="hljs-keyword">between</span> <span class="hljs-number">0</span> <span class="hljs-keyword">and</span> <span class="hljs-number">100</span><br></code></pre></td></tr></table></figure>
+<p>py引入可使用MySQL语句<br>其中sql为上面的代码，注意去掉换行符</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">conn_sql</span>(<span class="hljs-params">sql</span>):<br><br>    conn = pymysql.connect(host=<span class="hljs-string">&quot;&quot;</span>,<br>                   port=<span class="hljs-number">3306</span>,<br>                   user=<span class="hljs-string">&quot;&quot;</span>,<br>                   password=<span class="hljs-string">&quot;&quot;</span>,<br>                   db=<span class="hljs-string">&quot;&quot;</span>,<br>                   charset=<span class="hljs-string">&quot;utf8&quot;</span>)<br>    sql = sql<br><br>    read_sql = pd.read_sql(sql, conn)<br><br>    <span class="hljs-keyword">return</span> read_sql<br><span class="hljs-comment"># read_sql=conn_sql()</span><br><span class="hljs-comment"># 定义链接数据库 </span><br>df = conn_sql(sql)<br></code></pre></td></tr></table></figure>
+<h5 id="引入后处理"><a href="#引入后处理" class="headerlink" title="引入后处理"></a>引入后处理</h5><p>py数据处理内容为空值补全，补全方法为生成连续一小时时间序列index，数据拼接，数据线性插值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">dataprocess_en</span>(<span class="hljs-params">df, s, y</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    df:DataFrame时间序列数据;</span><br><span class="hljs-string">    s:device_name</span><br><span class="hljs-string">    y:fator_code</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    aidunqiao = df.loc[df[<span class="hljs-string">&quot;device_name&quot;</span>] == s, :]<br>    ai_cod = aidunqiao.loc[df[<span class="hljs-string">&quot;fator_code&quot;</span>] == y, :]<br>    ai_cod_mn = ai_cod.loc[:, [<span class="hljs-string">&quot;data_time&quot;</span>, <span class="hljs-string">&quot;value&quot;</span>]]<br>    baseline = ai_cod.loc[:, [<span class="hljs-string">&quot;data_time&quot;</span>, <span class="hljs-string">&quot;value&quot;</span>]]<br><br>    ai_cod_mn.set_index(<span class="hljs-string">&quot;data_time&quot;</span>, inplace=<span class="hljs-literal">True</span>)<br>    interp_cod_mn = ai_cod_mn[<span class="hljs-string">&quot;value&quot;</span>].interpolate()<br>    ai_cod_mn[<span class="hljs-string">&quot;value_2&quot;</span>] = interp_cod_mn<br>    starttime = baseline.iloc[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>]<br>    rows = baseline.shape[<span class="hljs-number">0</span>]<br>    endtime = baseline.iloc[rows - <span class="hljs-number">1</span>, <span class="hljs-number">0</span>]<br><br>    year_month_day = pd.date_range(starttime, endtime, freq=<span class="hljs-string">&quot;h&quot;</span>).strftime(<br>        <span class="hljs-string">&quot;%Y%m%d%h%m%s&quot;</span><br>    )<br>    a_ser = pd.DataFrame(&#123;<span class="hljs-string">&quot;data_time&quot;</span>: year_month_day&#125;)<br>    a_ser.set_index(<span class="hljs-string">&quot;data_time&quot;</span>, inplace=<span class="hljs-literal">True</span>)<br>    df = pd.concat([a_ser, ai_cod_mn], axis=<span class="hljs-number">0</span>, join=<span class="hljs-string">&quot;outer&quot;</span>)<br>    df = df.reset_index(drop=<span class="hljs-literal">False</span>)<br>    df[<span class="hljs-string">&quot;data_time&quot;</span>] = pd.to_datetime(df[<span class="hljs-string">&quot;data_time&quot;</span>])<br>    df1 = df.drop_duplicates(subset=<span class="hljs-string">&quot;data_time&quot;</span>, keep=<span class="hljs-string">&quot;last&quot;</span>, ignore_index=<span class="hljs-literal">True</span>)<br>    df2 = df1.sort_values(by=<span class="hljs-string">&quot;data_time&quot;</span>, ignore_index=<span class="hljs-literal">True</span>)<br>    df2[<span class="hljs-string">&quot;value_2&quot;</span>] = df2[<span class="hljs-string">&quot;value&quot;</span>].interpolate()<br>    df2.drop(columns=<span class="hljs-string">&quot;value&quot;</span>, inplace=<span class="hljs-literal">True</span>)<br>    df2.set_index(<span class="hljs-string">&quot;data_time&quot;</span>, inplace=<span class="hljs-literal">True</span>)<br>    df2.columns = [s]<br><br>    <span class="hljs-keyword">return</span> df2<br></code></pre></td></tr></table></figure>
+<p>数据输出结果为，指定站点，制定因子的连续一小时监测结果。<br>引入数据后根据dataprocess_en，计算并拼接为最终预测基础数据。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python">station = df[<span class="hljs-string">&quot;device_name&quot;</span>].unique()<br>factors = df[<span class="hljs-string">&quot;fator_code&quot;</span>].unique()<br>dfn= pd.DataFrame()<br><span class="hljs-keyword">for</span> j <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(factors)):<br>    dfn= pd.DataFrame()<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(station)):<br>        <span class="hljs-built_in">globals</span>()[<span class="hljs-string">&#x27;df_&#123;&#125;_&#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(i,j)] = data_process.dataprocess_en(df,station[i],factors[j])<br>        <span class="hljs-built_in">globals</span>()[<span class="hljs-string">&#x27;dm&#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(j)] = pd.concat([dfn, <span class="hljs-built_in">globals</span>()[<span class="hljs-string">&#x27;df_&#123;&#125;_&#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(i,j)]],axis=<span class="hljs-number">1</span>)<br>        dfn=<span class="hljs-built_in">globals</span>()[<span class="hljs-string">&#x27;dm&#123;&#125;&#x27;</span>.<span class="hljs-built_in">format</span>(j)]<br></code></pre></td></tr></table></figure>
+<p>以上代码将输出dm0，dm1，dm2，不同因子的预测数据集</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 将需要预测的数据放在首列</span><br>pred_col= [<span class="hljs-string">&#x27;站点A&#x27;</span>]<br>all_cols = dm0.columns.values.tolist()<br>new_cols = pred_col + all_cols<br>new_cols = pd.Series(pred_col + all_cols).drop_duplicates()<br></code></pre></td></tr></table></figure>
+<p>当然也可以用比较直接的方式拼接数据集。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python">yx =<span class="hljs-string">&quot;站点B&quot;</span><br>fh =<span class="hljs-string">&quot;站点C&quot;</span><br>bl =<span class="hljs-string">&quot;站点D&quot;</span><br>cb = <span class="hljs-string">&quot;站点A&quot;</span><br>cod =<span class="hljs-string">&quot;高指&quot;</span><br>tp =<span class="hljs-string">&quot;总磷&quot;</span><br>nh3 =<span class="hljs-string">&quot;氨氮&quot;</span><br>df_cb_tp  =data_process.dataprocess_en(df,cb,tp)<br>df_yx_tp  =data_process.dataprocess_en(df,yx,tp)<br>df_fh_tp  =data_process.dataprocess_en(df,fh,tp)<br>df_bl_tp  =data_process.dataprocess_en(df,bl,tp)<br>df2 = pd.concat([df_cb_tp ,df_yx_tp,df_fh_tp,df_bl_tp],axis=<span class="hljs-number">1</span>)<br>df2=df2[-<span class="hljs-number">3000</span>:] <span class="hljs-comment"># 取近3000个数据，保证运算速度和数据的更新程度</span><br><span class="hljs-comment"># df2=df2[::4] 可以取逐4小时值</span><br></code></pre></td></tr></table></figure>
+<p>以上数据准备结束，总磷预测数据集示例如下，第一列站点A为预测因变量。data_time为index</p>
+<table>
+<thead>
+<tr>
+<th>data_time（index）</th>
+<th>站点A</th>
+<th>站点B</th>
+<th>站点C</th>
+<th>站点D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2022-05-17 05:00:00</td>
+<td>0.1955</td>
+<td>0.250125</td>
+<td>0.24355</td>
+<td>0.247800</td>
+</tr>
+<tr>
+<td>2022-05-17 06:00:00</td>
+<td>0.1950</td>
+<td>0.247950</td>
+<td>0.24340</td>
+<td>0.243100</td>
+</tr>
+<tr>
+<td>2022-05-17 07:00:00</td>
+<td>0.1945</td>
+<td>0.245775</td>
+<td>0.24325</td>
+<td>0.238400</td>
+</tr>
+<tr>
+<td>2022-05-17 08:00:00</td>
+<td>0.1940</td>
+<td>0.243600</td>
+<td>0.24310</td>
+<td>0.233700</td>
+</tr>
+<tr>
+<td>2022-05-17 09:00:00</td>
+<td>0.1885</td>
+<td>0.240850</td>
+<td>0.24290</td>
+<td>0.230225</td>
+</tr>
+</tbody></table>
+<h4 id="2-1-2-模型搭建与训练"><a href="#2-1-2-模型搭建与训练" class="headerlink" title="2.1.2 模型搭建与训练"></a>2.1.2 模型搭建与训练</h4><p>模型框架为<br>训练阶段 预测站点窗口滑动，<br>从结构示例图看，若样本窗口数量为30，样本列数（含预测站点）为n，则框中红点数据为预测数据，其余数据为训练因变量，通过模型建立非线性关系。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1663663432052-55b1e6db-d4ec-4bd9-8631-b2d7b2199bea.png#averageHue=%23f6f3f0&clientId=ufe0eeb19-9d7f-4&from=paste&height=551&id=uc3d05be0&originHeight=551&originWidth=497&originalType=binary&ratio=1&rotation=0&showTitle=false&size=40481&status=done&style=none&taskId=ucec855ed-b6bf-4bdb-a80a-acedeb93734&title=&width=497" srcset="/img/loading.gif" lazyload alt="image.png"><br>为了实现预测效果，采用滑动时间滑动技术，生成训练基础数据。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1663663771478-e1661a14-bcac-41f6-a348-90954f4a7142.png#averageHue=%23f7f2f0&clientId=ufe0eeb19-9d7f-4&from=paste&height=626&id=u0a432b18&originHeight=626&originWidth=960&originalType=binary&ratio=1&rotation=0&showTitle=false&size=54023&status=done&style=none&taskId=uf5c4e634-8b83-4f7e-ad9c-c32ddc162a7&title=&width=960" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>本次模型搭建采用tensorflower框架，面向对象编程。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 导入相关包</span><br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> GridSearchCV<br><span class="hljs-keyword">from</span> tensorflow.keras.models <span class="hljs-keyword">import</span> Sequential<br><span class="hljs-keyword">from</span> tensorflow.keras.layers <span class="hljs-keyword">import</span> Dense, LSTM, Dropout<br><span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> MinMaxScaler<br><span class="hljs-keyword">from</span> tensorflow.keras.wrappers.scikit_learn <span class="hljs-keyword">import</span> KerasRegressor<br><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> mean_absolute_error, mean_squared_error, r2_score<br><br>plt.rcParams[<span class="hljs-string">&quot;font.sans-serif&quot;</span>] = [<span class="hljs-string">&quot;Simhei&quot;</span>]  <span class="hljs-comment"># 解决坐标轴刻度负号乱码</span><br>plt.rcParams[<span class="hljs-string">&quot;axes.unicode_minus&quot;</span>] = <span class="hljs-literal">False</span><br><span class="hljs-keyword">from</span> datetime <span class="hljs-keyword">import</span> date, datetime, timedelta<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> GridSearchCV<br><br><span class="hljs-comment"># 训练模型，使用 girdsearchCV 进行参数调整以找到基础模型。</span><br></code></pre></td></tr></table></figure>
+<p>定义本体，主要参数包括，预测数据集，预测时长，预测窗口数，预测步长<br>预测时间和预测窗口数最好一致，<br>预测数据集可为多参数，第一列为预测参数，<br>预测步长可以理解为逐小时，还是逐4小时，默认逐小时。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">LSTMTimePredictor</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, df, shift_n=<span class="hljs-number">30</span>, test_ratio=<span class="hljs-number">0.2</span>, n_past=<span class="hljs-number">30</span>,p_step=<span class="hljs-number">1</span> ,optimizer=<span class="hljs-string">&quot;adam&quot;</span></span>):<br>        <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        df:DataFrame时间序列数据;</span><br><span class="hljs-string">        test_ratio:测试比率</span><br><span class="hljs-string">        n_past:预测的窗口数;</span><br><span class="hljs-string">        optimizer:优化器;</span><br><span class="hljs-string">        n_features:特征数;</span><br><span class="hljs-string">        feature_names:特征名称;</span><br><span class="hljs-string">        shirt_n:预测时长</span><br><span class="hljs-string">        &quot;&quot;&quot;</span><br>        self.df = df<br>        self.test_ratio = test_ratio<br>        self.n_past = n_past<br>        self.shift_n = shift_n<br>        self.optimizer = optimizer<br>        self.n_features = self.df.shape[<span class="hljs-number">1</span>]<br>        self.feature_names = self.df.columns<br>        self.p_step = p_step <br></code></pre></td></tr></table></figure>
+<p>时间滑动生成新的数据集。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">shift_date_new</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    时间滑动</span><br><span class="hljs-string">    下一段滑动函数 n 为移动参数，即为预测长度</span><br><span class="hljs-string">    df4都有的数据集用于训练和测试</span><br><span class="hljs-string">    df9向后预测的数据需要的未知数据集;</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    df1 = self.df<br>    n = self.shift_n<br>    bl_fh = df1.iloc[:, <span class="hljs-number">1</span>: self.n_features]<br>    cb = df1.iloc[:, <span class="hljs-number">0</span>]<br>    cb.to_frame<br>    df2 = cb.shift(periods=-n, axis=<span class="hljs-number">0</span>)<br>    df3 = pd.concat([df2, bl_fh], join=<span class="hljs-string">&quot;outer&quot;</span>, axis=<span class="hljs-number">1</span>)<br>    df9 = df3[-n:]<br>    df4 = df3[:-n]<br>    <span class="hljs-keyword">return</span> df4, df9<br></code></pre></td></tr></table></figure>
+<p>数据集划分，归一化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">_train_test_split</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    训练测试划分;</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    df = self.shift_date_new()[<span class="hljs-number">0</span>]<br>    test_split = <span class="hljs-built_in">round</span>(<span class="hljs-built_in">len</span>(self.df) * self.test_ratio)  <span class="hljs-comment"># 计算测试集中的样本数量</span><br>    df_training = df[:-test_split]<br>    df_testing = df[-test_split:]<br>    <span class="hljs-comment"># 进行最小最大归一化</span><br>    scaler = MinMaxScaler(feature_range=(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>))<br>    df_training_scaled = scaler.fit_transform(df_training)<br>    df_testing_scaled = scaler.transform(df_testing)<br><br>    <span class="hljs-comment"># 获取训练集和测试集的样本数量</span><br>    self.train_length = <span class="hljs-built_in">len</span>(df_training_scaled)<br>    self.test_length = <span class="hljs-built_in">len</span>(df_testing_scaled)<br><br>    <span class="hljs-comment"># 获取归一化后的训练样本和测试样本</span><br>    self.scaler = scaler<br>    <span class="hljs-keyword">return</span> df_training_scaled, df_testing_scaled<br><br></code></pre></td></tr></table></figure>
+<p>区分自变量，因变量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">createXY</span>(<span class="hljs-params">self, datasets</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    生成用于LSTM输入的多元数据,例如时间窗口n_past=30,则一个样本的维度为(30,5)</span><br><span class="hljs-string">    30代表时间窗口,5代表特征数量</span><br><span class="hljs-string">    将数据分为x y</span><br><span class="hljs-string">    n_past 我们在预测下一个目标值时将在过去查看的步骤数 粒度</span><br><span class="hljs-string">    n_past使用30,意味着将使用过去的30个值</span><br><span class="hljs-string">    dataX 代表目标预测值dataY前所有因子,包括预测因子30个数据</span><br><span class="hljs-string">    若n_past越小,则预测的平滑度越低,越注重于短期预测,若n_past越大则越注重长期预测</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    dataX = []<br>    dataY = []<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(self.n_past, <span class="hljs-built_in">len</span>(datasets)):<br>        dataX.append(datasets[i - self.n_past : i, <span class="hljs-number">0</span> : datasets.shape[<span class="hljs-number">1</span>]])<br>        dataY.append(datasets[i, <span class="hljs-number">0</span>])<br>    <span class="hljs-keyword">return</span> np.array(dataX), np.array(dataY)<br></code></pre></td></tr></table></figure>
+<p>建立模型，并查找最优参数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">grid_search</span>(<span class="hljs-params"></span><br><span class="hljs-params">        self,</span><br><span class="hljs-params">    </span>):<br>        <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">        根据数据训练模型，并查找最优的参数</span><br><span class="hljs-string">        &quot;&quot;&quot;</span><br>        df_training_scaled = self._train_test_split()[<span class="hljs-number">0</span>]<br>        df_testing_scaled = self._train_test_split()[<span class="hljs-number">1</span>]<br>        X_train, y_train = self.createXY(df_training_scaled)<br>        X_test, y_test = self.createXY(df_testing_scaled)<br><br>        grid_model = KerasRegressor(<br>            build_fn=self._build_model, verbose=<span class="hljs-number">1</span>, validation_data=(X_test, y_test)<br>        )<br>        parameters = &#123;<br>            <span class="hljs-string">&quot;batch_size&quot;</span>: [<span class="hljs-number">16</span>, <span class="hljs-number">20</span>],<br>            <span class="hljs-string">&quot;epochs&quot;</span>: [<span class="hljs-number">8</span>, <span class="hljs-number">10</span>],<br>            <span class="hljs-comment"># , &quot;Adadelta&quot;            &quot;optimizer&quot;: [&quot;adam&quot;],</span><br>        &#125;<br>        <span class="hljs-comment"># 这里前文设置了optimizer为adam </span><br>        grid_search = GridSearchCV(estimator=grid_model, param_grid=parameters, cv=<span class="hljs-number">2</span>)<br>        grid_search = grid_search.fit(<br>            X_train, y_train, validation_data=(X_test, y_test)<br>        )<br>        self.model = grid_search.best_estimator_.model<br><br></code></pre></td></tr></table></figure>
+<p>至此模型建立。</p>
+<h4 id="2-1-3-模型评价与模型预测"><a href="#2-1-3-模型评价与模型预测" class="headerlink" title="2.1.3 模型评价与模型预测"></a>2.1.3 模型评价与模型预测</h4><p>本次采用4 种方法评价模型精度，分别是MSE、MAE、R2、准确率。<br>测试集模型预测精度评价及绘图代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><code class="hljs python"><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">evaluate</span>(<span class="hljs-params">self, plot=<span class="hljs-literal">True</span></span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    制图及模型评价</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    df_testing_scaled = self._train_test_split()[<span class="hljs-number">1</span>]<br>    X_test, y_test = self.createXY(df_testing_scaled)<br>    <span class="hljs-comment"># 预测值</span><br>    prediction = self.model.predict(X_test)<br>    prediction_copy_array = np.repeat(prediction, self.n_features, axis=-<span class="hljs-number">1</span>)<br>    pred = self.scaler.inverse_transform(<br>        np.reshape(prediction_copy_array, (<span class="hljs-built_in">len</span>(prediction), self.n_features))<br>    )[:, <span class="hljs-number">0</span>]<br>    <span class="hljs-comment"># 实际值</span><br>    original_copies_array = np.repeat(y_test, self.n_features, axis=-<span class="hljs-number">1</span>)<br>    original = self.scaler.inverse_transform(<br>        np.reshape(original_copies_array, (<span class="hljs-built_in">len</span>(y_test), self.n_features))<br>    )[:, <span class="hljs-number">0</span>]<br>    <span class="hljs-comment"># 序号还原</span><br>    df = self.shift_date_new()[<span class="hljs-number">0</span>]<br>    test_split = <span class="hljs-built_in">round</span>(<span class="hljs-built_in">len</span>(self.df) * self.test_ratio)  <span class="hljs-comment"># 计算测试集中的样本数量</span><br>    df_training = df[:-test_split]<br>    df_testing = df[-test_split:]<br>    index1 = df_testing.index<br>    starttime = index1[<span class="hljs-number">30</span>]<br>    delta = timedelta(hours=<span class="hljs-number">30</span>)  <span class="hljs-comment"># 时间序号还原</span><br>    starttime = starttime + delta<br>    starttime = starttime.strftime(<span class="hljs-string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)<br>    endtime = index1[-<span class="hljs-number">1</span>]<br>    endtime = endtime + delta<br>    endtime = endtime.strftime(<span class="hljs-string">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)<br>    time_nu = pd.date_range(starttime, endtime, freq=<span class="hljs-string">&quot;h&quot;</span>).strftime(<br>        <span class="hljs-string">&quot;%Y-%m-%d %H:%M:%S&quot;</span><br>    )<br>    time_nu = time_nu[::self.p_step]<br>    original_2 = pd.DataFrame(original)<br>    col_2 = [<span class="hljs-string">&quot;真实值&quot;</span>]<br>    original_2.columns = col_2<br>    original_3 = original_2.set_index(time_nu)<br>    pred_2 = pd.DataFrame(pred)<br>    col_1 = [<span class="hljs-string">&quot;预测值&quot;</span>]<br>    pred_2.columns = col_1<br>    pred_3 = pred_2.set_index(time_nu)<br>    <span class="hljs-keyword">if</span> plot:<br>        plt.figure(figsize=(<span class="hljs-number">14</span>, <span class="hljs-number">6</span>))<br>        plt.plot(original_3, color=<span class="hljs-string">&quot;red&quot;</span>, label=<span class="hljs-string">&quot;真实值&quot;</span>)<br>        plt.plot(pred_3, color=<span class="hljs-string">&quot;blue&quot;</span>, label=<span class="hljs-string">&quot;预测值&quot;</span>)<br>        <span class="hljs-comment"># plt.title(&quot; 站点A氨氮预测&quot;)</span><br>        plt.xlabel(<span class="hljs-string">&quot;Time&quot;</span>)<br>        plt.ylabel(<span class="hljs-string">&quot; 预测值&quot;</span>)<br>        plt.locator_params(axis=<span class="hljs-string">&quot;x&quot;</span>, nbins=<span class="hljs-number">10</span>)<br>        plt.xticks(<span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(time_nu), <span class="hljs-number">48</span>), rotation=<span class="hljs-number">45</span>)  <span class="hljs-comment"># 刻度线显示优化</span><br>        plt.legend()<br>        plt.show()<br>    mae = mean_absolute_error(original, pred)<br>    mse = mean_squared_error(original, pred)<br>    mape = np.mean(np.<span class="hljs-built_in">abs</span>(original - pred) / original)<br>    r2 = r2_score(original, pred)<br>    acc = <span class="hljs-number">1</span> - <span class="hljs-built_in">abs</span>((pred - original) / original)<br>    acc = np.mean(acc)<br>    <span class="hljs-built_in">print</span>(<br>        <span class="hljs-string">&quot;MSE : &#123;&#125;,MAE : &#123;&#125;, MAPE : &#123;&#125;, r2 : &#123;&#125;, 准确率:&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(<br>            mse, mae, mape, r2, acc<br>        )<br>    )<br>    <span class="hljs-keyword">return</span> pred<br></code></pre></td></tr></table></figure>
+
+<p>数据集采用临江河站点A、站点B、站点C、站点D等4个站点，预测站点A高指、氨氮、总磷3个因子。数据范围为2022&#x2F;5&#x2F;19  5:00:00 至 2022&#x2F;9&#x2F;21  4:00:00。共3000个数据。测试集占比0.2。<br>测试集预测评价结果如下：MSE、MAE、R2均表现较好，总磷准确率、MAPE较差，与水质浓度波动大，关系密切，可以通过进一步优化数据清理减少数据波动。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1663748742440-449f9585-7da7-4cb7-94b3-abd50057295a.png#averageHue=%23fbf9f9&clientId=u7a4f3748-f2cd-4&from=paste&height=775&id=u86202cc0&originHeight=775&originWidth=1495&originalType=binary&ratio=1&rotation=0&showTitle=true&size=180426&status=done&style=none&taskId=ucbe6b03a-dccc-4fc7-88ef-d7315592a3a&title=%E8%8C%A8%E5%9D%9D%E9%AB%98%E6%8C%87%E6%B5%8B%E8%AF%95%E9%9B%86%E9%A2%84%E6%B5%8B%E5%AF%B9%E6%AF%94&width=1495" srcset="/img/loading.gif" lazyload alt="站点A高指测试集预测对比" title="站点A高指测试集预测对比"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1663748769105-f0cd0097-09a1-4d51-8017-c00e7fa2954f.png#averageHue=%23fbf9f9&clientId=u7a4f3748-f2cd-4&from=paste&height=668&id=uc07496b7&originHeight=668&originWidth=1278&originalType=binary&ratio=1&rotation=0&showTitle=true&size=139917&status=done&style=none&taskId=u55750a39-849c-495c-869a-d9d796f0667&title=%E8%8C%A8%E5%9D%9D%E6%B0%A8%E6%B0%AE%E6%B5%8B%E8%AF%95%E9%9B%86%E9%A2%84%E6%B5%8B%E5%AF%B9%E6%AF%94&width=1278" srcset="/img/loading.gif" lazyload alt="站点A氨氮测试集预测对比" title="站点A氨氮测试集预测对比"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1663748800563-6bd58632-1cd4-4139-b64f-a79ff1e45b3d.png#averageHue=%23fbf9f9&clientId=u7a4f3748-f2cd-4&from=paste&height=684&id=u660ab49f&originHeight=684&originWidth=1293&originalType=binary&ratio=1&rotation=0&showTitle=true&size=122752&status=done&style=none&taskId=u0e9c73da-d000-46c4-95b8-04afcc7a735&title=%E8%8C%A8%E5%9D%9D%E6%80%BB%E7%A3%B7%E6%B5%8B%E8%AF%95%E9%9B%86%E9%A2%84%E6%B5%8B%E5%AF%B9%E6%AF%94&width=1293" srcset="/img/loading.gif" lazyload alt="站点A总磷测试集预测对比" title="站点A总磷测试集预测对比"></p>
+<table>
+<thead>
+<tr>
+<th>因子</th>
+<th>MSE</th>
+<th>MAE</th>
+<th>MAPE</th>
+<th>r2</th>
+<th>准确率</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>高指</td>
+<td>0.00004273</td>
+<td>0.00521874</td>
+<td>0.037992</td>
+<td>0.968379</td>
+<td>0.962008</td>
+</tr>
+<tr>
+<td>氨氮</td>
+<td>0.01103716</td>
+<td>0.07946250</td>
+<td>0.016475</td>
+<td>0.959818</td>
+<td>0.983525</td>
+</tr>
+<tr>
+<td>总磷</td>
+<td>0.00081064</td>
+<td>0.01672249</td>
+<td>0.698055</td>
+<td>0.947509</td>
+<td>0.301945</td>
+</tr>
+</tbody></table>
+<h5 id="对未来的预测"><a href="#对未来的预测" class="headerlink" title="对未来的预测"></a>对未来的预测</h5><p>模型可以自定义模型预测时长，本次以72小时为例。运行预测评价模块</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python">lstm2 = LSTMTimePredictor(dm2,test_ratio=<span class="hljs-number">0.2</span>,n_past=<span class="hljs-number">72</span>,p_step=<span class="hljs-number">1</span> )<br>lstm2.grid_search()<br>lstm2.evaluate()<br>lstm2.fig_predict()<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">fig_predict</span>(<span class="hljs-params">self</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    查看数据概览图;</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    df = self.predict()<br>    plt.figure(figsize=(<span class="hljs-number">14</span>, <span class="hljs-number">6</span>))<br>    plt.plot(df, color=<span class="hljs-string">&quot;red&quot;</span>, label=<span class="hljs-string">&quot;预测值&quot;</span>)<br>    plt.xlabel(<span class="hljs-string">&quot;Time&quot;</span>)<br>    plt.ylabel(<span class="hljs-string">&quot; 预测值&quot;</span>)<br>    plt.title(<span class="hljs-string">&quot;水质预测&quot;</span>)<br>    plt.locator_params(axis=<span class="hljs-string">&quot;x&quot;</span>, nbins=<span class="hljs-number">10</span>)<br>    <span class="hljs-comment"># plt.xticks(range(1,len(time_nu),48),rotation=45) # 刻度线显示优化</span><br>    plt.legend()<br>    plt.show()<br></code></pre></td></tr></table></figure>
+<p>预测结果分别为，整体呈下降趋势<br><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1663750110262-e079044e-bf26-4ddb-afc5-2294ed2c7e34.png#averageHue=%23fcfbfb&clientId=u7a4f3748-f2cd-4&from=paste&height=692&id=u1651b8bc&originHeight=692&originWidth=1517&originalType=binary&ratio=1&rotation=0&showTitle=true&size=64780&status=done&style=none&taskId=u47331cb8-9abd-484c-a939-22e23994822&title=%E6%80%BB%E7%A3%B7%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C&width=1517" srcset="/img/loading.gif" lazyload alt="总磷预测结果" title="总磷预测结果"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1663750136399-ca6af9e7-7c7d-48a4-aa17-05441f977fea.png#averageHue=%23fcfbfb&clientId=u7a4f3748-f2cd-4&from=paste&height=674&id=u7c3530d7&originHeight=674&originWidth=1440&originalType=binary&ratio=1&rotation=0&showTitle=true&size=58938&status=done&style=none&taskId=ub5e03c6e-36a6-4d63-aa04-ae31f2f94bd&title=%E9%AB%98%E6%8C%87%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C&width=1440" srcset="/img/loading.gif" lazyload alt="高指预测结果" title="高指预测结果"><br><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1663750153213-46506788-4bb8-4d26-83af-9f7662d09818.png#averageHue=%23fcfbfb&clientId=u7a4f3748-f2cd-4&from=paste&height=576&id=uba2f3d8e&originHeight=576&originWidth=1237&originalType=binary&ratio=1&rotation=0&showTitle=true&size=50652&status=done&style=none&taskId=u09e53097-9ce9-475d-bb56-d1e9eb9e240&title=%E6%B0%A8%E6%B0%AE%E9%A2%84%E6%B5%8B%E7%BB%93%E6%9E%9C&width=1237" srcset="/img/loading.gif" lazyload alt="氨氮预测结果" title="氨氮预测结果"></p>
+<h2 id="3-应用场景及展望"><a href="#3-应用场景及展望" class="headerlink" title="3 应用场景及展望"></a>3 应用场景及展望</h2><p>LSTM作为成熟的神经网络模型，可以实现多因子，连续时间序列预测，可以应用在有一定连续水质检测数据的平台上，预测结果较准确。因子关联可根据实际情况选择，例如上下游关系，机理关系等。<br>shuju ，与ＲNN一样，LSTM隐藏层具有随时间序列的重复节点。LSTM节点相较ＲNN更<br>为复杂，它将ＲNN中隐含层中的神经元替换为记忆体，以此实现序列信息的保留与长期记忆。TM是ＲNN的一种变体，与ＲNN一样，LSTM隐藏层具有随时间序列的重复节点。LSTM节点相较ＲNN更为复杂，它将ＲNN中隐含层中的神经元替换为记忆体，以此实现序列信息的保留与长期记忆。<br>短的的多连续适用于时记忆网络(LSTM)应用</p>
+<h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>如有帮助，请收藏点赞，如需引用转载请注明出处。<br>微信公众号：环境猫 er<br>CSDN：细节处有神明<br>个人博客：<a href="https://maoyu92.github.io/">wallflowers (maoyu92.github.io)</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" class="category-chain-item">时间序列</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%94%A8%E5%BF%83%E9%95%BF%E6%96%87/" class="print-no-link">#用心长文</a>
+      
+        <a href="/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B/" class="print-no-link">#时间序列模型</a>
+      
+        <a href="/tags/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="print-no-link">#生态环境</a>
+      
+        <a href="/tags/BP%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="print-no-link">#BP神经网络</a>
+      
+        <a href="/tags/%E6%B0%B4%E8%B4%A8%E6%A8%A1%E5%9E%8B/" class="print-no-link">#水质模型</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>LSTM水质预测模型实践</div>
+      <div>https://maoyu92.github.io/2024/07/03/01 时间序列/LSTM水质预测模型实践/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/10/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/streamlit%20%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E7%BC%96%E7%A8%8B%E6%A1%86%E6%9E%B6/" title="Streamlit 多页面应用设计指南：构建模块化数据分析平台">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Streamlit 多页面应用设计指南：构建模块化数据分析平台</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/02/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E9%94%BB%E7%82%BC%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%20%E7%95%AA%E5%A4%96%20%E8%BA%AB%E4%BD%93%E6%BF%80%E7%B4%A0%E5%8F%8A%E7%A5%9E%E7%BB%8F%E9%80%92%E8%B4%A8/" title="锻炼 读书笔记 番外 身体激素及神经递质">
+                        <span class="hidden-mobile">锻炼 读书笔记 番外 身体激素及神经递质</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aISEcd721UR4FDrgO7lhVO7C-MdYXbMMI","appKey":"baX3M064xYuZCyDdARuS8mOM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://aisecd72.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
