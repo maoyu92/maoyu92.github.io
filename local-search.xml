@@ -58,6 +58,33 @@
   
   
   <entry>
+    <title>obsidian projects  实现项目管理</title>
+    <link href="/2024/07/22/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20projects%20%20%E5%AE%9E%E7%8E%B0%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/"/>
+    <url>/2024/07/22/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20projects%20%20%E5%AE%9E%E7%8E%B0%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" ><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天推荐 obsidian 的项目管理插件 projects ，用免费工具实现本地化项目管理。该工具项目管理思路非常类似 trello，简单易上手，而且和个人笔记强关联，非常适合喜欢折腾和 all in one 的玩家。</p><p><strong>插件主要特点</strong></p><ol><li>包含 Table、Board、Calendar、Gallery 4 个视图。</li><li>Table 表格。清晰展示各个项目的属性，可以配置属性显示内容。</li><li>Board 看板。通过属性不同项目，比如状态、重要程度等。</li><li>Calendar 日历。界面用带有时间的元数据展示项目时间。</li><li>Gallery 画册。以图册的形式展示项目。</li><li>各种视图均连接项目文件，高度自定义，适合多场景。</li></ol><h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><p>在应用商店直接下载 projects 插件。点击安装即可。</p><p><img src="https://img-blog.csdnimg.cn/img_convert/7ed4bab9e57ea9c550cab9279ab9d5f8.png" alt="下载插件"></p><h2 id="项目管理搭建"><a href="#项目管理搭建" class="headerlink" title="项目管理搭建"></a>项目管理搭建</h2><p>推荐通过 demo 案例查看 projects 插件项目管理逻辑。</p><h3 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h3><p>点击新建项目图标<br>输入名称、文件夹路径等，建议预先设置好文件夹。<br><img src="https://img-blog.csdnimg.cn/img_convert/7c5282b06b1b7e4c150e2915b7516a7f.png" alt="新建项目设置"></p><h3 id="配置项目模板"><a href="#配置项目模板" class="headerlink" title="配置项目模板"></a>配置项目模板</h3><p>这是最重要的部分，我参考 demo 中的元数据结构，最终修改如下：</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">Status:</span> <span class="hljs-string">doing</span><br><span class="hljs-attr">Due:</span> <span class="hljs-number">2024-07-22</span><br><span class="hljs-attr">Done:</span> <span class="hljs-literal">false</span><br><span class="hljs-attr">Weight:</span> <span class="hljs-number">5</span><br><span class="hljs-attr">Tags:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">Todo</span><br><span class="hljs-attr">Image:</span><br><span class="hljs-meta">---</span><br><span class="hljs-meta"></span><br></code></pre></td></tr></table></figure><p>Status：状态。Doing，done，backlog，daley， plan。<br>Due：截止日期。<br>Weight：重要性。1-5<br>Tags：标签。Todo（结合 checklist 工具，加上后自动变为 task）<br>Image：图，用图床地址，也可以本地地址，推荐图床地址，obsidian 搭建图床可以看我之前的文章。<br>Done：是否完成，完成后归档</p><p>这里可以根据自己的需要自定义，比如指定 people 等等。<br>需要注意，当我们把模板元数据设置好时，最好给一个初始值，这样能让 projects 识别到标签类型。</p><h3 id="新建项目-1"><a href="#新建项目-1" class="headerlink" title="新建项目"></a>新建项目</h3><p>设置好后会自动进入空白的表格视图，点击新建项目，一是会自动新建一个 md 文档，自动生成一列项目。点击 name 后就可以自动编辑内容了，修改元数据内容，对应的表格信息也会修改。<br><img src="https://img-blog.csdnimg.cn/img_convert/71cae22678c4eda2d695b577e9339992.png" alt="表格视图"><br>可以通过隐藏字段来展示自己想要的内容，比如只展示名称、状态、重要性、截止日期等。<br>可以在 table 页面管理多个子项的内容，非常方便</p><h3 id="新增其他视图"><a href="#新增其他视图" class="headerlink" title="新增其他视图"></a>新增其他视图</h3><p>点击表格旁边的加号，可以新增 Board、Calendar、Gallery。思路都是一样不同的元数据来展示不同的信息，例如状态对应 Board 视图、截止日期对应日历视图，图片对应图册视图等等。<br>在每个视图下，都能新建项目，点击就能管理具体的项目，真的非常好用。</p><h4 id="看板视图"><a href="#看板视图" class="headerlink" title="看板视图"></a>看板视图</h4><p><img src="https://img-blog.csdnimg.cn/img_convert/bb4fd9ff15bd618ce1a25d04c2a0ea4d.png" alt="看板视图"></p><h4 id="画册视图"><a href="#画册视图" class="headerlink" title="画册视图"></a>画册视图</h4><p><img src="https://img-blog.csdnimg.cn/img_convert/461be4e33386842d1a84221464fcc633.png" alt="画册视图"></p><h4 id="日历视图"><a href="#日历视图" class="headerlink" title="日历视图"></a>日历视图</h4><p><img src="https://img-blog.csdnimg.cn/img_convert/3936b19e70b668191d9786dd17f6a8cc.png" alt="日历视图"></p><h2 id="相关思考"><a href="#相关思考" class="headerlink" title="相关思考"></a>相关思考</h2><p>通过这个插件可以实现整个团队的项目管理，也可以单个项目的管理，还可以是兴趣爱好的管理，比如图书、电影等。</p><h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><p><a href="https://blog.csdn.net/weixin_42984235/article/details/136734612">精简版 Obsidian 图床配置 PicGo+ gitee-CSDN博客</a></p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>obsidian</tag>
+      
+      <tag>obsidian插件</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>python 项目框架管理</title>
     <link href="/2024/07/16/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/python%20%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E7%AE%A1%E7%90%86/"/>
     <url>/2024/07/16/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/python%20%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E7%AE%A1%E7%90%86/</url>
@@ -108,7 +135,7 @@
   
   
   <entry>
-    <title> 迭代器介绍</title>
+    <title> python 迭代器介绍</title>
     <link href="/2024/07/15/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/python%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%BB%8B%E7%BB%8D/"/>
     <url>/2024/07/15/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/python%20%E8%BF%AD%E4%BB%A3%E5%99%A8%E4%BB%8B%E7%BB%8D/</url>
     
@@ -149,9 +176,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>工具推荐</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     
@@ -176,17 +203,17 @@
     
     <tags>
       
+      <tag>生态环境</tag>
+      
       <tag>python</tag>
+      
+      <tag>数据分析</tag>
       
       <tag>streamlit</tag>
       
       <tag>数据可视化</tag>
       
-      <tag>数据分析</tag>
-      
       <tag>工作总结</tag>
-      
-      <tag>生态环境</tag>
       
     </tags>
     
@@ -211,15 +238,15 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
       <tag>生态环境</tag>
-      
-      <tag>时间序列模型</tag>
       
       <tag>BP神经网络</tag>
       
       <tag>水质模型</tag>
+      
+      <tag>时间序列模型</tag>
+      
+      <tag>用心长文</tag>
       
     </tags>
     
@@ -319,17 +346,17 @@
     
     <tags>
       
-      <tag>水文分析</tag>
+      <tag>生态环境</tag>
       
       <tag>用心长文</tag>
       
-      <tag>经验分享</tag>
-      
       <tag>python</tag>
       
-      <tag>streamlit</tag>
+      <tag>经验分享</tag>
       
-      <tag>生态环境</tag>
+      <tag>水文分析</tag>
+      
+      <tag>streamlit</tag>
       
       <tag>git</tag>
       
@@ -412,9 +439,9 @@
       
       <tag>python</tag>
       
-      <tag>数据分析</tag>
-      
       <tag>算法</tag>
+      
+      <tag>数据分析</tag>
       
     </tags>
     
@@ -495,11 +522,11 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
       <tag>生态环境</tag>
       
       <tag>时间序列模型</tag>
+      
+      <tag>用心长文</tag>
       
       <tag>机理模型</tag>
       
@@ -609,11 +636,11 @@
     
     <tags>
       
+      <tag>用心长文</tag>
+      
       <tag>水文分析</tag>
       
       <tag>arcgis</tag>
-      
-      <tag>用心长文</tag>
       
     </tags>
     
@@ -663,15 +690,15 @@
     
     <tags>
       
+      <tag>用心长文</tag>
+      
+      <tag>经验分享</tag>
+      
       <tag>水文分析</tag>
       
       <tag>arcgis</tag>
       
-      <tag>用心长文</tag>
-      
       <tag>地形数据</tag>
-      
-      <tag>经验分享</tag>
       
     </tags>
     
@@ -725,9 +752,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>工具推荐</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>素材</tag>
       
@@ -754,9 +781,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>工具推荐</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>AIGC</tag>
       
@@ -870,9 +897,9 @@
       
       <tag>用心长文</tag>
       
-      <tag>经验分享</tag>
-      
       <tag>python</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>excel</tag>
       
@@ -926,13 +953,13 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
-      <tag>python</tag>
-      
       <tag>时间序列模型</tag>
       
+      <tag>用心长文</tag>
+      
       <tag>水环境分析</tag>
+      
+      <tag>python</tag>
       
     </tags>
     
@@ -1017,11 +1044,42 @@
       
       <tag>用心长文</tag>
       
-      <tag>python</tag>
-      
       <tag>时间序列</tag>
       
       <tag>水环境分析</tag>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Obsidian 图床配置  PicGo+ gitee 精简版</title>
+    <link href="/2024/04/15/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20%20%E5%9B%BE%E5%BA%8A%E9%85%8D%E7%BD%AE%20%20PicGo+%20gitee%20%E7%B2%BE%E7%AE%80%E7%89%88/"/>
+    <url>/2024/04/15/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20%20%E5%9B%BE%E5%BA%8A%E9%85%8D%E7%BD%AE%20%20PicGo+%20gitee%20%E7%B2%BE%E7%AE%80%E7%89%88/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="图床的作用"><a href="#图床的作用" class="headerlink" title="图床的作用"></a>图床的作用</h2><p>图床（Image Hosting Service）是一种在线服务，用于存储和托管用户上传的图片文件。用户可以将图片上传到图床服务器，并获得一个可访问的图片链接，然后可以在网页、博客、论坛等地方使用这个链接来展示图片。<br>通过 PicGo+ gitee 可以搭建免费属于自己的免费图床，当然这里有个风险就是他是开源的可能有资料泄密的风险。</p><h3 id="资料准备"><a href="#资料准备" class="headerlink" title="资料准备"></a>资料准备</h3><p>Node. Js<br>Gitee<br>PicGo<br>Obsidian<br>Obsidian 插件 Image auto Upload<br>参考<br><a href="https://blog.csdn.net/m0_72598806/article/details/135693863">picGo+gitee搭建Obsidian(Typora)图床，实现高效写作_obsidian 坚果云 图床-CSDN博客</a><br>具体步骤：</p><h2 id="1-下载-Node-Js"><a href="#1-下载-Node-Js" class="headerlink" title="1. 下载 Node. Js"></a>1. 下载 Node. Js</h2><p>一直下一步即可，注意确保勾选环境变量，一般为默认。<br><a href="https://nodejs.org/en">Node.js (nodejs.org)</a></p><h2 id="2-下载-PicGo"><a href="#2-下载-PicGo" class="headerlink" title="2. 下载  PicGo"></a>2. 下载  PicGo</h2><p>一直下一步。<br><a href="https://github.com/Molunerfinn/PicGo/releases">Releases · Molunerfinn&#x2F;PicGo (github.com)</a></p><h2 id="3-配置gitee"><a href="#3-配置gitee" class="headerlink" title="3. 配置gitee"></a>3. 配置gitee</h2><p>新建仓库-配置开源<br>创建个人令牌</p><h2 id="4-配置-picgo"><a href="#4-配置-picgo" class="headerlink" title="4. 配置 picgo"></a>4. 配置 picgo</h2><p>安装插件 gitee-uplodaer<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202403151107812.png" alt="image.png"></p><p>图床设置 - gitee<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202403151108050.png" alt="image.png"></p><p>Repo 输入 gitee 仓库地址<br>Path 为图片文件夹<br>建议设置好后，在上传区上传测试是否成功。<br>Picgo 设置开启开机启动，开启时间戳重命名。<br>一般设置 server 保持默认即可</p><h2 id="5-配置-obsdian"><a href="#5-配置-obsdian" class="headerlink" title="5. 配置 obsdian"></a>5. 配置 obsdian</h2><p>下载安装插件 Image auto Upload<br>设置保持默认即可。</p><p>完成，你可以测试是否成功。</p><p>如果显示失败上传失败不要急。</p><ol><li>检查 picgo  直接上传是否正常</li><li>检查 picgo 设置路径是否正常 token 是否正确，不能有空格</li><li>检查个人仓库地址是否正常，可以测试完整路径或者后面的路径反复尝试。</li><li>重启 picgo 中的设置 server 先关闭后开启</li></ol><p>最后，祝你成功。</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>工具推荐</tag>
+      
+      <tag>经验分享</tag>
+      
+      <tag>obsidian</tag>
+      
+      <tag>图床</tag>
       
     </tags>
     
@@ -1046,9 +1104,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>工具推荐</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>obsidian</tag>
       
@@ -1077,13 +1135,42 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>工具推荐</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>obsidian</tag>
       
       <tag>微信读书</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>python 等声值线的绘制</title>
+    <link href="/2024/04/03/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/python%20%E7%AD%89%E5%A3%B0%E5%80%BC%E7%BA%BF%E7%9A%84%E7%BB%98%E5%88%B6/"/>
+    <url>/2024/04/03/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/python%20%E7%AD%89%E5%A3%B0%E5%80%BC%E7%BA%BF%E7%9A%84%E7%BB%98%E5%88%B6/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要通过 python 实现风电风机点声源的等声值线绘制。</p><h3 id="风电噪声原理及背景"><a href="#风电噪声原理及背景" class="headerlink" title="风电噪声原理及背景"></a>风电噪声原理及背景</h3><p>风电项目噪声为一个面源，与普通点源不同， 风机噪声源主要包括：机舱内部零部件（齿轮箱和发电机等）运转过程中产生的噪 声、叶片旋转过程中的结构振动噪声和风轮叶片旋转时产生的空气动力学噪声（即气动 噪声）。目前风电机组机舱内部零件噪声和结构振动噪声已得到很好的控制，风电机组 的噪声影响主要来自叶片气动噪。叶片气动噪声是在入流扰动和塔架扰动下的非定常流场和叶片相互作用下，气流流 经叶片界面产生附着涡、分离涡和尾迹脱落涡等，这些非定常涡和叶片表面相互作用从 而引起的非稳定流动噪声。<br>翟国庆等利用美国航天航空局（NASA）研发的风电机组噪声预测模型，结合国内风机特点和风机噪声实际测量值对做出的模型修正提出了对 国内的风电机组噪声预测模型，但模型较复杂且需要的参数较多。根据其模型简化与实 测比对研究的结果，当噪声预测点距风电机组较近（水平距离 d≤2 倍风轮半）时， 噪声测量值不能用点声源模型进行较好预测；当噪声测点距离风电机组较远（水距离 d≥2 倍风轮半径）时，下风向噪声预测点的预测结果与实测值拟合系数明显，一般 可达到 0.95 以上，拟合效果较好。国外学者 Makarewicz 也用数学方法证明了预测点 距风电水平距离大于 2 倍叶片长度即 1 倍风轮直径时，风机叶片噪声符合自声场点声 源的特点；谷朝军等的实测研究结果也表明，在下风向 4 倍叶片长度距离，距离每增 加 1 倍风机噪声约衰减 6dB(A)，基本满足点声源的传播规律。</p><p>将风机噪声贡献简化为以下情况：<br>风机直径w&#x3D;120， d 为 预测点与噪声源的距离，m。<br>LA(d) 为预测点（距离 r）的噪声值，dB（A）；<br>LAW 为噪声源的声功率级，dB（A）赋值109<br>当d&lt;w&#x2F;π&#x2F;2时，LA几乎不变；<br>当d&lt;w&#x2F;π&gt;d&gt;w&#x2F;π&#x2F;2时 ,LA(d) &#x3D; LAW-10lgd<br>当d&gt;w&#x2F;π时，LA(d) &#x3D; LAW-20lgd-8</p><h2 id="Python-代码片段"><a href="#Python-代码片段" class="headerlink" title="Python 代码片段"></a>Python 代码片段</h2><p>根据以上要求可以使用 python 进行绘制</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-comment"># 设置中心点的坐标和地图范围</span><br>center_x = <span class="hljs-number">0</span><br>center_y = <span class="hljs-number">0</span><br>radius = <span class="hljs-number">500</span><br>w = <span class="hljs-number">120</span>  <span class="hljs-comment"># 风机直径</span><br><br><span class="hljs-comment"># 计算网格点的坐标</span><br>x = np.linspace(-radius, radius, <span class="hljs-number">1000</span>)<br>y = np.linspace(-radius, radius, <span class="hljs-number">1000</span>)<br>X, Y = np.meshgrid(x, y)<br><br><span class="hljs-comment"># 计算每个点的距离和噪声值</span><br>d = np.sqrt(X**<span class="hljs-number">2</span> + Y**<span class="hljs-number">2</span>)<br><br>LA = np.zeros_like(d)<br>LA[d &lt; w/(<span class="hljs-number">2</span>*np.pi)] = <span class="hljs-number">109</span><br>LA[(d &gt; w/(<span class="hljs-number">2</span>*np.pi)) &amp; (d &lt; w)] = <span class="hljs-number">109</span> - <span class="hljs-number">10</span> * np.log10(d[(d &gt; w/(<span class="hljs-number">2</span>*np.pi)) &amp; (d &lt; w)])<br>LA[d &gt; w] = <span class="hljs-number">109</span> - <span class="hljs-number">20</span> * np.log10(d[d &gt; w]) - <span class="hljs-number">8</span><br><br><span class="hljs-comment"># 背景噪声值</span><br>B = <span class="hljs-number">40</span><br><br><span class="hljs-comment"># 叠加背景噪声值</span><br>LA_total = <span class="hljs-number">10</span> * np.log10(<span class="hljs-number">10</span>**(<span class="hljs-number">0.1</span>*LA) + <span class="hljs-number">10</span>**(<span class="hljs-number">0.1</span>*B))<br><br><span class="hljs-comment"># 绘制等声值线图</span><br>plt.figure(figsize=(<span class="hljs-number">5</span>, <span class="hljs-number">5</span>), dpi=<span class="hljs-number">300</span>)<br>plt.contourf(X, Y, LA_total, levels=np.arange(<span class="hljs-number">40</span>, <span class="hljs-number">111</span>, <span class="hljs-number">10</span>), cmap=<span class="hljs-string">&#x27;RdYlGn_r&#x27;</span>, alpha=<span class="hljs-number">0.5</span>)<br>plt.colorbar(label=<span class="hljs-string">&#x27;Total Sound Level (dB)&#x27;</span>)<br>plt.title(<span class="hljs-string">&#x27;Total Sound Contour Map&#x27;</span>)<br>plt.xlabel(<span class="hljs-string">&#x27;X&#x27;</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;Y&#x27;</span>)<br>plt.show()<br></code></pre></td></tr></table></figure><p><img src="https://cdn.nlark.com/yuque/0/2023/png/681168/1700129676174-68d67753-a6bf-4be0-b2cf-117807acea3e.png"></p><h3 id="图片美化"><a href="#图片美化" class="headerlink" title="图片美化"></a>图片美化</h3><p>利用ps 将带比例尺的背景图与预测结果叠加即可。</p><p><img src="https://cdn.nlark.com/yuque/0/2023/png/681168/1700129739686-72e0ac33-2dc9-41f4-a961-264f36f204b5.png"></p><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>王跃华. 风电场噪声、光影环境防护距离的研究[D].东北大学,2011.</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>生态环境</tag>
+      
+      <tag>python</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     

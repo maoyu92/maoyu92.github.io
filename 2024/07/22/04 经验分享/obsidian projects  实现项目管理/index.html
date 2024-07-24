@@ -19,33 +19,32 @@
   <meta name="keywords" content="python,eco">
   <meta name="referrer" content="no-referrer" />
   
-    <meta name="description" content="前言最近在看一本书《在线》，将所有数据都需要在线，才有生命力，那么我们的知识库也是。我们现在就可以用先进的大预言模型搭建属于自己的在线 AI 知识库，他就是 ChatGLM 智谱清言智能体。它可以将自己的知识库与 ChatGLM 结合，成为某一方面的专业知识问答系统。当然，市面上有很多类似解决方案，但是智谱清言是我试过国内最好用的一个产品，整体知识库最多免费支持1000个文件（每个100MB">
+    <meta name="description" content="前言今天推荐 obsidian 的项目管理插件 projects ，用免费工具实现本地化项目管理。该工具项目管理思路非常类似 trello，简单易上手，而且和个人笔记强关联，非常适合喜欢折腾和 all in one 的玩家。 插件主要特点  包含 Table、Board、Calendar、Gallery 4 个视图。 Table 表格。清晰展示各个项目的属性，可以配置属性显示内容。 Board">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ChatGLM 智能体 搭建属于自己的AI知识库">
-<meta property="og:url" content="https://maoyu92.github.io/2024/05/19/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/ChatGLM%20%E6%99%BA%E8%83%BD%E4%BD%93%20%E6%90%AD%E5%BB%BA%E5%B1%9E%E4%BA%8E%E8%87%AA%E5%B7%B1%E7%9A%84AI%E7%9F%A5%E8%AF%86%E5%BA%93/index.html">
+<meta property="og:title" content="obsidian projects  实现项目管理">
+<meta property="og:url" content="https://maoyu92.github.io/2024/07/22/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20projects%20%20%E5%AE%9E%E7%8E%B0%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/index.html">
 <meta property="og:site_name" content="wallflowers">
-<meta property="og:description" content="前言最近在看一本书《在线》，将所有数据都需要在线，才有生命力，那么我们的知识库也是。我们现在就可以用先进的大预言模型搭建属于自己的在线 AI 知识库，他就是 ChatGLM 智谱清言智能体。它可以将自己的知识库与 ChatGLM 结合，成为某一方面的专业知识问答系统。当然，市面上有很多类似解决方案，但是智谱清言是我试过国内最好用的一个产品，整体知识库最多免费支持1000个文件（每个100MB">
+<meta property="og:description" content="前言今天推荐 obsidian 的项目管理插件 projects ，用免费工具实现本地化项目管理。该工具项目管理思路非常类似 trello，简单易上手，而且和个人笔记强关联，非常适合喜欢折腾和 all in one 的玩家。 插件主要特点  包含 Table、Board、Calendar、Gallery 4 个视图。 Table 表格。清晰展示各个项目的属性，可以配置属性显示内容。 Board">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122102223.png">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122104516.png">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122110778.png">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122111537.png">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122112037.png">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122115270.png">
-<meta property="article:published_time" content="2024-05-19T12:37:00.000Z">
-<meta property="article:modified_time" content="2024-05-19T12:37:00.000Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/7ed4bab9e57ea9c550cab9279ab9d5f8.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/7c5282b06b1b7e4c150e2915b7516a7f.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/71cae22678c4eda2d695b577e9339992.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/bb4fd9ff15bd618ce1a25d04c2a0ea4d.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/461be4e33386842d1a84221464fcc633.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/img_convert/3936b19e70b668191d9786dd17f6a8cc.png">
+<meta property="article:published_time" content="2024-07-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-07-24T01:16:00.000Z">
 <meta property="article:author" content="wenmao">
-<meta property="article:tag" content="工具推荐">
-<meta property="article:tag" content="经验分享">
-<meta property="article:tag" content="AIGC">
+<meta property="article:tag" content="obsidian">
+<meta property="article:tag" content="obsidian插件">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122102223.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/7ed4bab9e57ea9c550cab9279ab9d5f8.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>ChatGLM 智能体 搭建属于自己的AI知识库 - wallflowers</title>
+  <title>obsidian projects  实现项目管理 - wallflowers</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -251,7 +250,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="ChatGLM 智能体 搭建属于自己的AI知识库"></span>
+            <span id="subtitle" data-typed-text="obsidian projects  实现项目管理"></span>
           
         </div>
 
@@ -262,8 +261,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-19 20:37" pubdate>
-          2024年5月19日 晚上
+        <time datetime="2024-07-22 00:00" pubdate>
+          2024年7月22日 凌晨
         </time>
       </span>
     
@@ -274,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          510 字
+          794 字
         
       </span>
     
@@ -285,7 +284,7 @@
         
         
         
-          5 分钟
+          7 分钟
         
       </span>
     
@@ -330,22 +329,40 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">ChatGLM 智能体 搭建属于自己的AI知识库</h1>
+            <h1 id="seo-header">obsidian projects  实现项目管理</h1>
             
             
               <div class="markdown-body">
                 
-                <meta name="referrer" content="no-referrer" />
+                <meta name="referrer" content="no-referrer" >
 
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天推荐 obsidian 的项目管理插件 projects ，用免费工具实现本地化项目管理。该工具项目管理思路非常类似 trello，简单易上手，而且和个人笔记强关联，非常适合喜欢折腾和 all in one 的玩家。</p>
+<p><strong>插件主要特点</strong></p>
+<ol>
+<li>包含 Table、Board、Calendar、Gallery 4 个视图。</li>
+<li>Table 表格。清晰展示各个项目的属性，可以配置属性显示内容。</li>
+<li>Board 看板。通过属性不同项目，比如状态、重要程度等。</li>
+<li>Calendar 日历。界面用带有时间的元数据展示项目时间。</li>
+<li>Gallery 画册。以图册的形式展示项目。</li>
+<li>各种视图均连接项目文件，高度自定义，适合多场景。</li>
+</ol>
+<h2 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h2><p>在应用商店直接下载 projects 插件。点击安装即可。</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/7ed4bab9e57ea9c550cab9279ab9d5f8.png" srcset="/img/loading.gif" lazyload alt="下载插件"></p>
+<h2 id="项目管理搭建"><a href="#项目管理搭建" class="headerlink" title="项目管理搭建"></a>项目管理搭建</h2><p>推荐通过 demo 案例查看 projects 插件项目管理逻辑。</p>
+<h3 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h3><p>点击新建项目图标<br>输入名称、文件夹路径等，建议预先设置好文件夹。<br><img src="https://img-blog.csdnimg.cn/img_convert/7c5282b06b1b7e4c150e2915b7516a7f.png" srcset="/img/loading.gif" lazyload alt="新建项目设置"></p>
+<h3 id="配置项目模板"><a href="#配置项目模板" class="headerlink" title="配置项目模板"></a>配置项目模板</h3><p>这是最重要的部分，我参考 demo 中的元数据结构，最终修改如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">Status:</span> <span class="hljs-string">doing</span><br><span class="hljs-attr">Due:</span> <span class="hljs-number">2024-07-22</span><br><span class="hljs-attr">Done:</span> <span class="hljs-literal">false</span><br><span class="hljs-attr">Weight:</span> <span class="hljs-number">5</span><br><span class="hljs-attr">Tags:</span><br>  <span class="hljs-bullet">-</span> <span class="hljs-string">Todo</span><br><span class="hljs-attr">Image:</span><br><span class="hljs-meta">---</span><br><span class="hljs-meta"></span><br></code></pre></td></tr></table></figure>
 
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在看一本书《在线》，将所有数据都需要在线，才有生命力，那么我们的知识库也是。我们现在就可以用先进的大预言模型搭建属于自己的在线 AI 知识库，他就是 ChatGLM 智谱清言智能体。<br>它可以将自己的知识库与 ChatGLM 结合，成为某一方面的专业知识问答系统。当然，市面上有很多类似解决方案，但是智谱清言是我试过国内最好用的一个产品，整体知识库最多免费支持1000个文件（每个100MB），知识库总字数不超过1亿字。完全够用了，而且具备联网功能。</p>
-<p>本文以搭建水文分析智能体为例，讲解如何快速搭建智能体。</p>
-<h2 id="创建智能体"><a href="#创建智能体" class="headerlink" title="创建智能体"></a>创建智能体</h2><p>进入智谱清言，点击创建智能体。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122102223.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>名称：简介、开场白随便填。<br>配置信息按照需求填，我的水质分析内容如下：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122104516.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>推荐问题随便填。<br>模型调用建议全点上。<br>知识库文件最关键，建议将你本地知识库全部上传，比如平常写的分析报告，标准导则等等，互联网已经有的文件不用传，文件类型也可以是 url。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122110778.png" srcset="/img/loading.gif" lazyload alt="微信截图_20240512210752.png"><br>知识库设置可以选择显示段落来源，或者仅从知识库回答。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122111537.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>添加 API 可以选择一些开源的 API，或者自己创建 API，这里添加了天气查询的 API。那么就能实现查询城市天气的功能。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122112037.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<p>最后点击发布即可，发布方式可以用邀请的方式，可以定向分享，这样你不想公开的智能体，其他人就无法访问。</p>
-<h2 id="测试智能体"><a href="#测试智能体" class="headerlink" title="测试智能体"></a>测试智能体</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405122115270.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
-<h2 id="感悟"><a href="#感悟" class="headerlink" title="感悟"></a>感悟</h2><p>现在的 AI 发展很快，我们只有不断学习才能跟上时代的脚步，就想这个智能体功能， ChatGLM 也更新的非常快，API 功能也是最近才上线的，感觉非常好用。</p>
+<p>Status：状态。Doing，done，backlog，daley， plan。<br>Due：截止日期。<br>Weight：重要性。1-5<br>Tags：标签。Todo（结合 checklist 工具，加上后自动变为 task）<br>Image：图，用图床地址，也可以本地地址，推荐图床地址，obsidian 搭建图床可以看我之前的文章。<br>Done：是否完成，完成后归档</p>
+<p>这里可以根据自己的需要自定义，比如指定 people 等等。<br>需要注意，当我们把模板元数据设置好时，最好给一个初始值，这样能让 projects 识别到标签类型。</p>
+<h3 id="新建项目-1"><a href="#新建项目-1" class="headerlink" title="新建项目"></a>新建项目</h3><p>设置好后会自动进入空白的表格视图，点击新建项目，一是会自动新建一个 md 文档，自动生成一列项目。点击 name 后就可以自动编辑内容了，修改元数据内容，对应的表格信息也会修改。<br><img src="https://img-blog.csdnimg.cn/img_convert/71cae22678c4eda2d695b577e9339992.png" srcset="/img/loading.gif" lazyload alt="表格视图"><br>可以通过隐藏字段来展示自己想要的内容，比如只展示名称、状态、重要性、截止日期等。<br>可以在 table 页面管理多个子项的内容，非常方便</p>
+<h3 id="新增其他视图"><a href="#新增其他视图" class="headerlink" title="新增其他视图"></a>新增其他视图</h3><p>点击表格旁边的加号，可以新增 Board、Calendar、Gallery。思路都是一样不同的元数据来展示不同的信息，例如状态对应 Board 视图、截止日期对应日历视图，图片对应图册视图等等。<br>在每个视图下，都能新建项目，点击就能管理具体的项目，真的非常好用。</p>
+<h4 id="看板视图"><a href="#看板视图" class="headerlink" title="看板视图"></a>看板视图</h4><p><img src="https://img-blog.csdnimg.cn/img_convert/bb4fd9ff15bd618ce1a25d04c2a0ea4d.png" srcset="/img/loading.gif" lazyload alt="看板视图"></p>
+<h4 id="画册视图"><a href="#画册视图" class="headerlink" title="画册视图"></a>画册视图</h4><p><img src="https://img-blog.csdnimg.cn/img_convert/461be4e33386842d1a84221464fcc633.png" srcset="/img/loading.gif" lazyload alt="画册视图"></p>
+<h4 id="日历视图"><a href="#日历视图" class="headerlink" title="日历视图"></a>日历视图</h4><p><img src="https://img-blog.csdnimg.cn/img_convert/3936b19e70b668191d9786dd17f6a8cc.png" srcset="/img/loading.gif" lazyload alt="日历视图"></p>
+<h2 id="相关思考"><a href="#相关思考" class="headerlink" title="相关思考"></a>相关思考</h2><p>通过这个插件可以实现整个团队的项目管理，也可以单个项目的管理，还可以是兴趣爱好的管理，比如图书、电影等。</p>
+<h2 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42984235/article/details/136734612">精简版 Obsidian 图床配置 PicGo+ gitee-CSDN博客</a></p>
+<h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>
 
                 
               </div>
@@ -364,7 +381,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="category-chain-item">工具推荐</a>
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
   
   
 
@@ -379,11 +396,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="print-no-link">#工具推荐</a>
+        <a href="/tags/obsidian/" class="print-no-link">#obsidian</a>
       
-        <a href="/tags/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="print-no-link">#经验分享</a>
-      
-        <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
+        <a href="/tags/obsidian%E6%8F%92%E4%BB%B6/" class="print-no-link">#obsidian插件</a>
       
     </div>
   
@@ -395,8 +410,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>ChatGLM 智能体 搭建属于自己的AI知识库</div>
-      <div>https://maoyu92.github.io/2024/05/19/04 经验分享/ChatGLM 智能体 搭建属于自己的AI知识库/</div>
+      <div>obsidian projects  实现项目管理</div>
+      <div>https://maoyu92.github.io/2024/07/22/04 经验分享/obsidian projects  实现项目管理/</div>
     </div>
     <div class="license-meta">
       
@@ -408,7 +423,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年5月19日</div>
+          <div>2024年7月22日</div>
         </div>
       
       
@@ -440,9 +455,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/19/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E5%85%8D%E8%B4%B9%E5%9B%BE%E7%89%87%E7%B4%A0%E6%9D%90%E7%BD%91%E7%AB%99%E6%8E%A8%E8%8D%90/" title="免费图片素材网站推荐">
+                      <a href="/2024/07/22/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20projects%20%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/" title="obsidian projects 插件 实现项目管理">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">免费图片素材网站推荐</span>
+                        <span class="hidden-mobile">obsidian projects 插件 实现项目管理</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -450,8 +465,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/05/19/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E5%9B%BE%E7%89%87%E8%AF%86%E5%88%AB%E5%85%AC%E5%BC%8F%E7%A5%9E%E5%99%A8%E6%8E%A8%E8%8D%90/" title="图片识别公式神器推荐">
-                        <span class="hidden-mobile">图片识别公式神器推荐</span>
+                      <a href="/2024/07/16/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/python%20%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E7%AE%A1%E7%90%86/" title="python 项目框架管理">
+                        <span class="hidden-mobile">python 项目框架管理</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
