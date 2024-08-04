@@ -1,0 +1,817 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="记笔记最重要的是回顾与总结，有这么一款插件可以让我们自己搭建一个美观的首页，它包括热力图、文稿统计、文稿回顾等等功能，你是否愿意尝试呢？ 今天就介绍一款插件，能快速制作笔记首页，辅助总结、回顾。 效果预览先看最终效果。上面就是利用免费的 components 插件创作首页中的一部分，它的功能远不止于此，下面进行简要的介绍。 插件 Contribution-graph Components  插">
+<meta property="og:type" content="article">
+<meta property="og:title" content="obsidian 首页制作 辅助笔记总结回顾">
+<meta property="og:url" content="https://maoyu92.github.io/2024/07/24/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20%E9%A6%96%E9%A1%B5%E5%88%B6%E4%BD%9C%20%E8%BE%85%E5%8A%A9%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BB%93%E5%9B%9E%E9%A1%BE/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="记笔记最重要的是回顾与总结，有这么一款插件可以让我们自己搭建一个美观的首页，它包括热力图、文稿统计、文稿回顾等等功能，你是否愿意尝试呢？ 今天就介绍一款插件，能快速制作笔记首页，辅助总结、回顾。 效果预览先看最终效果。上面就是利用免费的 components 插件创作首页中的一部分，它的功能远不止于此，下面进行简要的介绍。 插件 Contribution-graph Components  插">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242134300.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242107681.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242116393.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407241728217.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407241727680.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242112559.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242122744.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242124541.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242126848.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242144296.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407261035977.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407261100554.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407261625281.png">
+<meta property="article:published_time" content="2024-07-24T09:04:00.000Z">
+<meta property="article:modified_time" content="2024-07-24T09:04:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="obsidian">
+<meta property="article:tag" content="经验分享">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242134300.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>obsidian 首页制作 辅助笔记总结回顾 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="obsidian 首页制作 辅助笔记总结回顾"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-07-24 17:04" pubdate>
+          2024年7月24日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">obsidian 首页制作 辅助笔记总结回顾</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<p>记笔记最重要的是回顾与总结，有这么一款插件可以让我们自己搭建一个美观的首页，它包括热力图、文稿统计、文稿回顾等等功能，你是否愿意尝试呢？</p>
+<p>今天就介绍一款插件，能快速制作笔记首页，辅助总结、回顾。</p>
+<h2 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h2><p>先看最终效果。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242134300.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>上面就是利用免费的 components 插件创作首页中的一部分，它的功能远不止于此，下面进行简要的介绍。</p>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><ul>
+<li>Contribution-graph</li>
+<li>Components</li>
+</ul>
+<h2 id="插件简介"><a href="#插件简介" class="headerlink" title="插件简介"></a>插件简介</h2><p>Components 免费版支持 14 组件，包括数据视图、计数、正计时、倒计时、时间进度、时钟、摘录、按钮、打卡、dataview、图表、markdown、组合、自定义卡片。加上 Contribution-graph 的热力图其实算是 15 种。</p>
+<p>每一个组件除了单独的设置外，都包括有三种展示样式：分栏、标签页、垂直标签页，适合不同的组件进行多样化的组合。而且样式颜色均可以自定义，UI 设计简洁大方，真的非常棒了。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242107681.png" srcset="/img/loading.gif" lazyload alt="组件内容"></p>
+<h2 id="组件介绍"><a href="#组件介绍" class="headerlink" title="组件介绍"></a>组件介绍</h2><h3 id="热力图"><a href="#热力图" class="headerlink" title="热力图"></a>热力图</h3><p>安装好 Contribution-graph 插件后，右键新建热力图即可，可以选择自己喜欢的颜色。看着自己的创作热力图，每天也是动力满满，我也计划在个人博客添加一个类似的组件。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242116393.png" srcset="/img/loading.gif" lazyload alt="类GitHub热力图"></p>
+<h3 id="每日打卡"><a href="#每日打卡" class="headerlink" title="每日打卡"></a>每日打卡</h3><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202407241728217.png" srcset="/img/loading.gif" lazyload alt="每日打卡预览"><br>可以多个任务，且打卡有渐变色可选择。</p>
+<p>编辑过程：选择打卡组件-修改名称-添加任务-打卡记录方式改为标题属性。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202407241727680.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="正计时、倒计时、时钟"><a href="#正计时、倒计时、时钟" class="headerlink" title="正计时、倒计时、时钟"></a>正计时、倒计时、时钟</h3><p>三个组件设置简单，通过分栏的展示形式更加美观。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242112559.png" srcset="/img/loading.gif" lazyload alt="时间组"></p>
+<h3 id="图表"><a href="#图表" class="headerlink" title="图表"></a>图表</h3><p>图表是筛选文件夹、标签等方式形成自己想要的文件组成。推荐用垂直标签页展示，这样更宽一点。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242122744.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="计数"><a href="#计数" class="headerlink" title="计数"></a>计数</h3><p>计数的逻辑和图表一样也是筛选结果展示，可以展示文稿总数、某个标签，或者某个时间段，某个文件夹下的数量。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242124541.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>可以用作笔记回顾。比如当我们点击想法时就会跳转到包含想法的文件。还包括搜索框，这个功能可以说相当的哇塞。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242126848.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="摘录"><a href="#摘录" class="headerlink" title="摘录"></a>摘录</h3><p>摘录可以从筛选条件中随机提取文章，分为全文和块展示，可以做回顾，做每日格言，与weread插件组合可以做​书籍阅读的随机回顾。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202407242144296.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="自定义卡片"><a href="#自定义卡片" class="headerlink" title="自定义卡片"></a>自定义卡片</h3><p>用这个在 obsidian 居然可以做一个导航页。设置好动作和链接，就可以做导航页了。可惜和 itab 功能重合了，而且不能分享给大家使用，要不我高低得搭建一个自己的导航页。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202407261035977.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Dataview"><a href="#Dataview" class="headerlink" title="Dataview"></a>Dataview</h3><p>Dataview 让你找到在 obsidian 中使用 SQL 的感觉，这个组件甚至可以使用变量。有很多大佬用 dataview 做出很多好玩的东西，也是回顾、总结、联系笔记的好工具。而且会推动我们好好设置文章的属性信息。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202407261100554.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Dataviewjs-实现随机回顾"><a href="#Dataviewjs-实现随机回顾" class="headerlink" title="Dataviewjs 实现随机回顾"></a>Dataviewjs 实现随机回顾</h3><p>组件不仅可以使用 dataview 还可以是，使用 dataviewjs，利用 Dataviewjs 代码随机回顾笔记，帮助我们回顾知识点，本文用作每日格言。将凯文凯利的《宝贵的人生建议》中 500 条人生建议，添加标签，用 Dataviewjs 生成 3 条每日格言。<br>查询代码参考少数派@西西弗的神话的《Obsidian 随机生成读书笔记片段》，最终效果如下：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202407261625281.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>Dataviewjs 代码如下</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-comment">//使用时修改关键词即可</span><br>const term = <span class="hljs-string">&quot;#语录&quot;</span><br>const files = app.vault.getMarkdownFiles()<br>const arr = files.<span class="hljs-built_in">map</span>(async ( file) =&gt; &#123;<br>const content = await app.vault.cachedRead(file)<br>const lines = content.<span class="hljs-built_in">split</span>(<span class="hljs-string">&quot;\n&quot;</span>).<span class="hljs-built_in">filter</span>(<span class="hljs-function"><span class="hljs-params">line</span> =&gt;</span> line.<span class="hljs-built_in">contains</span>(term))<br><span class="hljs-keyword">return</span> lines<br>&#125;)<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">generateArray</span> (<span class="hljs-params">start, end</span>) &#123; <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.from(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>(end + <span class="hljs-number">1</span>).keys()).<span class="hljs-built_in">slice</span>(start) &#125;<br><br>Promise.<span class="hljs-built_in">all</span>(arr).then(<span class="hljs-function"><span class="hljs-params">values</span> =&gt;</span> &#123;<br>    <span class="hljs-comment">//不包含本文件</span><br>    let noteArr = values.flat().<span class="hljs-built_in">filter</span>(<span class="hljs-function"><span class="hljs-params">note</span> =&gt;</span> !note.<span class="hljs-built_in">includes</span>(<span class="hljs-string">&quot;const term =&quot;</span>))<br>    <span class="hljs-comment">//生成一个连续数值的数组</span><br>    let arrNum = generateArray(<span class="hljs-number">0</span>,noteArr.<span class="hljs-built_in">length</span><span class="hljs-number">-1</span>)<br>    let result = [ ]<br>    let ranNum = <span class="hljs-number">3</span><br><br>    <span class="hljs-keyword">for</span> (let i = <span class="hljs-number">0</span>; i &lt; ranNum; i++) &#123;<br>        <span class="hljs-keyword">var</span> ran = Math.<span class="hljs-built_in">floor</span>(Math.<span class="hljs-built_in">random</span>() * (arrNum.<span class="hljs-built_in">length</span> - i))<br>        result.<span class="hljs-built_in">push</span>(arrNum[ran])<br>        arrNum[ran] = arrNum[arrNum.<span class="hljs-built_in">length</span> - i - <span class="hljs-number">1</span>]<br>    &#125;<br><br>    <span class="hljs-keyword">for</span>(let i=<span class="hljs-number">0</span>; i&lt; result.<span class="hljs-built_in">length</span>;i++)&#123;<br>        let j = result[i]<br>        dv.paragraph(<span class="hljs-string">`<span class="hljs-subst">$&#123;noteArr[j]&#125;</span>`</span>)<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>使用时记得启用 dataview 插件和 dataviewjs 功能。</p>
+<h3 id="数据视图"><a href="#数据视图" class="headerlink" title="数据视图"></a>数据视图</h3><p>通过筛选文件夹、文件标签等信息，用表格、画册等方式展现笔记，和之间介绍的 projects 插件很像，这里不重复介绍。</p>
+<h3 id="设置页面全宽"><a href="#设置页面全宽" class="headerlink" title="设置页面全宽"></a>设置页面全宽</h3><p>通过 CSS + 文档属性的方式设置页面全宽。</p>
+<p>在 <code>.obsidian/snippets</code> 文件夹下新建 <code>editor-full.css</code> 文件。内容如下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs CSS"><span class="hljs-selector-class">.editor-full</span> &#123;<br>  <span class="hljs-attr">--file-line-width</span>: <span class="hljs-number">95vw</span>;<br>  <span class="hljs-attr">--line-width</span>: <span class="hljs-number">95vw</span>;<br>  <span class="hljs-attr">--container-img-width</span>: <span class="hljs-number">100%</span>;<br>  <span class="hljs-attr">--table-wrapper-width</span>: <span class="hljs-number">100%</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>在 obsidian 设置-外观，找到 CSS 代码片段配置项，点击刷新按钮，此时就会看到 editor-full 这个配置项，将其启用</p>
+<p>在想要设置页面全宽的文章中设置属性，<code>cssclasses</code> ：<code>editor-full</code>。启用页面全宽。<br>可以根据个人习惯决定是否设置全宽。</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p>这个插件有详细的说明文档，使用过程和记录过程都是参考的文档中的描述，大家可以对照文档去尝试，使用过程中，组件添加过多，电脑会很卡，建议少用几个组件，重心放在笔记的梳理、回顾、总结上。</p>
+<h3 id="插件下载地址"><a href="#插件下载地址" class="headerlink" title="插件下载地址"></a>插件下载地址</h3><p><em>Components</em>  </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/obsidian-components/obsidian-components-release">obsidian-components&#x2F;obsidian-components-release: Obsidian missing components (github.com)</a><br><em>Contribution-graph</em> </p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vran-dev/obsidian-contribution-graph">vran-dev&#x2F;obsidian-contribution-graph: generate interactive gitxxx style contribution graph for obsidian, use it to track your goals, habits, or anything else you want to track. (github.com)</a></p>
+<p>点击 releases 下载复制到 obsidian 插件目录下即可。</p>
+<h3 id="官方教程"><a href="#官方教程" class="headerlink" title="官方教程"></a>官方教程</h3><p>飞书地址：<br><a target="_blank" rel="noopener" href="https://wxycbt0cjk.feishu.cn/wiki/GczJwNXb1iNbookQkbscMXOhnO4"><a target="_blank" rel="noopener" href="https://wxycbt0cjk.feishu.cn/wiki/GczJwNXb1iNbookQkbscMXOhnO4">Docs (feishu.cn)</a></a></p>
+<h2 id="相关笔记"><a href="#相关笔记" class="headerlink" title="相关笔记"></a>相关笔记</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42984235/article/details/140610273">obsidian projects 插件 实现项目管理-CSDN博客</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42984235/article/details/137581646">obsidian 微信读书 插件 weread _CSDN博客</a>  </p>
+<p><a target="_blank" rel="noopener" href="https://sspai.com/post/69005">Obsidian 随机生成读书笔记片段 _少数派</a>  </p>
+<h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/obsidian/" class="print-no-link">#obsidian</a>
+      
+        <a href="/tags/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="print-no-link">#经验分享</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>obsidian 首页制作 辅助笔记总结回顾</div>
+      <div>https://maoyu92.github.io/2024/07/24/04 经验分享/obsidian 首页制作 辅助笔记总结回顾/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年7月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/07/30/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/QGIS%20%E7%BC%93%E5%86%B2%E5%8C%BA%E4%BA%A4%E9%9B%86%E4%BF%A1%E6%81%AF%E6%8F%90%E5%8F%96/" title="QGIS 缓冲区交集信息提取">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">QGIS 缓冲区交集信息提取</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/07/23/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E9%94%BB%E7%82%BC%20%E7%B2%BE%E8%AF%BB%E7%AC%94%E8%AE%B0%2002/" title="锻炼 精读笔记 02">
+                        <span class="hidden-mobile">锻炼 精读笔记 02</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aISEcd721UR4FDrgO7lhVO7C-MdYXbMMI","appKey":"baX3M064xYuZCyDdARuS8mOM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://aisecd72.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
