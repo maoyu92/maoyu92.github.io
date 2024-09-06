@@ -1,0 +1,830 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="前言我有一个朋友最近需要记忆一些知识点，想找一个题库软件，最好是能自定义题库。可市面上的题库要么题不全，要么收费贵。有没有一个工具可以自定义题库，且按照记忆曲线提供定期记忆回顾功能呢。所幸还真有这么一款开源软件，anki。 本文记录 anki 简介，obsidian anki 联动管理卡组及异常情况处理过程。 Anki 简介Anki 是一款免费且开源的闪卡（Flashcard）制作与学习软件，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="obsidian anki 联动 自制记忆卡组">
+<meta property="og:url" content="https://maoyu92.github.io/2024/08/21/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20anki%20%E8%81%94%E5%8A%A8%20%E8%87%AA%E5%88%B6%E8%AE%B0%E5%BF%86%E5%8D%A1%E7%BB%84/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="前言我有一个朋友最近需要记忆一些知识点，想找一个题库软件，最好是能自定义题库。可市面上的题库要么题不全，要么收费贵。有没有一个工具可以自定义题库，且按照记忆曲线提供定期记忆回顾功能呢。所幸还真有这么一款开源软件，anki。 本文记录 anki 简介，obsidian anki 联动管理卡组及异常情况处理过程。 Anki 简介Anki 是一款免费且开源的闪卡（Flashcard）制作与学习软件，">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202408220958888.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202408211639821.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202408212202944.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221013857.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221020295.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221023664.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221028348.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221035113.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221037904.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221117029.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202408211650449.png">
+<meta property="article:published_time" content="2024-08-21T08:18:00.000Z">
+<meta property="article:modified_time" content="2024-08-21T08:18:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="obsidian">
+<meta property="article:tag" content="anki">
+<meta property="article:tag" content="学习记录">
+<meta property="article:tag" content="软件学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202408220958888.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>obsidian anki 联动 自制记忆卡组 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="obsidian anki 联动 自制记忆卡组"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-08-21 16:18" pubdate>
+          2024年8月21日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">obsidian anki 联动 自制记忆卡组</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>我有一个朋友</strong>最近需要记忆一些知识点，想找一个题库软件，最好是能自定义题库。可市面上的题库要么题不全，要么收费贵。有没有一个工具可以自定义题库，且按照记忆曲线提供定期记忆回顾功能呢。所幸还真有这么一款开源软件，<strong>anki</strong>。</p>
+<p>本文记录 anki 简介，obsidian anki 联动管理卡组及异常情况处理过程。</p>
+<h3 id="Anki-简介"><a href="#Anki-简介" class="headerlink" title="Anki 简介"></a>Anki 简介</h3><p>Anki 是一款免费且开源的闪卡（Flashcard）制作与学习软件，它支持多种平台，包括 Windows、Mac OS 、Linux 以及 Android 移动设备等。Anki 的主要功能是帮助用户通过创建数字闪卡来学习各种类型的知识点，并利用间隔重复（Spaced Repetition）的原理优化复习计划，从而提高记忆效率。</p>
+<h4 id="相关地址"><a href="#相关地址" class="headerlink" title="相关地址"></a>相关地址</h4><p>官网： <a target="_blank" rel="noopener" href="https://apps.ankiweb.net/">https://apps.ankiweb.net/</a><br>Ankichina： <a target="_blank" rel="noopener" href="http://www.ankichina.net/welcome/">http://www.ankichina.net/welcome/</a><br>软件直接官网下载，ankichina 可以帮我们初步了解 anki，有网友分享的卡组。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408220958888.png" srcset="/img/loading.gif" lazyload alt="公开卡组"></p>
+<h2 id="Obsidian-anki-管理卡组"><a href="#Obsidian-anki-管理卡组" class="headerlink" title="Obsidian anki 管理卡组"></a>Obsidian anki 管理卡组</h2><p>Anki 卡组类型包括问答题（包括单向和双向）、填空题等多种形式，直接通过 anki 新建卡片比较麻烦， anki 也有通过 csc、apkg 等方式批量导入卡组的方式。</p>
+<p>但为了更好的管理卡组，并与笔记结合，今天介绍 Obsidian anki 联动管理卡组的方式。</p>
+<h3 id="工具准备"><a href="#工具准备" class="headerlink" title="工具准备"></a>工具准备</h3><ul>
+<li>Obsidian、anki</li>
+<li>Anki 插件：anki connector</li>
+<li>Obsidian 插件：Export to Anki<br>Anki connector 插件安装方式<br>  打开 anki -工具-插件-输入代码 2055492159<br>Export to Anki 安装方式<br>  应用商店中安装 Export to Anki （安装后为 obsidian to anki）</li>
+</ul>
+<h3 id="初始配置"><a href="#初始配置" class="headerlink" title="初始配置"></a>初始配置</h3><p>在 Anki 插件界面双击 Anki connector 复制粘贴下面代码。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;apiKey&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;apiLogPath&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">null</span></span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;webBindAddress&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;127.0.0.1&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;webBindPort&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">8765</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;webCorsOrigin&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;http://localhost&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;webCorsOriginList&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><br>        <span class="hljs-string">&quot;http://localhost&quot;</span><span class="hljs-punctuation">,</span><br>        <span class="hljs-string">&quot;app://obsidian.md&quot;</span><br>    <span class="hljs-punctuation">]</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408211639821.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>重启 anki ,如果报端口请看异常处理记录，没有报错就在 anki 运行的情况下，重启 obsidian Export to Anki 插件，会多出来设置按钮，如果没有成功连接 anki 是没有设置按钮的。</p>
+<h4 id="obsidian-to-anki-设置信息"><a href="#obsidian-to-anki-设置信息" class="headerlink" title="obsidian to anki 设置信息"></a>obsidian to anki 设置信息</h4><p> 先看设置信息截图如下：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408212202944.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221013857.png" srcset="/img/loading.gif" lazyload alt="QQ_1724292826629.png"></p>
+<h4 id="忽略文件"><a href="#忽略文件" class="headerlink" title="忽略文件"></a>忽略文件</h4><p>忽略其他文件及文件夹，这样可以避免程序进行不必要的扫描，忽略文件夹格式为文件名后加&#x2F;**<br>注意原文有的去掉 excalidraw 要保留。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-strong">**/<span class="hljs-emphasis">*.excalidraw.md</span></span><br><span class="hljs-emphasis"><span class="hljs-strong">00_collection box/*</span>*</span><br><span class="hljs-strong">01<span class="hljs-emphasis">_工作/**</span></span><br><span class="hljs-emphasis"><span class="hljs-strong">02_</span>学习/**</span><br>03<span class="hljs-emphasis">_生活/<span class="hljs-strong">**</span></span><br></code></pre></td></tr></table></figure>
+<h4 id="Anki-添加笔记模板"><a href="#Anki-添加笔记模板" class="headerlink" title="Anki 添加笔记模板"></a>Anki 添加笔记模板</h4><p>Anki -浏览-笔记模版右键-管理笔记模版-添加-问答题。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221020295.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="Obsidian-to-anki-笔记模板设置"><a href="#Obsidian-to-anki-笔记模板设置" class="headerlink" title="Obsidian to anki 笔记模板设置"></a>Obsidian to anki 笔记模板设置</h4><p>依次点击 Actions- Regenerate Note Type Table-Regenerate，获取笔记模板。<br>这样在 note type settings 下就有了 note type table<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221023664.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h4 id="添加正则表达式"><a href="#添加正则表达式" class="headerlink" title="添加正则表达式"></a>添加正则表达式</h4><p>在官方 wiki 界面下找到问答式正则表达式代码复制到对应的 custom regexp。</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby">^<span class="hljs-symbol">Q:</span> ((<span class="hljs-string">?:</span>.+\n)*)\n*<span class="hljs-symbol">A:</span> (.+(<span class="hljs-string">?:\n</span>(<span class="hljs-string">?:</span>^.&#123;<span class="hljs-number">1</span>,<span class="hljs-number">3</span>&#125;<span class="hljs-variable">$|</span>^.&#123;<span class="hljs-number">4</span>&#125;(<span class="hljs-string">?&lt;</span>!&lt;!--).*))*)<br></code></pre></td></tr></table></figure>
+<p>正则表达式解释：Q: 后面是问题，换行后 A: 为答案。<br>正则表达式可自定义，例如下面的表达式，可用于知识点的梳理。</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs taggerscript">^#&#123;4&#125;\s(.+)<span class="hljs-symbol">\n</span>*((?:<span class="hljs-symbol">\n</span>(?:^[^<span class="hljs-symbol">\n</span>#].&#123;0,2&#125;$|^[^<span class="hljs-symbol">\n</span>#].&#123;3&#125;(?&lt;!&lt;!--).*))+)<br></code></pre></td></tr></table></figure>
+<p>4 级标题为问题，4 级标题以下为答案，具体如何设置根据自己的需要来定。<br>以上就完成了初步配置。<br>只要在 obsidian 没有被忽略的笔记中添加对应格式笔记，点击左侧按钮就能同步到 anki Default 卡组中。笔记格式示例如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">Q: How <span class="hljs-keyword">do</span> you use <span class="hljs-keyword">this</span> style?<br>A: Just like <span class="hljs-keyword">this</span>.<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221028348.png" srcset="/img/loading.gif" lazyload></p>
+<p>成功后，在 obsidian 对应的笔记后面会多一个标记<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221035113.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>在 anki 中会增加卡片。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221037904.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="Obsidian-管理-anki-卡组"><a href="#Obsidian-管理-anki-卡组" class="headerlink" title="Obsidian 管理 anki 卡组"></a>Obsidian 管理 anki 卡组</h3><p>使用 Obsidian to anki 插件不仅可以批量添加卡片，还可以实现指定目标卡组，删除卡片，修改卡片内容。</p>
+<h5 id="指定目标卡组"><a href="#指定目标卡组" class="headerlink" title="指定目标卡组"></a>指定目标卡组</h5><p>在 anki 牌组界面下，点击创建自己的卡组，在 obsidian 笔记前添加 TARGET DECK 字段设置目标卡组。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml">TARGET DECK: obsidian<br>Q: How do you use this style?<br>A: Just like this.<br><span class="hljs-comment">&lt;!--ID: 1724248298307--&gt;</span><br></code></pre></td></tr></table></figure>
+<h5 id="删除卡片"><a href="#删除卡片" class="headerlink" title="删除卡片"></a>删除卡片</h5><p>在特殊标记前添加 DELETE 命令。</p>
+<h5 id="设置标签"><a href="#设置标签" class="headerlink" title="设置标签"></a>设置标签</h5><p>在笔记后添加 FILE TAGS 字段，可添加标签</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs xml">Q: How is this possible?<br>A: The &#x27;magic&#x27; of regular expressions!<br><span class="hljs-comment">&lt;!--ID: 1724247826177--&gt;</span><br><br>FILE TAGS: 测试 错题<br></code></pre></td></tr></table></figure>
+<p>以上 TARGET DECK 、DELETE、FILE TAGS 均是设置中默认的，可以在设置中对应修改。</p>
+<h3 id="美化卡片"><a href="#美化卡片" class="headerlink" title="美化卡片"></a>美化卡片</h3><p>Anki 和 obsidian 一样支持 markdown 格式, 还支持 HTML，css 可以做出非常美观的卡片。<br>在浏览界面，点击右侧设置图标修改卡片样式 CSS 代码。将实现对笔记输出格式的美化。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.card</span> &#123;<br> <span class="hljs-attribute">font-family</span>: arial;<br> <span class="hljs-attribute">font-size</span>: <span class="hljs-number">20px</span>;<br> <span class="hljs-attribute">text-align</span>: left;<br> <span class="hljs-attribute">color</span>: black;<br> <span class="hljs-attribute">background-color</span>: white;<br>&#125;<br><br><span class="hljs-selector-tag">em</span> &#123;<br> <span class="hljs-selector-id">#color</span>:white; <br> <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#69E147</span>;<br> <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;<br> <span class="hljs-attribute">padding</span>: <span class="hljs-number">2px</span> <span class="hljs-number">5px</span>;<br>&#125;<br><br><span class="hljs-selector-tag">strong</span> &#123;<br> <span class="hljs-attribute">color</span>:red;<br> <span class="hljs-attribute">font-weight</span>: bolder;<br> <span class="hljs-attribute">text-shadow</span>: <span class="hljs-number">2px</span> <span class="hljs-number">2px</span> <span class="hljs-number">5px</span> <span class="hljs-number">#ffe600</span>;<br>&#125;<br><br><span class="hljs-selector-tag">code</span> &#123;<br> <span class="hljs-attribute">color</span>:black;<br> <span class="hljs-attribute">font-weight</span>: bolder;<br> <span class="hljs-attribute">text-shadow</span>: <span class="hljs-number">2px</span> <span class="hljs-number">2px</span> <span class="hljs-number">5px</span> gray;<br>&#125;<br><br><span class="hljs-selector-tag">mark</span> &#123;<br> <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;<br> <span class="hljs-attribute">padding</span>: <span class="hljs-number">2px</span> <span class="hljs-number">5px</span>;<br>&#125;<br><br><span class="hljs-selector-tag">blockquote</span> &#123;<br> <span class="hljs-attribute">background-color</span>: <span class="hljs-number">#ECECEC</span>;<br> <span class="hljs-attribute">padding</span>: <span class="hljs-number">2px</span> <span class="hljs-number">5px</span>;<br> <span class="hljs-attribute">border</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#7F7F7F</span>;<br> <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">5px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>Obsidian 笔记</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs markdown">Q: 卡片支持哪些美化功能?<br>A: 1. <span class="hljs-strong">**加粗**</span>：关键词<br><span class="hljs-bullet">2.</span> <span class="hljs-emphasis">_斜体_</span>：用于句首，可以理解为卡片的结构化写法<br><span class="hljs-bullet">3.</span> ==高亮==：简记的形式——记忆法的延伸<br><span class="hljs-bullet">4.</span> 内容断行：先回车，然后“<span class="hljs-strong">**空一格**</span>”，然后再回车，这样就可以在卡片中进行内容的分隔（这个没有什么特别的说法，单纯是因为插件代码就是这么写的）。<br> <br><span class="hljs-quote">&gt;  “人生就是一连串的刹那”</span><br><span class="hljs-quote">&gt; ——《被讨厌的勇气》</span><br></code></pre></td></tr></table></figure>
+<p>结果预览：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221117029.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="Anki-web-卡组同步"><a href="#Anki-web-卡组同步" class="headerlink" title="Anki web 卡组同步"></a>Anki web 卡组同步</h2><p>做好牌组后，可通过 Anki web 能帮我们实现多端同步。点击 anki 的同步按钮即可注册、登录账户，安卓端推荐 ankichina 下载 ankidroid，注意软件是免费的。</p>
+<h2 id="端口占用处理记录"><a href="#端口占用处理记录" class="headerlink" title="端口占用处理记录"></a>端口占用处理记录</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408211650449.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>问题原因是有程序占用 8765 端口，两插件不支持修改默认端口，只能杀掉本地运行的端口程序。<br>Cmd 输入代码查询占用程序 netstat -ano | findstr : 8765。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-function">C:\<span class="hljs-title">Users</span>\<span class="hljs-title">htwl</span>&gt;<span class="hljs-title">netstat</span> -<span class="hljs-title">ano</span> | <span class="hljs-title">findstr</span> :8765</span><br><span class="hljs-function">  <span class="hljs-title">TCP</span>    0.0.0.0:8765           0.0.0.0:0              <span class="hljs-title">LISTENING</span>       19060</span><br><span class="hljs-function">  <span class="hljs-title">TCP</span>    127.0.0.1:8765         127.0.0.1:63689        <span class="hljs-title">ESTABLISHED</span>     19060</span><br><span class="hljs-function">  <span class="hljs-title">TCP</span>    127.0.0.1:63689        127.0.0.1:8765         <span class="hljs-title">ESTABLISHED</span>     14868</span><br><span class="hljs-function">- 关闭对应程序。</span><br><span class="hljs-function"><span class="hljs-title">taskkill</span> /<span class="hljs-title">F</span> /<span class="hljs-title">PID</span> 19060</span><br><span class="hljs-function"><span class="hljs-title">taskkill</span> /<span class="hljs-title">F</span> /<span class="hljs-title">PID</span> 14868</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="参考文件"><a href="#参考文件" class="headerlink" title="参考文件"></a>参考文件</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/584391666">用obsidian进行anki作卡 - 知乎 (zhihu.com)</a><br>Bilibili@pkmer : 同步 Anki 学习卡，让你的学习更高效<br><a target="_blank" rel="noopener" href="https://github.com/ObsidianToAnki/Obsidian_to_Anki/wiki">Home · ObsidianToAnki&#x2F;Obsidian_to_Anki Wiki · GitHub</a><br><a target="_blank" rel="noopener" href="https://github.com/ObsidianToAnki/Obsidian_to_Anki/wiki/Regex">Regex · ObsidianToAnki&#x2F;Obsidian_to_Anki Wiki · GitHub</a>  </p>
+<h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/obsidian/" class="print-no-link">#obsidian</a>
+      
+        <a href="/tags/anki/" class="print-no-link">#anki</a>
+      
+        <a href="/tags/%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="print-no-link">#学习记录</a>
+      
+        <a href="/tags/%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0/" class="print-no-link">#软件学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>obsidian anki 联动 自制记忆卡组</div>
+      <div>https://maoyu92.github.io/2024/08/21/04 经验分享/obsidian anki 联动 自制记忆卡组/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年8月21日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/08/28/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E6%B0%B4%E5%8A%9F%E8%83%BD%E5%8C%BA%E4%B8%8E%E6%B0%B4%E7%8E%AF%E5%A2%83%E5%8A%9F%E8%83%BD%E5%8C%BA%E7%9A%84%E5%8C%BA%E5%88%AB/" title="水功能区与水环境功能区的联系与区别">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">水功能区与水环境功能区的联系与区别</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/08/15/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/streamlit%20%E5%A4%9A%E9%A1%B5%E9%9D%A2%E9%87%8D%E5%91%BD%E5%90%8D/" title="streamlit 多页面应用重命名与排序">
+                        <span class="hidden-mobile">streamlit 多页面应用重命名与排序</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aISEcd721UR4FDrgO7lhVO7C-MdYXbMMI","appKey":"baX3M064xYuZCyDdARuS8mOM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://aisecd72.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
