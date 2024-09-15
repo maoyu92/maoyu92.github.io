@@ -1,0 +1,755 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="前言前段时间，知乎上有个话题很火，有 467 万次浏览，上了热榜很久。问的是 pdf 转 word 的问题。 确实，pdf 我们经常用，但常遇到各种问题。比如 pdf 转 word、pdf 转 Excel、pdf 转图片、pdf 解密、添加或去掉水印等等，就想着结合自己的经验梳理下有那些 pdf 工具免费且方便的解决这些问题。抛砖引玉，如有更好的方法，请评论留言。 常用综合工具Adobe Ac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pdf 文件处理工具合集">
+<meta property="og:url" content="https://maoyu92.github.io/2024/09/06/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/pdf%20%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7%E5%90%88%E9%9B%86/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="前言前段时间，知乎上有个话题很火，有 467 万次浏览，上了热榜很久。问的是 pdf 转 word 的问题。 确实，pdf 我们经常用，但常遇到各种问题。比如 pdf 转 word、pdf 转 Excel、pdf 转图片、pdf 解密、添加或去掉水印等等，就想着结合自己的经验梳理下有那些 pdf 工具免费且方便的解决这些问题。抛砖引玉，如有更好的方法，请评论留言。 常用综合工具Adobe Ac">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061351753.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061408363.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061426053.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061430048.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061432505.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061436473.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061446320.png">
+<meta property="article:published_time" content="2024-09-06T05:47:00.000Z">
+<meta property="article:modified_time" content="2024-09-06T05:47:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061351753.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>pdf 文件处理工具合集 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="pdf 文件处理工具合集"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-06 13:47" pubdate>
+          2024年9月6日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          887 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">pdf 文件处理工具合集</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>前段时间，知乎上有个话题很火，有 467 万次浏览，上了热榜很久。问的是 pdf 转 word 的问题。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061351753.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>确实，pdf 我们经常用，但常遇到各种问题。比如 pdf 转 word、pdf 转 Excel、pdf 转图片、pdf 解密、添加或去掉水印等等，就想着结合自己的经验梳理下有那些 pdf 工具免费且方便的解决这些问题。抛砖引玉，如有更好的方法，请评论留言。</p>
+<h2 id="常用综合工具"><a href="#常用综合工具" class="headerlink" title="常用综合工具"></a>常用综合工具</h2><h3 id="Adobe-Acrobat-Xl"><a href="#Adobe-Acrobat-Xl" class="headerlink" title="Adobe Acrobat Xl"></a>Adobe Acrobat Xl</h3><p>很经典的版本，胜在稳定和功能强大，是装机必备软件之一。核心功能包括：页面增删、页面提取、文字修改、图片修改（结合画图和 ps）、水印增加或删除、文档加密、pdf 转 word、pdf 转 Excel、pdf 转图片、添加修改标签、合并 pdf 等等。这些功能处理日常的 pdf 问题已基本够用。<br>功能很全，大部分功能非常好用，但有几个不足，一是 pdf 转 word 等功能不适用于扫描文件，能够转换但格式上很差，无法直接用，很多制表符。二是没有解密功能。有些文件即使是公开的标准导则，也是不能编辑的，因为加密了，需要解密才能处理。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061408363.png" srcset="/img/loading.gif" lazyload alt="软件预览"></p>
+<h3 id="Micsoft-word"><a href="#Micsoft-word" class="headerlink" title="Micsoft word"></a>Micsoft word</h3><p>Word 同样可以将非扫描件版本的 pdf 为 Word，直接将文件用 word 打开就可以，缺点与 Adobe Acrobat Xl 一样，排版不尽人意，可作为临时应急。</p>
+<h3 id="夸克浏览器"><a href="#夸克浏览器" class="headerlink" title="夸克浏览器"></a>夸克浏览器</h3><p>夸克浏览器是手机上的神器，pc 端也非常好用，针对 pdf 转换主要工具包括 pdf 转换，pdf 内容总结。其中 pdf 转换可以免费转化扫描版本 pdf，是目前所有 pdf 转 word 、Excel 最好的工具。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061426053.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061430048.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="在线转换工具"><a href="#在线转换工具" class="headerlink" title="在线转换工具"></a>在线转换工具</h2><p>市面上有非常多免费的 pdf 在线处理工具，这里举几个我认为比较好用的。</p>
+<h3 id="Cleverpdf"><a href="#Cleverpdf" class="headerlink" title="Cleverpdf"></a>Cleverpdf</h3><p>功能非常全面，包括 pdf 转换等，还包括 pdf 解密，亲测可用。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061432505.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="Pdf-Io"><a href="#Pdf-Io" class="headerlink" title="Pdf. Io"></a>Pdf. Io</h3><p>与 Cleverpdf 类似。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061436473.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="Smallpdf"><a href="#Smallpdf" class="headerlink" title="Smallpdf"></a>Smallpdf</h3><p>Pdf 文件转换<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202409061446320.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="Pdf-阅读工具"><a href="#Pdf-阅读工具" class="headerlink" title="Pdf 阅读工具"></a>Pdf 阅读工具</h2><p>Pdf 的核心就是方便阅读，因为 pdf 的格式固定，便于传播。而 pdf 阅读功能有很多功能可以做，浏览器标配，各大厂商下场做 pdf 阅读器如 wps、2345、福昕。如果只是看一下当然谁都可以胜任。但有的 pdf 需要勾勾画画甚至进行总结。因此我推荐的是 pdf 深度阅读的工具。</p>
+<h3 id="Zotero"><a href="#Zotero" class="headerlink" title="Zotero"></a>Zotero</h3><p>Zotero 是一款开源论文管理工具，也可作为 pdf 文件管理工具，它功能非常强大，支持很多插件，扩展性强。文件翻译、文件总结、文件标记、笔记整理都能胜任。</p>
+<h3 id="微信读书"><a href="#微信读书" class="headerlink" title="微信读书"></a>微信读书</h3><p>你没有看错，微信读书是一款非常好的 pdf 阅读器，甚至能将扫描的 pdf 正确识别并排版。而且多端同步，配合本身的阅读功能，直接满分。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>Pdf 工具问题其实很难一劳永逸的解决，很多软件或者在线网页可能会退出免费阵营，但这个功能并不是什么特别难的技术问题，总有其他软件可以实现。所以只要去检索，工具有很多。上文也只是目前用着比较顺手的，记录一下。</p>
+<h2 id="相关网页"><a href="#相关网页" class="headerlink" title="相关网页"></a>相关网页</h2><p><a target="_blank" rel="noopener" href="https://www.cleverpdf.com/cn">https://www.cleverpdf.com/cn</a><br><a target="_blank" rel="noopener" href="https://pdf.io/">https://pdf.io/</a><br><a target="_blank" rel="noopener" href="https://smallpdf.com/cn/pdf-converter">https://smallpdf.com/cn/pdf-converter</a></p>
+<h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>pdf 文件处理工具合集</div>
+      <div>https://maoyu92.github.io/2024/09/06/04 经验分享/pdf 文件处理工具合集/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/09/10/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/streamlit%20%E7%99%BB%E5%BD%95%E9%A1%B5%E9%9D%A2%E5%8F%8A%E7%99%BB%E5%BD%95%E7%AE%A1%E7%90%86/" title="streamlit 登录页面搭建及登录管理">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">streamlit 登录页面搭建及登录管理</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/05/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/python%E5%AE%9E%E7%8E%B0%E6%B0%B4%E8%B4%A8%E6%97%A5%E5%8E%86%E7%83%AD%E5%8A%9B%E5%9B%BE/" title="python实现水质日历热力图">
+                        <span class="hidden-mobile">python实现水质日历热力图</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aISEcd721UR4FDrgO7lhVO7C-MdYXbMMI","appKey":"baX3M064xYuZCyDdARuS8mOM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://aisecd72.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
