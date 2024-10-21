@@ -344,7 +344,7 @@
 <p>使用命令进行安装</p>
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs axapta">pip install --<span class="hljs-keyword">index</span>-url https:<span class="hljs-comment">//pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt</span><br></code></pre></td></tr></table></figure>
 
-<p>使用下面的命令更新 requirements. Txt</p>
+<p>使用下面的命令更新 requirements. txt</p>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">pip <span class="hljs-keyword">freeze</span> &gt; requirements.txt<br></code></pre></td></tr></table></figure>
 
 <h2 id="引用包"><a href="#引用包" class="headerlink" title="引用包"></a>引用包</h2><p>引用第三方包，直接用 import pandas as pd 这种格式就好了。<br>引用本地包，需要先组织好自己的包。Py 文件所在的文件夹添加__init__. Py 文件则可以让 python 识别为一个包。用 from ** import ** 就好了。</p>

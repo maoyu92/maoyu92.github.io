@@ -1,0 +1,752 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="前言随着城市化进程的加快，城市水体污染问题日益突出。在众多污染源中，降雨带来的径流被认为是城市水体污染的一个重要因素。本文以 2023 年 1 月至 2024 年 9 月期间某站点的降雨数据及其关联的污染物数据为基础，探讨降雨情形下污染物的变化规律。以高锰酸盐指数、氨氮和总磷作为主要污染物指标，通过对这些指标在不同降雨事件中的表现进行分析，以期为城市水污染治理提供参考。 分析方法为了更好地理解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="降雨事件驱动的城市水体污染特征分析">
+<meta property="og:url" content="https://maoyu92.github.io/2024/09/24/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E9%99%8D%E9%9B%A8%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%9F%8E%E5%B8%82%E6%B0%B4%E4%BD%93%E6%B1%A1%E6%9F%93%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="前言随着城市化进程的加快，城市水体污染问题日益突出。在众多污染源中，降雨带来的径流被认为是城市水体污染的一个重要因素。本文以 2023 年 1 月至 2024 年 9 月期间某站点的降雨数据及其关联的污染物数据为基础，探讨降雨情形下污染物的变化规律。以高锰酸盐指数、氨氮和总磷作为主要污染物指标，通过对这些指标在不同降雨事件中的表现进行分析，以期为城市水污染治理提供参考。 分析方法为了更好地理解">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202409241729163.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202409241731533.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202409241732782.png">
+<meta property="article:published_time" content="2024-09-24T09:24:00.000Z">
+<meta property="article:modified_time" content="2024-09-24T09:24:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202409241729163.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>降雨事件驱动的城市水体污染特征分析 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="降雨事件驱动的城市水体污染特征分析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-09-24 17:24" pubdate>
+          2024年9月24日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">降雨事件驱动的城市水体污染特征分析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>随着城市化进程的加快，城市水体污染问题日益突出。在众多污染源中，降雨带来的径流被认为是城市水体污染的一个重要因素。本文以 2023 年 1 月至 2024 年 9 月期间某站点的降雨数据及其关联的污染物数据为基础，探讨降雨情形下污染物的变化规律。以高锰酸盐指数、氨氮和总磷作为主要污染物指标，通过对这些指标在不同降雨事件中的表现进行分析，以期为城市水污染治理提供参考。</p>
+<h2 id="分析方法"><a href="#分析方法" class="headerlink" title="分析方法"></a>分析方法</h2><p>为了更好地理解降雨对污染物浓度的影响，首先定义了“降雨事件”这一概念。在本研究中，连续小时值均大于 0 的数值是为一个降雨事件，且连续无降雨超过 24 小时后视为不同的降雨事件，此外，只有当累计降雨量超过 10 毫米时，才会被计入我们的分析范围之内。<br>这样做是为了保证所选降雨事件具有一定的强度，能够对环境产生明显的影响。<br>分别计算每次降雨的开始时间、结束事件、累计雨量、最大小时雨量、降雨持续时间等特征。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><code class="hljs python">data = pd.read_excel(<span class="hljs-string">&#x27;pages/datas/降雨量.xlsx&#x27;</span>)<br>  <br><span class="hljs-comment"># 转换为DataFrame  </span><br>columns = [<span class="hljs-string">&#x27;监测时间&#x27;</span>, <span class="hljs-string">&#x27;气温&#x27;</span>, <span class="hljs-string">&#x27;风力&#x27;</span>, <span class="hljs-string">&#x27;降雨量&#x27;</span>, <span class="hljs-string">&#x27;相对湿度&#x27;</span>] <br>df = pd.DataFrame(data, columns=columns)  <br>df[<span class="hljs-string">&#x27;监测时间&#x27;</span>] = pd.to_datetime(df[<span class="hljs-string">&#x27;监测时间&#x27;</span>])   <br>df[<span class="hljs-string">&#x27;降雨量&#x27;</span>] = df[<span class="hljs-string">&#x27;降雨量&#x27;</span>].fillna(<span class="hljs-number">0</span>)  <br>df[<span class="hljs-string">&#x27;降雨量&#x27;</span>] = df[<span class="hljs-string">&#x27;降雨量&#x27;</span>].astype(<span class="hljs-built_in">float</span>)  <br><span class="hljs-comment"># 删除包含NaT的行  </span><br><span class="hljs-comment"># 将降雨量列中的空值和负数填充为0  </span><br>df[<span class="hljs-string">&#x27;降雨量&#x27;</span>] = df[<span class="hljs-string">&#x27;降雨量&#x27;</span>].replace(&#123;np.nan: <span class="hljs-number">0</span>, <span class="hljs-string">&#x27;&lt;0&#x27;</span>: <span class="hljs-number">0</span>&#125;).astype(<span class="hljs-built_in">float</span>)  <br><span class="hljs-comment"># 确保所有降雨量都为非负数  </span><br>df[<span class="hljs-string">&#x27;降雨量&#x27;</span>] = df[<span class="hljs-string">&#x27;降雨量&#x27;</span>].clip(lower=<span class="hljs-number">0</span>) <br><span class="hljs-keyword">def</span> <span class="hljs-title function_">analyze_rainfall</span>(<span class="hljs-params">df</span>):  <br>    <span class="hljs-comment"># 添加一列来标记降雨  </span><br>    df[<span class="hljs-string">&#x27;RainEvent&#x27;</span>] = (df[<span class="hljs-string">&#x27;降雨量&#x27;</span>] &gt; <span class="hljs-number">0</span>).astype(<span class="hljs-built_in">int</span>) <br>    <span class="hljs-comment"># 计算时间差  </span><br>    df[<span class="hljs-string">&#x27;TimeDiff&#x27;</span>] = df[<span class="hljs-string">&#x27;监测时间&#x27;</span>].diff().dt.total_seconds() / <span class="hljs-number">3600</span>  <br>    <span class="hljs-comment"># 初始化一个新事件的标志  </span><br>    df[<span class="hljs-string">&#x27;NewEvent&#x27;</span>] = <span class="hljs-literal">False</span>  <br>    <span class="hljs-comment"># 当时间差大于24小时时，设置为新事件  </span><br>    df.loc[df[<span class="hljs-string">&#x27;TimeDiff&#x27;</span>] &gt;= <span class="hljs-number">24</span>, <span class="hljs-string">&#x27;NewEvent&#x27;</span>] = <span class="hljs-literal">True</span>   <br>    <span class="hljs-comment"># 当前降雨与上一次降雨之间的状态变化时，标记为新事件  </span><br>    df.loc[(df[<span class="hljs-string">&#x27;RainEvent&#x27;</span>].shift() != df[<span class="hljs-string">&#x27;RainEvent&#x27;</span>]) &amp; (df[<span class="hljs-string">&#x27;TimeDiff&#x27;</span>] &lt; <span class="hljs-number">24</span>), <span class="hljs-string">&#x27;NewEvent&#x27;</span>] = <span class="hljs-literal">True</span>  <br>  <br>    <span class="hljs-comment"># 将第一行标记为新事件开始  </span><br>    df.loc[df.index[<span class="hljs-number">0</span>], <span class="hljs-string">&#x27;NewEvent&#x27;</span>] = <span class="hljs-literal">True</span>  <br>    <span class="hljs-comment"># 使用累加求和来给每个事件分配一个唯一的ID  </span><br>    df[<span class="hljs-string">&#x27;RainEventID&#x27;</span>] = df[<span class="hljs-string">&#x27;NewEvent&#x27;</span>].cumsum()  <br>    <span class="hljs-comment"># 对每场雨进行分组，计算开始时间、结束时间、累计降雨量和最大降雨量  </span><br>    rain_events_summary = df.groupby([<span class="hljs-string">&#x27;RainEventID&#x27;</span>]).agg(&#123;  <br>        <span class="hljs-string">&#x27;监测时间&#x27;</span>: [<span class="hljs-string">&#x27;min&#x27;</span>, <span class="hljs-string">&#x27;max&#x27;</span>],  <br>        <span class="hljs-string">&#x27;降雨量&#x27;</span>: [<span class="hljs-string">&#x27;sum&#x27;</span>, <span class="hljs-string">&#x27;max&#x27;</span>]  <br>    &#125;).reset_index()  <br>    <span class="hljs-comment"># 重命名列名  </span><br>    rain_events_summary.columns = [<span class="hljs-string">&#x27;RainEventID&#x27;</span>, <span class="hljs-string">&#x27;Start&#x27;</span>, <span class="hljs-string">&#x27;End&#x27;</span>, <span class="hljs-string">&#x27;TotalRainfall&#x27;</span>, <span class="hljs-string">&#x27;MaxRainfall&#x27;</span>]   <br>    <span class="hljs-comment"># 计算降雨持续时间  </span><br>    rain_events_summary[<span class="hljs-string">&#x27;DurationHours&#x27;</span>] = (rain_events_summary[<span class="hljs-string">&#x27;End&#x27;</span>] - rain_events_summary[  <br>        <span class="hljs-string">&#x27;Start&#x27;</span>]).dt.total_seconds() / <span class="hljs-number">3600</span>  <br>    rain_events_summary[<span class="hljs-string">&#x27;DurationHours&#x27;</span>] = rain_events_summary[<span class="hljs-string">&#x27;DurationHours&#x27;</span>] + <span class="hljs-number">1</span>  <br>    <span class="hljs-comment"># 过滤掉没有实际降雨的事件  </span><br>    rain_events_summary = rain_events_summary[rain_events_summary[<span class="hljs-string">&#x27;TotalRainfall&#x27;</span>] &gt; <span class="hljs-number">0</span>]   <br>    <span class="hljs-comment"># 检查并合并事件  </span><br>    merged_events = []  <br>    current_event = <span class="hljs-literal">None</span>  <br>    <span class="hljs-keyword">for</span> i, row <span class="hljs-keyword">in</span> rain_events_summary.iterrows():  <br>        <span class="hljs-keyword">if</span> current_event <span class="hljs-keyword">is</span> <span class="hljs-literal">None</span>:  <br>            current_event = row  <br>        <span class="hljs-keyword">else</span>:  <br>            time_diff = row[<span class="hljs-string">&#x27;Start&#x27;</span>] - current_event[<span class="hljs-string">&#x27;End&#x27;</span>]  <br>            time_diff_hours = time_diff.total_seconds() / <span class="hljs-number">3600</span>  <br>            <span class="hljs-keyword">if</span> time_diff_hours &lt;= <span class="hljs-number">24</span>:  <br>                <span class="hljs-comment"># 合并事件  </span><br>                current_event[<span class="hljs-string">&#x27;End&#x27;</span>] = <span class="hljs-built_in">max</span>(current_event[<span class="hljs-string">&#x27;End&#x27;</span>], row[<span class="hljs-string">&#x27;End&#x27;</span>])  <br>                current_event[<span class="hljs-string">&#x27;TotalRainfall&#x27;</span>] += row[<span class="hljs-string">&#x27;TotalRainfall&#x27;</span>]  <br>                current_event[<span class="hljs-string">&#x27;MaxRainfall&#x27;</span>] = <span class="hljs-built_in">max</span>(current_event[<span class="hljs-string">&#x27;MaxRainfall&#x27;</span>], row[<span class="hljs-string">&#x27;MaxRainfall&#x27;</span>])  <br>                current_event[<span class="hljs-string">&#x27;DurationHours&#x27;</span>] = (current_event[<span class="hljs-string">&#x27;End&#x27;</span>] - current_event[<span class="hljs-string">&#x27;Start&#x27;</span>]).total_seconds() / <span class="hljs-number">3600</span>  <br>  <br>            <span class="hljs-keyword">else</span>:  <br>                <span class="hljs-comment"># 结束当前事件，开始新的事件  </span><br>                merged_events.append(current_event)  <br>                current_event = row  <br>    <span class="hljs-comment"># 添加最后一个事件  </span><br>    <span class="hljs-keyword">if</span> current_event <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-literal">None</span>:  <br>        merged_events.append(current_event)  <br>  <br>    <span class="hljs-comment"># 将合并后的事件转换为DataFrame  </span><br>    merged_df = pd.DataFrame(merged_events)  <br>    merged_df[<span class="hljs-string">&#x27;RainEventID&#x27;</span>] = <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(merged_df) + <span class="hljs-number">1</span>)  <br>    <span class="hljs-keyword">return</span> merged_df  <br>  <br>  <br><span class="hljs-comment"># 应用函数并查看结果  </span><br>result = analyze_rainfall(df)  <br>min_total_rainfall = <span class="hljs-number">10</span>  <span class="hljs-comment"># 你可以根据需要调整这个值  </span><br><span class="hljs-comment"># 过滤掉累计雨量小于指定阈值的降雨场次  </span><br>rain_events_summary = result[result[<span class="hljs-string">&#x27;TotalRainfall&#x27;</span>] &gt;= min_total_rainfall]  <br><span class="hljs-comment"># 重新排序 RainEventID  </span><br>rain_events_summary.reset_index(drop=<span class="hljs-literal">True</span>, inplace=<span class="hljs-literal">True</span>)  <br><span class="hljs-comment"># 重新分配 </span><br>RainEventIDrain_events_summary[<span class="hljs-string">&#x27;RainEventID&#x27;</span>] = <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">len</span>(rain_events_summary) + <span class="hljs-number">1</span>)<br></code></pre></td></tr></table></figure>
+
+<p>经过统计，2023 年 1 月至 2024 年 9 月出有 35 次降雨事件，累计降雨量为 1476.40 毫米，其中属于降雨事件的降雨量达到了 1302.50 毫米，占比达 88.22%。因此用降雨事件分析对应的污染物浓度变化具有代表性。<br>降雨事件分布如下：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202409241729163.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>接下来，对应每次降雨事件事件范围，计算出站点各污染物的最大浓度、平均浓度以及变差系数。<br>其中变差系数为一列数的标准差除以期望，反映数据的变化情况，一般大于 0.2，表面数据波动较大。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 加载数据  </span><br>df_w = pd.read_excel(<span class="hljs-string">&#x27;pages/datas/datas.xlsx&#x27;</span>)  <span class="hljs-comment"># 假设这是污染物数据集    </span><br><span class="hljs-comment"># 将监测时间列转换为 datetime 类型  </span><br>df_w[<span class="hljs-string">&#x27;监测时间&#x27;</span>] = pd.to_datetime(df_w[<span class="hljs-string">&#x27;监测时间&#x27;</span>])  <br>  <br><span class="hljs-comment"># 获取污染物因子的列名  </span><br>pollutant_columns = df_w.columns.drop([<span class="hljs-string">&#x27;监测时间&#x27;</span>])  <br>  <br><span class="hljs-comment"># 创建一个新的 DataFrame 来保存分析结果  </span><br>pollutant_stats = pd.DataFrame(columns=[<span class="hljs-string">&#x27;RainEventID&#x27;</span>] +  <br>                                       [<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;col&#125;</span>_Ma&#x27;</span> <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> pollutant_columns] +  <br>                                       [<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;col&#125;</span>_Me&#x27;</span> <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> pollutant_columns] +  <br>                                       [<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;col&#125;</span>_Va&#x27;</span> <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> pollutant_columns])  <br>  <br><span class="hljs-comment"># 遍历每个降雨事件  </span><br><span class="hljs-keyword">for</span> _, row <span class="hljs-keyword">in</span> rain_events_summary.iterrows():  <br>    event_id = row[<span class="hljs-string">&#x27;RainEventID&#x27;</span>]  <br>    start_time = row[<span class="hljs-string">&#x27;Start&#x27;</span>]  <br>    end_time = row[<span class="hljs-string">&#x27;End&#x27;</span>]  <br>  <br>    <span class="hljs-comment"># 提取该事件时间段内的污染物数据  </span><br>    event_pollutants = df_w[(df_w[<span class="hljs-string">&#x27;监测时间&#x27;</span>] &gt;= start_time) &amp; (df_w[<span class="hljs-string">&#x27;监测时间&#x27;</span>] &lt;= end_time)]   <br>    <span class="hljs-comment"># 初始化统计数据  </span><br>    max_concentration = &#123;&#125;  <br>    mean_concentration = &#123;&#125;  <br>    variation_coefficient = &#123;&#125;  <br>  <br>    <span class="hljs-keyword">if</span> event_pollutants.empty:  <br>        <span class="hljs-comment"># 如果没有数据，记录为 NaN        </span><br>        <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> pollutant_columns:  <br>            max_concentration[col] = np.nan  <br>            mean_concentration[col] = np.nan  <br>            variation_coefficient[col] = np.nan  <br>    <span class="hljs-keyword">else</span>:  <br>        <span class="hljs-comment"># 计算每个因子的最大浓度、平均浓度和变差系数  </span><br>        <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> pollutant_columns:  <br>            <span class="hljs-keyword">if</span> col <span class="hljs-keyword">in</span> event_pollutants.columns <span class="hljs-keyword">and</span> pd.notna(event_pollutants[col]).<span class="hljs-built_in">any</span>():  <br>                max_concentration[col] = event_pollutants[col].<span class="hljs-built_in">max</span>()  <br>                mean_concentration[col] = event_pollutants[col].mean()  <br>                variation_coefficient[col] = event_pollutants[col].std(ddof=<span class="hljs-number">0</span>) / event_pollutants[col].mean()  <br>            <span class="hljs-keyword">else</span>:  <br>                max_concentration[col] = np.nan  <br>                mean_concentration[col] = np.nan  <br>                variation_coefficient[col] = np.nan  <br>  <br>    <span class="hljs-comment"># 构建统计数据行  </span><br>    stats_row = &#123;  <br>        <span class="hljs-string">&#x27;RainEventID&#x27;</span>: event_id  <br>    &#125;  <br>    <span class="hljs-keyword">for</span> col <span class="hljs-keyword">in</span> pollutant_columns:  <br>        stats_row[<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;col&#125;</span>_Ma&#x27;</span>] = max_concentration[col]  <br>        stats_row[<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;col&#125;</span>_Me&#x27;</span>] = mean_concentration[col]  <br>        stats_row[<span class="hljs-string">f&#x27;<span class="hljs-subst">&#123;col&#125;</span>_Va&#x27;</span>] = variation_coefficient[col]  <br>  <br>    <span class="hljs-comment"># 将统计数据行添加到 DataFrame 中  </span><br>    pollutant_stats = pd.concat([pollutant_stats, pd.DataFrame(stats_row, index=[<span class="hljs-number">0</span>])], ignore_index=<span class="hljs-literal">True</span>)   <br><span class="hljs-comment"># 合并统计数据到 rainfall_summary 中  </span><br>rain_events_summary = pd.merge(rain_events_summary, pollutant_stats, on=<span class="hljs-string">&#x27;RainEventID&#x27;</span>, how=<span class="hljs-string">&#x27;left&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>得到统计结果如下：其中因子最大浓度、平均浓度超标处标记为红色，变差系数大于 0.2 的也标为红色。从结果得出，超过 10 mm 的降雨量会引起对应站点水质超标，氨氮最敏感、总磷次之。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202409241731533.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>最后将各数据汇总，计算这些统计值之间的相关系数，并绘制相关性热图，得出单次降雨量、小时最大雨量与各指标的平均浓度、最大浓度并无强相关性；氨氮最大浓度与总磷最大浓度之间为强相关，符合污染物汇入特征。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202409241732782.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="小结与讨论"><a href="#小结与讨论" class="headerlink" title="小结与讨论"></a>小结与讨论</h2><ol>
+<li><strong>污染物浓度超标现象</strong>：在各个降雨时间内，高锰酸盐指数、氨氮和总磷这三种主要污染物的最大浓度和平均浓度均存在超标现象。特别是氨氮的变差系数经常高于 0.2，表明其对降雨的响应较为敏感。</li>
+<li><strong>降雨量与污染物浓度的关系</strong>：单次降雨量、小时最大雨量与各指标的平均浓度、最大浓度并无强相关性；总磷与小时最大降雨量之间相关性为 0.5，为中相关，降雨引起的污染物变化较为复杂，污染物浓度变化与降雨量强度之间并非简单的线性关系，可能涉及更多因素，如降雨稀释、降雨间隔、清洁程度、污染事件等。</li>
+<li><strong>污染物间的相互作用</strong>：降雨引起的污染源汇入也导致各污染物之间的相关性增强。</li>
+<li><strong>局限及展望</strong>：本文仍存在一定局限性。首先，数据的时间跨度有限，未来可以通过长时间序列数据分析，进一步确认这些规律的稳定性和普遍性。其次，研究对象集中在少数几种污染物，未来可以扩展到更多的污染物种类，以全面评估降雨对城市水体质量的影响。此外，本文仅分析了一个雨量站与水质站的数据，样本量较小。未来研究可以考虑扩大样本范围，收集更多站点的数据，进一步验证降雨事件对污染物浓度变化的影响，并探索其他潜在的影响因素。此外，可以通过模型模拟的方法，定量分析不同降雨模式下的污染物迁移和转化机制，为制定更有效的污染控制策略提供科学依据。</li>
+<li><strong>管理建议</strong>：对于任何一次累计降雨量超过10毫米的情况，都需要引起管理者的重视。尤其是在高敏感区域，应加强监测频率，并采取有效措施减少污染物排放。</li>
+</ol>
+<h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>降雨事件驱动的城市水体污染特征分析</div>
+      <div>https://maoyu92.github.io/2024/09/24/02 生态环境/降雨事件驱动的城市水体污染特征分析/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年9月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/01/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%8E%8C%E6%8E%A7%E4%B9%A0%E6%83%AF%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="掌控习惯读书笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">掌控习惯读书笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/09/20/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/python%20in%20Excel%20%E6%95%B0%E6%8D%AE%E5%90%88%E5%B9%B6%E6%A1%88%E4%BE%8B/" title="python in Excel 数据合并案例">
+                        <span class="hidden-mobile">python in Excel 数据合并案例</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aISEcd721UR4FDrgO7lhVO7C-MdYXbMMI","appKey":"baX3M064xYuZCyDdARuS8mOM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://aisecd72.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
