@@ -1,0 +1,910 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="概述在水质分析过程中，污染溯源是无法绕开的部分，当一个在线设备表现出污染特征时，我们往往希望快速知道是什么原因造成的。日常数据分析往往利用在设备、水文网络基础上，往上溯源，逐一找到相关的站点或者排污口，从而判断出污染来源，这种方式适用于点源或者上游有在线监测的断面，这种方法虽然有效，但效率低下，那么如何将其自动化呢？ 为了实现高效的水质污染溯源，首要任务是建立一个详细的河流与在线监测设备的数字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以在线设备拓扑关系为基础的污染溯源算法">
+<meta property="og:url" content="https://maoyu92.github.io/2024/10/29/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E4%BB%A5%E8%AE%BE%E5%A4%87%E7%BD%91%E7%BB%9C%E5%85%B3%E7%B3%BB%E4%B8%BA%E5%9F%BA%E7%A1%80%E7%9A%84%E6%B0%B4%E8%B4%A8%E5%9C%A8%E7%BA%BF%E8%AE%BE%E5%A4%87%E6%BA%AF%E6%BA%90%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="概述在水质分析过程中，污染溯源是无法绕开的部分，当一个在线设备表现出污染特征时，我们往往希望快速知道是什么原因造成的。日常数据分析往往利用在设备、水文网络基础上，往上溯源，逐一找到相关的站点或者排污口，从而判断出污染来源，这种方式适用于点源或者上游有在线监测的断面，这种方法虽然有效，但效率低下，那么如何将其自动化呢？ 为了实现高效的水质污染溯源，首要任务是建立一个详细的河流与在线监测设备的数字">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202410301503585.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202410301510193.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202410301521800.png">
+<meta property="article:published_time" content="2024-10-29T02:18:00.000Z">
+<meta property="article:modified_time" content="2024-10-29T02:18:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="生态环境">
+<meta property="article:tag" content="水文分析">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202410301503585.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>以在线设备拓扑关系为基础的污染溯源算法 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="以在线设备拓扑关系为基础的污染溯源算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-10-29 10:18" pubdate>
+          2024年10月29日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">以在线设备拓扑关系为基础的污染溯源算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在水质分析过程中，污染溯源是无法绕开的部分，当一个在线设备表现出污染特征时，我们往往希望快速知道是什么原因造成的。日常数据分析往往利用在设备、水文网络基础上，往上溯源，逐一找到相关的站点或者排污口，从而判断出污染来源，这种方式适用于点源或者上游有在线监测的断面，这种方法虽然有效，但效率低下，那么如何将其自动化呢？</p>
+<p>为了实现高效的水质污染溯源，首要任务是建立一个详细的河流与在线监测设备的数字模型。这一模型由两部分组成：首先是河流关系表，它记录了河流的上下游关系、干支流等级等信息，为理解水流路径提供了基础；其次是在线设备关系表，该表详细列出了不同类型的监测设备（如水质监测站、排污口监测点）与河流的具体关联，有助于识别潜在的污染来源。</p>
+<p>本文档介绍了如何使用 Python 实现水质溯源算法。通过构建河流和在线设备拓扑关系表，利用算法，我们能够根据任意站点的信息，追踪其上游相关的设备。在通过滞后相关分析可初步实现追踪溯源。<br>这是污染溯源的第一步，今天先介绍是如何实现的，如果你有更好的方法，也请留言指正。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410301503585.png" srcset="/img/loading.gif" lazyload alt="河流网络与在线设备关系概化图"></p>
+<h2 id="河流和在线设备拓扑构建关系"><a href="#河流和在线设备拓扑构建关系" class="headerlink" title="河流和在线设备拓扑构建关系"></a>河流和在线设备拓扑构建关系</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410301510193.png" srcset="/img/loading.gif" lazyload alt="关系框架"></p>
+<p>需要构建 2 张表，包含 2 种设备类型，一张河流关系表，表示河流的上下游关系，岸线关系，干支流关系；一张设备表，表示河道在线监测设备、排污口在线监测设备这两种设备与河流的关联关系。</p>
+<h3 id="河流关系表"><a href="#河流关系表" class="headerlink" title="河流关系表"></a>河流关系表</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>序号</td>
+<td>记录编号</td>
+</tr>
+<tr>
+<td>Mn</td>
+<td>河流唯一编码</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>河流名称</td>
+</tr>
+<tr>
+<td>河流级别</td>
+<td>明确干支流关系，干流为 0，一级支流为 1，以此类推</td>
+</tr>
+<tr>
+<td>上级河流</td>
+<td>进一步明确干支流关系，便于理解较深的层次关系</td>
+</tr>
+<tr>
+<td>同级顺序</td>
+<td>明确同一河流级别下的上下游关系，从 1 往后排序</td>
+</tr>
+<tr>
+<td>流域名称</td>
+<td>同一流域才能进行分析</td>
+</tr>
+<tr>
+<td>类型</td>
+<td>河流为 <code>river</code></td>
+</tr>
+<tr>
+<td>岸线</td>
+<td>明确左右岸位置</td>
+</tr>
+<tr>
+<td>河流关系</td>
+<td>与站点类型对应，河流为 <code>base</code>、排污口为 <code>to</code>、河流站点为 <code>on</code></td>
+</tr>
+</tbody></table>
+<h3 id="在线设备关系表"><a href="#在线设备关系表" class="headerlink" title="在线设备关系表"></a>在线设备关系表</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>序号</td>
+<td>记录编号</td>
+</tr>
+<tr>
+<td>Mn</td>
+<td>唯一编码</td>
+</tr>
+<tr>
+<td>站点名称</td>
+<td>设备名称</td>
+</tr>
+<tr>
+<td>所在河流</td>
+<td>设备所在的河流名称</td>
+</tr>
+<tr>
+<td>河流关系</td>
+<td>设备与河流的关系</td>
+</tr>
+<tr>
+<td>同级顺序</td>
+<td>在同一条河流上，用同级顺序表示上下游关系</td>
+</tr>
+<tr>
+<td>上方支流</td>
+<td>在线设备上有最近的支流名称，结合同级顺序可以定义在线设备在水文关系中的位置</td>
+</tr>
+<tr>
+<td>流域名称</td>
+<td>同一流域才能进行分析</td>
+</tr>
+<tr>
+<td>岸线关系</td>
+<td>明确左右岸位置</td>
+</tr>
+<tr>
+<td>站点类型</td>
+<td>设备类型</td>
+</tr>
+<tr>
+<td>所在河流ID</td>
+<td>设备所在的河流唯一编码</td>
+</tr>
+</tbody></table>
+<h2 id="溯源逻辑"><a href="#溯源逻辑" class="headerlink" title="溯源逻辑"></a>溯源逻辑</h2><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol>
+<li><strong>获取目标站点信息</strong>：    <ul>
+<li>根据站点名称查找目标站点的所有信息。</li>
+<li>获取站点所在的河流ID和上方支流。</li>
+</ul>
+</li>
+<li><strong>获取上方支流的河流信息</strong>：    <ul>
+<li>获取上方支流的河流级别和同级顺序。</li>
+</ul>
+</li>
+<li><strong>获取所有同级且同级顺序小于等于上方支流的河流</strong>：    <ul>
+<li>查找所有与上方支流同级别且同级顺序小于等于上方支流的河流。</li>
+</ul>
+</li>
+<li><strong>递归获取下一级支流</strong>：    <ul>
+<li>对于每条找到的河流，递归地查找其下级河流，直到找到所有相关河流。</li>
+</ul>
+</li>
+<li><strong>获取所有相关支流上的站点</strong>：    <ul>
+<li>根据找到的所有相关河流ID，获取这些河流上的站点信息，形成列表A。</li>
+</ul>
+</li>
+<li><strong>获取同一条河流上同级顺序小于目标站点的站点</strong>：    <ul>
+<li>查找同一条河流上同级顺序小于目标站点的站点，形成列表B。</li>
+</ul>
+</li>
+<li><strong>合并列表A和列表B</strong>：    <ul>
+<li>去除重复项，得到最终的相关站点列表C。</li>
+</ul>
+</li>
+<li><strong>匹配列表C与在线设备关系表</strong>：    <ul>
+<li>获取最终相关在线设备表，输出所有参数。</li>
+</ul>
+</li>
+</ol>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-comment">#!/usr/bin/env python</span><br><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string"># @Time    : 2024/10/29 下午4:57</span><br><span class="hljs-string"># @Author  : 陈文茂</span><br><span class="hljs-string"># @File    : traceability.py</span><br><span class="hljs-string"># @Software: PyCharm</span><br><span class="hljs-string"># @tags    : 水质溯源 水文分析</span><br><span class="hljs-string"># @Desc    : 水质溯源算法</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br><span class="hljs-comment"># 确保站点ID和河流ID为文本格式</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">preprocess_data</span>(<span class="hljs-params">rivers_df, stations_df</span>):<br>    rivers_df[<span class="hljs-string">&#x27;mn&#x27;</span>] = rivers_df[<span class="hljs-string">&#x27;mn&#x27;</span>].astype(<span class="hljs-built_in">str</span>)<br>    rivers_df[<span class="hljs-string">&#x27;上级河流&#x27;</span>] = rivers_df[<span class="hljs-string">&#x27;上级河流&#x27;</span>].astype(<span class="hljs-built_in">str</span>)<br>    stations_df[<span class="hljs-string">&#x27;mn&#x27;</span>] = stations_df[<span class="hljs-string">&#x27;mn&#x27;</span>].astype(<span class="hljs-built_in">str</span>)<br>    stations_df[<span class="hljs-string">&#x27;所在河流ID&#x27;</span>] = stations_df[<span class="hljs-string">&#x27;所在河流ID&#x27;</span>].astype(<span class="hljs-built_in">str</span>)<br>    <span class="hljs-keyword">return</span> rivers_df, stations_df<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_upstream_stations</span>(<span class="hljs-params">station_name, rivers_df, stations_df</span>):<br>    <span class="hljs-comment"># 获取目标站点信息</span><br>    target_station = stations_df[stations_df[<span class="hljs-string">&#x27;站点名称&#x27;</span>] == station_name]<br>    <span class="hljs-keyword">if</span> target_station.empty:<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;No station found with the provided name.&quot;</span><br><br>    target_station = target_station.iloc[<span class="hljs-number">0</span>]<br>    target_river_id = target_station[<span class="hljs-string">&#x27;所在河流ID&#x27;</span>]<br>    up_tributary = target_station[<span class="hljs-string">&#x27;上方支流&#x27;</span>]<br>    <span class="hljs-comment"># 获取上方支流的河流信息</span><br>    up_tributary_info = rivers_df[rivers_df[<span class="hljs-string">&#x27;name&#x27;</span>] == up_tributary].iloc[<span class="hljs-number">0</span>]<br>    up_tributary_level = up_tributary_info[<span class="hljs-string">&#x27;河流级别&#x27;</span>]<br>    up_tributary_order = up_tributary_info[<span class="hljs-string">&#x27;同级顺序&#x27;</span>]<br><br>    <span class="hljs-comment"># 获取所有同级且同级顺序小于等于上方支流的河流</span><br>    upstream_rivers = rivers_df[<br>        (rivers_df[<span class="hljs-string">&#x27;河流级别&#x27;</span>] == up_tributary_level) &amp;<br>        (rivers_df[<span class="hljs-string">&#x27;同级顺序&#x27;</span>] &lt;= up_tributary_order)<br>        ]<br><br>    <span class="hljs-comment"># 获取所有相关支流的集合</span><br>    related_rivers = <span class="hljs-built_in">set</span>()<br>    <span class="hljs-keyword">for</span> _, row <span class="hljs-keyword">in</span> upstream_rivers.iterrows():<br>        related_rivers.add(row[<span class="hljs-string">&#x27;mn&#x27;</span>])<br>        <span class="hljs-comment"># 递归获取下一级支流</span><br>        related_rivers.update(get_downstream_rivers(row[<span class="hljs-string">&#x27;mn&#x27;</span>], rivers_df))<br><br>    <span class="hljs-comment"># 获取所有相关支流上的站点</span><br>    related_stations_a = stations_df[stations_df[<span class="hljs-string">&#x27;所在河流ID&#x27;</span>].isin(related_rivers)]<br><br>    <span class="hljs-comment"># 获取同一条河流上同级顺序小于目标站点的站点</span><br>    same_river_stations = stations_df[<br>        (stations_df[<span class="hljs-string">&#x27;所在河流ID&#x27;</span>] == target_river_id) &amp;<br>        (stations_df[<span class="hljs-string">&#x27;同级顺序&#x27;</span>] &lt; target_station[<span class="hljs-string">&#x27;同级顺序&#x27;</span>])<br>        ]<br><br>    <span class="hljs-comment"># 合并列表A和列表B</span><br>    related_stations_c = pd.concat([related_stations_a, same_river_stations]).drop_duplicates()<br><br>    <span class="hljs-comment"># 返回结果</span><br>    <span class="hljs-keyword">return</span> related_stations_c<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_downstream_rivers</span>(<span class="hljs-params">river_id, rivers_df</span>):<br>    downstream_rivers = rivers_df[rivers_df[<span class="hljs-string">&#x27;上级河流&#x27;</span>] == river_id]<br>    downstream_ids = <span class="hljs-built_in">set</span>(downstream_rivers[<span class="hljs-string">&#x27;mn&#x27;</span>])<br><br>    <span class="hljs-keyword">for</span> _, row <span class="hljs-keyword">in</span> downstream_rivers.iterrows():<br>        downstream_ids.update(get_downstream_rivers(row[<span class="hljs-string">&#x27;mn&#x27;</span>], rivers_df))<br><br>    <span class="hljs-keyword">return</span> downstream_ids<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    rivers_df = pd.read_excel(<span class="hljs-string">&#x27;河流设备拓补关系.xlsx&#x27;</span>, sheet_name=<span class="hljs-string">&#x27;河流关系表&#x27;</span>)<br>    stations_df = pd.read_excel(<span class="hljs-string">&#x27;河流设备拓补关系.xlsx&#x27;</span>, sheet_name=<span class="hljs-string">&#x27;在线设备关系表&#x27;</span>)<br>    rivers_df, stations_df = preprocess_data(rivers_df, stations_df)<br><br>    <span class="hljs-comment"># 示例：查找影响“凤凰湖工业园区污水处理厂排口下游”的设备</span><br>    result1 = get_upstream_stations(<span class="hljs-string">&quot;设备a&quot;</span>, rivers_df, stations_df)<br>    <span class="hljs-built_in">print</span>(result1)<br></code></pre></td></tr></table></figure>
+
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410301521800.png" srcset="/img/loading.gif" lazyload alt="结果预览"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过上述方法，我们已经能够有效地识别出与目标站点水质变化相关的上游设备。一旦建立了详尽的设备清单，就可以迅速锁定潜在的污染源。为进一步提高溯源精度，后续还将通过相关性分析筛选出与水质异常关联度最高的设备。此外，利用GIS技术进行的空间分析也是一种有效的补充手段，它可以直观地展示各站点间的地理位置关系，帮助我们更准确地评估站点间的影响程度。<br>需要注意的是，本文所介绍的方法侧重于基于网络结构的溯源分析，可能未能充分反映站点间的实际距离因素。因此，在某些情况下，如果污染源与受影响站点相距甚远，本方法可能难以直接揭示二者之间的关联。然而，这并不意味着该方法不具备价值；相反，它为污染溯源提供了一种新的视角和解决方案。<br>除了溯源分析之外，污染扩散路径的追踪同样重要。借助已构建的设备拓扑关系表，我们可以通过算法模拟污染物在水系中的传播过程，预测其可能的影响范围。这不仅有助于事前预防，也能为事后处理提供科学依据。未来的工作中，我们将继续深入研究并完善这些算法，以期为水质管理和环境保护提供更为强大的技术支持。</p>
+<h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="category-chain-item">生态环境</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="print-no-link">#生态环境</a>
+      
+        <a href="/tags/%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90/" class="print-no-link">#水文分析</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>以在线设备拓扑关系为基础的污染溯源算法</div>
+      <div>https://maoyu92.github.io/2024/10/29/02 生态环境/以设备网络关系为基础的水质在线设备溯源算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年10月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/10/30/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E6%BB%9E%E5%90%8E%E7%9B%B8%E5%85%B3%E6%80%A7%E8%AE%A1%E7%AE%97%E6%B0%B4%E8%B4%A8%E7%AB%99%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E6%B1%A1%E6%9F%93%E4%BC%A0%E9%80%92%E5%85%B3%E7%B3%BB/" title="利用滞后相关性计算水质站点之间的污染传递关系">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">利用滞后相关性计算水质站点之间的污染传递关系</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/29/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/CJ02%E3%80%81WGS84%E3%80%81BD-09%20%E5%9D%90%E6%A0%87%E7%B3%BB%E4%BA%92%E8%BD%AC/" title="GCJ02、WGS84、BD-09 、CGCS-2000坐标系互转">
+                        <span class="hidden-mobile">GCJ02、WGS84、BD-09 、CGCS-2000坐标系互转</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aISEcd721UR4FDrgO7lhVO7C-MdYXbMMI","appKey":"baX3M064xYuZCyDdARuS8mOM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://aisecd72.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

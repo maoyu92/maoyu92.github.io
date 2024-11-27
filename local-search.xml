@@ -4,11 +4,219 @@
   
   
   <entry>
+    <title></title>
+    <link href="/2024/11/27/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/obsidian%20web%20Clipper.excalidraw/"/>
+    <url>/2024/11/27/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/obsidian%20web%20Clipper.excalidraw/</url>
+    
+    <content type="html"><![CDATA[<p>&#x3D;&#x3D;⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠&#x3D;&#x3D; You can decompress Drawing data with the command palette: ‘Decompress current Excalidraw file’. For more info check in plugin settings under ‘Saving’</p><h1 id="Excalidraw-Data"><a href="#Excalidraw-Data" class="headerlink" title="Excalidraw Data"></a>Excalidraw Data</h1><h2 id="Text-Elements"><a href="#Text-Elements" class="headerlink" title="Text Elements"></a>Text Elements</h2><h2 id="Embedded-Files"><a href="#Embedded-Files" class="headerlink" title="Embedded Files"></a>Embedded Files</h2><p>c0906a511369265288de7131d135f710930cb2a7: [[image_0.png]]</p><p>2d6db5ef9bb178ed335a4efc10d973ba5875858f: [[image_1.png]]</p><p>1d458f41ee4e768115b9edb985d08a5977f388db: [[image_2.png]]</p><p>4fb4d69e403536ce4777611b1eee0355fcd8b877: [[image_3.png]]</p><p>%%</p><h2 id="Drawing"><a href="#Drawing" class="headerlink" title="Drawing"></a>Drawing</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs compressed-json">N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebQBWbQBGGjoghH0EDihmbgBtcDBQMBLoeHF0Qn1opH5SxhZ2LjQeJIB2OsgG1k4AOU4xblakgA4ABjaJgGYANk6IQg5iLG4I<br><br>XBT5wmYAEXSoBGJuADMCMM3DiUIAVVx9NqMp7YAtAEkAcQAZMYAVJIApJ69IQAZQA6qkSpAjoR8PhgbBgqtBB4IaVmFBSGwANYIUEkdRDebozE4+EwRESZEkVGQTF+SQccK5NBJeZsOC4bBqGDcJJjMbzazKCmoAWFSCYbjOEYAFgS8x5aBGUwSUySPHiRIx2IQAGE2Pg2KRVhjrMwOYFsjSIJpOVjlHSlvrDcaJKaOObcJaoNaKPjJLy2qzxVIE<br><br>IRlNJuDK4lMpjKAJzxJIy+IzNVjGYjIkIA7cGZJKZjeNTWViyEQB3COAvYjM1B5AC68yO5EyNe4HCEsPmjuIjOYdc73ZDmmESwAosFMtk6435kI4MRcPsLqh2oW4zN+erxvMiBwsR2u/g92xsDjVyd8GcQ+jl0I6xBEEtFsprdDgu2JNgixncEmCxmeMeBmeIeBGEZliDNViALeIjiDItC2wTQeFwNprWYdwKgKSEwGDPCknFBtCgAXzqYpSlgRB<br><br>ViqGprW6JohjGLMQ0YvoBgqeMxhlX9gNY8tFmWSUJFwHhrS2XZghXY5TgQc5VljYEAHlnEINoAAUrkkABpF42BeIRMAAWQATWYDTCHfGE4QRCoICpQ4tRJXF/UJW9tVJOykQNake2ECN+zrAjSnZTluV5flBQ4YUKjLUoRLXHj5RDRVUGcJJtHjTM2k1DyXOdI0TXID0LSyH15ltc9KyEJ0DSKt0Ss9b1fTclkpnjeZJDDCMfXazrbxzVd2hGUCt<br><br>0LGV5hq6ta3yJsQxbW4EC/VAhxPENeyCo9h3LUdauIScMnK2d5vLBclxklk2g3FN42AmUtz3RZDzQNbT3PXM0CvG9yzvKAH1WZ9HBi6zP1XCAeGIGZiE0eIECOeNNE0EaDljeJcBleHsD5Yh42u214hGXKRkJo5MOw/JxXwzp8OIsiKJDaj7Lo5RajYpgemaNd1XmdiOH6DhBhZGUCzaMWib4EMhJWUSpgknY9k+1BvvkqXwbgDT4yuD42C2OAAA<br><br>kZWM/XCExwhtmBZgMObGyyRFBzfKc/KdTxYgCRaZydTt+zHOtOlAqZXk2Q5LlYEi+LICFEUI4gRLnFmOI8vLNKMpGeMspypO0U8vV6tddB3Wa8rrSq+1e0K/PoCasqrXmP03YDNAph4KYup6yMm5b7MlaSJIwLxtoeCikNpprE7m1bZbVzejaxz7QPXuPSq58O6cckpvDKME8HSAAK0kJIAA1tkIAAlGAeDeJ59eRgBBKZb5gAA1F4aSo8pVi9TE<br><br>qCp0jiPnRcy4e7XTGJufkbQZgPSegeba61yyGg+peOSWp7yPiBq+UGU9VhJGICmEYRwRY5kxhAkYvd4iaHjAcChJNiAsX/API4JZIKaHJgQHCVMQolCIpCEiJRyKFC3gscGuBJDfGwG0QgmgZj6zGMpAAim8TQupvj0FBMpZSQhrRM1otUVm1pEoQRSsnKUSRuIZyJlnSA9d3ZrniB0EM3Vwwd1sfY8sUc4qexxBXYqZoa4VRHHaGqdUXQ+NKl6Y<br><br>uNtYTex8iiTxrkG7uV+jnaJlJHZ+wCgyBea5g7hTDiyYe5ZR6zTQHOBak8Voz0EksGW6AMbpP2ltReO00RDV5MBUxo1RqTXZo0Tg3AwK8w5k0AWQs1wagmHdYCMdJKKyQdeVWu0V5TmOrAgBF1gE3XiHdNUeNoEvVWkvEMCCLyyXmSg/6aCsjAzfJErBEgZRHE0DKKGlDeJTHiLMMQMoxYQN7sjHMCBQHxHgtgYgIxNBE2treCmJSOE024SUXhYB<br><br>+ElEEdSCQe8D7HzPhfK+N8kj30fi/LRH9RKkG/voqUD0jGlBTiWcxuU65tVQHdNuTi+qimirFbgMdiQ6m8RIAAxKYoM2BxKVUCeXPOoSi61wWrbbyqTYnOxxK7GxkskkuRSegX2/l6SNOySGMKoc0p8hjkU8eZSloVMOVU4Sn94j1KWAarekBtEtHFCilpPcRg8GLH3MYPBunlj5nmAS9QhkcUFhUGUJNeIFmApsBW0klYq2XvtVeKymlwNKOdIB<br><br>w0QFgITaMPZqyjlnhOV9ZBIY4C6xnBvSEuE8IRxKGMKmp1G1UzAKyrtba8JIrAB2yA+BQhQH1PofQagVwaTrRyyp2cvRQAAEJCQwWgV1GBlnZBWk+TW2tdbmkNsbU2YYLZWzfhAI4Z4AZoGcGMbQGZ4hjD7t8+MRN8z5hphWXAcAg5U0vYQTABwZ2LDnceT18wrkrpfCDbNKDSBQFvuStgFBuq4Gnra0oVykPfzQ8I5DVBIP4FHBQVNckyLgFOms<br><br>OAcB4RAO4JRaA3VMirCIL1VEDBCAIAoEuyVc8BXoEFYw4Tcs6gQGwCIb0Lx9j6HhAVaVQqRVJDFRxiT5LyrSYyLx6qUqQmNV8eEuVpQ1NSZkwAMQVeSH2aSxMmY0zJuTLtmUasgHZ7dDnkmKp1TZwo4nJP2YyKfDJBqQp+fU+5jIykQ4RXyfFMLpmMhmc4FAMztwYRpSzvFgL+gkvZGBIQIwFQh62f8xF/Q3wsCIbY1zCAwQjj+OM6VqAmnZNRAQ<br><br>zhlDeGy2NfC81mT44lgddQyEfDFKSu9Za0N74pL0C9g41hTEsJD79NTGJhbBp8CmSjOMB9aoNRiaMGwAwDG2IECEBUBFXqstlaCw0rJEA5tiYdCQfLhXmJPdIC9/Yv60CZee8QYybBlgDdwJoYIcyfqQH+wJwRS6DQ72ULaAAFEPTUvAxho9R9QUUCQACU1pT4IGUF2L0qxSCI9wCj9o2PWgdF4NTnH8R8f01825qAjmcRRagE0QcmHL2T0J9Uz7<br><br>sHUCCKyKD8H3AMTnfmNgIgP3UDS4WaUDgS0pekBl0aoQUB9wVCVyz0Kmhd4IGwDkYEqu4CA+B6rsHZGzm+c5Nzxg3wjv4BO+Wd1Or0im6YrLh8UADDTZonB8tiDTmQ+HaO2+Pvneu9gRR5F/AAPBDrMAP+pEgA==<br></code></pre></td></tr></table></figure><p>%%</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>excalidraw</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Streamlit 技巧 几个被忽视但重要的功能和机制</title>
+    <link href="/2024/11/13/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/Streamlit%20%E6%8A%80%E5%B7%A7%20%E5%87%A0%E4%B8%AA%E8%A2%AB%E5%BF%BD%E8%A7%86%E4%BD%86%E9%87%8D%E8%A6%81%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E6%9C%BA%E5%88%B6/"/>
+    <url>/2024/11/13/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/Streamlit%20%E6%8A%80%E5%B7%A7%20%E5%87%A0%E4%B8%AA%E8%A2%AB%E5%BF%BD%E8%A7%86%E4%BD%86%E9%87%8D%E8%A6%81%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E6%9C%BA%E5%88%B6/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>在使用 Streamlit 构建数据应用的过程中，我逐渐发现了一些非常有用但可能容易被忽视的功能与机制。为了更好地记录和分享这些知识，本文将详细介绍这些功能，希望能为同样使用 Streamlit 的同学们提供一些帮助。</p><h2 id="Tabs-组件"><a href="#Tabs-组件" class="headerlink" title="Tabs 组件"></a>Tabs 组件</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> streamlit <span class="hljs-keyword">as</span> st<br><br>tab1, tab2, tab3 = st.tabs([<span class="hljs-string">&quot;Cat&quot;</span>, <span class="hljs-string">&quot;Dog&quot;</span>, <span class="hljs-string">&quot;Owl&quot;</span>])<br><br><span class="hljs-keyword">with</span> tab1:<br>    st.header(<span class="hljs-string">&quot;A cat&quot;</span>)<br>    st.image(<span class="hljs-string">&quot;https://static.streamlit.io/examples/cat.jpg&quot;</span>, width=<span class="hljs-number">200</span>)<br><span class="hljs-keyword">with</span> tab2:<br>    st.header(<span class="hljs-string">&quot;A dog&quot;</span>)<br>    st.image(<span class="hljs-string">&quot;https://static.streamlit.io/examples/dog.jpg&quot;</span>, width=<span class="hljs-number">200</span>)<br><span class="hljs-keyword">with</span> tab3:<br>    st.header(<span class="hljs-string">&quot;An owl&quot;</span>)<br>    st.image(<span class="hljs-string">&quot;https://static.streamlit.io/examples/owl.jpg&quot;</span>, width=<span class="hljs-number">200</span>)<br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202411132138391.png"></p><h2 id="控件中的-key-的应用"><a href="#控件中的-key-的应用" class="headerlink" title="控件中的 key 的应用"></a>控件中的 key 的应用</h2><p>Key 是为了区分组件的键。如果空间名称完全相同就会报错，需要用 key 进行区分。</p><h2 id="Fragment-局部刷新"><a href="#Fragment-局部刷新" class="headerlink" title="Fragment 局部刷新"></a>Fragment 局部刷新</h2><p> Streamlit 默认是全页刷新，通过@st. Fragment 装饰器，可以实现实现局部刷新的效果。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">import</span> streamlit <span class="hljs-keyword">as</span> st<br><span class="hljs-keyword">import</span> time<br><br><span class="hljs-meta">@st.fragment</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">release_the_balloons</span>():<br>    st.button(<span class="hljs-string">&quot;Release the balloons&quot;</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&quot;Fragment rerun&quot;</span>)<br>    st.balloons()<br><br><span class="hljs-keyword">with</span> st.spinner(<span class="hljs-string">&quot;Inflating balloons...&quot;</span>):<br>    time.sleep(<span class="hljs-number">5</span>)<br>release_the_balloons()<br>st.button(<span class="hljs-string">&quot;Inflate more balloons&quot;</span>, <span class="hljs-built_in">help</span>=<span class="hljs-string">&quot;Full rerun&quot;</span>)<br></code></pre></td></tr></table></figure><h2 id="Session-State"><a href="#Session-State" class="headerlink" title="Session State"></a>Session State</h2><p><code>Session State</code> 是 Streamlit 提供的一种机制，用于在用户会话之间保持变量的状态。在 Web 应用中，通常每个用户的请求都是独立的，这意味着每次刷新页面或导航到新页面时，变量的状态都会丢失。然而，在某些情况下，我们希望某些变量的状态能够在用户的整个会话期间保持不变，这就是 <code>Session State</code> 发挥作用的地方。</p><h4 id="示例-1：简单的计数器"><a href="#示例-1：简单的计数器" class="headerlink" title="示例 1：简单的计数器"></a>示例 1：简单的计数器</h4><p>这个示例展示了一个简单的计数器，用户每次点击按钮时，计数器的值会增加。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> streamlit <span class="hljs-keyword">as</span> st<br><br><span class="hljs-comment"># 初始化 session state</span><br><span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;counter&#x27;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> st.session_state:<br>    st.session_state.counter = <span class="hljs-number">0</span><br><br><span class="hljs-comment"># 增加计数器的按钮</span><br>increment_button = st.button(<span class="hljs-string">&#x27;Increment Counter&#x27;</span>)<br><br><span class="hljs-keyword">if</span> increment_button:<br>    st.session_state.counter += <span class="hljs-number">1</span><br><br><span class="hljs-comment"># 显示当前计数器的值</span><br>st.write(<span class="hljs-string">f&#x27;Counter: <span class="hljs-subst">&#123;st.session_state.counter&#125;</span>&#x27;</span>)<br></code></pre></td></tr></table></figure><h4 id="示例-2：用户登录状态"><a href="#示例-2：用户登录状态" class="headerlink" title="示例 2：用户登录状态"></a>示例 2：用户登录状态</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> streamlit <span class="hljs-keyword">as</span> st<br><br><span class="hljs-comment"># 初始化 session state</span><br><span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;logged_in&#x27;</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> st.session_state:<br>    st.session_state.logged_in = <span class="hljs-literal">False</span><br><br><span class="hljs-comment"># 登录表单</span><br><span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> st.session_state.logged_in:<br>    username = st.text_input(<span class="hljs-string">&#x27;Username&#x27;</span>)<br>    password = st.text_input(<span class="hljs-string">&#x27;Password&#x27;</span>, <span class="hljs-built_in">type</span>=<span class="hljs-string">&#x27;password&#x27;</span>)<br>    login_button = st.button(<span class="hljs-string">&#x27;Login&#x27;</span>)<br><br>    <span class="hljs-keyword">if</span> login_button:<br>        <span class="hljs-keyword">if</span> username == <span class="hljs-string">&#x27;admin&#x27;</span> <span class="hljs-keyword">and</span> password == <span class="hljs-string">&#x27;password&#x27;</span>:<br>            st.session_state.logged_in = <span class="hljs-literal">True</span><br>            st.success(<span class="hljs-string">&#x27;Logged in successfully!&#x27;</span>)<br>        <span class="hljs-keyword">else</span>:<br>            st.error(<span class="hljs-string">&#x27;Invalid credentials&#x27;</span>)<br><br><span class="hljs-comment"># 显示欢迎信息</span><br><span class="hljs-keyword">if</span> st.session_state.logged_in:<br>    st.write(<span class="hljs-string">f&#x27;Welcome, <span class="hljs-subst">&#123;username&#125;</span>!&#x27;</span>)<br>    logout_button = st.button(<span class="hljs-string">&#x27;Logout&#x27;</span>)<br>    <span class="hljs-keyword">if</span> logout_button:<br>        st.session_state.logged_in = <span class="hljs-literal">False</span><br>        st.success(<span class="hljs-string">&#x27;Logged out successfully!&#x27;</span>)<br></code></pre></td></tr></table></figure><h2 id="St-Form-表单"><a href="#St-Form-表单" class="headerlink" title="St. Form 表单"></a>St. Form 表单</h2><p>使用 <code>st.form</code> 创建一个表单，需要给表单分配一个唯一的 <code>key</code>，这个 <code>key</code> 用于标识不同的表单实例。在表单内部，可以添加各种输入控件，如文本输入框、选择框等。<br>在表单内部，你可以像在其他地方一样添加各种输入控件。这些控件的值会被保存在一个表单状态中，直到用户点击提交按钮。<br>使用 <code>st.form_submit_button</code> 添加一个提交按钮。当用户点击这个按钮时，表单内的所有输入控件的值都会被捕获，并可以通过条件语句来处理这些值。</p><p>以下是一个完整的示例，展示了如何使用 <code>st.form</code> 创建一个包含多个输入控件的表单，并在用户提交表单后验证输入的有效性。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-keyword">with</span> st.form(key=<span class="hljs-string">&quot;form1&quot;</span>):<br>    respond_info = &#123;<br>        <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-literal">None</span>,<br>        <span class="hljs-string">&quot;team&quot;</span>: <span class="hljs-literal">None</span>,<br>        <span class="hljs-string">&quot;share_info&quot;</span>: <span class="hljs-literal">None</span>,<br>        <span class="hljs-string">&quot;email_info&quot;</span>: <span class="hljs-literal">None</span>,<br>        <span class="hljs-string">&quot;age_info&quot;</span>: <span class="hljs-literal">None</span><br>    &#125;<br><br>    respond_info[<span class="hljs-string">&quot;name&quot;</span>] = st.text_input(label=<span class="hljs-string">&quot;Name&quot;</span>)<br>    respond_info[<span class="hljs-string">&quot;team&quot;</span>] = st.selectbox(<br>        label=<span class="hljs-string">&quot;favorate team:&quot;</span>,<br>        options=[<span class="hljs-string">&quot;Arsenal&quot;</span>, <span class="hljs-string">&quot;Man City&quot;</span>, <span class="hljs-string">&quot;Man United&quot;</span>, <span class="hljs-string">&quot;Chelsea&quot;</span>, <span class="hljs-string">&quot;Liverpool&quot;</span>]<br>    )<br>    respond_info[<span class="hljs-string">&quot;share_info&quot;</span>] = st.radio(label=<span class="hljs-string">&quot;share my information:&quot;</span>, options=[<span class="hljs-string">&quot;yes&quot;</span>, <span class="hljs-string">&quot;no&quot;</span>])<br>    respond_info[<span class="hljs-string">&quot;email_info&quot;</span>] = st.checkbox(label=<span class="hljs-string">&quot;Receive Email notification&quot;</span>)<br>    respond_info[<span class="hljs-string">&quot;age_info&quot;</span>] = st.slider(label=<span class="hljs-string">&quot;age&quot;</span>, min_value=<span class="hljs-number">0</span>, max_value=<span class="hljs-number">100</span>)<br>    <span class="hljs-comment"># submit button</span><br>    form_submitted = st.form_submit_button(label=<span class="hljs-string">&quot;Submit!&quot;</span>)<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">check_form_valid</span>():<br>        vals = respond_info.values()<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">all</span>([<span class="hljs-literal">True</span> <span class="hljs-keyword">if</span> val <span class="hljs-keyword">not</span> <span class="hljs-keyword">in</span> [<span class="hljs-literal">None</span>, <span class="hljs-string">&quot;&quot;</span>] <span class="hljs-keyword">else</span> <span class="hljs-literal">False</span> <span class="hljs-keyword">for</span> val <span class="hljs-keyword">in</span> vals ])<br><br>    <span class="hljs-comment"># check format</span><br>    <span class="hljs-keyword">if</span> form_submitted:<br>        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> check_form_valid():<br>            st.warning(<span class="hljs-string">&quot;Please fill in all form values!&quot;</span>)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-comment"># st.balloons()</span><br>            st.write(<span class="hljs-string">&quot;form submitted!&quot;</span>)<br><br><br><span class="hljs-built_in">print</span>(respond_info)<br>respond_info<br></code></pre></td></tr></table></figure><h2 id="St-Cache-data"><a href="#St-Cache-data" class="headerlink" title="St. Cache_data"></a>St. Cache_data</h2><p><code>st.cache_data</code> 是 Streamlit 提供的一个装饰器，用于缓存函数的输出结果。它可以帮助减少数据加载或计算的时间，提高应用的响应速度。当一个带有 <code>@st.cache_data</code> 装饰器的函数被调用时，Streamlit 会检查函数的输入参数是否已经存在于缓存中。如果存在，则直接从缓存中读取结果；如果不存在，则执行函数并将其输出结果存储到缓存中。</p><h3 id="使用示例"><a href="#使用示例" class="headerlink" title="使用示例"></a>使用示例</h3><p>下面是一个简单的例子，展示了如何使用 <code>st.cache_data</code> 缓存一个模拟的耗时数据加载过程。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> streamlit <span class="hljs-keyword">as</span> st<br><span class="hljs-keyword">import</span> time<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br><span class="hljs-comment"># 模拟一个耗时的数据加载函数</span><br><span class="hljs-meta">@st.cache_data</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">load_data</span>(<span class="hljs-params">n_rows</span>):<br>    <span class="hljs-comment"># 模拟长时间的数据加载过程</span><br>    time.sleep(<span class="hljs-number">5</span>)  <span class="hljs-comment"># 假设需要5秒来加载数据</span><br>    data = &#123;<span class="hljs-string">&#x27;column1&#x27;</span>: <span class="hljs-built_in">range</span>(n_rows), <span class="hljs-string">&#x27;column2&#x27;</span>: <span class="hljs-built_in">range</span>(n_rows)&#125;<br>    <span class="hljs-keyword">return</span> pd.DataFrame(data)<br><br><span class="hljs-comment"># 用户界面部分</span><br>st.title(<span class="hljs-string">&#x27;使用 st.cache_data 加速数据加载&#x27;</span>)<br><br><span class="hljs-comment"># 获取用户输入</span><br>n_rows = st.number_input(<span class="hljs-string">&#x27;请输入行数&#x27;</span>, min_value=<span class="hljs-number">1</span>, value=<span class="hljs-number">100</span>)<br><br><span class="hljs-comment"># 显示加载中的提示信息</span><br><span class="hljs-keyword">with</span> st.spinner(<span class="hljs-string">&#x27;正在加载数据...&#x27;</span>):<br>    df = load_data(n_rows)<br><br><span class="hljs-comment"># 显示数据</span><br>st.write(df)<br>st.success(<span class="hljs-string">&#x27;数据加载完成！&#x27;</span>)<br></code></pre></td></tr></table></figure><p>在这个例子中，<code>load_data</code> 函数被 <code>@st.cache_data</code> 装饰器修饰。第一次加载指定数量的数据时，会实际执行 <code>time.sleep(5)</code> 模拟的长时间加载过程，并将结果缓存起来。当用户再次请求相同数量的数据时，Streamlit 将直接从缓存中获取结果，而不需要再次等待 5 秒。</p><h2 id="批处理命令及开机启动"><a href="#批处理命令及开机启动" class="headerlink" title="批处理命令及开机启动"></a>批处理命令及开机启动</h2><p>在服务器上部署 web 项目时，需要设置批处理命令，包括启动 python 环境，指定 python 文件等。<br>下面为一个例子。</p><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bat">@<span class="hljs-built_in">echo</span> off<br><span class="hljs-comment">rem 初始化 Conda</span><br><span class="hljs-keyword">call</span> &quot;C:\Users\htwl\anaconda3\Scripts\activate&quot;<br><span class="hljs-comment"></span><br><span class="hljs-comment">rem 激活 Conda 环境</span><br><span class="hljs-keyword">call</span> conda activate streamlit_env<br><span class="hljs-comment"></span><br><span class="hljs-comment">rem 切换到目标目录</span><br><span class="hljs-built_in">cd</span> /d D:\baibaoxiang<br><span class="hljs-comment"></span><br><span class="hljs-comment">rem 运行 Streamlit 应用</span><br><span class="hljs-keyword">call</span> streamlit run D:\baibaoxiang\app.py<br></code></pre></td></tr></table></figure><ul><li><code>@echo off</code>：关闭命令回显，使输出更干净。</li><li><code>call &quot;C:\Users\htwl\anaconda3\Scripts\activate&quot;</code>：调用 Conda 的激活脚本。</li><li><code>call conda activate streamlit_env</code>：激活指定的 Conda 环境。</li><li><code>cd /d D:\baibaoxiang</code>：切换到目标目录。</li><li><code>call streamlit run D:\baibaoxiang\app.py</code>：运行 Streamlit 应用。</li></ul><p>将上面内容放在. Bat 文件内，将文件复制到 windows 开始菜单的启动文件夹内。实现开机自动运行。</p><figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs moonscript"><span class="hljs-name">C</span>:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp<br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202411141706855.png"></p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+      <tag>streamlit</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>marimo 初体验 能替代jupyter streamlit么？</title>
+    <link href="/2024/11/06/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/marimo%20%E5%88%9D%E4%BD%93%E9%AA%8C%20%E8%83%BD%E6%9B%BF%E4%BB%A3jupyter%20streamlit%E4%B9%88%EF%BC%9F/"/>
+    <url>/2024/11/06/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/marimo%20%E5%88%9D%E4%BD%93%E9%AA%8C%20%E8%83%BD%E6%9B%BF%E4%BB%A3jupyter%20streamlit%E4%B9%88%EF%BC%9F/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p><strong>Marimo</strong> 是最近观察到的一款响应式 Python 笔记本，被誉为“面向未来的笔记本”，旨在替代传统的 Jupyter 和 Streamlit。初次试用时，我被其简洁的启动方式、美观的界面和易于分享的特点深深吸引。<strong>Marimo</strong> 实现了所见即所得的效果，极大地提升了用户体验。然而，作为一个相对较新的工具，它在使用过程中也暴露出了一些问题。本文将总结我的近期体验，并分享一些使用心得。未来，我将持续关注 <strong>Marimo</strong> 的发展，期待它在数据分析和可视化领域的更多创新。</p><h2 id="官方介绍"><a href="#官方介绍" class="headerlink" title="官方介绍"></a>官方介绍</h2><p><strong>Marimo</strong> 是一款响应式 Python 笔记本：运行单元格可与 UI 元素交互，marimo 会自动更新依赖于它的单元格，从而保持代码和输出的一致性。<strong>marimo</strong> 笔记本以纯 Python 格式存储，可作为脚本执行，也可作为应用程序部署。</p><h3 id="Marimo-优势"><a href="#Marimo-优势" class="headerlink" title="Marimo  优势"></a><strong>Marimo</strong>  优势</h3><ul><li>🚀 功能齐全: 替代 jupyter、streamlit、jupytext、ipywidgets、papermill 等更多工具</li><li>⚡️ 响应式: 运行一个单元格，marimo 会响应式地运行所有依赖单元格</li><li>🖐️ 交互性: 绑定滑块、表格、图表等 UI 元素 到 Python</li><li>🔬 可复现: 无隐藏状态，确定性执行</li><li>🏃‍♂️ 可执行: 作为 Python 脚本执行，通过命令行调整参数</li><li>🛜 可分享: 部署为交互式 Web 应用 或幻灯片，通过 WASM 在浏览器中运行</li><li>🛢️ 为数据设计: 使用 SQL 查询数据框和数据库，过滤和搜索数据框</li><li>🐍 支持 Git: 笔记本以 .py 文件格式存储</li><li>⌨️ 现代编辑器: GitHub Copilot、AI 助手、vim 快捷键、变量浏览器，和更多功能</li></ul><h2 id="操作记录"><a href="#操作记录" class="headerlink" title="操作记录"></a>操作记录</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> marimo <br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202411061555214.png"></p><h3 id="新建或编辑文件"><a href="#新建或编辑文件" class="headerlink" title="新建或编辑文件"></a>新建或编辑文件</h3><p>使用以下命令创建或编辑笔记本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#指定解释器</span><br><span class="hljs-comment">#conda 解释器</span><br>conda activate base<br><br><span class="hljs-comment">#指定文件目录</span><br><span class="hljs-built_in">cd</span> /d D:\BaiduSyncdisk\pythonprograms\marimo<br>marimo edit [filename].py<br>marimo edit new_marimo.py<br><span class="hljs-comment">#运行示例文件</span><br>marimo tutorial intro<br><span class="hljs-comment">#更新</span><br>pip install --upgrade marimo<br></code></pre></td></tr></table></figure><h3 id="运行应用"><a href="#运行应用" class="headerlink" title="运行应用"></a>运行应用</h3><p>将笔记本作为网络应用程序运行，隐藏 Python 代码，且不可编辑：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">marimo run new_marimo.py<br>marimo run pic.py<br></code></pre></td></tr></table></figure><p><strong>作为脚本执行</strong> 在命令行中将笔记本作为脚本执行：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">python your_notebook.py<br></code></pre></td></tr></table></figure><p><strong>自动转换已有的 Jupyter 笔记本</strong> 通过命令行将 Jupyter 笔记本自动转换为 marimo 格式的笔记本</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">marimo convert your_notebook.ipynb &gt; your_notebook.py<br>marimo convert pic.ipynb &gt; pic.py<br></code></pre></td></tr></table></figure><h2 id="学习方法"><a href="#学习方法" class="headerlink" title="学习方法"></a>学习方法</h2><p>列出所有的可用教程:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">marimo tutorial --<span class="hljs-built_in">help</span><br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202411071501685.png"></p><p>使用对应的语句学习基本语法，比如ui</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">marimo tutorial ui</span><br></code></pre></td></tr></table></figure><p>在浏览器中很方便的看到各类 ui 的写法，比如数字输入，单选、多选、文件录入、时间输入等。相当于 streamlit 的控件，简洁的样式可以满足基本的需求。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202411071503672.png" alt="image.png"></p><p>用同样的方法，可以快速上手数据结构，绘图等。</p><h3 id="数据透视图"><a href="#数据透视图" class="headerlink" title="数据透视图"></a>数据透视图</h3><p>使用 ui. data_explorer () 方法快速搭建数据透视图。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202411071530728.png"></p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">mo<span class="hljs-selector-class">.ui</span><span class="hljs-selector-class">.data_explorer</span>(df)<br></code></pre></td></tr></table></figure><h2 id="个人体验小结"><a href="#个人体验小结" class="headerlink" title="个人体验小结"></a>个人体验小结</h2><p><code>marimo</code> 是一个正处于快速发展阶段的库，尽管目前在成熟度上还不及 Jupyter Notebook 和 Streamlit，但在用户体验和功能创新方面展现出了巨大的潜力。</p><p><code>marimo</code> 在处理大数据量时可能会显得较为缓慢，甚至在某些情况下会卡顿。此外，<code>marimo</code> 在运行一个单元格时会自动运行所有依赖单元格，这意味着代码中的任何错误都会导致整个项目无法正常启动，这在命令行中尤为明显，同时也不便于在浏览器中进行即时修改。另一个需要注意的点是，<code>marimo</code> 对变量命名有严格的要求，不允许重复名称，这增加了代码编写的约束。</p><p>除了上面发现的问题，优点也比较多，美观，易上手，相当于结合了 streamlit 展示的 jupyter notebook，本次体验并不深入，marimo 还可解接入 openai ,googleai 等提示，而且可以使用 SQL 语句查询表格文件和 df 文件，可玩性还是很强，未来可期吧，后面会持续关注。</p><h2 id="相关网站"><a href="#相关网站" class="headerlink" title="相关网站"></a>相关网站</h2><p><a href="https://docs.marimo.io/">marimo</a></p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具推荐</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>obsidian 官方网页剪藏插件 obsidian web Clipper</title>
+    <link href="/2024/10/31/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/obsidian%20web%20Clipper%20obsidian/"/>
+    <url>/2024/10/31/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/obsidian%20web%20Clipper%20obsidian/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>Obsidian web Clipper 一款 obsidian 官方网站剪藏软件，相当于印象笔记、语雀的工具的 Clipper 插件，效果非常好，而且笔记都放在本地，排版、元数据直接获取，强烈的推广欲让我想让所有使用 obsidian 的用户知道。</p><h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><p>目前上架了 chrome 应用商店，edge 直接搜索是没有的。在 chrome 应用商店搜索安装即可。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410311123256.png"></p><p>但是我的主流浏览器是 edge，也是可以解决的，将网址复制粘贴到 edge, 会在顶部出现提示框，直接安装即可，这适用于所有没上架 edge 应用商店的插件。</p><p><a href="https://chromewebstore.google.com/detail/obsidian-web-clipper/cnjifjpddelmedmihgijeibhnjfabmlf?hl=zh-CN&utm_source=ext_sidebar">Obsidian Web Clipper - Chrome 应用商店 (google.com)</a></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410311125188.png"></p><h2 id="插件使用及笔记效果"><a href="#插件使用及笔记效果" class="headerlink" title="插件使用及笔记效果"></a>插件使用及笔记效果</h2><p>插件使用非常无脑，无需设置，在 obsidian 开启的情况下，点击 obsidian web Clipper 按钮，默认收集到到 Clippings，而且自带文章元数据。包括文件名、来源，创建时间，标签等，排版都给你排好了，真香。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410311127764.png"></p><h3 id="笔记效果"><a href="#笔记效果" class="headerlink" title="笔记效果"></a>笔记效果</h3><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410311130281.png"></p><p>如果你在用 obsidian，那就快快用起来吧~</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具推荐</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>obsidian</tag>
+      
+      <tag>obsidian插件</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>利用滞后相关性计算水质站点之间的污染传递关系</title>
+    <link href="/2024/10/30/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E6%BB%9E%E5%90%8E%E7%9B%B8%E5%85%B3%E6%80%A7%E8%AE%A1%E7%AE%97%E6%B0%B4%E8%B4%A8%E7%AB%99%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E6%B1%A1%E6%9F%93%E4%BC%A0%E9%80%92%E5%85%B3%E7%B3%BB/"/>
+    <url>/2024/10/30/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E6%BB%9E%E5%90%8E%E7%9B%B8%E5%85%B3%E6%80%A7%E8%AE%A1%E7%AE%97%E6%B0%B4%E8%B4%A8%E7%AB%99%E7%82%B9%E4%B9%8B%E9%97%B4%E7%9A%84%E6%B1%A1%E6%9F%93%E4%BC%A0%E9%80%92%E5%85%B3%E7%B3%BB/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>在研究水质变化时，了解污染物从一个地点向另一个地点的传递过程至关重要。这不仅有助于我们追踪污染物的源头，还能为污染控制措施提供指导。</p><p>以下是在同一条河流、不同点位的氨氮变化趋势图，可以明显看出污染物的传递关系，那么如何简单快捷的计算出传递时间呢？今天，我们将探讨如何利用滞后相关性来计算水质站点之间的污染传递时间。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410301557875.png" alt="微信图片_20241030094721(1).png"></p><h2 id="滞后相关性的概念"><a href="#滞后相关性的概念" class="headerlink" title="滞后相关性的概念"></a>滞后相关性的概念</h2><p><strong>滞后相关性（Lagged Correlation）</strong> 是一种统计方法，用于评估两个时间序列数据集之间的时间延迟关系。这种方法能够帮助我们理解污染物是如何随时间和空间变化的，进而推断出污染物的来源、路径和速度。</p><h2 id="滞后相关性的数学意义"><a href="#滞后相关性的数学意义" class="headerlink" title="滞后相关性的数学意义"></a>滞后相关性的数学意义</h2><p>数学上，滞后相关性可以通过计算两个时间序列数据集 $X (t)$ 和 $Y (t)$ 在不同时间滞后 $k$ 下的相关系数 $r (k)$ 来量化它们之间的关系。公式如下：</p><p>$$<br>r(k) &#x3D; \frac{\sum_{t&#x3D;k+1}^{T}(X(t) - \bar{X})(Y(t-k) - \bar{Y})}{\sqrt{\sum_{t&#x3D;1}^{T}(X(t) - \bar{X})^2} \sqrt{\sum_{t&#x3D;1}^{T}(Y(t) - \bar{Y})^2}}<br>$$</p><p>其中：</p><ul><li>$X (t)$ 和 $Y (t)$ 分别表示两个时间序列；</li><li>$\bar{X}$ 和 $\bar{Y}$ 分别是这两个序列的平均值；</li><li>$k$ 是时间滞后的步数，即 $Y (t-k)$ 相对于 $X (t)$ 的时间差；</li><li>$T$ 是时间序列的长度。</li></ul><h2 id="Python-算法"><a href="#Python-算法" class="headerlink" title="Python 算法"></a>Python 算法</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">calculate_lagged_correlations</span>(<span class="hljs-params">ts1, ts2, lags</span>):<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">计算两个时间序列在指定滞后范围内的相关性。</span><br><span class="hljs-string">参数:</span><br><span class="hljs-string">    ts1 (pd.Series): 第一个时间序列</span><br><span class="hljs-string">    ts2 (pd.Series): 第二个时间序列</span><br><span class="hljs-string">    lags (list): 滞后值列表</span><br><span class="hljs-string"></span><br><span class="hljs-string">返回:</span><br><span class="hljs-string">    dict: 滞后值及其对应的相关系数</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>correlations = &#123;&#125;<br><span class="hljs-keyword">for</span> lag <span class="hljs-keyword">in</span> lags:<br>    <span class="hljs-keyword">if</span> lag &gt; <span class="hljs-number">0</span>:<br>        corr = ts1.corr(ts2.shift(lag))<br>    <span class="hljs-keyword">elif</span> lag &lt; <span class="hljs-number">0</span>:<br>        corr = ts1.shift(-lag).corr(ts2)<br>    <span class="hljs-keyword">else</span>:<br>        corr = ts1.corr(ts2)<br>    correlations[lag] = corr<br><span class="hljs-keyword">return</span> correlations<br></code></pre></td></tr></table></figure><h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>根据 correlations 简单绘图得到下图：</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410301611224.png" alt="image.png"></p><p>可以得出两数据最大滞后相关性为 0.753，相关性较高，滞后阶数为：28，意味着两者的污染物运移时间为 28 个步长。该数据的步长是 4 小时，也就是上游流向下游为 4.67 天。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>通过计算最大滞后相关性，我们可以有效分析两个监测点之间是否存在显著的滞后关联，并且精确地确定最大相关性的滞后阶数。这一方法在河道流量监测不准确的情况下尤为重要，能够帮助我们更好地掌握河道的流速和污染物的运移时间，为水质管理和环境保护提供科学依据。</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>生态环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>生态环境</tag>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>以在线设备拓扑关系为基础的污染溯源算法</title>
+    <link href="/2024/10/29/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E4%BB%A5%E8%AE%BE%E5%A4%87%E7%BD%91%E7%BB%9C%E5%85%B3%E7%B3%BB%E4%B8%BA%E5%9F%BA%E7%A1%80%E7%9A%84%E6%B0%B4%E8%B4%A8%E5%9C%A8%E7%BA%BF%E8%AE%BE%E5%A4%87%E6%BA%AF%E6%BA%90%E7%AE%97%E6%B3%95/"/>
+    <url>/2024/10/29/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E4%BB%A5%E8%AE%BE%E5%A4%87%E7%BD%91%E7%BB%9C%E5%85%B3%E7%B3%BB%E4%B8%BA%E5%9F%BA%E7%A1%80%E7%9A%84%E6%B0%B4%E8%B4%A8%E5%9C%A8%E7%BA%BF%E8%AE%BE%E5%A4%87%E6%BA%AF%E6%BA%90%E7%AE%97%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在水质分析过程中，污染溯源是无法绕开的部分，当一个在线设备表现出污染特征时，我们往往希望快速知道是什么原因造成的。日常数据分析往往利用在设备、水文网络基础上，往上溯源，逐一找到相关的站点或者排污口，从而判断出污染来源，这种方式适用于点源或者上游有在线监测的断面，这种方法虽然有效，但效率低下，那么如何将其自动化呢？</p><p>为了实现高效的水质污染溯源，首要任务是建立一个详细的河流与在线监测设备的数字模型。这一模型由两部分组成：首先是河流关系表，它记录了河流的上下游关系、干支流等级等信息，为理解水流路径提供了基础；其次是在线设备关系表，该表详细列出了不同类型的监测设备（如水质监测站、排污口监测点）与河流的具体关联，有助于识别潜在的污染来源。</p><p>本文档介绍了如何使用 Python 实现水质溯源算法。通过构建河流和在线设备拓扑关系表，利用算法，我们能够根据任意站点的信息，追踪其上游相关的设备。在通过滞后相关分析可初步实现追踪溯源。<br>这是污染溯源的第一步，今天先介绍是如何实现的，如果你有更好的方法，也请留言指正。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410301503585.png" alt="河流网络与在线设备关系概化图"></p><h2 id="河流和在线设备拓扑构建关系"><a href="#河流和在线设备拓扑构建关系" class="headerlink" title="河流和在线设备拓扑构建关系"></a>河流和在线设备拓扑构建关系</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410301510193.png" alt="关系框架"></p><p>需要构建 2 张表，包含 2 种设备类型，一张河流关系表，表示河流的上下游关系，岸线关系，干支流关系；一张设备表，表示河道在线监测设备、排污口在线监测设备这两种设备与河流的关联关系。</p><h3 id="河流关系表"><a href="#河流关系表" class="headerlink" title="河流关系表"></a>河流关系表</h3><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>序号</td><td>记录编号</td></tr><tr><td>Mn</td><td>河流唯一编码</td></tr><tr><td>Name</td><td>河流名称</td></tr><tr><td>河流级别</td><td>明确干支流关系，干流为 0，一级支流为 1，以此类推</td></tr><tr><td>上级河流</td><td>进一步明确干支流关系，便于理解较深的层次关系</td></tr><tr><td>同级顺序</td><td>明确同一河流级别下的上下游关系，从 1 往后排序</td></tr><tr><td>流域名称</td><td>同一流域才能进行分析</td></tr><tr><td>类型</td><td>河流为 <code>river</code></td></tr><tr><td>岸线</td><td>明确左右岸位置</td></tr><tr><td>河流关系</td><td>与站点类型对应，河流为 <code>base</code>、排污口为 <code>to</code>、河流站点为 <code>on</code></td></tr></tbody></table><h3 id="在线设备关系表"><a href="#在线设备关系表" class="headerlink" title="在线设备关系表"></a>在线设备关系表</h3><table><thead><tr><th>参数</th><th>描述</th></tr></thead><tbody><tr><td>序号</td><td>记录编号</td></tr><tr><td>Mn</td><td>唯一编码</td></tr><tr><td>站点名称</td><td>设备名称</td></tr><tr><td>所在河流</td><td>设备所在的河流名称</td></tr><tr><td>河流关系</td><td>设备与河流的关系</td></tr><tr><td>同级顺序</td><td>在同一条河流上，用同级顺序表示上下游关系</td></tr><tr><td>上方支流</td><td>在线设备上有最近的支流名称，结合同级顺序可以定义在线设备在水文关系中的位置</td></tr><tr><td>流域名称</td><td>同一流域才能进行分析</td></tr><tr><td>岸线关系</td><td>明确左右岸位置</td></tr><tr><td>站点类型</td><td>设备类型</td></tr><tr><td>所在河流ID</td><td>设备所在的河流唯一编码</td></tr></tbody></table><h2 id="溯源逻辑"><a href="#溯源逻辑" class="headerlink" title="溯源逻辑"></a>溯源逻辑</h2><h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3><ol><li><strong>获取目标站点信息</strong>：    <ul><li>根据站点名称查找目标站点的所有信息。</li><li>获取站点所在的河流ID和上方支流。</li></ul></li><li><strong>获取上方支流的河流信息</strong>：    <ul><li>获取上方支流的河流级别和同级顺序。</li></ul></li><li><strong>获取所有同级且同级顺序小于等于上方支流的河流</strong>：    <ul><li>查找所有与上方支流同级别且同级顺序小于等于上方支流的河流。</li></ul></li><li><strong>递归获取下一级支流</strong>：    <ul><li>对于每条找到的河流，递归地查找其下级河流，直到找到所有相关河流。</li></ul></li><li><strong>获取所有相关支流上的站点</strong>：    <ul><li>根据找到的所有相关河流ID，获取这些河流上的站点信息，形成列表A。</li></ul></li><li><strong>获取同一条河流上同级顺序小于目标站点的站点</strong>：    <ul><li>查找同一条河流上同级顺序小于目标站点的站点，形成列表B。</li></ul></li><li><strong>合并列表A和列表B</strong>：    <ul><li>去除重复项，得到最终的相关站点列表C。</li></ul></li><li><strong>匹配列表C与在线设备关系表</strong>：    <ul><li>获取最终相关在线设备表，输出所有参数。</li></ul></li></ol><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><code class="hljs Python"><span class="hljs-comment">#!/usr/bin/env python</span><br><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string"># @Time    : 2024/10/29 下午4:57</span><br><span class="hljs-string"># @Author  : 陈文茂</span><br><span class="hljs-string"># @File    : traceability.py</span><br><span class="hljs-string"># @Software: PyCharm</span><br><span class="hljs-string"># @tags    : 水质溯源 水文分析</span><br><span class="hljs-string"># @Desc    : 水质溯源算法</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br><span class="hljs-comment"># 确保站点ID和河流ID为文本格式</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">preprocess_data</span>(<span class="hljs-params">rivers_df, stations_df</span>):<br>    rivers_df[<span class="hljs-string">&#x27;mn&#x27;</span>] = rivers_df[<span class="hljs-string">&#x27;mn&#x27;</span>].astype(<span class="hljs-built_in">str</span>)<br>    rivers_df[<span class="hljs-string">&#x27;上级河流&#x27;</span>] = rivers_df[<span class="hljs-string">&#x27;上级河流&#x27;</span>].astype(<span class="hljs-built_in">str</span>)<br>    stations_df[<span class="hljs-string">&#x27;mn&#x27;</span>] = stations_df[<span class="hljs-string">&#x27;mn&#x27;</span>].astype(<span class="hljs-built_in">str</span>)<br>    stations_df[<span class="hljs-string">&#x27;所在河流ID&#x27;</span>] = stations_df[<span class="hljs-string">&#x27;所在河流ID&#x27;</span>].astype(<span class="hljs-built_in">str</span>)<br>    <span class="hljs-keyword">return</span> rivers_df, stations_df<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_upstream_stations</span>(<span class="hljs-params">station_name, rivers_df, stations_df</span>):<br>    <span class="hljs-comment"># 获取目标站点信息</span><br>    target_station = stations_df[stations_df[<span class="hljs-string">&#x27;站点名称&#x27;</span>] == station_name]<br>    <span class="hljs-keyword">if</span> target_station.empty:<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;No station found with the provided name.&quot;</span><br><br>    target_station = target_station.iloc[<span class="hljs-number">0</span>]<br>    target_river_id = target_station[<span class="hljs-string">&#x27;所在河流ID&#x27;</span>]<br>    up_tributary = target_station[<span class="hljs-string">&#x27;上方支流&#x27;</span>]<br>    <span class="hljs-comment"># 获取上方支流的河流信息</span><br>    up_tributary_info = rivers_df[rivers_df[<span class="hljs-string">&#x27;name&#x27;</span>] == up_tributary].iloc[<span class="hljs-number">0</span>]<br>    up_tributary_level = up_tributary_info[<span class="hljs-string">&#x27;河流级别&#x27;</span>]<br>    up_tributary_order = up_tributary_info[<span class="hljs-string">&#x27;同级顺序&#x27;</span>]<br><br>    <span class="hljs-comment"># 获取所有同级且同级顺序小于等于上方支流的河流</span><br>    upstream_rivers = rivers_df[<br>        (rivers_df[<span class="hljs-string">&#x27;河流级别&#x27;</span>] == up_tributary_level) &amp;<br>        (rivers_df[<span class="hljs-string">&#x27;同级顺序&#x27;</span>] &lt;= up_tributary_order)<br>        ]<br><br>    <span class="hljs-comment"># 获取所有相关支流的集合</span><br>    related_rivers = <span class="hljs-built_in">set</span>()<br>    <span class="hljs-keyword">for</span> _, row <span class="hljs-keyword">in</span> upstream_rivers.iterrows():<br>        related_rivers.add(row[<span class="hljs-string">&#x27;mn&#x27;</span>])<br>        <span class="hljs-comment"># 递归获取下一级支流</span><br>        related_rivers.update(get_downstream_rivers(row[<span class="hljs-string">&#x27;mn&#x27;</span>], rivers_df))<br><br>    <span class="hljs-comment"># 获取所有相关支流上的站点</span><br>    related_stations_a = stations_df[stations_df[<span class="hljs-string">&#x27;所在河流ID&#x27;</span>].isin(related_rivers)]<br><br>    <span class="hljs-comment"># 获取同一条河流上同级顺序小于目标站点的站点</span><br>    same_river_stations = stations_df[<br>        (stations_df[<span class="hljs-string">&#x27;所在河流ID&#x27;</span>] == target_river_id) &amp;<br>        (stations_df[<span class="hljs-string">&#x27;同级顺序&#x27;</span>] &lt; target_station[<span class="hljs-string">&#x27;同级顺序&#x27;</span>])<br>        ]<br><br>    <span class="hljs-comment"># 合并列表A和列表B</span><br>    related_stations_c = pd.concat([related_stations_a, same_river_stations]).drop_duplicates()<br><br>    <span class="hljs-comment"># 返回结果</span><br>    <span class="hljs-keyword">return</span> related_stations_c<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">get_downstream_rivers</span>(<span class="hljs-params">river_id, rivers_df</span>):<br>    downstream_rivers = rivers_df[rivers_df[<span class="hljs-string">&#x27;上级河流&#x27;</span>] == river_id]<br>    downstream_ids = <span class="hljs-built_in">set</span>(downstream_rivers[<span class="hljs-string">&#x27;mn&#x27;</span>])<br><br>    <span class="hljs-keyword">for</span> _, row <span class="hljs-keyword">in</span> downstream_rivers.iterrows():<br>        downstream_ids.update(get_downstream_rivers(row[<span class="hljs-string">&#x27;mn&#x27;</span>], rivers_df))<br><br>    <span class="hljs-keyword">return</span> downstream_ids<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    rivers_df = pd.read_excel(<span class="hljs-string">&#x27;河流设备拓补关系.xlsx&#x27;</span>, sheet_name=<span class="hljs-string">&#x27;河流关系表&#x27;</span>)<br>    stations_df = pd.read_excel(<span class="hljs-string">&#x27;河流设备拓补关系.xlsx&#x27;</span>, sheet_name=<span class="hljs-string">&#x27;在线设备关系表&#x27;</span>)<br>    rivers_df, stations_df = preprocess_data(rivers_df, stations_df)<br><br>    <span class="hljs-comment"># 示例：查找影响“凤凰湖工业园区污水处理厂排口下游”的设备</span><br>    result1 = get_upstream_stations(<span class="hljs-string">&quot;设备a&quot;</span>, rivers_df, stations_df)<br>    <span class="hljs-built_in">print</span>(result1)<br></code></pre></td></tr></table></figure><h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410301521800.png" alt="结果预览"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过上述方法，我们已经能够有效地识别出与目标站点水质变化相关的上游设备。一旦建立了详尽的设备清单，就可以迅速锁定潜在的污染源。为进一步提高溯源精度，后续还将通过相关性分析筛选出与水质异常关联度最高的设备。此外，利用GIS技术进行的空间分析也是一种有效的补充手段，它可以直观地展示各站点间的地理位置关系，帮助我们更准确地评估站点间的影响程度。<br>需要注意的是，本文所介绍的方法侧重于基于网络结构的溯源分析，可能未能充分反映站点间的实际距离因素。因此，在某些情况下，如果污染源与受影响站点相距甚远，本方法可能难以直接揭示二者之间的关联。然而，这并不意味着该方法不具备价值；相反，它为污染溯源提供了一种新的视角和解决方案。<br>除了溯源分析之外，污染扩散路径的追踪同样重要。借助已构建的设备拓扑关系表，我们可以通过算法模拟污染物在水系中的传播过程，预测其可能的影响范围。这不仅有助于事前预防，也能为事后处理提供科学依据。未来的工作中，我们将继续深入研究并完善这些算法，以期为水质管理和环境保护提供更为强大的技术支持。</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>生态环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>生态环境</tag>
+      
+      <tag>水文分析</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>GCJ02、WGS84、BD-09 、CGCS-2000坐标系互转</title>
+    <link href="/2024/10/29/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/CJ02%E3%80%81WGS84%E3%80%81BD-09%20%E5%9D%90%E6%A0%87%E7%B3%BB%E4%BA%92%E8%BD%AC/"/>
+    <url>/2024/10/29/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/CJ02%E3%80%81WGS84%E3%80%81BD-09%20%E5%9D%90%E6%A0%87%E7%B3%BB%E4%BA%92%E8%BD%AC/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>随着互联网技术的发展，地理信息系统（GIS）的应用越来越广泛，尤其是在地图服务领域。不同的应用和服务可能使用不同的地理坐标系，这导致了数据互操作性的问题。因此，了解并掌握不同坐标系之间的转换方法对于GIS开发者来说至关重要。本文将介绍几种常见的地理坐标系，并通过QGIS软件中的GeoHey Toolbox插件来演示如何进行坐标系之间的转换。</p><h2 id="常用地理坐标系介绍"><a href="#常用地理坐标系介绍" class="headerlink" title="常用地理坐标系介绍"></a>常用地理坐标系介绍</h2><p><strong>1. WGS 84 (World Geodetic System 1984)</strong></p><p>WGS 84是全球定位系统（GPS）所使用的标准坐标系，也是目前最常用的地理坐标系之一。它是一个基于地球椭球模型的坐标系，用于描述地球上的位置。广泛应用于全球导航卫星系统（GNSS）、互联网地图服务等。</p><p><strong>2. CGCS 2000 (China Geodetic Coordinate System 2000)</strong></p><p> CGCS 2000是中国最新的大地坐标系，它基于一个更精确的地球模型——GRS80椭球体。该坐标系旨在提高中国领土上地理信息的精度。主要在中国国内的地图制作、国土测绘等领域使用。</p><p><strong>3. 火星坐标系 (GCJ-02)</strong></p><p>火星坐标系并非真正意义上的“火星”坐标系，而是中国政府为了保护国家地理信息安全而设计的一种加密坐标系。它基于WGS 84坐标系，但对坐标值进行了偏移处理。 主要应用于国内的地图服务商如<strong>高德地图</strong>等提供的在线地图服务中。</p><p><strong>4. BD-09</strong></p><p> BD-09是百度地图使用的坐标系，它同样是对WGS 84进行了加密处理后的坐标系，但其加密算法与火星坐标系略有不同，专为百度地图设计，确保用户数据的安全性和准确性。</p><h2 id="使用QGIS进行坐标系转换"><a href="#使用QGIS进行坐标系转换" class="headerlink" title="使用QGIS进行坐标系转换"></a>使用QGIS进行坐标系转换</h2><h3 id="GeoHey-Toolbox-转换"><a href="#GeoHey-Toolbox-转换" class="headerlink" title="GeoHey Toolbox 转换"></a>GeoHey Toolbox 转换</h3><p>GeoHey Toolbox 是一款由国人开发的QGIS开源插件，专门用于解决中国特有的坐标系转换问题。它支持多种常见的坐标系转换，具体包括：</p><ul><li>BD-09 to GCJ-02</li><li>BD-09 to WGS-84</li><li>GCJ-02 to BD-09</li><li>GCJ-02 to WGS-84</li><li>WGS-84 to BD-09</li><li>WGS-84 to GCJ-02</li></ul><p><strong>安装与使用</strong></p><p><strong>安装</strong>: 在QGIS中打开插件管理器，搜索“GeoHey Toolbox”，找到后点击安装。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410290923918.png" alt="安装插件"></p><p><strong>使用</strong>: 安装完成后，在QGIS主界面找到GeoHey Toolbox工具栏或菜单项，选择你需要执行的坐标转换任务。以从WGS-84转到GCJ-02为例，选择相应的转换选项，然后指定输入图层。为了便于后续使用，建议点击输出选项中的三个小点，选择将结果保存为JSON格式文件或其他适合前端使用的格式。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410290925405.png" alt="插件使用"></p><h3 id="WGS-84与CGCS-2000的转换"><a href="#WGS-84与CGCS-2000的转换" class="headerlink" title="WGS-84与CGCS-2000的转换"></a>WGS-84与CGCS-2000的转换</h3><p>对于WGS-84与CGCS-2000之间的转换，由于这两个坐标系都是基于地球椭球模型的地理坐标系，因此可以通过简单的重投影来完成转换。在QGIS中，你可以直接使用“矢量”菜单下的“数据管理工具”-&gt;“重投影图层”来进行操作。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410290929471.png" alt="重投影图层"></p><p>Python</p><p>使用 Python coordTransform 转换</p><p>pip install coordTransform</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> coordTransform <span class="hljs-keyword">as</span> ct<br><br>lng = <span class="hljs-number">128.543</span><br>lat = <span class="hljs-number">37.065</span><br><br><span class="hljs-comment">#火星坐标系-&gt;百度坐标系</span><br>result1 = ct.gcj02_to_bd09(lng, lat)<br><span class="hljs-comment">#百度坐标系-&gt;火星坐标系</span><br>result2 = ct.bd09_to_gcj02(lng, lat)<br><span class="hljs-comment">#WGS84坐标系-&gt;火星坐标系</span><br>result3 = ct.wgs84_to_gcj02(lng, lat)<br><span class="hljs-comment">#火星坐标系-&gt;WGS84坐标系</span><br>result4 = ct.gcj02_to_wgs84(lng, lat)<br><span class="hljs-comment">#百度坐标系-&gt;WGS84坐标系</span><br>result5 = ct.bd09_to_wgs84(lng, lat)<br><span class="hljs-comment">#WGS84坐标系-&gt;百度坐标系</span><br>result6 = ct.wgs84_to_bd09(lng, lat)<br><br><span class="hljs-built_in">print</span> (result1, result2, result3, result4, result5, result6)<br></code></pre></td></tr></table></figure><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>理解和掌握不同地理坐标系的特点及转换方法，对于从事GIS相关工作的人员来说是非常重要的。通过使用专业的工具如QGIS及其插件，我们可以高效地完成复杂的坐标系转换工作，从而促进不同来源地理数据的整合与应用。希望本文能够帮助读者更好地理解地理坐标系的概念，并掌握实用的坐标转换技巧。</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>经验分享</tag>
+      
+      <tag>qgis</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>QGIS 矢量分析 计算行政区划内河流长度</title>
+    <link href="/2024/10/22/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/QGIS%20%E7%9F%A2%E9%87%8F%E5%88%86%E6%9E%90%20%E8%AE%A1%E7%AE%97%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92%E5%86%85%E6%B2%B3%E6%B5%81%E9%95%BF%E5%BA%A6/"/>
+    <url>/2024/10/22/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/QGIS%20%E7%9F%A2%E9%87%8F%E5%88%86%E6%9E%90%20%E8%AE%A1%E7%AE%97%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92%E5%86%85%E6%B2%B3%E6%B5%81%E9%95%BF%E5%BA%A6/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>要计算各行政区划中的河流长度，需要用到 GIS 矢量分析，对于这类计算，QGIS 丰富的工具库可以轻松实现。</p><h2 id="数据准备及工具"><a href="#数据准备及工具" class="headerlink" title="数据准备及工具"></a>数据准备及工具</h2><p>图层：</p><ul><li><strong>水系图层</strong>：包含河流的线图层，属性表包括流域、河流等级等。</li><li><strong>行政区划图层</strong>：包含行政边界的多边形图层。属性表包括镇街名称，编码等。<br>注意图层坐标系应用投影坐标系，如果是地理坐标系，利用 QGIS 的 <strong>重投影图层</strong> 工具进行转换。</li></ul><p>工具：<br>QGIS 3.34</p><h2 id="矢量分析"><a href="#矢量分析" class="headerlink" title="矢量分析"></a>矢量分析</h2><p>在矢量分析之前可以通过筛选，选择想要的河流级别、流域，以及分析的镇街等。<br>筛选示例：右键-过滤输入表达式：</p><figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs lisp"><span class="hljs-string">&quot;show_level&quot;</span> IN (<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>) AND <span class="hljs-string">&quot;ly&quot;</span> IN (&#x27;A&#x27;, &#x27;B&#x27;)<br></code></pre></td></tr></table></figure><p>工具箱搜索“计算线总长”，进行矢量分析，或者点击矢量-分析工具-计算线总长。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410221136724.png" alt="image.png"></p><p>选择行政区划、水系等图层点击运行即可。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410221137333.png" alt="image.png"></p><p>打开结果图层属性表可以看到增加了长度和数量两个图层。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410221140360.png" alt="image.png"></p><p>为了更好地展示各镇街的河流长度占比，可以对结果图层进行简单的符号化处理。例如，可以使用分级颜色或渐变颜色来表示不同的长度区间。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410221149146.png" alt="image.png"></p><p>相较于商业软件如 ArcGIS，QGIS 作为开源工具具有操作简单、启动快捷、易上手等优点，非常适合进行 GIS 简单分析。</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>生态环境</tag>
+      
+      <tag>水文分析</tag>
+      
+      <tag>经验分享</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>pycharm 中 python 解释器如何选择</title>
     <link href="/2024/10/16/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/pycharm%20%E4%B8%AD%20python%20%E8%A7%A3%E9%87%8A%E5%99%A8%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9/"/>
     <url>/2024/10/16/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/pycharm%20%E4%B8%AD%20python%20%E8%A7%A3%E9%87%8A%E5%99%A8%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9/</url>
     
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>在使用 PyCharm 或其他 Python 开发环境时，选择合适的 Python 解释器对于项目的开发非常重要。关系到包的管理，项目文件的大小。本文分析几种常见 Python 环境管理工具（<code>venv</code>、<code>conda</code>、<code>pipenv</code>、<code>poetry env</code>）的优缺点。</p><p>经过对比尝试后，个人比较推荐用 <code>conda</code> 环境作为学习研究，他自带数据分析相关的包，但过于臃肿，建议用 <code>venv</code> 作为实际项目环境搭建，更加简洁直观，易于管理与发布。</p><h2 id="如何设置-python-解释器"><a href="#如何设置-python-解释器" class="headerlink" title="如何设置 python 解释器"></a>如何设置 python 解释器</h2><p>设置-python 解释器-选择核实的解释器。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410161609834.png" alt="image.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410161610117.png" alt="image.png"></p><h2 id="各环境优缺点分析"><a href="#各环境优缺点分析" class="headerlink" title="各环境优缺点分析"></a>各环境优缺点分析</h2><h3 id="1-venv-Virtual-Environment"><a href="#1-venv-Virtual-Environment" class="headerlink" title="1. venv (Virtual Environment)"></a>1. venv (Virtual Environment)</h3><p><strong>优点</strong>:</p><ul><li><strong>轻量级</strong>：<code>venv</code> 是 Python 自带的一个模块，不需要额外安装。</li><li><strong>简单易用</strong>：创建和管理虚拟环境非常直观。</li><li><strong>广泛支持</strong>：几乎所有现代的 Python 版本都支持 <code>venv</code>。</li></ul><p><strong>缺点</strong>:</p><ul><li><strong>功能有限</strong>：相比其他工具，<code>venv</code> 的功能较为基础，缺少一些高级特性。</li><li><strong>依赖管理</strong>：依赖项管理主要通过 <code>requirements.txt</code> 文件，不如 <code>pipenv</code> 和  poetry&#96; 那样灵活和强大。</li></ul><h3 id="2-conda"><a href="#2-conda" class="headerlink" title="2. conda"></a>2. conda</h3><p><strong>优点</strong>:</p><ul><li><strong>跨平台</strong>：支持 Windows、macOS 和 Linux。</li><li><strong>包管理</strong>：不仅管理 Python 包，还管理其他语言的包。</li><li><strong>环境隔离</strong>：强大的环境管理功能，可以轻松创建和切换多个环境。</li><li><strong>科学计算</strong>：特别适合科学计算和数据科学项目，因为许多科学计算库都有预编译的包。</li></ul><p><strong>缺点</strong>:</p><ul><li><strong>体积较大</strong>：安装 <code>conda</code> 本身需要较大的磁盘空间。</li><li><strong>速度较慢</strong>：相比于 <code>pip</code>，<code>conda</code> 的安装速度可能较慢。</li><li><strong>社区生态</strong>：虽然 <code>conda</code> 的生态系统在不断壮大，但某些最新的 Python 包可能没有及时更新到 <code>conda-forge</code> 仓库中。</li></ul><h3 id="3-pipenv"><a href="#3-pipenv" class="headerlink" title="3. pipenv"></a>3. pipenv</h3><p><strong>优点</strong>:</p><ul><li><strong>依赖锁定</strong>：通过 <code>Pipfile</code> 和 <code>Pipfile.lock</code> 文件管理依赖项，确保不同环境中依赖项的一致性。</li><li><strong>自动管理</strong>：自动管理虚拟环境，简化了环境的创建和激活过程。</li><li><strong>集成测试</strong>：支持集成测试环境的管理。</li></ul><p><strong>缺点</strong>:</p><ul><li><strong>性能问题</strong>：在某些情况下，<code>pipenv</code> 的依赖解析速度可能较慢。</li><li><strong>兼容性</strong>：某些复杂的依赖关系可能导致解析失败。</li></ul><h3 id="4-poetry-env-Poetry"><a href="#4-poetry-env-Poetry" class="headerlink" title="4. poetry env (Poetry)"></a>4. poetry env (Poetry)</h3><p><strong>优点</strong>:</p><ul><li><strong>依赖管理</strong>：强大的依赖管理功能，支持依赖锁定和版本管理。</li><li><strong>构建工具</strong>：不仅仅是环境管理工具，还可以作为构建工具，支持打包和发布 Python 包。</li><li><strong>自动化</strong>：支持自动化脚本，可以方便地集成到 CI&#x2F;CD 流程中。</li><li><strong>灵活性</strong>：配置文件 <code>pyproject.toml</code> 非常灵活，可以管理项目的各个方面。<br><strong>缺点</strong>:</li><li><strong>学习曲线</strong>：相对于 <code>venv</code> 和 <code>pipenv</code>，<code>poetry</code> 的学习曲线可能稍陡。</li><li><strong>社区支持</strong>：尽管 <code>poetry</code> 的社区正在快速增长，但在某些方面可能还不如 <code>conda</code> 和 <code>pip</code> 成熟。</li></ul><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul><li><strong>venv</strong>：适合简单的项目和快速原型开发，因为它轻量且易于使用。</li><li><strong>conda</strong>：适合科学计算和数据科学项目，特别是那些需要跨语言包管理的项目。</li><li><strong>pipenv</strong>：适合需要严格依赖管理和多环境支持的项目。</li><li><strong>poetry</strong>：适合大型项目和需要高级依赖管理和构建工具的项目。</li></ul><p>Venv 环境非常好用，原因是他将项目所需要的包就放在编辑文件下，且没有其他无关的包，这样就非常好控制。项目也不会特别庞大。</p><h2 id="如何在-cmd-中激活-venv"><a href="#如何在-cmd-中激活-venv" class="headerlink" title="如何在 cmd 中激活. venv"></a>如何在 cmd 中激活. venv</h2><ol><li>指向 到所在目录</li></ol><p><strong>切换到同一驱动器上的另一个目录</strong>：</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-built_in">cd</span> D:\BaiduSyncdisk\pythonprograms\data_analytics<br></code></pre></td></tr></table></figure><p><strong>切换到不同驱动器上的目录</strong></p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-function">D:</span><br><span class="hljs-function"><span class="hljs-title">cd</span> \<span class="hljs-title">BaiduSyncdisk</span>\<span class="hljs-title">pythonprograms</span>\<span class="hljs-title">data_analytics</span></span><br></code></pre></td></tr></table></figure><p>激活 venv 环境</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">.\.venv\Scripts\Activate<br></code></pre></td></tr></table></figure><p>项目搭建好后，不用启动 pycharm 等 ide，激活 venv 环境，就可以在命令提示符中运行了。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410161601290.png" alt="image.png"></p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>在使用 PyCharm 或其他 Python 开发环境时，选择合适的 Python 解释器对于项目的开发非常重要。关系到包的管理，项目文件的大小。本文分析几种常见 Python 环境管理工具（<code>venv</code>、<code>conda</code>、<code>pipenv</code>、<code>poetry env</code>）的优缺点。</p><p>经过对比尝试后，个人比较推荐用 <code>conda</code> 环境作为学习研究，他自带数据分析相关的包，但过于臃肿，建议用 <code>venv</code> 作为实际项目环境搭建，更加简洁直观，易于管理与发布。</p><h2 id="如何设置-python-解释器"><a href="#如何设置-python-解释器" class="headerlink" title="如何设置 python 解释器"></a>如何设置 python 解释器</h2><p>设置-python 解释器-选择核实的解释器。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410161609834.png" alt="image.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410161610117.png" alt="image.png"></p><p>然后在项目结构中添加内容根，这样 pycharm 会将其视为 library 根目录，git 也不会同步这部分。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202411142109449.png" alt="image.png"></p><h2 id="各环境优缺点分析"><a href="#各环境优缺点分析" class="headerlink" title="各环境优缺点分析"></a>各环境优缺点分析</h2><h3 id="1-venv-Virtual-Environment"><a href="#1-venv-Virtual-Environment" class="headerlink" title="1. venv (Virtual Environment)"></a>1. venv (Virtual Environment)</h3><p><strong>优点</strong>:</p><ul><li><strong>轻量级</strong>：<code>venv</code> 是 Python 自带的一个模块，不需要额外安装。</li><li><strong>简单易用</strong>：创建和管理虚拟环境非常直观。</li><li><strong>广泛支持</strong>：几乎所有现代的 Python 版本都支持 <code>venv</code>。</li></ul><p><strong>缺点</strong>:</p><ul><li><strong>功能有限</strong>：相比其他工具，<code>venv</code> 的功能较为基础，缺少一些高级特性。</li><li><strong>依赖管理</strong>：依赖项管理主要通过 <code>requirements.txt</code> 文件，不如 <code>pipenv</code> 和  poetry&#96; 那样灵活和强大。</li></ul><h3 id="2-conda"><a href="#2-conda" class="headerlink" title="2. conda"></a>2. conda</h3><p><strong>优点</strong>:</p><ul><li><strong>跨平台</strong>：支持 Windows、macOS 和 Linux。</li><li><strong>包管理</strong>：不仅管理 Python 包，还管理其他语言的包。</li><li><strong>环境隔离</strong>：强大的环境管理功能，可以轻松创建和切换多个环境。</li><li><strong>科学计算</strong>：特别适合科学计算和数据科学项目，因为许多科学计算库都有预编译的包。</li></ul><p><strong>缺点</strong>:</p><ul><li><strong>体积较大</strong>：安装 <code>conda</code> 本身需要较大的磁盘空间。</li><li><strong>速度较慢</strong>：相比于 <code>pip</code>，<code>conda</code> 的安装速度可能较慢。</li><li><strong>社区生态</strong>：虽然 <code>conda</code> 的生态系统在不断壮大，但某些最新的 Python 包可能没有及时更新到 <code>conda-forge</code> 仓库中。</li></ul><h3 id="3-pipenv"><a href="#3-pipenv" class="headerlink" title="3. pipenv"></a>3. pipenv</h3><p><strong>优点</strong>:</p><ul><li><strong>依赖锁定</strong>：通过 <code>Pipfile</code> 和 <code>Pipfile.lock</code> 文件管理依赖项，确保不同环境中依赖项的一致性。</li><li><strong>自动管理</strong>：自动管理虚拟环境，简化了环境的创建和激活过程。</li><li><strong>集成测试</strong>：支持集成测试环境的管理。</li></ul><p><strong>缺点</strong>:</p><ul><li><strong>性能问题</strong>：在某些情况下，<code>pipenv</code> 的依赖解析速度可能较慢。</li><li><strong>兼容性</strong>：某些复杂的依赖关系可能导致解析失败。</li></ul><h3 id="4-poetry-env-Poetry"><a href="#4-poetry-env-Poetry" class="headerlink" title="4. poetry env (Poetry)"></a>4. poetry env (Poetry)</h3><p><strong>优点</strong>:</p><ul><li><strong>依赖管理</strong>：强大的依赖管理功能，支持依赖锁定和版本管理。</li><li><strong>构建工具</strong>：不仅仅是环境管理工具，还可以作为构建工具，支持打包和发布 Python 包。</li><li><strong>自动化</strong>：支持自动化脚本，可以方便地集成到 CI&#x2F;CD 流程中。</li><li><strong>灵活性</strong>：配置文件 <code>pyproject.toml</code> 非常灵活，可以管理项目的各个方面。<br><strong>缺点</strong>:</li><li><strong>学习曲线</strong>：相对于 <code>venv</code> 和 <code>pipenv</code>，<code>poetry</code> 的学习曲线可能稍陡。</li><li><strong>社区支持</strong>：尽管 <code>poetry</code> 的社区正在快速增长，但在某些方面可能还不如 <code>conda</code> 和 <code>pip</code> 成熟。</li></ul><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul><li><strong>venv</strong>：适合简单的项目和快速原型开发，因为它轻量且易于使用。</li><li><strong>conda</strong>：适合科学计算和数据科学项目，特别是那些需要跨语言包管理的项目。</li><li><strong>pipenv</strong>：适合需要严格依赖管理和多环境支持的项目。</li><li><strong>poetry</strong>：适合大型项目和需要高级依赖管理和构建工具的项目。</li></ul><p>Venv 环境非常好用，原因是他将项目所需要的包就放在编辑文件下，且没有其他无关的包，这样就非常好控制。项目也不会特别庞大。</p><h2 id="如何在-cmd-中激活-venv"><a href="#如何在-cmd-中激活-venv" class="headerlink" title="如何在 cmd 中激活. venv"></a>如何在 cmd 中激活. venv</h2><ol><li>指向 到所在目录</li></ol><p><strong>切换到同一驱动器上的另一个目录</strong>：</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-built_in">cd</span> D:\BaiduSyncdisk\pythonprograms\data_analytics<br></code></pre></td></tr></table></figure><p><strong>切换到不同驱动器上的目录</strong></p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd"><span class="hljs-function">D:</span><br><span class="hljs-function"><span class="hljs-title">cd</span> \<span class="hljs-title">BaiduSyncdisk</span>\<span class="hljs-title">pythonprograms</span>\<span class="hljs-title">data_analytics</span></span><br></code></pre></td></tr></table></figure><p>激活 venv 环境</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs cmd">.\.venv\Scripts\Activate<br>.\.myvenv\Scripts\Activate<br></code></pre></td></tr></table></figure><p>项目搭建好后，不用启动 pycharm 等 ide，激活 venv 环境，就可以在命令提示符中运行了。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410161601290.png" alt="image.png"></p><p>执行策略报警<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410292109976.png" alt="image.png"></p><p><strong>以管理员身份打开PowerShell</strong>：右键点击PowerShell图标，选择“以管理员身份运行”。</p><p><strong>设置新的执行策略</strong>：<br>如果你需要允许运行所有脚本（包括从互联网下载的），可以使用<code>Unrestricted</code>策略，但这通常不推荐，因为它可能引入安全风险：</p><figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gams"><span class="hljs-keyword">Set</span>-ExecutionPolicy <span class="hljs-comment">Unrestricted</span><br></code></pre></td></tr></table></figure><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
     
     
     <categories>
@@ -74,9 +282,9 @@
     
     <tags>
       
-      <tag>工具推荐</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>工具推荐</tag>
       
     </tags>
     
@@ -279,9 +487,9 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>生态环境</tag>
+      
+      <tag>python</tag>
       
       <tag>经验分享</tag>
       
@@ -657,9 +865,9 @@
     
     <tags>
       
-      <tag>工具推荐</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>工具推荐</tag>
       
     </tags>
     
@@ -684,9 +892,9 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>生态环境</tag>
+      
+      <tag>python</tag>
       
       <tag>数据分析</tag>
       
@@ -719,9 +927,9 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>生态环境</tag>
+      
+      <tag>python</tag>
       
       <tag>数据分析</tag>
       
@@ -754,8 +962,6 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
       <tag>生态环境</tag>
       
       <tag>BP神经网络</tag>
@@ -763,6 +969,8 @@
       <tag>水质模型</tag>
       
       <tag>时间序列模型</tag>
+      
+      <tag>用心长文</tag>
       
     </tags>
     
@@ -891,15 +1099,15 @@
     
     <tags>
       
-      <tag>python</tag>
+      <tag>生态环境</tag>
       
       <tag>用心长文</tag>
       
-      <tag>生态环境</tag>
-      
-      <tag>经验分享</tag>
+      <tag>python</tag>
       
       <tag>水文分析</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>streamlit</tag>
       
@@ -980,9 +1188,9 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>用心长文</tag>
+      
+      <tag>python</tag>
       
       <tag>算法</tag>
       
@@ -1067,11 +1275,11 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
       <tag>生态环境</tag>
       
       <tag>时间序列模型</tag>
+      
+      <tag>用心长文</tag>
       
       <tag>机理模型</tag>
       
@@ -1086,7 +1294,7 @@
     <link href="/2024/05/26/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20excaildraw%20%E6%9B%B4%E6%8D%A2%E5%AD%97%E4%BD%93/"/>
     <url>/2024/05/26/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20excaildraw%20%E6%9B%B4%E6%8D%A2%E5%AD%97%E4%BD%93/</url>
     
-    <content type="html"><![CDATA[<p>​<meta name="referrer" content="no-referrer" /></p><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Excalidraw 是 obsidian 中最厉害的插件之一，长期霸占插件排行榜第一。以其强悍的性能和灵活的可塑性受到大家的喜爱，可默认的字体对中文并不友好，网上大多数教程要不是过时了，要不是错的，还有就是太复杂，因此本文介绍如何更换本地字体，参考的是 obsidian 官方 YouTube 教程。<br><strong>Obsidian 版本：v 1.5.12</strong></p><p><img src="https://img-blog.csdnimg.cn/img_convert/8ae99ee9eb4634ff04bc243d04d67421.png" alt="默认字体效果预览">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>默认字体效果预览</p><h2 id="文件链接设置"><a href="#文件链接设置" class="headerlink" title="文件链接设置"></a>文件链接设置</h2><p>首先打开设置-文件与链接-开启检测所有类型文件</p><p><img src="https://img-blog.csdnimg.cn/img_convert/bca4ebd36084209275591a06cf1fd35d.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>image.png</p><h2 id="下载并存放本地字体"><a href="#下载并存放本地字体" class="headerlink" title="下载并存放本地字体"></a>下载并存放本地字体</h2><p>下载喜欢的字体，一开始我随便下载字体，比如 <strong>霞鹜文楷</strong>开源字体，但是设置不能生效。 折腾了很久后发现，只能用 Google fonts 网站下载的字体文件才可以。 这个 Google fonts网站真的良心，秒杀国内一众广告字体网站。<br>打开网站，语言选择中文简体，我用的 MaShanZheng 这个字体。</p><p><img src="https://img-blog.csdnimg.cn/img_convert/6f61b35846239ff3eb82a36c07a7e0e7.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>image.png</p><p>文件下载好后，放在 obsidian 任意文件夹下，最好放在Excaildraw 相关文件，便于管理，文件夹命名为 Fonts，obsidian 会自动识别字体。</p><h2 id="修改-excaildraw-设置"><a href="#修改-excaildraw-设置" class="headerlink" title="修改 excaildraw 设置"></a>修改 excaildraw 设置</h2><p>重启 obsidian，打开设置-第三方插件 excalidraw-非 excalildraw 官方支持的特性-自定义字体-开启自定义-选择字体。如果没有看到字体则重启 obsidian</p><p><img src="https://img-blog.csdnimg.cn/img_convert/271ff7c764d3757a3f852a6522d30e4f.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>image.png</p><p>成功。文字元素会对一些功能，可以选择本地字体。</p><p><img src="https://img-blog.csdnimg.cn/img_convert/c4d8e2d61e872494e1779bae876f70f0.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>image.png</p><p><img src="https://img-blog.csdnimg.cn/img_convert/d72dfdf7238ae5b7d6fec3e3da106daf.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>image.png</p><p>希望本文能帮组到你，别忘了点赞，关注，留言哦。</p><p>​</p>]]></content>
+    <content type="html"><![CDATA[<p>​<meta name="referrer" content="no-referrer" /></p><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Excalidraw 是 obsidian 中最厉害的插件之一，长期霸占插件排行榜第一。以其强悍的性能和灵活的可塑性受到大家的喜爱，可默认的字体对中文并不友好，网上大多数教程要不是过时了，要不是错的，还有就是太复杂，因此本文介绍如何更换本地字体，参考的是 obsidian 官方 YouTube 教程。<br><strong>Obsidian 版本：v 1.5.12</strong></p><p><img src="https://img-blog.csdnimg.cn/img_convert/8ae99ee9eb4634ff04bc243d04d67421.png" alt="默认字体效果预览">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>默认字体效果预览</p><h2 id="文件链接设置"><a href="#文件链接设置" class="headerlink" title="文件链接设置"></a>文件链接设置</h2><p>首先打开设置-文件与链接-开启检测所有类型文件</p><p><img src="https://img-blog.csdnimg.cn/img_convert/bca4ebd36084209275591a06cf1fd35d.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>image.png</p><h2 id="下载并存放本地字体"><a href="#下载并存放本地字体" class="headerlink" title="下载并存放本地字体"></a>下载并存放本地字体</h2><p>下载喜欢的字体，一开始我随便下载字体，比如 <strong>霞鹜文楷</strong>开源字体，但是设置不能生效。 折腾了很久后发现，只能用 Google fonts 网站下载的字体文件才可以。 这个 Google fonts网站真的良心，秒杀国内一众广告字体网站。<br>打开网站，语言选择中文简体，我用的 MaShanZheng 这个字体。</p><p><img src="https://img-blog.csdnimg.cn/img_convert/6f61b35846239ff3eb82a36c07a7e0e7.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑</p><p>image.png</p><p>文件下载好后，放在 obsidian 任意文件夹下，最好放在Excaildraw 相关文件，便于管理，文件夹命名为 Fonts，obsidian 会自动识别字体。</p><h2 id="修改-excaildraw-设置"><a href="#修改-excaildraw-设置" class="headerlink" title="修改 excaildraw 设置"></a>修改 excaildraw 设置</h2><p>重启 obsidian，打开设置-第三方插件 excalidraw-非 excalildraw 官方支持的特性-自定义字体-开启自定义-选择字体。如果没有看到字体则重启 obsidian</p><p><img src="https://img-blog.csdnimg.cn/img_convert/271ff7c764d3757a3f852a6522d30e4f.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动">编辑<br>成功。文字元素会对一些功能，可以选择本地字体。<br><img src="https://img-blog.csdnimg.cn/img_convert/c4d8e2d61e872494e1779bae876f70f0.png" alt="image.png">​</p><p><img src="data:image/gif;base64,R0lGODlhAQABAPABAP///wAAACH5BAEKAAAALAAAAAABAAEAAAICRAEAOw==" title="点击并拖拽以移动"><br>结果：<br><img src="https://img-blog.csdnimg.cn/img_convert/d72dfdf7238ae5b7d6fec3e3da106daf.png" alt="image.png">​</p><p>​</p>]]></content>
     
     
     <categories>
@@ -1237,13 +1445,13 @@
       
       <tag>用心长文</tag>
       
-      <tag>经验分享</tag>
-      
       <tag>水文分析</tag>
       
       <tag>arcgis</tag>
       
       <tag>地形数据</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     
@@ -1268,9 +1476,9 @@
     
     <tags>
       
-      <tag>读书笔记</tag>
-      
       <tag>方法论</tag>
+      
+      <tag>读书笔记</tag>
       
       <tag>写作</tag>
       
@@ -1297,9 +1505,9 @@
     
     <tags>
       
-      <tag>工具推荐</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>工具推荐</tag>
       
       <tag>素材</tag>
       
@@ -1326,9 +1534,9 @@
     
     <tags>
       
-      <tag>工具推荐</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>工具推荐</tag>
       
       <tag>AIGC</tag>
       
@@ -1382,9 +1590,9 @@
       
       <tag>用心长文</tag>
       
-      <tag>读书笔记</tag>
-      
       <tag>方法论</tag>
+      
+      <tag>读书笔记</tag>
       
     </tags>
     
@@ -1411,9 +1619,9 @@
       
       <tag>用心长文</tag>
       
-      <tag>读书笔记</tag>
-      
       <tag>方法论</tag>
+      
+      <tag>读书笔记</tag>
       
       <tag>写作</tag>
       
@@ -1440,9 +1648,9 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>用心长文</tag>
+      
+      <tag>python</tag>
       
       <tag>经验分享</tag>
       
@@ -1498,13 +1706,13 @@
     
     <tags>
       
-      <tag>水环境分析</tag>
-      
-      <tag>python</tag>
+      <tag>时间序列模型</tag>
       
       <tag>用心长文</tag>
       
-      <tag>时间序列模型</tag>
+      <tag>水环境分析</tag>
+      
+      <tag>python</tag>
       
     </tags>
     
@@ -1587,13 +1795,13 @@
     
     <tags>
       
+      <tag>用心长文</tag>
+      
       <tag>时间序列</tag>
       
       <tag>水环境分析</tag>
       
       <tag>python</tag>
-      
-      <tag>用心长文</tag>
       
     </tags>
     
@@ -1618,9 +1826,9 @@
     
     <tags>
       
-      <tag>工具推荐</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>工具推荐</tag>
       
       <tag>obsidian</tag>
       
@@ -1649,9 +1857,9 @@
     
     <tags>
       
-      <tag>工具推荐</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>工具推荐</tag>
       
       <tag>obsidian</tag>
       
@@ -1680,9 +1888,9 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>生态环境</tag>
+      
+      <tag>python</tag>
       
       <tag>经验分享</tag>
       
