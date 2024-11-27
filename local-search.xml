@@ -4,25 +4,6 @@
   
   
   <entry>
-    <title></title>
-    <link href="/2024/11/27/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/obsidian%20web%20Clipper.excalidraw/"/>
-    <url>/2024/11/27/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/obsidian%20web%20Clipper.excalidraw/</url>
-    
-    <content type="html"><![CDATA[<p>&#x3D;&#x3D;⚠  Switch to EXCALIDRAW VIEW in the MORE OPTIONS menu of this document. ⚠&#x3D;&#x3D; You can decompress Drawing data with the command palette: ‘Decompress current Excalidraw file’. For more info check in plugin settings under ‘Saving’</p><h1 id="Excalidraw-Data"><a href="#Excalidraw-Data" class="headerlink" title="Excalidraw Data"></a>Excalidraw Data</h1><h2 id="Text-Elements"><a href="#Text-Elements" class="headerlink" title="Text Elements"></a>Text Elements</h2><h2 id="Embedded-Files"><a href="#Embedded-Files" class="headerlink" title="Embedded Files"></a>Embedded Files</h2><p>c0906a511369265288de7131d135f710930cb2a7: [[image_0.png]]</p><p>2d6db5ef9bb178ed335a4efc10d973ba5875858f: [[image_1.png]]</p><p>1d458f41ee4e768115b9edb985d08a5977f388db: [[image_2.png]]</p><p>4fb4d69e403536ce4777611b1eee0355fcd8b877: [[image_3.png]]</p><p>%%</p><h2 id="Drawing"><a href="#Drawing" class="headerlink" title="Drawing"></a>Drawing</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs compressed-json">N4KAkARALgngDgUwgLgAQQQDwMYEMA2AlgCYBOuA7hADTgQBuCpAzoQPYB2KqATLZMzYBXUtiRoIACyhQ4zZAHoFAc0JRJQgEYA6bGwC2CgF7N6hbEcK4OCtptbErHALRY8RMpWdx8Q1TdIEfARcZgRmBShcZQUebQBWbQBGGjoghH0EDihmbgBtcDBQMBLoeHF0Qn1opH5SxhZ2LjQeJIB2OsgG1k4AOU4xblakgA4ABjaJgGYANk6IQg5iLG4I<br><br>XBT5wmYAEXSoBGJuADMCMM3DiUIAVVx9NqMp7YAtAEkAcQAZMYAVJIApJ69IQAZQA6qkSpAjoR8PhgbBgqtBB4IaVmFBSGwANYIUEkdRDebozE4+EwRESZEkVGQTF+SQccK5NBJeZsOC4bBqGDcJJjMbzazKCmoAWFSCYbjOEYAFgS8x5aBGUwSUySPHiRIx2IQAGE2Pg2KRVhjrMwOYFsjSIJpOVjlHSlvrDcaJKaOObcJaoNaKPjJLy2qzxVIE<br><br>IRlNJuDK4lMpjKAJzxJIy+IzNVjGYjIkIA7cGZJKZjeNTWViyEQB3COAvYjM1B5AC68yO5EyNe4HCEsPmjuIjOYdc73ZDmmESwAosFMtk6435kI4MRcPsLqh2oW4zN+erxvMiBwsR2u/g92xsDjVyd8GcQ+jl0I6xBEEtFsprdDgu2JNgixncEmCxmeMeBmeIeBGEZliDNViALeIjiDItC2wTQeFwNprWYdwKgKSEwGDPCknFBtCgAXzqYpSlgRB<br><br>ViqGprW6JohjGLMQ0YvoBgqeMxhlX9gNY8tFmWSUJFwHhrS2XZghXY5TgQc5VljYEAHlnEINoAAUrkkABpF42BeIRMAAWQATWYDTCHfGE4QRCoICpQ4tRJXF/UJW9tVJOykQNake2ECN+zrAjSnZTluV5flBQ4YUKjLUoRLXHj5RDRVUGcJJtHjTM2k1DyXOdI0TXID0LSyH15ltc9KyEJ0DSKt0Ss9b1fTclkpnjeZJDDCMfXazrbxzVd2hGUCt<br><br>0LGV5hq6ta3yJsQxbW4EC/VAhxPENeyCo9h3LUdauIScMnK2d5vLBclxklk2g3FN42AmUtz3RZDzQNbT3PXM0CvG9yzvKAH1WZ9HBi6zP1XCAeGIGZiE0eIECOeNNE0EaDljeJcBleHsD5Yh42u214hGXKRkJo5MOw/JxXwzp8OIsiKJDaj7Lo5RajYpgemaNd1XmdiOH6DhBhZGUCzaMWib4EMhJWUSpgknY9k+1BvvkqXwbgDT4yuD42C2OAAA<br><br>kZWM/XCExwhtmBZgMObGyyRFBzfKc/KdTxYgCRaZydTt+zHOtOlAqZXk2Q5LlYEi+LICFEUI4gRLnFmOI8vLNKMpGeMspypO0U8vV6tddB3Wa8rrSq+1e0K/PoCasqrXmP03YDNAph4KYup6yMm5b7MlaSJIwLxtoeCikNpprE7m1bZbVzejaxz7QPXuPSq58O6cckpvDKME8HSAAK0kJIAA1tkIAAlGAeDeJ59eRgBBKZb5gAA1F4aSo8pVi9TE<br><br>qCp0jiPnRcy4e7XTGJufkbQZgPSegeba61yyGg+peOSWp7yPiBq+UGU9VhJGICmEYRwRY5kxhAkYvd4iaHjAcChJNiAsX/API4JZIKaHJgQHCVMQolCIpCEiJRyKFC3gscGuBJDfGwG0QgmgZj6zGMpAAim8TQupvj0FBMpZSQhrRM1otUVm1pEoQRSsnKUSRuIZyJlnSA9d3ZrniB0EM3Vwwd1sfY8sUc4qexxBXYqZoa4VRHHaGqdUXQ+NKl6Y<br><br>uNtYTex8iiTxrkG7uV+jnaJlJHZ+wCgyBea5g7hTDiyYe5ZR6zTQHOBak8Voz0EksGW6AMbpP2ltReO00RDV5MBUxo1RqTXZo0Tg3AwK8w5k0AWQs1wagmHdYCMdJKKyQdeVWu0V5TmOrAgBF1gE3XiHdNUeNoEvVWkvEMCCLyyXmSg/6aCsjAzfJErBEgZRHE0DKKGlDeJTHiLMMQMoxYQN7sjHMCBQHxHgtgYgIxNBE2treCmJSOE024SUXhYB<br><br>+ElEEdSCQe8D7HzPhfK+N8kj30fi/LRH9RKkG/voqUD0jGlBTiWcxuU65tVQHdNuTi+qimirFbgMdiQ6m8RIAAxKYoM2BxKVUCeXPOoSi61wWrbbyqTYnOxxK7GxkskkuRSegX2/l6SNOySGMKoc0p8hjkU8eZSloVMOVU4Sn94j1KWAarekBtEtHFCilpPcRg8GLH3MYPBunlj5nmAS9QhkcUFhUGUJNeIFmApsBW0klYq2XvtVeKymlwNKOdIB<br><br>w0QFgITaMPZqyjlnhOV9ZBIY4C6xnBvSEuE8IRxKGMKmp1G1UzAKyrtba8JIrAB2yA+BQhQH1PofQagVwaTrRyyp2cvRQAAEJCQwWgV1GBlnZBWk+TW2tdbmkNsbU2YYLZWzfhAI4Z4AZoGcGMbQGZ4hjD7t8+MRN8z5hphWXAcAg5U0vYQTABwZ2LDnceT18wrkrpfCDbNKDSBQFvuStgFBuq4Gnra0oVykPfzQ8I5DVBIP4FHBQVNckyLgFOms<br><br>OAcB4RAO4JRaA3VMirCIL1VEDBCAIAoEuyVc8BXoEFYw4Tcs6gQGwCIb0Lx9j6HhAVaVQqRVJDFRxiT5LyrSYyLx6qUqQmNV8eEuVpQ1NSZkwAMQVeSH2aSxMmY0zJuTLtmUasgHZ7dDnkmKp1TZwo4nJP2YyKfDJBqQp+fU+5jIykQ4RXyfFMLpmMhmc4FAMztwYRpSzvFgL+gkvZGBIQIwFQh62f8xF/Q3wsCIbY1zCAwQjj+OM6VqAmnZNRAQ<br><br>zhlDeGy2NfC81mT44lgddQyEfDFKSu9Za0N74pL0C9g41hTEsJD79NTGJhbBp8CmSjOMB9aoNRiaMGwAwDG2IECEBUBFXqstlaCw0rJEA5tiYdCQfLhXmJPdIC9/Yv60CZee8QYybBlgDdwJoYIcyfqQH+wJwRS6DQ72ULaAAFEPTUvAxho9R9QUUCQACU1pT4IGUF2L0qxSCI9wCj9o2PWgdF4NTnH8R8f01825qAjmcRRagE0QcmHL2T0J9Uz7<br><br>sHUCCKyKD8H3AMTnfmNgIgP3UDS4WaUDgS0pekBl0aoQUB9wVCVyz0Kmhd4IGwDkYEqu4CA+B6rsHZGzm+c5Nzxg3wjv4BO+Wd1Or0im6YrLh8UADDTZonB8tiDTmQ+HaO2+Pvneu9gRR5F/AAPBDrMAP+pEgA==<br></code></pre></td></tr></table></figure><p>%%</p>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>excalidraw</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Streamlit 技巧 几个被忽视但重要的功能和机制</title>
     <link href="/2024/11/13/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/Streamlit%20%E6%8A%80%E5%B7%A7%20%E5%87%A0%E4%B8%AA%E8%A2%AB%E5%BF%BD%E8%A7%86%E4%BD%86%E9%87%8D%E8%A6%81%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E6%9C%BA%E5%88%B6/"/>
     <url>/2024/11/13/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/Streamlit%20%E6%8A%80%E5%B7%A7%20%E5%87%A0%E4%B8%AA%E8%A2%AB%E5%BF%BD%E8%A7%86%E4%BD%86%E9%87%8D%E8%A6%81%E7%9A%84%E5%8A%9F%E8%83%BD%E5%92%8C%E6%9C%BA%E5%88%B6/</url>
@@ -118,9 +99,9 @@
     
     <tags>
       
-      <tag>生态环境</tag>
-      
       <tag>python</tag>
+      
+      <tag>生态环境</tag>
       
     </tags>
     
@@ -145,9 +126,9 @@
     
     <tags>
       
-      <tag>生态环境</tag>
-      
       <tag>水文分析</tag>
+      
+      <tag>生态环境</tag>
       
     </tags>
     
@@ -199,11 +180,11 @@
     
     <tags>
       
-      <tag>生态环境</tag>
-      
       <tag>水文分析</tag>
       
       <tag>经验分享</tag>
+      
+      <tag>生态环境</tag>
       
     </tags>
     
@@ -253,9 +234,9 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>python</tag>
       
       <tag>工作总结</tag>
       
@@ -431,9 +412,9 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>python</tag>
       
       <tag>streamlit</tag>
       
@@ -487,11 +468,11 @@
     
     <tags>
       
-      <tag>生态环境</tag>
+      <tag>经验分享</tag>
       
       <tag>python</tag>
       
-      <tag>经验分享</tag>
+      <tag>生态环境</tag>
       
     </tags>
     
@@ -603,9 +584,9 @@
       
       <tag>python</tag>
       
-      <tag>数据分析</tag>
-      
       <tag>streamlit</tag>
+      
+      <tag>数据分析</tag>
       
     </tags>
     
@@ -892,17 +873,17 @@
     
     <tags>
       
-      <tag>生态环境</tag>
-      
       <tag>python</tag>
-      
-      <tag>数据分析</tag>
       
       <tag>streamlit</tag>
       
       <tag>数据可视化</tag>
       
+      <tag>数据分析</tag>
+      
       <tag>工作总结</tag>
+      
+      <tag>生态环境</tag>
       
     </tags>
     
@@ -927,17 +908,17 @@
     
     <tags>
       
-      <tag>生态环境</tag>
-      
       <tag>python</tag>
-      
-      <tag>数据分析</tag>
       
       <tag>streamlit</tag>
       
       <tag>数据可视化</tag>
       
+      <tag>数据分析</tag>
+      
       <tag>工作总结</tag>
+      
+      <tag>生态环境</tag>
       
     </tags>
     
@@ -962,15 +943,15 @@
     
     <tags>
       
+      <tag>用心长文</tag>
+      
       <tag>生态环境</tag>
+      
+      <tag>时间序列模型</tag>
       
       <tag>BP神经网络</tag>
       
       <tag>水质模型</tag>
-      
-      <tag>时间序列模型</tag>
-      
-      <tag>用心长文</tag>
       
     </tags>
     
@@ -1099,17 +1080,17 @@
     
     <tags>
       
-      <tag>生态环境</tag>
+      <tag>水文分析</tag>
       
       <tag>用心长文</tag>
       
-      <tag>python</tag>
-      
-      <tag>水文分析</tag>
-      
       <tag>经验分享</tag>
       
+      <tag>python</tag>
+      
       <tag>streamlit</tag>
+      
+      <tag>生态环境</tag>
       
       <tag>git</tag>
       
@@ -1192,9 +1173,9 @@
       
       <tag>python</tag>
       
-      <tag>算法</tag>
-      
       <tag>数据分析</tag>
+      
+      <tag>算法</tag>
       
     </tags>
     
@@ -1275,13 +1256,13 @@
     
     <tags>
       
-      <tag>生态环境</tag>
-      
-      <tag>时间序列模型</tag>
-      
       <tag>用心长文</tag>
       
+      <tag>生态环境</tag>
+      
       <tag>机理模型</tag>
+      
+      <tag>时间序列模型</tag>
       
     </tags>
     
@@ -1389,11 +1370,11 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
       <tag>水文分析</tag>
       
       <tag>arcgis</tag>
+      
+      <tag>用心长文</tag>
       
     </tags>
     
@@ -1443,11 +1424,11 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
       <tag>水文分析</tag>
       
       <tag>arcgis</tag>
+      
+      <tag>用心长文</tag>
       
       <tag>地形数据</tag>
       
@@ -1650,9 +1631,9 @@
       
       <tag>用心长文</tag>
       
-      <tag>python</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>python</tag>
       
       <tag>excel</tag>
       
@@ -1706,13 +1687,13 @@
     
     <tags>
       
-      <tag>时间序列模型</tag>
-      
       <tag>用心长文</tag>
       
-      <tag>水环境分析</tag>
-      
       <tag>python</tag>
+      
+      <tag>时间序列模型</tag>
+      
+      <tag>水环境分析</tag>
       
     </tags>
     
@@ -1797,11 +1778,11 @@
       
       <tag>用心长文</tag>
       
+      <tag>python</tag>
+      
       <tag>时间序列</tag>
       
       <tag>水环境分析</tag>
-      
-      <tag>python</tag>
       
     </tags>
     
@@ -1888,11 +1869,11 @@
     
     <tags>
       
-      <tag>生态环境</tag>
+      <tag>经验分享</tag>
       
       <tag>python</tag>
       
-      <tag>经验分享</tag>
+      <tag>生态环境</tag>
       
     </tags>
     
