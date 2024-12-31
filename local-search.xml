@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>办公技巧 word 图片域转为图片</title>
+    <link href="/2024/12/17/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E5%8A%9E%E5%85%AC%E6%8A%80%E5%B7%A7%20word%20%E6%89%B9%E9%87%8F%E5%B0%86%E5%9B%BE%E7%89%87%E5%9F%9F%E8%BD%AC%E4%B8%BA%E5%9B%BE%E7%89%87/"/>
+    <url>/2024/12/17/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E5%8A%9E%E5%85%AC%E6%8A%80%E5%B7%A7%20word%20%E6%89%B9%E9%87%8F%E5%B0%86%E5%9B%BE%E7%89%87%E5%9F%9F%E8%BD%AC%E4%B8%BA%E5%9B%BE%E7%89%87/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>之前写过一篇利用 word 邮件功能实现批量生成带图片的文稿，其中有个问题没有解决-转出的 word 是图片域的集合，他有好有坏，好处就是动态更新，坏处就是不利于分享，在其他人的电脑上就会识别不到路径，图片无法显示。我尝试了很多办法，也没有找到批量将图片域转为图片的方式。今天介绍我目前用的笨办法，通过 vba 将选中的图片域转为图片。</p><h2 id="实现方法"><a href="#实现方法" class="headerlink" title="实现方法"></a>实现方法</h2><p>我是不会写 vba 的，下面的代码是利用 word 的录制宏功能，生成初步代码后，用 AI 软件优化而来。</p><figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs vb"><span class="hljs-keyword">Sub</span> ConvertFieldToInlinePicture()<br>    <span class="hljs-keyword">Dim</span> fld <span class="hljs-keyword">As</span> Field<br>    <span class="hljs-keyword">Dim</span> rng <span class="hljs-keyword">As</span> Range<br>    <span class="hljs-keyword">Dim</span> inlineShape <span class="hljs-keyword">As</span> inlineShape<br>    <br>    <span class="hljs-comment">&#x27; 检查是否有选中的域</span><br>    <span class="hljs-keyword">If</span> Selection.Fields.Count &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">Then</span><br>        <span class="hljs-keyword">Set</span> fld = Selection.Fields(<span class="hljs-number">1</span>)        <br>        <span class="hljs-comment">&#x27; 将域结果复制到剪贴板</span><br>        fld.Result.Copy        <br>        <span class="hljs-comment">&#x27; 删除域</span><br>        fld.Delete        <br>        <span class="hljs-comment">&#x27; 粘贴并保留格式</span><br>        <span class="hljs-keyword">On</span> <span class="hljs-keyword">Error</span> <span class="hljs-keyword">Resume</span> <span class="hljs-keyword">Next</span> <span class="hljs-comment">&#x27; 忽略接下来的错误</span><br>        Selection.PasteAndFormat (wdChartPicture)<br>        <span class="hljs-keyword">If</span> Err.Number &lt;&gt; <span class="hljs-number">0</span> <span class="hljs-keyword">Then</span><br>            MsgBox <span class="hljs-string">&quot;无法将内容粘贴为内嵌图片。&quot;</span> &amp; vbCrLf &amp; <span class="hljs-string">&quot;错误代码: &quot;</span> &amp; Err.Number &amp; vbCrLf &amp; <span class="hljs-string">&quot;错误描述: &quot;</span> &amp; Err.Description, vbExclamation<br>            Err.Clear<br>            <span class="hljs-keyword">On</span> <span class="hljs-keyword">Error</span> <span class="hljs-keyword">GoTo</span> <span class="hljs-number">0</span> <span class="hljs-comment">&#x27; 停止忽略错误</span><br>            <span class="hljs-keyword">Exit</span> <span class="hljs-keyword">Sub</span><br>        <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span><br>        <span class="hljs-keyword">On</span> <span class="hljs-keyword">Error</span> <span class="hljs-keyword">GoTo</span> <span class="hljs-number">0</span> <span class="hljs-comment">&#x27; 停止忽略错误     </span><br>        <span class="hljs-comment">&#x27; 如果需要，可以在这里添加对新内嵌图片的进一步处理</span><br>        <span class="hljs-comment">&#x27; 例如调整大小、设置环绕方式等</span><br>    <span class="hljs-keyword">Else</span><br>        MsgBox <span class="hljs-string">&quot;请先选择一个域。&quot;</span>, vbInformation<br>    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span><br><span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span><br><br></code></pre></td></tr></table></figure><p>将上面的代码，放入 vba 中，具体方法是开发工具-宏-创建，最好在所有活动文档中创建，这样都可以使用了。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202412181526902.png" alt="image.png"></p><h2 id="宏赋按钮"><a href="#宏赋按钮" class="headerlink" title="宏赋按钮"></a>宏赋按钮</h2><p>通过开始-选项-快捷访问工具栏-宏-添加-修改名称和图标，创建好快捷图标。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202412181528443.png" alt="image.png"></p><p>这样选中对应的图片域点击按钮就可以使用啦。</p><h2 id="帮助"><a href="#帮助" class="headerlink" title="帮助"></a>帮助</h2><p>也希望大家如果有更好的方法，请留言告诉我，或者对代码的改进建议，也请留言。</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>读书笔记_控糖革命</title>
     <link href="/2024/12/15/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0_%E6%8E%A7%E7%B3%96%E9%9D%A9%E5%91%BD/"/>
     <url>/2024/12/15/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0_%E6%8E%A7%E7%B3%96%E9%9D%A9%E5%91%BD/</url>
@@ -23,6 +36,19 @@
       <tag>读书笔记</tag>
       
     </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>2024年 阅读与写作总结</title>
+    <link href="/2024/12/09/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2024%E5%B9%B4%E9%98%85%E8%AF%BB%E5%AD%A6%E4%B9%A0%E5%86%99%E4%BD%9C%E8%AE%B0%E5%BD%95/"/>
+    <url>/2024/12/09/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/2024%E5%B9%B4%E9%98%85%E8%AF%BB%E5%AD%A6%E4%B9%A0%E5%86%99%E4%BD%9C%E8%AE%B0%E5%BD%95/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>2024 年马上就要过去了，对这一年业余时间阅读和写作做一些总结。</p><h2 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h2><p>2024 年的春节，我在新疆度过。冬季的伊犁比较冷，大部分时间我都待在室内，从那时起，我逐渐养成了持续阅读的习惯。起初，我的选择较为随意，多为历史书或小说以打发时间，后来，我开始认真读一些个人成长、教育学习等方面的书。</p><p>这一年对我影响最大的一本是《卡片笔记写作法：如何实现从阅读到写作》，书中写了很多关于如何学习，如何进行卡片笔记写作的方法，让我眼前一亮，尤其是尼克拉斯·卢曼的学习、写作经历，他强调要坚持记录笔记，可以是你感兴趣的任意方向，不要做计划，而是要做专家，也就是所在你短期感兴趣的领域持续发力，持续做笔记，然后再归纳整理，找到方向。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202412281121052.png"></p><h3 id="阅读流水线"><a href="#阅读流水线" class="headerlink" title="阅读流水线"></a>阅读流水线</h3><p>2024 年看了很多书，按照时间顺序将他们梳理出来，推荐的有：</p><ul><li>卓有成效的管理者</li><li>自控力：斯坦福大学广受欢迎的心理学课程</li><li>在峡江的转弯处：陈行甲人生笔记</li><li>情商：为什么情商比智商更重要</li><li>掌控习惯：如何养成好习惯并戒除坏习惯（《原子习惯》中文版）（新版）</li><li>被讨厌的勇气：“自我启发之父”阿德勒的哲学课</li><li>正面管教（修订版）</li><li>宝贵的人生建议</li><li>锻炼</li><li>卡片笔记写作法：如何实现从阅读到写作</li><li>知道做到：跃迁式学习</li><li>《坛经》哲学王子带你领会人类最高智慧</li></ul><p>完整阅读记录如下。</p><table><thead><tr><th>书名</th><th>作者</th><th>开始阅读日期</th><th>推荐分数</th></tr></thead><tbody><tr><td>卓有成效的管理者</td><td>彼得·德鲁克</td><td>2024-11-23</td><td>5</td></tr><tr><td>情商：为什么情商比智商更重要</td><td>丹尼尔·戈尔曼</td><td>2024-10-23</td><td>5</td></tr><tr><td>全球通史：从史前到 21 世纪（第 7 版新校本上下册套装）</td><td>斯塔夫里阿诺斯</td><td>2024-10-13</td><td>4</td></tr><tr><td>自控力：斯坦福大学广受欢迎的心理学课程</td><td>凯利·麦格尼格尔</td><td>2024-10-03</td><td>5</td></tr><tr><td>西游记</td><td>吴承恩</td><td>2024-08-30</td><td>4</td></tr><tr><td>追问（独家首发）</td><td>丁捷</td><td>2024-08-28</td><td>2</td></tr><tr><td>我在北京送快递</td><td>胡安焉</td><td>2024-08-01</td><td>2</td></tr><tr><td>正面管教（修订版）</td><td>简•尼尔森</td><td>2024-07-28</td><td>5</td></tr><tr><td>人体简史</td><td>【英】比尔·布莱森</td><td>2024-07-24</td><td>3</td></tr><tr><td>周恩来的故事</td><td>石仲泉陈登才主编</td><td>2024-07-23</td><td>2</td></tr><tr><td>宝贵的人生建议</td><td>【美】凯文·凯利</td><td>2024-07-17</td><td>5</td></tr><tr><td>在峡江的转弯处：陈行甲人生笔记</td><td>陈行甲</td><td>2024-07-14</td><td>5</td></tr><tr><td>《坛经》哲学王子带你领会人类最高智慧!</td><td></td><td>2024-07-02</td><td>5</td></tr><tr><td>好运设计（独家首发）</td><td>史铁生</td><td>2024-06-20</td><td>3</td></tr><tr><td>被讨厌的勇气：“自我启发之父”阿德勒的哲学课</td><td>岸见一郎古贺史健</td><td>2024-06-17</td><td>5</td></tr><tr><td>锻炼</td><td>丹尼尔·利伯曼</td><td>2024-05-31</td><td>5</td></tr><tr><td>魏晋南北朝史（中国断代史系列）</td><td>王仲荦</td><td>2024-05-22</td><td>2</td></tr><tr><td>中国茶图鉴</td><td>李韬</td><td>2024-05-06</td><td>2</td></tr><tr><td>中国历代政治得失</td><td>钱穆</td><td>2024-04-26</td><td>2</td></tr><tr><td>遥远的向日葵地</td><td>李娟</td><td>2024-04-23</td><td>3</td></tr><tr><td>重来：更为简单有效的商业思维</td><td>贾森·弗里德戴维·海涅迈尔·汉森</td><td>2024-04-23</td><td>4</td></tr><tr><td>六祖坛经</td><td>慧能</td><td>2024-04-18</td><td>3</td></tr><tr><td>知道做到：跃迁式学习</td><td>彼得•霍林斯</td><td>2024-04-07</td><td>5</td></tr><tr><td>读一页就上瘾的唐朝史</td><td>范西园</td><td>2024-03-17</td><td>2</td></tr><tr><td>掌控习惯：如何养成好习惯并戒除坏习惯（《原子习惯》中文版）（新版）</td><td>詹姆斯·克利尔</td><td>2024-03-11</td><td>5</td></tr><tr><td>费尔德曼发展心理学（原书第 4 版）</td><td>罗伯特·S. 费尔德曼</td><td>2024-02-26</td><td>4</td></tr><tr><td>卡片笔记写作法：如何实现从阅读到写作</td><td>申克·阿伦斯</td><td>2024-02-17</td><td>5</td></tr><tr><td>Python 工匠：案例、技巧与工程实践</td><td>朱雷</td><td>2024-02-13</td><td>3</td></tr><tr><td>战国：七雄博弈</td><td>朱良</td><td>2024-02-12</td><td>2</td></tr><tr><td>长安的荔枝</td><td>马伯庸</td><td>2024-02-10</td><td>2</td></tr><tr><td>春秋：五霸迭兴</td><td>朱良</td><td>2024-02</td><td>2</td></tr></tbody></table><h2 id="写作与发表"><a href="#写作与发表" class="headerlink" title="写作与发表"></a>写作与发表</h2><p>通过《卡片笔记写作法：如何实现从阅读到写作》、《知道做到》两本书，我开始使用 obsidian 记录笔，obsidian 自由度非常高，markdown 格式非常适合迁移到其他平台。随后开始整理输出到 CSDN 、微信公众号和个人博客。之前也零散的发过，不过今年我基本保持至少每周发一篇的更新频率。</p><p>因为个人精力有限，我写的方向内容非常散乱，和我工作、兴趣相关的我都会写，包括 python 数据分析、办公技巧、应用工具推荐、读书笔记以及环保工作的总结、知识点等，核心就是觉得有用的、值得推荐的或者需要反复看的内容都会整理发布，我把账号当做一个笔记本，或者知识库。我们身处一个知识爆炸的时代，完全可以容得这一小小的浪花。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202412290803527.png"></p><p>写作和发表我对各种知识点了解更加深入，好记性不如烂笔头，况且我的记忆力非常不好，有时候重读自己过去笔记，也像是第一次学习一样，有的知识点并不需要完全记在脑海里。总之记录和发表是践行卢曼笔记法和费曼学习法的方式。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202412290800543.png"></p><h2 id="反思"><a href="#反思" class="headerlink" title="反思"></a>反思</h2><p>在过去的一年里，我沉浸在多个充满魅力的领域中，每一次书中崭新视角的发现、每一段编程解决问题后的兴奋和喜悦、每一次与新朋友的交流以及评论区的沟通碰撞，都为我的业余时光注入了满满的获得感与成就感。然而，这期间也不乏困惑与徘徊——面对众多的兴趣点和学习方向，有限的时间让我意识到必须有所取舍。深入任何一个领域，都需要系统的学习和实践，尤其是在特定的应用环境中才能真正精进。</p><p>展望新的一年，我决定将重心更多地放在环保业务上，我会将整理的相关资料发布在我的个人账号上，以便自己随时查阅的同时，也能成为有需要者的手边资源。</p><p>人生短暂，能够在有限的时间里做自己热爱的事，已是莫大的幸运。在这个充满无限可能的时代，珍惜每一天，用心经营每一个当下，便是对时间最美好的回答。</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
     
   </entry>
   
@@ -228,9 +254,9 @@
     
     <tags>
       
-      <tag>生态环境</tag>
-      
       <tag>python</tag>
+      
+      <tag>生态环境</tag>
       
     </tags>
     
@@ -311,9 +337,9 @@
       
       <tag>生态环境</tag>
       
-      <tag>水文分析</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>水文分析</tag>
       
     </tags>
     
@@ -392,9 +418,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>工具推荐</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     
@@ -597,9 +623,9 @@
     
     <tags>
       
-      <tag>生态环境</tag>
-      
       <tag>python</tag>
+      
+      <tag>生态环境</tag>
       
       <tag>经验分享</tag>
       
@@ -626,9 +652,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>obsidian</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>excaildraw</tag>
       
@@ -792,9 +818,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>obsidian</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     
@@ -975,9 +1001,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>工具推荐</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     
@@ -1002,9 +1028,9 @@
     
     <tags>
       
-      <tag>生态环境</tag>
-      
       <tag>python</tag>
+      
+      <tag>生态环境</tag>
       
       <tag>数据分析</tag>
       
@@ -1037,9 +1063,9 @@
     
     <tags>
       
-      <tag>生态环境</tag>
-      
       <tag>python</tag>
+      
+      <tag>生态环境</tag>
       
       <tag>数据分析</tag>
       
@@ -1072,15 +1098,15 @@
     
     <tags>
       
+      <tag>用心长文</tag>
+      
+      <tag>时间序列模型</tag>
+      
       <tag>生态环境</tag>
       
       <tag>BP神经网络</tag>
       
       <tag>水质模型</tag>
-      
-      <tag>时间序列模型</tag>
-      
-      <tag>用心长文</tag>
       
     </tags>
     
@@ -1209,15 +1235,15 @@
     
     <tags>
       
-      <tag>生态环境</tag>
+      <tag>python</tag>
       
       <tag>用心长文</tag>
       
-      <tag>python</tag>
-      
-      <tag>水文分析</tag>
+      <tag>生态环境</tag>
       
       <tag>经验分享</tag>
+      
+      <tag>水文分析</tag>
       
       <tag>streamlit</tag>
       
@@ -1298,9 +1324,9 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
       <tag>python</tag>
+      
+      <tag>用心长文</tag>
       
       <tag>算法</tag>
       
@@ -1329,9 +1355,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>obsidian</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>Zotero</tag>
       
@@ -1358,9 +1384,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>obsidian</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     
@@ -1385,11 +1411,11 @@
     
     <tags>
       
-      <tag>生态环境</tag>
+      <tag>用心长文</tag>
       
       <tag>时间序列模型</tag>
       
-      <tag>用心长文</tag>
+      <tag>生态环境</tag>
       
       <tag>机理模型</tag>
       
@@ -1416,9 +1442,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>obsidian</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>excaildraw</tag>
       
@@ -1555,13 +1581,13 @@
       
       <tag>用心长文</tag>
       
+      <tag>经验分享</tag>
+      
       <tag>水文分析</tag>
       
       <tag>arcgis</tag>
       
       <tag>地形数据</tag>
-      
-      <tag>经验分享</tag>
       
     </tags>
     
@@ -1586,9 +1612,9 @@
     
     <tags>
       
-      <tag>读书笔记</tag>
-      
       <tag>方法论</tag>
+      
+      <tag>读书笔记</tag>
       
       <tag>写作</tag>
       
@@ -1615,9 +1641,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>工具推荐</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>素材</tag>
       
@@ -1644,9 +1670,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>工具推荐</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>AIGC</tag>
       
@@ -1700,9 +1726,9 @@
       
       <tag>用心长文</tag>
       
-      <tag>读书笔记</tag>
-      
       <tag>方法论</tag>
+      
+      <tag>读书笔记</tag>
       
     </tags>
     
@@ -1729,9 +1755,9 @@
       
       <tag>用心长文</tag>
       
-      <tag>读书笔记</tag>
-      
       <tag>方法论</tag>
+      
+      <tag>读书笔记</tag>
       
       <tag>写作</tag>
       
@@ -1758,9 +1784,9 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
       <tag>python</tag>
+      
+      <tag>用心长文</tag>
       
       <tag>经验分享</tag>
       
@@ -1816,13 +1842,13 @@
     
     <tags>
       
-      <tag>时间序列模型</tag>
-      
-      <tag>用心长文</tag>
-      
       <tag>水环境分析</tag>
       
       <tag>python</tag>
+      
+      <tag>用心长文</tag>
+      
+      <tag>时间序列模型</tag>
       
     </tags>
     
@@ -1905,13 +1931,13 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
       <tag>时间序列</tag>
       
       <tag>水环境分析</tag>
       
       <tag>python</tag>
+      
+      <tag>用心长文</tag>
       
     </tags>
     
@@ -1936,11 +1962,11 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>工具推荐</tag>
       
       <tag>obsidian</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>图床</tag>
       
@@ -1967,11 +1993,11 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>工具推荐</tag>
       
       <tag>obsidian</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>微信读书</tag>
       
@@ -1998,9 +2024,9 @@
     
     <tags>
       
-      <tag>生态环境</tag>
-      
       <tag>python</tag>
+      
+      <tag>生态环境</tag>
       
       <tag>经验分享</tag>
       
