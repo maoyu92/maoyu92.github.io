@@ -1,0 +1,862 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="ARIMA 时间序列模型简介时间序列是研究数据随时间变化而变化的一种算法，是一种预测性分析算法。它的基本出发点就是事物发展都有连续性，按照它本身固有的规律进行。ARIMA(p,d,q)模型全称为差分自回归移动平均模型  (Autoregressive Integrated Moving Average Model,简记 ARIMA). 是比较成熟且简单的时间预测模型之一。其中 AR 为自回">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARIMA时间序列模型水质预测应用">
+<meta property="og:url" content="https://maoyu92.github.io/2024/05/09/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/ARIMA%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E5%BA%94%E7%94%A81/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="ARIMA 时间序列模型简介时间序列是研究数据随时间变化而变化的一种算法，是一种预测性分析算法。它的基本出发点就是事物发展都有连续性，按照它本身固有的规律进行。ARIMA(p,d,q)模型全称为差分自回归移动平均模型  (Autoregressive Integrated Moving Average Model,简记 ARIMA). 是比较成熟且简单的时间预测模型之一。其中 AR 为自回">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1658496447043-88b405af-1be8-4102-9e18-08920fc56b01.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1658496966248-a9f853f2-55b2-4728-8ae7-83c26ec56dd7.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1658497358538-342dc80a-d890-4386-bc8e-ca67ca811fef.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1658497368903-f3dccfbb-c6e0-4aa7-a86c-e78aab590f93.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1658497380496-184e826a-d4c3-40a3-aa69-f2413617af0a.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1658497922337-e1e6f543-0dbb-409b-ac68-05a72ef2423a.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1658497941233-d0387b16-c1dd-4ec5-a2a4-4162e3be9eec.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1658497956069-1c995a76-08cb-44b0-a0b2-9173af977365.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405092131490.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1658498060055-471dd8e9-e287-4a75-b360-d508cdf45eea.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202405092145737.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1658498412727-7339ba7d-dbd3-407b-ac06-2261972c967d.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1658498435576-efb265aa-9f0e-452f-84fa-e70509215452.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1670242073687-2d564dde-6f19-4ae7-9283-b3341ec7dae9.png">
+<meta property="article:published_time" content="2024-05-09T13:52:00.000Z">
+<meta property="article:modified_time" content="2024-05-09T13:52:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="时间序列">
+<meta property="article:tag" content="水环境分析">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="用心长文">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2022/png/681168/1658496447043-88b405af-1be8-4102-9e18-08920fc56b01.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ARIMA时间序列模型水质预测应用 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ARIMA时间序列模型水质预测应用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-05-09 21:52" pubdate>
+          2024年5月9日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ARIMA时间序列模型水质预测应用</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+
+
+<h2 id="ARIMA-时间序列模型简介"><a href="#ARIMA-时间序列模型简介" class="headerlink" title="ARIMA 时间序列模型简介"></a>ARIMA 时间序列模型简介</h2><p>时间序列是研究数据随时间变化而变化的一种算法，是一种预测性分析算法。它的基本出发点就是事物发展都有连续性，按照它本身固有的规律进行。ARIMA(p,d,q)模型全称为差分自回归移动平均模型  (Autoregressive Integrated Moving Average Model,简记 ARIMA). 是比较成熟且简单的时间预测模型之一。其中 AR 为自回归, I 为差分, MA 为移动平均。<br>趋势参数：</p>
+<ul>
+<li>p：趋势自回归阶数。</li>
+<li>d：趋势差分阶数。</li>
+<li>q：趋势移动平均阶数。</li>
+</ul>
+<h2 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h2><p>差分（difference）又名差分函数或差分运算，差分的结果反映了离散量之间的一种变化，是研究离散数学的一种工具。它将原函数f(x) 映射到f(x+a)-f(x+b) 。差分运算，相应于微分运算，是微积分中重要的一个概念。总而言之，差分对应离散，微分对应连续。差分又分为前向差分、向后差分及中心差分三种。<br>通常情况下我们用到的是前向差分公式如下：<br>xk&#x3D;x0+kh,(k&#x3D;0,1,…,n)<br>△f(xk)&#x3D;f(xk+1)−f(xk)<br>差分的阶<br>称为阶的差分，即前向阶差分 ，如果数学运用根据数学归纳法，有其中，为二项式系数。特别的，有前向差分有时候也称作数列的二项式变换</p>
+<h2 id="在高锰酸盐指数序列预测可行性的说明"><a href="#在高锰酸盐指数序列预测可行性的说明" class="headerlink" title="在高锰酸盐指数序列预测可行性的说明"></a>在高锰酸盐指数序列预测可行性的说明</h2><p>通过观察水质变化趋势，高锰酸盐指数波动不剧烈，存在明显的中心波动规律。<br><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1658496447043-88b405af-1be8-4102-9e18-08920fc56b01.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns<br><span class="hljs-keyword">import</span> warnings<br><span class="hljs-keyword">import</span> pymysql<br><br>warnings.filterwarnings(<span class="hljs-string">&quot;ignore&quot;</span>)  <br><span class="hljs-comment"># 忽略警告，不然一大堆警告，多是python及对应包升高导致，不影响使用</span><br><span class="hljs-keyword">from</span> IPython.core.interactiveshell <span class="hljs-keyword">import</span> InteractiveShell<br>InteractiveShell.ast_node_interactivity = <span class="hljs-string">&quot;all&quot;</span><br><span class="hljs-keyword">from</span> matplotlib.pylab <span class="hljs-keyword">import</span> style  <span class="hljs-comment"># 自定义图表风格</span><br>style.use(<span class="hljs-string">&#x27;ggplot&#x27;</span>)<br><br><span class="hljs-comment"># 解决中文乱码问题</span><br>plt.rcParams[<span class="hljs-string">&#x27;font.sans-serif&#x27;</span>] = [<span class="hljs-string">&#x27;Simhei&#x27;</span>]<br><span class="hljs-comment"># 解决坐标轴刻度负号乱码</span><br>plt.rcParams[<span class="hljs-string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="hljs-literal">False</span><br><br><span class="hljs-comment"># pip install statsmodels</span><br><br><span class="hljs-keyword">from</span> statsmodels.graphics.tsaplots <span class="hljs-keyword">import</span> plot_acf, plot_pacf  <span class="hljs-comment"># 自相关图、偏自相关图</span><br><span class="hljs-keyword">from</span> statsmodels.tsa.stattools <span class="hljs-keyword">import</span> adfuller <span class="hljs-keyword">as</span> ADF  <span class="hljs-comment"># 平稳性检验</span><br><span class="hljs-keyword">from</span> statsmodels.stats.diagnostic <span class="hljs-keyword">import</span> acorr_ljungbox  <span class="hljs-comment"># 白噪声检验</span><br><span class="hljs-keyword">import</span> statsmodels.api <span class="hljs-keyword">as</span> sm  <span class="hljs-comment"># D-W检验,一阶自相关检验</span><br><span class="hljs-keyword">from</span> statsmodels.graphics.api <span class="hljs-keyword">import</span> qqplot  <span class="hljs-comment"># 画QQ图,检验一组数据是否服从正态分布</span><br><span class="hljs-keyword">from</span> statsmodels.tsa.arima.model <span class="hljs-keyword">import</span> ARIMA<br></code></pre></td></tr></table></figure>
+
+<h3 id="连接数据"><a href="#连接数据" class="headerlink" title="连接数据"></a>连接数据</h3><p>通过数据库，excel 都可以，列名为监测时间、设备名称、设备因子、监测值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">conn_sql</span>():<br>    conn = pymysql.connect(host=<span class="hljs-string">&quot; &quot;</span>,<br>                   port= ,<br>                   user=<span class="hljs-string">&quot; &quot;</span>,<br>                   password=<span class="hljs-string">&quot; &quot;</span>,<br>                   db=<span class="hljs-string">&quot; &quot;</span>,<br>                   charset=<span class="hljs-string">&quot;utf8&quot;</span>)<br>    sql = <span class="hljs-string">&quot;&quot;</span><br>    read_sql = pd.read_sql(sql, conn)<br>    <span class="hljs-keyword">return</span> read_sql<br>read_sql=conn_sql()<br></code></pre></td></tr></table></figure>
+
+<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">nseri</span>(<span class="hljs-params">s,y </span>):<br>    aidunqiao = read_sql.loc[read_sql[<span class="hljs-string">&#x27;设备名称&#x27;</span>] == s, :]<br>    ai_cod = aidunqiao.loc[read_sql[<span class="hljs-string">&#x27;监测因子&#x27;</span>] == y, :]<br>    ai_cod_mn = ai_cod.loc[:, [<span class="hljs-string">&quot;监测时间&quot;</span>, <span class="hljs-string">&#x27;监测值&#x27;</span>]]<br>    baseline = ai_cod.loc[:, [<span class="hljs-string">&quot;监测时间&quot;</span>, <span class="hljs-string">&#x27;监测值&#x27;</span>]]<br><br>    ai_cod_mn.set_index(<span class="hljs-string">&#x27;监测时间&#x27;</span>, inplace=<span class="hljs-literal">True</span>)<br>    interp_cod_mn = ai_cod_mn[<span class="hljs-string">&quot;监测值&quot;</span>].interpolate()<br>    ai_cod_mn[<span class="hljs-string">&quot;cod&quot;</span>] = interp_cod_mn<br>    starttime = baseline.iloc[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>]<br>    rows = baseline.shape[<span class="hljs-number">0</span>]<br>    endtime = baseline.iloc[rows - <span class="hljs-number">1</span>, <span class="hljs-number">0</span>]<br><br>    year_month_day = pd.date_range(starttime, endtime, freq=<span class="hljs-string">&quot;h&quot;</span>).strftime(<span class="hljs-string">&quot;%Y%m%d%h%m%s&quot;</span>)<br>    a_ser = pd.DataFrame(&#123;<span class="hljs-string">&#x27;监测时间&#x27;</span>: year_month_day&#125;)<br>    a_ser.set_index(<span class="hljs-string">&#x27;监测时间&#x27;</span>, inplace=<span class="hljs-literal">True</span>)<br>    df = pd.concat([a_ser, ai_cod_mn], axis=<span class="hljs-number">0</span>, join=<span class="hljs-string">&quot;outer&quot;</span>)<br>    df = df.reset_index(drop=<span class="hljs-literal">False</span>)<br>    df[<span class="hljs-string">&#x27;监测时间&#x27;</span>] = pd.to_datetime(df[<span class="hljs-string">&#x27;监测时间&#x27;</span>])<br>    df1 = df.drop_duplicates(subset=<span class="hljs-string">&quot;监测时间&quot;</span>, keep=<span class="hljs-string">&quot;last&quot;</span>, ignore_index=<span class="hljs-literal">True</span>)<br>    df2 = df1.sort_values(by=<span class="hljs-string">&quot;监测时间&quot;</span>, ignore_index=<span class="hljs-literal">True</span>)<br>    df2[<span class="hljs-string">&quot;cod&quot;</span>] = df2[<span class="hljs-string">&quot;监测值&quot;</span>].interpolate()<br>    df2.drop(columns=<span class="hljs-string">&quot;监测值&quot;</span>, inplace=<span class="hljs-literal">True</span>)<br>    df2.set_index(<span class="hljs-string">&#x27;监测时间&#x27;</span>, inplace=<span class="hljs-literal">True</span>)<br>    <span class="hljs-keyword">return</span> df2<br></code></pre></td></tr></table></figure>
+
+<p>主要是 将数据生成无空连续的逐小时 时间序列数据 插值方法为线性插值</p>
+<h3 id="数据解读"><a href="#数据解读" class="headerlink" title="数据解读"></a>数据解读</h3><h4 id="查看acf"><a href="#查看acf" class="headerlink" title="查看acf"></a>查看acf</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">df2 = df2.dropna()<br><span class="hljs-comment"># 解决有nan的问题</span><br>plot_acf(df2,lags=<span class="hljs-number">50</span>).show()<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1658496966248-a9f853f2-55b2-4728-8ae7-83c26ec56dd7.png" srcset="/img/loading.gif" lazyload></p>
+<p>解读 拖尾为p 。基本大于0.5 现在和未来有很强的相关性</p>
+<h4 id="单位根检验"><a href="#单位根检验" class="headerlink" title="单位根检验"></a>单位根检验</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;原始序列的ADF检验结果为：&#x27;</span>,ADF(df2.cod))<br></code></pre></td></tr></table></figure>
+
+<p>原始序列的ADF检验结果为： (-7.19465930048855, 2.452407467867345e-10, 37, 9199, {‘1%’: -3.431061069214289, ‘5%’: -2.8618542472812902, ‘10%’: -2.5669372687639176}, 11281.50483165621)</p>
+<p>解读：P值小于显著性水平α（0.05），不接受原假设（非平稳序列），说明原始序列是平稳序列。</p>
+<h4 id="白噪声检验"><a href="#白噪声检验" class="headerlink" title="白噪声检验"></a>白噪声检验</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;一阶差分序列的白噪声检验结果为：&#x27;</span>,acorr_ljungbox(df2,lags=<span class="hljs-number">1</span>,return_df =<span class="hljs-built_in">bool</span>))<br></code></pre></td></tr></table></figure>
+
+<p>一阶差分序列的白噪声检验结果为： lb_stat lb_pvalue 1 7467.631465 0.0</p>
+<p>p值为0小于0.05，不是白噪声</p>
+<p><strong>综上可以采用 arima 模型</strong></p>
+<h4 id="定阶-人工识图"><a href="#定阶-人工识图" class="headerlink" title="定阶 人工识图"></a>定阶 人工识图</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#一阶差分，我们不需要这么做，看下代码怎么写的。</span><br>df2_mn=df2.diff(periods=<span class="hljs-number">1</span>, axis=<span class="hljs-number">0</span>).dropna()<br><span class="hljs-comment">#自相关图</span><br>plot_acf(df2,lags=<span class="hljs-number">20</span>).show()<br><span class="hljs-comment">#解读：拖尾 有长期相关性 p 取1 </span><br><span class="hljs-comment">#偏自相关图 </span><br>plot_pacf(df2,lags=<span class="hljs-number">20</span>).show()<br><span class="hljs-comment">#偏自相关图</span><br>plot_pacf(df2,lags=<span class="hljs-number">50</span>).show()<br><span class="hljs-comment">#解读：自相关图，0阶拖尾；偏自相关图，截尾。则ARIMA(p,d,q)=ARIMA(1,0,n)</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1658497358538-342dc80a-d890-4386-bc8e-ca67ca811fef.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1658497368903-f3dccfbb-c6e0-4aa7-a86c-e78aab590f93.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1658497380496-184e826a-d4c3-40a3-aa69-f2413617af0a.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="参数调优"><a href="#参数调优" class="headerlink" title="参数调优"></a>参数调优</h4><p>AIC调优</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> statsmodels.tsa.arima.model <span class="hljs-keyword">import</span> ARIMA<br>aic_matrix=[]<br><span class="hljs-keyword">for</span> p <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>):<br>    tmp=[]<br>    <span class="hljs-keyword">for</span> q <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>):<br>        <span class="hljs-keyword">try</span>:<br>            tmp.append(ARIMA(df2,order=(p,<span class="hljs-number">0</span>,q)).fit().aic)<br>        <span class="hljs-keyword">except</span>:<br>            tmp.append(<span class="hljs-literal">None</span>)<br>    aic_matrix.append(tmp)<br>aic_matrix<br><br><span class="hljs-comment"># p,q=aic_matrix.stack().idxmin() #最小值的索引</span><br><span class="hljs-comment"># 手动查找最小值 同样为1，0，4</span><br></code></pre></td></tr></table></figure>
+
+<p>也可以用BIC调优 不再赘述</p>
+<h3 id="模型建立"><a href="#模型建立" class="headerlink" title="模型建立"></a>模型建立</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">model = ARIMA(df2, order=(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>))<br>result_arima = model.fit()<br></code></pre></td></tr></table></figure>
+
+<h3 id="模型预测"><a href="#模型预测" class="headerlink" title="模型预测"></a>模型预测</h3><p>定义画图函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">pic1</span>(<span class="hljs-params">result_arima,df2</span>):<br>    t1 = <span class="hljs-string">&quot;2022/7/6 00:00:00&quot;</span><br>    t2 = <span class="hljs-string">&quot;2022/7/8 00:00:00&quot;</span><br>    predict_more=result_arima.predict(t1 ,t2 )<br>    t = pd.date_range(t1, t2 , freq=<span class="hljs-string">&quot;h&quot;</span>).strftime(<span class="hljs-string">&quot;%y%m%d%h%m%s&quot;</span>)<br>    new_ticks = pd.date_range(t1, t2 , freq=<span class="hljs-string">&quot;d&quot;</span>).strftime(<span class="hljs-string">&quot;%y%m%d%h%m%s&quot;</span>)<br>    axc.clear()<br>    axc.set_title(<span class="hljs-string">&quot;局部历史值与真实值对比&quot;</span>)<br>    axc.plot(t,df2[t1 :t2],linestyle = <span class="hljs-string">&quot;--&quot;</span>,alpha=<span class="hljs-number">0.5</span>)<br>    axc.plot(t,predict_more,linestyle = <span class="hljs-string">&quot;:&quot;</span>)<br>    axc.legend([<span class="hljs-string">&#x27;真实值&#x27;</span>,<span class="hljs-string">&#x27;预测值&#x27;</span>])<br>    axc.set_xticks(new_ticks)   <br><br>    <span class="hljs-comment"># 创建画布控件</span><br>    canvas = FigureCanvasTkAgg(fig1, master=root)  <span class="hljs-comment"># A tk.DrawingArea.</span><br>    canvas.draw()<br>    canvas.get_tk_widget().place(x=<span class="hljs-number">63</span>,y=<span class="hljs-number">200</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1658497922337-e1e6f543-0dbb-409b-ac68-05a72ef2423a.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">fore_picture</span>(<span class="hljs-params">result_arima,df2</span>):<br>    df3 = df2.reset_index(drop=<span class="hljs-literal">False</span>)<br>    rows = df3.shape[<span class="hljs-number">0</span>]<br>    endtime = df3.iloc[rows - <span class="hljs-number">1</span>, <span class="hljs-number">0</span>]<br>    forecast = pd.Series(result_arima.forecast(<span class="hljs-number">48</span>), index=pd.date_range(endtime, periods=<span class="hljs-number">48</span>, freq=<span class="hljs-string">&#x27;H&#x27;</span>))<br>    df_last = df2.iloc[-<span class="hljs-number">48</span>:]    <br>    data = pd.concat((df_last, forecast), axis=<span class="hljs-number">0</span>)<br>    data.columns = [<span class="hljs-string">&#x27;监测值浓度&#x27;</span>, <span class="hljs-string">&#x27;未来48小时&#x27;</span>]<br>    axc2.clear()<br>    axc2.set_title(<span class="hljs-string">&quot;未来48小时预测&quot;</span>)<br>    axc2.plot(data) <br>    <br>        <span class="hljs-comment"># 创建画布控件</span><br>    canvas = FigureCanvasTkAgg(fig2, master=root)  <span class="hljs-comment"># A tk.DrawingArea.</span><br>    canvas.draw()<br>    canvas.get_tk_widget().place(x=<span class="hljs-number">600</span>,y=<span class="hljs-number">200</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1658497941233-d0387b16-c1dd-4ec5-a2a4-4162e3be9eec.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">compare2</span>(<span class="hljs-params">result_arima,df2</span>):<br>    df3 = df2.reset_index(drop=<span class="hljs-literal">False</span>)<br>    rows = df3.shape[<span class="hljs-number">0</span>]<br>    endtime = df3.iloc[rows - <span class="hljs-number">1</span>, <span class="hljs-number">0</span>]<br>    starttime = df3.iloc[<span class="hljs-number">0</span>, <span class="hljs-number">0</span>]<br>    predict=result_arima.predict(starttime , endtime)<br>    axc3.clear()<br>    axc3.set_title(<span class="hljs-string">&quot;全部预测值真实值对比&quot;</span>)<br>    axc3.plot(df2.index,df2[<span class="hljs-string">&#x27;cod&#x27;</span>],linestyle = <span class="hljs-string">&quot;--&quot;</span>,alpha=<span class="hljs-number">0.5</span>)<br>    axc3.plot(df2.index,predict,linestyle = <span class="hljs-string">&quot;:&quot;</span>)<br>    axc3.legend([<span class="hljs-string">&#x27;真实值&#x27;</span>,<span class="hljs-string">&#x27;预测值&#x27;</span>])<br>    canvas = FigureCanvasTkAgg(fig3, master=root)  <span class="hljs-comment"># A tk.DrawingArea.</span><br>    canvas.draw()<br>    canvas.get_tk_widget().place(x=<span class="hljs-number">1200</span>,y=<span class="hljs-number">200</span>)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1658497956069-1c995a76-08cb-44b0-a0b2-9173af977365.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="模型可视化及GUI初探"><a href="#模型可视化及GUI初探" class="headerlink" title="模型可视化及GUI初探"></a>模型可视化及GUI初探</h3><p>用Tkinter 实现自动选择站点及因子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 副本</span><br><span class="hljs-keyword">from</span> tkinter.ttk <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">from</span>  tkinter <span class="hljs-keyword">import</span> *<br><span class="hljs-keyword">import</span> matplotlib<br>matplotlib.use(<span class="hljs-string">&#x27;TkAgg&#x27;</span>)<br><span class="hljs-keyword">from</span> matplotlib.backends.backend_tkagg <span class="hljs-keyword">import</span> FigureCanvasTkAgg<br><span class="hljs-keyword">from</span> matplotlib.figure <span class="hljs-keyword">import</span> Figure<br><br>root = Tk()<br>root.title(<span class="hljs-string">&quot;ARIMA预测模型&quot;</span>)<br>root.geometry(<span class="hljs-string">&quot;1800x900+50+50&quot;</span>)  <span class="hljs-comment"># 长x宽+x*y</span><br>           <br>lb1 = Label(root,text=<span class="hljs-string">&#x27;站点选择&#x27;</span>,fg=<span class="hljs-string">&#x27;black&#x27;</span>, font=(<span class="hljs-string">&#x27;微软雅黑&#x27;</span>,<span class="hljs-number">15</span>),  height=<span class="hljs-number">2</span>,  relief=FLAT)<br>lb2 = Label(root,text=<span class="hljs-string">&#x27;因子选择&#x27;</span>,fg=<span class="hljs-string">&#x27;black&#x27;</span>, font=(<span class="hljs-string">&#x27;微软雅黑&#x27;</span>,<span class="hljs-number">15</span>),  height=<span class="hljs-number">2</span>,  relief=FLAT)<br>lb3 = Label(root,text=<span class="hljs-string">&#x27;预测结果（48h）&#x27;</span>,fg=<span class="hljs-string">&#x27;black&#x27;</span>, font=(<span class="hljs-string">&#x27;微软雅黑&#x27;</span>,<span class="hljs-number">15</span>),  height=<span class="hljs-number">2</span>,  relief=FLAT)<br><span class="hljs-comment"># lb4 = Label(root,text=&#x27;历史预测对比&#x27;,fg=&#x27;black&#x27;, font=(&#x27;微软雅黑&#x27;,15),  height=2,  relief=FLAT)</span><br><br><span class="hljs-comment"># lb5 = Label(root,text=comb1.get(),fg=&#x27;black&#x27;, font=(&#x27;微软雅黑&#x27;,15),  height=2,  relief=FLAT)</span><br>lb1.place(x=<span class="hljs-number">63</span>,y=<span class="hljs-number">20</span>)<br>lb2.place(x=<span class="hljs-number">300</span>,y=<span class="hljs-number">20</span>)<br>lb3.place(x=<span class="hljs-number">63</span>,y=<span class="hljs-number">110</span>)<br><span class="hljs-comment"># lb4.place(x=510,y=110)</span><br><span class="hljs-comment"># lb5.place(x=820,y=110)</span><br>var1 = StringVar()<br>comb1= Combobox(root,textvariable=var1,values = site)<br>comb1.place(x=<span class="hljs-number">63</span>,y=<span class="hljs-number">80</span>)<br>var2 = StringVar()<br>comb2= Combobox(root,textvariable=var2,values=factor)<br>comb2.place(x=<span class="hljs-number">300</span>,y=<span class="hljs-number">80</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">select_device</span>(<span class="hljs-params">event</span>):<br>    s = comb1.get()<br>    <span class="hljs-built_in">print</span>(s)<br>    <span class="hljs-keyword">return</span> s<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">select_factor</span> (event):<br>    y = comb2.get()<br>    <span class="hljs-built_in">print</span>(y)<br>    <span class="hljs-keyword">return</span> y<br><br>comb1.bind(<span class="hljs-string">&quot;&lt;&lt;ComboboxSelected&gt;&gt;&quot;</span>, select_device)<br>comb2.bind(<span class="hljs-string">&quot;&lt;&lt;ComboboxSelected&gt;&gt;&quot;</span>, select_factor)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">click</span>(<span class="hljs-params">event</span>):<br>    s = comb1.get()<br>    y = comb2.get()<br>    df2 = nseri(s,y )<br>    model = ARIMA(df2, order=(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>))<br>    result_arima = model.fit()<br>    <br>    fig1 = Figure(figsize=(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>), dpi=<span class="hljs-number">120</span>)<br>    axc = fig1.add_subplot(<span class="hljs-number">111</span>)<br>    axc.clear()<br>    pic1(result_arima,df2)<br><br>    fig2 = Figure(figsize=(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>), dpi=<span class="hljs-number">120</span>)<br>    axc2 = fig2.add_subplot(<span class="hljs-number">111</span>)<br>    axc2.clear()<br>    fore_picture(result_arima,df2)<br><br>    fig3 = Figure(figsize=(<span class="hljs-number">4</span>, <span class="hljs-number">3</span>), dpi=<span class="hljs-number">120</span>)<br>    axc3 = fig3.add_subplot(<span class="hljs-number">111</span>)<br>    axc3.clear()<br>    compare2(result_arima,df2)    <br>    <br><br>but1 = Button(root, text=<span class="hljs-string">&#x27;计算&#x27;</span>,font=(<span class="hljs-string">&#x27;微软雅黑&#x27;</span>,<span class="hljs-number">15</span>),  height=<span class="hljs-number">1</span>)<br>but1.place(x=<span class="hljs-number">300</span>,y=<span class="hljs-number">110</span>)  <br><br>but1.bind(<span class="hljs-string">&quot;&lt;Button-1&gt;&quot;</span>,click)<br><br>root.mainloop()<br></code></pre></td></tr></table></figure>
+<p>结果预览<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405092131490.png" srcset="/img/loading.gif" lazyload alt="111.png"></p>
+<h3 id="模型评价"><a href="#模型评价" class="headerlink" title="模型评价"></a>模型评价</h3><p>模型评价方法： 浓度准确率， 等级准确率</p>
+<p>浓度准确率</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1658498060055-471dd8e9-e287-4a75-b360-d508cdf45eea.png" srcset="/img/loading.gif" lazyload></p>
+<p>等级准确率：实测的类别与预测的类别相同时，则视为预测正确，预测正确的个数占预测的总个数的百分比，即为模型预测准确率。指标预测准确率的详细计算方法如下式：<img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405092145737.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>Pi为类别相对误差，T 为验证期内实测值的时间点数，t为实测值与预测值对应的时刻，pit为实测的类别与模拟的类别相比值，如果类别相同则为1，否则为0。</p>
+<h3 id="结果提取"><a href="#结果提取" class="headerlink" title="结果提取"></a>结果提取</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">format1</span>(<span class="hljs-params">df2</span>):<br>    df7=pd.Series()<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">180</span>) :<br>        df3= df2[:-<span class="hljs-number">4</span>*(<span class="hljs-number">1</span>+i)]        <br>        model = ARIMA(df3, order=(<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>))<br>        result_arima1 = model.fit()<br>        df4 = df3.reset_index(drop=<span class="hljs-literal">False</span>)<br>        rows = df4.shape[<span class="hljs-number">0</span>]<br>        endtime = df4.iloc[rows - <span class="hljs-number">1</span>, <span class="hljs-number">0</span>]<br>        forecast = pd.Series(result_arima1.forecast(<span class="hljs-number">5</span>), index=pd.date_range(endtime, periods=<span class="hljs-number">5</span>, freq=<span class="hljs-string">&#x27;H&#x27;</span>))<br>        df8 = forecast.tail(<span class="hljs-number">1</span>)    <br>        df7 = pd.concat((df7,df8),axis=<span class="hljs-number">0</span>,join=<span class="hljs-string">&#x27;inner&#x27;</span>)<br>    <span class="hljs-keyword">return</span> df7 <br>f2 =format1(df2)<br>f2.to_excel(<span class="hljs-string">&quot;forceful.xls&quot;</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="结果分析"><a href="#结果分析" class="headerlink" title="结果分析"></a>结果分析</h3><p>时间原因用的excel 分析</p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1658498412727-7339ba7d-dbd3-407b-ac06-2261972c967d.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1658498435576-efb265aa-9f0e-452f-84fa-e70509215452.png" srcset="/img/loading.gif" lazyload></p>
+<p>对比了6月21日~2022&#x2F;7&#x2F;15 高指真实值与预测值的结果，浓度预测准确率为84.61%，等级准确率40.74%，等级准确率偏低的原因为实际监测结果在6附近波动，为Ⅲ类水质标准。<br>预测对比时间窗口存在降雨，实际结果有一定波动，浓度预测准确率能到达84.6%，有一定的推广价值。</p>
+<h3 id="ARIMA-summary-解读"><a href="#ARIMA-summary-解读" class="headerlink" title="ARIMA .summary() 解读"></a>ARIMA .summary() 解读</h3><p><img src="https://cdn.nlark.com/yuque/0/2022/png/681168/1670242073687-2d564dde-6f19-4ae7-9283-b3341ec7dae9.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li>左上 为模型基本信息，Dep. Variable（需要预测的变量）、Model（模型及其参数）、Date、Time、Sample（样本数据）、No. Observations（观测数据的数量）</li>
+<li>右上 Log Likelihood（对数似然函数）标识最适合采样数据的分布。虽然它很有用，但AIC和BIC会惩罚模型的复杂性，这有助于使我们的ARIMA模型变得简洁。赤池的信息准则（AIC）有助于确定线性回归模型的强度。AIC 会惩罚添加参数的模型，因为添加更多参数将始终增加最大似然值。贝叶斯信息准则（BIC）与 AIC 一样，BIC 也会惩罚模型的复杂性，但它也包含数据中的行数。Hannan-Quinn信息标准（HQIC），与AIC和BIC一样是模型选择的另一个标准；但是它在实践中并不常用。AIC 、BIC 越小越好</li>
+<li>中部 确保模型中的每个项在统计意义上是否显著。若p值大于0.05，则项不显著。</li>
+<li>下部：Ljung-Box（modified Box-Pierce test）测试错误是白噪音 Ljung-Box (L1) (Q) 为Lag1的LBQ检验统计量，其Prob(Q)为 0.01，p值为0.94。由于p值高于0.05，因此我们不能拒绝零假设（误差是白噪音）</li>
+</ol>
+<h3 id="讨论与总结"><a href="#讨论与总结" class="headerlink" title="讨论与总结"></a>讨论与总结</h3><ol>
+<li>ARIMA 模型在高锰酸盐指数上的预测效果超过80%,经过初步研究，适用于水质在线站点。</li>
+<li>模型可用于单站点单因子预测，不需要其他参数，约束小，预测精度高。</li>
+<li>模型对波动剧烈的因子，预测效果不好，不适用于所有因子，所有站点。</li>
+<li>对于新的数据集需要做平稳性检验，白噪声检验。</li>
+<li>需要采用数据人工识图+自动的方式实现定阶，选择最优的 p，d，q。</li>
+<li>可以继续在 ARIMAX（多元时间序列模型）等方面深入研究。</li>
+</ol>
+<h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><a href="/2024/05/13/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E5%BA%94%E7%94%A8/" title="prophet时间序列模型水质预测应用">prophet时间序列模型水质预测应用</a>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" class="category-chain-item">时间序列</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/" class="print-no-link">#时间序列</a>
+      
+        <a href="/tags/%E6%B0%B4%E7%8E%AF%E5%A2%83%E5%88%86%E6%9E%90/" class="print-no-link">#水环境分析</a>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
+      
+        <a href="/tags/%E7%94%A8%E5%BF%83%E9%95%BF%E6%96%87/" class="print-no-link">#用心长文</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ARIMA时间序列模型水质预测应用</div>
+      <div>https://maoyu92.github.io/2024/05/09/01 时间序列/ARIMA时间序列模型水质预测应用1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年5月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/05/09/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/ARIMA%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E5%BA%94%E7%94%A8/" title="ARIMA时间序列模型水质预测应用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ARIMA时间序列模型水质预测应用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/04/15/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20%20%E5%9B%BE%E5%BA%8A%E9%85%8D%E7%BD%AE%20%20PicGo+%20gitee%20%E7%B2%BE%E7%AE%80%E7%89%88/" title="Obsidian 图床配置  PicGo+ gitee 精简版">
+                        <span class="hidden-mobile">Obsidian 图床配置  PicGo+ gitee 精简版</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"aISEcd721UR4FDrgO7lhVO7C-MdYXbMMI","appKey":"baX3M064xYuZCyDdARuS8mOM","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://aisecd72.api.lncldglobal.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
