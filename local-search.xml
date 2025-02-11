@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>word、ppt 接入deepseek 文章补充说明（免费送代码）</title>
+    <link href="/2025/02/11/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/word%E3%80%81ppt%20%E6%8E%A5%E5%85%A5deepseek%20%E6%96%87%E7%AB%A0%E8%A1%A5%E5%85%85%E8%AF%B4%E6%98%8E/"/>
+    <url>/2025/02/11/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/word%E3%80%81ppt%20%E6%8E%A5%E5%85%A5deepseek%20%E6%96%87%E7%AB%A0%E8%A1%A5%E5%85%85%E8%AF%B4%E6%98%8E/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>再次感谢大家的关注，针对前面两篇文章进行一下补充。</p><h2 id="一、宏安全问题"><a href="#一、宏安全问题" class="headerlink" title="一、宏安全问题"></a>一、宏安全问题</h2><p>很多人说红安全问题一直报错，原因一是没有在信任中心中开启宏安全设置。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502112028028.png"></p><p>二是宏只保存在当前的 word 下，没有放在模板文件下，docx 是不支持宏的，需要在 dotm 中。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502112029729.png"></p><p>那么如果我们将宏保存在模板中，他每次新建都会套用模板，就不存在问题了。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502112030843.png"></p><p>三是版本问题<br>有的朋友，始终不支持宏，那么我建议重装 office，至少能够录制宏，再来操作。</p><h2 id="二、文件下载与打开问题"><a href="#二、文件下载与打开问题" class="headerlink" title="二、文件下载与打开问题"></a>二、文件下载与打开问题</h2><p>我之前使用的蓝奏云，是为了大家方便，且不用输入验证码。代码免费下载。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502112031582.png"></p><p>有的朋友反应下不了，我决定优化到百度网盘里。<br>另外我直接将宏导出为 abs 文件，需要的朋友自己导入就可以了，而且我新增了翻译功能。</p><p>更新后，为了保持一致，后台回复不变。<br>回复 wordAI 、1001，以此获得对应的代码。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502112041354.png"></p><p>新增回复 1000 ，获得所有代码和模板文件。ABS 文件只需要在模块中选择导入就行。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502112041352.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502112116599.png"></p><h2 id="三、PPT-宏安全问题"><a href="#三、PPT-宏安全问题" class="headerlink" title="三、PPT 宏安全问题"></a>三、PPT 宏安全问题</h2><p>有的朋友反应，代码第一次能用，第二次不能用，道理和 word 模板一样，ppt 默认 vb 编辑界面没有模板，需要自己建一个 potm 模板文件，然后用这个模板右键打开，就可以使用了。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502112044061.png"></p><h2 id="四、代码修改"><a href="#四、代码修改" class="headerlink" title="四、代码修改"></a>四、代码修改</h2><p>需要修改的得放就是 API key ，url ， model name。不会的将代码和自己的 apikey 为给 deepseek ，让他帮你改。</p><p>我默认用的硅基流动的蒸馏版，已经够用了，如果你要用满血 deepseek ，请用自己的 api key。如果不是硅基流动的，需要替换 API key ，url ， model name。再对应的 api 文档中查找就行。</p><p>如果你有更多想法，比如接入 excel，可以自行尝试，我有新发现也会发表新的文章，欢迎关注~</p><h2 id="五、关于-wps"><a href="#五、关于-wps" class="headerlink" title="五、关于 wps"></a>五、关于 wps</h2><p>Wps 在 vb 模式下，代码一模一样，但是默认没有 vb 模式，需要安装 vb 插件或者用企业版。<br>至于 js, 我并不熟悉，有大佬可以补充下。</p><h2 id="六、愿景"><a href="#六、愿景" class="headerlink" title="六、愿景"></a>六、愿景</h2><p>一起进步、共同成长~<br>Build in public，learn in public</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>欢迎点赞、评论、收藏，如需转载，请注明出处。<br>微信公众号：环境猫er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a><br>如果对你有帮助，请我喝杯咖啡~</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>经验分享</tag>
+      
+      <tag>deepseek</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>快来围观，我上线了一个免费AI对话网站</title>
+    <link href="/2025/02/11/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E6%88%91%E4%B8%8A%E7%BA%BF%E4%BA%86%E4%B8%80%E4%B8%AA%E5%85%8D%E8%B4%B9deepseek%E6%A8%A1%E5%9E%8B%E8%81%8A%E5%A4%A9%E7%BD%91%E7%AB%99%EF%BC%8C%E5%BF%AB%E6%9D%A5%E5%9B%B4%E8%A7%82/"/>
+    <url>/2025/02/11/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E6%88%91%E4%B8%8A%E7%BA%BF%E4%BA%86%E4%B8%80%E4%B8%AA%E5%85%8D%E8%B4%B9deepseek%E6%A8%A1%E5%9E%8B%E8%81%8A%E5%A4%A9%E7%BD%91%E7%AB%99%EF%BC%8C%E5%BF%AB%E6%9D%A5%E5%9B%B4%E8%A7%82/</url>
+    
+    <content type="html"><![CDATA[<meta name=`referrer` content=`no-referrer` /><p>帮你省流，免费的是 deepseek 蒸馏模型。</p><p>利用 streamlit + 硅基流动 +阿里云服务器，做了个对话网站。大家可以轻松体验蒸馏的deepseek、通义千问、 llama 3、零一万物等，不需要 api key ，因为用的我的~，当然你也可以用自己的 API key。</p><p>我的费用就是自己的服务器，为爱发电，如果喜欢，给我买杯咖啡 ~</p><h2 id="功能介绍"><a href="#功能介绍" class="headerlink" title="功能介绍"></a>功能介绍</h2><h3 id="免费模型对话"><a href="#免费模型对话" class="headerlink" title="免费模型对话"></a>免费模型对话</h3><p>目前支持免费模型列表</p><ul><li><code>deepseek-ai/DeepSeek-R1-Distill-Qwen-7B</code>  </li><li><code>deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B</code></li><li><code>Qwen/Qwen2.5-7B-Instruct</code></li><li><code>Qwen/Qwen2.5-Coder-7B-Instruct</code></li><li><code>internlm/internlm2_5-7b-chat</code></li><li><code>meta-llama/Meta-Llama-3.1-8B-Instruct</code></li><li><code>01-ai/Yi-1.5-9B-Chat-16K</code></li></ul><h3 id="流式输出"><a href="#流式输出" class="headerlink" title="流式输出"></a>流式输出</h3><p>效果：</p><h3 id="新对话-历史对话"><a href="#新对话-历史对话" class="headerlink" title="新对话&#x2F;历史对话"></a>新对话&#x2F;历史对话</h3><p>利用 streamlit 的状态功能，实现新对话和历史对话查询功能</p><p>没有登录功能，因此没有保存任何对话信息。</p><p>手机访问界面也非常友好哦~</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502111727133.jpg" alt="8c8cf2c1bd3f9590b157eec8a1a89ee.jpg"></p><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>这只是自己的一个小尝试，做着玩的，欢迎来看看，感谢硅基流动大善人提供的免费 API，感谢 deepseek 开源。</p><h3 id="邀请链接"><a href="#邀请链接" class="headerlink" title="邀请链接"></a>邀请链接</h3><p>最近硅基流动在做推广活动，用下面的链接注册，就可以获得 2000 万 Tokens（14 元平台配额），如果需要，就用下面的链接注册吧，嘿嘿~<br>模型邀请链接：<br><a href="https://cloud.siliconflow.cn/i/p61lgKxB">https://cloud.siliconflow.cn/i/p61lgKxB</a><br>邀请码：p61lgKxB</p><blockquote><p>欢迎留言评论，转载注明出处。<br>如果对你有帮你，请我喝杯咖啡~</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>个人项目</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>为什么不推荐个人本地部署大语言模型？模型供应商推荐</title>
     <link href="/2025/02/03/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%B8%AA%E4%BA%BA%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%9F%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86%E6%8E%A8%E8%8D%90/"/>
     <url>/2025/02/03/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%B8%AA%E4%BA%BA%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%9F%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86%E6%8E%A8%E8%8D%90/</url>
@@ -26,15 +80,42 @@
       
       <tag>工具推荐</tag>
       
-      <tag>闲话漫谈</tag>
+      <tag>deepseek</tag>
       
       <tag>AIGC</tag>
       
-      <tag>deepseek</tag>
+      <tag>闲话漫谈</tag>
       
       <tag>dify</tag>
       
       <tag>cherry_studio</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Word接入DeepSeek r1 实现智能文本生成与润色</title>
+    <link href="/2025/02/02/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/Word%E6%8E%A5%E5%85%A5DeepSeek%20r1%20%E5%AE%9E%E7%8E%B0%E6%99%BA%E8%83%BD%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%B8%8E%E6%B6%A6%E8%89%B2/"/>
+    <url>/2025/02/02/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/Word%E6%8E%A5%E5%85%A5DeepSeek%20r1%20%E5%AE%9E%E7%8E%B0%E6%99%BA%E8%83%BD%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%B8%8E%E6%B6%A6%E8%89%B2/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>之前我曾利用Word的VBA宏接入ChatGPT 3.5的API。然而，由于OpenAI对中国大陆地区的限制，这一方案难以持续使用。随后出现的大型语言模型要么难以调用，要么收费昂贵。如今，随着DeepSeek的开源，结合Word这一办公常用场景，我决定将DeepSeek模型接入Word，实现文本生成和文本润色两大功能。</p><p>应读者的要求，我们从 0 开始，一步一步做。</p><ol><li>了解宏</li><li>了解 deepseek api</li><li>通过宏调用 api</li></ol><h2 id="宏的使用"><a href="#宏的使用" class="headerlink" title="宏的使用"></a>宏的使用</h2><p>宏的使用有很多方法，快捷键、放在功能区都行，这里以自定义功能区简单介绍。</p><h3 id="添加宏"><a href="#添加宏" class="headerlink" title="添加宏"></a>添加宏</h3><ol start="4"><li>开启开发工具。    </li><li>点击“开发工具”选项卡。    </li><li>点击“Visual Basic”。    </li><li>右键模板文件下的“模块”，选择“插入模块”。    </li><li>复制上述代码到新建的模块中。</li></ol><h3 id="自定义功能区"><a href="#自定义功能区" class="headerlink" title="自定义功能区"></a>自定义功能区</h3><ol start="9"><li>点击“文件”-&gt;“选项”-&gt;“自定义功能区”。    </li><li>选择“宏”，在右侧自定义功能区新建选项卡和组。    </li><li>将宏添加至组中，重命名并更换图标。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502020918275.png"></li></ol><h3 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h3><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502021030439.png"></p><h3 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h3><p>硅基流动新增了两个 deepseek 蒸馏模型”<code>deepseek-ai/DeepSeek-R1-Distill-Qwen-7B</code> 和 <code>deepseek-ai/DeepSeek-R1-Distill-Qwen-8B</code>。</p><figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs vb"><span class="hljs-keyword">Sub</span> DeepSeek()<br>    <span class="hljs-keyword">Dim</span> selectedText <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> apiKey <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> response <span class="hljs-keyword">As</span> <span class="hljs-type">Object</span>, re <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> midString <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> ans <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">If</span> Selection.Type = wdSelectionNormal <span class="hljs-keyword">Then</span><br>        selectedText = Selection.<span class="hljs-keyword">Text</span><br>        selectedText = Replace(selectedText, ChrW$(<span class="hljs-number">13</span>), <span class="hljs-string">&quot;&quot;</span>)<br>        apiKey = <span class="hljs-string">&quot;自己的key&quot;</span><br>        URL = <span class="hljs-string">&quot;https://api.siliconflow.cn/v1/chat/completions&quot;</span><br>        <span class="hljs-keyword">Set</span> response = CreateObject(<span class="hljs-string">&quot;MSXML2.XMLHTTP&quot;</span>)<br>        response.Open <span class="hljs-string">&quot;POST&quot;</span>, URL, <span class="hljs-literal">False</span><br>        response.setRequestHeader <span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span><br>        response.setRequestHeader <span class="hljs-string">&quot;Authorization&quot;</span>, <span class="hljs-string">&quot;Bearer &quot;</span> + apiKey<br>        response.Send <span class="hljs-string">&quot;&#123;&quot;&quot;model&quot;&quot;:&quot;&quot;deepseek-ai/DeepSeek-R1-Distill-Qwen-7B&quot;&quot;, &quot;&quot;messages&quot;&quot;:[&#123;&quot;&quot;role&quot;&quot;:&quot;&quot;user&quot;&quot;,&quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span> &amp; selectedText &amp; <span class="hljs-string">&quot;&quot;&quot;&#125;], &quot;&quot;temperature&quot;&quot;:0.7&#125;&quot;</span><br>        <br>        re = response.responseText<br>        midString = <span class="hljs-keyword">Mid</span>(re, InStr(re, <span class="hljs-string">&quot;&quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span>) + <span class="hljs-number">11</span>)<br>        ans = Split(midString, <span class="hljs-string">&quot;&quot;&quot;&quot;</span>)(<span class="hljs-number">0</span>)<br>        ans = Replace(ans, <span class="hljs-string">&quot;\n&quot;</span>, <span class="hljs-string">&quot;&quot;</span>)<br>        Selection.<span class="hljs-keyword">Text</span> = selectedText &amp; vbNewLine &amp; ans<br>        <span class="hljs-keyword">Else</span><br>        <span class="hljs-keyword">Exit</span> <span class="hljs-keyword">Sub</span><br>    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span><br><br><span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span><br></code></pre></td></tr></table></figure><figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs vb"><span class="hljs-keyword">Sub</span> DeepSeekPolish()<br>    <span class="hljs-keyword">Dim</span> selectedText <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> apiKey <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> response <span class="hljs-keyword">As</span> <span class="hljs-type">Object</span>, re <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> midString <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> ans <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> polishPrompt <span class="hljs-keyword">As</span> <span class="hljs-type">String</span>    <br>    <span class="hljs-comment">&#x27; 检查是否有正常选中的文本</span><br>    <span class="hljs-keyword">If</span> Selection.Type = wdSelectionNormal <span class="hljs-keyword">Then</span><br>        <span class="hljs-comment">&#x27; 获取选中文本并去除不需要的字符</span><br>        selectedText = Selection.<span class="hljs-keyword">Text</span><br>        selectedText = Replace(selectedText, ChrW$(<span class="hljs-number">13</span>), <span class="hljs-string">&quot;&quot;</span>)        <br>        <span class="hljs-comment">&#x27; 定义API密钥和请求URL</span><br>        apiKey = <span class="hljs-string">&quot;自己的key&quot;</span><br>        URL = <span class="hljs-string">&quot;https://api.siliconflow.cn/v1/chat/completions&quot;</span><br>        <br>        <span class="hljs-comment">&#x27; 设置润色提示词</span><br>        polishPrompt = <span class="hljs-string">&quot;文本润色。&quot;</span><br>        <br>        <span class="hljs-comment">&#x27; 创建HTTP请求对象并设置参数</span><br>        <span class="hljs-keyword">Set</span> response = CreateObject(<span class="hljs-string">&quot;MSXML2.XMLHTTP&quot;</span>)<br>        response.Open <span class="hljs-string">&quot;POST&quot;</span>, URL, <span class="hljs-literal">False</span><br>        <br>        <span class="hljs-comment">&#x27; 添加必要的头部信息</span><br>        response.setRequestHeader <span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span><br>        response.setRequestHeader <span class="hljs-string">&quot;Authorization&quot;</span>, <span class="hljs-string">&quot;Bearer &quot;</span> + apiKey<br>        <br>        <span class="hljs-comment">&#x27; 发送请求，注意在JSON字符串中添加了polishPrompt</span><br>        response.Send <span class="hljs-string">&quot;&#123;&quot;&quot;model&quot;&quot;:&quot;&quot;deepseek-ai/DeepSeek-R1-Distill-Qwen-7B&quot;&quot;, &quot;&quot;messages&quot;&quot;:[&#123;&quot;&quot;role&quot;&quot;:&quot;&quot;user&quot;&quot;,&quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span> &amp; selectedText &amp; <span class="hljs-string">&quot;&quot;&quot;&#125;, &#123;&quot;&quot;role&quot;&quot;:&quot;&quot;assistant&quot;&quot;, &quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span> &amp; polishPrompt &amp; <span class="hljs-string">&quot;&quot;&quot;&#125;], &quot;&quot;temperature&quot;&quot;:0.7&#125;&quot;</span><br>        <br>        <span class="hljs-comment">&#x27; 处理响应数据</span><br>        re = response.responseText<br>        midString = <span class="hljs-keyword">Mid</span>(re, InStr(re, <span class="hljs-string">&quot;&quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span>) + <span class="hljs-number">11</span>)<br>        ans = Split(midString, <span class="hljs-string">&quot;&quot;&quot;&quot;</span>)(<span class="hljs-number">0</span>)<br>        ans = Replace(ans, <span class="hljs-string">&quot;\n&quot;</span>, <span class="hljs-string">&quot;&quot;</span>)<br>        <br>        <span class="hljs-comment">&#x27; 将原选中文本与润色后的文本一起插入文档中</span><br>        Selection.<span class="hljs-keyword">Text</span> = selectedText &amp; vbNewLine &amp; ans<br>    <span class="hljs-keyword">Else</span><br>        <span class="hljs-keyword">Exit</span> <span class="hljs-keyword">Sub</span><br>    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span><br><span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span><br></code></pre></td></tr></table></figure><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>最近几天，我一直在探索 DeepSeek 的应用，深感其高性能和低成本对工作生活的普惠意义。对于个人和小企业而言，人工智能的应用应紧密结合自身场景，无需考虑在本地搭建模型。尽管 DeepSeek 模型开源，但在本地运行全功能模型成本较高。随着各大厂商的跟进，生成式模型可能成为基础设施，如同 GitHub 一样普及。我们需要做的是提前跑通整个流程，以便在新模型出现时能迅速应用。目前，DeepSeek 虽强大，但运行速度仍有提升空间，尤其是 RI 推理模型。让我们保持热情，持续关注其发展。</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
       
     </tags>
     
@@ -59,9 +140,9 @@
     
     <tags>
       
-      <tag>AIGC</tag>
-      
       <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
       
     </tags>
     
@@ -163,9 +244,9 @@
     
     <tags>
       
-      <tag>闲话漫谈</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>闲话漫谈</tag>
       
     </tags>
     
@@ -1387,9 +1468,9 @@
       
       <tag>python</tag>
       
-      <tag>生态环境</tag>
-      
       <tag>数据分析</tag>
+      
+      <tag>生态环境</tag>
       
       <tag>streamlit</tag>
       
@@ -1422,9 +1503,9 @@
       
       <tag>python</tag>
       
-      <tag>生态环境</tag>
-      
       <tag>数据分析</tag>
+      
+      <tag>生态环境</tag>
       
       <tag>streamlit</tag>
       
@@ -1969,9 +2050,9 @@
     
     <tags>
       
-      <tag>方法论</tag>
-      
       <tag>读书笔记</tag>
+      
+      <tag>方法论</tag>
       
       <tag>写作</tag>
       
@@ -2083,9 +2164,9 @@
       
       <tag>用心长文</tag>
       
-      <tag>方法论</tag>
-      
       <tag>读书笔记</tag>
+      
+      <tag>方法论</tag>
       
     </tags>
     
@@ -2112,9 +2193,9 @@
       
       <tag>用心长文</tag>
       
-      <tag>方法论</tag>
-      
       <tag>读书笔记</tag>
+      
+      <tag>方法论</tag>
       
       <tag>写作</tag>
       
