@@ -1,0 +1,807 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="在[[为什么不推荐个人本地部署大语言模型？模型供应商推荐]]中，我们曾简要提及使用Cherry Studio搭建知识库的方案。本文将深度解析这款国产AI开发工具的最新功能与实践技巧，助你快速构建知识库、联网搜索、智能体、文生图等多项AI应用。 前期准备 下载 Cherry studio地址： https:&#x2F;&#x2F;cherry-ai.com&#x2F;注意：如果电脑性能不好，不要安装在 C 盘，因为所有资料库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="零代码构建AI助手：Cherry Studio全功能实践指南">
+<meta property="og:url" content="https://maoyu92.github.io/2025/02/07/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E9%9B%B6%E4%BB%A3%E7%A0%81%E6%9E%84%E5%BB%BAAI%E5%8A%A9%E6%89%8B%EF%BC%9ACherry%20Studio%E5%85%A8%E5%8A%9F%E8%83%BD%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="在[[为什么不推荐个人本地部署大语言模型？模型供应商推荐]]中，我们曾简要提及使用Cherry Studio搭建知识库的方案。本文将深度解析这款国产AI开发工具的最新功能与实践技巧，助你快速构建知识库、联网搜索、智能体、文生图等多项AI应用。 前期准备 下载 Cherry studio地址： https:&#x2F;&#x2F;cherry-ai.com&#x2F;注意：如果电脑性能不好，不要安装在 C 盘，因为所有资料库">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081616287.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081617829.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081633018.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081637540.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081638593.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502031118825.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081701346.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502031122819.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081655917.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081654727.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090818387.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090820259.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090823052.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090816375.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090833780.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090846627.png">
+<meta property="article:published_time" content="2025-02-07T12:25:00.000Z">
+<meta property="article:modified_time" content="2025-02-07T12:25:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="deepseek">
+<meta property="article:tag" content="AIGC">
+<meta property="article:tag" content="知识库">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081616287.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>零代码构建AI助手：Cherry Studio全功能实践指南 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="零代码构建AI助手：Cherry Studio全功能实践指南"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-07 20:25" pubdate>
+          2025年2月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">零代码构建AI助手：Cherry Studio全功能实践指南</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<p>在[[为什么不推荐个人本地部署大语言模型？模型供应商推荐]]中，我们曾简要提及使用Cherry Studio搭建知识库的方案。本文将深度解析这款国产AI开发工具的最新功能与实践技巧，助你快速构建知识库、联网搜索、智能体、文生图等多项AI应用。</p>
+<h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
+<li>下载 Cherry studio<br>地址： <a target="_blank" rel="noopener" href="https://cherry-ai.com/">https://cherry-ai.com/</a><br>注意：如果电脑性能不好，不要安装在 C 盘，因为所有资料库信息都在本地。</li>
+</ul>
+<h2 id="Cherry-studio-介绍"><a href="#Cherry-studio-介绍" class="headerlink" title="Cherry studio 介绍"></a>Cherry studio 介绍</h2><p>Cherry Studio 是一个国人开发的开源，多模型服务的桌面客户端，在 github 上有 5.7 k 的 star。因其简单易上手，最近非常火。而且最近更新比较频繁，适合新手快速上手。</p>
+<h3 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h3><ol>
+<li>开源免费，本地部署，不用数据泄密</li>
+<li>中文开发者，文档清晰，界面简洁，易上手</li>
+<li>功能丰富：对话知识库、联网搜索、多模型接入、智能体、文生图等。</li>
+<li>可快速学习 AI 应用（智能体）搭建、 prompt 提示词工程</li>
+</ol>
+<h2 id="模型服务设置"><a href="#模型服务设置" class="headerlink" title="模型服务设置"></a>模型服务设置</h2><p>模型服务商支持硅基流动等近 30 种服务商，其中 ollama 就是所谓本地部署模型管理器，感兴趣的可以挨个去尝试了解获取 API（不建议一股脑全部申请），软件同时支持自定义添加 4 种主流的模型供应商类型：openAI, Gemini, anthropic, Azure openAI。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081616287.png" srcset="/img/loading.gif" lazyload alt="模型服务商"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081617829.png" srcset="/img/loading.gif" lazyload alt="自定义添加模型"></p>
+<h3 id="硅基流动举例获取-key"><a href="#硅基流动举例获取-key" class="headerlink" title="硅基流动举例获取 key"></a>硅基流动举例获取 key</h3><p>首先获取在硅基流动官网获取 api key 。Cherry 贴心的做好了所有的跳转链接。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081633018.png" srcset="/img/loading.gif" lazyload alt="跳转链接"></p>
+<p>下方按钮点击模型，输入模型 id。模型 id 在模型广场复制。Cherry 自动识别了默认的服务商的模型名称和分组名称。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081637540.png" srcset="/img/loading.gif" lazyload alt="添加模型"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081638593.png" srcset="/img/loading.gif" lazyload alt="模型id查找"></p>
+<h2 id="快速搭建本地知识库对话应用"><a href="#快速搭建本地知识库对话应用" class="headerlink" title="快速搭建本地知识库对话应用"></a>快速搭建本地知识库对话应用</h2><p>知识库对话并不神秘，就是 RAG 技术，需要本地知识库和两类模型，一类是文本对话，一类是文本嵌入。<br>文本对话模型示例</p>
+<ul>
+<li>deepseek-ai&#x2F;DeepSeek-R1（收费，运行慢，效果好）</li>
+<li>deepseek-ai&#x2F;DeepSeek-V3（收费，运行慢，效果好）</li>
+<li>deepseek-ai&#x2F;DeepSeek-R1-Distill-Llama-8B（蒸馏模型，免费，运行快）<br>文本嵌入模型举例</li>
+<li>BAAI&#x2F;bge-m3</li>
+<li>netease-youdao&#x2F;bce-embedding-base_v1</li>
+<li>BAAI&#x2F;bge-large-zh-v1.5</li>
+</ul>
+<h3 id="添加个人知识库"><a href="#添加个人知识库" class="headerlink" title="添加个人知识库"></a>添加个人知识库</h3><p>在添加文本嵌入模型后，在知识库界面添加知识库，素材可以是文件、网址、网站、笔记。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502031118825.png" srcset="/img/loading.gif" lazyload alt="添加文本嵌入模型"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081701346.png" srcset="/img/loading.gif" lazyload alt="添加知识库"></p>
+<p>注意，RAG 对 pdf、md 格式更加友好，推荐使用微软开源工具 markitdown 进行转换。 <a target="_blank" rel="noopener" href="https://www.html.zone/markitdown/">https://www.html.zone/markitdown/</a></p>
+<h3 id="模型使用并调用知识库"><a href="#模型使用并调用知识库" class="headerlink" title="模型使用并调用知识库"></a>模型使用并调用知识库</h3><p>在模型对话界面选择合适的模型，点击知识库图标，开始对话。下面是我以自己的历史博客内容用 deepseekv 2.5 进行的对话演示，输出引用内容可直接点击跳转。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502031122819.png" srcset="/img/loading.gif" lazyload alt="知识库对话示例"></p>
+<h2 id="联网搜索"><a href="#联网搜索" class="headerlink" title="联网搜索"></a>联网搜索</h2><p>Cherry Studio 目前已经支持的联网模型服务商有：<br>5. Google Gemini<br>6. 腾讯混元<br>7. 智谱 AI（全部收费）</p>
+<p>具体申请 API 不在赘述，以下是使用 Google Gemini 2.0 联网模型的对话示例。<br>查找联网模型，注意添加 API key 并检查可用性。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081655917.png" srcset="/img/loading.gif" lazyload alt="联网模型"></p>
+<p>在默认助手选择联网模型，点击联网模式，开启对话。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081654727.png" srcset="/img/loading.gif" lazyload alt="联网对话"></p>
+<h2 id="智能体"><a href="#智能体" class="headerlink" title="智能体"></a>智能体</h2><p>内置了多种智能体，所谓智能体就是 prompt +模型参数微调。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090818387.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>选择任意智能体，右键添加助手，在助手栏，右键编辑，可以看到内置的 prompt 。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090820259.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090823052.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>模型调参包括：默认温度、top-p、上下文数、是否流式输出、思维链长度等。</p>
+<ol start="8">
+<li><strong>温度（temperature）</strong>：控制生成文本的随机性。值越高，输出越随机和多样化；值越低，输出越确定和保守，倾向于选择概率最高的词。</li>
+<li><strong>top-p（nucleus sampling）</strong>：也称为概率阈值，决定从累积概率超过p的最小候选词集合中选择。例如，top_p&#x3D;0.7时，模型会从概率最高的词开始累加，直到总和超过0.7，然后仅从这些词中采样。这有助于减少重复性，同时保持多样性。</li>
+<li><strong>上下文数（context window或max_tokens）</strong>：可能指模型处理的最大上下文长度，或者生成的最大token数。</li>
+<li><strong>是否流式输出（stream）</strong>：流式输出指是否逐步接收生成的文本，而不是等待整个生成完成。代码中的stream参数设为False，表示不启用流式传输，一次性返回所有结果。</li>
+<li><strong>思维链长度（chain of thought length）</strong>：控制推理模型的思维长度。</li>
+</ol>
+<p>我们可以通过内置的智能体，根据自己的需求构建属于自己的智能体。具体在智能体-我的-创建智能体。</p>
+<h2 id="快捷助手"><a href="#快捷助手" class="headerlink" title="快捷助手"></a>快捷助手</h2><p>设置中开启快捷助手，可点击托盘图标快速启动默认对话机器人，其中默认模型可设置。个人感觉划词的方式更克制一点。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090816375.png" srcset="/img/loading.gif" lazyload alt="快捷助手"></p>
+<h2 id="小程序"><a href="#小程序" class="headerlink" title="小程序"></a>小程序</h2><p>小程序可快速进入主流大语言模型对话页面。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090833780.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="文生图"><a href="#文生图" class="headerlink" title="文生图"></a>文生图</h2><p>以硅基流动 API 为例，调用主流的 FLUX 文生图模型，可以快速绘制精美图片。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090846627.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Cherry studio 是适合个人的 AI 工具箱，通过使用它可以快速理解大语言模型调用、模型选择、模型参数微调、文生图、搭建本地知识库应用、联网搜索等一系列的 AI 应用，帮助我们提升工作效率。</p>
+<h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="category-chain-item">工具推荐</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/deepseek/" class="print-no-link">#deepseek</a>
+      
+        <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
+      
+        <a href="/tags/%E7%9F%A5%E8%AF%86%E5%BA%93/" class="print-no-link">#知识库</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>零代码构建AI助手：Cherry Studio全功能实践指南</div>
+      <div>https://maoyu92.github.io/2025/02/07/03 工具推荐/零代码构建AI助手：Cherry Studio全功能实践指南/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年2月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/02/11/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E6%88%91%E4%B8%8A%E7%BA%BF%E4%BA%86%E4%B8%80%E4%B8%AA%E5%85%8D%E8%B4%B9deepseek%E6%A8%A1%E5%9E%8B%E8%81%8A%E5%A4%A9%E7%BD%91%E7%AB%99%EF%BC%8C%E5%BF%AB%E6%9D%A5%E5%9B%B4%E8%A7%82/" title="快来围观，我上线了一个免费AI对话网站">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">快来围观，我上线了一个免费AI对话网站</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/03/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%B8%AA%E4%BA%BA%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%9F%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86%E6%8E%A8%E8%8D%90/" title="为什么不推荐个人本地部署大语言模型？模型供应商推荐">
+                        <span class="hidden-mobile">为什么不推荐个人本地部署大语言模型？模型供应商推荐</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

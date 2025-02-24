@@ -4,6 +4,161 @@
   
   
   <entry>
+    <title>deepseek + mermaid 自动绘制流程图</title>
+    <link href="/2025/02/24/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/deepseek%20+%20mermaid%20%E8%87%AA%E5%8A%A8%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%9B%BE/"/>
+    <url>/2025/02/24/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/deepseek%20+%20mermaid%20%E8%87%AA%E5%8A%A8%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%9B%BE/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><meta name="referrer" content="no-referrer" /><blockquote><p>在数字化迅猛发展的今天，流程图作为信息可视化的重要工具，在众多领域发挥着不可替代的作用。然而，传统的手动绘制流程图方式存在耗时且易出错的问题。本文将重点介绍利用 DeepSeek 与 Mermaid 相结合的方法，实现快速构建清晰美观的流程图。</p></blockquote><h2 id="什么是-Mermaid？"><a href="#什么是-Mermaid？" class="headerlink" title="什么是 Mermaid？"></a>什么是 Mermaid？</h2><p>Mermaid 是一种轻量级的图表标记语言，允许用户通过简单的文本语法定义各种类型的图表，包括流程图、序列图、甘特图等。以下是 Mermaid 流程图的基本语法示例：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css">graph <span class="hljs-selector-tag">TD</span>;<br>    <span class="hljs-selector-tag">A</span><span class="hljs-selector-attr">[开始]</span> --&gt; <span class="hljs-selector-tag">B</span>&#123;决策&#125;;<br>    <span class="hljs-selector-tag">B</span> --是--&gt; C<span class="hljs-selector-attr">[执行任务]</span>;<br>    <span class="hljs-selector-tag">B</span> --否--&gt; D<span class="hljs-selector-attr">[结束]</span>;<br></code></pre></td></tr></table></figure><p>效果如下：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502131543142.png" alt="image.png"></p><h3 id="Mermaid-的优势："><a href="#Mermaid-的优势：" class="headerlink" title="Mermaid 的优势："></a>Mermaid 的优势：</h3><ol><li><strong>简洁易用</strong>：只需编写少量代码即可生成复杂的图表。</li><li><strong>跨平台兼容</strong>：支持多种工具和框架（如 Markdown 编辑器、HTML 页面）。</li><li><strong>动态更新</strong>：修改代码后图表会实时更新，非常适合敏捷开发。</li></ol><hr><h2 id="使用-DeepSeek-生成-Mermaid-语法"><a href="#使用-DeepSeek-生成-Mermaid-语法" class="headerlink" title="使用 DeepSeek 生成 Mermaid 语法"></a>使用 DeepSeek 生成 Mermaid 语法</h2><p>DeepSeek 是一款强大的开源大语言模型，能够根据自然语言描述自动生成代码。我们可以利用它来快速生成 Mermaid 语法，从而减少手动编写的工作量。</p><p>例如，如果我们需要绘制一个简单的审批流程图，可以向 DeepSeek 提供以下输入：</p><p><strong>输入：</strong></p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">请生成一个 Mermaid 流程图语法，描述以下场景：<br>用户提交申请；<br>管理员审核申请；<br>如果审核通过，则进入下一步；<br>如果审核不通过，则返回用户修改。<br></code></pre></td></tr></table></figure><p><strong>输出：</strong></p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css">graph <span class="hljs-selector-tag">TD</span>;<br>    <span class="hljs-selector-tag">A</span><span class="hljs-selector-attr">[用户提交申请]</span> --&gt; <span class="hljs-selector-tag">B</span><span class="hljs-selector-attr">[管理员审核]</span>;<br>    <span class="hljs-selector-tag">B</span> --通过--&gt; C<span class="hljs-selector-attr">[进入下一步]</span>;<br>    <span class="hljs-selector-tag">B</span> --不通过--&gt; D<span class="hljs-selector-attr">[返回用户修改]</span>;<br></code></pre></td></tr></table></figure><p><strong>效果：</strong></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502131545512.png"></p><p>通过这种方式，我们可以轻松地将复杂的需求转化为结构化的 Mermaid 语法。</p><hr><h2 id="工具推荐：快速渲染-Mermaid-图表"><a href="#工具推荐：快速渲染-Mermaid-图表" class="headerlink" title="工具推荐：快速渲染 Mermaid 图表"></a>工具推荐：快速渲染 Mermaid 图表</h2><p>生成 Mermaid 语法后，可以选择合适的工具将其渲染为可视化的流程图。以下是几款常用的工具推荐：</p><h3 id="draw-Io"><a href="#draw-Io" class="headerlink" title="draw. Io"></a>draw. Io</h3><ul><li><strong>简介</strong>：draw. Io 是一款功能强大的在线绘图工具，支持导入 Mermaid 语法并生成图表。</li><li><strong>特点</strong>：</li><li>免费使用，无需注册。</li><li>支持导出为多种格式（如 PNG、SVG、PDF）。</li><li><strong>使用方法</strong>：</li></ul><ol><li>打开 <a href="https://app.diagrams.net/">draw.io</a>。</li><li>以此点击编辑图形-插入-高级-mermaid</li><li>实时预览并调整图表布局。</li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502131534692.png"></p><h3 id="Obsidian-Excalidraw"><a href="#Obsidian-Excalidraw" class="headerlink" title="Obsidian Excalidraw"></a>Obsidian Excalidraw</h3><ul><li><strong>简介</strong>：Excalidraw 是一款协作式白板工具，而 Obsidian 的 Excalidraw 插件允许用户直接在笔记中嵌入和编辑图表。</li><li><strong>特点</strong>：</li><li>支持 Mermaid 语法嵌入。</li><li>集成于 Obsidian 生态系统，适合知识管理爱好者。</li><li>提供丰富的主题和样式选项。</li><li><strong>使用方法</strong>：</li></ul><ol><li>安装 Obsidian 和 Excalidraw 插件。</li><li>新建绘图文件-点击最右侧更多工具-mermaid。</li><li>复制代码渲染流程图，根据自己需要修改。</li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502131549781.png"></p><h3 id="Obsidian-笔记"><a href="#Obsidian-笔记" class="headerlink" title="Obsidian 笔记"></a>Obsidian 笔记</h3><p>在 obsidian 中可以直接渲染 mermaid 语法。在代码块中输入如下内容，就可以直接渲染。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502131554714.png"></p><p><strong>效果：</strong></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502131555020.png"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过 DeepSeek 和 Mermaid 的配合使用，我们可以快速生成结构化流程图，并借助工具如 draw. Io 或 Obsidian Excalidraw 将其渲染为高质量的可视化图表。这种方法不仅提高了效率，还降低了手动绘制流程图的复杂性。</p><h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a><strong>参考资料：</strong></h3><ul><li><a href="https://mermaid-js.github.io/">Mermaid 官方文档</a></li><li><a href="https://app.diagrams.net/">draw.io 官网</a></li></ul><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><blockquote><p>欢迎点赞、评论、收藏，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a><br>如果对你有帮助，请我喝杯咖啡~</p></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>流程图</tag>
+      
+      <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
+      
+      <tag>办公技巧</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ProcessOn与DeepSeek强强联合，制图效率upup！</title>
+    <link href="/2025/02/22/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/DeepSeek%E4%B8%8EProcessOn%E5%BC%BA%E5%BC%BA%E8%81%94%E5%90%88%EF%BC%8C%E5%88%B6%E5%9B%BE%E6%95%88%E7%8E%87upup%EF%BC%81/"/>
+    <url>/2025/02/22/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/DeepSeek%E4%B8%8EProcessOn%E5%BC%BA%E5%BC%BA%E8%81%94%E5%90%88%EF%BC%8C%E5%88%B6%E5%9B%BE%E6%95%88%E7%8E%87upup%EF%BC%81/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>之前分享过 DeepSeek 与 Mermaid 的组合使用，今天再为大家推荐一款强大的在线制图工具——ProcessOn。这款工具不仅功能全面，还能够与 DeepSeek 等 AI 工具联动，帮助我们大幅提升工作效率。</p><h2 id="ProcessOn-简介"><a href="#ProcessOn-简介" class="headerlink" title="ProcessOn  简介"></a>ProcessOn  简介</h2><p>ProcessOn作为一款国产免费的在线流程图、思维导图工具，想必大家或多或少都有所耳闻。它无需下载安装，直接在网页端就能便捷使用。其功能涵盖多种图表类型，如流程图、思维导图等，还提供了思维笔记、协作白板等多种实用功能。其中，思维笔记类似于幕布的思维导图大纲笔记模式，而协作白板则更具个性化和自由度。</p><p>ProcessOn兼容性极佳，可导入markdown、xmind、mmap、mm、km、opml、visio、csv等多种市面上常见的流程图、思维导图格式，几乎做到了全面覆盖。</p><p>此外，ProcessOn还支持导入mermaid、markdown格式的语法，并且流程图中能够插入python等代码，支持LaTeX语法等功能，这些特性使得它成为一款功能强大的制图工具。</p><p>既然ProcessOn支持导入markdown和mermaid，那么它就可以很好地与DeepSeek结合使用，从而一键生成各种图表，例如思维导图、流程图、饼图、桑基图、甘特图、类图、状态图、实体关系图等。下面以思维导图和流程图为例进行详细说明。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502221542382.png" alt="在process on中插入 mermaid "></p><h2 id="思维导图-围城人物关系案例"><a href="#思维导图-围城人物关系案例" class="headerlink" title="思维导图 -围城人物关系案例"></a>思维导图 -围城人物关系案例</h2><p>Markdown + deepseek +提示词获得思维导图大纲。</p><p>Prompt ：用 markdown 格式生成钱钟书小说围城人物关系思维导图。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502221614780.png" alt="image.png"></p><p>结果：</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 《围城》人物关系思维导图</span><br><br><span class="hljs-section">## 1. 方鸿渐</span><br><span class="hljs-bullet">-</span> <span class="hljs-strong">**情感纠葛**</span><br><span class="hljs-bullet">  -</span> 鲍小姐（邮轮露水情缘，后遭抛弃）<br><span class="hljs-bullet">  -</span> 苏文纨（大学同学，暧昧未果，后嫁曹元朗）<br><span class="hljs-bullet">  -</span> 唐晓芙（苏文纨表妹，方鸿渐理想恋人，因误会分手）<br><span class="hljs-bullet">  -</span> 孙柔嘉（三闾大学同事，后成妻子，婚姻矛盾激化）<br><span class="hljs-bullet">-</span> <span class="hljs-strong">**职场关系**</span><br><span class="hljs-bullet">  -</span> 赵辛楣（好友，引荐至三闾大学，惺惺相惜）<br><span class="hljs-bullet">  -</span> 李梅亭（虚伪同事，同行赴三闾大学）<br><span class="hljs-bullet">  -</span> 高松年（三闾大学校长，权谋算计）<br><span class="hljs-bullet">  -</span> 韩学愈（假学历同事，与方鸿渐对立）<br><span class="hljs-bullet">-</span> <span class="hljs-strong">**家庭关系**</span><br><span class="hljs-bullet">  -</span> 方父方母（传统乡绅，施压婚姻）<br><span class="hljs-bullet">  -</span> 周家（未婚妻家族，资助留学后关系破裂）<br><br><span class="hljs-section">## 2. 孙柔嘉</span><br><span class="hljs-bullet">-</span> <span class="hljs-strong">**婚姻困境**</span><br><span class="hljs-bullet">  -</span> 方鸿渐（丈夫，性格不合，矛盾频发）<br><span class="hljs-bullet">  -</span> 姑母与姐姐（干预婚姻，激化家庭矛盾）<br><span class="hljs-bullet">-</span> <span class="hljs-strong">**性格特质**</span><br><span class="hljs-bullet">  -</span> 表面柔弱，实则工于心计，掌控婚姻主导权<br><br><span class="hljs-section">## 3. 苏文纨</span><br><span class="hljs-bullet">-</span> <span class="hljs-strong">**情感游戏**</span><br><span class="hljs-bullet">  -</span> 方鸿渐（暧昧对象）<br><span class="hljs-bullet">  -</span> 赵辛楣（追求者，后与其私情纠葛）<br><span class="hljs-bullet">  -</span> 曹元朗（最终丈夫，平庸诗人）<br><span class="hljs-bullet">-</span> <span class="hljs-strong">**人物象征**</span><br><span class="hljs-bullet">  -</span> 伪知识分子，追求虚荣与男性簇拥<br><br><span class="hljs-section">## 4. 赵辛楣</span><br><span class="hljs-bullet">-</span> <span class="hljs-strong">**核心关系**</span><br><span class="hljs-bullet">  -</span> 方鸿渐（从情敌转为挚友）<br><span class="hljs-bullet">  -</span> 苏文纨（单恋对象，后疏远）<br><span class="hljs-bullet">-</span> <span class="hljs-strong">**职场助力**</span><br><span class="hljs-bullet">  -</span> 引荐方鸿渐至三闾大学及报馆任职<br><br><span class="hljs-section">## 5. 次要人物</span><br><span class="hljs-bullet">-</span> <span class="hljs-strong">**三闾大学群体**</span><br><span class="hljs-bullet">  -</span> 汪处厚（官僚作风教授）<br><span class="hljs-bullet">  -</span> 范懿（爱慕赵辛楣，性格矫饰）<br><span class="hljs-bullet">  -</span> 刘东方（同事，与方鸿渐短暂合作）<br><span class="hljs-bullet">-</span> <span class="hljs-strong">**其他角色**</span><br><span class="hljs-bullet">  -</span> 李妈（方家佣人，象征传统束缚）<br><span class="hljs-bullet">  -</span> 褚慎明（哲学家，虚伪做作）<br></code></pre></td></tr></table></figure><p>打开 ProcessOn- 新建-导入 -markdown 生成思维导图。效果如下：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502221625636.png" alt="《围城》人物关系"></p><h2 id="流程图-英雄是怎么练成的"><a href="#流程图-英雄是怎么练成的" class="headerlink" title="流程图 - 英雄是怎么练成的"></a>流程图 - 英雄是怎么练成的</h2><p>Prompt：用mermaid 语法描述坎贝尔的《千面英雄》中英雄是怎么练成的流程。</p><p>结果：</p><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">graph</span> <span class="hljs-selector-tag">TD</span><br>    <span class="hljs-selector-tag">A</span><span class="hljs-selector-attr">[平凡世界]</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">B</span><span class="hljs-selector-attr">[冒险的召唤]</span><br>    <span class="hljs-selector-tag">B</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">C</span>&#123;拒绝召唤&#125;<br>    <span class="hljs-selector-tag">C</span> <span class="hljs-selector-tag">--</span>&gt;|接受| <span class="hljs-selector-tag">D</span><span class="hljs-selector-attr">[超自然助力]</span><br>    <span class="hljs-selector-tag">C</span> <span class="hljs-selector-tag">--</span>&gt;|拒绝| <span class="hljs-selector-tag">A</span><br>    <span class="hljs-selector-tag">D</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">E</span><span class="hljs-selector-attr">[跨越第一个阈限]</span><br>    <span class="hljs-selector-tag">E</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">F</span><span class="hljs-selector-attr">[鲸鱼之腹/人生低谷]</span><br>    <span class="hljs-selector-tag">F</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">G</span><span class="hljs-selector-attr">[试炼之路]</span><br>    <span class="hljs-selector-tag">G</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">H</span><span class="hljs-selector-attr">[与女神相会]</span><br>    <span class="hljs-selector-tag">H</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">I</span><span class="hljs-selector-attr">[诱惑者考验]</span><br>    <span class="hljs-selector-tag">I</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">J</span><span class="hljs-selector-attr">[与父和解]</span><br>    <span class="hljs-selector-tag">J</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">K</span><span class="hljs-selector-attr">[神化]</span><br>    <span class="hljs-selector-tag">K</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">L</span><span class="hljs-selector-attr">[终极恩赐]</span><br>    <span class="hljs-selector-tag">L</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">M</span>&#123;拒绝回归&#125;<br>    <span class="hljs-selector-tag">M</span> <span class="hljs-selector-tag">--</span>&gt;|接受| <span class="hljs-selector-tag">N</span><span class="hljs-selector-attr">[魔法飞行]</span><br>    <span class="hljs-selector-tag">M</span> <span class="hljs-selector-tag">--</span>&gt;|拒绝| <span class="hljs-selector-tag">O</span><span class="hljs-selector-attr">[救援助力]</span><br>    <span class="hljs-selector-tag">O</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">N</span><br>    <span class="hljs-selector-tag">N</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">P</span><span class="hljs-selector-attr">[跨越回归阈限]</span><br>    <span class="hljs-selector-tag">P</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">Q</span><span class="hljs-selector-attr">[两个世界的主宰]</span><br>    <span class="hljs-selector-tag">Q</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">R</span><span class="hljs-selector-attr">[生活的自由]</span><br>    <br>    <span class="hljs-selector-tag">style</span> <span class="hljs-selector-tag">A</span> <span class="hljs-selector-tag">fill</span>:<span class="hljs-selector-id">#f9f</span>,<span class="hljs-selector-tag">stroke</span>:<span class="hljs-selector-id">#333</span><br>    <span class="hljs-selector-tag">style</span> <span class="hljs-selector-tag">R</span> <span class="hljs-selector-tag">fill</span>:<span class="hljs-selector-id">#bbf</span>,<span class="hljs-selector-tag">stroke</span>:<span class="hljs-selector-id">#333</span><br></code></pre></td></tr></table></figure><p>导入 ProcessOn 进行修改后效果。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502241952095.png" alt="千面英雄之成神之路.png"></p><h2 id="其他特别功能"><a href="#其他特别功能" class="headerlink" title="其他特别功能"></a>其他特别功能</h2><h3 id="与-visio-联动"><a href="#与-visio-联动" class="headerlink" title="与 visio 联动"></a>与 visio 联动</h3><p>ProcessOn还拥有众多AI功能，例如一键美化、润色排版等。并且它支持导出为Visio文件，这意味着可以直接将其放置在Word文档中，并且在Word中还能进行编辑。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502220822188.png" alt="word中的visio"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502220822316.png" alt="ProcessOn 中导入的visio 文件"></p><h3 id="LaTeX-联动"><a href="#LaTeX-联动" class="headerlink" title="LaTeX 联动"></a>LaTeX 联动</h3><p>ProcessOn支持LaTeX语法，同时具备OCR识别LaTeX公式的能力。如果在撰写论文过程中遇到需要复制的公式，不妨一试。对于LaTeX语法，我们还可以通过DeepSeek生成或者修改想要的公式，然后粘贴到LaTeX页面。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502222018501.png"></p><h3 id="插入代码块"><a href="#插入代码块" class="headerlink" title="插入代码块"></a>插入代码块</h3><p>流程图支持插入代码块，这对程序员非常友好。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502222034862.png" alt="image.png"></p><h3 id="模板社区"><a href="#模板社区" class="headerlink" title="模板社区"></a>模板社区</h3><p>ProcessOn 有丰富的模板社区，可以根据自己需要找到合适的模板，还可以自己的成果发布为付费模板，实现知识变现。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502241957595.png" alt="ProcessOn 模板社区"></p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>ProcessOn是一款功能全面的在线流程图、思维导图工具，可用于原型图、UML、BPMN、网络拓扑图等多种图形绘制，支持多种格式的导入导出，兼容markdown、mermaid、LaTeX等语法。它能与DeepSeek等大语言模型相结合，快速提升制图效率，再配合ProcessOn优秀的编辑功能，方便地完成各类图形的修改和完善。</p><h2 id="文末福利"><a href="#文末福利" class="headerlink" title="文末福利"></a>文末福利</h2><p>ProcessOn专属邀请链接，欢迎大家使用下面的链接注册 ProcessOn</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>www.processon.com<span class="hljs-regexp">/i/</span><span class="hljs-number">659513</span>ff2b4cb726485cbfb4?full_name=PO_SvJHYT<br></code></pre></td></tr></table></figure><blockquote><p><a href="https://www.processon.com/i/659513ff2b4cb726485cbfb4?full_name=PO_SvJHYT">https://www.processon.com/i/659513ff2b4cb726485cbfb4?full_name=PO_SvJHYT</a></p></blockquote><h3 id="相关网址"><a href="#相关网址" class="headerlink" title="相关网址"></a>相关网址</h3><ul><li><a href="https://mermaid.js.org/syntax/flowchart.html">Mermaid 流程图文档</a></li><li><a href="https://www.processon.com/">ProcessOn 官方网站</a></li></ul><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具推荐</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>经验分享</tag>
+      
+      <tag>流程图</tag>
+      
+      <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
+      
+      <tag>办公技巧</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Grok 3模型震撼发布  抢先免费体验</title>
+    <link href="/2025/02/18/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Grok%203%E6%A8%A1%E5%9E%8B%E9%9C%87%E6%92%BC%E5%8F%91%E5%B8%83%20%20%E6%8A%A2%E5%85%88%E5%85%8D%E8%B4%B9%E4%BD%93%E9%AA%8C/"/>
+    <url>/2025/02/18/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Grok%203%E6%A8%A1%E5%9E%8B%E9%9C%87%E6%92%BC%E5%8F%91%E5%B8%83%20%20%E6%8A%A2%E5%85%88%E5%85%8D%E8%B4%B9%E4%BD%93%E9%AA%8C/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>北京时间 2 月 18 日中午 12 点，马斯克旗下 xAI 公司正式发布了备受瞩目的新一代人工智能模型——Grok 3。号称地表最强模型，这款被马斯克吹上天的产品具体如何，我们通过直播视频的几张关键对比图来一探究竟。同时推荐一个快速尝鲜  Grok 3 的网站。</p><h2 id="Grok-3-的亮点"><a href="#Grok-3-的亮点" class="headerlink" title="Grok 3 的亮点"></a>Grok 3 的亮点</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181415237.png"></p><p>上图展示的是 <strong>Chatbot Arena (LMSYS)</strong> 平台上不同大型语言模型 (LLM) 的 Elo 评分，反映了它们在用户体验和性能方面的相对排名。图表中，Grok-3 的早期版本 “chocolate” 以 1400+ 的高分位居榜首，gemini 2.- flash 1380 分，deepseek r1 有 1360 分。 </p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181424249.png"></p><p>上图展示了不同大型语言模型（LLM）在数学、科学和编程三个基准测试中的得分情况。其中，Grok-3 在所有三个测试中都取得了最高分，超过了 deepseek v 3、gemini、Claude、GPT 4 O。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181418273.png"></p><p>上图展示了不同大型语言模型在 AIME 2025 数学竞赛中的表现，主要考察它们的推理能力和计算能力。其中，Grok-3 Reasoning Beta 版本为 93 分，Grok-3 mini Reasoning 版本也达到了 90 分，显示出 Grok 系列模型在数学推理方面的强大实力。相比之下，Deepseek-R 1 和 Gemini-2 Flash Thinking 的得分分别为 87 分和 79 分，o3 mini (high) 和 o1 模型的得分则分别为 87 分和 75 分。整体来看，Grok-3 系列模型在 AIME 2025 测试中表现突出，尤其 Grok-3 Reasoning Beta 版本在数学推理能力上展现出显著优势。</p><h2 id="抢先体验-Grok-3"><a href="#抢先体验-Grok-3" class="headerlink" title="抢先体验 Grok 3"></a>抢先体验 Grok 3</h2><p>本文推荐一个免费体验 Grok 3 早期版本的网址。</p><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">https:</span><span class="hljs-comment">//lmarena.ai/</span><br></code></pre></td></tr></table></figure><p>进入网站后点击直接对话，选择 Grok 3 即可。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181407706.png" alt="image.png"></p><p>目前 grok 3 已经免费使用啦。体验了下还是很不错的，速度很快。（修改于 2025 年 2 月 24 日）</p><h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>马斯克凭借 200,000 个 Nvidia H 100 GPU 和超长的训练周期，打造出这款在纸面数据上超越众多现有模型的产品。然而，与 Deepseek 等竞争对手相比，Grok 3 巨大的成本投入并未带来显著的优势提升。试问，除了少数几家顶级科技巨头，还有哪家企业能够负担如此庞大的显卡资源和高昂的训练成本？这种“堆料”式的开发路径，似乎并不具备明显的长期竞争优势。目前，Grok 3 尚未正式发布，其实际应用效果及市场影响力仍有待进一步观察。</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a>  </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具推荐</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
+      
+      <tag>grok3</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Deepseek + Napkin，轻松打造高颜值流程图</title>
+    <link href="/2025/02/18/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Deepseek%20+%20Napkin%EF%BC%8C%E8%BD%BB%E6%9D%BE%E6%89%93%E9%80%A0%E9%AB%98%E9%A2%9C%E5%80%BC%E6%B5%81%E7%A8%8B%E5%9B%BE/"/>
+    <url>/2025/02/18/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Deepseek%20+%20Napkin%EF%BC%8C%E8%BD%BB%E6%9D%BE%E6%89%93%E9%80%A0%E9%AB%98%E9%A2%9C%E5%80%BC%E6%B5%81%E7%A8%8B%E5%9B%BE/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前我分享过如何用 <strong>Deepseek + Mermaid</strong> 快速生成流程图的方法，虽然实用，但总觉得少了点美感。今天，我要给大家介绍一款更强大的工具——<strong>Napkin.Ai</strong>！它不仅能将文本转化为流程图，还能生成<strong>超高颜值</strong>的视觉化内容，简直是效率与美学的完美结合！</p><p><strong>Napkin.Ai 的核心功能</strong>非常简单：输入文本，自动生成流程图。而它的最佳搭档，正是我们熟悉的 <strong>Deepseek</strong>。通过 Deepseek 生成精准的提示词，再交给 Napkin.Ai 处理，流程图瞬间就能变得既专业又美观。</p><p><strong>注册 Napkin.Ai 即可免费体验</strong>，接下来，我将通过一个实际案例，带大家感受一下这对“黄金组合”的强大威力！</p><hr><h2 id="案例演示：-Deepseek-Napkin-Ai-生成读书笔记流程图"><a href="#案例演示：-Deepseek-Napkin-Ai-生成读书笔记流程图" class="headerlink" title="案例演示： Deepseek + Napkin.Ai 生成读书笔记流程图"></a>案例演示： Deepseek + Napkin.Ai 生成读书笔记流程图</h2><h3 id="第一步：用-Deepseek-生成提示词"><a href="#第一步：用-Deepseek-生成提示词" class="headerlink" title="第一步：用 Deepseek 生成提示词"></a>第一步：用 Deepseek 生成提示词</h3><p>在 Deepseek 中输入以下指令：</p><blockquote><p>搜索《纳瓦尔宝典》中的核心概念，用书中提到的几个维度绘制一个流程图。</p></blockquote><p>Deepseek 迅速输出了以下核心流程图结构：</p><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-attr">[判断力]</span>  <br>   │  <br>   ├──▶ <span class="hljs-selector-attr">[财富创造]</span>  <br>   │     ├─ 专长 → 杠杆（资本/代码/媒体） → 所有权 → 复利 → 财富自由  <br>   │  <br>   └──▶ <span class="hljs-selector-attr">[幸福哲学]</span>  <br>         ├─ 健康 → 内在平静 → 活在当下 → 退出竞争  <br>         │  <br>         └─ <span class="hljs-selector-attr">[自我成长循环]</span>  <br>              自我教育 → 实践 → 冥想 → 更新判断力  <br></code></pre></td></tr></table></figure><h3 id="第二步：将提示词导入-Napkin-Ai"><a href="#第二步：将提示词导入-Napkin-Ai" class="headerlink" title="第二步：将提示词导入 Napkin.Ai"></a>第二步：将提示词导入 Napkin.Ai</h3><p>将上述内容复制到 Napkin.Ai 中，点击闪电图标，流程图瞬间生成！</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181051236.png" alt="image.png"></p><h4 id="第三步：选择并优化"><a href="#第三步：选择并优化" class="headerlink" title="第三步：选择并优化"></a>第三步：选择并优化</h4><p>Napkin.Ai 提供了多种风格供选择，你可以根据自己的喜好进行调整。以下是我最终选择的版本，支持二次编辑，还可以保存为高清图片：</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181052215.png" alt="纳瓦尔宝典总结 - visual selection.png"></p><hr><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过 <strong>Deepseek + Napkin.Ai</strong> 的组合，我们可以轻松将复杂的读书笔记转化为清晰、美观的流程图。整个过程简单高效，唯一的“缺点”可能就是免费版的使用次数有限。但即便如此，每一次使用 AI 工具，都让我感受到技术进步的震撼。</p><p>在这个快速发展的时代，我们需要保持专注、不断学习。希望今天的分享能为大家提供一些灵感，快去试试吧！如果你有其他好用的工具推荐，欢迎在评论区分享哦～</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具推荐</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>经验分享</tag>
+      
+      <tag>工具推荐</tag>
+      
+      <tag>流程图</tag>
+      
+      <tag>deepseek</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>deepseek 应用合集</title>
+    <link href="/2025/02/17/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/deepseek%20%E5%85%8D%E8%B4%B9%E5%BA%94%E7%94%A8%E5%90%88%E9%9B%86%E7%AE%80%E6%B4%81%E7%89%88/"/>
+    <url>/2025/02/17/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/deepseek%20%E5%85%8D%E8%B4%B9%E5%BA%94%E7%94%A8%E5%90%88%E9%9B%86%E7%AE%80%E6%B4%81%E7%89%88/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>对于经常使用DeepSeek的用户来说，网页对话中时常出现服务器繁忙的情况实在令人困扰。好在越来越多的厂商宣布接入了 deepseek。现在网上也有很多 AI 聚合网站，但是感觉眼花缭乱的，于是我尽量搜集了接入 deepseek 网页版的应用，用 streamlit 做了一个简单的 web 导航页，方便自己随时可以使用。当然大家也可以把这些网址加入收藏夹或者用 itab 等插件添加为自定义页面，甚至直接使用 AI 聚合网址。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502171436606.png" alt="image.png"></p><h2 id="界面展示"><a href="#界面展示" class="headerlink" title="界面展示"></a>界面展示</h2><p>界面比较简陋，没有时间去优化每一个 icon，用 emoji 代替的。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502171444431.png" alt="image.png"></p><h2 id="代码分享"><a href="#代码分享" class="headerlink" title="代码分享"></a>代码分享</h2><p>核心代码如下，需要的可以自己制作属于自己的导航页面。</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs routeros">import streamlit as st<br>link1, link2, link3, link4 = st.columns(4)<br>with link1:  <br>    st.page_link(<span class="hljs-string">&quot;https://chat.deepseek.com/&quot;</span>, <span class="hljs-attribute">label</span>=<span class="hljs-string">&quot;DeepSeek 官网&quot;</span>, <span class="hljs-attribute">icon</span>=<span class="hljs-string">&quot;🌐&quot;</span>)  <br>with link2:  <br>    st.page_link(<span class="hljs-string">&quot;https://yuanbao.tencent.com/chat&quot;</span>, <span class="hljs-attribute">label</span>=<span class="hljs-string">&quot;腾讯元宝&quot;</span>, <span class="hljs-attribute">icon</span>=<span class="hljs-string">&quot;💬&quot;</span>)  <br>with link3:  <br>    st.page_link(<span class="hljs-string">&quot;https://zhida.zhihu.com/&quot;</span>, <span class="hljs-attribute">label</span>=<span class="hljs-string">&quot;知乎直答&quot;</span>, <span class="hljs-attribute">icon</span>=<span class="hljs-string">&quot;📚&quot;</span>)  <br>with link4:  <br>    st.page_link(<span class="hljs-string">&quot;https://bot.n.cn/&quot;</span>, <span class="hljs-attribute">label</span>=<span class="hljs-string">&quot;360 纳米 AI&quot;</span>, <span class="hljs-attribute">icon</span>=<span class="hljs-string">&quot;🤖&quot;</span>)<br></code></pre></td></tr></table></figure><p>希望对大家有用~<br>如果大家有更好的想法留言告诉我吧~</p><p>网址：<a href="http://chat.wenmao.xyz/">http://chat.wenmao.xyz</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具推荐</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>工具推荐</tag>
+      
+      <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
+      
+      <tag>自制工具</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>word、ppt 接入deepseek 文章补充说明（免费送代码）</title>
     <link href="/2025/02/11/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/word%E3%80%81ppt%20%E6%8E%A5%E5%85%A5deepseek%20%E6%96%87%E7%AB%A0%E8%A1%A5%E5%85%85%E8%AF%B4%E6%98%8E/"/>
     <url>/2025/02/11/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/word%E3%80%81ppt%20%E6%8E%A5%E5%85%A5deepseek%20%E6%96%87%E7%AB%A0%E8%A1%A5%E5%85%85%E8%AF%B4%E6%98%8E/</url>
@@ -58,6 +213,35 @@
   
   
   <entry>
+    <title>零代码构建AI助手：Cherry Studio全功能实践指南</title>
+    <link href="/2025/02/07/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E9%9B%B6%E4%BB%A3%E7%A0%81%E6%9E%84%E5%BB%BAAI%E5%8A%A9%E6%89%8B%EF%BC%9ACherry%20Studio%E5%85%A8%E5%8A%9F%E8%83%BD%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/"/>
+    <url>/2025/02/07/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E9%9B%B6%E4%BB%A3%E7%A0%81%E6%9E%84%E5%BB%BAAI%E5%8A%A9%E6%89%8B%EF%BC%9ACherry%20Studio%E5%85%A8%E5%8A%9F%E8%83%BD%E5%AE%9E%E8%B7%B5%E6%8C%87%E5%8D%97/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>在[[为什么不推荐个人本地部署大语言模型？模型供应商推荐]]中，我们曾简要提及使用Cherry Studio搭建知识库的方案。本文将深度解析这款国产AI开发工具的最新功能与实践技巧，助你快速构建知识库、联网搜索、智能体、文生图等多项AI应用。</p><h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul><li>下载 Cherry studio<br>地址： <a href="https://cherry-ai.com/">https://cherry-ai.com/</a><br>注意：如果电脑性能不好，不要安装在 C 盘，因为所有资料库信息都在本地。</li></ul><h2 id="Cherry-studio-介绍"><a href="#Cherry-studio-介绍" class="headerlink" title="Cherry studio 介绍"></a>Cherry studio 介绍</h2><p>Cherry Studio 是一个国人开发的开源，多模型服务的桌面客户端，在 github 上有 5.7 k 的 star。因其简单易上手，最近非常火。而且最近更新比较频繁，适合新手快速上手。</p><h3 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h3><ol><li>开源免费，本地部署，不用数据泄密</li><li>中文开发者，文档清晰，界面简洁，易上手</li><li>功能丰富：对话知识库、联网搜索、多模型接入、智能体、文生图等。</li><li>可快速学习 AI 应用（智能体）搭建、 prompt 提示词工程</li></ol><h2 id="模型服务设置"><a href="#模型服务设置" class="headerlink" title="模型服务设置"></a>模型服务设置</h2><p>模型服务商支持硅基流动等近 30 种服务商，其中 ollama 就是所谓本地部署模型管理器，感兴趣的可以挨个去尝试了解获取 API（不建议一股脑全部申请），软件同时支持自定义添加 4 种主流的模型供应商类型：openAI, Gemini, anthropic, Azure openAI。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081616287.png" alt="模型服务商"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081617829.png" alt="自定义添加模型"></p><h3 id="硅基流动举例获取-key"><a href="#硅基流动举例获取-key" class="headerlink" title="硅基流动举例获取 key"></a>硅基流动举例获取 key</h3><p>首先获取在硅基流动官网获取 api key 。Cherry 贴心的做好了所有的跳转链接。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081633018.png" alt="跳转链接"></p><p>下方按钮点击模型，输入模型 id。模型 id 在模型广场复制。Cherry 自动识别了默认的服务商的模型名称和分组名称。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081637540.png" alt="添加模型"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081638593.png" alt="模型id查找"></p><h2 id="快速搭建本地知识库对话应用"><a href="#快速搭建本地知识库对话应用" class="headerlink" title="快速搭建本地知识库对话应用"></a>快速搭建本地知识库对话应用</h2><p>知识库对话并不神秘，就是 RAG 技术，需要本地知识库和两类模型，一类是文本对话，一类是文本嵌入。<br>文本对话模型示例</p><ul><li>deepseek-ai&#x2F;DeepSeek-R1（收费，运行慢，效果好）</li><li>deepseek-ai&#x2F;DeepSeek-V3（收费，运行慢，效果好）</li><li>deepseek-ai&#x2F;DeepSeek-R1-Distill-Llama-8B（蒸馏模型，免费，运行快）<br>文本嵌入模型举例</li><li>BAAI&#x2F;bge-m3</li><li>netease-youdao&#x2F;bce-embedding-base_v1</li><li>BAAI&#x2F;bge-large-zh-v1.5</li></ul><h3 id="添加个人知识库"><a href="#添加个人知识库" class="headerlink" title="添加个人知识库"></a>添加个人知识库</h3><p>在添加文本嵌入模型后，在知识库界面添加知识库，素材可以是文件、网址、网站、笔记。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502031118825.png" alt="添加文本嵌入模型"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081701346.png" alt="添加知识库"></p><p>注意，RAG 对 pdf、md 格式更加友好，推荐使用微软开源工具 markitdown 进行转换。 <a href="https://www.html.zone/markitdown/">https://www.html.zone/markitdown/</a></p><h3 id="模型使用并调用知识库"><a href="#模型使用并调用知识库" class="headerlink" title="模型使用并调用知识库"></a>模型使用并调用知识库</h3><p>在模型对话界面选择合适的模型，点击知识库图标，开始对话。下面是我以自己的历史博客内容用 deepseekv 2.5 进行的对话演示，输出引用内容可直接点击跳转。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502031122819.png" alt="知识库对话示例"></p><h2 id="联网搜索"><a href="#联网搜索" class="headerlink" title="联网搜索"></a>联网搜索</h2><p>Cherry Studio 目前已经支持的联网模型服务商有：<br>5. Google Gemini<br>6. 腾讯混元<br>7. 智谱 AI（全部收费）</p><p>具体申请 API 不在赘述，以下是使用 Google Gemini 2.0 联网模型的对话示例。<br>查找联网模型，注意添加 API key 并检查可用性。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081655917.png" alt="联网模型"></p><p>在默认助手选择联网模型，点击联网模式，开启对话。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502081654727.png" alt="联网对话"></p><h2 id="智能体"><a href="#智能体" class="headerlink" title="智能体"></a>智能体</h2><p>内置了多种智能体，所谓智能体就是 prompt +模型参数微调。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090818387.png" alt="image.png"></p><p>选择任意智能体，右键添加助手，在助手栏，右键编辑，可以看到内置的 prompt 。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090820259.png" alt="image.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090823052.png" alt="image.png"></p><p>模型调参包括：默认温度、top-p、上下文数、是否流式输出、思维链长度等。</p><ol start="8"><li><strong>温度（temperature）</strong>：控制生成文本的随机性。值越高，输出越随机和多样化；值越低，输出越确定和保守，倾向于选择概率最高的词。</li><li><strong>top-p（nucleus sampling）</strong>：也称为概率阈值，决定从累积概率超过p的最小候选词集合中选择。例如，top_p&#x3D;0.7时，模型会从概率最高的词开始累加，直到总和超过0.7，然后仅从这些词中采样。这有助于减少重复性，同时保持多样性。</li><li><strong>上下文数（context window或max_tokens）</strong>：可能指模型处理的最大上下文长度，或者生成的最大token数。</li><li><strong>是否流式输出（stream）</strong>：流式输出指是否逐步接收生成的文本，而不是等待整个生成完成。代码中的stream参数设为False，表示不启用流式传输，一次性返回所有结果。</li><li><strong>思维链长度（chain of thought length）</strong>：控制推理模型的思维长度。</li></ol><p>我们可以通过内置的智能体，根据自己的需求构建属于自己的智能体。具体在智能体-我的-创建智能体。</p><h2 id="快捷助手"><a href="#快捷助手" class="headerlink" title="快捷助手"></a>快捷助手</h2><p>设置中开启快捷助手，可点击托盘图标快速启动默认对话机器人，其中默认模型可设置。个人感觉划词的方式更克制一点。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090816375.png" alt="快捷助手"></p><h2 id="小程序"><a href="#小程序" class="headerlink" title="小程序"></a>小程序</h2><p>小程序可快速进入主流大语言模型对话页面。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090833780.png" alt="image.png"></p><h2 id="文生图"><a href="#文生图" class="headerlink" title="文生图"></a>文生图</h2><p>以硅基流动 API 为例，调用主流的 FLUX 文生图模型，可以快速绘制精美图片。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502090846627.png" alt="image.png"></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Cherry studio 是适合个人的 AI 工具箱，通过使用它可以快速理解大语言模型调用、模型选择、模型参数微调、文生图、搭建本地知识库应用、联网搜索等一系列的 AI 应用，帮助我们提升工作效率。</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具推荐</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
+      
+      <tag>知识库</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>为什么不推荐个人本地部署大语言模型？模型供应商推荐</title>
     <link href="/2025/02/03/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%B8%AA%E4%BA%BA%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%9F%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86%E6%8E%A8%E8%8D%90/"/>
     <url>/2025/02/03/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%B8%AA%E4%BA%BA%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%9F%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86%E6%8E%A8%E8%8D%90/</url>
@@ -89,33 +273,6 @@
       <tag>dify</tag>
       
       <tag>cherry_studio</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Word接入DeepSeek r1 实现智能文本生成与润色</title>
-    <link href="/2025/02/02/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/Word%E6%8E%A5%E5%85%A5DeepSeek%20r1%20%E5%AE%9E%E7%8E%B0%E6%99%BA%E8%83%BD%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%B8%8E%E6%B6%A6%E8%89%B2/"/>
-    <url>/2025/02/02/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/Word%E6%8E%A5%E5%85%A5DeepSeek%20r1%20%E5%AE%9E%E7%8E%B0%E6%99%BA%E8%83%BD%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%B8%8E%E6%B6%A6%E8%89%B2/</url>
-    
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>之前我曾利用Word的VBA宏接入ChatGPT 3.5的API。然而，由于OpenAI对中国大陆地区的限制，这一方案难以持续使用。随后出现的大型语言模型要么难以调用，要么收费昂贵。如今，随着DeepSeek的开源，结合Word这一办公常用场景，我决定将DeepSeek模型接入Word，实现文本生成和文本润色两大功能。</p><p>应读者的要求，我们从 0 开始，一步一步做。</p><ol><li>了解宏</li><li>了解 deepseek api</li><li>通过宏调用 api</li></ol><h2 id="宏的使用"><a href="#宏的使用" class="headerlink" title="宏的使用"></a>宏的使用</h2><p>宏的使用有很多方法，快捷键、放在功能区都行，这里以自定义功能区简单介绍。</p><h3 id="添加宏"><a href="#添加宏" class="headerlink" title="添加宏"></a>添加宏</h3><ol start="4"><li>开启开发工具。    </li><li>点击“开发工具”选项卡。    </li><li>点击“Visual Basic”。    </li><li>右键模板文件下的“模块”，选择“插入模块”。    </li><li>复制上述代码到新建的模块中。</li></ol><h3 id="自定义功能区"><a href="#自定义功能区" class="headerlink" title="自定义功能区"></a>自定义功能区</h3><ol start="9"><li>点击“文件”-&gt;“选项”-&gt;“自定义功能区”。    </li><li>选择“宏”，在右侧自定义功能区新建选项卡和组。    </li><li>将宏添加至组中，重命名并更换图标。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502020918275.png"></li></ol><h3 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h3><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502021030439.png"></p><h3 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h3><p>硅基流动新增了两个 deepseek 蒸馏模型”<code>deepseek-ai/DeepSeek-R1-Distill-Qwen-7B</code> 和 <code>deepseek-ai/DeepSeek-R1-Distill-Qwen-8B</code>。</p><figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs vb"><span class="hljs-keyword">Sub</span> DeepSeek()<br>    <span class="hljs-keyword">Dim</span> selectedText <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> apiKey <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> response <span class="hljs-keyword">As</span> <span class="hljs-type">Object</span>, re <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> midString <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> ans <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">If</span> Selection.Type = wdSelectionNormal <span class="hljs-keyword">Then</span><br>        selectedText = Selection.<span class="hljs-keyword">Text</span><br>        selectedText = Replace(selectedText, ChrW$(<span class="hljs-number">13</span>), <span class="hljs-string">&quot;&quot;</span>)<br>        apiKey = <span class="hljs-string">&quot;自己的key&quot;</span><br>        URL = <span class="hljs-string">&quot;https://api.siliconflow.cn/v1/chat/completions&quot;</span><br>        <span class="hljs-keyword">Set</span> response = CreateObject(<span class="hljs-string">&quot;MSXML2.XMLHTTP&quot;</span>)<br>        response.Open <span class="hljs-string">&quot;POST&quot;</span>, URL, <span class="hljs-literal">False</span><br>        response.setRequestHeader <span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span><br>        response.setRequestHeader <span class="hljs-string">&quot;Authorization&quot;</span>, <span class="hljs-string">&quot;Bearer &quot;</span> + apiKey<br>        response.Send <span class="hljs-string">&quot;&#123;&quot;&quot;model&quot;&quot;:&quot;&quot;deepseek-ai/DeepSeek-R1-Distill-Qwen-7B&quot;&quot;, &quot;&quot;messages&quot;&quot;:[&#123;&quot;&quot;role&quot;&quot;:&quot;&quot;user&quot;&quot;,&quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span> &amp; selectedText &amp; <span class="hljs-string">&quot;&quot;&quot;&#125;], &quot;&quot;temperature&quot;&quot;:0.7&#125;&quot;</span><br>        <br>        re = response.responseText<br>        midString = <span class="hljs-keyword">Mid</span>(re, InStr(re, <span class="hljs-string">&quot;&quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span>) + <span class="hljs-number">11</span>)<br>        ans = Split(midString, <span class="hljs-string">&quot;&quot;&quot;&quot;</span>)(<span class="hljs-number">0</span>)<br>        ans = Replace(ans, <span class="hljs-string">&quot;\n&quot;</span>, <span class="hljs-string">&quot;&quot;</span>)<br>        Selection.<span class="hljs-keyword">Text</span> = selectedText &amp; vbNewLine &amp; ans<br>        <span class="hljs-keyword">Else</span><br>        <span class="hljs-keyword">Exit</span> <span class="hljs-keyword">Sub</span><br>    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span><br><br><span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span><br></code></pre></td></tr></table></figure><figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs vb"><span class="hljs-keyword">Sub</span> DeepSeekPolish()<br>    <span class="hljs-keyword">Dim</span> selectedText <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> apiKey <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> response <span class="hljs-keyword">As</span> <span class="hljs-type">Object</span>, re <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> midString <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> ans <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> polishPrompt <span class="hljs-keyword">As</span> <span class="hljs-type">String</span>    <br>    <span class="hljs-comment">&#x27; 检查是否有正常选中的文本</span><br>    <span class="hljs-keyword">If</span> Selection.Type = wdSelectionNormal <span class="hljs-keyword">Then</span><br>        <span class="hljs-comment">&#x27; 获取选中文本并去除不需要的字符</span><br>        selectedText = Selection.<span class="hljs-keyword">Text</span><br>        selectedText = Replace(selectedText, ChrW$(<span class="hljs-number">13</span>), <span class="hljs-string">&quot;&quot;</span>)        <br>        <span class="hljs-comment">&#x27; 定义API密钥和请求URL</span><br>        apiKey = <span class="hljs-string">&quot;自己的key&quot;</span><br>        URL = <span class="hljs-string">&quot;https://api.siliconflow.cn/v1/chat/completions&quot;</span><br>        <br>        <span class="hljs-comment">&#x27; 设置润色提示词</span><br>        polishPrompt = <span class="hljs-string">&quot;文本润色。&quot;</span><br>        <br>        <span class="hljs-comment">&#x27; 创建HTTP请求对象并设置参数</span><br>        <span class="hljs-keyword">Set</span> response = CreateObject(<span class="hljs-string">&quot;MSXML2.XMLHTTP&quot;</span>)<br>        response.Open <span class="hljs-string">&quot;POST&quot;</span>, URL, <span class="hljs-literal">False</span><br>        <br>        <span class="hljs-comment">&#x27; 添加必要的头部信息</span><br>        response.setRequestHeader <span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span><br>        response.setRequestHeader <span class="hljs-string">&quot;Authorization&quot;</span>, <span class="hljs-string">&quot;Bearer &quot;</span> + apiKey<br>        <br>        <span class="hljs-comment">&#x27; 发送请求，注意在JSON字符串中添加了polishPrompt</span><br>        response.Send <span class="hljs-string">&quot;&#123;&quot;&quot;model&quot;&quot;:&quot;&quot;deepseek-ai/DeepSeek-R1-Distill-Qwen-7B&quot;&quot;, &quot;&quot;messages&quot;&quot;:[&#123;&quot;&quot;role&quot;&quot;:&quot;&quot;user&quot;&quot;,&quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span> &amp; selectedText &amp; <span class="hljs-string">&quot;&quot;&quot;&#125;, &#123;&quot;&quot;role&quot;&quot;:&quot;&quot;assistant&quot;&quot;, &quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span> &amp; polishPrompt &amp; <span class="hljs-string">&quot;&quot;&quot;&#125;], &quot;&quot;temperature&quot;&quot;:0.7&#125;&quot;</span><br>        <br>        <span class="hljs-comment">&#x27; 处理响应数据</span><br>        re = response.responseText<br>        midString = <span class="hljs-keyword">Mid</span>(re, InStr(re, <span class="hljs-string">&quot;&quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span>) + <span class="hljs-number">11</span>)<br>        ans = Split(midString, <span class="hljs-string">&quot;&quot;&quot;&quot;</span>)(<span class="hljs-number">0</span>)<br>        ans = Replace(ans, <span class="hljs-string">&quot;\n&quot;</span>, <span class="hljs-string">&quot;&quot;</span>)<br>        <br>        <span class="hljs-comment">&#x27; 将原选中文本与润色后的文本一起插入文档中</span><br>        Selection.<span class="hljs-keyword">Text</span> = selectedText &amp; vbNewLine &amp; ans<br>    <span class="hljs-keyword">Else</span><br>        <span class="hljs-keyword">Exit</span> <span class="hljs-keyword">Sub</span><br>    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span><br><span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span><br></code></pre></td></tr></table></figure><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>最近几天，我一直在探索 DeepSeek 的应用，深感其高性能和低成本对工作生活的普惠意义。对于个人和小企业而言，人工智能的应用应紧密结合自身场景，无需考虑在本地搭建模型。尽管 DeepSeek 模型开源，但在本地运行全功能模型成本较高。随着各大厂商的跟进，生成式模型可能成为基础设施，如同 GitHub 一样普及。我们需要做的是提前跑通整个流程，以便在新模型出现时能迅速应用。目前，DeepSeek 虽强大，但运行速度仍有提升空间，尤其是 RI 推理模型。让我们保持热情，持续关注其发展。</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>经验分享</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>deepseek</tag>
-      
-      <tag>AIGC</tag>
       
     </tags>
     
@@ -192,9 +349,9 @@
     
     <tags>
       
-      <tag>obsidian</tag>
-      
       <tag>obsidian插件</tag>
+      
+      <tag>obsidian</tag>
       
     </tags>
     
@@ -409,6 +566,8 @@
       <tag>学习记录</tag>
       
       <tag>工具推荐</tag>
+      
+      <tag>流程图</tag>
       
     </tags>
     
@@ -665,9 +824,9 @@
     
     <tags>
       
-      <tag>obsidian</tag>
-      
       <tag>obsidian插件</tag>
+      
+      <tag>obsidian</tag>
       
     </tags>
     
@@ -719,9 +878,9 @@
     
     <tags>
       
-      <tag>生态环境</tag>
-      
       <tag>水文分析</tag>
+      
+      <tag>生态环境</tag>
       
     </tags>
     
@@ -773,11 +932,11 @@
     
     <tags>
       
-      <tag>生态环境</tag>
-      
       <tag>水文分析</tag>
       
       <tag>经验分享</tag>
+      
+      <tag>生态环境</tag>
       
     </tags>
     
@@ -827,9 +986,9 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>python</tag>
       
       <tag>工作总结</tag>
       
@@ -1005,9 +1164,9 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>python</tag>
       
       <tag>streamlit</tag>
       
@@ -1061,11 +1220,11 @@
     
     <tags>
       
+      <tag>经验分享</tag>
+      
       <tag>python</tag>
       
       <tag>生态环境</tag>
-      
-      <tag>经验分享</tag>
       
     </tags>
     
@@ -1177,9 +1336,9 @@
       
       <tag>python</tag>
       
-      <tag>数据分析</tag>
-      
       <tag>streamlit</tag>
+      
+      <tag>数据分析</tag>
       
     </tags>
     
@@ -1337,9 +1496,9 @@
     
     <tags>
       
-      <tag>obsidian</tag>
-      
       <tag>obsidian插件</tag>
+      
+      <tag>obsidian</tag>
       
     </tags>
     
@@ -1468,15 +1627,15 @@
       
       <tag>python</tag>
       
-      <tag>数据分析</tag>
-      
-      <tag>生态环境</tag>
-      
       <tag>streamlit</tag>
       
       <tag>数据可视化</tag>
       
+      <tag>数据分析</tag>
+      
       <tag>工作总结</tag>
+      
+      <tag>生态环境</tag>
       
     </tags>
     
@@ -1503,15 +1662,15 @@
       
       <tag>python</tag>
       
-      <tag>数据分析</tag>
-      
-      <tag>生态环境</tag>
-      
       <tag>streamlit</tag>
       
       <tag>数据可视化</tag>
       
+      <tag>数据分析</tag>
+      
       <tag>工作总结</tag>
+      
+      <tag>生态环境</tag>
       
     </tags>
     
@@ -1540,11 +1699,11 @@
       
       <tag>生态环境</tag>
       
+      <tag>时间序列模型</tag>
+      
       <tag>BP神经网络</tag>
       
       <tag>水质模型</tag>
-      
-      <tag>时间序列模型</tag>
       
     </tags>
     
@@ -1673,17 +1832,17 @@
     
     <tags>
       
-      <tag>python</tag>
+      <tag>水文分析</tag>
       
       <tag>用心长文</tag>
       
-      <tag>生态环境</tag>
-      
-      <tag>水文分析</tag>
-      
       <tag>经验分享</tag>
       
+      <tag>python</tag>
+      
       <tag>streamlit</tag>
+      
+      <tag>生态环境</tag>
       
       <tag>git</tag>
       
@@ -1762,13 +1921,13 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>用心长文</tag>
       
-      <tag>算法</tag>
+      <tag>python</tag>
       
       <tag>数据分析</tag>
+      
+      <tag>算法</tag>
       
     </tags>
     
@@ -1963,11 +2122,11 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
       <tag>水文分析</tag>
       
       <tag>arcgis</tag>
+      
+      <tag>用心长文</tag>
       
     </tags>
     
@@ -2017,11 +2176,11 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
       <tag>水文分析</tag>
       
       <tag>arcgis</tag>
+      
+      <tag>用心长文</tag>
       
       <tag>地形数据</tag>
       
@@ -2050,9 +2209,9 @@
     
     <tags>
       
-      <tag>读书笔记</tag>
-      
       <tag>方法论</tag>
+      
+      <tag>读书笔记</tag>
       
       <tag>写作</tag>
       
@@ -2164,9 +2323,9 @@
       
       <tag>用心长文</tag>
       
-      <tag>读书笔记</tag>
-      
       <tag>方法论</tag>
+      
+      <tag>读书笔记</tag>
       
     </tags>
     
@@ -2193,9 +2352,9 @@
       
       <tag>用心长文</tag>
       
-      <tag>读书笔记</tag>
-      
       <tag>方法论</tag>
+      
+      <tag>读书笔记</tag>
       
       <tag>写作</tag>
       
@@ -2222,11 +2381,11 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>用心长文</tag>
       
       <tag>经验分享</tag>
+      
+      <tag>python</tag>
       
       <tag>excel</tag>
       
@@ -2264,37 +2423,6 @@
   
   
   <entry>
-    <title>prophet时间序列模型水质预测应用</title>
-    <link href="/2024/05/13/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E5%BA%94%E7%94%A8/"/>
-    <url>/2024/05/13/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E5%BA%94%E7%94%A8/</url>
-    
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /> <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>此前已经分析了，ARIMA 模型在水质预测中的应用，今天用 prophet 模型测试下再水质预测中的效果。</p><h2 id="Prophet-简介"><a href="#Prophet-简介" class="headerlink" title="Prophet 简介"></a>Prophet 简介</h2><p>Prophet 是 Facebook 于2017年开源的一个时间序列预测框架，特别适合于处理具有明显趋势性和季节性的数据。该模型设计初衷是为了让非专业的数据科学家也能轻松上手进行复杂的时间序列分析，同时也能满足专业人士对于模型灵活性和准确性的需求，总之，就很香。</p><h2 id="Prophet-模型特点"><a href="#Prophet-模型特点" class="headerlink" title="Prophet 模型特点"></a>Prophet 模型特点</h2><p><strong>易用性</strong>：Prophet 提供了一个高度封装的 API，用户只需要提供时间戳（ds，通常为日期）和观测值（y，即随时间变化的目标变量），就可以快速构建预测模型，而无需深入理解复杂的统计或机器学习理论。<br><strong>自动特征提取</strong>：模型自动识别并处理时间序列中的趋势（长期增长或下降）、季节性（如周、月、年等周期性模式）以及节假日效应。用户可以轻松地添加自定义的季节性模式和节假日信息。<br><strong>灵活性</strong>：模型允许用户调整多种参数来控制预测的行为，比如趋势的平滑程度、季节性模式的复杂度等，以适应不同数据的特点。<br><strong>异常值和缺失值处理</strong>：Prophet模型对于数据中的异常值和缺失值具有一定的鲁棒性，能够在不影响整体预测的情况下处理这些问题。<br><strong>changepoints</strong>：模型能够自动检测并适应时间序列中的变化点，即数据中的非平稳部分，这对于预测具有突然变化的时间序列尤为重要。<br><strong>可视化</strong>：Prophet还提供了丰富的可视化工具，帮助用户直观地理解模型的各个组成部分（如趋势、季节性）以及预测结果，便于模型诊断和结果解释。<br><strong>Python 和 R 支持</strong>：Prophet 在 Python 和 R 两种语言中都有实现，方便不同背景的用户使用。</p><p>从上面的特点看出，完美适配水质预测。</p><h2 id="Prophet-python-安装"><a href="#Prophet-python-安装" class="headerlink" title="Prophet python 安装"></a>Prophet python 安装</h2><p>在网上能看到很多奇奇怪怪的安装指令，比如 fbprophet 库，已经不能用了，以我为准哈，下面是最新可用的安装方法。</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pip install prophet<br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131841729.png" alt="image.png"></p><h2 id="Python-Prophet-实践"><a href="#Python-Prophet-实践" class="headerlink" title="Python Prophet 实践"></a>Python Prophet 实践</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd  <br><span class="hljs-keyword">from</span> prophet <span class="hljs-keyword">import</span> Prophet  <br><span class="hljs-keyword">from</span> prophet.plot <span class="hljs-keyword">import</span> add_changepoints_to_plot  <br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np  <br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br></code></pre></td></tr></table></figure><h3 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h3><p>每个项目的数据准备不一样，可以是在线数据，也可以是本地数据，具体略过。<br>数据结构为时间和值，Prophet 格式形式为 ds 和 y。</p><h3 id="数据粒径和数据集尺寸"><a href="#数据粒径和数据集尺寸" class="headerlink" title="数据粒径和数据集尺寸"></a>数据粒径和数据集尺寸</h3><p>Prophet 非常适合做周期数据，也适应多种粒径，所以无需担心他无法识别小时或者日的尺度，<br>还有因为他适合做周期数据，因此给数据集时，应给他至少一个周期的数据，不然预测出来效果差很多。<br>比如同一个站点，同一个因子，给一个月的数据集和一年的数据集结果分别如下图所示：<br><strong>一个月的数据集预测结果</strong><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131854796.png" alt="Figure_5.png"><br><strong>一年的数据结果</strong><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131855235.png" alt="Figure_2.png"></p><p>由上面 2 个图可以看出，完全是天差地别，也能看出这个模型非常厉害，处理周期波动数据非常精准，在一年的尺度下准确的预测了 4 月后水质将继续升高，并没有被短期下降数据而干扰。</p><h2 id="原始数据集预览"><a href="#原始数据集预览" class="headerlink" title="原始数据集预览"></a>原始数据集预览</h2><p>综上，我们选择一年的数据集，开始预测。原始数据如下：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131858976.png"><br>可以看到数据集质量一般，这也是实际生成环境中的数据，但是 Prophet 能够识别异常值，不用担心他会报错。</p><h2 id="模型搭建预览结果"><a href="#模型搭建预览结果" class="headerlink" title="模型搭建预览结果"></a>模型搭建预览结果</h2><p>模型接口非常简单，代码如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 初始化Prophet模型  </span><br>model = Prophet()  <br><span class="hljs-comment"># 拟合模型  </span><br>model.fit(df)  <br><span class="hljs-comment"># 定义未来预测的时间段，例如预测未来7天的水质  </span><br>future = model.make_future_dataframe(periods=<span class="hljs-number">7</span>)  <span class="hljs-comment"># 7天预测期  </span><br>future.tail()  <span class="hljs-comment"># 查看预测数据框的末尾几行以确认预测时间段  </span><br><span class="hljs-comment"># 进行预测  </span><br>forecast = model.predict(future)  <br><span class="hljs-comment"># 绘制预测结果  </span><br>fig1 = model.plot(forecast)  <br>plt.title(<span class="hljs-string">&#x27;Water Quality Prediction&#x27;</span>)  <br>plt.show()  <br><span class="hljs-comment"># 添加变化点到图表中（如果需要）  </span><br>fig2 = model.plot(forecast)  <br>ax = fig2.gca()  <br>add_changepoints_to_plot(ax, model, forecast)  <br>plt.title(<span class="hljs-string">&#x27;Water Quality Prediction with Changepoints&#x27;</span>)  <br>plt.show()  <br><span class="hljs-comment"># 打印预测数据框查看预测详情  </span><br><span class="hljs-built_in">print</span>(forecast[[<span class="hljs-string">&#x27;ds&#x27;</span>, <span class="hljs-string">&#x27;yhat&#x27;</span>, <span class="hljs-string">&#x27;yhat_lower&#x27;</span>, <span class="hljs-string">&#x27;yhat_upper&#x27;</span>]])<br></code></pre></td></tr></table></figure><p>预测结果为图 2 所示，变化点如下图，模型将每次突变点都标记出来了。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131902308.png" alt="Figure_3.png"></p><p>预测结果 forecast<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131913145.png" alt="image.png"></p><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>相比 arima，Prophet 更加简单易用，且成熟接口更多，出图预览更方便，本文还没有对添加节假日进行测试，但已经非常够用了。<br>对比 LSTM，预测时间少非常多，配置也更简单，真的很不错，如果有兴趣可以深入尝试。</p><h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><a href="/2024/05/09/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/ARIMA%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E5%BA%94%E7%94%A8/" title="ARIMA时间序列模型水质预测应用">ARIMA时间序列模型水质预测应用</a><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131915810.jpg" alt="pexels-pixabay-50677.jpg"></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>时间序列</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>水环境分析</tag>
-      
-      <tag>python</tag>
-      
-      <tag>用心长文</tag>
-      
-      <tag>时间序列模型</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>prophet时间序列模型 参数微调</title>
     <link href="/2024/05/13/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%20%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83/"/>
     <url>/2024/05/13/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%20%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83/</url>
@@ -2311,13 +2439,44 @@
     
     <tags>
       
-      <tag>水环境分析</tag>
+      <tag>用心长文</tag>
       
       <tag>python</tag>
       
+      <tag>时间序列模型</tag>
+      
+      <tag>水环境分析</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>prophet时间序列模型水质预测应用</title>
+    <link href="/2024/05/13/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E5%BA%94%E7%94%A8/"/>
+    <url>/2024/05/13/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E5%BA%94%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /> <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>此前已经分析了，ARIMA 模型在水质预测中的应用，今天用 prophet 模型测试下再水质预测中的效果。</p><h2 id="Prophet-简介"><a href="#Prophet-简介" class="headerlink" title="Prophet 简介"></a>Prophet 简介</h2><p>Prophet 是 Facebook 于2017年开源的一个时间序列预测框架，特别适合于处理具有明显趋势性和季节性的数据。该模型设计初衷是为了让非专业的数据科学家也能轻松上手进行复杂的时间序列分析，同时也能满足专业人士对于模型灵活性和准确性的需求，总之，就很香。</p><h2 id="Prophet-模型特点"><a href="#Prophet-模型特点" class="headerlink" title="Prophet 模型特点"></a>Prophet 模型特点</h2><p><strong>易用性</strong>：Prophet 提供了一个高度封装的 API，用户只需要提供时间戳（ds，通常为日期）和观测值（y，即随时间变化的目标变量），就可以快速构建预测模型，而无需深入理解复杂的统计或机器学习理论。<br><strong>自动特征提取</strong>：模型自动识别并处理时间序列中的趋势（长期增长或下降）、季节性（如周、月、年等周期性模式）以及节假日效应。用户可以轻松地添加自定义的季节性模式和节假日信息。<br><strong>灵活性</strong>：模型允许用户调整多种参数来控制预测的行为，比如趋势的平滑程度、季节性模式的复杂度等，以适应不同数据的特点。<br><strong>异常值和缺失值处理</strong>：Prophet模型对于数据中的异常值和缺失值具有一定的鲁棒性，能够在不影响整体预测的情况下处理这些问题。<br><strong>changepoints</strong>：模型能够自动检测并适应时间序列中的变化点，即数据中的非平稳部分，这对于预测具有突然变化的时间序列尤为重要。<br><strong>可视化</strong>：Prophet还提供了丰富的可视化工具，帮助用户直观地理解模型的各个组成部分（如趋势、季节性）以及预测结果，便于模型诊断和结果解释。<br><strong>Python 和 R 支持</strong>：Prophet 在 Python 和 R 两种语言中都有实现，方便不同背景的用户使用。</p><p>从上面的特点看出，完美适配水质预测。</p><h2 id="Prophet-python-安装"><a href="#Prophet-python-安装" class="headerlink" title="Prophet python 安装"></a>Prophet python 安装</h2><p>在网上能看到很多奇奇怪怪的安装指令，比如 fbprophet 库，已经不能用了，以我为准哈，下面是最新可用的安装方法。</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pip install prophet<br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131841729.png" alt="image.png"></p><h2 id="Python-Prophet-实践"><a href="#Python-Prophet-实践" class="headerlink" title="Python Prophet 实践"></a>Python Prophet 实践</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd  <br><span class="hljs-keyword">from</span> prophet <span class="hljs-keyword">import</span> Prophet  <br><span class="hljs-keyword">from</span> prophet.plot <span class="hljs-keyword">import</span> add_changepoints_to_plot  <br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np  <br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br></code></pre></td></tr></table></figure><h3 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h3><p>每个项目的数据准备不一样，可以是在线数据，也可以是本地数据，具体略过。<br>数据结构为时间和值，Prophet 格式形式为 ds 和 y。</p><h3 id="数据粒径和数据集尺寸"><a href="#数据粒径和数据集尺寸" class="headerlink" title="数据粒径和数据集尺寸"></a>数据粒径和数据集尺寸</h3><p>Prophet 非常适合做周期数据，也适应多种粒径，所以无需担心他无法识别小时或者日的尺度，<br>还有因为他适合做周期数据，因此给数据集时，应给他至少一个周期的数据，不然预测出来效果差很多。<br>比如同一个站点，同一个因子，给一个月的数据集和一年的数据集结果分别如下图所示：<br><strong>一个月的数据集预测结果</strong><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131854796.png" alt="Figure_5.png"><br><strong>一年的数据结果</strong><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131855235.png" alt="Figure_2.png"></p><p>由上面 2 个图可以看出，完全是天差地别，也能看出这个模型非常厉害，处理周期波动数据非常精准，在一年的尺度下准确的预测了 4 月后水质将继续升高，并没有被短期下降数据而干扰。</p><h2 id="原始数据集预览"><a href="#原始数据集预览" class="headerlink" title="原始数据集预览"></a>原始数据集预览</h2><p>综上，我们选择一年的数据集，开始预测。原始数据如下：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131858976.png"><br>可以看到数据集质量一般，这也是实际生成环境中的数据，但是 Prophet 能够识别异常值，不用担心他会报错。</p><h2 id="模型搭建预览结果"><a href="#模型搭建预览结果" class="headerlink" title="模型搭建预览结果"></a>模型搭建预览结果</h2><p>模型接口非常简单，代码如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 初始化Prophet模型  </span><br>model = Prophet()  <br><span class="hljs-comment"># 拟合模型  </span><br>model.fit(df)  <br><span class="hljs-comment"># 定义未来预测的时间段，例如预测未来7天的水质  </span><br>future = model.make_future_dataframe(periods=<span class="hljs-number">7</span>)  <span class="hljs-comment"># 7天预测期  </span><br>future.tail()  <span class="hljs-comment"># 查看预测数据框的末尾几行以确认预测时间段  </span><br><span class="hljs-comment"># 进行预测  </span><br>forecast = model.predict(future)  <br><span class="hljs-comment"># 绘制预测结果  </span><br>fig1 = model.plot(forecast)  <br>plt.title(<span class="hljs-string">&#x27;Water Quality Prediction&#x27;</span>)  <br>plt.show()  <br><span class="hljs-comment"># 添加变化点到图表中（如果需要）  </span><br>fig2 = model.plot(forecast)  <br>ax = fig2.gca()  <br>add_changepoints_to_plot(ax, model, forecast)  <br>plt.title(<span class="hljs-string">&#x27;Water Quality Prediction with Changepoints&#x27;</span>)  <br>plt.show()  <br><span class="hljs-comment"># 打印预测数据框查看预测详情  </span><br><span class="hljs-built_in">print</span>(forecast[[<span class="hljs-string">&#x27;ds&#x27;</span>, <span class="hljs-string">&#x27;yhat&#x27;</span>, <span class="hljs-string">&#x27;yhat_lower&#x27;</span>, <span class="hljs-string">&#x27;yhat_upper&#x27;</span>]])<br></code></pre></td></tr></table></figure><p>预测结果为图 2 所示，变化点如下图，模型将每次突变点都标记出来了。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131902308.png" alt="Figure_3.png"></p><p>预测结果 forecast<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131913145.png" alt="image.png"></p><h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><p>相比 arima，Prophet 更加简单易用，且成熟接口更多，出图预览更方便，本文还没有对添加节假日进行测试，但已经非常够用了。<br>对比 LSTM，预测时间少非常多，配置也更简单，真的很不错，如果有兴趣可以深入尝试。</p><h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><a href="/2024/05/09/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/ARIMA%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E5%BA%94%E7%94%A8/" title="ARIMA时间序列模型水质预测应用">ARIMA时间序列模型水质预测应用</a><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131915810.jpg" alt="pexels-pixabay-50677.jpg"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>时间序列</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
       <tag>用心长文</tag>
       
+      <tag>python</tag>
+      
       <tag>时间序列模型</tag>
+      
+      <tag>水环境分析</tag>
       
     </tags>
     
@@ -2400,13 +2559,13 @@
     
     <tags>
       
-      <tag>时间序列</tag>
-      
-      <tag>水环境分析</tag>
+      <tag>用心长文</tag>
       
       <tag>python</tag>
       
-      <tag>用心长文</tag>
+      <tag>水环境分析</tag>
+      
+      <tag>时间序列</tag>
       
     </tags>
     
@@ -2431,13 +2590,13 @@
     
     <tags>
       
-      <tag>时间序列</tag>
-      
-      <tag>水环境分析</tag>
+      <tag>用心长文</tag>
       
       <tag>python</tag>
       
-      <tag>用心长文</tag>
+      <tag>水环境分析</tag>
+      
+      <tag>时间序列</tag>
       
     </tags>
     
@@ -2524,11 +2683,11 @@
     
     <tags>
       
+      <tag>经验分享</tag>
+      
       <tag>python</tag>
       
       <tag>生态环境</tag>
-      
-      <tag>经验分享</tag>
       
     </tags>
     

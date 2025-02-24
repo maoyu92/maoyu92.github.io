@@ -1,0 +1,785 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="之前分享过 DeepSeek 与 Mermaid 的组合使用，今天再为大家推荐一款强大的在线制图工具——ProcessOn。这款工具不仅功能全面，还能够与 DeepSeek 等 AI 工具联动，帮助我们大幅提升工作效率。 ProcessOn  简介ProcessOn作为一款国产免费的在线流程图、思维导图工具，想必大家或多或少都有所耳闻。它无需下载安装，直接在网页端就能便捷使用。其功能涵盖多种图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ProcessOn与DeepSeek强强联合，制图效率upup！">
+<meta property="og:url" content="https://maoyu92.github.io/2025/02/22/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/DeepSeek%E4%B8%8EProcessOn%E5%BC%BA%E5%BC%BA%E8%81%94%E5%90%88%EF%BC%8C%E5%88%B6%E5%9B%BE%E6%95%88%E7%8E%87upup%EF%BC%81/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="之前分享过 DeepSeek 与 Mermaid 的组合使用，今天再为大家推荐一款强大的在线制图工具——ProcessOn。这款工具不仅功能全面，还能够与 DeepSeek 等 AI 工具联动，帮助我们大幅提升工作效率。 ProcessOn  简介ProcessOn作为一款国产免费的在线流程图、思维导图工具，想必大家或多或少都有所耳闻。它无需下载安装，直接在网页端就能便捷使用。其功能涵盖多种图">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502221542382.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502221614780.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502221625636.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502241952095.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502220822188.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502220822316.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502222018501.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502222034862.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502241957595.png">
+<meta property="article:published_time" content="2025-02-22T00:06:00.000Z">
+<meta property="article:modified_time" content="2025-02-22T00:06:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="经验分享">
+<meta property="article:tag" content="流程图">
+<meta property="article:tag" content="deepseek">
+<meta property="article:tag" content="AIGC">
+<meta property="article:tag" content="办公技巧">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502221542382.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>ProcessOn与DeepSeek强强联合，制图效率upup！ - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="ProcessOn与DeepSeek强强联合，制图效率upup！"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-02-22 08:06" pubdate>
+          2025年2月22日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">ProcessOn与DeepSeek强强联合，制图效率upup！</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<p>之前分享过 DeepSeek 与 Mermaid 的组合使用，今天再为大家推荐一款强大的在线制图工具——ProcessOn。这款工具不仅功能全面，还能够与 DeepSeek 等 AI 工具联动，帮助我们大幅提升工作效率。</p>
+<h2 id="ProcessOn-简介"><a href="#ProcessOn-简介" class="headerlink" title="ProcessOn  简介"></a>ProcessOn  简介</h2><p>ProcessOn作为一款国产免费的在线流程图、思维导图工具，想必大家或多或少都有所耳闻。它无需下载安装，直接在网页端就能便捷使用。其功能涵盖多种图表类型，如流程图、思维导图等，还提供了思维笔记、协作白板等多种实用功能。其中，思维笔记类似于幕布的思维导图大纲笔记模式，而协作白板则更具个性化和自由度。</p>
+<p>ProcessOn兼容性极佳，可导入markdown、xmind、mmap、mm、km、opml、visio、csv等多种市面上常见的流程图、思维导图格式，几乎做到了全面覆盖。</p>
+<p>此外，ProcessOn还支持导入mermaid、markdown格式的语法，并且流程图中能够插入python等代码，支持LaTeX语法等功能，这些特性使得它成为一款功能强大的制图工具。</p>
+<p>既然ProcessOn支持导入markdown和mermaid，那么它就可以很好地与DeepSeek结合使用，从而一键生成各种图表，例如思维导图、流程图、饼图、桑基图、甘特图、类图、状态图、实体关系图等。下面以思维导图和流程图为例进行详细说明。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502221542382.png" srcset="/img/loading.gif" lazyload alt="在process on中插入 mermaid "></p>
+<h2 id="思维导图-围城人物关系案例"><a href="#思维导图-围城人物关系案例" class="headerlink" title="思维导图 -围城人物关系案例"></a>思维导图 -围城人物关系案例</h2><p>Markdown + deepseek +提示词获得思维导图大纲。</p>
+<p>Prompt ：用 markdown 格式生成钱钟书小说围城人物关系思维导图。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502221614780.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>结果：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="hljs-section"># 《围城》人物关系思维导图</span><br><br><span class="hljs-section">## 1. 方鸿渐</span><br><span class="hljs-bullet">-</span> <span class="hljs-strong">**情感纠葛**</span><br><span class="hljs-bullet">  -</span> 鲍小姐（邮轮露水情缘，后遭抛弃）<br><span class="hljs-bullet">  -</span> 苏文纨（大学同学，暧昧未果，后嫁曹元朗）<br><span class="hljs-bullet">  -</span> 唐晓芙（苏文纨表妹，方鸿渐理想恋人，因误会分手）<br><span class="hljs-bullet">  -</span> 孙柔嘉（三闾大学同事，后成妻子，婚姻矛盾激化）<br><span class="hljs-bullet">-</span> <span class="hljs-strong">**职场关系**</span><br><span class="hljs-bullet">  -</span> 赵辛楣（好友，引荐至三闾大学，惺惺相惜）<br><span class="hljs-bullet">  -</span> 李梅亭（虚伪同事，同行赴三闾大学）<br><span class="hljs-bullet">  -</span> 高松年（三闾大学校长，权谋算计）<br><span class="hljs-bullet">  -</span> 韩学愈（假学历同事，与方鸿渐对立）<br><span class="hljs-bullet">-</span> <span class="hljs-strong">**家庭关系**</span><br><span class="hljs-bullet">  -</span> 方父方母（传统乡绅，施压婚姻）<br><span class="hljs-bullet">  -</span> 周家（未婚妻家族，资助留学后关系破裂）<br><br><span class="hljs-section">## 2. 孙柔嘉</span><br><span class="hljs-bullet">-</span> <span class="hljs-strong">**婚姻困境**</span><br><span class="hljs-bullet">  -</span> 方鸿渐（丈夫，性格不合，矛盾频发）<br><span class="hljs-bullet">  -</span> 姑母与姐姐（干预婚姻，激化家庭矛盾）<br><span class="hljs-bullet">-</span> <span class="hljs-strong">**性格特质**</span><br><span class="hljs-bullet">  -</span> 表面柔弱，实则工于心计，掌控婚姻主导权<br><br><span class="hljs-section">## 3. 苏文纨</span><br><span class="hljs-bullet">-</span> <span class="hljs-strong">**情感游戏**</span><br><span class="hljs-bullet">  -</span> 方鸿渐（暧昧对象）<br><span class="hljs-bullet">  -</span> 赵辛楣（追求者，后与其私情纠葛）<br><span class="hljs-bullet">  -</span> 曹元朗（最终丈夫，平庸诗人）<br><span class="hljs-bullet">-</span> <span class="hljs-strong">**人物象征**</span><br><span class="hljs-bullet">  -</span> 伪知识分子，追求虚荣与男性簇拥<br><br><span class="hljs-section">## 4. 赵辛楣</span><br><span class="hljs-bullet">-</span> <span class="hljs-strong">**核心关系**</span><br><span class="hljs-bullet">  -</span> 方鸿渐（从情敌转为挚友）<br><span class="hljs-bullet">  -</span> 苏文纨（单恋对象，后疏远）<br><span class="hljs-bullet">-</span> <span class="hljs-strong">**职场助力**</span><br><span class="hljs-bullet">  -</span> 引荐方鸿渐至三闾大学及报馆任职<br><br><span class="hljs-section">## 5. 次要人物</span><br><span class="hljs-bullet">-</span> <span class="hljs-strong">**三闾大学群体**</span><br><span class="hljs-bullet">  -</span> 汪处厚（官僚作风教授）<br><span class="hljs-bullet">  -</span> 范懿（爱慕赵辛楣，性格矫饰）<br><span class="hljs-bullet">  -</span> 刘东方（同事，与方鸿渐短暂合作）<br><span class="hljs-bullet">-</span> <span class="hljs-strong">**其他角色**</span><br><span class="hljs-bullet">  -</span> 李妈（方家佣人，象征传统束缚）<br><span class="hljs-bullet">  -</span> 褚慎明（哲学家，虚伪做作）<br></code></pre></td></tr></table></figure>
+
+<p>打开 ProcessOn- 新建-导入 -markdown 生成思维导图。效果如下：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502221625636.png" srcset="/img/loading.gif" lazyload alt="《围城》人物关系"></p>
+<h2 id="流程图-英雄是怎么练成的"><a href="#流程图-英雄是怎么练成的" class="headerlink" title="流程图 - 英雄是怎么练成的"></a>流程图 - 英雄是怎么练成的</h2><p>Prompt：用mermaid 语法描述坎贝尔的《千面英雄》中英雄是怎么练成的流程。</p>
+<p>结果：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs less"><span class="hljs-selector-tag">graph</span> <span class="hljs-selector-tag">TD</span><br>    <span class="hljs-selector-tag">A</span><span class="hljs-selector-attr">[平凡世界]</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">B</span><span class="hljs-selector-attr">[冒险的召唤]</span><br>    <span class="hljs-selector-tag">B</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">C</span>&#123;拒绝召唤&#125;<br>    <span class="hljs-selector-tag">C</span> <span class="hljs-selector-tag">--</span>&gt;|接受| <span class="hljs-selector-tag">D</span><span class="hljs-selector-attr">[超自然助力]</span><br>    <span class="hljs-selector-tag">C</span> <span class="hljs-selector-tag">--</span>&gt;|拒绝| <span class="hljs-selector-tag">A</span><br>    <span class="hljs-selector-tag">D</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">E</span><span class="hljs-selector-attr">[跨越第一个阈限]</span><br>    <span class="hljs-selector-tag">E</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">F</span><span class="hljs-selector-attr">[鲸鱼之腹/人生低谷]</span><br>    <span class="hljs-selector-tag">F</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">G</span><span class="hljs-selector-attr">[试炼之路]</span><br>    <span class="hljs-selector-tag">G</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">H</span><span class="hljs-selector-attr">[与女神相会]</span><br>    <span class="hljs-selector-tag">H</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">I</span><span class="hljs-selector-attr">[诱惑者考验]</span><br>    <span class="hljs-selector-tag">I</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">J</span><span class="hljs-selector-attr">[与父和解]</span><br>    <span class="hljs-selector-tag">J</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">K</span><span class="hljs-selector-attr">[神化]</span><br>    <span class="hljs-selector-tag">K</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">L</span><span class="hljs-selector-attr">[终极恩赐]</span><br>    <span class="hljs-selector-tag">L</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">M</span>&#123;拒绝回归&#125;<br>    <span class="hljs-selector-tag">M</span> <span class="hljs-selector-tag">--</span>&gt;|接受| <span class="hljs-selector-tag">N</span><span class="hljs-selector-attr">[魔法飞行]</span><br>    <span class="hljs-selector-tag">M</span> <span class="hljs-selector-tag">--</span>&gt;|拒绝| <span class="hljs-selector-tag">O</span><span class="hljs-selector-attr">[救援助力]</span><br>    <span class="hljs-selector-tag">O</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">N</span><br>    <span class="hljs-selector-tag">N</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">P</span><span class="hljs-selector-attr">[跨越回归阈限]</span><br>    <span class="hljs-selector-tag">P</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">Q</span><span class="hljs-selector-attr">[两个世界的主宰]</span><br>    <span class="hljs-selector-tag">Q</span> <span class="hljs-selector-tag">--</span>&gt; <span class="hljs-selector-tag">R</span><span class="hljs-selector-attr">[生活的自由]</span><br>    <br>    <span class="hljs-selector-tag">style</span> <span class="hljs-selector-tag">A</span> <span class="hljs-selector-tag">fill</span>:<span class="hljs-selector-id">#f9f</span>,<span class="hljs-selector-tag">stroke</span>:<span class="hljs-selector-id">#333</span><br>    <span class="hljs-selector-tag">style</span> <span class="hljs-selector-tag">R</span> <span class="hljs-selector-tag">fill</span>:<span class="hljs-selector-id">#bbf</span>,<span class="hljs-selector-tag">stroke</span>:<span class="hljs-selector-id">#333</span><br></code></pre></td></tr></table></figure>
+<p>导入 ProcessOn 进行修改后效果。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502241952095.png" srcset="/img/loading.gif" lazyload alt="千面英雄之成神之路.png"></p>
+<h2 id="其他特别功能"><a href="#其他特别功能" class="headerlink" title="其他特别功能"></a>其他特别功能</h2><h3 id="与-visio-联动"><a href="#与-visio-联动" class="headerlink" title="与 visio 联动"></a>与 visio 联动</h3><p>ProcessOn还拥有众多AI功能，例如一键美化、润色排版等。并且它支持导出为Visio文件，这意味着可以直接将其放置在Word文档中，并且在Word中还能进行编辑。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502220822188.png" srcset="/img/loading.gif" lazyload alt="word中的visio"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502220822316.png" srcset="/img/loading.gif" lazyload alt="ProcessOn 中导入的visio 文件"></p>
+<h3 id="LaTeX-联动"><a href="#LaTeX-联动" class="headerlink" title="LaTeX 联动"></a>LaTeX 联动</h3><p>ProcessOn支持LaTeX语法，同时具备OCR识别LaTeX公式的能力。如果在撰写论文过程中遇到需要复制的公式，不妨一试。对于LaTeX语法，我们还可以通过DeepSeek生成或者修改想要的公式，然后粘贴到LaTeX页面。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502222018501.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="插入代码块"><a href="#插入代码块" class="headerlink" title="插入代码块"></a>插入代码块</h3><p>流程图支持插入代码块，这对程序员非常友好。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502222034862.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="模板社区"><a href="#模板社区" class="headerlink" title="模板社区"></a>模板社区</h3><p>ProcessOn 有丰富的模板社区，可以根据自己需要找到合适的模板，还可以自己的成果发布为付费模板，实现知识变现。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502241957595.png" srcset="/img/loading.gif" lazyload alt="ProcessOn 模板社区"></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>ProcessOn是一款功能全面的在线流程图、思维导图工具，可用于原型图、UML、BPMN、网络拓扑图等多种图形绘制，支持多种格式的导入导出，兼容markdown、mermaid、LaTeX等语法。它能与DeepSeek等大语言模型相结合，快速提升制图效率，再配合ProcessOn优秀的编辑功能，方便地完成各类图形的修改和完善。</p>
+<h2 id="文末福利"><a href="#文末福利" class="headerlink" title="文末福利"></a>文末福利</h2><p>ProcessOn专属邀请链接，欢迎大家使用下面的链接注册 ProcessOn</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">https:<span class="hljs-regexp">//</span>www.processon.com<span class="hljs-regexp">/i/</span><span class="hljs-number">659513</span>ff2b4cb726485cbfb4?full_name=PO_SvJHYT<br></code></pre></td></tr></table></figure>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.processon.com/i/659513ff2b4cb726485cbfb4?full_name=PO_SvJHYT">https://www.processon.com/i/659513ff2b4cb726485cbfb4?full_name=PO_SvJHYT</a></p>
+</blockquote>
+<h3 id="相关网址"><a href="#相关网址" class="headerlink" title="相关网址"></a>相关网址</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://mermaid.js.org/syntax/flowchart.html">Mermaid 流程图文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.processon.com/">ProcessOn 官方网站</a></li>
+</ul>
+<h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="category-chain-item">工具推荐</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="print-no-link">#经验分享</a>
+      
+        <a href="/tags/%E6%B5%81%E7%A8%8B%E5%9B%BE/" class="print-no-link">#流程图</a>
+      
+        <a href="/tags/deepseek/" class="print-no-link">#deepseek</a>
+      
+        <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
+      
+        <a href="/tags/%E5%8A%9E%E5%85%AC%E6%8A%80%E5%B7%A7/" class="print-no-link">#办公技巧</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>ProcessOn与DeepSeek强强联合，制图效率upup！</div>
+      <div>https://maoyu92.github.io/2025/02/22/03 工具推荐/DeepSeek与ProcessOn强强联合，制图效率upup！/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年2月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/02/24/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/deepseek%20+%20mermaid%20%E8%87%AA%E5%8A%A8%E7%BB%98%E5%88%B6%E6%B5%81%E7%A8%8B%E5%9B%BE/" title="deepseek + mermaid 自动绘制流程图">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">deepseek + mermaid 自动绘制流程图</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/02/18/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Grok%203%E6%A8%A1%E5%9E%8B%E9%9C%87%E6%92%BC%E5%8F%91%E5%B8%83%20%20%E6%8A%A2%E5%85%88%E5%85%8D%E8%B4%B9%E4%BD%93%E9%AA%8C/" title="Grok 3模型震撼发布  抢先免费体验">
+                        <span class="hidden-mobile">Grok 3模型震撼发布  抢先免费体验</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

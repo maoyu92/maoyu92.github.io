@@ -19,28 +19,31 @@
   <meta name="keywords" content="python,eco">
   <meta name="referrer" content="no-referrer" />
   
-    <meta name="description" content="之前我曾利用Word的VBA宏接入ChatGPT 3.5的API。然而，由于OpenAI对中国大陆地区的限制，这一方案难以持续使用。随后出现的大型语言模型要么难以调用，要么收费昂贵。如今，随着DeepSeek的开源，结合Word这一办公常用场景，我决定将DeepSeek模型接入Word，实现文本生成和文本润色两大功能。 应读者的要求，我们从 0 开始，一步一步做。  了解宏 了解 deepse">
+    <meta name="description" content="北京时间 2 月 18 日中午 12 点，马斯克旗下 xAI 公司正式发布了备受瞩目的新一代人工智能模型——Grok 3。号称地表最强模型，这款被马斯克吹上天的产品具体如何，我们通过直播视频的几张关键对比图来一探究竟。同时推荐一个快速尝鲜  Grok 3 的网站。 Grok 3 的亮点 上图展示的是 Chatbot Arena (LMSYS) 平台上不同大型语言模型 (LLM) 的 Elo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Word接入DeepSeek r1 实现智能文本生成与润色">
-<meta property="og:url" content="https://maoyu92.github.io/2025/02/02/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/Word%E6%8E%A5%E5%85%A5DeepSeek%20r1%20%E5%AE%9E%E7%8E%B0%E6%99%BA%E8%83%BD%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%B8%8E%E6%B6%A6%E8%89%B2/index.html">
+<meta property="og:title" content="Grok 3模型震撼发布  抢先免费体验">
+<meta property="og:url" content="https://maoyu92.github.io/2025/02/18/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Grok%203%E6%A8%A1%E5%9E%8B%E9%9C%87%E6%92%BC%E5%8F%91%E5%B8%83%20%20%E6%8A%A2%E5%85%88%E5%85%8D%E8%B4%B9%E4%BD%93%E9%AA%8C/index.html">
 <meta property="og:site_name" content="wallflowers">
-<meta property="og:description" content="之前我曾利用Word的VBA宏接入ChatGPT 3.5的API。然而，由于OpenAI对中国大陆地区的限制，这一方案难以持续使用。随后出现的大型语言模型要么难以调用，要么收费昂贵。如今，随着DeepSeek的开源，结合Word这一办公常用场景，我决定将DeepSeek模型接入Word，实现文本生成和文本润色两大功能。 应读者的要求，我们从 0 开始，一步一步做。  了解宏 了解 deepse">
+<meta property="og:description" content="北京时间 2 月 18 日中午 12 点，马斯克旗下 xAI 公司正式发布了备受瞩目的新一代人工智能模型——Grok 3。号称地表最强模型，这款被马斯克吹上天的产品具体如何，我们通过直播视频的几张关键对比图来一探究竟。同时推荐一个快速尝鲜  Grok 3 的网站。 Grok 3 的亮点 上图展示的是 Chatbot Arena (LMSYS) 平台上不同大型语言模型 (LLM) 的 Elo">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502020918275.png">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502021030439.png">
-<meta property="article:published_time" content="2025-02-02T00:27:00.000Z">
-<meta property="article:modified_time" content="2025-02-02T00:27:00.000Z">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181415237.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181424249.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181418273.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181407706.png">
+<meta property="article:published_time" content="2025-02-18T06:03:00.000Z">
+<meta property="article:modified_time" content="2025-02-18T06:03:00.000Z">
 <meta property="article:author" content="wenmao">
 <meta property="article:tag" content="deepseek">
 <meta property="article:tag" content="AIGC">
+<meta property="article:tag" content="grok3">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502020918275.png">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181415237.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Word接入DeepSeek r1 实现智能文本生成与润色 - wallflowers</title>
+  <title>Grok 3模型震撼发布  抢先免费体验 - wallflowers</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -246,7 +249,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Word接入DeepSeek r1 实现智能文本生成与润色"></span>
+            <span id="subtitle" data-typed-text="Grok 3模型震撼发布  抢先免费体验"></span>
           
         </div>
 
@@ -257,8 +260,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2025-02-02 08:27" pubdate>
-          2025年2月2日 早上
+        <time datetime="2025-02-18 14:03" pubdate>
+          2025年2月18日 下午
         </time>
       </span>
     
@@ -269,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          654 字
         
       </span>
     
@@ -280,7 +283,7 @@
         
         
         
-          9 分钟
+          6 分钟
         
       </span>
     
@@ -325,43 +328,29 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Word接入DeepSeek r1 实现智能文本生成与润色</h1>
+            <h1 id="seo-header">Grok 3模型震撼发布  抢先免费体验</h1>
             
             
               <div class="markdown-body">
                 
                 <meta name="referrer" content="no-referrer" />
 
-<p>之前我曾利用Word的VBA宏接入ChatGPT 3.5的API。然而，由于OpenAI对中国大陆地区的限制，这一方案难以持续使用。随后出现的大型语言模型要么难以调用，要么收费昂贵。如今，随着DeepSeek的开源，结合Word这一办公常用场景，我决定将DeepSeek模型接入Word，实现文本生成和文本润色两大功能。</p>
-<p>应读者的要求，我们从 0 开始，一步一步做。</p>
-<ol>
-<li>了解宏</li>
-<li>了解 deepseek api</li>
-<li>通过宏调用 api</li>
-</ol>
-<h2 id="宏的使用"><a href="#宏的使用" class="headerlink" title="宏的使用"></a>宏的使用</h2><p>宏的使用有很多方法，快捷键、放在功能区都行，这里以自定义功能区简单介绍。</p>
-<h3 id="添加宏"><a href="#添加宏" class="headerlink" title="添加宏"></a>添加宏</h3><ol start="4">
-<li>开启开发工具。    </li>
-<li>点击“开发工具”选项卡。    </li>
-<li>点击“Visual Basic”。    </li>
-<li>右键模板文件下的“模块”，选择“插入模块”。    </li>
-<li>复制上述代码到新建的模块中。</li>
-</ol>
-<h3 id="自定义功能区"><a href="#自定义功能区" class="headerlink" title="自定义功能区"></a>自定义功能区</h3><ol start="9">
-<li>点击“文件”-&gt;“选项”-&gt;“自定义功能区”。    </li>
-<li>选择“宏”，在右侧自定义功能区新建选项卡和组。    </li>
-<li>将宏添加至组中，重命名并更换图标。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502020918275.png" srcset="/img/loading.gif" lazyload></li>
-</ol>
-<h3 id="效果预览"><a href="#效果预览" class="headerlink" title="效果预览"></a>效果预览</h3><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502021030439.png" srcset="/img/loading.gif" lazyload></p>
-<h3 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h3><p>硅基流动新增了两个 deepseek 蒸馏模型”<code>deepseek-ai/DeepSeek-R1-Distill-Qwen-7B</code> 和 <code>deepseek-ai/DeepSeek-R1-Distill-Qwen-8B</code>。</p>
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs vb"><span class="hljs-keyword">Sub</span> DeepSeek()<br>    <span class="hljs-keyword">Dim</span> selectedText <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> apiKey <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> response <span class="hljs-keyword">As</span> <span class="hljs-type">Object</span>, re <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> midString <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> ans <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">If</span> Selection.Type = wdSelectionNormal <span class="hljs-keyword">Then</span><br>        selectedText = Selection.<span class="hljs-keyword">Text</span><br>        selectedText = Replace(selectedText, ChrW$(<span class="hljs-number">13</span>), <span class="hljs-string">&quot;&quot;</span>)<br>        apiKey = <span class="hljs-string">&quot;自己的key&quot;</span><br>        URL = <span class="hljs-string">&quot;https://api.siliconflow.cn/v1/chat/completions&quot;</span><br>        <span class="hljs-keyword">Set</span> response = CreateObject(<span class="hljs-string">&quot;MSXML2.XMLHTTP&quot;</span>)<br>        response.Open <span class="hljs-string">&quot;POST&quot;</span>, URL, <span class="hljs-literal">False</span><br>        response.setRequestHeader <span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span><br>        response.setRequestHeader <span class="hljs-string">&quot;Authorization&quot;</span>, <span class="hljs-string">&quot;Bearer &quot;</span> + apiKey<br>        response.Send <span class="hljs-string">&quot;&#123;&quot;&quot;model&quot;&quot;:&quot;&quot;deepseek-ai/DeepSeek-R1-Distill-Qwen-7B&quot;&quot;, &quot;&quot;messages&quot;&quot;:[&#123;&quot;&quot;role&quot;&quot;:&quot;&quot;user&quot;&quot;,&quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span> &amp; selectedText &amp; <span class="hljs-string">&quot;&quot;&quot;&#125;], &quot;&quot;temperature&quot;&quot;:0.7&#125;&quot;</span><br>        <br>        re = response.responseText<br>        midString = <span class="hljs-keyword">Mid</span>(re, InStr(re, <span class="hljs-string">&quot;&quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span>) + <span class="hljs-number">11</span>)<br>        ans = Split(midString, <span class="hljs-string">&quot;&quot;&quot;&quot;</span>)(<span class="hljs-number">0</span>)<br>        ans = Replace(ans, <span class="hljs-string">&quot;\n&quot;</span>, <span class="hljs-string">&quot;&quot;</span>)<br>        Selection.<span class="hljs-keyword">Text</span> = selectedText &amp; vbNewLine &amp; ans<br>        <span class="hljs-keyword">Else</span><br>        <span class="hljs-keyword">Exit</span> <span class="hljs-keyword">Sub</span><br>    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span><br><br><span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span><br></code></pre></td></tr></table></figure>
-
-<figure class="highlight vb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs vb"><span class="hljs-keyword">Sub</span> DeepSeekPolish()<br>    <span class="hljs-keyword">Dim</span> selectedText <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> apiKey <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> response <span class="hljs-keyword">As</span> <span class="hljs-type">Object</span>, re <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> midString <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> ans <span class="hljs-keyword">As</span> <span class="hljs-type">String</span><br>    <span class="hljs-keyword">Dim</span> polishPrompt <span class="hljs-keyword">As</span> <span class="hljs-type">String</span>    <br>    <span class="hljs-comment">&#x27; 检查是否有正常选中的文本</span><br>    <span class="hljs-keyword">If</span> Selection.Type = wdSelectionNormal <span class="hljs-keyword">Then</span><br>        <span class="hljs-comment">&#x27; 获取选中文本并去除不需要的字符</span><br>        selectedText = Selection.<span class="hljs-keyword">Text</span><br>        selectedText = Replace(selectedText, ChrW$(<span class="hljs-number">13</span>), <span class="hljs-string">&quot;&quot;</span>)        <br>        <span class="hljs-comment">&#x27; 定义API密钥和请求URL</span><br>        apiKey = <span class="hljs-string">&quot;自己的key&quot;</span><br>        URL = <span class="hljs-string">&quot;https://api.siliconflow.cn/v1/chat/completions&quot;</span><br>        <br>        <span class="hljs-comment">&#x27; 设置润色提示词</span><br>        polishPrompt = <span class="hljs-string">&quot;文本润色。&quot;</span><br>        <br>        <span class="hljs-comment">&#x27; 创建HTTP请求对象并设置参数</span><br>        <span class="hljs-keyword">Set</span> response = CreateObject(<span class="hljs-string">&quot;MSXML2.XMLHTTP&quot;</span>)<br>        response.Open <span class="hljs-string">&quot;POST&quot;</span>, URL, <span class="hljs-literal">False</span><br>        <br>        <span class="hljs-comment">&#x27; 添加必要的头部信息</span><br>        response.setRequestHeader <span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/json&quot;</span><br>        response.setRequestHeader <span class="hljs-string">&quot;Authorization&quot;</span>, <span class="hljs-string">&quot;Bearer &quot;</span> + apiKey<br>        <br>        <span class="hljs-comment">&#x27; 发送请求，注意在JSON字符串中添加了polishPrompt</span><br>        response.Send <span class="hljs-string">&quot;&#123;&quot;&quot;model&quot;&quot;:&quot;&quot;deepseek-ai/DeepSeek-R1-Distill-Qwen-7B&quot;&quot;, &quot;&quot;messages&quot;&quot;:[&#123;&quot;&quot;role&quot;&quot;:&quot;&quot;user&quot;&quot;,&quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span> &amp; selectedText &amp; <span class="hljs-string">&quot;&quot;&quot;&#125;, &#123;&quot;&quot;role&quot;&quot;:&quot;&quot;assistant&quot;&quot;, &quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span> &amp; polishPrompt &amp; <span class="hljs-string">&quot;&quot;&quot;&#125;], &quot;&quot;temperature&quot;&quot;:0.7&#125;&quot;</span><br>        <br>        <span class="hljs-comment">&#x27; 处理响应数据</span><br>        re = response.responseText<br>        midString = <span class="hljs-keyword">Mid</span>(re, InStr(re, <span class="hljs-string">&quot;&quot;&quot;content&quot;&quot;:&quot;&quot;&quot;</span>) + <span class="hljs-number">11</span>)<br>        ans = Split(midString, <span class="hljs-string">&quot;&quot;&quot;&quot;</span>)(<span class="hljs-number">0</span>)<br>        ans = Replace(ans, <span class="hljs-string">&quot;\n&quot;</span>, <span class="hljs-string">&quot;&quot;</span>)<br>        <br>        <span class="hljs-comment">&#x27; 将原选中文本与润色后的文本一起插入文档中</span><br>        Selection.<span class="hljs-keyword">Text</span> = selectedText &amp; vbNewLine &amp; ans<br>    <span class="hljs-keyword">Else</span><br>        <span class="hljs-keyword">Exit</span> <span class="hljs-keyword">Sub</span><br>    <span class="hljs-keyword">End</span> <span class="hljs-keyword">If</span><br><span class="hljs-keyword">End</span> <span class="hljs-keyword">Sub</span><br></code></pre></td></tr></table></figure>
 
 
+<p>北京时间 2 月 18 日中午 12 点，马斯克旗下 xAI 公司正式发布了备受瞩目的新一代人工智能模型——Grok 3。号称地表最强模型，这款被马斯克吹上天的产品具体如何，我们通过直播视频的几张关键对比图来一探究竟。同时推荐一个快速尝鲜  Grok 3 的网站。</p>
+<h2 id="Grok-3-的亮点"><a href="#Grok-3-的亮点" class="headerlink" title="Grok 3 的亮点"></a>Grok 3 的亮点</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181415237.png" srcset="/img/loading.gif" lazyload></p>
+<p>上图展示的是 <strong>Chatbot Arena (LMSYS)</strong> 平台上不同大型语言模型 (LLM) 的 Elo 评分，反映了它们在用户体验和性能方面的相对排名。图表中，Grok-3 的早期版本 “chocolate” 以 1400+ 的高分位居榜首，gemini 2.- flash 1380 分，deepseek r1 有 1360 分。 </p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181424249.png" srcset="/img/loading.gif" lazyload></p>
+<p>上图展示了不同大型语言模型（LLM）在数学、科学和编程三个基准测试中的得分情况。其中，Grok-3 在所有三个测试中都取得了最高分，超过了 deepseek v 3、gemini、Claude、GPT 4 O。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181418273.png" srcset="/img/loading.gif" lazyload></p>
+<p>上图展示了不同大型语言模型在 AIME 2025 数学竞赛中的表现，主要考察它们的推理能力和计算能力。其中，Grok-3 Reasoning Beta 版本为 93 分，Grok-3 mini Reasoning 版本也达到了 90 分，显示出 Grok 系列模型在数学推理方面的强大实力。相比之下，Deepseek-R 1 和 Gemini-2 Flash Thinking 的得分分别为 87 分和 79 分，o3 mini (high) 和 o1 模型的得分则分别为 87 分和 75 分。整体来看，Grok-3 系列模型在 AIME 2025 测试中表现突出，尤其 Grok-3 Reasoning Beta 版本在数学推理能力上展现出显著优势。</p>
+<h2 id="抢先体验-Grok-3"><a href="#抢先体验-Grok-3" class="headerlink" title="抢先体验 Grok 3"></a>抢先体验 Grok 3</h2><p>本文推荐一个免费体验 Grok 3 早期版本的网址。</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">https:</span><span class="hljs-comment">//lmarena.ai/</span><br></code></pre></td></tr></table></figure>
 
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>最近几天，我一直在探索 DeepSeek 的应用，深感其高性能和低成本对工作生活的普惠意义。对于个人和小企业而言，人工智能的应用应紧密结合自身场景，无需考虑在本地搭建模型。尽管 DeepSeek 模型开源，但在本地运行全功能模型成本较高。随着各大厂商的跟进，生成式模型可能成为基础设施，如同 GitHub 一样普及。我们需要做的是提前跑通整个流程，以便在新模型出现时能迅速应用。目前，DeepSeek 虽强大，但运行速度仍有提升空间，尤其是 RI 推理模型。让我们保持热情，持续关注其发展。</p>
-<h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>
+<p>进入网站后点击直接对话，选择 Grok 3 即可。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502181407706.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<p>目前 grok 3 已经免费使用啦。体验了下还是很不错的，速度很快。（修改于 2025 年 2 月 24 日）</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>马斯克凭借 200,000 个 Nvidia H 100 GPU 和超长的训练周期，打造出这款在纸面数据上超越众多现有模型的产品。然而，与 Deepseek 等竞争对手相比，Grok 3 巨大的成本投入并未带来显著的优势提升。试问，除了少数几家顶级科技巨头，还有哪家企业能够负担如此庞大的显卡资源和高昂的训练成本？这种“堆料”式的开发路径，似乎并不具备明显的长期竞争优势。目前，Grok 3 尚未正式发布，其实际应用效果及市场影响力仍有待进一步观察。</p>
+<h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a>  </p>
 
                 
               </div>
@@ -380,7 +369,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="category-chain-item">工具推荐</a>
   
   
 
@@ -399,6 +388,8 @@
       
         <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
       
+        <a href="/tags/grok3/" class="print-no-link">#grok3</a>
+      
     </div>
   
 </div>
@@ -409,8 +400,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Word接入DeepSeek r1 实现智能文本生成与润色</div>
-      <div>https://maoyu92.github.io/2025/02/02/04 经验分享/Word接入DeepSeek r1 实现智能文本生成与润色/</div>
+      <div>Grok 3模型震撼发布  抢先免费体验</div>
+      <div>https://maoyu92.github.io/2025/02/18/03 工具推荐/Grok 3模型震撼发布  抢先免费体验/</div>
     </div>
     <div class="license-meta">
       
@@ -422,7 +413,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2025年2月2日</div>
+          <div>2025年2月18日</div>
         </div>
       
       
@@ -454,9 +445,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/02/03/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E6%8E%A8%E8%8D%90%E4%B8%AA%E4%BA%BA%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%EF%BC%9F%E6%A8%A1%E5%9E%8B%E4%BE%9B%E5%BA%94%E5%95%86%E6%8E%A8%E8%8D%90/" title="为什么不推荐个人本地部署大语言模型？模型供应商推荐">
+                      <a href="/2025/02/22/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/DeepSeek%E4%B8%8EProcessOn%E5%BC%BA%E5%BC%BA%E8%81%94%E5%90%88%EF%BC%8C%E5%88%B6%E5%9B%BE%E6%95%88%E7%8E%87upup%EF%BC%81/" title="ProcessOn与DeepSeek强强联合，制图效率upup！">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">为什么不推荐个人本地部署大语言模型？模型供应商推荐</span>
+                        <span class="hidden-mobile">ProcessOn与DeepSeek强强联合，制图效率upup！</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -464,8 +455,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/02/02/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/Word%E6%8E%A5%E5%85%A5DeepSeek%20r1%EF%BC%8C%E8%BD%BB%E6%9D%BE%E5%AE%9E%E7%8E%B0%E6%99%BA%E8%83%BD%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E4%B8%8E%E6%B6%A6%E8%89%B2/" title="Word接入DeepSeek r1，轻松实现智能文本生成与润色">
-                        <span class="hidden-mobile">Word接入DeepSeek r1，轻松实现智能文本生成与润色</span>
+                      <a href="/2025/02/18/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Deepseek%20+%20Napkin%EF%BC%8C%E8%BD%BB%E6%9D%BE%E6%89%93%E9%80%A0%E9%AB%98%E9%A2%9C%E5%80%BC%E6%B5%81%E7%A8%8B%E5%9B%BE/" title="Deepseek + Napkin，轻松打造高颜值流程图">
+                        <span class="hidden-mobile">Deepseek + Napkin，轻松打造高颜值流程图</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
