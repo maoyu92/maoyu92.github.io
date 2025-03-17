@@ -22,7 +22,7 @@
     <meta name="description" content="背景介绍之前用Hexo、GitHub Pages、netlify 搭建并托管我的个人博客。尽管这种方式极为便捷，但国内访问速度时常受限。最近买了个服务器，刚好学习 Linux 和 Web 部署的相关知识，本文记录下hexo 如何同步部署服务器和GitHub。 目的 实现博客内容同时推送到GitHub和阿里云服务器。 掌握宝塔面板的基础网站配置方法。 学习Nginx 基础配置技巧。  基础条件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo 同步部署服务器和GitHub 超详细教程">
-<meta property="og:url" content="https://maoyu92.github.io/2025/01/24/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/nginx%20%E9%83%A8%E7%BD%B2hexo%20%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/index.html">
+<meta property="og:url" content="https://maoyu92.github.io/2025/01/24/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/hexo%20%E5%90%8C%E6%AD%A5%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8CGitHub%20%E8%B6%85%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="wallflowers">
 <meta property="og:description" content="背景介绍之前用Hexo、GitHub Pages、netlify 搭建并托管我的个人博客。尽管这种方式极为便捷，但国内访问速度时常受限。最近买了个服务器，刚好学习 Linux 和 Web 部署的相关知识，本文记录下hexo 如何同步部署服务器和GitHub。 目的 实现博客内容同时推送到GitHub和阿里云服务器。 掌握宝塔面板的基础网站配置方法。 学习Nginx 基础配置技巧。  基础条件">
 <meta property="og:locale" content="zh_CN">
@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.3k 字
         
       </span>
     
@@ -370,7 +370,9 @@
 <h3 id="修改-hexo-配置"><a href="#修改-hexo-配置" class="headerlink" title="修改 hexo 配置"></a>修改 hexo 配置</h3><p>在 hexo 的 <code>_config.yml</code> 文件deploy 设置中增加阿里云 git 信息。</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stylus">deploy:<br>  - type: git<br>    repository: git@github<span class="hljs-selector-class">.com</span>:<span class="hljs-selector-attr">[对应的项目名]</span><span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span><span class="hljs-selector-class">.git</span> #注意替换<span class="hljs-selector-attr">[]</span>内容<br>    branch: <span class="hljs-selector-tag">main</span><br>  - type: git<br>    repository: root@<span class="hljs-selector-attr">[域名]</span>:/root/blogit<span class="hljs-selector-class">.git</span> #注意替换<span class="hljs-selector-attr">[]</span>内容<br>    branch: main<br></code></pre></td></tr></table></figure>
 
-<p>注意做这一步之前需要将本地电脑的公钥，放在服务器 authorized_keys 文件里。这样就可以通过本地 ssh 连接服务器了，可以通过下面的代码测试是否连接成功。</p>
+<p>注意做这一步之前需要将本地电脑的公钥，放在服务器 authorized_keys 文件里。具体如下</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ruby">打开authorized_keys<br>vim ~<span class="hljs-regexp">/.ssh/authorized</span>_keys<br>使用inser 模式复制公钥内容，这里注意需要在本地建立公钥文件<br>英文模式下点击esc,命令行输入下面内容保存<br><span class="hljs-symbol">:wq</span><br></code></pre></td></tr></table></figure>
+<p>这样就可以通过本地 ssh 连接服务器了，可以通过下面的代码测试是否连接成功。</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">ssh <span class="hljs-symbol">root@</span>[域名]<br></code></pre></td></tr></table></figure>
 
 <p>经过上述过程后，在本地文件夹 利用 hexo 三连，测试是否将博客同时发布到服务器和 GitHub。</p>
@@ -452,7 +454,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>hexo 同步部署服务器和GitHub 超详细教程</div>
-      <div>https://maoyu92.github.io/2025/01/24/04 经验分享/nginx 部署hexo 静态网站/</div>
+      <div>https://maoyu92.github.io/2025/01/24/04 经验分享/hexo 同步部署服务器和GitHub 超详细教程/</div>
     </div>
     <div class="license-meta">
       
@@ -496,9 +498,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2025/01/24/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/hexo%20%E5%90%8C%E6%AD%A5%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8CGitHub%20%E8%B6%85%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/" title="hexo 同步部署服务器和GitHub 超详细教程">
+                      <a href="/2025/01/27/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/streamlit%20%E5%BF%AB%E9%80%9F%E6%90%AD%E5%BB%BA%20deepseek%20%E5%AF%B9%E8%AF%9D%E5%BA%94%E7%94%A8/" title="使用Streamlit与DeepSeek API快速构建Chat应用">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">hexo 同步部署服务器和GitHub 超详细教程</span>
+                        <span class="hidden-mobile">使用Streamlit与DeepSeek API快速构建Chat应用</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -506,8 +508,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2025/01/10/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E5%BD%93%E4%B8%8B%E7%9A%84%E5%8A%9B%E9%87%8F%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" title="当下的力量 读书笔记">
-                        <span class="hidden-mobile">当下的力量 读书笔记</span>
+                      <a href="/2025/01/24/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/nginx%20%E9%83%A8%E7%BD%B2hexo%20%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/" title="hexo 同步部署服务器和GitHub 超详细教程">
+                        <span class="hidden-mobile">hexo 同步部署服务器和GitHub 超详细教程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

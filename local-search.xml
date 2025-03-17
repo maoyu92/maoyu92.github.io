@@ -8,7 +8,7 @@
     <link href="/2025/03/16/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/OpenWebUI%EF%BC%9A%E4%B8%80%E7%AB%99%E5%BC%8F%20AI%20%E5%BA%94%E7%94%A8%E6%9E%84%E5%BB%BA%E5%B9%B3%E5%8F%B0%E4%BD%93%E9%AA%8C/"/>
     <url>/2025/03/16/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/OpenWebUI%EF%BC%9A%E4%B8%80%E7%AB%99%E5%BC%8F%20AI%20%E5%BA%94%E7%94%A8%E6%9E%84%E5%BB%BA%E5%B9%B3%E5%8F%B0%E4%BD%93%E9%AA%8C/</url>
     
-    <content type="html"><![CDATA[<p>🚀 大家好，今天给大家分享一个超棒的 AI 应用构建工具——OpenWebUI！体验下来，只能说<strong>丝滑</strong>！必须强烈推荐！</p><p>🔥 听说过阿里巴巴的 <a href="https://chat.qwen.ai/">Qwen</a> 吗？他们最新的 Qwen Chat 网站就是用 OpenWebUI 搭建的！足以见得这个工具的强大。在 GitHub 上已经狂揽 83.7 k Star，简直恐怖如斯！</p><p><strong>大家可以去体验一下：<a href="https://chat.qwen.ai/">https://chat.qwen.ai/</a></strong></p><h2 id="OpenWebUI-功能特点：All-in-One，应有尽有！"><a href="#OpenWebUI-功能特点：All-in-One，应有尽有！" class="headerlink" title="OpenWebUI 功能特点：All in One，应有尽有！"></a>OpenWebUI 功能特点：All in One，应有尽有！</h2><p>OpenWebUI 简直是为 AI 应用而生，功能丰富到令人发指：</p><ul><li><strong>⚡️ 极速部署：</strong><ul><li>Docker 一键安装，还支持 Ollama 和 CUDA 镜像，告别繁琐配置。</li><li>支持 pip 一键安装，0 代码构建 AI 应用</li></ul></li><li><strong>🤝 超强兼容：</strong><ul><li>完美兼容 Ollama 和 OpenAI API，轻松连接 LMStudio、GroqCloud、Mistral、OpenRouter 等等平台。</li></ul></li><li><strong>🛡️ 权限管理：</strong><ul><li>细粒度的用户角色和权限控制，安全可靠，还能定制个性化用户体验。</li></ul></li><li><strong>📱 响应式设计：</strong><ul><li>无论桌面、笔记本还是移动设备，都能流畅使用。</li></ul></li><li><strong>📲 移动端 PWA：</strong><ul><li>媲美原生 App 的移动端体验，甚至支持本地离线访问！</li></ul></li><li><strong>✍️ 富文本支持：</strong><ul><li>Markdown 和 LaTeX 全面支持，让交互更丰富。</li></ul></li><li><strong>🗣️ 语音&#x2F;视频通话：</strong><ul><li>集成免提语音和视频通话，沟通方式更多样。</li></ul></li><li><strong>🐍 Python 函数调用：</strong><ul><li>内置代码编辑器，支持 Python 函数调用，自由扩展功能。</li></ul></li><li><strong>📚 本地 RAG 集成：</strong><ul><li>支持检索增强生成 (RAG)，直接加载文档或使用文档库进行交互。</li></ul></li><li><strong>🌐 RAG 网络搜索：</strong><ul><li>集成 SearXNG、Google PSE、Brave Search、DuckDuckGo 等搜索引擎，实时获取最新信息。</li></ul></li><li><strong>🎨 图像生成：</strong><ul><li>支持 AUTOMATIC 1111 API、ComfyUI、OpenAI DALL-E 等图像生成 API，聊天中也能生成图像。</li></ul></li><li><strong>🤹 多模型对话：</strong><ul><li>同时使用多个模型，集各家之所长。</li></ul></li><li><strong>🔑 角色权限控制：</strong><ul><li>基于角色的访问控制 (RBAC)，确保安全访问。</li></ul></li><li><strong>多语言支持：</strong><ul><li>支持多语言，支持设置为中文。</li></ul></li><li><strong>🧩 插件支持：</strong><ul><li>Pipelines 插件框架，集成自定义逻辑和 Python 库。</li></ul></li></ul><h2 id="🛠️-Python-环境搭建"><a href="#🛠️-Python-环境搭建" class="headerlink" title="🛠️ Python 环境搭建"></a>🛠️ Python 环境搭建</h2><p>首先，我们需要搭建 Python 环境。这里推荐使用 VS Code，配合 conda 管理环境：</p><ol><li>打开 VS Code 命令面板 (Ctrl+Shift+P)。</li><li>选择 “Python: Select Interpreter”。</li><li>选择 “Create conda environment”。</li><li>选择 Python 3.11，点击 “Create”。</li></ol><h3 id="安装-Open-WebUI"><a href="#安装-Open-WebUI" class="headerlink" title="安装 Open WebUI"></a>安装 Open WebUI</h3><p>接下来，使用 pip 安装 Open WebUI。<strong>注意：务必使用 Python 3.11，避免兼容性问题！</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip install open-webui<br><span class="hljs-meta prompt_"># </span><span class="language-bash">如果安装缓慢或失败，可以尝试指定版本：</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">pip install open-webui==0.2.0</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">或者更新 pip 后重试：</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">pip install --upgrade open-webui</span><br></code></pre></td></tr></table></figure><p>安装完成后，运行以下命令启动 Open WebUI：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">open-webui serve<br></code></pre></td></tr></table></figure><p>第一次启动会比较慢，耐心等待资源加载完毕。然后在浏览器中打开 <code>http://localhost:8080/</code> 即可。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_160340.png" alt="OpenWebUI 登录界面"></p><p>首次登录需要注册账号，注册后即可登录。</p><h2 id="⚙️-使用-OpenWebUI"><a href="#⚙️-使用-OpenWebUI" class="headerlink" title="⚙️ 使用 OpenWebUI"></a>⚙️ 使用 OpenWebUI</h2><h3 id="基础设置"><a href="#基础设置" class="headerlink" title="基础设置"></a>基础设置</h3><p>首次登录后，第一件事是添加模型。</p><ol><li>点击左下角或右上角头像，进入 “设置”。</li><li>在 “通用” 选项卡中，设置语言为中文。</li></ol><h3 id="外部链接设置"><a href="#外部链接设置" class="headerlink" title="外部链接设置"></a>外部链接设置</h3><p>OpenWebUI 支持连接各种外部模型 API，例如 Gemini、硅基流动等。</p><ol><li>点击 “+”，在 URL 中输入 API 的 base URL 和密钥。</li><li>点击 “保存”。如果不指定模型 ID，OpenWebUI 会自动检索可用模型。</li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_162644.png" alt="OpenWebUI 外部链接设置"></p><p>添加成功后，在对话界面左上角即可选择对应的模型。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_163157.png" alt="OpenWebUI 模型选择"></p><h3 id="配置-Gemini-模型"><a href="#配置-Gemini-模型" class="headerlink" title="配置 Gemini 模型"></a>配置 Gemini 模型</h3><p>以配置 Gemini 模型为例：</p><ol><li>进入 “设置” -&gt; “管理员设置” -&gt; “外部链接” -&gt; “添加模型”。</li><li>填写以下信息：<ul><li>URL: <code>https://generativelanguage.googleapis.com/v1beta</code></li><li>模型 ID: <code>gemini-2.0-flash</code></li></ul></li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_164302.png" alt="OpenWebUI Gemini 模型配置"></p><p>添加完成后，在模型对话界面就能看到 Gemini 模型了。你还可以在 “管理员面板” -&gt; “模型” 中管理模型，控制其是否显示。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_164656.png" alt="OpenWebUI 已添加的模型"></p><h2 id="💬-对话效果"><a href="#💬-对话效果" class="headerlink" title="💬 对话效果"></a>💬 对话效果</h2><p>上传一张图片，测试 Gemini 的理解能力：</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_164931.png" alt="OpenWebUI 图片理解测试"></p><h2 id="🗂️-工作空间：模型、知识库、提示词、工具"><a href="#🗂️-工作空间：模型、知识库、提示词、工具" class="headerlink" title="🗂️ 工作空间：模型、知识库、提示词、工具"></a>🗂️ 工作空间：模型、知识库、提示词、工具</h2><p>OpenWebUI 的工作空间提供了强大的管理功能。</p><h3 id="模型管理"><a href="#模型管理" class="headerlink" title="模型管理"></a>模型管理</h3><p>在 “工作空间” -&gt; “模型” 界面，你可以添加、管理、微调模型，还可以添加知识库。</p><p>OpenWebUI 社区中有很多别人微调好的参数，可以导入学习。</p><h3 id="知识库"><a href="#知识库" class="headerlink" title="知识库"></a>知识库</h3><ol><li>点击 “工作空间” -&gt; “知识库”，进入知识库对话界面。</li><li>点击 “创建知识库”。OpenWebUI 自带向量模型，也可以自定义。</li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250316165435784.png" alt="OpenWebUI 创建知识库"></p><p>创建知识库后，拖动文件到上传区域，点击即可预览文件。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_165707.png" alt="OpenWebUI 知识库文件上传"></p><p>添加知识库后，在输入框中输入 <code>#</code>，即可加载需要的知识库内容。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_165854.png" alt="OpenWebUI 知识库调用"></p><p>例如，使用 Deepseek R 1 结合知识库进行提问：</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_170242.png" alt="OpenWebUI 知识库问答"></p><p>如果觉得回答效果不佳，除了模型本身，还可能与知识库问答设置有关。可以在 “管理员设置” -&gt; “文档” 中自定义提示词。</p><h3 id="提示词"><a href="#提示词" class="headerlink" title="提示词"></a>提示词</h3><p>在 “工作空间” -&gt; “提示词管理” 中，可以进行提示词的设置、导入导出等操作。</p><h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>可以导入导出各种工具，或者自己创建工具，类似于简单的 Agent。</p><p>OpenWebUI 社区中提供了丰富的模型、工具和提示词，可以导入学习。</p><h3 id="联网搜索功能"><a href="#联网搜索功能" class="headerlink" title="联网搜索功能"></a>联网搜索功能</h3><p>下面以联网搜索功能为例，介绍如何添加和使用工具：</p><ol><li>进入 “工作空间” -&gt; “工具” -&gt; “发现更多工具”。</li><li>网页跳转到 <code>https://openwebui.com/tools</code>。</li><li>找到 “Tools” 下面的联网搜索工具。</li><li>点击进入，选择 “Get”。</li><li>选择自己的网址，点击 “保存”。</li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_193807.png" alt="OpenWebUI 联网搜索工具"></p><p>保存后，你会在工具列表中看到该工具。但是，要正常使用，还需要修改搜索引擎。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250316193911064.png" alt="OpenWebUI 修改搜索引擎"></p><p>修改完成后，在对话框的 “+” 按钮上开启网页搜索功能，即可进行网页搜索。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_194023.png" alt="OpenWebUI 开启网页搜索"></p><h3 id="代码解释器"><a href="#代码解释器" class="headerlink" title="代码解释器"></a>代码解释器</h3><p>OpenWebUI 默认自带代码执行器。用 Gemini 生成一段简单的代码，点击运行，竟然成功了！</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_172824.png" alt="OpenWebUI 代码生成"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_172914.png" alt="OpenWebUI 代码执行"></p><p>从结果来看，效果还不错。虽然出现了中文不友好的问题，但可以通过继续提问来解决。</p><h2 id="📝-结语"><a href="#📝-结语" class="headerlink" title="📝 结语"></a>📝 结语</h2><p>这篇文章够长了，我从体验 OpenWebUI 搭建，到模型配置、知识库管理、提示词管理、工具管理，再到代码解释器等特殊功能，完整地展示了 OpenWebUI 的强大之处。它不仅易于上手，而且社区资源丰富，完全可以作为生产力工具来部署。</p><p>OpenWebUI 还在不断更新，本文介绍的功能可能并不全面。我会持续体验这款开源工具，并分享更多使用技巧。</p><p>如果觉得这篇文章对你有帮助，别忘了点赞、收藏加关注哦！</p><h2 id="🔗-相关网站"><a href="#🔗-相关网站" class="headerlink" title="🔗 相关网站"></a>🔗 相关网站</h2><ul><li><strong>OpenWebUI</strong><ul><li>官网：<a href="https://openwebui.com/">https://openwebui.com/</a></li><li>GitHub: <a href="https://github.com/open-webui/open-webui">https://github.com/open-webui/open-webui</a></li></ul></li><li><strong>Gemini</strong><ul><li>Gemini：<a href="https://gemini.google.com/">https://gemini.google.com/</a></li><li>Google AI Studio：<a href="https://aistudio.google.com/">https://aistudio.google.com/</a></li></ul></li><li><strong>Qwen</strong>：<a href="https://chat.qwen.ai/">https://chat.qwen.ai/</a></li><li>**mychat ** :  <a href="https://chat.wenmao.xyz/">https://chat.wenmao.xyz/</a></li></ul>]]></content>
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>🚀 大家好，今天给大家分享一个超棒的 AI 应用构建工具——OpenWebUI！体验下来，只能说<strong>丝滑</strong>！必须强烈推荐！</p><p>🔥 听说过阿里巴巴的 <a href="https://chat.qwen.ai/">Qwen</a> 吗？他们最新的 Qwen Chat 网站就是用 OpenWebUI 搭建的！足以见得这个工具的强大。在 GitHub 上已经狂揽 83.7 k Star，简直恐怖如斯！</p><p><strong>大家可以去体验一下：<a href="https://chat.qwen.ai/">https://chat.qwen.ai/</a></strong></p><h2 id="OpenWebUI-功能特点：All-in-One，应有尽有！"><a href="#OpenWebUI-功能特点：All-in-One，应有尽有！" class="headerlink" title="OpenWebUI 功能特点：All in One，应有尽有！"></a>OpenWebUI 功能特点：All in One，应有尽有！</h2><p>OpenWebUI 简直是为 AI 应用而生，功能丰富到令人发指：</p><ul><li><strong>⚡️ 极速部署：</strong><ul><li>Docker 一键安装，还支持 Ollama 和 CUDA 镜像，告别繁琐配置。</li><li>支持 pip 一键安装，0 代码构建 AI 应用</li></ul></li><li><strong>🤝 超强兼容：</strong><ul><li>完美兼容 Ollama 和 OpenAI API，轻松连接 LMStudio、GroqCloud、Mistral、OpenRouter 等等平台。</li></ul></li><li><strong>🛡️ 权限管理：</strong><ul><li>细粒度的用户角色和权限控制，安全可靠，还能定制个性化用户体验。</li></ul></li><li><strong>📱 响应式设计：</strong><ul><li>无论桌面、笔记本还是移动设备，都能流畅使用。</li></ul></li><li><strong>📲 移动端 PWA：</strong><ul><li>媲美原生 App 的移动端体验，甚至支持本地离线访问！</li></ul></li><li><strong>✍️ 富文本支持：</strong><ul><li>Markdown 和 LaTeX 全面支持，让交互更丰富。</li></ul></li><li><strong>🗣️ 语音&#x2F;视频通话：</strong><ul><li>集成免提语音和视频通话，沟通方式更多样。</li></ul></li><li><strong>🐍 Python 函数调用：</strong><ul><li>内置代码编辑器，支持 Python 函数调用，自由扩展功能。</li></ul></li><li><strong>📚 本地 RAG 集成：</strong><ul><li>支持检索增强生成 (RAG)，直接加载文档或使用文档库进行交互。</li></ul></li><li><strong>🌐 RAG 网络搜索：</strong><ul><li>集成 SearXNG、Google PSE、Brave Search、DuckDuckGo 等搜索引擎，实时获取最新信息。</li></ul></li><li><strong>🎨 图像生成：</strong><ul><li>支持 AUTOMATIC 1111 API、ComfyUI、OpenAI DALL-E 等图像生成 API，聊天中也能生成图像。</li></ul></li><li><strong>🤹 多模型对话：</strong><ul><li>同时使用多个模型，集各家之所长。</li></ul></li><li><strong>🔑 角色权限控制：</strong><ul><li>基于角色的访问控制 (RBAC)，确保安全访问。</li></ul></li><li><strong>多语言支持：</strong><ul><li>支持多语言，支持设置为中文。</li></ul></li><li><strong>🧩 插件支持：</strong><ul><li>Pipelines 插件框架，集成自定义逻辑和 Python 库。</li></ul></li></ul><h2 id="🛠️-Python-环境搭建"><a href="#🛠️-Python-环境搭建" class="headerlink" title="🛠️ Python 环境搭建"></a>🛠️ Python 环境搭建</h2><p>首先，我们需要搭建 Python 环境。这里推荐使用 VS Code，配合 conda 管理环境：</p><ol><li>打开 VS Code 命令面板 (Ctrl+Shift+P)。</li><li>选择 “Python: Select Interpreter”。</li><li>选择 “Create conda environment”。</li><li>选择 Python 3.11，点击 “Create”。</li></ol><h3 id="安装-Open-WebUI"><a href="#安装-Open-WebUI" class="headerlink" title="安装 Open WebUI"></a>安装 Open WebUI</h3><p>接下来，使用 pip 安装 Open WebUI。<strong>注意：务必使用 Python 3.11，避免兼容性问题！</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip install open-webui<br><span class="hljs-meta prompt_"># </span><span class="language-bash">如果安装缓慢或失败，可以尝试指定版本：</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">pip install open-webui==0.2.0</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">或者更新 pip 后重试：</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">pip install --upgrade open-webui</span><br></code></pre></td></tr></table></figure><p>安装完成后，运行以下命令启动 Open WebUI：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">open-webui serve<br></code></pre></td></tr></table></figure><p>第一次启动会比较慢，耐心等待资源加载完毕。然后在浏览器中打开 <code>http://localhost:8080/</code> 即可。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_160340.png" alt="OpenWebUI 登录界面"></p><p>首次登录需要注册账号，注册后即可登录。</p><h2 id="⚙️-使用-OpenWebUI"><a href="#⚙️-使用-OpenWebUI" class="headerlink" title="⚙️ 使用 OpenWebUI"></a>⚙️ 使用 OpenWebUI</h2><h3 id="基础设置"><a href="#基础设置" class="headerlink" title="基础设置"></a>基础设置</h3><p>首次登录后，第一件事是添加模型。</p><ol><li>点击左下角或右上角头像，进入 “设置”。</li><li>在 “通用” 选项卡中，设置语言为中文。</li></ol><h3 id="外部链接设置"><a href="#外部链接设置" class="headerlink" title="外部链接设置"></a>外部链接设置</h3><p>OpenWebUI 支持连接各种外部模型 API，例如 Gemini、硅基流动等。</p><ol><li>点击 “+”，在 URL 中输入 API 的 base URL 和密钥。</li><li>点击 “保存”。如果不指定模型 ID，OpenWebUI 会自动检索可用模型。</li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_162644.png" alt="OpenWebUI 外部链接设置"></p><p>添加成功后，在对话界面左上角即可选择对应的模型。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_163157.png" alt="OpenWebUI 模型选择"></p><h3 id="配置-Gemini-模型"><a href="#配置-Gemini-模型" class="headerlink" title="配置 Gemini 模型"></a>配置 Gemini 模型</h3><p>以配置 Gemini 模型为例：</p><ol><li>进入 “设置” -&gt; “管理员设置” -&gt; “外部链接” -&gt; “添加模型”。</li><li>填写以下信息：<ul><li>URL: <code>https://generativelanguage.googleapis.com/v1beta</code></li><li>模型 ID: <code>gemini-2.0-flash</code></li></ul></li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_164302.png" alt="OpenWebUI Gemini 模型配置"></p><p>添加完成后，在模型对话界面就能看到 Gemini 模型了。你还可以在 “管理员面板” -&gt; “模型” 中管理模型，控制其是否显示。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_164656.png" alt="OpenWebUI 已添加的模型"></p><h2 id="💬-对话效果"><a href="#💬-对话效果" class="headerlink" title="💬 对话效果"></a>💬 对话效果</h2><p>上传一张图片，测试 Gemini 的理解能力：</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_164931.png" alt="OpenWebUI 图片理解测试"></p><h2 id="🗂️-工作空间：模型、知识库、提示词、工具"><a href="#🗂️-工作空间：模型、知识库、提示词、工具" class="headerlink" title="🗂️ 工作空间：模型、知识库、提示词、工具"></a>🗂️ 工作空间：模型、知识库、提示词、工具</h2><p>OpenWebUI 的工作空间提供了强大的管理功能。</p><h3 id="模型管理"><a href="#模型管理" class="headerlink" title="模型管理"></a>模型管理</h3><p>在 “工作空间” -&gt; “模型” 界面，你可以添加、管理、微调模型，还可以添加知识库。</p><p>OpenWebUI 社区中有很多别人微调好的参数，可以导入学习。</p><h3 id="知识库"><a href="#知识库" class="headerlink" title="知识库"></a>知识库</h3><ol><li>点击 “工作空间” -&gt; “知识库”，进入知识库对话界面。</li><li>点击 “创建知识库”。OpenWebUI 自带向量模型，也可以自定义。</li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250316165435784.png" alt="OpenWebUI 创建知识库"></p><p>创建知识库后，拖动文件到上传区域，点击即可预览文件。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_165707.png" alt="OpenWebUI 知识库文件上传"></p><p>添加知识库后，在输入框中输入 <code>#</code>，即可加载需要的知识库内容。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_165854.png" alt="OpenWebUI 知识库调用"></p><p>例如，使用 Deepseek R 1 结合知识库进行提问：</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_170242.png" alt="OpenWebUI 知识库问答"></p><p>如果觉得回答效果不佳，除了模型本身，还可能与知识库问答设置有关。可以在 “管理员设置” -&gt; “文档” 中自定义提示词。</p><h3 id="提示词"><a href="#提示词" class="headerlink" title="提示词"></a>提示词</h3><p>在 “工作空间” -&gt; “提示词管理” 中，可以进行提示词的设置、导入导出等操作。</p><h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>可以导入导出各种工具，或者自己创建工具，类似于简单的 Agent。</p><p>OpenWebUI 社区中提供了丰富的模型、工具和提示词，可以导入学习。</p><h3 id="联网搜索功能"><a href="#联网搜索功能" class="headerlink" title="联网搜索功能"></a>联网搜索功能</h3><p>下面以联网搜索功能为例，介绍如何添加和使用工具：</p><ol><li>进入 “工作空间” -&gt; “工具” -&gt; “发现更多工具”。</li><li>网页跳转到 <code>https://openwebui.com/tools</code>。</li><li>找到 “Tools” 下面的联网搜索工具。</li><li>点击进入，选择 “Get”。</li><li>选择自己的网址，点击 “保存”。</li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_193807.png" alt="OpenWebUI 联网搜索工具"></p><p>保存后，你会在工具列表中看到该工具。但是，要正常使用，还需要修改搜索引擎。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250316193911064.png" alt="OpenWebUI 修改搜索引擎"></p><p>修改完成后，在对话框的 “+” 按钮上开启网页搜索功能，即可进行网页搜索。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_194023.png" alt="OpenWebUI 开启网页搜索"></p><h3 id="代码解释器"><a href="#代码解释器" class="headerlink" title="代码解释器"></a>代码解释器</h3><p>OpenWebUI 默认自带代码执行器。用 Gemini 生成一段简单的代码，点击运行，竟然成功了！</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_172824.png" alt="OpenWebUI 代码生成"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_172914.png" alt="OpenWebUI 代码执行"></p><p>从结果来看，效果还不错。虽然出现了中文不友好的问题，但可以通过继续提问来解决。</p><h2 id="📝-结语"><a href="#📝-结语" class="headerlink" title="📝 结语"></a>📝 结语</h2><p>这篇文章够长了，我从体验 OpenWebUI 搭建，到模型配置、知识库管理、提示词管理、工具管理，再到代码解释器等特殊功能，完整地展示了 OpenWebUI 的强大之处。它不仅易于上手，而且社区资源丰富，完全可以作为生产力工具来部署。</p><p>OpenWebUI 还在不断更新，本文介绍的功能可能并不全面。我会持续体验这款开源工具，并分享更多使用技巧。</p><p>如果觉得这篇文章对你有帮助，别忘了点赞、收藏加关注哦！</p><h2 id="🔗-相关网站"><a href="#🔗-相关网站" class="headerlink" title="🔗 相关网站"></a>🔗 相关网站</h2><ul><li><strong>OpenWebUI</strong><ul><li>官网：<a href="https://openwebui.com/">https://openwebui.com/</a></li><li>GitHub: <a href="https://github.com/open-webui/open-webui">https://github.com/open-webui/open-webui</a></li></ul></li><li><strong>Gemini</strong><ul><li>Gemini：<a href="https://gemini.google.com/">https://gemini.google.com/</a></li><li>Google AI Studio：<a href="https://aistudio.google.com/">https://aistudio.google.com/</a></li></ul></li><li><strong>Qwen</strong>：<a href="https://chat.qwen.ai/">https://chat.qwen.ai/</a></li><li>**mychat ** :  <a href="https://chat.wenmao.xyz/">https://chat.wenmao.xyz/</a></li></ul>]]></content>
     
     
     <categories>
@@ -612,6 +612,35 @@
   
   <entry>
     <title>hexo 同步部署服务器和GitHub 超详细教程</title>
+    <link href="/2025/01/24/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/hexo%20%E5%90%8C%E6%AD%A5%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8CGitHub%20%E8%B6%85%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/"/>
+    <url>/2025/01/24/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/hexo%20%E5%90%8C%E6%AD%A5%E9%83%A8%E7%BD%B2%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8CGitHub%20%E8%B6%85%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>之前用Hexo、GitHub Pages、netlify 搭建并托管我的个人博客。尽管这种方式极为便捷，但国内访问速度时常受限。最近买了个服务器，刚好学习 Linux 和 Web 部署的相关知识，本文记录下hexo 如何同步部署服务器和GitHub。</p><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><ol><li>实现博客内容同时推送到GitHub和阿里云服务器。</li><li>掌握宝塔面板的基础网站配置方法。</li><li>学习Nginx 基础配置技巧。</li></ol><h2 id="基础条件"><a href="#基础条件" class="headerlink" title="基础条件"></a>基础条件</h2><ol><li>已在本地及GitHub上已成功搭建Hexo博客环境。</li><li>已有阿里云服务器。</li><li>已有域名和 SSL 证书。</li></ol><h2 id="安装流程"><a href="#安装流程" class="headerlink" title="安装流程"></a>安装流程</h2><h3 id="安装-git"><a href="#安装-git" class="headerlink" title="安装 git"></a>安装 git</h3><p>服务器端安装 git。</p><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">sudo yum <span class="hljs-keyword">install</span> git<br></code></pre></td></tr></table></figure><h3 id="创建博客文件夹"><a href="#创建博客文件夹" class="headerlink" title="创建博客文件夹"></a>创建博客文件夹</h3><p>服务器端创建文件夹。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">mkdir</span> -p /blog/html<br></code></pre></td></tr></table></figure><p>设置正确的权限。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo <span class="hljs-built_in">chown</span> root:root /blog/html<br>sudo <span class="hljs-built_in">chmod</span> 755 /blog/html<br></code></pre></td></tr></table></figure><h3 id="创建-git-仓库"><a href="#创建-git-仓库" class="headerlink" title="创建 git 仓库"></a>创建 git 仓库</h3><p>在服务器端配置 git 仓库接收本地推送，注意设置一个全局分支名称，我的是 main。</p><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-keyword">cd</span> <span class="hljs-string">/root</span><br>sudo git init <span class="hljs-params">--bare</span> blogit.git<span class="hljs-comment">#创建一个叫blogit的仓库</span><br>git config <span class="hljs-params">--global</span> init.defaultBranch main <span class="hljs-comment">#配置全局默认分支名</span><br><br></code></pre></td></tr></table></figure><h3 id="使用-hooks-实现自动部署"><a href="#使用-hooks-实现自动部署" class="headerlink" title="使用 hooks 实现自动部署"></a>使用 hooks 实现自动部署</h3><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">sudo vim <span class="hljs-regexp">/root/</span>blogit.git<span class="hljs-regexp">/hooks/</span>post-receive<br></code></pre></td></tr></table></figure><p>创建一个钩子文件，将下面的内容，放在 post-receive 里。初学者建议学习下 vim 语法。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-meta">#!/bin/sh</span><br>git --work-tree=/blog/html --git-dir=/root/blogit.git checkout -f main<br></code></pre></td></tr></table></figure><p>保存文件，给权限。</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">chmod +x <span class="hljs-regexp">/root/</span>blogit.git<span class="hljs-regexp">/hooks/</span>post-receive<br></code></pre></td></tr></table></figure><h4 id="vim-基本语法"><a href="#vim-基本语法" class="headerlink" title="vim 基本语法"></a>vim 基本语法</h4><p>点击 insert 切换模式，点击 esc 退出编辑模式，注意在英文输入法状态下才可以输入命令。</p><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs elixir"><span class="hljs-symbol">:wq</span> <span class="hljs-comment">#保存</span><br><span class="hljs-symbol">:%d</span> <span class="hljs-comment">#全部删除</span><br></code></pre></td></tr></table></figure><h3 id="修改-hexo-配置"><a href="#修改-hexo-配置" class="headerlink" title="修改 hexo 配置"></a>修改 hexo 配置</h3><p>在 hexo 的 <code>_config.yml</code> 文件deploy 设置中增加阿里云 git 信息。</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs stylus">deploy:<br>  - type: git<br>    repository: git@github<span class="hljs-selector-class">.com</span>:<span class="hljs-selector-attr">[对应的项目名]</span><span class="hljs-selector-class">.github</span><span class="hljs-selector-class">.io</span><span class="hljs-selector-class">.git</span> #注意替换<span class="hljs-selector-attr">[]</span>内容<br>    branch: <span class="hljs-selector-tag">main</span><br>  - type: git<br>    repository: root@<span class="hljs-selector-attr">[域名]</span>:/root/blogit<span class="hljs-selector-class">.git</span> #注意替换<span class="hljs-selector-attr">[]</span>内容<br>    branch: main<br></code></pre></td></tr></table></figure><p>注意做这一步之前需要将本地电脑的公钥，放在服务器 authorized_keys 文件里。具体如下</p><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ruby">打开authorized_keys<br>vim ~<span class="hljs-regexp">/.ssh/authorized</span>_keys<br>使用inser 模式复制公钥内容，这里注意需要在本地建立公钥文件<br>英文模式下点击esc,命令行输入下面内容保存<br><span class="hljs-symbol">:wq</span><br></code></pre></td></tr></table></figure><p>这样就可以通过本地 ssh 连接服务器了，可以通过下面的代码测试是否连接成功。</p><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">ssh <span class="hljs-symbol">root@</span>[域名]<br></code></pre></td></tr></table></figure><p>经过上述过程后，在本地文件夹 利用 hexo 三连，测试是否将博客同时发布到服务器和 GitHub。</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">hexo clean</span><br><span class="hljs-attribute">hexo g</span><br><span class="hljs-attribute">hexo d</span><br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202501242034309.png" alt="成功同步"></p><h3 id="安装宝塔"><a href="#安装宝塔" class="headerlink" title="安装宝塔"></a>安装宝塔</h3><p>在阿里云里面可以重装带有宝塔的系统，也可以执行下面的命令</p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk"><span class="hljs-keyword">if</span> [ -f <span class="hljs-regexp">/usr/</span>bin<span class="hljs-regexp">/curl ];then curl -sSO https:/</span><span class="hljs-regexp">/download.bt.cn/i</span>nstall<span class="hljs-regexp">/install_panel.sh;else wget -O install_panel.sh https:/</span><span class="hljs-regexp">/download.bt.cn/i</span>nstall/install_panel.sh;fi;bash install_panel.sh ed8484bec<br></code></pre></td></tr></table></figure><h3 id="安装-nginx"><a href="#安装-nginx" class="headerlink" title="安装 nginx"></a>安装 nginx</h3><p>进入宝塔页面，会推荐安装 nginx，其他工具的根据自己情况安装。</p><h3 id="配置-html-项目"><a href="#配置-html-项目" class="headerlink" title="配置 html 项目"></a>配置 html 项目</h3><p>由于我是用的 hexo 主题为 fulid 很多 css 用的是 https ，需要申请证书，如果没有添加证书，很多效果无法展示，因此需要在阿里云服务器里申请免费的 SSL 证书，个人证书只有 90 天的权限，具体步骤直接在服务器搜索，这里略过不提。</p><p>在宝塔内点击网址-html 项目-添加项目，添加域名、根目录信息，点击确定。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202501242046940.png"></p><p>在新增的html网站项目里，点击部署 SSL 证书，将阿里云上的证书下载下来，把 key 和 pem 复制到对应的位置，点击确定即可。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202501242050218.png"></p><p>用下面代码检查一下配置是否正常，若一切正常，重载配置，浏览域名就可以看到内容啦。</p><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">nginx -t</span><br></code></pre></td></tr></table></figure><h3 id="nginx-配置"><a href="#nginx-配置" class="headerlink" title="nginx 配置"></a>nginx 配置</h3><p>用这种方法不用去折腾 nginx 配置，会自动生成，在宝塔网站管理界面可以看到，以下是示例，实际有 SSL 证书的会复杂一些。</p><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span> &#123;<br>    <span class="hljs-attribute">listen</span>       <span class="hljs-number">80</span>;<br>    <span class="hljs-attribute">server_name</span>  wenmao.xyz;  <span class="hljs-comment"># 替换为你的域名或IP地址</span><br>        <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;<br>        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;<br>        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;<br>        <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$http_host</span>;<br>        <span class="hljs-attribute">proxy_connect_timeout</span> <span class="hljs-number">300</span>;<br>        <span class="hljs-attribute">proxy_http_version</span> <span class="hljs-number">1</span>.<span class="hljs-number">1</span>;<br>        <span class="hljs-attribute">proxy_set_header</span> Connection <span class="hljs-string">&quot;&quot;</span>;<br>        <span class="hljs-attribute">chunked_transfer_encoding</span> <span class="hljs-literal">off</span>;<br><br>    <span class="hljs-attribute">root</span>   /blog/html;  <span class="hljs-comment"># 替换实际路径</span><br>    <span class="hljs-attribute">index</span>  index.html index.htm;<br><br>    <span class="hljs-section">location</span> / &#123;<br>        <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /index.html;<br>    &#125;<br><br>    <span class="hljs-comment"># 访问日志和错误日志</span><br>    <span class="hljs-attribute">access_log</span>  /www/wwwlogs/hexo_blog_access.log;<br>    <span class="hljs-attribute">error_log</span>   /www/wwwlogs/hexo_blog_error.log;<br>&#125;<br><br></code></pre></td></tr></table></figure><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>折腾了一圈，总算是成功了，这个过程中，基本熟悉了网站部署的流程，购买域名、备案、设置证书，宝塔、nginx 配置。第一次做感觉非常麻烦，完成之后梳理一遍觉得收获了不少，对 liunx、宝塔、1panel 更感兴趣了，另外过程中还进一步了解 hugo、astro、Docusaurus 等网站框架的部署，对比之后还是坚持 obsidian+hexo 的笔记流程，理由是 obsidian 是我主力的笔记软件，不用更换文档的属性，不用更换文件夹，加上hexo 配置好后，三连配合GitHub page 或者netlify 可以非常方便的部署。</p><p>总之，整个过程主要的收获初步是了解了Linux 项目部署相关知识。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://blog.csdn.net/weixin_44975887/article/details/117267259">https://blog.csdn.net/weixin_44975887/article/details/117267259</a></p><h2 id="已部署博客"><a href="#已部署博客" class="headerlink" title="已部署博客"></a>已部署博客</h2><p>欢迎收藏，有什么问题可以在公众号后留言~</p><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs dts"><span class="hljs-symbol">https:</span><span class="hljs-comment">//wenmao.xyz/</span><br><span class="hljs-symbol">https:</span><span class="hljs-comment">//wenmaochen.netlify.app/</span><br><span class="hljs-symbol">https:</span><span class="hljs-comment">//maoyu92.github.io/</span><br></code></pre></td></tr></table></figure><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明  </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>经验分享</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>博客搭建</tag>
+      
+      <tag>Linux</tag>
+      
+      <tag>云服务器</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>hexo 同步部署服务器和GitHub 超详细教程</title>
     <link href="/2025/01/24/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/nginx%20%E9%83%A8%E7%BD%B2hexo%20%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/"/>
     <url>/2025/01/24/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/nginx%20%E9%83%A8%E7%BD%B2hexo%20%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/</url>
     
@@ -1023,9 +1052,9 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>生态环境</tag>
+      
+      <tag>python</tag>
       
     </tags>
     
@@ -1050,9 +1079,9 @@
     
     <tags>
       
-      <tag>水文分析</tag>
-      
       <tag>生态环境</tag>
+      
+      <tag>水文分析</tag>
       
     </tags>
     
@@ -1104,9 +1133,9 @@
     
     <tags>
       
-      <tag>水文分析</tag>
-      
       <tag>生态环境</tag>
+      
+      <tag>水文分析</tag>
       
       <tag>经验分享</tag>
       
@@ -1160,9 +1189,9 @@
       
       <tag>python</tag>
       
-      <tag>工作总结</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>工作总结</tag>
       
     </tags>
     
@@ -1338,9 +1367,9 @@
       
       <tag>python</tag>
       
-      <tag>streamlit</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>streamlit</tag>
       
     </tags>
     
@@ -1392,9 +1421,9 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>生态环境</tag>
+      
+      <tag>python</tag>
       
       <tag>经验分享</tag>
       
@@ -1508,9 +1537,9 @@
       
       <tag>python</tag>
       
-      <tag>streamlit</tag>
-      
       <tag>数据分析</tag>
+      
+      <tag>streamlit</tag>
       
     </tags>
     
@@ -1797,17 +1826,17 @@
     
     <tags>
       
+      <tag>生态环境</tag>
+      
       <tag>python</tag>
+      
+      <tag>数据分析</tag>
       
       <tag>streamlit</tag>
       
       <tag>数据可视化</tag>
       
-      <tag>数据分析</tag>
-      
       <tag>工作总结</tag>
-      
-      <tag>生态环境</tag>
       
     </tags>
     
@@ -1832,17 +1861,17 @@
     
     <tags>
       
+      <tag>生态环境</tag>
+      
       <tag>python</tag>
+      
+      <tag>数据分析</tag>
       
       <tag>streamlit</tag>
       
       <tag>数据可视化</tag>
       
-      <tag>数据分析</tag>
-      
       <tag>工作总结</tag>
-      
-      <tag>生态环境</tag>
       
     </tags>
     
@@ -1867,15 +1896,15 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
       <tag>生态环境</tag>
-      
-      <tag>时间序列模型</tag>
       
       <tag>BP神经网络</tag>
       
       <tag>水质模型</tag>
+      
+      <tag>时间序列模型</tag>
+      
+      <tag>用心长文</tag>
       
     </tags>
     
@@ -2004,17 +2033,17 @@
     
     <tags>
       
-      <tag>水文分析</tag>
+      <tag>生态环境</tag>
       
       <tag>用心长文</tag>
       
       <tag>python</tag>
       
-      <tag>streamlit</tag>
-      
-      <tag>生态环境</tag>
+      <tag>水文分析</tag>
       
       <tag>经验分享</tag>
+      
+      <tag>streamlit</tag>
       
       <tag>git</tag>
       
@@ -2097,9 +2126,9 @@
       
       <tag>python</tag>
       
-      <tag>数据分析</tag>
-      
       <tag>算法</tag>
+      
+      <tag>数据分析</tag>
       
     </tags>
     
@@ -2180,11 +2209,11 @@
     
     <tags>
       
-      <tag>用心长文</tag>
-      
       <tag>生态环境</tag>
       
       <tag>时间序列模型</tag>
+      
+      <tag>用心长文</tag>
       
       <tag>机理模型</tag>
       
@@ -2267,9 +2296,9 @@
     
     <tags>
       
-      <tag>水文分析</tag>
-      
       <tag>arcgis</tag>
+      
+      <tag>水文分析</tag>
       
     </tags>
     
@@ -2294,11 +2323,11 @@
     
     <tags>
       
-      <tag>水文分析</tag>
+      <tag>用心长文</tag>
       
       <tag>arcgis</tag>
       
-      <tag>用心长文</tag>
+      <tag>水文分析</tag>
       
     </tags>
     
@@ -2348,11 +2377,11 @@
     
     <tags>
       
-      <tag>水文分析</tag>
+      <tag>用心长文</tag>
       
       <tag>arcgis</tag>
       
-      <tag>用心长文</tag>
+      <tag>水文分析</tag>
       
       <tag>地形数据</tag>
       
@@ -2595,37 +2624,6 @@
   
   
   <entry>
-    <title>prophet时间序列模型 参数微调</title>
-    <link href="/2024/05/13/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%20%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83/"/>
-    <url>/2024/05/13/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%20%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83/</url>
-    
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /> <p>之前写过prophet时间序列模型的简单介绍，今天补充将参数调整部分。</p><h2 id="Prophet-简介"><a href="#Prophet-简介" class="headerlink" title="Prophet 简介"></a>Prophet 简介</h2><p>Prophet 是 Facebook 于2017年开源的一个时间序列预测框架，特别适合于处理具有明显趋势性和季节性的数据。该模型设计初衷是为了让非专业的数据科学家也能轻松上手进行复杂的时间序列分析，同时也能满足专业人士对于模型灵活性和准确性的需求，总之，就很香。</p><h2 id="Prophet-模型特点"><a href="#Prophet-模型特点" class="headerlink" title="Prophet 模型特点"></a>Prophet 模型特点</h2><p><strong>易用性</strong>：Prophet 提供了一个高度封装的 API，用户只需要提供时间戳（ds，通常为日期）和观测值（y，即随时间变化的目标变量），就可以快速构建预测模型，而无需深入理解复杂的统计或机器学习理论。<br><strong>自动特征提取</strong>：模型自动识别并处理时间序列中的趋势（长期增长或下降）、季节性（如周、月、年等周期性模式）以及节假日效应。用户可以轻松地添加自定义的季节性模式和节假日信息。<br><strong>灵活性</strong>：模型允许用户调整多种参数来控制预测的行为，比如趋势的平滑程度、季节性模式的复杂度等，以适应不同数据的特点。<br><strong>异常值和缺失值处理</strong>：Prophet模型对于数据中的异常值和缺失值具有一定的鲁棒性，能够在不影响整体预测的情况下处理这些问题。<br><strong>changepoints</strong>：模型能够自动检测并适应时间序列中的变化点，即数据中的非平稳部分，这对于预测具有突然变化的时间序列尤为重要。<br><strong>可视化</strong>：Prophet还提供了丰富的可视化工具，帮助用户直观地理解模型的各个组成部分（如趋势、季节性）以及预测结果，便于模型诊断和结果解释。<br><strong>Python 和 R 支持</strong>：Prophet 在 Python 和 R 两种语言中都有实现，方便不同背景的用户使用。</p><p>从上面的特点看出，完美适配水质预测。</p><h2 id="Prophet-python-安装"><a href="#Prophet-python-安装" class="headerlink" title="Prophet python 安装"></a>Prophet python 安装</h2><p>在网上能看到很多奇奇怪怪的安装指令，比如 fbprophet 库，已经不能用了，以我为准哈，下面是最新可用的安装方法。</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pip install prophet<br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131841729.png" alt="image.png"></p><h2 id="Python-Prophet-实践"><a href="#Python-Prophet-实践" class="headerlink" title="Python Prophet 实践"></a>Python Prophet 实践</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd  <br><span class="hljs-keyword">from</span> prophet <span class="hljs-keyword">import</span> Prophet  <br><span class="hljs-keyword">from</span> prophet.plot <span class="hljs-keyword">import</span> add_changepoints_to_plot  <br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np  <br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br></code></pre></td></tr></table></figure><h3 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h3><p>每个项目的数据准备不一样，可以是在线数据，也可以是本地数据，具体略过。<br>数据结构为时间和值，Prophet 格式形式为 ds 和 y。</p><h3 id="数据粒径和数据集尺寸"><a href="#数据粒径和数据集尺寸" class="headerlink" title="数据粒径和数据集尺寸"></a>数据粒径和数据集尺寸</h3><p>Prophet 非常适合做周期数据，也适应多种粒径，所以无需担心他无法识别小时或者日的尺度，<br>还有因为他适合做周期数据，因此给数据集时，应给他至少一个周期的数据，不然预测出来效果差很多。<br>比如同一个站点，同一个因子，给一个月的数据集和一年的数据集结果分别如下图所示：<br><strong>一个月的数据集预测结果</strong><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131854796.png" alt="Figure_5.png"><br><strong>一年的数据结果</strong><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131855235.png" alt="Figure_2.png"></p><p>由上面 2 个图可以看出，完全是天差地别，也能看出这个模型非常厉害，处理周期波动数据非常精准，在一年的尺度下准确的预测了 4 月后水质将继续升高，并没有被短期下降数据而干扰。</p><h2 id="原始数据集预览"><a href="#原始数据集预览" class="headerlink" title="原始数据集预览"></a>原始数据集预览</h2><p>综上，我们选择一年的数据集，开始预测。原始数据如下：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131858976.png"><br>可以看到数据集质量一般，这也是实际生成环境中的数据，但是 Prophet 能够识别异常值，不用担心他会报错。</p><h2 id="模型搭建预览结果"><a href="#模型搭建预览结果" class="headerlink" title="模型搭建预览结果"></a>模型搭建预览结果</h2><p>模型接口非常简单，代码如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 初始化Prophet模型  </span><br>model = Prophet()  <br><span class="hljs-comment"># 拟合模型  </span><br>model.fit(df)  <br><span class="hljs-comment"># 定义未来预测的时间段，例如预测未来7天的水质  </span><br>future = model.make_future_dataframe(periods=<span class="hljs-number">7</span>)  <span class="hljs-comment"># 7天预测期  </span><br>future.tail()  <span class="hljs-comment"># 查看预测数据框的末尾几行以确认预测时间段  </span><br><span class="hljs-comment"># 进行预测  </span><br>forecast = model.predict(future)  <br><span class="hljs-comment"># 绘制预测结果  </span><br>fig1 = model.plot(forecast)  <br>plt.title(<span class="hljs-string">&#x27;Water Quality Prediction&#x27;</span>)  <br>plt.show()  <br><span class="hljs-comment"># 添加变化点到图表中（如果需要）  </span><br>fig2 = model.plot(forecast)  <br>ax = fig2.gca()  <br>add_changepoints_to_plot(ax, model, forecast)  <br>plt.title(<span class="hljs-string">&#x27;Water Quality Prediction with Changepoints&#x27;</span>)  <br>plt.show()  <br><span class="hljs-comment"># 打印预测数据框查看预测详情  </span><br><span class="hljs-built_in">print</span>(forecast[[<span class="hljs-string">&#x27;ds&#x27;</span>, <span class="hljs-string">&#x27;yhat&#x27;</span>, <span class="hljs-string">&#x27;yhat_lower&#x27;</span>, <span class="hljs-string">&#x27;yhat_upper&#x27;</span>]])<br></code></pre></td></tr></table></figure><p>预测结果为图 2 所示，变化点如下图，模型将每次突变点都标记出来了。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131902308.png" alt="Figure_3.png"></p><p>预测结果 forecast<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131913145.png" alt="image.png"></p><h3 id="plotly-交互式接口"><a href="#plotly-交互式接口" class="headerlink" title="plotly 交互式接口"></a>plotly 交互式接口</h3><p>模型也提供了plotly创建预测和组件的交互式图窗，需要独立安装您 plotly 4.0 或更高版本，及 <code>notebook</code> 和 <code>ipywidgets</code> 软件包。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">plot1 = plot_plotly(model, forecast)  <br>plot1.update_xaxes(<span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;date&quot;</span>, tickformat=<span class="hljs-string">&quot;%m-%d %H&quot;</span>)  <br>plot1.update_layout(  <br>    title=<span class="hljs-string">&quot;水质预测趋势&quot;</span>,  <br>    xaxis_title=<span class="hljs-string">&quot;日期&quot;</span>,  <br>    yaxis_title=<span class="hljs-string">&quot;value&quot;</span>  <br>)  <br>plot2 = plot_components_plotly(model, forecast)  <br>  <br>st.write(plot1)<br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410141428581.png" alt="image.png"></p><h2 id="模型微调"><a href="#模型微调" class="headerlink" title="模型微调"></a>模型微调</h2><h3 id="限定预测范围和方向"><a href="#限定预测范围和方向" class="headerlink" title="限定预测范围和方向"></a>限定预测范围和方向</h3><p>模型通过使用’cap’和’floor’，限制模型的预测范围。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">df[<span class="hljs-string">&#x27;cap&#x27;</span>] = <span class="hljs-number">10</span>  <br>df[<span class="hljs-string">&#x27;floor&#x27;</span>] = <span class="hljs-number">3</span>  <br>  <br><span class="hljs-comment"># 初始化Prophet模型  </span><br>model = Prophet(growth=<span class="hljs-string">&#x27;logistic&#x27;</span>)  <br><span class="hljs-comment"># 拟合模型  </span><br>model.fit(df)  <br><span class="hljs-comment"># 定义未来预测的时间段，例如预测未来7天的水质  </span><br>future = model.make_future_dataframe(periods=<span class="hljs-number">7</span>)  <span class="hljs-comment"># 7天预测期 </span><br>future[<span class="hljs-string">&#x27;cap&#x27;</span>] = <span class="hljs-number">10</span>  <br>future[<span class="hljs-string">&#x27;floor&#x27;</span>] = <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410141515347.png" alt="image.png"><br>可以看到，模型预测结果被限制在 10-3 之间，影响了预测结果的走向。</p><h3 id="调整趋势灵活性"><a href="#调整趋势灵活性" class="headerlink" title="调整趋势灵活性"></a>调整趋势灵活性</h3><p>调整趋势的灵活性，可以理解为调整置信区间的范围，方法是changepoint.prior.scale，降低该值将使趋势变得不那么灵活（置信区间小），提高数字让趋势更加灵活。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 初始化Prophet模型  </span><br>model = Prophet(changepoint_prior_scale=<span class="hljs-number">0.001</span>)  <br><span class="hljs-comment"># 拟合模型  </span><br>model.fit(df)  <br><span class="hljs-comment"># 定义未来预测的时间段，例如预测未来7天的水质  </span><br>future = model.make_future_dataframe(periods=<span class="hljs-number">7</span>)  <span class="hljs-comment"># 7天预测期</span><br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410141536665.png" alt="image.png"></p><h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><strong>官方 docs</strong><br><a href="https://facebook.github.io/prophet/docs/quick_start.html#python-api">Quick Start | Prophet (facebook.github.io)</a></p>]]></content>
-    
-    
-    <categories>
-      
-      <category>生态环境</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>用心长文</tag>
-      
-      <tag>python</tag>
-      
-      <tag>时间序列模型</tag>
-      
-      <tag>水环境分析</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>prophet时间序列模型水质预测应用</title>
     <link href="/2024/05/13/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E5%BA%94%E7%94%A8/"/>
     <url>/2024/05/13/01%20%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E6%B0%B4%E8%B4%A8%E9%A2%84%E6%B5%8B%E5%BA%94%E7%94%A8/</url>
@@ -2642,13 +2640,44 @@
     
     <tags>
       
+      <tag>时间序列模型</tag>
+      
       <tag>用心长文</tag>
+      
+      <tag>水环境分析</tag>
       
       <tag>python</tag>
       
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>prophet时间序列模型 参数微调</title>
+    <link href="/2024/05/13/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%20%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83/"/>
+    <url>/2024/05/13/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/prophet%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%20%E5%8F%82%E6%95%B0%E5%BE%AE%E8%B0%83/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /> <p>之前写过prophet时间序列模型的简单介绍，今天补充将参数调整部分。</p><h2 id="Prophet-简介"><a href="#Prophet-简介" class="headerlink" title="Prophet 简介"></a>Prophet 简介</h2><p>Prophet 是 Facebook 于2017年开源的一个时间序列预测框架，特别适合于处理具有明显趋势性和季节性的数据。该模型设计初衷是为了让非专业的数据科学家也能轻松上手进行复杂的时间序列分析，同时也能满足专业人士对于模型灵活性和准确性的需求，总之，就很香。</p><h2 id="Prophet-模型特点"><a href="#Prophet-模型特点" class="headerlink" title="Prophet 模型特点"></a>Prophet 模型特点</h2><p><strong>易用性</strong>：Prophet 提供了一个高度封装的 API，用户只需要提供时间戳（ds，通常为日期）和观测值（y，即随时间变化的目标变量），就可以快速构建预测模型，而无需深入理解复杂的统计或机器学习理论。<br><strong>自动特征提取</strong>：模型自动识别并处理时间序列中的趋势（长期增长或下降）、季节性（如周、月、年等周期性模式）以及节假日效应。用户可以轻松地添加自定义的季节性模式和节假日信息。<br><strong>灵活性</strong>：模型允许用户调整多种参数来控制预测的行为，比如趋势的平滑程度、季节性模式的复杂度等，以适应不同数据的特点。<br><strong>异常值和缺失值处理</strong>：Prophet模型对于数据中的异常值和缺失值具有一定的鲁棒性，能够在不影响整体预测的情况下处理这些问题。<br><strong>changepoints</strong>：模型能够自动检测并适应时间序列中的变化点，即数据中的非平稳部分，这对于预测具有突然变化的时间序列尤为重要。<br><strong>可视化</strong>：Prophet还提供了丰富的可视化工具，帮助用户直观地理解模型的各个组成部分（如趋势、季节性）以及预测结果，便于模型诊断和结果解释。<br><strong>Python 和 R 支持</strong>：Prophet 在 Python 和 R 两种语言中都有实现，方便不同背景的用户使用。</p><p>从上面的特点看出，完美适配水质预测。</p><h2 id="Prophet-python-安装"><a href="#Prophet-python-安装" class="headerlink" title="Prophet python 安装"></a>Prophet python 安装</h2><p>在网上能看到很多奇奇怪怪的安装指令，比如 fbprophet 库，已经不能用了，以我为准哈，下面是最新可用的安装方法。</p><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">pip install prophet<br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131841729.png" alt="image.png"></p><h2 id="Python-Prophet-实践"><a href="#Python-Prophet-实践" class="headerlink" title="Python Prophet 实践"></a>Python Prophet 实践</h2><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd  <br><span class="hljs-keyword">from</span> prophet <span class="hljs-keyword">import</span> Prophet  <br><span class="hljs-keyword">from</span> prophet.plot <span class="hljs-keyword">import</span> add_changepoints_to_plot  <br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np  <br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br></code></pre></td></tr></table></figure><h3 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h3><p>每个项目的数据准备不一样，可以是在线数据，也可以是本地数据，具体略过。<br>数据结构为时间和值，Prophet 格式形式为 ds 和 y。</p><h3 id="数据粒径和数据集尺寸"><a href="#数据粒径和数据集尺寸" class="headerlink" title="数据粒径和数据集尺寸"></a>数据粒径和数据集尺寸</h3><p>Prophet 非常适合做周期数据，也适应多种粒径，所以无需担心他无法识别小时或者日的尺度，<br>还有因为他适合做周期数据，因此给数据集时，应给他至少一个周期的数据，不然预测出来效果差很多。<br>比如同一个站点，同一个因子，给一个月的数据集和一年的数据集结果分别如下图所示：<br><strong>一个月的数据集预测结果</strong><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131854796.png" alt="Figure_5.png"><br><strong>一年的数据结果</strong><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131855235.png" alt="Figure_2.png"></p><p>由上面 2 个图可以看出，完全是天差地别，也能看出这个模型非常厉害，处理周期波动数据非常精准，在一年的尺度下准确的预测了 4 月后水质将继续升高，并没有被短期下降数据而干扰。</p><h2 id="原始数据集预览"><a href="#原始数据集预览" class="headerlink" title="原始数据集预览"></a>原始数据集预览</h2><p>综上，我们选择一年的数据集，开始预测。原始数据如下：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131858976.png"><br>可以看到数据集质量一般，这也是实际生成环境中的数据，但是 Prophet 能够识别异常值，不用担心他会报错。</p><h2 id="模型搭建预览结果"><a href="#模型搭建预览结果" class="headerlink" title="模型搭建预览结果"></a>模型搭建预览结果</h2><p>模型接口非常简单，代码如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 初始化Prophet模型  </span><br>model = Prophet()  <br><span class="hljs-comment"># 拟合模型  </span><br>model.fit(df)  <br><span class="hljs-comment"># 定义未来预测的时间段，例如预测未来7天的水质  </span><br>future = model.make_future_dataframe(periods=<span class="hljs-number">7</span>)  <span class="hljs-comment"># 7天预测期  </span><br>future.tail()  <span class="hljs-comment"># 查看预测数据框的末尾几行以确认预测时间段  </span><br><span class="hljs-comment"># 进行预测  </span><br>forecast = model.predict(future)  <br><span class="hljs-comment"># 绘制预测结果  </span><br>fig1 = model.plot(forecast)  <br>plt.title(<span class="hljs-string">&#x27;Water Quality Prediction&#x27;</span>)  <br>plt.show()  <br><span class="hljs-comment"># 添加变化点到图表中（如果需要）  </span><br>fig2 = model.plot(forecast)  <br>ax = fig2.gca()  <br>add_changepoints_to_plot(ax, model, forecast)  <br>plt.title(<span class="hljs-string">&#x27;Water Quality Prediction with Changepoints&#x27;</span>)  <br>plt.show()  <br><span class="hljs-comment"># 打印预测数据框查看预测详情  </span><br><span class="hljs-built_in">print</span>(forecast[[<span class="hljs-string">&#x27;ds&#x27;</span>, <span class="hljs-string">&#x27;yhat&#x27;</span>, <span class="hljs-string">&#x27;yhat_lower&#x27;</span>, <span class="hljs-string">&#x27;yhat_upper&#x27;</span>]])<br></code></pre></td></tr></table></figure><p>预测结果为图 2 所示，变化点如下图，模型将每次突变点都标记出来了。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131902308.png" alt="Figure_3.png"></p><p>预测结果 forecast<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202405131913145.png" alt="image.png"></p><h3 id="plotly-交互式接口"><a href="#plotly-交互式接口" class="headerlink" title="plotly 交互式接口"></a>plotly 交互式接口</h3><p>模型也提供了plotly创建预测和组件的交互式图窗，需要独立安装您 plotly 4.0 或更高版本，及 <code>notebook</code> 和 <code>ipywidgets</code> 软件包。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs python">plot1 = plot_plotly(model, forecast)  <br>plot1.update_xaxes(<span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;date&quot;</span>, tickformat=<span class="hljs-string">&quot;%m-%d %H&quot;</span>)  <br>plot1.update_layout(  <br>    title=<span class="hljs-string">&quot;水质预测趋势&quot;</span>,  <br>    xaxis_title=<span class="hljs-string">&quot;日期&quot;</span>,  <br>    yaxis_title=<span class="hljs-string">&quot;value&quot;</span>  <br>)  <br>plot2 = plot_components_plotly(model, forecast)  <br>  <br>st.write(plot1)<br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410141428581.png" alt="image.png"></p><h2 id="模型微调"><a href="#模型微调" class="headerlink" title="模型微调"></a>模型微调</h2><h3 id="限定预测范围和方向"><a href="#限定预测范围和方向" class="headerlink" title="限定预测范围和方向"></a>限定预测范围和方向</h3><p>模型通过使用’cap’和’floor’，限制模型的预测范围。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python">df[<span class="hljs-string">&#x27;cap&#x27;</span>] = <span class="hljs-number">10</span>  <br>df[<span class="hljs-string">&#x27;floor&#x27;</span>] = <span class="hljs-number">3</span>  <br>  <br><span class="hljs-comment"># 初始化Prophet模型  </span><br>model = Prophet(growth=<span class="hljs-string">&#x27;logistic&#x27;</span>)  <br><span class="hljs-comment"># 拟合模型  </span><br>model.fit(df)  <br><span class="hljs-comment"># 定义未来预测的时间段，例如预测未来7天的水质  </span><br>future = model.make_future_dataframe(periods=<span class="hljs-number">7</span>)  <span class="hljs-comment"># 7天预测期 </span><br>future[<span class="hljs-string">&#x27;cap&#x27;</span>] = <span class="hljs-number">10</span>  <br>future[<span class="hljs-string">&#x27;floor&#x27;</span>] = <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410141515347.png" alt="image.png"><br>可以看到，模型预测结果被限制在 10-3 之间，影响了预测结果的走向。</p><h3 id="调整趋势灵活性"><a href="#调整趋势灵活性" class="headerlink" title="调整趋势灵活性"></a>调整趋势灵活性</h3><p>调整趋势的灵活性，可以理解为调整置信区间的范围，方法是changepoint.prior.scale，降低该值将使趋势变得不那么灵活（置信区间小），提高数字让趋势更加灵活。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 初始化Prophet模型  </span><br>model = Prophet(changepoint_prior_scale=<span class="hljs-number">0.001</span>)  <br><span class="hljs-comment"># 拟合模型  </span><br>model.fit(df)  <br><span class="hljs-comment"># 定义未来预测的时间段，例如预测未来7天的水质  </span><br>future = model.make_future_dataframe(periods=<span class="hljs-number">7</span>)  <span class="hljs-comment"># 7天预测期</span><br></code></pre></td></tr></table></figure><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410141536665.png" alt="image.png"></p><h3 id="相关文章"><a href="#相关文章" class="headerlink" title="相关文章"></a>相关文章</h3><p><strong>官方 docs</strong><br><a href="https://facebook.github.io/prophet/docs/quick_start.html#python-api">Quick Start | Prophet (facebook.github.io)</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>生态环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
       <tag>时间序列模型</tag>
       
+      <tag>用心长文</tag>
+      
       <tag>水环境分析</tag>
+      
+      <tag>python</tag>
       
     </tags>
     
@@ -2733,11 +2762,11 @@
       
       <tag>用心长文</tag>
       
-      <tag>python</tag>
+      <tag>时间序列</tag>
       
       <tag>水环境分析</tag>
       
-      <tag>时间序列</tag>
+      <tag>python</tag>
       
     </tags>
     
@@ -2764,11 +2793,11 @@
       
       <tag>用心长文</tag>
       
-      <tag>python</tag>
+      <tag>时间序列</tag>
       
       <tag>水环境分析</tag>
       
-      <tag>时间序列</tag>
+      <tag>python</tag>
       
     </tags>
     
@@ -2855,9 +2884,9 @@
     
     <tags>
       
-      <tag>python</tag>
-      
       <tag>生态环境</tag>
+      
+      <tag>python</tag>
       
       <tag>经验分享</tag>
       
