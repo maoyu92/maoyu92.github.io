@@ -1,0 +1,908 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="🚀 大家好，今天给大家分享一个超棒的 AI 应用构建工具——OpenWebUI！体验下来，只能说丝滑！必须强烈推荐！ 🔥 听说过阿里巴巴的 Qwen 吗？他们最新的 Qwen Chat 网站就是用 OpenWebUI 搭建的！足以见得这个工具的强大。在 GitHub 上已经狂揽 83.7 k Star，简直恐怖如斯！ 大家可以去体验一下：https:&#x2F;&#x2F;chat.qwen.ai&#x2F; OpenWe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenWebUI：一站式 AI 应用构建平台体验">
+<meta property="og:url" content="https://maoyu92.github.io/2025/03/16/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/OpenWebUI%EF%BC%9A%E4%B8%80%E7%AB%99%E5%BC%8F%20AI%20%E5%BA%94%E7%94%A8%E6%9E%84%E5%BB%BA%E5%B9%B3%E5%8F%B0%E4%BD%93%E9%AA%8C/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="🚀 大家好，今天给大家分享一个超棒的 AI 应用构建工具——OpenWebUI！体验下来，只能说丝滑！必须强烈推荐！ 🔥 听说过阿里巴巴的 Qwen 吗？他们最新的 Qwen Chat 网站就是用 OpenWebUI 搭建的！足以见得这个工具的强大。在 GitHub 上已经狂揽 83.7 k Star，简直恐怖如斯！ 大家可以去体验一下：https:&#x2F;&#x2F;chat.qwen.ai&#x2F; OpenWe">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_160340.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_162644.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_163157.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_164302.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_164656.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_164931.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/20250316165435784.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_165707.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_165854.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_170242.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_193807.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/20250316193911064.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_194023.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_172824.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_172914.png">
+<meta property="article:published_time" content="2025-03-16T07:09:00.000Z">
+<meta property="article:modified_time" content="2025-03-16T07:09:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="AIGC">
+<meta property="article:tag" content="deepseek">
+<meta property="article:tag" content="知识库">
+<meta property="article:tag" content="openwebui">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_160340.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>OpenWebUI：一站式 AI 应用构建平台体验 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="OpenWebUI：一站式 AI 应用构建平台体验"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-16 15:09" pubdate>
+          2025年3月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">OpenWebUI：一站式 AI 应用构建平台体验</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>🚀 大家好，今天给大家分享一个超棒的 AI 应用构建工具——OpenWebUI！体验下来，只能说<strong>丝滑</strong>！必须强烈推荐！</p>
+<p>🔥 听说过阿里巴巴的 <a target="_blank" rel="noopener" href="https://chat.qwen.ai/">Qwen</a> 吗？他们最新的 Qwen Chat 网站就是用 OpenWebUI 搭建的！足以见得这个工具的强大。在 GitHub 上已经狂揽 83.7 k Star，简直恐怖如斯！</p>
+<p><strong>大家可以去体验一下：<a target="_blank" rel="noopener" href="https://chat.qwen.ai/">https://chat.qwen.ai/</a></strong></p>
+<h2 id="OpenWebUI-功能特点：All-in-One，应有尽有！"><a href="#OpenWebUI-功能特点：All-in-One，应有尽有！" class="headerlink" title="OpenWebUI 功能特点：All in One，应有尽有！"></a>OpenWebUI 功能特点：All in One，应有尽有！</h2><p>OpenWebUI 简直是为 AI 应用而生，功能丰富到令人发指：</p>
+<ul>
+<li><strong>⚡️ 极速部署：</strong><ul>
+<li>Docker 一键安装，还支持 Ollama 和 CUDA 镜像，告别繁琐配置。</li>
+<li>支持 pip 一键安装，0 代码构建 AI 应用</li>
+</ul>
+</li>
+<li><strong>🤝 超强兼容：</strong><ul>
+<li>完美兼容 Ollama 和 OpenAI API，轻松连接 LMStudio、GroqCloud、Mistral、OpenRouter 等等平台。</li>
+</ul>
+</li>
+<li><strong>🛡️ 权限管理：</strong><ul>
+<li>细粒度的用户角色和权限控制，安全可靠，还能定制个性化用户体验。</li>
+</ul>
+</li>
+<li><strong>📱 响应式设计：</strong><ul>
+<li>无论桌面、笔记本还是移动设备，都能流畅使用。</li>
+</ul>
+</li>
+<li><strong>📲 移动端 PWA：</strong><ul>
+<li>媲美原生 App 的移动端体验，甚至支持本地离线访问！</li>
+</ul>
+</li>
+<li><strong>✍️ 富文本支持：</strong><ul>
+<li>Markdown 和 LaTeX 全面支持，让交互更丰富。</li>
+</ul>
+</li>
+<li><strong>🗣️ 语音&#x2F;视频通话：</strong><ul>
+<li>集成免提语音和视频通话，沟通方式更多样。</li>
+</ul>
+</li>
+<li><strong>🐍 Python 函数调用：</strong><ul>
+<li>内置代码编辑器，支持 Python 函数调用，自由扩展功能。</li>
+</ul>
+</li>
+<li><strong>📚 本地 RAG 集成：</strong><ul>
+<li>支持检索增强生成 (RAG)，直接加载文档或使用文档库进行交互。</li>
+</ul>
+</li>
+<li><strong>🌐 RAG 网络搜索：</strong><ul>
+<li>集成 SearXNG、Google PSE、Brave Search、DuckDuckGo 等搜索引擎，实时获取最新信息。</li>
+</ul>
+</li>
+<li><strong>🎨 图像生成：</strong><ul>
+<li>支持 AUTOMATIC 1111 API、ComfyUI、OpenAI DALL-E 等图像生成 API，聊天中也能生成图像。</li>
+</ul>
+</li>
+<li><strong>🤹 多模型对话：</strong><ul>
+<li>同时使用多个模型，集各家之所长。</li>
+</ul>
+</li>
+<li><strong>🔑 角色权限控制：</strong><ul>
+<li>基于角色的访问控制 (RBAC)，确保安全访问。</li>
+</ul>
+</li>
+<li><strong>多语言支持：</strong><ul>
+<li>支持多语言，支持设置为中文。</li>
+</ul>
+</li>
+<li><strong>🧩 插件支持：</strong><ul>
+<li>Pipelines 插件框架，集成自定义逻辑和 Python 库。</li>
+</ul>
+</li>
+</ul>
+<h2 id="🛠️-Python-环境搭建"><a href="#🛠️-Python-环境搭建" class="headerlink" title="🛠️ Python 环境搭建"></a>🛠️ Python 环境搭建</h2><p>首先，我们需要搭建 Python 环境。这里推荐使用 VS Code，配合 conda 管理环境：</p>
+<ol>
+<li>打开 VS Code 命令面板 (Ctrl+Shift+P)。</li>
+<li>选择 “Python: Select Interpreter”。</li>
+<li>选择 “Create conda environment”。</li>
+<li>选择 Python 3.11，点击 “Create”。</li>
+</ol>
+<h3 id="安装-Open-WebUI"><a href="#安装-Open-WebUI" class="headerlink" title="安装 Open WebUI"></a>安装 Open WebUI</h3><p>接下来，使用 pip 安装 Open WebUI。<strong>注意：务必使用 Python 3.11，避免兼容性问题！</strong></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip install open-webui<br><span class="hljs-meta prompt_"># </span><span class="language-bash">如果安装缓慢或失败，可以尝试指定版本：</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">pip install open-webui==0.2.0</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">或者更新 pip 后重试：</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">pip install --upgrade open-webui</span><br></code></pre></td></tr></table></figure>
+
+<p>安装完成后，运行以下命令启动 Open WebUI：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">open-webui serve<br></code></pre></td></tr></table></figure>
+
+<p>第一次启动会比较慢，耐心等待资源加载完毕。然后在浏览器中打开 <code>http://localhost:8080/</code> 即可。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_160340.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 登录界面"></p>
+<p>首次登录需要注册账号，注册后即可登录。</p>
+<h2 id="⚙️-使用-OpenWebUI"><a href="#⚙️-使用-OpenWebUI" class="headerlink" title="⚙️ 使用 OpenWebUI"></a>⚙️ 使用 OpenWebUI</h2><h3 id="基础设置"><a href="#基础设置" class="headerlink" title="基础设置"></a>基础设置</h3><p>首次登录后，第一件事是添加模型。</p>
+<ol>
+<li>点击左下角或右上角头像，进入 “设置”。</li>
+<li>在 “通用” 选项卡中，设置语言为中文。</li>
+</ol>
+<h3 id="外部链接设置"><a href="#外部链接设置" class="headerlink" title="外部链接设置"></a>外部链接设置</h3><p>OpenWebUI 支持连接各种外部模型 API，例如 Gemini、硅基流动等。</p>
+<ol>
+<li>点击 “+”，在 URL 中输入 API 的 base URL 和密钥。</li>
+<li>点击 “保存”。如果不指定模型 ID，OpenWebUI 会自动检索可用模型。</li>
+</ol>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_162644.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 外部链接设置"></p>
+<p>添加成功后，在对话界面左上角即可选择对应的模型。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_163157.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 模型选择"></p>
+<h3 id="配置-Gemini-模型"><a href="#配置-Gemini-模型" class="headerlink" title="配置 Gemini 模型"></a>配置 Gemini 模型</h3><p>以配置 Gemini 模型为例：</p>
+<ol>
+<li>进入 “设置” -&gt; “管理员设置” -&gt; “外部链接” -&gt; “添加模型”。</li>
+<li>填写以下信息：<ul>
+<li>URL: <code>https://generativelanguage.googleapis.com/v1beta</code></li>
+<li>模型 ID: <code>gemini-2.0-flash</code></li>
+</ul>
+</li>
+</ol>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_164302.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI Gemini 模型配置"></p>
+<p>添加完成后，在模型对话界面就能看到 Gemini 模型了。你还可以在 “管理员面板” -&gt; “模型” 中管理模型，控制其是否显示。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_164656.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 已添加的模型"></p>
+<h2 id="💬-对话效果"><a href="#💬-对话效果" class="headerlink" title="💬 对话效果"></a>💬 对话效果</h2><p>上传一张图片，测试 Gemini 的理解能力：</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_164931.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 图片理解测试"></p>
+<h2 id="🗂️-工作空间：模型、知识库、提示词、工具"><a href="#🗂️-工作空间：模型、知识库、提示词、工具" class="headerlink" title="🗂️ 工作空间：模型、知识库、提示词、工具"></a>🗂️ 工作空间：模型、知识库、提示词、工具</h2><p>OpenWebUI 的工作空间提供了强大的管理功能。</p>
+<h3 id="模型管理"><a href="#模型管理" class="headerlink" title="模型管理"></a>模型管理</h3><p>在 “工作空间” -&gt; “模型” 界面，你可以添加、管理、微调模型，还可以添加知识库。</p>
+<p>OpenWebUI 社区中有很多别人微调好的参数，可以导入学习。</p>
+<h3 id="知识库"><a href="#知识库" class="headerlink" title="知识库"></a>知识库</h3><ol>
+<li>点击 “工作空间” -&gt; “知识库”，进入知识库对话界面。</li>
+<li>点击 “创建知识库”。OpenWebUI 自带向量模型，也可以自定义。</li>
+</ol>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250316165435784.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 创建知识库"></p>
+<p>创建知识库后，拖动文件到上传区域，点击即可预览文件。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_165707.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 知识库文件上传"></p>
+<p>添加知识库后，在输入框中输入 <code>#</code>，即可加载需要的知识库内容。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_165854.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 知识库调用"></p>
+<p>例如，使用 Deepseek R 1 结合知识库进行提问：</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_170242.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 知识库问答"></p>
+<p>如果觉得回答效果不佳，除了模型本身，还可能与知识库问答设置有关。可以在 “管理员设置” -&gt; “文档” 中自定义提示词。</p>
+<h3 id="提示词"><a href="#提示词" class="headerlink" title="提示词"></a>提示词</h3><p>在 “工作空间” -&gt; “提示词管理” 中，可以进行提示词的设置、导入导出等操作。</p>
+<h3 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h3><p>可以导入导出各种工具，或者自己创建工具，类似于简单的 Agent。</p>
+<p>OpenWebUI 社区中提供了丰富的模型、工具和提示词，可以导入学习。</p>
+<h3 id="联网搜索功能"><a href="#联网搜索功能" class="headerlink" title="联网搜索功能"></a>联网搜索功能</h3><p>下面以联网搜索功能为例，介绍如何添加和使用工具：</p>
+<ol>
+<li>进入 “工作空间” -&gt; “工具” -&gt; “发现更多工具”。</li>
+<li>网页跳转到 <code>https://openwebui.com/tools</code>。</li>
+<li>找到 “Tools” 下面的联网搜索工具。</li>
+<li>点击进入，选择 “Get”。</li>
+<li>选择自己的网址，点击 “保存”。</li>
+</ol>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_193807.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 联网搜索工具"></p>
+<p>保存后，你会在工具列表中看到该工具。但是，要正常使用，还需要修改搜索引擎。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250316193911064.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 修改搜索引擎"></p>
+<p>修改完成后，在对话框的 “+” 按钮上开启网页搜索功能，即可进行网页搜索。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_194023.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 开启网页搜索"></p>
+<h3 id="代码解释器"><a href="#代码解释器" class="headerlink" title="代码解释器"></a>代码解释器</h3><p>OpenWebUI 默认自带代码执行器。用 Gemini 生成一段简单的代码，点击运行，竟然成功了！</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_172824.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 代码生成"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_172914.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 代码执行"></p>
+<p>从结果来看，效果还不错。虽然出现了中文不友好的问题，但可以通过继续提问来解决。</p>
+<h2 id="📝-结语"><a href="#📝-结语" class="headerlink" title="📝 结语"></a>📝 结语</h2><p>这篇文章够长了，我从体验 OpenWebUI 搭建，到模型配置、知识库管理、提示词管理、工具管理，再到代码解释器等特殊功能，完整地展示了 OpenWebUI 的强大之处。它不仅易于上手，而且社区资源丰富，完全可以作为生产力工具来部署。</p>
+<p>OpenWebUI 还在不断更新，本文介绍的功能可能并不全面。我会持续体验这款开源工具，并分享更多使用技巧。</p>
+<p>如果觉得这篇文章对你有帮助，别忘了点赞、收藏加关注哦！</p>
+<h2 id="🔗-相关网站"><a href="#🔗-相关网站" class="headerlink" title="🔗 相关网站"></a>🔗 相关网站</h2><ul>
+<li><strong>OpenWebUI</strong><ul>
+<li>官网：<a target="_blank" rel="noopener" href="https://openwebui.com/">https://openwebui.com/</a></li>
+<li>GitHub: <a target="_blank" rel="noopener" href="https://github.com/open-webui/open-webui">https://github.com/open-webui/open-webui</a></li>
+</ul>
+</li>
+<li><strong>Gemini</strong><ul>
+<li>Gemini：<a target="_blank" rel="noopener" href="https://gemini.google.com/">https://gemini.google.com/</a></li>
+<li>Google AI Studio：<a target="_blank" rel="noopener" href="https://aistudio.google.com/">https://aistudio.google.com/</a></li>
+</ul>
+</li>
+<li><strong>Qwen</strong>：<a target="_blank" rel="noopener" href="https://chat.qwen.ai/">https://chat.qwen.ai/</a></li>
+<li>**mychat ** :  <a target="_blank" rel="noopener" href="https://chat.wenmao.xyz/">https://chat.wenmao.xyz/</a></li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="category-chain-item">工具推荐</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
+      
+        <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
+      
+        <a href="/tags/deepseek/" class="print-no-link">#deepseek</a>
+      
+        <a href="/tags/%E7%9F%A5%E8%AF%86%E5%BA%93/" class="print-no-link">#知识库</a>
+      
+        <a href="/tags/openwebui/" class="print-no-link">#openwebui</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>OpenWebUI：一站式 AI 应用构建平台体验</div>
+      <div>https://maoyu92.github.io/2025/03/16/03 工具推荐/OpenWebUI：一站式 AI 应用构建平台体验/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/12/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Obsidian%20Copilot%EF%BC%9A%E6%89%93%E9%80%A0%E4%BD%A0%E7%9A%84%E4%B8%93%E5%B1%9E%20AI%20%E7%AC%94%E8%AE%B0%E5%8A%A9%E6%89%8B/" title="Obsidian Copilot：打造你的专属 AI 笔记助手">
+                        <span class="hidden-mobile">Obsidian Copilot：打造你的专属 AI 笔记助手</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
