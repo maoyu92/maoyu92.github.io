@@ -1,0 +1,789 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="在信息爆炸的数字时代，我们每天都被海量的内容所淹没——学术论文、行业报告、新闻资讯、播客视频……如何高效地吸收、整合这些信息成为现代人面临的核心挑战。作为谷歌实验室推出的革命性 AI 笔记工具，NotebookLM 正以其独特的多模态处理能力和智能知识整合功能，重新定义主题阅读与知识管理的方式。本文将深入剖析 NotebookLM 的核心优势、功能特性以及实用技巧，展示它如何成为数字时代学习者">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Google NotebookLM：主题阅读的神">
+<meta property="og:url" content="https://maoyu92.github.io/2025/05/23/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Google%20NotebookLM%EF%BC%9A%E4%B8%BB%E9%A2%98%E9%98%85%E8%AF%BB%E7%9A%84%E7%A5%9E/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="在信息爆炸的数字时代，我们每天都被海量的内容所淹没——学术论文、行业报告、新闻资讯、播客视频……如何高效地吸收、整合这些信息成为现代人面临的核心挑战。作为谷歌实验室推出的革命性 AI 笔记工具，NotebookLM 正以其独特的多模态处理能力和智能知识整合功能，重新定义主题阅读与知识管理的方式。本文将深入剖析 NotebookLM 的核心优势、功能特性以及实用技巧，展示它如何成为数字时代学习者">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250523_213049.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250523_213353.png">
+<meta property="article:published_time" content="2025-05-23T10:56:00.000Z">
+<meta property="article:modified_time" content="2025-05-23T10:56:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="AIGC">
+<meta property="article:tag" content="工具推荐">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250523_213049.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Google NotebookLM：主题阅读的神 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Google NotebookLM：主题阅读的神"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-23 18:56" pubdate>
+          2025年5月23日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Google NotebookLM：主题阅读的神</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<p>在信息爆炸的数字时代，我们每天都被海量的内容所淹没——学术论文、行业报告、新闻资讯、播客视频……如何高效地吸收、整合这些信息成为现代人面临的核心挑战。作为谷歌实验室推出的革命性 AI 笔记工具，NotebookLM 正以其独特的多模态处理能力和智能知识整合功能，重新定义主题阅读与知识管理的方式。本文将深入剖析 NotebookLM 的核心优势、功能特性以及实用技巧，展示它如何成为数字时代学习者和知识工作者的”第二大脑”。</p>
+<p>NotebookLM 是谷歌实验室基于 Gemini 大模型开发的 AI 驱动笔记和研究助手，它从根本上重新构想了在 AI 时代知识管理工具应该具备的能力。与传统的笔记应用不同，NotebookLM 不是简单地将 AI 功能附加到现有笔记工具中，而是从零开始设计，将大型语言模型深度集成到笔记体验的核心。这种”AI 优先”的设计理念使其超越了 Evernote、Notion 等传统工具，成为真正意义上的”智能知识伙伴”。</p>
+<p>与传统笔记工具相比，NotebookLM 在<strong>主题阅读</strong>方面展现出独特优势。主题阅读是指围绕特定主题系统地收集、分析和整合多源信息的过程，是学术研究、商业分析和内容创作的基础。NotebookLM 通过智能摘要、多模态内容处理和结构化输出等功能，将原本耗时数周的主题阅读过程压缩到几天甚至几小时内完成，同时保持甚至提升研究成果的质量。</p>
+<p><em>表：NotebookLM 与传统笔记工具在主题阅读中的对比</em></p>
+<table>
+<thead>
+<tr>
+<th><strong>功能维度</strong></th>
+<th><strong>传统笔记工具</strong></th>
+<th><strong>NotebookLM</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>信息处理方式</strong></td>
+<td>手动摘录与整理</td>
+<td>AI 自动摘要与结构化</td>
+</tr>
+<tr>
+<td><strong>知识连接能力</strong></td>
+<td>依赖用户自行建立链接</td>
+<td>自动识别跨文档关联</td>
+</tr>
+<tr>
+<td><strong>多模态支持</strong></td>
+<td>有限，主要处理文本</td>
+<td>全面支持文本、音频、视频、PDF 等</td>
+</tr>
+<tr>
+<td><strong>输出形式</strong></td>
+<td>静态笔记</td>
+<td>动态报告、播客、视频等多种形式</td>
+</tr>
+<tr>
+<td><strong>知识验证</strong></td>
+<td>用户自行核查</td>
+<td>提供引用来源，便于核实</td>
+</tr>
+</tbody></table>
+<p>NotebookLM 的<strong>多模态处理能力</strong>使其成为主题阅读的理想平台。它支持处理包括 PDF、Google Docs、网页内容、YouTube 视频、MP 3 音频等在内的多种信息形式。用户可以将与研究主题相关的所有材料——无论是学术论文、行业报告、访谈录音还是教学视频——集中上传到一个笔记本中，由 NotebookLM 进行统一分析和交叉引用。这种能力打破了传统主题阅读中信息形式单一的限制，使研究者能够从更丰富的维度理解主题。</p>
+<h3 id="多源知识库构建：主题研究的基石"><a href="#多源知识库构建：主题研究的基石" class="headerlink" title="多源知识库构建：主题研究的基石"></a>多源知识库构建：主题研究的基石</h3><p>NotebookLM 支持构建包含<strong>多达 50 个来源</strong>的知识库，为深度主题研究提供了坚实基础。用户可上传包括 PDF、Google Docs、纯文本、Markdown、网页链接、YouTube 视频链接 (无需字幕) 以及 MP 3 音频文件等多种格式的内容。这种广泛的格式支持意味着研究者几乎可以将任何与研究主题相关的材料纳入分析范围，打破传统主题阅读中信息形式单一的限制。<br>还可以只输入主题，会根据互联网上的内容搜索相关内容，形成主题文档。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250523_213049.png" srcset="/img/loading.gif" lazyload alt="支持多种数据来源"></p>
+<h3 id="智能问答与知识提取：深度互动式学习"><a href="#智能问答与知识提取：深度互动式学习" class="headerlink" title="智能问答与知识提取：深度互动式学习"></a>智能问答与知识提取：深度互动式学习</h3><p>基于构建的知识库，NotebookLM 提供<strong>精准的问答功能</strong>，允许用户以对话形式深入探索主题。与通用聊天机器人不同，NotebookLM 的回答严格基于用户上传的资料，并<strong>提供引用来源</strong>，确保信息的准确性和可验证性。这一特性对于学术研究和专业分析尤为重要，因为它保持了学术严谨性，避免了 AI 常见的”幻觉”问题。</p>
+<p>NotebookLM 的问答功能支持<strong>多层次的认知互动</strong>。用户可以从基础的事实性问题 (如”这份报告中提到的主要挑战有哪些？”) 逐步深入到分析性、综合性的问题 (如”比较这三篇论文中使用的方法论有何异同？”)。这种渐进式的提问策略能够引导用户系统性地构建对复杂主题的理解，特别适合学术文献综述或竞争情报分析等场景。</p>
+<p><strong>创意激发</strong>是 NotebookLM 问答功能的另一重要维度。用户可要求 AI 基于研究材料提出新观点、假设或应用场景。例如，一位产品经理上传了几份市场研究报告后，可以询问：”基于这些趋势分析，我们的产品可以开发哪些新功能来满足未来需求？”。NotebookLM 会综合文档内容，生成富有创意的建议，这种能力使工具不仅限于信息整理，更延伸到创新构思阶段。</p>
+<h3 id="结构化输出：从杂乱信息到系统知识"><a href="#结构化输出：从杂乱信息到系统知识" class="headerlink" title="结构化输出：从杂乱信息到系统知识"></a>结构化输出：从杂乱信息到系统知识</h3><p>NotebookLM 提供多种<strong>预设的内容模板</strong>，能够将杂乱的信息转化为结构化的知识产品。这些模板包括但不限于：</p>
+<ul>
+<li>**常见问题解答 (FAQ)**：自动提取文档中的关键问题并提供简明答案，适合制作产品文档或学习材料</li>
+<li><strong>学习指南</strong>：将复杂主题分解为逻辑连贯的学习模块，附带重点摘要和示例，对教育工作者和学生特别有用</li>
+<li><strong>时间轴</strong>：识别事件或发展的时序关系，以可视化形式呈现历史演进或项目进程</li>
+<li><strong>简报文档</strong>：浓缩大量信息为执行摘要，突出关键发现和建议，方便决策者快速掌握核心内容</li>
+<li><strong>目录大纲</strong>：为长篇内容创建层次分明的导航结构，便于后续深入研究和写作</li>
+</ul>
+<p>这些结构化输出不仅提高了信息利用率，还显著<strong>降低了知识分享的门槛</strong>。一位法学研究者可以将数百页的案例资料转化为清晰的时间轴和关键判决要点；一位市场分析师能把分散的行业数据整合成具有执行洞察力的简报；一位学生能将复杂的教科书内容重组为易于消化学习指南。这种从信息到知识的转化能力，正是 NotebookLM 区别于普通笔记工具的核心价值。</p>
+<p>NotebookLM 的<strong>引用功能</strong>进一步增强了其作为研究工具的可靠性。每当 AI 生成回答或总结时，都会标注信息的具体来源，用户可随时点击查看原文上下文。这种透明性不仅便于核实信息，还保留了学术研究必需的引证链条，使 NotebookLM 生成的内容可以直接作为学术写作的素材。<br>觉得满意的答复可以生成笔记，笔记内容会详细标注出处。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250523_213353.png" srcset="/img/loading.gif" lazyload alt=" 自动生成笔记"></p>
+<p>NotebookLM 的强大功能使其能够服务于多样化的主题阅读需求，从学术研究到商业分析，从内容创作到个人学习。本部分将深入探讨 NotebookLM 在不同场景下的具体应用策略，帮助读者根据自身需求定制高效的知识整理流程。</p>
+<p>总之，NotebookLM 是我目前用过的最好的主题阅读 AI 工具。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="category-chain-item">工具推荐</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
+      
+        <a href="/tags/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="print-no-link">#工具推荐</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Google NotebookLM：主题阅读的神</div>
+      <div>https://maoyu92.github.io/2025/05/23/03 工具推荐/Google NotebookLM：主题阅读的神/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/06/11/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%89%E4%BA%86%E5%AE%83%E4%BB%AC%EF%BC%8C%E6%96%87%E7%A8%BF%E5%AE%A1%E6%A0%B8%E5%8F%98%E5%BE%97%E9%9D%9E%E5%B8%B8%E8%BD%BB%E6%9D%BE/" title="有了它们，文稿审核变得非常轻松">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">有了它们，文稿审核变得非常轻松</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/22/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/AI%E7%94%9F%E6%88%90%E6%8A%80%E6%9C%AF%E8%B7%AF%E7%BA%BF%E5%9B%BE%EF%BC%9A%E5%91%8A%E5%88%AB%E6%89%8B%E7%BB%98%E6%97%B6%E4%BB%A3%E7%9A%84%E6%95%88%E7%8E%87%E9%9D%A9%E5%91%BD/" title="AI生成技术路线图：告别手绘时代的效率革命">
+                        <span class="hidden-mobile">AI生成技术路线图：告别手绘时代的效率革命</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

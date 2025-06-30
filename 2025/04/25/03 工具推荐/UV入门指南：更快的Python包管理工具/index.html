@@ -1,0 +1,834 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="什么是 UV？UV 是一款由 Rust 编写的现代化 Python 包管理工具，凭借其惊人的性能和直观的用户体验迅速崭露头角。作为传统 pip 的强力替代品，UV 不仅提供了极速的依赖解析能力，还带来了更智能的包管理体验和全方位的项目环境控制。还有他是学习 python 构建 mcp 的基础。 UV 的核心优势 ✨ 极速安装：相比传统工具，依赖解析和包安装速度提升 10-100 倍 一站式解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UV入门指南：更快的Python包管理工具实践">
+<meta property="og:url" content="https://maoyu92.github.io/2025/04/25/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/UV%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E6%9B%B4%E5%BF%AB%E7%9A%84Python%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="什么是 UV？UV 是一款由 Rust 编写的现代化 Python 包管理工具，凭借其惊人的性能和直观的用户体验迅速崭露头角。作为传统 pip 的强力替代品，UV 不仅提供了极速的依赖解析能力，还带来了更智能的包管理体验和全方位的项目环境控制。还有他是学习 python 构建 mcp 的基础。 UV 的核心优势 ✨ 极速安装：相比传统工具，依赖解析和包安装速度提升 10-100 倍 一站式解">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250425_164457.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/20250425171228283.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250425_221315.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/20250425222008187.png">
+<meta property="article:published_time" content="2025-04-25T08:11:00.000Z">
+<meta property="article:modified_time" content="2025-04-25T08:11:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250425_164457.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>UV入门指南：更快的Python包管理工具实践 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="UV入门指南：更快的Python包管理工具实践"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-25 16:11" pubdate>
+          2025年4月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">UV入门指南：更快的Python包管理工具实践</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+
+<h2 id="什么是-UV？"><a href="#什么是-UV？" class="headerlink" title="什么是 UV？"></a>什么是 UV？</h2><p><a target="_blank" rel="noopener" href="https://docs.astral.sh/uv/">UV</a> 是一款由 Rust 编写的现代化 Python 包管理工具，凭借其惊人的性能和直观的用户体验迅速崭露头角。作为传统 pip 的强力替代品，UV 不仅提供了极速的依赖解析能力，还带来了更智能的包管理体验和全方位的项目环境控制。<br><strong>还有他是学习 python 构建 mcp 的基础。</strong></p>
+<h2 id="UV-的核心优势-✨"><a href="#UV-的核心优势-✨" class="headerlink" title="UV 的核心优势 ✨"></a>UV 的核心优势 ✨</h2><ul>
+<li><strong>极速安装</strong>：相比传统工具，依赖解析和包安装速度提升 <strong>10-100 倍</strong></li>
+<li><strong>一站式解决方案</strong>：一个工具替代 pip、pip-tools、pipx、poetry、pyenv、virtualenv 等多种工具</li>
+<li><strong>智能依赖管理</strong>：自动处理复杂依赖关系，有效避免版本冲突</li>
+<li><strong>虚拟环境集成</strong>：无缝创建和管理项目虚拟环境</li>
+<li><strong>通用锁文件支持</strong>：通过 <code>uv.lock</code> 确保环境一致性</li>
+<li><strong>全面的 Python 版本管理</strong>：轻松安装和切换不同 Python 版本</li>
+<li><strong>空间高效</strong>：全局缓存机制实现依赖项去重，节省磁盘空间</li>
+<li><strong>跨平台支持</strong>：完美支持 macOS、Linux 和 Windows</li>
+</ul>
+<h2 id="安装指南-💻"><a href="#安装指南-💻" class="headerlink" title="安装指南 💻"></a>安装指南 💻</h2><h3 id="Windows-系统"><a href="#Windows-系统" class="headerlink" title="Windows 系统"></a>Windows 系统</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">powershell -ExecutionPolicy ByPass -c <span class="hljs-string">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="MacOS-和-Linux-系统"><a href="#MacOS-和-Linux-系统" class="headerlink" title="MacOS 和 Linux 系统"></a>MacOS 和 Linux 系统</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">curl -LsSf https://astral.sh/uv/install.sh | sh<br></code></pre></td></tr></table></figure>
+
+<p>安装成功后，您将看到类似以下的输出：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs applescript">PS D:\python\learn\uv_learn&gt; powershell -ExecutionPolicy ByPass -c <span class="hljs-string">&quot;irm https://astral.sh/uv/install.ps1 | iex&quot;</span><br>Downloading uv <span class="hljs-number">0.6</span><span class="hljs-number">.16</span> (x86_64-pc-windows-msvc)<br>Installing <span class="hljs-keyword">to</span> C:\Users\chenw\.<span class="hljs-keyword">local</span>\bin<br>  uv.exe<br>  uvx.exe<br>everything&#x27;s installed!<br><br>To add C:\Users\chenw\.<span class="hljs-keyword">local</span>\bin <span class="hljs-keyword">to</span> your PATH, either restart your shell <span class="hljs-keyword">or</span> <span class="hljs-built_in">run</span>:<br><br>    <span class="hljs-keyword">set</span> Path=C:\Users\chenw\.<span class="hljs-keyword">local</span>\bin;%Path%   (cmd)<br>    $env:Path = <span class="hljs-string">&quot;C:\Users\chenw\.local\bin;$env:Path&quot;</span>   (powershell)<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>💡 <strong>提示</strong>：按照提示将 UV 添加到系统环境变量，然后重启终端或电脑使其生效。</p>
+</blockquote>
+<h2 id="UV-实战指南：从零开始一个项目-🛠️"><a href="#UV-实战指南：从零开始一个项目-🛠️" class="headerlink" title="UV 实战指南：从零开始一个项目 🛠️"></a>UV 实战指南：从零开始一个项目 🛠️</h2><h3 id="Python-版本管理"><a href="#Python-版本管理" class="headerlink" title="Python 版本管理"></a>Python 版本管理</h3><p><strong>查看可用的 Python 版本</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv python list<br></code></pre></td></tr></table></figure>
+<p>这个命令会列出所有支持的 Python 版本以及您本地已安装的版本。</p>
+<p><strong>查找特定版本的 Python</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv python find 3.13<br></code></pre></td></tr></table></figure>
+
+<p><strong>安装新的 Python 版本</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv python install 3.13<br></code></pre></td></tr></table></figure>
+
+<h3 id="项目初始化"><a href="#项目初始化" class="headerlink" title="项目初始化"></a>项目初始化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv init [项目名称]<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>项目名称可选，不指定时将使用当前文件夹名称</p>
+</blockquote>
+<p>初始化后，UV 会自动创建项目配置文件，并识别系统中的 Python 版本：</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250425_164457.png" srcset="/img/loading.gif" lazyload alt="项目初始化示例"></p>
+<h3 id="包管理操作"><a href="#包管理操作" class="headerlink" title="包管理操作"></a>包管理操作</h3><p><strong>添加依赖包</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv add pandas<br></code></pre></td></tr></table></figure>
+<p>执行此命令后，UV 会自动：</p>
+<ul>
+<li>创建虚拟环境（. Venv）</li>
+<li>更新锁文件（uv. Lock）</li>
+<li>修改项目配置（pyproject. Toml）</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>注意</strong>：在 Trae&#x2F;vscode 编辑器中使用时，建议先关闭 pyproject. Toml 文件再安装第三方库，避免潜在冲突。</p>
+</blockquote>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250425171228283.png" srcset="/img/loading.gif" lazyload alt="包安装示例"></p>
+<p><strong>查看依赖关系树</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv tree<br></code></pre></td></tr></table></figure>
+
+<p>输出示例：</p>
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs smali">PS D:\python\learn\uv_learn&gt; uv tree<br>Resolved 7 packages in 0.84ms<br>uv-learn v0.1.0<br>├── numpy v2.2.5<br>└── pandas v2.2.3<br>    ├── numpy v2.2.5<br>    ├── python-dateutil v2.9.0.post0<br>    │   └── six v1.17.0<br>    ├── pytz v2025.2<br>    └── tzdata v2025.2<br></code></pre></td></tr></table></figure>
+
+<p><strong>移除依赖包</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv remove pandas<br></code></pre></td></tr></table></figure>
+<p>此命令会自动更新所有相关文件，包括虚拟环境、锁文件和项目配置。</p>
+<p><strong>依赖文件</strong></p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">uv pip <span class="hljs-keyword">install</span> -r requirements.txt<br></code></pre></td></tr></table></figure>
+<p>快速创建依赖文件，无需单独安装其他库</p>
+<p><strong>同步项目环境</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv <span class="hljs-built_in">sync</span><br></code></pre></td></tr></table></figure>
+<p>根据 pyproject. Toml、. Python-version 等配置文件更新虚拟环境，确保环境与配置一致。</p>
+<h2 id="脚本运行与工具集成-🧰"><a href="#脚本运行与工具集成-🧰" class="headerlink" title="脚本运行与工具集成 🧰"></a>脚本运行与工具集成 🧰</h2><h3 id="内联依赖的脚本运行"><a href="#内联依赖的脚本运行" class="headerlink" title="内联依赖的脚本运行"></a>内联依赖的脚本运行</h3><p>UV 支持在单文件脚本中声明依赖并运行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 创建一个简单的脚本并添加依赖</span><br><span class="hljs-built_in">echo</span> <span class="hljs-string">&#x27;import requests; print(requests.get(&quot;https://astral.sh&quot;))&#x27;</span> &gt; example.py<br><br><span class="hljs-comment"># 为脚本添加依赖</span><br>uv add --script example.py requests<br><br><span class="hljs-comment"># 在隔离环境中运行脚本</span><br>uv run example.py<br></code></pre></td></tr></table></figure>
+
+<h3 id="代码质量工具集成"><a href="#代码质量工具集成" class="headerlink" title="代码质量工具集成"></a>代码质量工具集成</h3><p>UV 提供了与常用开发工具的无缝集成：</p>
+<p><strong>代码格式检查（Flake 8）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv tool install flake8<br>uvx flake8  <span class="hljs-comment"># 或使用 uv tool run flake8</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>代码质量检查（Ruff）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv tool install ruff<br>uv tool run ruff check<br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>💡 <strong>小贴士</strong>：虽然现代 IDE 已经集成了类似功能，但 UV 的工具集成在 CI&#x2F;CD 流程或团队协作中仍然非常有价值。</p>
+</blockquote>
+<p><strong>查询已安装的工具</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv tool list<br></code></pre></td></tr></table></figure>
+
+<h2 id="项目打包与发布-📦"><a href="#项目打包与发布-📦" class="headerlink" title="项目打包与发布 📦"></a>项目打包与发布 📦</h2><p>在 pyproject. Toml 中添加脚本入口点：</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs toml"><span class="hljs-section">[project.scripts]</span><br><span class="hljs-attr">simpleai</span> = <span class="hljs-string">&quot;main:main&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>其中 <code>simpleai = &quot;main:main&quot;</code>，等号前是脚本名称，后面分别是脚本和函数名。</p>
+<p><strong>打包项目</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv build<br></code></pre></td></tr></table></figure>
+
+<p>这将项目打包为 whl 和 tar. Gz 文件，whl 文件可发布为第三方库。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250425_221315.png" srcset="/img/loading.gif" lazyload alt="打包结果"></p>
+<p><strong>将本地 whl 作为工具安装</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv tool install dist\uv_learn-0.1.1-py3-none-any.whl<br></code></pre></td></tr></table></figure>
+
+<p>安装后可直接使用 simpleai 命令：</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250425222008187.png" srcset="/img/loading.gif" lazyload alt="工具安装后使用"></p>
+<h2 id="总结与展望-🔮"><a href="#总结与展望-🔮" class="headerlink" title="总结与展望 🔮"></a>总结与展望 🔮</h2><p>UV 作为新一代 Python 包管理工具，通过其惊人的性能和友好的用户体验，为 Python 开发者带来了革命性的开发体验。无论是个人项目还是团队协作，UV 都能显著提升开发效率和环境一致性。</p>
+<p>而且 uv 和 uvx 也是 python 构建 mcp 的基础。为构建自己的 mcp sever 打下基础。</p>
+<h4 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h4><ul>
+<li>[Python 解释器如何选择]<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/clJ22Y4GK_jDRM4rSF1O6A">https://mp.weixin.qq.com/s/clJ22Y4GK_jDRM4rSF1O6A</a></li>
+<li>[Cherry Studio 入门 MCP：为你的大模型插上翅膀]<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/tWTBpoQ3ER_P2ZQhGKyjqg">https://mp.weixin.qq.com/s/tWTBpoQ3ER_P2ZQhGKyjqg</a></li>
+</ul>
+<h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>如有帮助，请收藏点赞<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客：<a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a> </p>
+<p>Ping 192.168.30.21<br>Ping 192.168.30.22</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="category-chain-item">工具推荐</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>UV入门指南：更快的Python包管理工具实践</div>
+      <div>https://maoyu92.github.io/2025/04/25/03 工具推荐/UV入门指南：更快的Python包管理工具/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/05/02/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%89%8B%E6%90%93%E4%B8%80%E4%B8%AA%20MCP%20Server%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%B0%B4%E8%B4%A8%E5%9C%A8%E7%BA%BF%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" title="手搓第一个 MCP Server：实现水质在线数据查询">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">手搓第一个 MCP Server：实现水质在线数据查询</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/23/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E5%9F%BA%E4%BA%8EQwen2.5-VL%E6%A8%A1%E5%9E%8B%E5%8F%8A%E6%B0%B4%E8%B4%A8%E6%B1%A1%E6%9F%93%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E7%9A%84%E6%B2%B3%E9%81%93%E6%B1%A1%E6%9F%93%E8%AF%86%E5%88%AB%E7%A0%94%E7%A9%B6/" title="基于Qwen2.5-VL模型及水质污染特征分析的河道污染识别研究">
+                        <span class="hidden-mobile">基于Qwen2.5-VL模型及水质污染特征分析的河道污染识别研究</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

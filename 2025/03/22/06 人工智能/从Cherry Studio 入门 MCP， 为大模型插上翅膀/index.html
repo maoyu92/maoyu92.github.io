@@ -1,0 +1,842 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="最近 MCP (Model Context Protocol) 概念大火，我也抽空学习了 MCP 的相关知识。今天，就让我们从 Cherry Studio 入手，快速了解并掌握 MCP 的基本用法。 什么是 MCP？简单来说，MCP 是一种接口协议，它是连接 API 和大模型的桥梁。通过 MCP，我们可以调用和操作第三方工具，从而扩展大模型的能力边界。 MCP 让大模型不再局限于预训练的知识">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从Cherry Studio 入门 MCP 为大模型插上翅膀">
+<meta property="og:url" content="https://maoyu92.github.io/2025/03/22/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BB%8ECherry%20Studio%20%E5%85%A5%E9%97%A8%20MCP%EF%BC%8C%20%E4%B8%BA%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%B8%8A%E7%BF%85%E8%86%80/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="最近 MCP (Model Context Protocol) 概念大火，我也抽空学习了 MCP 的相关知识。今天，就让我们从 Cherry Studio 入手，快速了解并掌握 MCP 的基本用法。 什么是 MCP？简单来说，MCP 是一种接口协议，它是连接 API 和大模型的桥梁。通过 MCP，我们可以调用和操作第三方工具，从而扩展大模型的能力边界。 MCP 让大模型不再局限于预训练的知识">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250322_143713.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322160757718.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250322_161303.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322161556959.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322162135053.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322164536953.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322162933530.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322163835088.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322184317395.png">
+<meta property="article:published_time" content="2025-03-22T08:53:00.000Z">
+<meta property="article:modified_time" content="2025-03-22T08:53:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="AIGC">
+<meta property="article:tag" content="mcp">
+<meta property="article:tag" content="cherry_studio">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250322_143713.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>从Cherry Studio 入门 MCP 为大模型插上翅膀 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="从Cherry Studio 入门 MCP 为大模型插上翅膀"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-03-22 16:53" pubdate>
+          2025年3月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">从Cherry Studio 入门 MCP 为大模型插上翅膀</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+
+<p>最近 MCP (Model Context Protocol) 概念大火，我也抽空学习了 MCP 的相关知识。今天，就让我们从 Cherry Studio 入手，快速了解并掌握 MCP 的基本用法。</p>
+<h2 id="什么是-MCP？"><a href="#什么是-MCP？" class="headerlink" title="什么是 MCP？"></a>什么是 MCP？</h2><p>简单来说，MCP 是一种接口协议，它是连接 API 和大模型的桥梁。通过 MCP，我们可以调用和操作第三方工具，从而扩展大模型的能力边界。 MCP 让大模型不再局限于预训练的知识，而是能够实时地与外部世界互动。</p>
+<h2 id="为什么选择-Cherry-Studio？"><a href="#为什么选择-Cherry-Studio？" class="headerlink" title="为什么选择 Cherry Studio？"></a>为什么选择 Cherry Studio？</h2><p>Cherry Studio 是一款功能全面的 AI 桌面客户端，凭借其友好的用户界面和易用性，深受用户喜爱。近期，Cherry Studio 已开始支持 MCP 服务。本文将以 Cherry Studio 官方文档中提供的 <code>fetch</code> 工具为例，帮助用户快速理解并上手 MCP。同时，我们将通过举一反三的方式，演示如何使用 <code>filesystem</code> 工具操作文件夹，实现通过对话控制桌面文件。通过这些示例，旨在帮助用户了解 MCP 强大的扩展性。</p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>在开始之前，我们需要先安装以下工具：</p>
+<ol>
+<li><strong>uv</strong></li>
+<li><strong>bun</strong></li>
+</ol>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250322_143713.png" srcset="/img/loading.gif" lazyload alt="mcp工具添加"></p>
+<ul>
+<li><strong>uv 是什么？</strong><br><code>uv</code> 是一个快速的 Python 包安装和依赖解析器。它可以显著提升 Python 项目的依赖管理速度。</li>
+<li><strong>Bun 是什么？</strong><br><code>Bun</code> 是一个快速的全面的 JavaScript 工具包，可以用来进行 JavaScript 和 TypeScript 项目的打包、测试和运行。</li>
+</ul>
+<h2 id="配置-fetch-Server"><a href="#配置-fetch-Server" class="headerlink" title="配置 fetch Server"></a>配置 <code>fetch</code> Server</h2><p>为什么要选择 <code>fetch</code> 工具？因为它能够抓取网页信息，配置简单，方便我们理解 MCP 的配置和使用方法。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322160757718.png" srcset="/img/loading.gif" lazyload alt="配置fetch"></p>
+<p>配置方法如下：</p>
+<ol>
+<li><p>打开 Cherry Studio，进入设置界面。</p>
+</li>
+<li><p>找到 “MCP 服务器” 选项，点击 “添加服务器”。</p>
+</li>
+<li><p>填写 MCP Server 的相关参数（<a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/servers/tree/main/src/fetch">参考链接</a>）。</p>
+<ul>
+<li><strong>名称</strong>：自定义一个名称，例如 <code>fetch</code>。</li>
+<li><strong>类型</strong>：选择 <code>STDIO</code>。</li>
+<li><strong>命令</strong>：填写 <code>uvx</code>。</li>
+<li><strong>参数</strong>：填写 <code>mcp-server-fetch</code>。</li>
+</ul>
+</li>
+</ol>
+<p><strong>这些参数代表什么？为什么要这样填写？</strong></p>
+<ul>
+<li><strong>STDIO（标准输入&#x2F;输出）</strong>：在本地运行，可访问本机文件和应用程序，但需要配置 Python 和 NodeJS 环境。</li>
+<li><strong>SSE（服务器发送事件）</strong>：在远程服务器运行，配置简单，但无法访问本地资源。</li>
+</ul>
+<p>可以参考 <code>fetch</code> 工具在 GitHub 上的官方介绍。通过 <code>uvx</code> 安装的代码可以看到：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-attr">&quot;mcpServers&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>  <span class="hljs-attr">&quot;fetch&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;command&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;uvx&quot;</span><span class="hljs-punctuation">,</span><br>    <span class="hljs-attr">&quot;args&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span><span class="hljs-string">&quot;mcp-server-fetch&quot;</span><span class="hljs-punctuation">]</span><br>  <span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p><code>Command</code> 对应命令，<code>args</code> 对应参数。对于公开的 MCP 工具，我们通常可以这样找到相应的设置方法，后面我还会介绍如何查找更多公开的 MCP 服务器。</p>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><ol>
+<li>安装完服务器后，在对话界面点击启用 MCP 服务器。</li>
+<li>选择支持 MCP 的模型（带有扳手 🔧 标志）。</li>
+<li>就可以开始对话了！</li>
+</ol>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250322_161303.png" srcset="/img/loading.gif" lazyload alt="使用mcp功能"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322161556959.png" srcset="/img/loading.gif" lazyload alt="选择支持mcp的模型"></p>
+<p><strong>对话效果：</strong></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322162135053.png" srcset="/img/loading.gif" lazyload alt="对话效果"></p>
+<p>经过测试，即使是硅基流动免费的 Qwen 2.5-7 B-Instruct 模型，也可以成功抓取对应的网页内容。</p>
+<h2 id="filesystem-服务"><a href="#filesystem-服务" class="headerlink" title="filesystem 服务"></a><code>filesystem</code> 服务</h2><p>学会了 <code>fetch</code> 工具的添加方法，我们就可以举一反三，添加更多的 MCP 工具。例如，<code>filesystem</code> 工具可以帮助我们操作本地文件。</p>
+<h3 id="filesystem-的主要功能"><a href="#filesystem-的主要功能" class="headerlink" title="filesystem 的主要功能"></a><code>filesystem</code> 的主要功能</h3><p><strong>Filesystem 的关键功能包括：</strong></p>
+<ul>
+<li><strong>读&#x2F;写文件和目录：</strong><ul>
+<li>这意味着 Filesystem 允许用户读取文件的内容，以及将新的内容写入文件。</li>
+</ul>
+</li>
+<li><strong>创建、列出、删除或移动目录：</strong><ul>
+<li>用户可以使用 Filesystem 创建新的目录，查看现有目录的内容，删除不再需要的目录，以及将目录移动到新的位置。</li>
+</ul>
+</li>
+<li><strong>使用模式匹配搜索文件：</strong><ul>
+<li>Filesystem 允许用户使用通配符（例如，<code>*.txt</code>）来搜索符合特定模式的文件。这使得查找文件变得更加方便。</li>
+</ul>
+</li>
+<li><strong>检索详细的文件元数据：</strong><ul>
+<li>元数据指的是文件的属性，例如文件的大小、创建时间、修改时间等。Filesystem 可以提供这些详细的信息。</li>
+</ul>
+</li>
+<li><strong>访问控制以限制对指定目录的操作：</strong><ul>
+<li>这是 Filesystem 安全性的核心功能。通过配置文件，用户可以指定哪些目录是“允许的”，而哪些目录是“禁止的”。这可以防止未经授权的访问和操作。</li>
+</ul>
+</li>
+</ul>
+<h3 id="配置方法"><a href="#配置方法" class="headerlink" title="配置方法"></a>配置方法</h3><p>在 Cherry Studio 的 MCP 服务器设置中，搜索 <code>@modelcontextprotocol/server-filesystem</code>，然后在参数下面添加你打算操作的目录地址。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322164536953.png" srcset="/img/loading.gif" lazyload alt="查找服务器"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322162933530.png" srcset="/img/loading.gif" lazyload alt="filesystem"></p>
+<h3 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h3><p>使用 <code>filesystem</code>，我们可以轻松地操作文件内容，例如新建文件夹、重命名文件夹等。再次提醒，简单的文件操作，免费的 7 B 模型也能做到。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322163835088.png" srcset="/img/loading.gif" lazyload alt="效果"></p>
+<p>提示词：写一首春天的诗歌， 利用filesystem在桌面（桌面路径C:\Users\chenw\Desktop）新建一个诗歌.txt， 将诗歌内容写入诗歌.txt中。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250322184317395.png" srcset="/img/loading.gif" lazyload alt="新建文件"></p>
+<p>注意：每次对话不一定达到想要的效果，需要不断对话调试，尽可能的给出规范的 prompt，才能减少幻觉。</p>
+<h2 id="MCP-资源站"><a href="#MCP-资源站" class="headerlink" title="MCP 资源站"></a>MCP 资源站</h2><p>如何查找 MCP 服务？您可以通过以下网站找到公开的 MCP 工具。这些工具功能丰富，涵盖控制 Blender、Figma、浏览器以及数据库等多个方面。后续，我将根据个人使用体验，持续更新 MCP 相关内容。</p>
+<ul>
+<li>Sminthery : <a target="_blank" rel="noopener" href="https://smithery.ai/">https://smithery.ai/</a></li>
+<li>Pulse mcp : <a target="_blank" rel="noopener" href="https://www.pulsemcp.com/">https://www.pulsemcp.com/</a></li>
+<li>Awesome mcp servers : <a target="_blank" rel="noopener" href="https://mcpservers.org/">https://mcpservers.org/</a></li>
+<li>mcp.so : <a target="_blank" rel="noopener" href="https://mcp.so/">https://mcp.so/</a></li>
+<li>Galma.ai : <a target="_blank" rel="noopener" href="https://glama.ai/mcp/servers">https://glama.ai/mcp/servers</a></li>
+<li>Cursor.directory : <a target="_blank" rel="noopener" href="https://cursor.directory/">https://cursor.directory/</a></li>
+</ul>
+<p>除了 Cherry studio 之外，还可以通过 Claude 客户端、Cursor、Cline 插件等工具调用 MCP 工具。您也可以在上述网站找到支持 MCP 的工具。从目前的趋势来看，将会有越来越多的平台支持 MCP，相信未来会更加便捷，例如直接调用大型模型对话完成 Word 文档的编写。相信这一天很快就会到来。如果您知道更多工具或更优秀的 MCP 服务器，欢迎在评论区留言，谢谢。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>MCP 协议就像为大模型添加了翅膀，让它们能够突破自身的限制，与外部世界进行互动。通过 Cherry Studio 这样易用的工具，我们可以轻松地为自己的大模型配置各种 MCP 服务，从而解锁更多可能性。如果您觉得有帮助，请点赞并关注。</p>
+<h2 id="相关网站"><a href="#相关网站" class="headerlink" title="相关网站"></a>相关网站</h2><ul>
+<li>Fetch GitHub:  <a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/servers/tree/main/src/fetch">https://github.com/modelcontextprotocol/servers/tree/main/src/fetch</a></li>
+<li>filesystem Github:<a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem</a></li>
+<li>Cherry Studio Docs: <a target="_blank" rel="noopener" href="https://docs.cherry-ai.com/advanced-basic/mcp-1">https://docs.cherry-ai.com/advanced-basic/mcp-1</a></li>
+<li>Model Context Protocol :<a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/">https://modelcontextprotocol.io/</a></li>
+</ul>
+<h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>微信公众号：环境猫er<br>CSDN : 细节处有神明<br>个人博客：<a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a> </p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
+      
+        <a href="/tags/mcp/" class="print-no-link">#mcp</a>
+      
+        <a href="/tags/cherry-studio/" class="print-no-link">#cherry_studio</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>从Cherry Studio 入门 MCP 为大模型插上翅膀</div>
+      <div>https://maoyu92.github.io/2025/03/22/06 人工智能/从Cherry Studio 入门 MCP， 为大模型插上翅膀/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年3月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/03/23/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E5%9F%BA%E4%BA%8EQwen2.5-VL%E6%A8%A1%E5%9E%8B%E5%8F%8A%E6%B0%B4%E8%B4%A8%E6%B1%A1%E6%9F%93%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90%E7%9A%84%E6%B2%B3%E9%81%93%E6%B1%A1%E6%9F%93%E8%AF%86%E5%88%AB%E7%A0%94%E7%A9%B6/" title="基于Qwen2.5-VL模型及水质污染特征分析的河道污染识别研究">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">基于Qwen2.5-VL模型及水质污染特征分析的河道污染识别研究</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/03/16/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/OpenWebUI%EF%BC%9A%E4%B8%80%E7%AB%99%E5%BC%8F%20AI%20%E5%BA%94%E7%94%A8%E6%9E%84%E5%BB%BA%E5%B9%B3%E5%8F%B0%E4%BD%93%E9%AA%8C/" title="OpenWebUI：一站式 AI 应用构建平台体验">
+                        <span class="hidden-mobile">OpenWebUI：一站式 AI 应用构建平台体验</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

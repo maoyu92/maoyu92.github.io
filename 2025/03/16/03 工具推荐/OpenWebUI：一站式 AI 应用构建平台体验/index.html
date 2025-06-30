@@ -27,6 +27,7 @@
 <meta property="og:description" content="🚀 大家好，今天给大家分享一个超棒的 AI 应用构建工具——OpenWebUI！体验下来，只能说丝滑！必须强烈推荐！ 🔥 听说过阿里巴巴的 Qwen 吗？他们最新的 Qwen Chat 网站就是用 OpenWebUI 搭建的！足以见得这个工具的强大。在 GitHub 上已经狂揽 83.7 k Star，简直恐怖如斯！ 大家可以去体验一下：https:&#x2F;&#x2F;chat.qwen.ai&#x2F; Open">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_160340.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202503191533495.png">
 <meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_162644.png">
 <meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_163157.png">
 <meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_164302.png">
@@ -45,8 +46,8 @@
 <meta property="article:modified_time" content="2025-03-16T07:09:00.000Z">
 <meta property="article:author" content="wenmao">
 <meta property="article:tag" content="python">
-<meta property="article:tag" content="deepseek">
 <meta property="article:tag" content="AIGC">
+<meta property="article:tag" content="deepseek">
 <meta property="article:tag" content="openwebui">
 <meta property="article:tag" content="知识库">
 <meta name="twitter:card" content="summary_large_image">
@@ -285,7 +286,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          1.8k 字
         
       </span>
     
@@ -296,7 +297,7 @@
         
         
         
-          14 分钟
+          16 分钟
         
       </span>
     
@@ -422,8 +423,10 @@
 <li>选择 “Create conda environment”。</li>
 <li>选择 Python 3.11，点击 “Create”。</li>
 </ol>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vim">#也可用自带的环境工具创建<br><span class="hljs-keyword">python3</span>.<span class="hljs-number">11</span> --<span class="hljs-keyword">version</span><br><span class="hljs-keyword">python3</span>.<span class="hljs-number">11</span> -<span class="hljs-keyword">m</span> venv openwebui.env<br><span class="hljs-keyword">source</span> openwebui.env/bin/activate<br>pip install <span class="hljs-keyword">open</span>-webui<br><span class="hljs-keyword">open</span>-webui serve<br></code></pre></td></tr></table></figure>
+
 <h3 id="安装-Open-WebUI"><a href="#安装-Open-WebUI" class="headerlink" title="安装 Open WebUI"></a>安装 Open WebUI</h3><p>接下来，使用 pip 安装 Open WebUI。<strong>注意：务必使用 Python 3.11，避免兼容性问题！</strong></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell">pip install open-webui<br><span class="hljs-meta prompt_"># </span><span class="language-bash">如果安装缓慢或失败，可以尝试指定版本：</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">pip install open-webui==0.2.0</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">或者更新 pip 后重试：</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">pip install --upgrade open-webui</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs shell"><br>pip install open-webui<br><span class="hljs-meta prompt_"># </span><span class="language-bash">如果安装缓慢或失败，可以尝试指定版本：</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">pip install open-webui==0.2.0</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">或者更新 pip 后重试：</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">pip install --upgrade open-webui</span><br></code></pre></td></tr></table></figure>
 
 <p>安装完成后，运行以下命令启动 Open WebUI：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">open-webui serve<br></code></pre></td></tr></table></figure>
@@ -431,6 +434,14 @@
 <p>第一次启动会比较慢，耐心等待资源加载完毕。然后在浏览器中打开 <code>http://localhost:8080/</code> 即可。</p>
 <p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250316_160340.png" srcset="/img/loading.gif" lazyload alt="OpenWebUI 登录界面"></p>
 <p>首次登录需要注册账号，注册后即可登录。</p>
+<h2 id="Docker-安装"><a href="#Docker-安装" class="headerlink" title="Docker 安装"></a>Docker 安装</h2><p>在 liunx 中使用宝塔和 docker可以快速搭建项目。<br>在 docker 中点击添加容器命令创建，<strong>只使用 OpenAI API</strong>，使用以下命令：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stata">docker <span class="hljs-keyword">run</span> -<span class="hljs-keyword">d</span> -p 3000:8080 -<span class="hljs-keyword">e</span> OPENAI_API_KEY=your_secret_key -v <span class="hljs-keyword">open</span>-webui:/<span class="hljs-keyword">app</span>/backend/data --name <span class="hljs-keyword">open</span>-webui --restart always ghcr.io/<span class="hljs-keyword">open</span>-webui/<span class="hljs-keyword">open</span>-webui:main<br>下载指定版本<br>docker <span class="hljs-keyword">run</span> -<span class="hljs-keyword">d</span> -p 3000:8080 -<span class="hljs-keyword">e</span> OPENAI_API_KEY=your_secret_key --add-host=host.docker.internal:host-gateway -v <span class="hljs-keyword">open</span>-webui:/<span class="hljs-keyword">app</span>/backend/data --name <span class="hljs-keyword">open</span>-webui --restart always ghcr.io/<span class="hljs-keyword">open</span>-webui/<span class="hljs-keyword">open</span>-webui:v0.5.19<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202503191533495.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<blockquote>
+<p>[!warning]</p>
+</blockquote>
+<p>若出现在本地部署 OpenWebUI 时无问题，但是在阿里云服务 docker部署，设置模型时始终出现 “OpenAI: Network Problem” 的网络连接问题，可能是防火墙的问题，关闭防火墙一切正常。</p>
 <h2 id="⚙️-使用-OpenWebUI"><a href="#⚙️-使用-OpenWebUI" class="headerlink" title="⚙️ 使用 OpenWebUI"></a>⚙️ 使用 OpenWebUI</h2><h3 id="基础设置"><a href="#基础设置" class="headerlink" title="基础设置"></a>基础设置</h3><p>首次登录后，第一件事是添加模型。</p>
 <ol>
 <li>点击左下角或右上角头像，进入 “设置”。</li>
@@ -545,9 +556,9 @@
       
         <a href="/tags/python/" class="print-no-link">#python</a>
       
-        <a href="/tags/deepseek/" class="print-no-link">#deepseek</a>
-      
         <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
+      
+        <a href="/tags/deepseek/" class="print-no-link">#deepseek</a>
       
         <a href="/tags/openwebui/" class="print-no-link">#openwebui</a>
       
@@ -607,6 +618,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/03/22/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E4%BB%8ECherry%20Studio%20%E5%85%A5%E9%97%A8%20MCP%EF%BC%8C%20%E4%B8%BA%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8F%92%E4%B8%8A%E7%BF%85%E8%86%80/" title="从Cherry Studio 入门 MCP 为大模型插上翅膀">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">从Cherry Studio 入门 MCP 为大模型插上翅膀</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

@@ -1,0 +1,821 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="🚀 写在前面还在为制作复杂的技术路线图而苦恼吗？传统的手工绘制流程图不仅耗时耗力，而且往往难以达到专业水准。今天就来分享一个颠覆性的解决方案——AI + Visio 组合拳，让你在几分钟内就能创建出可二次编辑的专业级技术路线图！ 🎯 为什么选择AI生成？传统绘制技术路线图的痛点相信大家都深有体会：  ⏰ 时间成本高：复杂图表往往需要数小时甚至数天 🎨 美观度不足：缺乏设计经验很难做出专业">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI生成技术路线图：告别手绘时代的效率革命">
+<meta property="og:url" content="https://maoyu92.github.io/2025/05/22/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/AI%E7%94%9F%E6%88%90%E6%8A%80%E6%9C%AF%E8%B7%AF%E7%BA%BF%E5%9B%BE%EF%BC%9A%E5%91%8A%E5%88%AB%E6%89%8B%E7%BB%98%E6%97%B6%E4%BB%A3%E7%9A%84%E6%95%88%E7%8E%87%E9%9D%A9%E5%91%BD/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="🚀 写在前面还在为制作复杂的技术路线图而苦恼吗？传统的手工绘制流程图不仅耗时耗力，而且往往难以达到专业水准。今天就来分享一个颠覆性的解决方案——AI + Visio 组合拳，让你在几分钟内就能创建出可二次编辑的专业级技术路线图！ 🎯 为什么选择AI生成？传统绘制技术路线图的痛点相信大家都深有体会：  ⏰ 时间成本高：复杂图表往往需要数小时甚至数天 🎨 美观度不足：缺乏设计经验很难做出专业">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250522_065313.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250522_065510.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250522_065540.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250522_070507.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250522_070616.png">
+<meta property="article:published_time" content="2025-05-21T22:53:00.000Z">
+<meta property="article:modified_time" content="2025-05-21T22:53:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="AIGC">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250522_065313.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>AI生成技术路线图：告别手绘时代的效率革命 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AI生成技术路线图：告别手绘时代的效率革命"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-05-22 06:53" pubdate>
+          2025年5月22日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AI生成技术路线图：告别手绘时代的效率革命</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h2 id="🚀-写在前面"><a href="#🚀-写在前面" class="headerlink" title="🚀 写在前面"></a>🚀 写在前面</h2><p>还在为制作复杂的技术路线图而苦恼吗？传统的手工绘制流程图不仅耗时耗力，而且往往难以达到专业水准。今天就来分享一个颠覆性的解决方案——<strong>AI + Visio 组合拳</strong>，让你在几分钟内就能创建出可二次编辑的专业级技术路线图！</p>
+<h2 id="🎯-为什么选择AI生成？"><a href="#🎯-为什么选择AI生成？" class="headerlink" title="🎯 为什么选择AI生成？"></a>🎯 为什么选择AI生成？</h2><p>传统绘制技术路线图的痛点相信大家都深有体会：</p>
+<ul>
+<li>⏰ <strong>时间成本高</strong>：复杂图表往往需要数小时甚至数天</li>
+<li>🎨 <strong>美观度不足</strong>：缺乏设计经验很难做出专业效果</li>
+<li>🔄 <strong>修改困难</strong>：一旦需要调整，几乎要重新开始</li>
+<li>📊 <strong>格式不统一</strong>：团队协作时风格各异</li>
+</ul>
+<p>而AI生成技术路线图的优势显而易见：</p>
+<ul>
+<li>⚡ <strong>效率提升100倍</strong>：从小时级降至分钟级</li>
+<li>🎨 <strong>专业级美观度</strong>：AI自带设计美感</li>
+<li>📝 <strong>可编辑性强</strong>：SVG格式支持无损编辑</li>
+<li>🔧 <strong>标准化输出</strong>：统一的专业风格</li>
+</ul>
+<h2 id="🧪-五大主流AI模型实测对比"><a href="#🧪-五大主流AI模型实测对比" class="headerlink" title="🧪 五大主流AI模型实测对比"></a>🧪 五大主流AI模型实测对比</h2><p>为了给大家提供最客观的参考，我对目前最热门的几款AI模型进行了全面测试。测试标准包括：生成速度、图表质量、可编辑性、易用性等维度。</p>
+<h3 id="提示词"><a href="#提示词" class="headerlink" title="提示词"></a>提示词</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ad-quote">请生成一个swmm河流预测模型构建的技术路线图，符合论文要求，要求保存为svg格式，使用svg语法<br></code></pre></td></tr></table></figure>
+<h3 id="🏆-Claude-3-7-Sonnet-王者级表现"><a href="#🏆-Claude-3-7-Sonnet-王者级表现" class="headerlink" title="🏆 Claude 3.7 Sonnet - 王者级表现"></a>🏆 Claude 3.7 Sonnet - 王者级表现</h3><p><strong>测试结果：★★★★★</strong></p>
+<p>Claude 3.7 Sonnet 在本次测试中表现最为出色，堪称完美级别：</p>
+<p><strong>突出优势：</strong></p>
+<ul>
+<li>🎯 <strong>即时预览</strong>：生成后可直接在界面查看效果</li>
+<li>📥 <strong>一键下载</strong>：支持直接下载SVG格式，无需转换</li>
+<li>🎨 <strong>设计精美</strong>：色彩搭配和布局都达到专业水准</li>
+<li>📐 <strong>结构清晰</strong>：逻辑层次分明，信息组织合理</li>
+</ul>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250522_065313.png" srcset="/img/loading.gif" lazyload alt="Claude问题回答界面"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250522_065510.png" srcset="/img/loading.gif" lazyload alt="Claude生成效果展示"></p>
+<h3 id="🥈-Gemini-2-5-Pro-实力派选手"><a href="#🥈-Gemini-2-5-Pro-实力派选手" class="headerlink" title="🥈 Gemini 2.5 Pro - 实力派选手"></a>🥈 Gemini 2.5 Pro - 实力派选手</h3><p><strong>测试结果：★★★★☆</strong></p>
+<p>Google的Gemini 2.5 Pro整体表现不错，生成质量很高：</p>
+<p><strong>主要特点：</strong></p>
+<ul>
+<li>✅ <strong>内容丰富</strong>：生成的技术路线图信息完整</li>
+<li>✅ <strong>逻辑清晰</strong>：流程步骤安排合理</li>
+<li>⚠️ <strong>格式处理</strong>：需要手动保存为txt后修改后缀名为svg</li>
+</ul>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250522_065540.png" srcset="/img/loading.gif" lazyload alt="Gemini 2.5 Pro生成效果"></p>
+<h3 id="🥉-Qwen-3-稳定发挥"><a href="#🥉-Qwen-3-稳定发挥" class="headerlink" title="🥉 Qwen 3 - 稳定发挥"></a>🥉 Qwen 3 - 稳定发挥</h3><p><strong>测试结果：★★★☆☆</strong></p>
+<p>阿里的Qwen 3表现中规中矩，能够满足基本需求：</p>
+<p><strong>基本评价：</strong></p>
+<ul>
+<li>✅ <strong>功能完备</strong>：基础的流程图生成功能齐全</li>
+<li>✅ <strong>中文友好</strong>：对中文内容处理较好</li>
+<li>⚠️ <strong>操作略繁琐</strong>：同样需要txt格式转换</li>
+</ul>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250522_070507.png" srcset="/img/loading.gif" lazyload alt="Qwen 3效果展示"></p>
+<h3 id="🤖-Grok-新星表现"><a href="#🤖-Grok-新星表现" class="headerlink" title="🤖 Grok - 新星表现"></a>🤖 Grok - 新星表现</h3><p><strong>测试结果：★★★☆☆</strong></p>
+<p>X平台的Grok作为新兴AI，表现可圈可点：</p>
+<p><strong>整体印象：</strong></p>
+<ul>
+<li>✅ <strong>创新思维</strong>：在创意方面有独特表现</li>
+<li>⚠️ <strong>稳定性待提升</strong>：偶有生成质量不稳定的情况</li>
+</ul>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E5%B1%80%E9%83%A8%E6%88%AA%E5%8F%96_20250522_070616.png" srcset="/img/loading.gif" lazyload alt="Grok效果展示"></p>
+<h2 id="🔧-实操指南：从AI到Visio的完美工作流"><a href="#🔧-实操指南：从AI到Visio的完美工作流" class="headerlink" title="🔧 实操指南：从AI到Visio的完美工作流"></a>🔧 实操指南：从AI到Visio的完美工作流</h2><h3 id="Step-1-AI生成SVG文件"><a href="#Step-1-AI生成SVG文件" class="headerlink" title="Step 1: AI生成SVG文件"></a>Step 1: AI生成SVG文件</h3><ol>
+<li>选择合适的AI工具（推荐Claude 3.7 Sonnet）</li>
+<li>输入详细的需求描述</li>
+<li>获取SVG格式的技术路线图</li>
+</ol>
+<h3 id="Step-2-导入Visio进行二次编辑"><a href="#Step-2-导入Visio进行二次编辑" class="headerlink" title="Step 2: 导入Visio进行二次编辑"></a>Step 2: 导入Visio进行二次编辑</h3><ol>
+<li>打开Microsoft Visio</li>
+<li>直接拖拽SVG文件到Visio画布</li>
+<li>开始个性化编辑和调整</li>
+</ol>
+<h3 id="Step-3-完善和优化"><a href="#Step-3-完善和优化" class="headerlink" title="Step 3: 完善和优化"></a>Step 3: 完善和优化</h3><ul>
+<li>调整色彩方案</li>
+<li>修改文字内容</li>
+<li>添加公司Logo</li>
+<li>统一字体风格</li>
+</ul>
+<h2 id="💡-实用技巧分享"><a href="#💡-实用技巧分享" class="headerlink" title="💡 实用技巧分享"></a>💡 实用技巧分享</h2><h3 id="提示词优化技巧"><a href="#提示词优化技巧" class="headerlink" title="提示词优化技巧"></a>提示词优化技巧</h3><ul>
+<li><strong>具体化描述</strong>：详细说明技术路线图的用途和要求</li>
+<li><strong>结构化输入</strong>：明确各个阶段和步骤</li>
+<li><strong>格式要求</strong>：明确指定需要SVG格式输出</li>
+</ul>
+<h3 id="后期编辑建议"><a href="#后期编辑建议" class="headerlink" title="后期编辑建议"></a>后期编辑建议</h3><ul>
+<li><strong>保持一致性</strong>：统一色彩和字体风格</li>
+<li><strong>突出重点</strong>：用不同颜色标识关键节点</li>
+<li><strong>添加细节</strong>：补充必要的说明文字和图标</li>
+</ul>
+<h2 id="🎊-总结与展望"><a href="#🎊-总结与展望" class="headerlink" title="🎊 总结与展望"></a>🎊 总结与展望</h2><p>AI技术的发展正在深刻改变我们的工作方式，技术路线图的制作从此告别手工时代。通过本次测试，<strong>Claude 3.7 Sonnet</strong>以其卓越的表现成为首选方案，而其他AI工具也各有特色，可以根据具体需求选择。</p>
+<p>这种AI+传统软件的组合使用模式，不仅大幅提升了工作效率，更重要的是让专业级的设计变得触手可及。相信随着AI技术的不断进步，未来还会有更多令人惊喜的应用场景等待我们去探索。</p>
+<hr>
+<blockquote>
+<p>💬 <strong>互动时间</strong>：你在工作中还遇到过哪些可以用AI优化的场景？欢迎在评论区分享你的经验和想法！</p>
+</blockquote>
+<blockquote>
+<p>🔔 <strong>关注我</strong>，获取更多AI工具实测和效率提升技巧！</p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AI生成技术路线图：告别手绘时代的效率革命</div>
+      <div>https://maoyu92.github.io/2025/05/22/06 人工智能/AI生成技术路线图：告别手绘时代的效率革命/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年5月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/05/23/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Google%20NotebookLM%EF%BC%9A%E4%B8%BB%E9%A2%98%E9%98%85%E8%AF%BB%E7%9A%84%E7%A5%9E/" title="Google NotebookLM：主题阅读的神">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Google NotebookLM：主题阅读的神</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/14/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/AI%E6%89%93%E9%80%A0%E4%B8%AA%E6%80%A7%E5%8C%96%E5%AE%A1%E7%A8%BF%E4%B8%93%E5%AE%B6/" title="AI打造个性化审稿专家">
+                        <span class="hidden-mobile">AI打造个性化审稿专家</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
