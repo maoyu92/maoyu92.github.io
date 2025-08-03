@@ -1,0 +1,847 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="之前曾写过利用阿里开源视觉模型构建 AI 视频识别的文章，最近发现硅基流动最近发布了免费视觉模型 THUDM&#x2F;GLM-4.1 V-9 B-Thinking，就想把之前的想法进行落地，于是有了今天的这篇。 本方案旨在通过调用硅基流动的免费视觉模型 API，截取监控视频流图片，并结合特定的提示词，实现视频监控的智能化识别功能。 一、背景介绍1. 行业与政策背景近年来，随着国家对生态文明建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="零成本实现AI视频监控识别方案 以河道水质监控为例">
+<meta property="og:url" content="https://maoyu92.github.io/2025/07/11/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E9%9B%B6%E6%88%90%E6%9C%AC%E5%AE%9E%E7%8E%B0AI%E8%A7%86%E9%A2%91%E7%9B%91%E6%8E%A7%E8%AF%86%E5%88%AB%E6%96%B9%E6%A1%88%20%E4%BB%A5%E6%B2%B3%E9%81%93%E6%B0%B4%E8%B4%A8%E7%9B%91%E6%8E%A7%E4%B8%BA%E4%BE%8B/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="之前曾写过利用阿里开源视觉模型构建 AI 视频识别的文章，最近发现硅基流动最近发布了免费视觉模型 THUDM&#x2F;GLM-4.1 V-9 B-Thinking，就想把之前的想法进行落地，于是有了今天的这篇。 本方案旨在通过调用硅基流动的免费视觉模型 API，截取监控视频流图片，并结合特定的提示词，实现视频监控的智能化识别功能。 一、背景介绍1. 行业与政策背景近年来，随着国家对生态文明建">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111636069.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111609857.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111610867.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111611598.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/%E4%B8%8A%E4%BC%A0%E8%AF%84%E4%BC%B0%E7%A4%BA%E4%BE%8B.png">
+<meta property="article:published_time" content="2025-07-11T08:02:00.000Z">
+<meta property="article:modified_time" content="2025-07-11T08:02:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="AIGC">
+<meta property="article:tag" content="大模型">
+<meta property="article:tag" content="视觉模型">
+<meta property="article:tag" content="模型应用">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111636069.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>零成本实现AI视频监控识别方案 以河道水质监控为例 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="零成本实现AI视频监控识别方案 以河道水质监控为例"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-11 16:02" pubdate>
+          2025年7月11日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">零成本实现AI视频监控识别方案 以河道水质监控为例</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<p>之前曾写过利用阿里开源视觉模型构建 AI 视频识别的文章，最近发现硅基流动最近发布了免费视觉模型 THUDM&#x2F;GLM-4.1 V-9 B-Thinking，就想把之前的想法进行落地，于是有了今天的这篇。</p>
+<p>本方案旨在通过调用硅基流动的免费视觉模型 API，截取监控视频流图片，并结合特定的提示词，实现视频监控的智能化识别功能。</p>
+<h2 id="一、背景介绍"><a href="#一、背景介绍" class="headerlink" title="一、背景介绍"></a>一、背景介绍</h2><h3 id="1-行业与政策背景"><a href="#1-行业与政策背景" class="headerlink" title="1. 行业与政策背景"></a>1. 行业与政策背景</h3><p>近年来，随着国家对生态文明建设和水环境治理的高度重视，流域水质监测已成为生态环境保护工作的重中之重。《水污染防治行动计划》《长江保护法》《“十四五”生态环境保护规划》等文件相继出台，明确提出要加强水环境自动监测能力，推动智能化、数字化监管手段的应用。</p>
+<p>在这一背景下，河道视频监控、水库视频监控、排污口视频监控以及污水处理厂视频监控系统已广泛部署，而针对视频内容进行自动化分析的需求也日益增长。</p>
+<h3 id="2-现实痛点"><a href="#2-现实痛点" class="headerlink" title="2. 现实痛点"></a>2. 现实痛点</h3><p>尽管视频监控系统已在环保领域广泛应用，但在实际操作中仍存在诸多挑战：</p>
+<ul>
+<li><strong>人工巡查难以覆盖全面</strong>：河道、湖泊、污水处理厂等区域点多面广，传统人工巡查效率低、成本高。</li>
+<li><strong>数据获取滞后与主观性强</strong>：目前多数为定期采样检测，无法实时发现突发污染事件，且依赖人员经验判断，结果易受主观因素影响。</li>
+<li><strong>异常事件响应不及时</strong>：污水溢流、漂浮物堆积、藻类爆发等问题往往不能第一时间被发现，延误应急处置。</li>
+<li><strong>监管压力大</strong>：环保部门人手有限，面对日益增长的监管需求，亟需借助新技术提升监管效能。</li>
+</ul>
+<h3 id="3-AI-技术带来的新机遇"><a href="#3-AI-技术带来的新机遇" class="headerlink" title="3. AI 技术带来的新机遇"></a>3. AI 技术带来的新机遇</h3><p>随着计算机视觉与多模态大模型的快速发展，AI 技术为水环境监测带来了全新的解决方案：</p>
+<ul>
+<li>利用视觉大模型实现全天候、标准化、客观化的水质异常识别；</li>
+<li>充分挖掘现有视频资源的价值，提升监控系统的智能化水平；</li>
+<li>自动化识别典型问题（如污水溢流、漂浮物、藻类爆发），辅助决策与预警。</li>
+</ul>
+<h2 id="二、系统实现路径"><a href="#二、系统实现路径" class="headerlink" title="二、系统实现路径"></a>二、系统实现路径</h2><h3 id="1-需求分析"><a href="#1-需求分析" class="headerlink" title="1. 需求分析"></a>1. 需求分析</h3><p>本项目以“智能识别+自动分析”为核心目标，旨在通过 AI 模型对视频监控画面进行持续解析，识别潜在的水质异常问题，包括但不限于：</p>
+<ul>
+<li>疑似污水溢流</li>
+<li>疑似漂浮物</li>
+<li>疑似藻类爆发</li>
+<li>疑似排污口排污</li>
+<li>疑似农业污染源</li>
+</ul>
+<p>同时要求输出明确的问题分类、位置描述、严重程度评估及初步建议，形成标准化报告。</p>
+<h3 id="2-系统设计"><a href="#2-系统设计" class="headerlink" title="2. 系统设计"></a>2. 系统设计</h3><h4 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h4><p>系统采用前后端分离架构，模块化设计，便于扩展和维护，支持多站点接入、多设备兼容。</p>
+<h4 id="数据流转流程"><a href="#数据流转流程" class="headerlink" title="数据流转流程"></a>数据流转流程</h4><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111636069.png" srcset="/img/loading.gif" lazyload alt="流程"></p>
+<h4 id="用户界面设计"><a href="#用户界面设计" class="headerlink" title="用户界面设计"></a>用户界面设计</h4><p>前端使用 Streamlit 快速搭建可视化 Web 界面，支持图片上传测试、视频流展示、历史记录查看等功能。</p>
+<h3 id="3-开发与测试"><a href="#3-开发与测试" class="headerlink" title="3. 开发与测试"></a>3. 开发与测试</h3><h4 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h4><p>整理各地监控点台账，清洗并统一主键标识，确保数据一致性。</p>
+<h4 id="核心功能开发"><a href="#核心功能开发" class="headerlink" title="核心功能开发"></a>核心功能开发</h4><ul>
+<li>实现视频流地址获取、视频帧截取、图像上传与模型调用；</li>
+<li>支持手动上传图片进行模型验证；</li>
+<li>提供定时任务机制，实现自动化分析。</li>
+</ul>
+<h4 id="大模型集成"><a href="#大模型集成" class="headerlink" title="大模型集成"></a>大模型集成</h4><p>接入硅基流动平台提供的免费视觉模型 <strong>THUDM&#x2F;GLM-4.1 V-9 B-Thinking</strong>，结合提示词工程优化，提高识别准确率。</p>
+<h4 id="联调测试"><a href="#联调测试" class="headerlink" title="联调测试"></a>联调测试</h4><p>与多个真实监控点对接，反复测试各类典型场景，确保系统稳定性与识别效果。</p>
+<hr>
+<h2 id="三、应用场景"><a href="#三、应用场景" class="headerlink" title="三、应用场景"></a>三、应用场景</h2><h3 id="1-城市河道智能监管"><a href="#1-城市河道智能监管" class="headerlink" title="1. 城市河道智能监管"></a>1. 城市河道智能监管</h3><ul>
+<li>对城市主要河流断面进行实时视频监控；</li>
+<li>自动识别污水直排、垃圾漂浮、藻类异常等现象；</li>
+<li>与智慧水务平台联动，实现跨部门协同监管。</li>
+</ul>
+<h3 id="2-农村水体与小微水域监测"><a href="#2-农村水体与小微水域监测" class="headerlink" title="2. 农村水体与小微水域监测"></a>2. 农村水体与小微水域监测</h3><ul>
+<li>针对农村沟渠、池塘等分散水体部署低成本摄像头；</li>
+<li>AI 自动识别异常，辅助乡镇环保人员日常巡查；</li>
+<li>提升农村地区水环境治理水平。</li>
+</ul>
+<h3 id="3-工业园区与污水处理厂监管"><a href="#3-工业园区与污水处理厂监管" class="headerlink" title="3. 工业园区与污水处理厂监管"></a>3. 工业园区与污水处理厂监管</h3><ul>
+<li>实时监控工业园区排污口、污水处理厂进出水情况；</li>
+<li>发现异常排放、设备故障等问题，及时告警；</li>
+<li>可与企业自查、第三方运维系统整合，提升监管覆盖面。</li>
+</ul>
+<h3 id="4-应急与专项监测"><a href="#4-应急与专项监测" class="headerlink" title="4. 应急与专项监测"></a>4. 应急与专项监测</h3><ul>
+<li>在汛期、突发污染事件期间临时布控摄像头，AI 辅助应急指挥；</li>
+<li>重大节假日、专项整治行动期间提升监管频次与响应速度。</li>
+</ul>
+<hr>
+<h2 id="四、实施效果与价值"><a href="#四、实施效果与价值" class="headerlink" title="四、实施效果与价值"></a>四、实施效果与价值</h2><h3 id="1-监管效率显著提升"><a href="#1-监管效率显著提升" class="headerlink" title="1. 监管效率显著提升"></a>1. 监管效率显著提升</h3><ul>
+<li>实现 7×24 小时不间断自动监控；</li>
+<li>异常事件可在秒级被识别，大幅减少人工巡查频次；</li>
+<li>降低人力成本，提升工作效率。</li>
+</ul>
+<h3 id="2-监管精度与客观性提升"><a href="#2-监管精度与客观性提升" class="headerlink" title="2. 监管精度与客观性提升"></a>2. 监管精度与客观性提升</h3><ul>
+<li>AI 模型标准化识别流程，避免人为疏漏与误判；</li>
+<li>所有分析过程与结果均可追溯，便于责任认定；</li>
+<li>支持多维度对比分析，提升数据可信度。</li>
+</ul>
+<h3 id="3-响应速度与应急能力增强"><a href="#3-响应速度与应急能力增强" class="headerlink" title="3. 响应速度与应急能力增强"></a>3. 响应速度与应急能力增强</h3><ul>
+<li>对污水溢流、漂浮物、藻类爆发等突发事件实现快速响应；</li>
+<li>支持自动推送告警信息，触发联动处置机制；</li>
+<li>提高应急管理效率，缩短响应时间。</li>
+</ul>
+<hr>
+<h2 id="五、功能演示图示"><a href="#五、功能演示图示" class="headerlink" title="五、功能演示图示"></a>五、功能演示图示</h2><p>下图为系统核心功能截图：</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111609857.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>上传图片进行模型测试与提示词调试：</p>
+</blockquote>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111610867.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>截取视频流图片进行自动分析，输出识别结果：</p>
+</blockquote>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111611598.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/%E4%B8%8A%E4%BC%A0%E8%AF%84%E4%BC%B0%E7%A4%BA%E4%BE%8B.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="六、未来展望"><a href="#六、未来展望" class="headerlink" title="六、未来展望"></a>六、未来展望</h2><h3 id="1-持续优化-AI-模型"><a href="#1-持续优化-AI-模型" class="headerlink" title="1. 持续优化 AI 模型"></a>1. 持续优化 AI 模型</h3><ul>
+<li>探索更多视觉大模型，提升复杂场景下的识别准确率；</li>
+<li>优化推理速度，适应边缘计算场景。</li>
+</ul>
+<h3 id="2-提升提示词工程能力"><a href="#2-提升提示词工程能力" class="headerlink" title="2. 提升提示词工程能力"></a>2. 提升提示词工程能力</h3><ul>
+<li>细化识别类别，拓展应用场景；</li>
+<li>丰富输出格式，提高报告实用性。</li>
+</ul>
+<h3 id="3-推进硬件集成"><a href="#3-推进硬件集成" class="headerlink" title="3. 推进硬件集成"></a>3. 推进硬件集成</h3><ul>
+<li>与轻量级摄像头、边缘计算设备集成，打造低成本 AI 视频装置；</li>
+<li>实现现场识别与本地处理，降低网络依赖。</li>
+</ul>
+<h3 id="4-拓展识别指标"><a href="#4-拓展识别指标" class="headerlink" title="4. 拓展识别指标"></a>4. 拓展识别指标</h3><ul>
+<li>探索水色、水位、流速等更多水质相关参数的智能识别。</li>
+</ul>
+<h2 id="七、结语"><a href="#七、结语" class="headerlink" title="七、结语"></a>七、结语</h2><p>本项目基于硅基流动平台提供的免费视觉大模型 <strong>THUDM&#x2F;GLM-4.1 V-9 B-Thinking</strong>，实现了对视频监控画面的智能识别与分析，为流域水质监管提供了新的技术支撑。系统具备良好的扩展性与落地性，已在多个实际场景中得到验证，具备向更广泛区域推广的基础条件。</p>
+<p>如果你也在探索 AI + 视频监控在环保领域的应用，欢迎交流探讨，共同推进生态环保的智能化转型！</p>
+<h3 id="硅基流动邀请链接"><a href="#硅基流动邀请链接" class="headerlink" title="硅基流动邀请链接"></a>硅基流动邀请链接</h3><p>最近硅基流动在做推广活动，用下面的链接注册，就可以获得 2000 万 Tokens（14 元平台配额），如果需要，就用下面的链接注册吧。<br>模型邀请链接：<br><a target="_blank" rel="noopener" href="https://cloud.siliconflow.cn/i/p61lgKxB">https://cloud.siliconflow.cn/i/p61lgKxB</a><br>邀请码：p 61 lgKxB</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="category-chain-item">生态环境</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
+      
+        <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
+      
+        <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" class="print-no-link">#大模型</a>
+      
+        <a href="/tags/%E8%A7%86%E8%A7%89%E6%A8%A1%E5%9E%8B/" class="print-no-link">#视觉模型</a>
+      
+        <a href="/tags/%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/" class="print-no-link">#模型应用</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>零成本实现AI视频监控识别方案 以河道水质监控为例</div>
+      <div>https://maoyu92.github.io/2025/07/11/02 生态环境/零成本实现AI视频监控识别方案 以河道水质监控为例/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/15/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/AI%20%E5%BA%94%E7%94%A8%E4%B9%8B%20%E8%A7%86%E9%A2%91%E6%91%84%E5%83%8F%E5%A4%B4%E7%A7%92%E5%8F%98%E6%99%BA%E6%85%A7%E6%B0%B4%E5%B0%BA/" title="AI 应用 视频摄像头秒变智慧水尺">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">AI 应用 视频摄像头秒变智慧水尺</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/07/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E5%9F%BA%E4%BA%8E%E8%BF%9E%E7%BB%AD%E5%9C%B0%E8%A1%A8%E6%B0%B4%E6%B0%B4%E8%B4%A8%E8%87%AA%E5%8A%A8%E7%AB%99%E7%9A%84%E6%B5%81%E9%80%9F%E4%B8%8E%E9%99%8D%E8%A7%A3%E7%B3%BB%E6%95%B0%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95/" title="基于连续地表水水质自动站的流速与降解系数自动识别算法">
+                        <span class="hidden-mobile">基于连续地表水水质自动站的流速与降解系数自动识别算法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

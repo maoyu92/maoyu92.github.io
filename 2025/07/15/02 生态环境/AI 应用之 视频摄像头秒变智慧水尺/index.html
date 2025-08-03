@@ -1,0 +1,780 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="告别高昂成本：AI 如何将普通摄像头变为智慧“水尺”在水资源管理和防汛抗旱的战线上，对河道、水库水位的实时精准监控至关重要。长久以来，我们依赖超声波、雷达或压力式水位计等传统监测手段，但它们普遍存在建设成本高、维护复杂、易受恶劣环境影响等问题。如今，随着人工智能（AI）技术的飞速发展，一场颠覆性的变革正在悄然发生——我们完全可以利用无处不在的视频摄像头，以极低的成本“顺便”获取精确的水位信息。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI 应用 视频摄像头秒变智慧水尺">
+<meta property="og:url" content="https://maoyu92.github.io/2025/07/15/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/AI%20%E5%BA%94%E7%94%A8%E4%B9%8B%20%E8%A7%86%E9%A2%91%E6%91%84%E5%83%8F%E5%A4%B4%E7%A7%92%E5%8F%98%E6%99%BA%E6%85%A7%E6%B0%B4%E5%B0%BA/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="告别高昂成本：AI 如何将普通摄像头变为智慧“水尺”在水资源管理和防汛抗旱的战线上，对河道、水库水位的实时精准监控至关重要。长久以来，我们依赖超声波、雷达或压力式水位计等传统监测手段，但它们普遍存在建设成本高、维护复杂、易受恶劣环境影响等问题。如今，随着人工智能（AI）技术的飞速发展，一场颠覆性的变革正在悄然发生——我们完全可以利用无处不在的视频摄像头，以极低的成本“顺便”获取精确的水位信息。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-07-15T02:15:00.000Z">
+<meta property="article:modified_time" content="2025-07-15T02:15:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="生态环境">
+<meta property="article:tag" content="AIGC">
+<meta property="article:tag" content="AI应用">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>AI 应用 视频摄像头秒变智慧水尺 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AI 应用 视频摄像头秒变智慧水尺"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-15 10:15" pubdate>
+          2025年7月15日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AI 应用 视频摄像头秒变智慧水尺</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h3 id="告别高昂成本：AI-如何将普通摄像头变为智慧“水尺”"><a href="#告别高昂成本：AI-如何将普通摄像头变为智慧“水尺”" class="headerlink" title="告别高昂成本：AI 如何将普通摄像头变为智慧“水尺”"></a>告别高昂成本：AI 如何将普通摄像头变为智慧“水尺”</h3><p>在水资源管理和防汛抗旱的战线上，对河道、水库水位的实时精准监控至关重要。长久以来，我们依赖超声波、雷达或压力式水位计等传统监测手段，但它们普遍存在建设成本高、维护复杂、易受恶劣环境影响等问题。如今，随着人工智能（AI）技术的飞速发展，一场颠覆性的变革正在悄然发生——我们完全可以利用无处不在的视频摄像头，以极低的成本“顺便”获取精确的水位信息。</p>
+<p>这篇博客将深入探讨如何利用 AI 视频识别技术，将您现有的或低成本新装的摄像头，打造成一个全天候、高精度、免维护的智能“水尺”。</p>
+<hr>
+<h4 id="传统水位监测的痛点"><a href="#传统水位监测的痛点" class="headerlink" title="传统水位监测的痛点"></a>传统水位监测的痛点</h4><p>在介绍 AI 新方法之前，我们先快速回顾一下传统水位监测方式的局限性：</p>
+<ul>
+<li><strong>超声波&#x2F;雷达水位计</strong>：虽然是非接触式测量，相对先进，但设备本身价格不菲，且对安装角度、波束范围有严格要求，后期的专业维护亦是一笔不小的开销。</li>
+<li><strong>压力式&#x2F;浮子式水位计</strong>：这类接触式设备需要建设测井，土建成本高昂。此外，它们极易受到泥沙淤积、水中漂浮物、冬季结冰等因素的干扰，导致故障频发，数据失准，需要频繁的人工清理和校准。</li>
+<li><strong>人工读尺</strong>：最原始的方式，依赖人工定时定点观察实体水尺。这种方法不仅效率低下、数据实时性差，而且在洪水、暴雨等恶劣天气下，观测人员的安全也面临巨大风险。</li>
+</ul>
+<p>显然，传统方法在成本、效率和安全性上都存在明显的短板。而 AI 视频分析技术的出现，为解决这些痛点提供了全新的、极具吸引力的思路。</p>
+<h4 id="AI-视频水位监测：便捷、经济、高效的新范式"><a href="#AI-视频水位监测：便捷、经济、高效的新范式" class="headerlink" title="AI 视频水位监测：便捷、经济、高效的新范式"></a>AI 视频水位监测：便捷、经济、高效的新范式</h4><p>其核心思想非常巧妙：<strong>利用计算机视觉技术，让 AI 学会像人一样“读取”水尺上的刻度</strong>。更进一步，即使没有实体水尺，AI 也能通过识别固定参照物，建立起一把虚拟的水尺来完成测量。这一过程几乎是全自动的，可以 7 x 24 小时不间断工作。</p>
+<p><strong>实现这一“黑科技”，主要分三步走：</strong></p>
+<p><strong>第一步：架设“眼睛”—— 摄像头与物理标尺</strong></p>
+<p>系统只需要一个固定的“眼睛”—— 一个能够清晰拍摄到水面的普通高清摄像头。为了给 AI 一个可靠的参照基准，我们需要在岸边设置一个物理标尺。</p>
+<ul>
+<li><strong>实体水尺</strong>：最直接的方式是安装一把传统的物理水尺。这是 AI 学习和识别的直接对象。</li>
+<li><strong>固定标线&#x2F;参照物</strong>：在没有条件安装水尺的地方，可以利用桥墩、堤坝、甚至是一根固定的杆子作为参照。只要这个物体的位置是固定的，我们就可以通过初始标定，赋予它“水尺”的功能。</li>
+</ul>
+<p>这种方式的优势在于硬件投入极低，很多场景甚至可以利旧改造，直接利用已有的安防监控摄像头。</p>
+<p><strong>第二步：创建“虚拟标尺”—— 图像处理与 AI 算法</strong></p>
+<p>这是将“看见”转化为“读懂”的关键一步，也是 AI 大显身手的环节。</p>
+<ol>
+<li><p><strong>图像采集与预处理</strong>：系统从视频流中抓取图像。为了应对光照变化、雨雾天气等干扰，AI 会首先对图像进行增强、去噪、校正等预处理。</p>
+</li>
+<li><p><strong>水尺定位与识别</strong>：AI 视觉模型（如基于 YOLOv 7 等深度学习框架的模型）会自动在画面中找到水尺或预设的参照物。这一步利用了目标检测技术，能够精准锁定“测量工具”的位置。</p>
+</li>
+<li><p><strong>水面线检测</strong>：这是核心技术之一。AI 通过语义分割等算法，精确地将图像分割成“水体”和“非水体”两个区域。这条分割线，就是至关重要的“水位线”。相较于传统图像处理方法，深度学习模型能够更好地应对水面反光、波纹、倒影等复杂情况。</p>
+</li>
+<li><p><strong>读数计算</strong>：在定位了水尺并识别出水位线后，系统会将像素坐标与实际物理高度进行换算。这个换算关系在系统初次部署时通过“相机标定”一次性建立。无论是实体水尺还是虚拟标尺，AI 都能根据水位线落在标尺上的相对位置，精确计算出当前的水位数值。</p>
+</li>
+</ol>
+<p><strong>第三步：智能分析与预警</strong></p>
+<p>获取水位数据只是开始。AI 系统还能：</p>
+<ul>
+<li><strong>实时预警</strong>：当监测到水位超过预设的安全阈值时，系统会立即自动报警，并通过平台、短信、APP 等多种方式通知管理人员。</li>
+<li><strong>数据可视化与趋势分析</strong>：所有数据被记录下来，形成历史曲线，管理人员可以清晰地看到水位变化的趋势，为防汛调度和水资源管理提供决策依据。</li>
+<li><strong>提供视觉佐证</strong>：与传统传感器只能提供一个冰冷的数字不同，AI 视频方案保留了现场的影像。管理人员可以随时查看实时视频或历史录像，直观了解现场情况，判断高水位是由降雨引起还是由漂浮物堵塞造成，为决策提供更丰富的信息。</li>
+</ul>
+<hr>
+<h4 id="AI-方案的压倒性优势"><a href="#AI-方案的压倒性优势" class="headerlink" title="AI 方案的压倒性优势"></a>AI 方案的压倒性优势</h4><p>相较于传统方法，AI 视频监测的优势是全方位的：</p>
+<ul>
+<li><strong>极低的建设与维护成本</strong>：主要成本就是一个摄像头和一台边缘计算设备或云服务器。无需昂贵的专业传感器，无需复杂的土建工程。后期维护也极为简便，基本实现了“无人值守”。</li>
+<li><strong>一机多能，价值倍增</strong>：摄像头除了监测水位，其视频流还可以被复用。例如，通过加载不同的 AI 算法，同一个摄像头还能同时实现对水面漂浮物、非法排污、船只闯入、人员落水、岸边垃圾堆放等的智能识别与预警，最大化投资效益。</li>
+<li><strong>高适应性与稳定性</strong>：非接触式的测量方式使其不受泥沙、水质污染的影响。先进的 AI 算法能有效克服光照、天气、水波等环境干扰，保证了数据的准确性和系统的鲁棒性（即稳定性）。</li>
+<li><strong>安全便捷，远程管控</strong>：管理人员足不出户，通过电脑或手机即可实时查看水位数据和现场视频，极大地提升了工作效率，并避免了恶劣天气下人工巡查的风险。</li>
+</ul>
+<p>目前，这项技术已经不再是实验室里的概念，在长江航道治理、城市内涝监测等众多场景中都已有了成功的应用案例。天地伟业、新华三等科技公司也推出了相关的智慧水利解决方案。</p>
+<h4 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h4><p>利用移动物理标尺和 AI 视频分析来获取水位信息的想法，完全切中了当前智慧水利发展的脉搏。它将昂贵的专业监测任务，转化为 AI 视频监控系统的一个“顺便”即可完成的增值功能。这不仅是技术的创新，更是管理思维的革新。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="category-chain-item">生态环境</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="print-no-link">#生态环境</a>
+      
+        <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
+      
+        <a href="/tags/AI%E5%BA%94%E7%94%A8/" class="print-no-link">#AI应用</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AI 应用 视频摄像头秒变智慧水尺</div>
+      <div>https://maoyu92.github.io/2025/07/15/02 生态环境/AI 应用之 视频摄像头秒变智慧水尺/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/16/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%80%97%E6%95%A3%E7%BB%93%E6%9E%84%E7%90%86%E8%AE%BA%EF%BC%9A%E4%BB%8E%E6%97%A0%E5%BA%8F%E5%88%B0%E6%9C%89%E5%BA%8F%E7%9A%84%E6%88%90%E9%95%BF%E5%93%B2%E5%AD%A6/" title="耗散结构理论：从无序到有序的成长哲学">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">耗散结构理论：从无序到有序的成长哲学</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/11/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E9%9B%B6%E6%88%90%E6%9C%AC%E5%AE%9E%E7%8E%B0AI%E8%A7%86%E9%A2%91%E7%9B%91%E6%8E%A7%E8%AF%86%E5%88%AB%E6%96%B9%E6%A1%88%20%E4%BB%A5%E6%B2%B3%E9%81%93%E6%B0%B4%E8%B4%A8%E7%9B%91%E6%8E%A7%E4%B8%BA%E4%BE%8B/" title="零成本实现AI视频监控识别方案 以河道水质监控为例">
+                        <span class="hidden-mobile">零成本实现AI视频监控识别方案 以河道水质监控为例</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -4,6 +4,174 @@
   
   
   <entry>
+    <title>敏捷方法</title>
+    <link href="/2025/08/03/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%95%8F%E6%8D%B7%E6%96%B9%E6%B3%95/"/>
+    <url>/2025/08/03/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%95%8F%E6%8D%B7%E6%96%B9%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="敏捷宣言的4大核心价值"><a href="#敏捷宣言的4大核心价值" class="headerlink" title="敏捷宣言的4大核心价值"></a>敏捷宣言的4大核心价值</h2><ul><li>个体和互动 高于流程和工具</li><li>可工作的软件 高于详尽的文档</li><li>客户合作 高于合同谈判</li><li>响应变化高于遵循计划</li></ul><h2 id="敏捷宣言的12条原则"><a href="#敏捷宣言的12条原则" class="headerlink" title="敏捷宣言的12条原则"></a>敏捷宣言的12条原则</h2><ul><li>最高优先级是 尽早持续交付有价值的软</li><li>欢迎需求变化，即使开发后期也要适应变化</li><li>频繁交付可工作的软件（周期越短越好）</li><li>业务人员与开发团队每天协作</li><li>激励个体，提供信任和支持</li><li>面对面沟通 是最有效的交流方式</li><li>可工作的软件是衡量进度的首要标准</li><li>可持续开发，保持稳定的开发节奏</li><li>持续追求技术卓越和良好设计</li><li>简单性（最大化不必要工作的减少）</li><li>自组织团队 能产生最佳架构、需求和设计</li><li>定期反思并调整工作方式</li></ul><h2 id="常见的敏捷方法"><a href="#常见的敏捷方法" class="headerlink" title="常见的敏捷方法"></a>常见的敏捷方法</h2><h3 id="Scrum（最流行）"><a href="#Scrum（最流行）" class="headerlink" title="Scrum（最流行）"></a>Scrum（最流行）</h3><ul><li>角色：产品负责人（PO）、Scrum Master、开发团队</li><li>关键会议：Sprint计划会、每日站会、Sprint评审会、Sprint回顾会</li><li>关键工件：产品待办列表（Product Backlog）、Sprint待办列表（Sprint Backlog）、增量（Increment）</li></ul><h3 id="Kanban（看板）"><a href="#Kanban（看板）" class="headerlink" title="Kanban（看板）"></a>Kanban（看板）</h3><ul><li>可视化工作流（To Do、In Progress、Done）</li><li>限制在制品（WIP）数量，优化流程效率</li></ul><h3 id="极限编程（XP）"><a href="#极限编程（XP）" class="headerlink" title="极限编程（XP）"></a>极限编程（XP）</h3><ul><li>强调 测试驱动开发（TDD）、结对编程、持续集成</li></ul><h3 id="DevOps（敏捷的延伸）"><a href="#DevOps（敏捷的延伸）" class="headerlink" title="DevOps（敏捷的延伸）"></a>DevOps（敏捷的延伸）</h3><ul><li>结合开发（Dev）和运维（Ops），实现持续集成（CI）&#x2F;持续交付（CD）</li></ul><h2 id="敏捷方法的注意事项"><a href="#敏捷方法的注意事项" class="headerlink" title="敏捷方法的注意事项"></a>敏捷方法的注意事项</h2><ol><li>避免形式主义<ul><li>敏捷的核心是“个体和互动高于流程和工具”，避免过度依赖工具或僵化的流程，而忽视团队协作和实际价值交付。</li></ul></li><li>确保客户参与<ul><li>客户或业务代表应持续参与项目，及时反馈需求变化，避免开发团队闭门造车。</li></ul></li><li>保持迭代节奏<ul><li>每个迭代（Sprint）应控制在 2-4周，确保快速交付可工作的软件，避免迭代过长导致需求变更滞后。</li></ul></li><li>避免技术债务积累<ul><li>虽然敏捷强调快速交付，但仍需关注代码质量，避免因追求速度而忽视架构优化和测试覆盖。</li></ul></li><li>团队自组织与信任<ul><li>敏捷团队应具备自组织能力，管理者应避免过度干预，信任团队自主决策。</li></ul></li><li>适应变化但避免无序变更<ul><li>敏捷欢迎需求变化，但需通过产品待办列表（Product Backlog） 管理优先级，避免频繁无序变更导致目标模糊。</li></ul></li><li>持续反馈与改进<ul><li>定期进行 Sprint回顾（Retrospective），总结经验教训，持续优化团队协作方式。</li></ul></li><li>避免“伪敏捷”<ul><li>部分组织仅采用Scrum会议形式（如每日站会），但未真正遵循敏捷价值观，导致“形似敏捷，实则瀑布”。</li></ul></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>读书笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>方法论</tag>
+      
+      <tag>读书笔记</tag>
+      
+      <tag>软件工程</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Google Gemini CLI 配置简要指南</title>
+    <link href="/2025/07/18/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Google%20Gemini%20CLI%20%E9%85%8D%E7%BD%AE%E7%AE%80%E8%A6%81%E6%8C%87%E5%8D%97/"/>
+    <url>/2025/07/18/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Google%20Gemini%20CLI%20%E9%85%8D%E7%BD%AE%E7%AE%80%E8%A6%81%E6%8C%87%E5%8D%97/</url>
+    
+    <content type="html"><![CDATA[<p>AI 技术发展日新月异，令人应接不暇。AI 辅助编程的能力也越来越强，以 Claude Code 为首的国外辅助编程工具层出不穷。其中，Google Gemini CLI 以其开源免费的特性备受青睐。</p><p>然而，仅仅是第一步配置就让我卡壳了一个多小时。为了避免大家踩坑，特此记录一下配置过程。</p><h3 id="第一步：下载与安装"><a href="#第一步：下载与安装" class="headerlink" title="第一步：下载与安装"></a>第一步：下载与安装</h3><p>按照官方介绍，首先需要下载并安装。</p><p>要使用 Gemini CLI，你需要先安装 Node.js 18 或更高版本。然后，通过以下命令进行全局安装：</p><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">npm install -g @google/gemini-cli<br></code></pre></td></tr></table></figure><p>安装完成后，在终端中运行 <code>gemini</code> 命令即可启动。启动后，会提示选择一个颜色主题。</p><h3 id="选择主题"><a href="#选择主题" class="headerlink" title="选择主题"></a>选择主题</h3><p>根据个人喜好选择一个喜欢的主题。</p><h3 id="选择登录方式"><a href="#选择登录方式" class="headerlink" title="选择登录方式"></a>选择登录方式</h3><p>Gemini CLI 支持三种登录方式：</p><ul><li>Google 个人认证</li><li>Gemini API</li><li>Vertex AI</li></ul><p>强烈建议选择第一种“Google 个人认证”方式。但我本人也是卡在了这里，主要原因是代理问题。你需要将代理软件的端口告诉终端。</p><h4 id="代理问题解决"><a href="#代理问题解决" class="headerlink" title="代理问题解决"></a>代理问题解决</h4><ol><li><p>从你的代理软件中找到代理端口（通常是 <code>7890</code> 或 <code>1080</code> 等）。</p></li><li><p>在终端（如 CMD 或 PowerShell）中输入以下代码，设置 <code>http_proxy</code> 和 <code>https_proxy</code> 环境变量：</p><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-built_in">set</span> <span class="hljs-attribute">http_proxy</span>=http://127.0.0.1:7890 &amp; <span class="hljs-built_in">set</span> <span class="hljs-attribute">https_proxy</span>=http://127.0.0.1:7890<br></code></pre></td></tr></table></figure></li></ol><p>请将 <code>7890</code> 替换为你实际的代理端口。</p><h3 id="运行-Gemini-CLI"><a href="#运行-Gemini-CLI" class="headerlink" title="运行 Gemini CLI"></a>运行 Gemini CLI</h3><p>完成以上步骤后，在你的项目目录下输入 <code>gemini</code> 命令，就可以开始使用啦！</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/20250718153238841.png" alt="Gemini CLI 启动成功"></p><p>祝你配置顺利！</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>工具推荐</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AIGC</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>耗散结构理论：从无序到有序的成长哲学</title>
+    <link href="/2025/07/16/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%80%97%E6%95%A3%E7%BB%93%E6%9E%84%E7%90%86%E8%AE%BA%EF%BC%9A%E4%BB%8E%E6%97%A0%E5%BA%8F%E5%88%B0%E6%9C%89%E5%BA%8F%E7%9A%84%E6%88%90%E9%95%BF%E5%93%B2%E5%AD%A6/"/>
+    <url>/2025/07/16/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E8%80%97%E6%95%A3%E7%BB%93%E6%9E%84%E7%90%86%E8%AE%BA%EF%BC%9A%E4%BB%8E%E6%97%A0%E5%BA%8F%E5%88%B0%E6%9C%89%E5%BA%8F%E7%9A%84%E6%88%90%E9%95%BF%E5%93%B2%E5%AD%A6/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>你有没有过这样的经历？</p><p>明明制定了详细的学习计划，却总是难以坚持，最终陷入混乱和焦虑？</p><p>在工作或生活中，偶尔会经历“顿悟”的瞬间，但很快又回归低效和平庸？</p><p>想要养成好习惯，却总是被惰性、拖延和外界干扰打败？</p><p>这些问题，其实可以用一个深奥却极具启发性的科学理论来解释——<strong>耗散结构理论</strong>。这个最初诞生于物理和化学领域的理论，不仅揭示了自然界中“从混乱走向有序”的演化机制，也能深刻解释我们个人成长、习惯养成和自我提升背后的规律。</p><p>今天，我们就来聊聊<strong>耗散结构理论的核心思想</strong>，以及如何用它来指导我们实现持续成长，从“无序”走向“有序”。</p><hr><h2 id="一、什么是耗散结构理论？"><a href="#一、什么是耗散结构理论？" class="headerlink" title="一、什么是耗散结构理论？"></a>一、什么是耗散结构理论？</h2><p>耗散结构理论（Dissipative Structure Theory）由比利时物理化学家<strong>伊利亚·普里戈金</strong>（Ilya Prigogine）于 1969 年提出，并因此荣获 1977 年诺贝尔化学奖。<br>在物理学中，<strong>熵</strong>（Entropy）是衡量系统无序程度的一个基本物理量。<strong>熵增原理</strong>指出：在一个<strong>孤立系统</strong>中，如果没有外界干预，系统的总熵（无序程度）只会增加或保持不变，而不会自发减少。<br>热力学第二定律的数学表达如下：</p><p>$$<br>\Delta S \geq 0<br>$$</p><p>其中，$S$ 表示系统的熵，$\Delta S$ 表示熵的变化量。这个不等式意味着：<strong>孤立系统的熵永远不会减少</strong>。</p><p>更具体地，对于一个<strong>开放系统</strong>（如人类个体），熵的变化可以表示为：</p><p>$$<br>\Delta S &#x3D; \Delta S_{\text{内}} + \Delta S_{\text{外}}<br>$$</p><ul><li>$\Delta S_{\text{内}}$：系统内部产生的熵（通常为正，即系统自身趋向混乱）。</li><li>$\Delta S_{\text{外}}$：系统与外界交换带来的熵流（可以为负，即“负熵”）。</li></ul><p>因此，<strong>只有当系统从外界引入足够的负熵</strong>（$\Delta S_{\text{外}} &lt; 0$），才能抵消甚至逆转系统内部的熵增，从而实现从无序到有序的转变。<br>该理论的核心在于：<strong>在一个开放系统中，当系统远离热力学平衡态时，通过与外界持续交换能量与物质，系统可以自发形成有序结构</strong>。<br>换句话说，系统并非总是趋于混乱（熵增），在特定条件下，它也可以从无序中“自组织”出新的秩序。<br>这为理解自然界、生命系统乃至人类社会的复杂演化提供了强有力的理论工具。</p><h2 id="二、耗散结构的四大关键条件"><a href="#二、耗散结构的四大关键条件" class="headerlink" title="二、耗散结构的四大关键条件"></a>二、耗散结构的四大关键条件</h2><h3 id="1-开放性：与外界交换能量和信息"><a href="#1-开放性：与外界交换能量和信息" class="headerlink" title="1. 开放性：与外界交换能量和信息"></a>1. 开放性：与外界交换能量和信息</h3><p>封闭系统最终会走向熵增（即无序），而开放系统则可以通过引入“负熵流”来维持甚至提升自身的有序性。</p><p>✅ <strong>在个人成长中的应用</strong>：</p><ul><li><strong>保持学习</strong>：阅读、听课、交流，不断吸收新知识。</li><li><strong>接受反馈</strong>：主动向高手请教，听取批评，持续调整行为。</li><li><strong>社交互动</strong>：加入优质社群，与志同道合的人互相激励、共同成长。</li></ul><p>❌ <strong>反面例子</strong>：</p><ul><li>闭门造车，拒绝新知识。</li><li>只待在舒适圈，不接触新环境。</li></ul><h3 id="2-远离平衡态：挑战自我，突破舒适区"><a href="#2-远离平衡态：挑战自我，突破舒适区" class="headerlink" title="2. 远离平衡态：挑战自我，突破舒适区"></a>2. 远离平衡态：挑战自我，突破舒适区</h3><p>系统只有在远离平衡态时，才有可能发生结构的重组与跃迁。长期处于平衡态意味着停滞，也意味着熵增的开始。</p><p>✅ <strong>在个人成长中的应用</strong>：</p><ul><li><strong>主动挑战</strong>：尝试新技能（如编程、写作、演讲）。</li><li><strong>设定更高目标</strong>：不满足于现状，不断突破自我极限。</li><li><strong>接受不确定性</strong>：成长本就不是一帆风顺，波动是常态。</li></ul><p>❌ <strong>反面例子</strong>：</p><ul><li>每天重复同样的工作，没有进步。</li><li>害怕失败，不敢尝试新事物。</li></ul><h3 id="3-非线性耦合：成长不是直线上升的"><a href="#3-非线性耦合：成长不是直线上升的" class="headerlink" title="3. 非线性耦合：成长不是直线上升的"></a>3. 非线性耦合：成长不是直线上升的</h3><p>耗散结构的形成依赖于系统内部的非线性相互作用，即<strong>量变积累到一定程度后，才会引发质变</strong>。这种非线性关系解释了为什么成长往往不是匀速的。</p><p>✅ <strong>在个人成长中的应用</strong>：</p><ul><li><strong>坚持积累</strong>：每天进步 1%，一年后就是 37 倍的成长（复利效应）。</li><li><strong>接受波动</strong>：有时进步快，有时停滞甚至倒退，但整体趋势向上。</li><li><strong>抓住关键突破点</strong>：某些时刻（如顿悟、重大事件）可能带来质的飞跃。</li></ul><p>❌ <strong>反面例子</strong>：</p><ul><li>期待“速成”，放弃长期坚持。</li><li>因为短期看不到效果就半途而废。</li></ul><h3 id="4-涨落现象：波动是成长的触发器"><a href="#4-涨落现象：波动是成长的触发器" class="headerlink" title="4. 涨落现象：波动是成长的触发器"></a>4. 涨落现象：波动是成长的触发器</h3><p>涨落（微小波动）是系统从无序走向有序的起点。在远离平衡态的系统中，微小扰动可能被放大，从而引发新的有序结构。</p><p>✅ <strong>在个人成长中的应用</strong>：</p><ul><li><strong>低谷期是机会</strong>：失败、迷茫往往是突破的前兆。</li><li><strong>利用“顿悟时刻”</strong>：突如其来的灵感或新认知，可能改变成长轨迹。</li><li><strong>调整策略</strong>：当旧方法失效时，尝试新方向。</li></ul><p>❌ <strong>反面例子</strong>：</p><ul><li>遇到挫折就放弃。</li><li>忽视灵感，错过改变的机会。</li></ul><h2 id="三、如何用耗散结构理论指导个人成长？"><a href="#三、如何用耗散结构理论指导个人成长？" class="headerlink" title="三、如何用耗散结构理论指导个人成长？"></a>三、如何用耗散结构理论指导个人成长？</h2><h3 id="1-构建“抗熵增”成长系统"><a href="#1-构建“抗熵增”成长系统" class="headerlink" title="1. 构建“抗熵增”成长系统"></a>1. 构建“抗熵增”成长系统</h3><ul><li><strong>输入负熵</strong>：持续学习、结交优秀的人、接触新领域。</li><li><strong>减少熵增</strong>：减少无意义的娱乐、无效社交、消极情绪。</li></ul><h3 id="2-让成长“自组织”"><a href="#2-让成长“自组织”" class="headerlink" title="2. 让成长“自组织”"></a>2. 让成长“自组织”</h3><ul><li><strong>建立习惯</strong>：每天固定时间学习、运动、复盘。</li><li><strong>优化环境</strong>：加入学习社群、使用效率工具、减少干扰。</li></ul><h3 id="3-利用“涨落”突破瓶颈"><a href="#3-利用“涨落”突破瓶颈" class="headerlink" title="3. 利用“涨落”突破瓶颈"></a>3. 利用“涨落”突破瓶颈</h3><ul><li><strong>低谷期</strong>：调整策略，寻找新方法。</li><li><strong>高峰期</strong>：加速学习，巩固优势。</li></ul><h2 id="四、我的个人感悟"><a href="#四、我的个人感悟" class="headerlink" title="四、我的个人感悟"></a>四、我的个人感悟</h2><p>成长从来不是匀速的，有时快，有时慢，关键是<strong>长期趋势向上</strong>。</p><p>波动是正常的，<strong>低谷可能是突破的前兆</strong>。</p><p>比起盲目努力，<strong>保持开放的心态更为重要</strong>。封闭自己只会让熵增更快。</p><p><strong>习惯的力量不可小觑</strong>。看似微小的坚持，最终会带来质的飞跃。</p><h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>耗散结构理论告诉我们：<strong>混乱不是终点，而是新秩序的开始</strong>。</p><p>只要我们保持开放、远离平衡、接受非线性成长，并善于利用涨落突破瓶颈，就能从“无序”走向“有序”，实现真正的持续成长。</p><p>你的生活，是一个耗散结构吗？你是否在主动引入“负熵流”？</p><p>欢迎在评论区分享你的成长心得！🚀</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>读书笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>读书笔记</tag>
+      
+      <tag>哲学</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>AI 应用 视频摄像头秒变智慧水尺</title>
+    <link href="/2025/07/15/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/AI%20%E5%BA%94%E7%94%A8%E4%B9%8B%20%E8%A7%86%E9%A2%91%E6%91%84%E5%83%8F%E5%A4%B4%E7%A7%92%E5%8F%98%E6%99%BA%E6%85%A7%E6%B0%B4%E5%B0%BA/"/>
+    <url>/2025/07/15/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/AI%20%E5%BA%94%E7%94%A8%E4%B9%8B%20%E8%A7%86%E9%A2%91%E6%91%84%E5%83%8F%E5%A4%B4%E7%A7%92%E5%8F%98%E6%99%BA%E6%85%A7%E6%B0%B4%E5%B0%BA/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h3 id="告别高昂成本：AI-如何将普通摄像头变为智慧“水尺”"><a href="#告别高昂成本：AI-如何将普通摄像头变为智慧“水尺”" class="headerlink" title="告别高昂成本：AI 如何将普通摄像头变为智慧“水尺”"></a>告别高昂成本：AI 如何将普通摄像头变为智慧“水尺”</h3><p>在水资源管理和防汛抗旱的战线上，对河道、水库水位的实时精准监控至关重要。长久以来，我们依赖超声波、雷达或压力式水位计等传统监测手段，但它们普遍存在建设成本高、维护复杂、易受恶劣环境影响等问题。如今，随着人工智能（AI）技术的飞速发展，一场颠覆性的变革正在悄然发生——我们完全可以利用无处不在的视频摄像头，以极低的成本“顺便”获取精确的水位信息。</p><p>这篇博客将深入探讨如何利用 AI 视频识别技术，将您现有的或低成本新装的摄像头，打造成一个全天候、高精度、免维护的智能“水尺”。</p><hr><h4 id="传统水位监测的痛点"><a href="#传统水位监测的痛点" class="headerlink" title="传统水位监测的痛点"></a>传统水位监测的痛点</h4><p>在介绍 AI 新方法之前，我们先快速回顾一下传统水位监测方式的局限性：</p><ul><li><strong>超声波&#x2F;雷达水位计</strong>：虽然是非接触式测量，相对先进，但设备本身价格不菲，且对安装角度、波束范围有严格要求，后期的专业维护亦是一笔不小的开销。</li><li><strong>压力式&#x2F;浮子式水位计</strong>：这类接触式设备需要建设测井，土建成本高昂。此外，它们极易受到泥沙淤积、水中漂浮物、冬季结冰等因素的干扰，导致故障频发，数据失准，需要频繁的人工清理和校准。</li><li><strong>人工读尺</strong>：最原始的方式，依赖人工定时定点观察实体水尺。这种方法不仅效率低下、数据实时性差，而且在洪水、暴雨等恶劣天气下，观测人员的安全也面临巨大风险。</li></ul><p>显然，传统方法在成本、效率和安全性上都存在明显的短板。而 AI 视频分析技术的出现，为解决这些痛点提供了全新的、极具吸引力的思路。</p><h4 id="AI-视频水位监测：便捷、经济、高效的新范式"><a href="#AI-视频水位监测：便捷、经济、高效的新范式" class="headerlink" title="AI 视频水位监测：便捷、经济、高效的新范式"></a>AI 视频水位监测：便捷、经济、高效的新范式</h4><p>其核心思想非常巧妙：<strong>利用计算机视觉技术，让 AI 学会像人一样“读取”水尺上的刻度</strong>。更进一步，即使没有实体水尺，AI 也能通过识别固定参照物，建立起一把虚拟的水尺来完成测量。这一过程几乎是全自动的，可以 7 x 24 小时不间断工作。</p><p><strong>实现这一“黑科技”，主要分三步走：</strong></p><p><strong>第一步：架设“眼睛”—— 摄像头与物理标尺</strong></p><p>系统只需要一个固定的“眼睛”—— 一个能够清晰拍摄到水面的普通高清摄像头。为了给 AI 一个可靠的参照基准，我们需要在岸边设置一个物理标尺。</p><ul><li><strong>实体水尺</strong>：最直接的方式是安装一把传统的物理水尺。这是 AI 学习和识别的直接对象。</li><li><strong>固定标线&#x2F;参照物</strong>：在没有条件安装水尺的地方，可以利用桥墩、堤坝、甚至是一根固定的杆子作为参照。只要这个物体的位置是固定的，我们就可以通过初始标定，赋予它“水尺”的功能。</li></ul><p>这种方式的优势在于硬件投入极低，很多场景甚至可以利旧改造，直接利用已有的安防监控摄像头。</p><p><strong>第二步：创建“虚拟标尺”—— 图像处理与 AI 算法</strong></p><p>这是将“看见”转化为“读懂”的关键一步，也是 AI 大显身手的环节。</p><ol><li><p><strong>图像采集与预处理</strong>：系统从视频流中抓取图像。为了应对光照变化、雨雾天气等干扰，AI 会首先对图像进行增强、去噪、校正等预处理。</p></li><li><p><strong>水尺定位与识别</strong>：AI 视觉模型（如基于 YOLOv 7 等深度学习框架的模型）会自动在画面中找到水尺或预设的参照物。这一步利用了目标检测技术，能够精准锁定“测量工具”的位置。</p></li><li><p><strong>水面线检测</strong>：这是核心技术之一。AI 通过语义分割等算法，精确地将图像分割成“水体”和“非水体”两个区域。这条分割线，就是至关重要的“水位线”。相较于传统图像处理方法，深度学习模型能够更好地应对水面反光、波纹、倒影等复杂情况。</p></li><li><p><strong>读数计算</strong>：在定位了水尺并识别出水位线后，系统会将像素坐标与实际物理高度进行换算。这个换算关系在系统初次部署时通过“相机标定”一次性建立。无论是实体水尺还是虚拟标尺，AI 都能根据水位线落在标尺上的相对位置，精确计算出当前的水位数值。</p></li></ol><p><strong>第三步：智能分析与预警</strong></p><p>获取水位数据只是开始。AI 系统还能：</p><ul><li><strong>实时预警</strong>：当监测到水位超过预设的安全阈值时，系统会立即自动报警，并通过平台、短信、APP 等多种方式通知管理人员。</li><li><strong>数据可视化与趋势分析</strong>：所有数据被记录下来，形成历史曲线，管理人员可以清晰地看到水位变化的趋势，为防汛调度和水资源管理提供决策依据。</li><li><strong>提供视觉佐证</strong>：与传统传感器只能提供一个冰冷的数字不同，AI 视频方案保留了现场的影像。管理人员可以随时查看实时视频或历史录像，直观了解现场情况，判断高水位是由降雨引起还是由漂浮物堵塞造成，为决策提供更丰富的信息。</li></ul><hr><h4 id="AI-方案的压倒性优势"><a href="#AI-方案的压倒性优势" class="headerlink" title="AI 方案的压倒性优势"></a>AI 方案的压倒性优势</h4><p>相较于传统方法，AI 视频监测的优势是全方位的：</p><ul><li><strong>极低的建设与维护成本</strong>：主要成本就是一个摄像头和一台边缘计算设备或云服务器。无需昂贵的专业传感器，无需复杂的土建工程。后期维护也极为简便，基本实现了“无人值守”。</li><li><strong>一机多能，价值倍增</strong>：摄像头除了监测水位，其视频流还可以被复用。例如，通过加载不同的 AI 算法，同一个摄像头还能同时实现对水面漂浮物、非法排污、船只闯入、人员落水、岸边垃圾堆放等的智能识别与预警，最大化投资效益。</li><li><strong>高适应性与稳定性</strong>：非接触式的测量方式使其不受泥沙、水质污染的影响。先进的 AI 算法能有效克服光照、天气、水波等环境干扰，保证了数据的准确性和系统的鲁棒性（即稳定性）。</li><li><strong>安全便捷，远程管控</strong>：管理人员足不出户，通过电脑或手机即可实时查看水位数据和现场视频，极大地提升了工作效率，并避免了恶劣天气下人工巡查的风险。</li></ul><p>目前，这项技术已经不再是实验室里的概念，在长江航道治理、城市内涝监测等众多场景中都已有了成功的应用案例。天地伟业、新华三等科技公司也推出了相关的智慧水利解决方案。</p><h4 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h4><p>利用移动物理标尺和 AI 视频分析来获取水位信息的想法，完全切中了当前智慧水利发展的脉搏。它将昂贵的专业监测任务，转化为 AI 视频监控系统的一个“顺便”即可完成的增值功能。这不仅是技术的创新，更是管理思维的革新。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>生态环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>生态环境</tag>
+      
+      <tag>AIGC</tag>
+      
+      <tag>AI应用</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>零成本实现AI视频监控识别方案 以河道水质监控为例</title>
+    <link href="/2025/07/11/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E9%9B%B6%E6%88%90%E6%9C%AC%E5%AE%9E%E7%8E%B0AI%E8%A7%86%E9%A2%91%E7%9B%91%E6%8E%A7%E8%AF%86%E5%88%AB%E6%96%B9%E6%A1%88%20%E4%BB%A5%E6%B2%B3%E9%81%93%E6%B0%B4%E8%B4%A8%E7%9B%91%E6%8E%A7%E4%B8%BA%E4%BE%8B/"/>
+    <url>/2025/07/11/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E9%9B%B6%E6%88%90%E6%9C%AC%E5%AE%9E%E7%8E%B0AI%E8%A7%86%E9%A2%91%E7%9B%91%E6%8E%A7%E8%AF%86%E5%88%AB%E6%96%B9%E6%A1%88%20%E4%BB%A5%E6%B2%B3%E9%81%93%E6%B0%B4%E8%B4%A8%E7%9B%91%E6%8E%A7%E4%B8%BA%E4%BE%8B/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><p>之前曾写过利用阿里开源视觉模型构建 AI 视频识别的文章，最近发现硅基流动最近发布了免费视觉模型 THUDM&#x2F;GLM-4.1 V-9 B-Thinking，就想把之前的想法进行落地，于是有了今天的这篇。</p><p>本方案旨在通过调用硅基流动的免费视觉模型 API，截取监控视频流图片，并结合特定的提示词，实现视频监控的智能化识别功能。</p><h2 id="一、背景介绍"><a href="#一、背景介绍" class="headerlink" title="一、背景介绍"></a>一、背景介绍</h2><h3 id="1-行业与政策背景"><a href="#1-行业与政策背景" class="headerlink" title="1. 行业与政策背景"></a>1. 行业与政策背景</h3><p>近年来，随着国家对生态文明建设和水环境治理的高度重视，流域水质监测已成为生态环境保护工作的重中之重。《水污染防治行动计划》《长江保护法》《“十四五”生态环境保护规划》等文件相继出台，明确提出要加强水环境自动监测能力，推动智能化、数字化监管手段的应用。</p><p>在这一背景下，河道视频监控、水库视频监控、排污口视频监控以及污水处理厂视频监控系统已广泛部署，而针对视频内容进行自动化分析的需求也日益增长。</p><h3 id="2-现实痛点"><a href="#2-现实痛点" class="headerlink" title="2. 现实痛点"></a>2. 现实痛点</h3><p>尽管视频监控系统已在环保领域广泛应用，但在实际操作中仍存在诸多挑战：</p><ul><li><strong>人工巡查难以覆盖全面</strong>：河道、湖泊、污水处理厂等区域点多面广，传统人工巡查效率低、成本高。</li><li><strong>数据获取滞后与主观性强</strong>：目前多数为定期采样检测，无法实时发现突发污染事件，且依赖人员经验判断，结果易受主观因素影响。</li><li><strong>异常事件响应不及时</strong>：污水溢流、漂浮物堆积、藻类爆发等问题往往不能第一时间被发现，延误应急处置。</li><li><strong>监管压力大</strong>：环保部门人手有限，面对日益增长的监管需求，亟需借助新技术提升监管效能。</li></ul><h3 id="3-AI-技术带来的新机遇"><a href="#3-AI-技术带来的新机遇" class="headerlink" title="3. AI 技术带来的新机遇"></a>3. AI 技术带来的新机遇</h3><p>随着计算机视觉与多模态大模型的快速发展，AI 技术为水环境监测带来了全新的解决方案：</p><ul><li>利用视觉大模型实现全天候、标准化、客观化的水质异常识别；</li><li>充分挖掘现有视频资源的价值，提升监控系统的智能化水平；</li><li>自动化识别典型问题（如污水溢流、漂浮物、藻类爆发），辅助决策与预警。</li></ul><h2 id="二、系统实现路径"><a href="#二、系统实现路径" class="headerlink" title="二、系统实现路径"></a>二、系统实现路径</h2><h3 id="1-需求分析"><a href="#1-需求分析" class="headerlink" title="1. 需求分析"></a>1. 需求分析</h3><p>本项目以“智能识别+自动分析”为核心目标，旨在通过 AI 模型对视频监控画面进行持续解析，识别潜在的水质异常问题，包括但不限于：</p><ul><li>疑似污水溢流</li><li>疑似漂浮物</li><li>疑似藻类爆发</li><li>疑似排污口排污</li><li>疑似农业污染源</li></ul><p>同时要求输出明确的问题分类、位置描述、严重程度评估及初步建议，形成标准化报告。</p><h3 id="2-系统设计"><a href="#2-系统设计" class="headerlink" title="2. 系统设计"></a>2. 系统设计</h3><h4 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h4><p>系统采用前后端分离架构，模块化设计，便于扩展和维护，支持多站点接入、多设备兼容。</p><h4 id="数据流转流程"><a href="#数据流转流程" class="headerlink" title="数据流转流程"></a>数据流转流程</h4><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111636069.png" alt="流程"></p><h4 id="用户界面设计"><a href="#用户界面设计" class="headerlink" title="用户界面设计"></a>用户界面设计</h4><p>前端使用 Streamlit 快速搭建可视化 Web 界面，支持图片上传测试、视频流展示、历史记录查看等功能。</p><h3 id="3-开发与测试"><a href="#3-开发与测试" class="headerlink" title="3. 开发与测试"></a>3. 开发与测试</h3><h4 id="数据准备"><a href="#数据准备" class="headerlink" title="数据准备"></a>数据准备</h4><p>整理各地监控点台账，清洗并统一主键标识，确保数据一致性。</p><h4 id="核心功能开发"><a href="#核心功能开发" class="headerlink" title="核心功能开发"></a>核心功能开发</h4><ul><li>实现视频流地址获取、视频帧截取、图像上传与模型调用；</li><li>支持手动上传图片进行模型验证；</li><li>提供定时任务机制，实现自动化分析。</li></ul><h4 id="大模型集成"><a href="#大模型集成" class="headerlink" title="大模型集成"></a>大模型集成</h4><p>接入硅基流动平台提供的免费视觉模型 <strong>THUDM&#x2F;GLM-4.1 V-9 B-Thinking</strong>，结合提示词工程优化，提高识别准确率。</p><h4 id="联调测试"><a href="#联调测试" class="headerlink" title="联调测试"></a>联调测试</h4><p>与多个真实监控点对接，反复测试各类典型场景，确保系统稳定性与识别效果。</p><hr><h2 id="三、应用场景"><a href="#三、应用场景" class="headerlink" title="三、应用场景"></a>三、应用场景</h2><h3 id="1-城市河道智能监管"><a href="#1-城市河道智能监管" class="headerlink" title="1. 城市河道智能监管"></a>1. 城市河道智能监管</h3><ul><li>对城市主要河流断面进行实时视频监控；</li><li>自动识别污水直排、垃圾漂浮、藻类异常等现象；</li><li>与智慧水务平台联动，实现跨部门协同监管。</li></ul><h3 id="2-农村水体与小微水域监测"><a href="#2-农村水体与小微水域监测" class="headerlink" title="2. 农村水体与小微水域监测"></a>2. 农村水体与小微水域监测</h3><ul><li>针对农村沟渠、池塘等分散水体部署低成本摄像头；</li><li>AI 自动识别异常，辅助乡镇环保人员日常巡查；</li><li>提升农村地区水环境治理水平。</li></ul><h3 id="3-工业园区与污水处理厂监管"><a href="#3-工业园区与污水处理厂监管" class="headerlink" title="3. 工业园区与污水处理厂监管"></a>3. 工业园区与污水处理厂监管</h3><ul><li>实时监控工业园区排污口、污水处理厂进出水情况；</li><li>发现异常排放、设备故障等问题，及时告警；</li><li>可与企业自查、第三方运维系统整合，提升监管覆盖面。</li></ul><h3 id="4-应急与专项监测"><a href="#4-应急与专项监测" class="headerlink" title="4. 应急与专项监测"></a>4. 应急与专项监测</h3><ul><li>在汛期、突发污染事件期间临时布控摄像头，AI 辅助应急指挥；</li><li>重大节假日、专项整治行动期间提升监管频次与响应速度。</li></ul><hr><h2 id="四、实施效果与价值"><a href="#四、实施效果与价值" class="headerlink" title="四、实施效果与价值"></a>四、实施效果与价值</h2><h3 id="1-监管效率显著提升"><a href="#1-监管效率显著提升" class="headerlink" title="1. 监管效率显著提升"></a>1. 监管效率显著提升</h3><ul><li>实现 7×24 小时不间断自动监控；</li><li>异常事件可在秒级被识别，大幅减少人工巡查频次；</li><li>降低人力成本，提升工作效率。</li></ul><h3 id="2-监管精度与客观性提升"><a href="#2-监管精度与客观性提升" class="headerlink" title="2. 监管精度与客观性提升"></a>2. 监管精度与客观性提升</h3><ul><li>AI 模型标准化识别流程，避免人为疏漏与误判；</li><li>所有分析过程与结果均可追溯，便于责任认定；</li><li>支持多维度对比分析，提升数据可信度。</li></ul><h3 id="3-响应速度与应急能力增强"><a href="#3-响应速度与应急能力增强" class="headerlink" title="3. 响应速度与应急能力增强"></a>3. 响应速度与应急能力增强</h3><ul><li>对污水溢流、漂浮物、藻类爆发等突发事件实现快速响应；</li><li>支持自动推送告警信息，触发联动处置机制；</li><li>提高应急管理效率，缩短响应时间。</li></ul><hr><h2 id="五、功能演示图示"><a href="#五、功能演示图示" class="headerlink" title="五、功能演示图示"></a>五、功能演示图示</h2><p>下图为系统核心功能截图：</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111609857.png"></p><blockquote><p>上传图片进行模型测试与提示词调试：</p></blockquote><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111610867.png"></p><blockquote><p>截取视频流图片进行自动分析，输出识别结果：</p></blockquote><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111611598.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/%E4%B8%8A%E4%BC%A0%E8%AF%84%E4%BC%B0%E7%A4%BA%E4%BE%8B.png"></p><h2 id="六、未来展望"><a href="#六、未来展望" class="headerlink" title="六、未来展望"></a>六、未来展望</h2><h3 id="1-持续优化-AI-模型"><a href="#1-持续优化-AI-模型" class="headerlink" title="1. 持续优化 AI 模型"></a>1. 持续优化 AI 模型</h3><ul><li>探索更多视觉大模型，提升复杂场景下的识别准确率；</li><li>优化推理速度，适应边缘计算场景。</li></ul><h3 id="2-提升提示词工程能力"><a href="#2-提升提示词工程能力" class="headerlink" title="2. 提升提示词工程能力"></a>2. 提升提示词工程能力</h3><ul><li>细化识别类别，拓展应用场景；</li><li>丰富输出格式，提高报告实用性。</li></ul><h3 id="3-推进硬件集成"><a href="#3-推进硬件集成" class="headerlink" title="3. 推进硬件集成"></a>3. 推进硬件集成</h3><ul><li>与轻量级摄像头、边缘计算设备集成，打造低成本 AI 视频装置；</li><li>实现现场识别与本地处理，降低网络依赖。</li></ul><h3 id="4-拓展识别指标"><a href="#4-拓展识别指标" class="headerlink" title="4. 拓展识别指标"></a>4. 拓展识别指标</h3><ul><li>探索水色、水位、流速等更多水质相关参数的智能识别。</li></ul><h2 id="七、结语"><a href="#七、结语" class="headerlink" title="七、结语"></a>七、结语</h2><p>本项目基于硅基流动平台提供的免费视觉大模型 <strong>THUDM&#x2F;GLM-4.1 V-9 B-Thinking</strong>，实现了对视频监控画面的智能识别与分析，为流域水质监管提供了新的技术支撑。系统具备良好的扩展性与落地性，已在多个实际场景中得到验证，具备向更广泛区域推广的基础条件。</p><p>如果你也在探索 AI + 视频监控在环保领域的应用，欢迎交流探讨，共同推进生态环保的智能化转型！</p><h3 id="硅基流动邀请链接"><a href="#硅基流动邀请链接" class="headerlink" title="硅基流动邀请链接"></a>硅基流动邀请链接</h3><p>最近硅基流动在做推广活动，用下面的链接注册，就可以获得 2000 万 Tokens（14 元平台配额），如果需要，就用下面的链接注册吧。<br>模型邀请链接：<br><a href="https://cloud.siliconflow.cn/i/p61lgKxB">https://cloud.siliconflow.cn/i/p61lgKxB</a><br>邀请码：p 61 lgKxB</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>生态环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+      <tag>AIGC</tag>
+      
+      <tag>大模型</tag>
+      
+      <tag>视觉模型</tag>
+      
+      <tag>模型应用</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>基于连续地表水水质自动站的流速与降解系数自动识别算法</title>
+    <link href="/2025/07/07/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E5%9F%BA%E4%BA%8E%E8%BF%9E%E7%BB%AD%E5%9C%B0%E8%A1%A8%E6%B0%B4%E6%B0%B4%E8%B4%A8%E8%87%AA%E5%8A%A8%E7%AB%99%E7%9A%84%E6%B5%81%E9%80%9F%E4%B8%8E%E9%99%8D%E8%A7%A3%E7%B3%BB%E6%95%B0%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95/"/>
+    <url>/2025/07/07/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E5%9F%BA%E4%BA%8E%E8%BF%9E%E7%BB%AD%E5%9C%B0%E8%A1%A8%E6%B0%B4%E6%B0%B4%E8%B4%A8%E8%87%AA%E5%8A%A8%E7%AB%99%E7%9A%84%E6%B5%81%E9%80%9F%E4%B8%8E%E9%99%8D%E8%A7%A3%E7%B3%BB%E6%95%B0%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文提出了一种基于自动站数据的多波峰自动配对与参数反演算法，旨在解决流域水质模型中流速与降解系数难以自动识别的问题。该算法兼顾学术理论与工程应用，能够在复杂水文条件下，自动、批量、稳健地反推出河流区间的流速与降解系数。在重庆 XX 流域的应用中，该算法相比传统方法，模型精度有明显提升。实验结果表明，该方法能够为水环境管理和污染溯源提供有力支撑，并为流域污染物排放控制和应急响应提供决策支持。</p><h2 id="1-研究背景与意义"><a href="#1-研究背景与意义" class="headerlink" title="1. 研究背景与意义"></a>1. 研究背景与意义</h2><ul><li><strong>自动站数据价值</strong>：地表水自动站可实现高频、连续、时空分布广的水质监测，为流域水质模型，如一维水动力-水质模型，提供了丰富的数据基础。</li><li><strong>参数识别难点</strong>：传统流速和降解系数多依赖人工实验或经验估算，这些方法耗时耗力、主观性强，难以反映动态变化和多事件场景。</li><li><strong>自动化需求</strong>：亟需一种能自动适应不同水文期、自动识别污染事件、批量反演参数的智能算法。</li></ul><hr><h2 id="2-算法原理与流程"><a href="#2-算法原理与流程" class="headerlink" title="2. 算法原理与流程"></a>2. 算法原理与流程</h2><h3 id="2-1-一维河流降解模型"><a href="#2-1-一维河流降解模型" class="headerlink" title="2.1 一维河流降解模型"></a>2.1 一维河流降解模型</h3><p>污染物在河道中的一阶降解模型：该模型适用于均匀河流，忽略了横向和垂向的浓度差异。</p><p>$$</p><p>C(x) &#x3D; C_0 \cdot e^{-\frac{kx}{v}}</p><p>$$</p><ul><li>$C(x)$：下游浓度，mg&#x2F;L;</li><li>$C_0$：上游浓度，mg&#x2F;L;</li><li>$k$：降解系数 1&#x2F;d;</li><li>$v$：流速（迁移速度）km&#x2F;d;</li><li>$x$：区间距离，km。</li></ul><h3 id="2-2-多波峰自动配对与参数反演"><a href="#2-2-多波峰自动配对与参数反演" class="headerlink" title="2.2 多波峰自动配对与参数反演"></a>2.2 多波峰自动配对与参数反演</h3><ol><li><p><strong>数据预处理</strong>：对自动站数据按站点、因子、时间进行清洗、对齐，并采用线性插值法处理缺失值，对超出合理范围的数值进行剔除。</p></li><li><p><strong>波峰识别</strong>：采用滑动窗口极大值+prominence 算法，自动识别每月的局部波峰，适应不同水文期。其中，prominence 参数表示波峰的显著程度，根据经验，设置为 0.1，以滤除噪声干扰。</p></li><li><p><strong>相关性配对</strong>：对每个上游波峰，在下游自适应时间窗口内，截取波形片段，计算皮尔逊相关系数，筛选相关性大于 0.6 的配对。相关性阈值 0.6 是根据大量实验数据统计分析得到的经验值，可能存在一定的误差，需要根据具体情况进行调整。</p></li><li><p><strong>参数反演</strong>：对每对配对波峰，根据时间差 $\Delta t$ 和浓度变化，自动反推出流速 $v$ 和降解系数 $k$。</p><p>流速 $v$ 的计算公式为：$v &#x3D; x &#x2F; \Delta t$</p><p>降解系数 $k$ 的计算公式为：$k &#x3D; -v \cdot ln(C(x) &#x2F; C_0) &#x2F; x$</p></li><li><p><strong>批量输出</strong>：所有站点对、所有因子的参数结果自动拼接汇总，便于后续建模和统计。</p></li></ol><hr><h2 id="3-算法实现与工程细节"><a href="#3-算法实现与工程细节" class="headerlink" title="3. 算法实现与工程细节"></a>3. 算法实现与工程细节</h2><ul><li><strong>Python 实现</strong>：基于 pandas、numpy、scipy、matplotlib 等主流科学计算库，代码结构清晰，易于扩展。</li><li><strong>健壮性处理</strong>：自动跳过无数据或异常数据的站点对与因子组合，保证批量运行稳定。其中，异常数据的判断采用 3σ原则，当数据超出平均值 3 倍标准差范围时，则被认为是异常值。</li><li><strong>参数自适应</strong>：每对站点可单独配置匹配窗口，适应丰&#x2F;枯水期差异。丰水期采用较短的匹配窗口，枯水期采用较长的匹配窗口，具体窗口长度根据历史数据统计分析确定。</li><li><strong>可视化辅助</strong>：自动生成每月波峰识别与配对结果图，直观展示算法效果，用于人工审核和问题诊断。</li><li><strong>结果标准化</strong>：输出字段包含起点、终点、距离、因子、k、v、时间差、相关性等，便于后续自动化调用。</li></ul><hr><h2 id="4-应用案例"><a href="#4-应用案例" class="headerlink" title="4. 应用案例"></a>4. 应用案例</h2><p>以重庆 XX 流域自动站数据为例，选取 XX 站点和 YY 站点之间的数据区间（数据时间范围为 2024 年 1 月 1 日至 2024 年 6 月 30 日），自动识别高锰酸盐指数、总磷等多因子的流速与降解系数。算法可自动适应 180 天历史数据，批量输出多组参数，从输出结果图标看出，峰值关联性识别效果非常好。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507071644121.png" alt="自动识别相互关联的波峰"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507071645028.png" alt="image.png"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507071645474.png" alt="image.png"><br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507071653765.png" alt="image.png">  </p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507071656827.png" alt="image.png">  </p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507071646473.png" alt="自动识别波峰数量"><br>自动识别波峰数量</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507071649543.png" alt="自动识别相互关联的波峰"><br>自动批量求 k v 。</p><h2 id="5-优势与创新点"><a href="#5-优势与创新点" class="headerlink" title="5. 优势与创新点"></a>5. 优势与创新点</h2><ul><li><strong>全自动化</strong>：无需人工干预，适合大规模、长时序数据批量处理。</li><li><strong>多事件适应</strong>：可识别多次污染事件，反映真实水文过程。</li><li><strong>相关性配对</strong>：有效排除偶然波峰，提升参数物理意义，通过排除虚假波峰，避免了将随机扰动误判为污染事件。</li></ul><hr><h2 id="6-展望与改进方向"><a href="#6-展望与改进方向" class="headerlink" title="6. 展望与改进方向"></a>6. 展望与改进方向</h2><ul><li><strong>更智能的事件识别</strong>：可引入机器学习、动态规划等方法，进一步提升波峰配对智能化水平，例如，采用 LSTM 神经网络预测波峰的到达时间，提高配对的准确性。</li><li><strong>实时在线应用</strong>：结合实时数据流，实现参数的动态更新与预警，用于突发水污染事件的预警和应急响应。</li><li><strong>分析结果，优化滑动区间</strong>：结合实际案例，说明如何根据分析结果优化滑动区间。</li></ul><h2 id="7-附录：核心代码片段"><a href="#7-附录：核心代码片段" class="headerlink" title="7. 附录：核心代码片段"></a>7. 附录：核心代码片段</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 以站点对和因子为循环，自动批量识别K/V参数</span><br><span class="hljs-keyword">for</span> link <span class="hljs-keyword">in</span> station_links:<br>    s1, s2, x, default_window = link[<span class="hljs-string">&quot;起点&quot;</span>], link[<span class="hljs-string">&quot;终点&quot;</span>], link[<span class="hljs-string">&quot;距离&quot;</span>], link[<span class="hljs-string">&quot;默认滑动窗口(h)&quot;</span>]<br>    <span class="hljs-keyword">for</span> factor <span class="hljs-keyword">in</span> jili_factors:<br>        <span class="hljs-comment"># 调用auto_kv_multi_peaks_corr函数，计算流速和降解系数</span><br>        kv_df = auto_kv_multi_peaks_corr(<br>            df, s1, s2, factor, x,<br>            time_window_dict=<span class="hljs-literal">None</span>,<br>            default_time_window=default_window,<br>            waveform_window=<span class="hljs-number">12</span>,<br>            corr_threshold=<span class="hljs-number">0.6</span><br>        )<br>        <span class="hljs-comment"># ...结果拼接与保存...</span><br></code></pre></td></tr></table></figure><p><strong>本算法已在实际流域水质管理项目中成功应用，欢迎交流与合作！</strong></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>生态环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>爬虫实战 批量下载环评受理公示</title>
     <link href="/2025/06/29/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%20%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E7%8E%AF%E8%AF%84%E5%8F%97%E7%90%86%E5%85%AC%E7%A4%BA/"/>
     <url>/2025/06/29/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%20%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E7%8E%AF%E8%AF%84%E5%8F%97%E7%90%86%E5%85%AC%E7%A4%BA/</url>
@@ -70,9 +238,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     
@@ -149,9 +317,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>Python</tag>
       
@@ -232,9 +400,9 @@
     
     <tags>
       
-      <tag>工作总结</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>工作总结</tag>
       
     </tags>
     
@@ -290,9 +458,9 @@
       
       <tag>python</tag>
       
-      <tag>AIGC</tag>
-      
       <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
       
       <tag>openwebui</tag>
       
@@ -321,11 +489,11 @@
     
     <tags>
       
-      <tag>经验分享</tag>
+      <tag>deepseek</tag>
       
       <tag>AIGC</tag>
       
-      <tag>deepseek</tag>
+      <tag>经验分享</tag>
       
       <tag>obsidian插件</tag>
       
@@ -352,9 +520,9 @@
     
     <tags>
       
-      <tag>AIGC</tag>
-      
       <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
       
       <tag>办公技巧</tag>
       
@@ -381,9 +549,9 @@
     
     <tags>
       
-      <tag>AIGC</tag>
-      
       <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
       
       <tag>知识库</tag>
       
@@ -489,9 +657,9 @@
     
     <tags>
       
-      <tag>AIGC</tag>
-      
       <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
       
       <tag>流程图</tag>
       
@@ -520,13 +688,13 @@
     
     <tags>
       
-      <tag>经验分享</tag>
+      <tag>deepseek</tag>
       
       <tag>AIGC</tag>
       
-      <tag>deepseek</tag>
-      
       <tag>流程图</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>办公技巧</tag>
       
@@ -553,9 +721,9 @@
     
     <tags>
       
-      <tag>AIGC</tag>
-      
       <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
       
       <tag>grok3</tag>
       
@@ -582,11 +750,11 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>deepseek</tag>
       
       <tag>流程图</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>工具推荐</tag>
       
@@ -613,9 +781,9 @@
     
     <tags>
       
-      <tag>AIGC</tag>
-      
       <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
       
       <tag>工具推荐</tag>
       
@@ -644,9 +812,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>deepseek</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     
@@ -671,9 +839,9 @@
     
     <tags>
       
-      <tag>AIGC</tag>
-      
       <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
       
     </tags>
     
@@ -698,9 +866,9 @@
     
     <tags>
       
-      <tag>AIGC</tag>
-      
       <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
       
       <tag>知识库</tag>
       
@@ -729,11 +897,11 @@
       
       <tag>用心长文</tag>
       
-      <tag>经验分享</tag>
+      <tag>deepseek</tag>
       
       <tag>AIGC</tag>
       
-      <tag>deepseek</tag>
+      <tag>经验分享</tag>
       
       <tag>工具推荐</tag>
       
@@ -766,9 +934,9 @@
     
     <tags>
       
-      <tag>AIGC</tag>
-      
       <tag>deepseek</tag>
+      
+      <tag>AIGC</tag>
       
     </tags>
     
@@ -897,9 +1065,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     
@@ -1372,9 +1540,9 @@
       
       <tag>生态环境</tag>
       
-      <tag>水文分析</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>水文分析</tag>
       
     </tags>
     
@@ -2135,13 +2303,13 @@
       
       <tag>用心长文</tag>
       
-      <tag>时间序列模型</tag>
-      
       <tag>生态环境</tag>
       
       <tag>BP神经网络</tag>
       
       <tag>水质模型</tag>
+      
+      <tag>时间序列模型</tag>
       
     </tags>
     
@@ -2276,9 +2444,9 @@
       
       <tag>生态环境</tag>
       
-      <tag>水文分析</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>水文分析</tag>
       
       <tag>streamlit</tag>
       
@@ -2448,9 +2616,9 @@
       
       <tag>用心长文</tag>
       
-      <tag>时间序列模型</tag>
-      
       <tag>生态环境</tag>
+      
+      <tag>时间序列模型</tag>
       
       <tag>机理模型</tag>
       
@@ -2616,13 +2784,13 @@
       
       <tag>用心长文</tag>
       
+      <tag>经验分享</tag>
+      
       <tag>水文分析</tag>
       
       <tag>arcgis</tag>
       
       <tag>地形数据</tag>
-      
-      <tag>经验分享</tag>
       
     </tags>
     
@@ -2705,9 +2873,9 @@
     
     <tags>
       
-      <tag>经验分享</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>工具推荐</tag>
       
@@ -3078,7 +3246,7 @@
     <link href="/2024/04/15/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20%20%E5%9B%BE%E5%BA%8A%E9%85%8D%E7%BD%AE%20%20PicGo+%20gitee%20%E7%B2%BE%E7%AE%80%E7%89%88/"/>
     <url>/2024/04/15/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/obsidian%20%20%E5%9B%BE%E5%BA%8A%E9%85%8D%E7%BD%AE%20%20PicGo+%20gitee%20%E7%B2%BE%E7%AE%80%E7%89%88/</url>
     
-    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="图床的作用"><a href="#图床的作用" class="headerlink" title="图床的作用"></a>图床的作用</h2><p>图床（Image Hosting Service）是一种在线服务，用于存储和托管用户上传的图片文件。用户可以将图片上传到图床服务器，并获得一个可访问的图片链接，然后可以在网页、博客、论坛等地方使用这个链接来展示图片。<br>通过 PicGo+ gitee 可以搭建免费属于自己的免费图床，当然这里有个风险就是他是开源的可能有资料泄密的风险。</p><h3 id="资料准备"><a href="#资料准备" class="headerlink" title="资料准备"></a>资料准备</h3><p>Node. Js<br>Gitee<br>PicGo<br>Obsidian<br>Obsidian 插件 Image auto Upload<br>参考<br><a href="https://blog.csdn.net/m0_72598806/article/details/135693863">picGo+gitee搭建Obsidian(Typora)图床，实现高效写作_obsidian 坚果云 图床-CSDN博客</a><br>具体步骤：</p><h2 id="1-下载-Node-Js"><a href="#1-下载-Node-Js" class="headerlink" title="1. 下载 Node. Js"></a>1. 下载 Node. Js</h2><p>一直下一步即可，注意确保勾选环境变量，一般为默认。<br><a href="https://nodejs.org/en">Node.js (nodejs.org)</a></p><h2 id="2-下载-PicGo"><a href="#2-下载-PicGo" class="headerlink" title="2. 下载  PicGo"></a>2. 下载  PicGo</h2><p>一直下一步。<br><a href="https://github.com/Molunerfinn/PicGo/releases">Releases · Molunerfinn&#x2F;PicGo (github.com)</a><br>注意 win 下载 exe 版本</p><h2 id="3-配置gitee"><a href="#3-配置gitee" class="headerlink" title="3. 配置gitee"></a>3. 配置gitee</h2><p>新建仓库-配置开源<br>创建个人令牌</p><h2 id="4-配置-picgo"><a href="#4-配置-picgo" class="headerlink" title="4. 配置 picgo"></a>4. 配置 picgo</h2><p>建议设置好后，在上传区上传测试是否成功。<br>Picgo 设置开启开机启动，开启时间戳重命名。<br>一般设置 server 保持默认即可</p><p>以下内容更新于 2025 年 3 月 14 日21:37:23</p><p>安装插件 picgo-plugin-gitee<br>之间推荐的 gitee uploader 1.1.2 安装不了，现在使用的是 picgo-plugin-gitee 2.0.7</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/PicGo.exe_20250314_213856.png" alt="PicGo.exe_20250314_213856.png"></p><p>图床设置<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/PicGo.exe_20250314_214016.png" alt="PicGo.exe_20250314_214016.png"></p><p>owner: gitee project’s owner name ，具体项目名称<br>repo: gitee project repo， gitee 仓库地址名称<br>例如，在URL <code>https://gitee.com/ownerName/repoName</code>中，<code>ownerName</code>对应<code>owner</code>，而<code>repoName</code>对应<code>repo</code>。<br>Path 为图片文件夹<br>Token 在 gitee 仓库点击头像 -设置-个人令牌里。<br>最后设置好后一定记得设置为默认，否则不生效。<br>记得在上传区测试是否成功，不成功的原因可能是 owner、repo 设置不对。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408252013315.png" alt="image.png"></p><h2 id="5-配置-obsdian"><a href="#5-配置-obsdian" class="headerlink" title="5. 配置 obsdian"></a>5. 配置 obsdian</h2><p>下载安装插件 Image auto Upload<br>设置保持默认即可。</p><p>完成，你可以测试是否成功。</p><p>如果显示失败上传失败不要急。</p><ol><li>检查 picgo  直接上传是否正常</li><li>检查 picgo 设置路径是否正常 token 是否正确，不能有空格</li><li>检查个人仓库地址是否正常，可以测试完整路径或者后面的路径反复尝试。</li><li>重启 picgo 中的设置 server 先关闭后开启</li></ol><p>最后，祝你成功。</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="图床的作用"><a href="#图床的作用" class="headerlink" title="图床的作用"></a>图床的作用</h2><p>图床（Image Hosting Service）是一种在线服务，用于存储和托管用户上传的图片文件。用户可以将图片上传到图床服务器，并获得一个可访问的图片链接，然后可以在网页、博客、论坛等地方使用这个链接来展示图片。<br>通过 PicGo+ gitee 可以搭建免费属于自己的免费图床，当然这里有个风险就是他是开源的可能有资料泄密的风险。</p><h3 id="资料准备"><a href="#资料准备" class="headerlink" title="资料准备"></a>资料准备</h3><p>Node. Js<br>Gitee<br>PicGo<br>Obsidian<br>Obsidian 插件 Image auto Upload<br>参考<br><a href="https://blog.csdn.net/m0_72598806/article/details/135693863">picGo+gitee搭建Obsidian(Typora)图床，实现高效写作_obsidian 坚果云 图床-CSDN博客</a><br>具体步骤：</p><h2 id="1-下载-Node-Js"><a href="#1-下载-Node-Js" class="headerlink" title="1. 下载 Node. Js"></a>1. 下载 Node. Js</h2><p>一直下一步即可，注意确保勾选环境变量，一般为默认。<br><a href="https://nodejs.org/en">Node.js (nodejs.org)</a></p><h2 id="2-下载-PicGo"><a href="#2-下载-PicGo" class="headerlink" title="2. 下载  PicGo"></a>2. 下载  PicGo</h2><p>一直下一步。<br><a href="https://github.com/Molunerfinn/PicGo/releases">Releases · Molunerfinn&#x2F;PicGo (github.com)</a><br>注意 win 下载 exe 版本</p><h2 id="3-配置gitee"><a href="#3-配置gitee" class="headerlink" title="3. 配置gitee"></a>3. 配置gitee</h2><p>新建仓库-配置开源<br>创建个人令牌</p><h2 id="4-配置-picgo"><a href="#4-配置-picgo" class="headerlink" title="4. 配置 picgo"></a>4. 配置 picgo</h2><p>建议设置好后，在上传区上传测试是否成功。<br>Picgo 设置开启开机启动，开启时间戳重命名。<br>一般设置 server 保持默认即可<br>安装插件 gitee 2.0.7</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/PicGo.exe_20250314_213856.png" alt="PicGo.exe_20250314_213856.png"></p><p>图床设置<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/PicGo.exe_20250314_214016.png" alt="PicGo.exe_20250314_214016.png"></p><p>owner: gitee project’s owner name ，具体项目名称<br>repo: gitee project repo， gitee 仓库地址名称<br>例如，在URL <code>https://gitee.com/ownerName/repoName</code>中，<code>ownerName</code>对应<code>owner</code>，而<code>repoName</code>对应<code>repo</code>。<br>Path 为图片文件夹<br>Token 在 gitee 仓库点击头像 -设置-个人令牌里。<br>最后设置好后点击 <code>设为默认图床</code>，否则不生效。<br>记得在上传区测试是否成功，不成功的原因可能是 owner、repo 设置不对。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408252013315.png" alt="image.png"></p><h2 id="5-配置-obsdian"><a href="#5-配置-obsdian" class="headerlink" title="5. 配置 obsdian"></a>5. 配置 obsdian</h2><p>下载安装插件 Image auto Upload<br>设置保持默认即可。</p><p>完成，你可以测试是否成功。</p><p>如果显示失败上传失败不要急。</p><ol><li>检查 picgo  直接上传是否正常</li><li>检查 picgo 设置路径是否正常 token 是否正确，不能有空格</li><li>检查个人仓库地址是否正常，可以测试完整路径或者后面的路径反复尝试。</li><li>重启 picgo 中的设置 server 先关闭后开启</li></ol><p>最后，祝你成功。</p><h2 id="BY"><a href="#BY" class="headerlink" title="BY"></a>BY</h2><p>纯个人经验，如有帮助，请收藏点赞，如需转载，请注明出处。<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客： <a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></p>]]></content>
     
     
     <categories>
