@@ -4,6 +4,41 @@
   
   
   <entry>
+    <title>大数据驱动的危废监管新范式：重庆市企业用电量与产废量关联分析及多维度异常检测</title>
+    <link href="/2025/08/03/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%8D%B1%E5%BA%9F%E7%9B%91%E7%AE%A1%EF%BC%9A%E4%BC%81%E4%B8%9A%E7%94%A8%E7%94%B5%E9%87%8F%E4%B8%8E%E4%BA%A7%E5%BA%9F%E9%87%8F%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90%E5%8F%8A%E5%A4%9A%E7%BB%B4%E5%BA%A6%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/"/>
+    <url>/2025/08/03/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%8D%B1%E5%BA%9F%E7%9B%91%E7%AE%A1%EF%BC%9A%E4%BC%81%E4%B8%9A%E7%94%A8%E7%94%B5%E9%87%8F%E4%B8%8E%E4%BA%A7%E5%BA%9F%E9%87%8F%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90%E5%8F%8A%E5%A4%9A%E7%BB%B4%E5%BA%A6%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/</url>
+    
+    <content type="html"><![CDATA[<meta name="referrer" content="no-referrer" /><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在“数字重庆”建设持续深入推进的时代背景下，生态环境管理正迈向精细化、智能化新阶段。危险废物作为固体废物管理的重中之重，其全生命周期管理日益精细，大量关键信息已接入“巴渝治废”等数字化管理平台，涵盖企业的危废产生量、类别等核心数据。面对海量的基础数据，如何深入挖掘其潜在价值，赋能精准监管，成为当前亟待解决的课题。本文旨在探索企业用电数据与危险废物产生数据之间的内在关联，并基于此构建智能分析模型，以期精准识别潜在的异常情况，为危废监管提供新的视角与技术支撑。<br><strong>以下观点也是对于环保数据不成熟的思考和尝试，如果读者有更好的想法和实现路径也请留言讨论，关注交流。</strong></p><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>本研究的核心目标是利用企业用电量这一高频、实时且具有生产活动指示性的数据，结合危险废物产生量数据，构建多维度分析模型，从而有效识别危废产生量中可能存在的异常波动或数据偏差，为生态环境部门实现精准监管、风险预警及资源优化配置提供数据驱动的决策依据。</p><h2 id="技术路线"><a href="#技术路线" class="headerlink" title="技术路线"></a>技术路线</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E7%94%B5%E5%BA%9F%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF%E8%B7%AF%E7%BA%BF.png" alt="电废模型技术路线.png"></p><h2 id="基础数据分析"><a href="#基础数据分析" class="headerlink" title="基础数据分析"></a>基础数据分析</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803101709918.png" alt="所有企业相关性"></p><p>纳入分析的企业共计 718 家，涵盖 43 个不同行业，涉及 224 个不同危废类别。其中，年产废量大于 50 吨的企业有 490 家。在全部企业中，用电量与产废量相关性达到 0.6 以上的企业占比为 20.6%。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803101757574.png" alt=" "></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803101807207.png" alt=" "></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803101818187.png" alt=" "></p><p>在对纳入分析的 718 家企业（涵盖 43 个不同行业、涉及 224 个危废类别）进行基础数据分析时，我们发现，尽管年产废量大于 50 吨的企业占比高达 490 家，但整体而言，用电量与产废量相关性达到 0.6 以上的企业仅占 20.6%。进一步从行业和产废类别维度进行聚合分析，我们观察到，当行业或产废类别数量增多时，整体相关性趋于弱化甚至不相关。这与实际生产经验相符，即不同企业在生产效率和废物产出模式上存在显著差异。这一发现也明确指出，简单地从宏观行业或产废类别层面推导单个企业的用电量与产废量关联性是不可行的。因此，本研究的重点必须聚焦于<strong>单个企业自身的历史数据分析</strong>，以捕捉其独特的生产规律和异常模式。</p><h2 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h2><p>鉴于企业生产模式的复杂性和数据特征的多样性，本研究并未采用单一的异常检测方法，而是根据不同的业务场景和数据特性，综合运用了五种核心算法，以期从多维度、多视角捕捉潜在的异常行为。这些算法包括：单位用电量产废量 MAD 分析、线性回归残差分析、归一化差异分析、突变趋势分析以及波动性同步性检验。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803102401162.png" alt=" "></p><h3 id="1-单位用电量产废量-MAD-分析-FeatureEngineeringDetector"><a href="#1-单位用电量产废量-MAD-分析-FeatureEngineeringDetector" class="headerlink" title="1. 单位用电量产废量 MAD 分析 (FeatureEngineeringDetector)"></a><strong>1. 单位用电量产废量 MAD 分析 (FeatureEngineeringDetector)</strong></h3><ul><li><p><strong>核心思路</strong>：<br>该方法关注企业的<strong>生产效率</strong>。它假设在正常生产状态下，单位用电量所对应的产废量（即生产效率）应保持相对稳定。通过计算“单位用电量产废量”这一比率，并应用对异常值鲁棒的 MAD（中位数绝对偏差）方法，来识别那些生产效率显著偏离历史水平的异常点。例如，一个企业突然出现“高耗电、低产出”或“低耗电、高产出”的情况，可能预示着数据问题或生产状态异常。</p></li><li><p><strong>核心公式</strong>：</p><ol><li><strong>归一化 (避免除零)</strong>:<ul><li><code>waste_norm_1_2 = normalize_series(waste) + 1.0</code> (归一化到 $[1, 2]$)</li><li><code>elec_norm_1_2 = normalize_series(elec) + 1.0</code> (归一化到 $[1, 2]$)</li></ul></li><li><strong>计算单位用电量产废量</strong>:<ul><li><code>unit_waste = waste_norm_1_2 / elec_norm_1_2</code></li></ul></li><li><strong>MAD 异常检测</strong>:<ul><li><code>median = median(unit_waste)</code></li><li><code>mad = median(|unit_waste - median|)</code></li><li><code>mad_score = |unit_waste - median| / mad</code> (若 <code>mad</code> !&#x3D; 0)</li><li><strong>异常判定</strong>: <code>mad_score &gt; threshold</code> (默认阈值为 3.0)</li></ul></li></ol></li><li><p><strong>主要特点</strong>：</p><ul><li><strong>适用场景</strong>：适用于产废量和用电量均有一定规模，且历史效率相对稳定的企业。</li></ul></li></ul><hr><h4 id="2-线性回归残差分析-LinearRegressionDetector-RegressionDetector"><a href="#2-线性回归残差分析-LinearRegressionDetector-RegressionDetector" class="headerlink" title="2. 线性回归残差分析 (LinearRegressionDetector &amp; RegressionDetector)"></a><strong>2. 线性回归残差分析 (LinearRegressionDetector &amp; RegressionDetector)</strong></h4><ul><li><p><strong>核心思路</strong>：<br>该方法基于<strong>历史数据建立数学模型</strong>。它假设企业的产废量（W）与用电量（E）之间存在一个稳定的线性关系 <code>W = β₀ + β₁E</code>。对于新的数据点，模型会预测其“应有的”产废量，实际值与预测值之间的差值（残差）即为分析对象。如果残差过大，说明该点严重偏离了历史规律，应被标记为异常。</p></li><li><p><strong>核心公式</strong>：</p><ol><li><strong>模型拟合</strong>:<ul><li><code>W_pred = β₀ + β₁ * E</code> (使用最小二乘法估计 <code>β₀</code> 和 <code>β₁</code>)</li></ul></li><li><strong>计算残差</strong>:<ul><li><code>residual = W_actual - W_pred</code></li></ul></li><li><strong>异常判定</strong>:<ul><li><strong><code>LinearRegressionDetector</code></strong>: <code>|residual| &gt; k * se</code><ul><li><code>se</code> 是回归模型的标准误差，衡量模型预测的平均精度。</li><li><code>k</code> 是置信系数（默认 0.8）。</li></ul></li><li><strong><code>RegressionDetector</code></strong>: <code>|residual| &gt; threshold * std_residuals</code><ul><li><code>std_residuals</code> 是残差序列自身的标准差。</li><li><code>threshold</code> 为 3.0，即经典的<strong>3σ原则</strong>。</li></ul></li></ul></li></ol></li><li><p><strong>主要特点</strong>：</p><ul><li><strong>模型驱动</strong>：拥有明确的统计学模型基础，理论严谨。</li><li><strong>预测性强</strong>：不仅能判断异常，还能给出“正常值”应该是多少（预测值）。</li><li><strong>两种策略</strong>：<ul><li><code>LinearRegressionDetector</code> 更关注<strong>模型的预测能力</strong>（<code>se</code>），并具备<strong>数据不足时的回退机制</strong>（比率法），鲁棒性更强。</li><li><code>RegressionDetector</code> 遵循<strong>经典统计学原则</strong>（3σ），逻辑简洁明了。</li></ul></li><li><strong>适用场景</strong>：适用于产废量与用电量有明显线性相关性的企业，且历史数据点充足（通常&gt;&#x3D;3 个）。</li></ul></li></ul><hr><h3 id="3-归一化差异分析-NormalizedDifferenceDetector"><a href="#3-归一化差异分析-NormalizedDifferenceDetector" class="headerlink" title="3. 归一化差异分析 (NormalizedDifferenceDetector)"></a><strong>3. 归一化差异分析 (NormalizedDifferenceDetector)</strong></h3><ul><li><p><strong>核心思路</strong>：<br>该方法采用<strong>最直观的比较方式</strong>。它认为，在正常情况下，企业的产废量和用电量的变化趋势应当是同步的。通过将两个指标分别归一化到 $[0,1]$ 区间，消除了量纲和企业规模的影响，然后直接计算它们在同一时间点的数值差异。如果这个差异超过了预设的阈值，就认为两者的变化趋势出现了严重脱节，该点为异常。</p></li><li><p><strong>核心公式</strong>：</p><ol><li><strong>归一化</strong>:<ul><li><code>waste_norm = (waste - min(waste)) / (max(waste) - min(waste))</code></li><li><code>elec_norm = (elec - min(elec)) / (max(elec) - min(elec))</code></li></ul></li><li><strong>计算差异</strong>:<ul><li><code>normalized_diff = |waste_norm - elec_norm|</code></li></ul></li><li><strong>异常判定</strong>:<ul><li><code>normalized_diff &gt; diff_threshold</code> (默认阈值为 0.35)</li></ul></li></ol></li><li><p><strong>主要特点</strong>：</p><ul><li><strong>适用场景</strong>：作为一种快速、基础的筛查工具，适用于所有企业，尤其适合对趋势同步性要求高的场景。</li></ul></li></ul><hr><h3 id="4-突变趋势分析-TrendCrossDetector"><a href="#4-突变趋势分析-TrendCrossDetector" class="headerlink" title="4. 突变趋势分析 (TrendCrossDetector)"></a><strong>4. 突变趋势分析 (TrendCrossDetector)</strong></h3><ul><li><p><strong>核心思路</strong>：<br>该方法具有<strong>前瞻性</strong>，它不直接分析当前值，而是监测两者<strong>变化趋势的“交叉”</strong>。当产废量的趋势（上升&#x2F;下降）与用电量的趋势发生逆转（即一个在上升而另一个在下降）时，系统认为企业的生产模式可能正在发生转变。这种转变本身可能不是异常，但它预示着后续的数据点可能不稳定。因此，该方法会检查趋势交叉<strong>发生后的下一个时间点</strong>，如果此时的归一化差异也很大，则将该后续点标记为异常。</p></li><li><p><strong>核心公式</strong>：</p><ol><li><strong>归一化</strong>:<ul><li><code>waste_norm = normalize_series(waste)</code></li><li><code>elec_norm = normalize_series(elec)</code></li></ul></li><li><strong>计算趋势符号</strong>:<ul><li><code>waste_trend = sign(waste_norm.diff())</code> (上升&#x3D;1, 下降&#x3D;-1, 不变&#x3D;0)</li><li><code>elec_trend = sign(elec_norm.diff())</code></li></ul></li><li><strong>识别交叉点</strong>:<ul><li><code>cross_point[i] = (waste_trend[i] != elec_trend[i])</code></li></ul></li><li><strong>标记异常点</strong>:<ul><li>如果 <code>cross_point[i]</code> 为 <code>True</code>，则检查 <code>i+1</code> 时刻的归一化差异。</li><li><strong>异常判定</strong>: <code>|waste_norm[i+1] - elec_norm[i+1]| &gt; diff_threshold</code> (默认阈值为 0.4)</li></ul></li></ol></li><li><p><strong>主要特点</strong>：</p><ul><li><strong>适用场景</strong>：适用于生产流程可能发生调整、或数据可能存在滞后性问题的企业，用于发现模式切换的信号。</li></ul></li></ul><hr><h3 id="5-波动性同步性检验-VolatilityDetector"><a href="#5-波动性同步性检验-VolatilityDetector" class="headerlink" title="5. 波动性同步性检验 (VolatilityDetector)"></a><strong>5. 波动性同步性检验 (VolatilityDetector)</strong></h3><ul><li><p><strong>核心思路</strong>：<br>该方法关注的是<strong>剧烈变化的同步性</strong>。它认为，在正常生产中，重大的生产活动（如开&#x2F;停机、批次生产）会同时导致用电量和产废量的剧烈波动。如果一个指标发生了剧烈变化（变化率超过 50%），而另一个指标没有相应的响应（变化方向相反或变化极小），则这种“不同步”的剧烈波动很可能是数据异常或生产问题的信号。</p></li><li><p><strong>核心公式</strong>：</p><ol><li><strong>归一化</strong>:<ul><li><code>waste_norm = normalize_series (waste)</code></li><li><code>elec_norm = normalize_series (elec)</code></li></ul></li><li><strong>计算变化率</strong>:<ul><li><code>elec_change = elec_norm. Pct_change ()</code> (百分比变化)</li><li><code>waste_change = waste_norm. Pct_change ()</code></li></ul></li><li><strong>定义异常条件</strong>:<ul><li><strong>条件 1 (电变废不变)</strong>:<ul><li><code>elec_big = |elec_change| &gt; 0.5</code></li><li><code>waste_unsync = (sign (elec_change) != sign (waste_change)) OR (|waste_change| &lt; 0.01)</code></li><li><code>condition 1 = elec_big AND waste_unsync</code></li></ul></li><li><strong>条件 2 (废变电不变)</strong>:<ul><li><code>waste_big = |waste_change| &gt; 0.5</code></li><li><code>elec_unsync = (sign (waste_change) != sign (elec_change)) OR (|elec_change| &lt; 0.01)</code></li><li><code>condition 2 = waste_big AND elec_unsync</code></li></ul></li></ul></li><li><strong>综合判定与过滤</strong>:<ul><li><code>is_outlier = (condition 1 OR condition 2) AND (original_waste_value &gt; 50.0)</code></li></ul></li></ol></li><li><p><strong>主要特点</strong>：</p><ul><li><strong>适用场景</strong>：特别适用于生产活动具有间歇性、波动性大的企业，用于发现数据录入错误或生产计划外的活动。</li></ul></li></ul><h2 id="模型结果"><a href="#模型结果" class="headerlink" title="模型结果"></a>模型结果</h2><p>通过上述多算法模型的构建与应用，我们成功识别出历史月份中用电量与产废量可能存在异常的月份，并进行了直观的可视化呈现。从分析结果来看，对于用电量与产废量具有较高相关性的企业，不同算法识别出的异常点往往具有高度一致性，这印证了模型在捕捉稳定生产模式下异常的有效性。然而，对于相关性较差的企业，模型识别出的异常点则呈现出数量更多且算法间差异显著的特点。这并非模型失效，而是恰恰反映了这类企业用电量与产废量之间可能不存在显著的线性或稳定关联，其生产模式更为复杂或数据本身存在更多不确定性。在这种情况下，不同算法从各自的侧重点（如效率、趋势、波动性等）出发，自然会捕捉到不同的“异常”表现，甚至可能将大部分数据点标记为异常，这提示我们在解释和应用模型结果时，必须充分考虑企业自身的生产特性和数据质量。</p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803102723895.png" alt="相关性好的企业分析案例"></p><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803102655048.png" alt="相关性差的企业分析案例"></p><h2 id="企业反馈"><a href="#企业反馈" class="headerlink" title="企业反馈"></a>企业反馈</h2><p>为了验证模型的实际效用并获取业务层面的反馈，我们选取了部分被识别为异常的企业进行问题推送。企业反馈为模型优化提供了宝贵的洞察，主要集中在以下几个方面，这些反馈也揭示了模型在实际应用中面临的挑战与局限性：</p><ol><li><strong>生产状态异常影响数据可比性：</strong> 如设备检修、停产、搬迁或生产线调整等非正常生产状态，导致用电量与产废量在特定时期内失去可比性。</li><li><strong>生产运行模式影响用电与产废的匹配性：</strong> 间歇性生产、季节性生产、或产废环节与主要用电环节不完全同步等，使得用电量与产废量之间的时间匹配性变差。</li><li><strong>总用电数据颗粒度不足：</strong> 企业总用电量数据未能区分生产用电与非生产用电，或未能细化到具体产废工艺环节，导致关联分析的精度受限。</li><li><strong>产废与填报信息不匹配：</strong> 实际产废量与平台填报数据之间存在滞后、偏差或统计口径不一致等问题，影响了数据真实性与模型判断的准确性。</li></ol><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803103304073.png" alt=" "></p><h2 id="反思与总结"><a href="#反思与总结" class="headerlink" title="反思与总结"></a>反思与总结</h2><p>本次研究的实践深刻揭示了一个核心洞察：任何数据模型，其“失效”并非必然源于算法本身的缺陷，而更多是由于数据质量、企业生产模式的复杂性与模型预设假设之间存在不匹配。这再次印证了“放之四海而皆准”的单一模型在复杂工业场景中难以奏效。因此，在未来的智能监管实践中，我们必须坚持<strong>结合企业生产实际、明确模型边界、审慎评估适用条件</strong>的原则，进行<strong>分场景、精细化</strong>的分析与应用。这不仅要求技术层面的持续迭代，更需要业务与技术深度融合，共同构建更贴合实际、更具韧性的智能监管体系。</p><h2 id="下一步完善思路"><a href="#下一步完善思路" class="headerlink" title="下一步完善思路"></a>下一步完善思路</h2><p>为进一步提升模型的准确性与实用性，未来的完善工作将聚焦于以下几个关键方向：</p><ol><li><strong>多源数据融合与交叉验证：</strong> 积极探索并整合更多自动化监测数据，如水、气污染物排放数据等，作为用电量与产废量关联分析的佐证，通过多维度数据交叉验证，对识别出的异常点进行二次筛选，提高预警的精准度。</li><li><strong>构建“业务问题池”与精准推送：</strong> 结合企业反馈和专家经验，构建结构化的“业务问题池”，针对性地根据企业实际情况，将异常报告精准推送至试点企业，要求其进行自查自纠并反馈原因。</li><li><strong>建立“识别-反馈-优化”闭环机制：</strong> 基于企业真实的反馈信息，深入分析模型误报（False Positives）和漏报（False Negatives）的原因，针对性地调整算法参数、优化模型结构或引入新的特征工程方法，形成持续迭代优化的智能监管闭环，不断提升模型的适应性和预测能力。</li></ol><h2 id="作者：BY"><a href="#作者：BY" class="headerlink" title="作者：BY"></a>作者：BY</h2><p>个人经验分享，如有收获，欢迎收藏、点赞！<br>尊重原创，如需转载，请注明出处。<br>欢迎留言评论，交流心得，共同进步！</p><h3 id="📬-联系方式："><a href="#📬-联系方式：" class="headerlink" title="📬 联系方式："></a>📬 联系方式：</h3><ul><li>微信公众号：环境猫 er</li><li>CSDN 博客：细节处有神明</li><li>个人博客：<ul><li><code>https://wenmao.xyz</code></li><li><code>https://wenmaochen.netlify.app</code></li><li><code>https://maoyu92.github.io</code></li></ul></li></ul><p>感谢阅读，我们下次再见！ 🌟</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>生态环境</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>用心长文</tag>
+      
+      <tag>生态环境</tag>
+      
+      <tag>大数据分析</tag>
+      
+      <tag>固体废物</tag>
+      
+      <tag>危险废物</tag>
+      
+      <tag>算法设计</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>敏捷方法</title>
     <link href="/2025/08/03/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%95%8F%E6%8D%B7%E6%96%B9%E6%B3%95/"/>
     <url>/2025/08/03/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E6%95%8F%E6%8D%B7%E6%96%B9%E6%B3%95/</url>
@@ -20,9 +55,9 @@
     
     <tags>
       
-      <tag>方法论</tag>
-      
       <tag>读书笔记</tag>
+      
+      <tag>方法论</tag>
       
       <tag>软件工程</tag>
       
@@ -458,9 +493,9 @@
       
       <tag>python</tag>
       
-      <tag>deepseek</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>deepseek</tag>
       
       <tag>openwebui</tag>
       
@@ -489,11 +524,11 @@
     
     <tags>
       
-      <tag>deepseek</tag>
-      
       <tag>AIGC</tag>
       
       <tag>经验分享</tag>
+      
+      <tag>deepseek</tag>
       
       <tag>obsidian插件</tag>
       
@@ -520,9 +555,9 @@
     
     <tags>
       
-      <tag>deepseek</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>deepseek</tag>
       
       <tag>办公技巧</tag>
       
@@ -549,9 +584,9 @@
     
     <tags>
       
-      <tag>deepseek</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>deepseek</tag>
       
       <tag>知识库</tag>
       
@@ -657,9 +692,9 @@
     
     <tags>
       
-      <tag>deepseek</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>deepseek</tag>
       
       <tag>流程图</tag>
       
@@ -688,13 +723,13 @@
     
     <tags>
       
-      <tag>deepseek</tag>
-      
       <tag>AIGC</tag>
       
-      <tag>流程图</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>deepseek</tag>
+      
+      <tag>流程图</tag>
       
       <tag>办公技巧</tag>
       
@@ -721,9 +756,9 @@
     
     <tags>
       
-      <tag>deepseek</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>deepseek</tag>
       
       <tag>grok3</tag>
       
@@ -750,11 +785,11 @@
     
     <tags>
       
+      <tag>经验分享</tag>
+      
       <tag>deepseek</tag>
       
       <tag>流程图</tag>
-      
-      <tag>经验分享</tag>
       
       <tag>工具推荐</tag>
       
@@ -781,9 +816,9 @@
     
     <tags>
       
-      <tag>deepseek</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>deepseek</tag>
       
       <tag>工具推荐</tag>
       
@@ -812,9 +847,9 @@
     
     <tags>
       
-      <tag>deepseek</tag>
-      
       <tag>经验分享</tag>
+      
+      <tag>deepseek</tag>
       
     </tags>
     
@@ -839,9 +874,9 @@
     
     <tags>
       
-      <tag>deepseek</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>deepseek</tag>
       
     </tags>
     
@@ -866,9 +901,9 @@
     
     <tags>
       
-      <tag>deepseek</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>deepseek</tag>
       
       <tag>知识库</tag>
       
@@ -897,11 +932,11 @@
       
       <tag>用心长文</tag>
       
-      <tag>deepseek</tag>
-      
       <tag>AIGC</tag>
       
       <tag>经验分享</tag>
+      
+      <tag>deepseek</tag>
       
       <tag>工具推荐</tag>
       
@@ -934,9 +969,9 @@
     
     <tags>
       
-      <tag>deepseek</tag>
-      
       <tag>AIGC</tag>
+      
+      <tag>deepseek</tag>
       
     </tags>
     
@@ -1540,9 +1575,9 @@
       
       <tag>生态环境</tag>
       
-      <tag>经验分享</tag>
-      
       <tag>水文分析</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     
@@ -2444,9 +2479,9 @@
       
       <tag>生态环境</tag>
       
-      <tag>经验分享</tag>
-      
       <tag>水文分析</tag>
+      
+      <tag>经验分享</tag>
       
       <tag>streamlit</tag>
       
@@ -2784,13 +2819,13 @@
       
       <tag>用心长文</tag>
       
-      <tag>经验分享</tag>
-      
       <tag>水文分析</tag>
       
       <tag>arcgis</tag>
       
       <tag>地形数据</tag>
+      
+      <tag>经验分享</tag>
       
     </tags>
     
@@ -2815,9 +2850,9 @@
     
     <tags>
       
-      <tag>方法论</tag>
-      
       <tag>读书笔记</tag>
+      
+      <tag>方法论</tag>
       
       <tag>写作</tag>
       
@@ -2929,9 +2964,9 @@
       
       <tag>用心长文</tag>
       
-      <tag>方法论</tag>
-      
       <tag>读书笔记</tag>
+      
+      <tag>方法论</tag>
       
     </tags>
     
@@ -2958,9 +2993,9 @@
       
       <tag>用心长文</tag>
       
-      <tag>方法论</tag>
-      
       <tag>读书笔记</tag>
+      
+      <tag>方法论</tag>
       
       <tag>写作</tag>
       
