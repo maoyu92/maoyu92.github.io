@@ -270,7 +270,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.3k 字
         
       </span>
     
@@ -358,6 +358,9 @@
 <h2 id="UV-实战指南：从零开始一个项目-🛠️"><a href="#UV-实战指南：从零开始一个项目-🛠️" class="headerlink" title="UV 实战指南：从零开始一个项目 🛠️"></a>UV 实战指南：从零开始一个项目 🛠️</h2><h3 id="Python-版本管理"><a href="#Python-版本管理" class="headerlink" title="Python 版本管理"></a>Python 版本管理</h3><p><strong>查看可用的 Python 版本</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv python list<br></code></pre></td></tr></table></figure>
 <p>这个命令会列出所有支持的 Python 版本以及您本地已安装的版本。</p>
+<p>切换到当前有的版本，不用重复下载</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">uv</span> python pin <span class="hljs-number">3</span>.<span class="hljs-number">9</span>.<span class="hljs-number">12</span><br><span class="hljs-attribute">uv</span> python pin <span class="hljs-number">3</span>.<span class="hljs-number">12</span>.<span class="hljs-number">9</span><br></code></pre></td></tr></table></figure>
+
 <p><strong>查找特定版本的 Python</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">uv python find 3.13<br></code></pre></td></tr></table></figure>
 
@@ -428,6 +431,12 @@
 
 <p>安装后可直接使用 simpleai 命令：</p>
 <p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250425222008187.png" srcset="/img/loading.gif" lazyload alt="工具安装后使用"></p>
+<h2 id="新项目流程"><a href="#新项目流程" class="headerlink" title="新项目流程"></a>新项目流程</h2><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli"><span class="hljs-comment">#大项目适用</span><br>uv init<br>uv python list <span class="hljs-comment">#非必选</span><br>uv venv <span class="hljs-params">--python</span> 3.12.9 <span class="hljs-string">.venv</span> <span class="hljs-comment">#创建独立环境</span><br><br><br><br></code></pre></td></tr></table></figure>
+
+
+<h2 id="对比-conda"><a href="#对比-conda" class="headerlink" title="对比 conda"></a>对比 conda</h2><p>适合短平快的分析项目</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs oxygene">conda <span class="hljs-keyword">create</span> -n <span class="hljs-keyword">new</span> python=<span class="hljs-number">3.12</span>.<span class="hljs-number">9</span><br>pip install --<span class="hljs-keyword">index</span>-url https:<span class="hljs-comment">//pypi.tuna.tsinghua.edu.cn/simple -r requirements.txt</span><br></code></pre></td></tr></table></figure>
+
 <h2 id="总结与展望-🔮"><a href="#总结与展望-🔮" class="headerlink" title="总结与展望 🔮"></a>总结与展望 🔮</h2><p>UV 作为新一代 Python 包管理工具，通过其惊人的性能和友好的用户体验，为 Python 开发者带来了革命性的开发体验。无论是个人项目还是团队协作，UV 都能显著提升开发效率和环境一致性。</p>
 <p>而且 uv 和 uvx 也是 python 构建 mcp 的基础。为构建自己的 mcp sever 打下基础。</p>
 <h4 id="推荐阅读"><a href="#推荐阅读" class="headerlink" title="推荐阅读"></a>推荐阅读</h4><ul>

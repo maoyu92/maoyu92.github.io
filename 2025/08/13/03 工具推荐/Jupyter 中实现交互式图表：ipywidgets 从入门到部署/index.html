@@ -1,0 +1,875 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="目录 为何选择 ipywidgets？ 环境配置：快速启动 常用交互式控件详解 3.1 下拉菜单 Dropdown 3.2 数值滑块 IntSlider &#x2F; FloatSlider 3.3 复选框 Checkbox 3.4 颜色选择器 ColorPicker 3.5 文本输入 Text 3.6 交互魔法 @interact：快速原型开发   与主流可视化库的无缝联动 4.1 Matp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jupyter 中实现交互式图表：ipywidgets 从入门到部署">
+<meta property="og:url" content="https://maoyu92.github.io/2025/08/13/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Jupyter%20%E4%B8%AD%E5%AE%9E%E7%8E%B0%E4%BA%A4%E4%BA%92%E5%BC%8F%E5%9B%BE%E8%A1%A8%EF%BC%9Aipywidgets%20%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="目录 为何选择 ipywidgets？ 环境配置：快速启动 常用交互式控件详解 3.1 下拉菜单 Dropdown 3.2 数值滑块 IntSlider &#x2F; FloatSlider 3.3 复选框 Checkbox 3.4 颜色选择器 ColorPicker 3.5 文本输入 Text 3.6 交互魔法 @interact：快速原型开发   与主流可视化库的无缝联动 4.1 Matp">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130923936.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130923467.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130924482.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130924938.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130925814.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130925534.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130926835.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130928018.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130932258.png">
+<meta property="article:published_time" content="2025-08-13T01:16:00.000Z">
+<meta property="article:modified_time" content="2025-08-13T01:16:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="数据分析">
+<meta property="article:tag" content="jupyter">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130923936.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Jupyter 中实现交互式图表：ipywidgets 从入门到部署 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Jupyter 中实现交互式图表：ipywidgets 从入门到部署"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-13 09:16" pubdate>
+          2025年8月13日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Jupyter 中实现交互式图表：ipywidgets 从入门到部署</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
+<li>为何选择 ipywidgets？</li>
+<li>环境配置：快速启动</li>
+<li>常用交互式控件详解<ul>
+<li>3.1 下拉菜单 <code>Dropdown</code></li>
+<li>3.2 数值滑块 <code>IntSlider</code> &#x2F; <code>FloatSlider</code></li>
+<li>3.3 复选框 <code>Checkbox</code></li>
+<li>3.4 颜色选择器 <code>ColorPicker</code></li>
+<li>3.5 文本输入 <code>Text</code></li>
+<li>3.6 交互魔法 <code>@interact</code>：快速原型开发</li>
+</ul>
+</li>
+<li>与主流可视化库的无缝联动<ul>
+<li>4.1 Matplotlib 集成</li>
+<li>4.2 Plotly 集成</li>
+</ul>
+</li>
+<li>应用部署与分享：Voilà 与 Jupyter-Dash 的选择<ul>
+<li>5.1 Voilà：零代码快速部署</li>
+<li>5.2 Jupyter-Dash：构建全栈单页应用 (SPA)</li>
+</ul>
+</li>
+<li>综合应用案例：鸢尾花数据集探索器</li>
+<li>结语与延伸阅读</li>
+</ol>
+<hr>
+<h2 id="1-为何选择-ipywidgets？"><a href="#1-为何选择-ipywidgets？" class="headerlink" title="1. 为何选择 ipywidgets？"></a>1. 为何选择 ipywidgets？</h2><p>在数据分析与可视化领域，交互性是提升用户体验和洞察力的关键。Ipywidgets 作为 Jupyter 官方推出的交互式控件库，凭借其独特优势，成为构建富交互式数据应用的理想选择。其核心优势包括：</p>
+<ul>
+<li><strong>轻量级前端渲染</strong>：所有交互逻辑均在浏览器端执行，无需复杂的后端框架（如 Flask&#x2F;Django），显著降低开发与部署复杂度。</li>
+<li><strong>无缝的 Python 内核集成</strong>：实现 Python 变量与前端控件的双向绑定，确保数据处理与界面交互的实时同步。</li>
+<li><strong>广泛的可视化库兼容性</strong>：与 Matplotlib、Plotly、Bokeh、Altair 等主流 Python 可视化库深度集成，轻松实现动态图表。</li>
+<li><strong>便捷的应用部署</strong>：通过 Voilà 工具，可将 Jupyter Notebook 一键转换为独立的、可分享的 Web 应用程序，极大简化了交互式报告和仪表板的发布流程。</li>
+</ul>
+<hr>
+<h2 id="2-环境配置：快速启动"><a href="#2-环境配置：快速启动" class="headerlink" title="2. 环境配置：快速启动"></a>2. 环境配置：快速启动</h2><p>为了确保本教程中的所有示例代码能够顺利运行，请按照以下步骤配置您的开发环境。建议在独立的 Python 虚拟环境中进行操作，以避免潜在的依赖冲突。整个过程预计耗时极短：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 核心依赖库安装：ipywidgets、Voila、Jupyter-Dash、常用数据科学库</span><br>pip install ipywidgets voila jupyter-dash plotly pandas numpy -q<br><br><span class="hljs-comment"># 针对经典 Jupyter Notebook 环境启用 widgets 扩展</span><br><span class="hljs-comment"># 这一步对于 JupyterLab 用户通常不是必需的，但执行无害</span><br>jupyter nbextension <span class="hljs-built_in">enable</span> --py widgetsnbextension --sys-prefix<br><br><span class="hljs-comment"># 如果您使用 JupyterLab，请额外安装 JupyterLab widgets 扩展</span><br>pip install jupyterlab_widgets -q<br></code></pre></td></tr></table></figure>
+<p>完成上述步骤后，您的环境已准备就绪，可以开始构建交互式应用了。</p>
+<hr>
+<h2 id="3-常用交互式控件详解"><a href="#3-常用交互式控件详解" class="headerlink" title="3. 常用交互式控件详解"></a>3. 常用交互式控件详解</h2><p>Ipywidgets 提供了丰富的控件类型，涵盖了从基本输入到复杂选择的各种交互需求。以下是几个常用控件的最小可执行示例，每个示例均可在独立的 Jupyter Notebook Cell 中直接运行，以便您快速理解其基本用法和功能。</p>
+<h3 id="3-1-下拉菜单-Dropdown"><a href="#3-1-下拉菜单-Dropdown" class="headerlink" title="3.1 下拉菜单 Dropdown"></a>3.1 下拉菜单 <code>Dropdown</code></h3><p><code>Dropdown</code> 控件用于从预设选项中进行单项选择。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> ipywidgets <span class="hljs-keyword">as</span> widgets<br><span class="hljs-keyword">from</span> IPython.display <span class="hljs-keyword">import</span> display<br><br>dropdown = widgets.Dropdown(<br>    options=[<span class="hljs-string">&quot;sin&quot;</span>, <span class="hljs-string">&quot;cos&quot;</span>, <span class="hljs-string">&quot;tan&quot;</span>],<br>    value=<span class="hljs-string">&quot;sin&quot;</span>,<br>    description=<span class="hljs-string">&quot;函数选择:&quot;</span><br>)<br><br>display(dropdown)<br><br><span class="hljs-comment"># 获取当前选择值</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;当前选择：&quot;</span>, dropdown.value)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130923936.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="3-2-数值滑块-IntSlider-FloatSlider"><a href="#3-2-数值滑块-IntSlider-FloatSlider" class="headerlink" title="3.2 数值滑块 IntSlider &#x2F; FloatSlider"></a>3.2 数值滑块 <code>IntSlider</code> &#x2F; <code>FloatSlider</code></h3><p>滑块控件允许用户在指定范围内选择整数 (<code>IntSlider</code>) 或浮点数 (<code>FloatSlider</code>)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python">slider = widgets.IntSlider(<br>    value=<span class="hljs-number">50</span>,<br>    <span class="hljs-built_in">min</span>=<span class="hljs-number">0</span>,<br>    <span class="hljs-built_in">max</span>=<span class="hljs-number">100</span>,<br>    step=<span class="hljs-number">5</span>,<br>    description=<span class="hljs-string">&quot;百分比:&quot;</span><br>)<br>slider<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130923467.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="3-3-复选框-Checkbox"><a href="#3-3-复选框-Checkbox" class="headerlink" title="3.3 复选框 Checkbox"></a>3.3 复选框 <code>Checkbox</code></h3><p><code>Checkbox</code> 控件提供一个布尔值（真&#x2F;假）选择。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">checkbox = widgets.Checkbox(<br>    value=<span class="hljs-literal">True</span>,<br>    description=<span class="hljs-string">&quot;显示网格&quot;</span><br>)<br>checkbox<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130924482.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="3-4-颜色选择器-ColorPicker"><a href="#3-4-颜色选择器-ColorPicker" class="headerlink" title="3.4 颜色选择器 ColorPicker"></a>3.4 颜色选择器 <code>ColorPicker</code></h3><p><code>ColorPicker</code> 控件允许用户通过图形界面选择颜色值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">cp = widgets.ColorPicker(<br>    concise=<span class="hljs-literal">False</span>,<br>    description=<span class="hljs-string">&#x27;颜色&#x27;</span>,<br>    value=<span class="hljs-string">&#x27;blue&#x27;</span><br>)<br>cp<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130924938.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="3-5-文本输入-Text"><a href="#3-5-文本输入-Text" class="headerlink" title="3.5 文本输入 Text"></a>3.5 文本输入 <code>Text</code></h3><p><code>Text</code> 控件用于接收用户的单行文本输入。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">text = widgets.Text(<br>    value=<span class="hljs-string">&quot;Hello ipywidgets&quot;</span>,<br>    placeholder=<span class="hljs-string">&quot;请输入内容&quot;</span>,<br>    description=<span class="hljs-string">&quot;文本:&quot;</span><br>)<br>text<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130925814.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="3-6-交互魔法-interact：快速原型开发"><a href="#3-6-交互魔法-interact：快速原型开发" class="headerlink" title="3.6 交互魔法 @interact：快速原型开发"></a>3.6 交互魔法 <code>@interact</code>：快速原型开发</h3><p>Ipywidgets 提供了一个强大的装饰器 <code>@interact</code>，它能够以极简的方式将函数参数自动转换为交互式控件，从而快速生成动态的用户界面。这对于快速原型开发和探索性数据分析尤为高效。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> ipywidgets <span class="hljs-keyword">import</span> interact<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><br><span class="hljs-meta">@interact</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">plot</span>(<span class="hljs-params">freq=(<span class="hljs-params"><span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">1</span></span>), phase=(<span class="hljs-params"><span class="hljs-number">0</span>, <span class="hljs-number">2</span>*np.pi, <span class="hljs-number">0.1</span></span>), func=[<span class="hljs-string">&quot;sin&quot;</span>, <span class="hljs-string">&quot;cos&quot;</span>]</span>):<br>    x = np.linspace(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>*np.pi, <span class="hljs-number">400</span>)<br>    y = &#123;<span class="hljs-string">&quot;sin&quot;</span>: np.sin, <span class="hljs-string">&quot;cos&quot;</span>: np.cos&#125;[func](freq * x + phase)<br>    plt.figure(figsize=(<span class="hljs-number">4</span>,<span class="hljs-number">2</span>))<br>    plt.plot(x, y)<br>    plt.title(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;func&#125;</span>(freq=<span class="hljs-subst">&#123;freq&#125;</span>, phase=<span class="hljs-subst">&#123;phase:<span class="hljs-number">.2</span>f&#125;</span>)&quot;</span>)<br>    plt.show()<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130925534.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<hr>
+<h2 id="4-与主流可视化库的无缝联动"><a href="#4-与主流可视化库的无缝联动" class="headerlink" title="4. 与主流可视化库的无缝联动"></a>4. 与主流可视化库的无缝联动</h2><p>Ipywidgets 的核心价值之一在于其与主流 Python 可视化库的无缝集成能力。通过将控件的输出与绘图函数的输入关联起来，我们可以轻松创建动态更新的图表，极大地增强数据探索的交互性。</p>
+<h3 id="4-1-Matplotlib-集成"><a href="#4-1-Matplotlib-集成" class="headerlink" title="4.1 Matplotlib 集成"></a>4.1 Matplotlib 集成</h3><p>对于 Matplotlib，我们可以利用 <code>interactive_output</code> 函数将多个控件的输出绑定到一个绘图函数上，实现参数的实时调整与图表的动态更新。这种模式清晰地分离了 UI 定义和业务逻辑（绘图函数）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 1. 导入所需库</span><br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> ipywidgets <span class="hljs-keyword">as</span> widgets<br><span class="hljs-keyword">from</span> ipywidgets <span class="hljs-keyword">import</span> HBox, VBox, interactive_output<br><span class="hljs-keyword">from</span> IPython.display <span class="hljs-keyword">import</span> display<br><br><span class="hljs-comment"># 2. 定义交互式控件</span><br>mu      = widgets.FloatSlider(value=<span class="hljs-number">0</span>, <span class="hljs-built_in">min</span>=-<span class="hljs-number">3</span>, <span class="hljs-built_in">max</span>=<span class="hljs-number">3</span>, step=<span class="hljs-number">0.1</span>, description=<span class="hljs-string">&#x27;μ&#x27;</span>)<br>sigma = widgets.FloatSlider(value=<span class="hljs-number">1</span>, <span class="hljs-built_in">min</span>=<span class="hljs-number">0.1</span>, <span class="hljs-built_in">max</span>=<span class="hljs-number">3</span>, step=<span class="hljs-number">0.1</span>, description=<span class="hljs-string">&#x27;σ&#x27;</span>)<br><br><span class="hljs-comment"># 3. 定义绘图逻辑函数</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">f</span>(<span class="hljs-params">mu, sigma</span>):<br>    xs = np.linspace(-<span class="hljs-number">5</span>, <span class="hljs-number">5</span>, <span class="hljs-number">200</span>)<br>    ys = <span class="hljs-number">1</span> / (sigma * np.sqrt(<span class="hljs-number">2</span> * np.pi)) * np.exp(-<span class="hljs-number">0.5</span> * ((xs - mu) / sigma) ** <span class="hljs-number">2</span>)<br>    plt.figure(figsize=(<span class="hljs-number">4</span>, <span class="hljs-number">2</span>))<br>    plt.plot(xs, ys)<br>    plt.title(<span class="hljs-string">f&#x27;N(<span class="hljs-subst">&#123;mu&#125;</span>, <span class="hljs-subst">&#123;sigma**<span class="hljs-number">2</span>&#125;</span>)&#x27;</span>)<br>    plt.show()<br><br><span class="hljs-comment"># 4. 组合用户界面与输出</span><br>ui  = VBox([mu, sigma])<br>out = interactive_output(f, &#123;<span class="hljs-string">&#x27;mu&#x27;</span>: mu, <span class="hljs-string">&#x27;sigma&#x27;</span>: sigma&#125;)<br>display(HBox([ui, out]))<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130926835.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<h3 id="4-2-Plotly-集成"><a href="#4-2-Plotly-集成" class="headerlink" title="4.2 Plotly 集成"></a>4.2 Plotly 集成</h3><p>Plotly 作为一款强大的交互式可视化库，其 <code>FigureWidget</code> 对象与 ipywidgets 具有天然的兼容性。我们可以直接监听控件的值变化事件，并实时更新 Plotly 图表的数据或布局，实现高度定制化的交互体验。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> plotly.graph_objects <span class="hljs-keyword">as</span> go<br><span class="hljs-keyword">import</span> ipywidgets <span class="hljs-keyword">as</span> widgets<br><span class="hljs-keyword">from</span> ipywidgets <span class="hljs-keyword">import</span> VBox<br><br>x = np.linspace(<span class="hljs-number">0</span>, <span class="hljs-number">2</span>*np.pi, <span class="hljs-number">200</span>)<br>fig = go.FigureWidget(<br>    data=[go.Scatter(x=x, y=np.sin(x), mode=<span class="hljs-string">&#x27;lines&#x27;</span>)],<br>    layout=go.Layout(title=<span class="hljs-string">&quot;sin wave&quot;</span>)<br>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">update_wave</span>(<span class="hljs-params">change</span>):<br>    fig.data[<span class="hljs-number">0</span>].y = np.sin(change.new * x)<br>freq_slider = widgets.FloatSlider(<br>    value=<span class="hljs-number">1</span>,<br>    <span class="hljs-built_in">min</span>=<span class="hljs-number">0.1</span>,<br>    <span class="hljs-built_in">max</span>=<span class="hljs-number">5</span>,<br>    step=<span class="hljs-number">0.1</span>,<br>    description=<span class="hljs-string">&quot;频率&quot;</span><br>)<br>freq_slider.observe(update_wave, names=<span class="hljs-string">&quot;value&quot;</span>)<br>VBox([freq_slider, fig])<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130928018.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<hr>
+<h2 id="5-应用部署与分享：Voila-与-Jupyter-Dash-的选择"><a href="#5-应用部署与分享：Voila-与-Jupyter-Dash-的选择" class="headerlink" title="5. 应用部署与分享：Voilà 与 Jupyter-Dash 的选择"></a>5. 应用部署与分享：Voilà 与 Jupyter-Dash 的选择</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Voilà</th>
+<th>Jupyter-Dash</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>部署复杂度</td>
+<td>极简部署：<code>voila notebook.ipynb</code> 命令即可，无需额外编码。</td>
+<td>需编写 Dash 应用布局代码。</td>
+</tr>
+<tr>
+<td>底层前端技术</td>
+<td>基于 JupyterLab 前端技术栈</td>
+<td>基于 React. Js (Dash 框架)</td>
+</tr>
+<tr>
+<td>多页面支持</td>
+<td>不支持（通常单页应用）</td>
+<td>支持（通过 Dash Pages 或回调实现）</td>
+</tr>
+<tr>
+<td>前端定制能力</td>
+<td>有限（主要通过主题和内置样式）</td>
+<td>高度自由（完全控制前端代码）</td>
+</tr>
+<tr>
+<td>典型应用场景</td>
+<td>快速原型、交互式报告、数据看板</td>
+<td>复杂数据应用、企业级仪表板、全栈 Web 应用</td>
+</tr>
+</tbody></table>
+<h3 id="5-1-Voila：零代码快速部署"><a href="#5-1-Voila：零代码快速部署" class="headerlink" title="5.1 Voilà：零代码快速部署"></a>5.1 Voilà：零代码快速部署</h3><p>Voilà 提供了一种将 Jupyter Notebook 转换为独立 Web 应用的“零代码”部署方案。它会自动隐藏代码单元格，仅显示 Markdown、输出和 ipywidgets 控件，非常适合快速分享交互式报告或仪表板。</p>
+<p>在终端中执行以下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">voila ipywidgets_learn.ipynb --theme=dark<br></code></pre></td></tr></table></figure>
+<p>（其中 <code>--theme=dark</code> 为可选参数，用于设置深色主题。）<br>执行后，您可以通过浏览器访问 <code>http://localhost:8866/</code>，即可得到一个<strong>隐藏代码</strong>的交互式 Web 应用。</p>
+<h3 id="5-2-Jupyter-Dash：构建全栈单页应用-SPA"><a href="#5-2-Jupyter-Dash：构建全栈单页应用-SPA" class="headerlink" title="5.2 Jupyter-Dash：构建全栈单页应用 (SPA)"></a>5.2 Jupyter-Dash：构建全栈单页应用 (SPA)</h3><p>Jupyter-Dash 允许您在 Jupyter 环境中直接开发和运行 Dash 应用。Dash 是一个基于 Flask 和 React 的 Python 框架，专为构建数据分析仪表板而设计。Jupyter-Dash 使得在 Notebook 中进行快速迭代和原型开发成为可能，同时保留了 Dash 框架的强大功能和可扩展性，适用于构建更复杂的单页应用 (SPA)。</p>
+<p>首先确保已安装 <code>jupyter-dash</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">pip install jupyter-dash<br></code></pre></td></tr></table></figure>
+
+<p>以下是一个在 Jupyter Notebook 中运行的 Dash 应用示例（可在单个 Cell 中执行）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> jupyter_dash <span class="hljs-keyword">import</span> JupyterDash<br><span class="hljs-keyword">import</span> dash<br><span class="hljs-keyword">import</span> dash_core_components <span class="hljs-keyword">as</span> dcc<br><span class="hljs-keyword">import</span> dash_html_components <span class="hljs-keyword">as</span> html<br><span class="hljs-keyword">from</span> dash.dependencies <span class="hljs-keyword">import</span> Input, Output<br><span class="hljs-keyword">import</span> plotly.express <span class="hljs-keyword">as</span> px<br><br>df = px.data.iris()<br>app = JupyterDash(__name__)<br>app.layout = html.Div([<br>    dcc.Dropdown(<br>        <span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;species&quot;</span>,<br>        options=[&#123;<span class="hljs-string">&quot;label&quot;</span>: s, <span class="hljs-string">&quot;value&quot;</span>: s&#125; <span class="hljs-keyword">for</span> s <span class="hljs-keyword">in</span> df.species.unique()],<br>        value=<span class="hljs-string">&quot;setosa&quot;</span><br>    ),<br>    dcc.Graph(<span class="hljs-built_in">id</span>=<span class="hljs-string">&quot;scatter&quot;</span>)<br>])<br><br><span class="hljs-meta">@app.callback(<span class="hljs-params"></span></span><br><span class="hljs-params"><span class="hljs-meta">    Output(<span class="hljs-params"><span class="hljs-string">&quot;scatter&quot;</span>, <span class="hljs-string">&quot;figure&quot;</span></span>),</span></span><br><span class="hljs-params"><span class="hljs-meta">    Input(<span class="hljs-params"><span class="hljs-string">&quot;species&quot;</span>, <span class="hljs-string">&quot;value&quot;</span></span>)</span></span><br><span class="hljs-params"><span class="hljs-meta"></span>)</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">update</span>(<span class="hljs-params">species</span>):<br>    dff = df[df.species == species]<br>    <span class="hljs-keyword">return</span> px.scatter(dff, x=<span class="hljs-string">&quot;sepal_width&quot;</span>, y=<span class="hljs-string">&quot;sepal_length&quot;</span>)<br><br>app.run_server(mode=<span class="hljs-string">&quot;inline&quot;</span>, height=<span class="hljs-number">500</span>)<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6-综合应用案例：鸢尾花数据集探索器"><a href="#6-综合应用案例：鸢尾花数据集探索器" class="headerlink" title="6. 综合应用案例：鸢尾花数据集探索器"></a>6. 综合应用案例：鸢尾花数据集探索器</h2><p>为了展示 ipywidgets 的综合应用能力，我们构建了一个基于鸢尾花数据集的简单探索器。您可以将以下代码保存为 <code>iris_explorer.ipynb</code> 文件，并通过 Voilà 轻松部署和分享：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> ipywidgets <span class="hljs-keyword">as</span> widgets<br><span class="hljs-keyword">import</span> plotly.express <span class="hljs-keyword">as</span> px<br><span class="hljs-keyword">from</span> IPython.display <span class="hljs-keyword">import</span> clear_output<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><br>df = px.data.iris()<br><br>x_dd = widgets.Dropdown(options=df.columns[:<span class="hljs-number">4</span>], value=<span class="hljs-string">&quot;sepal_length&quot;</span>, description=<span class="hljs-string">&quot;X轴&quot;</span>)<br>y_dd = widgets.Dropdown(options=df.columns[:<span class="hljs-number">4</span>], value=<span class="hljs-string">&quot;sepal_width&quot;</span>,  description=<span class="hljs-string">&quot;Y轴&quot;</span>)<br>color_dd = widgets.Dropdown(options=[<span class="hljs-string">&quot;species&quot;</span>], value=<span class="hljs-string">&quot;species&quot;</span>, description=<span class="hljs-string">&quot;颜色编码&quot;</span>)<br>log_x = widgets.Checkbox(value=<span class="hljs-literal">False</span>, description=<span class="hljs-string">&quot;X轴对数刻度&quot;</span>)<br>log_y = widgets.Checkbox(value=<span class="hljs-literal">False</span>, description=<span class="hljs-string">&quot;Y轴对数刻度&quot;</span>)<br>out = widgets.Output()<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">update</span>(<span class="hljs-params">*_</span>):<br>    <span class="hljs-keyword">with</span> out:<br>        clear_output(wait=<span class="hljs-literal">True</span>)<br>        fig = px.scatter(<br>            df,<br>            x=x_dd.value,<br>            y=y_dd.value,<br>            color=color_dd.value,<br>            log_x=log_x.value,<br>            log_y=log_y.value,<br>            width=<span class="hljs-number">600</span>, height=<span class="hljs-number">400</span><br>        )<br>        fig.show()<br><br><span class="hljs-keyword">for</span> w <span class="hljs-keyword">in</span> [x_dd, y_dd, color_dd, log_x, log_y]:<br>    w.observe(update, names=<span class="hljs-string">&quot;value&quot;</span>)<br><br>update()<br>widgets.VBox([<br>    widgets.HBox([x_dd, y_dd, color_dd]),<br>    widgets.HBox([log_x, log_y]),<br>    out<br>])<br></code></pre></td></tr></table></figure>
+
+<p>鸢尾花数据集相关性分析<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202508130932258.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
+<hr>
+<h2 id="7-结语与延伸阅读"><a href="#7-结语与延伸阅读" class="headerlink" title="7. 结语与延伸阅读"></a>7. 结语与延伸阅读</h2><p>Ipywidgets 为 Jupyter 用户提供了一个强大而灵活的工具集，用于构建交互式数据应用。无论是快速的数据探索、生成动态报告，还是部署轻量级 Web 应用，ipywidgets 都能显著提升您的工作效率和成果表现。希望本教程能为您开启交互式数据可视化的新篇章。</p>
+<p><strong>延伸阅读与资源：</strong></p>
+<ul>
+<li>ipywidgets 官方文档：<a target="_blank" rel="noopener" href="https://ipywidgets.readthedocs.io/">https://ipywidgets.readthedocs.io</a></li>
+<li>Voilà Gallery：<a target="_blank" rel="noopener" href="https://voila-gallery.org/">https://voila-gallery.org</a></li>
+<li>Jupyter-Dash 示例库：<a target="_blank" rel="noopener" href="https://github.com/plotly/jupyter-dash">https://github.com/plotly/jupyter-dash</a></li>
+</ul>
+<hr>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="category-chain-item">工具推荐</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" class="print-no-link">#数据分析</a>
+      
+        <a href="/tags/jupyter/" class="print-no-link">#jupyter</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Jupyter 中实现交互式图表：ipywidgets 从入门到部署</div>
+      <div>https://maoyu92.github.io/2025/08/13/03 工具推荐/Jupyter 中实现交互式图表：ipywidgets 从入门到部署/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/11/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E8%BD%BB%E6%9D%BE%E4%B8%8A%E6%89%8BDropIt%20%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%BD%92%E7%B1%BB%E7%A5%9E%E5%99%A8/" title="轻松上手DropIt 桌面文件自动归类神器">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">轻松上手DropIt 桌面文件自动归类神器</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/03/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E5%A4%A7%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%9A%84%E5%8D%B1%E5%BA%9F%E7%9B%91%E7%AE%A1%EF%BC%9A%E4%BC%81%E4%B8%9A%E7%94%A8%E7%94%B5%E9%87%8F%E4%B8%8E%E4%BA%A7%E5%BA%9F%E9%87%8F%E5%85%B3%E8%81%94%E5%88%86%E6%9E%90%E5%8F%8A%E5%A4%9A%E7%BB%B4%E5%BA%A6%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/" title="大数据驱动的危废监管新范式：重庆市企业用电量与产废量关联分析及多维度异常检测">
+                        <span class="hidden-mobile">大数据驱动的危废监管新范式：重庆市企业用电量与产废量关联分析及多维度异常检测</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
