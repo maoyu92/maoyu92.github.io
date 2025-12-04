@@ -1,0 +1,771 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="Power BI 通过 API 构建数据看板之数据获取在构建现代化数据看板的过程中，数据获取是第一步，也是最关键的一步。传统方式多依赖数据库直连或 Excel 手动导入，但对于越来越多部署在业务系统中的 RESTful API，Power BI 提供了强大而灵活的支持。 本文将以一个真实场景为例——从某环保业务系统中获取市级及下辖区县的固体废物填埋率预测数据，手把手演示如何通过 Power">
+<meta property="og:type" content="article">
+<meta property="og:title" content="power bi  利用API 构建数据看板">
+<meta property="og:url" content="https://maoyu92.github.io/2025/11/25/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/power%20bi%20%20%E5%88%A9%E7%94%A8API%20%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%9C%8B%E6%9D%BF%20%E4%B9%8B%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="Power BI 通过 API 构建数据看板之数据获取在构建现代化数据看板的过程中，数据获取是第一步，也是最关键的一步。传统方式多依赖数据库直连或 Excel 手动导入，但对于越来越多部署在业务系统中的 RESTful API，Power BI 提供了强大而灵活的支持。 本文将以一个真实场景为例——从某环保业务系统中获取市级及下辖区县的固体废物填埋率预测数据，手把手演示如何通过 Power">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202511251533152.png">
+<meta property="article:published_time" content="2025-11-25T07:30:00.000Z">
+<meta property="article:modified_time" content="2025-11-25T07:30:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="powerBI">
+<meta property="article:tag" content="Power_Query">
+<meta property="article:tag" content="数据获取">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202511251533152.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>power bi  利用API 构建数据看板 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="power bi  利用API 构建数据看板"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-25 15:30" pubdate>
+          2025年11月25日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          716 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">power bi  利用API 构建数据看板</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+
+<h1 id="Power-BI-通过-API-构建数据看板之数据获取"><a href="#Power-BI-通过-API-构建数据看板之数据获取" class="headerlink" title="Power BI 通过 API 构建数据看板之数据获取"></a>Power BI 通过 API 构建数据看板之数据获取</h1><p>在构建现代化数据看板的过程中，<strong>数据获取是第一步，也是最关键的一步</strong>。传统方式多依赖数据库直连或 Excel 手动导入，但对于越来越多部署在业务系统中的 RESTful API，Power BI 提供了强大而灵活的支持。</p>
+<p>本文将以一个真实场景为例——<strong>从某环保业务系统中获取市级及下辖区县的固体废物填埋率预测数据</strong>，手把手演示如何通过 Power BI 的 <strong>Power Query（M 语言）</strong> 安全、稳定、高效地接入 API，并为后续可视化打下结构化数据基础。</p>
+<hr>
+<h2 id="📌-前期准备"><a href="#📌-前期准备" class="headerlink" title="📌 前期准备"></a>📌 前期准备</h2><ul>
+<li>一个可用的 POST 类型 RESTful API（需认证）</li>
+<li>Power BI Desktop（最新版）</li>
+<li>（可选）API 调用所需的认证凭据（如 Bearer Token）</li>
+</ul>
+<hr>
+<h2 id="🛠️-操作步骤"><a href="#🛠️-操作步骤" class="headerlink" title="🛠️ 操作步骤"></a>🛠️ 操作步骤</h2><ol>
+<li><p>打开 Power BI Desktop，点击顶部菜单栏 <strong>“主页” → “获取数据” → “空白查询”</strong>。</p>
+</li>
+<li><p>在新查询中，点击 <strong>“转换数据”</strong> 进入 Power Query 编辑器。</p>
+</li>
+<li><p>点击 <strong>“高级编辑器”</strong>，粘贴我们编写好的 M 函数。</p>
+<blockquote>
+<p>💡 <strong>提示</strong>：如果不会写 M 代码，可将 API 的请求方式（URL、Headers、Body）提供给 AI，让其生成对应逻辑。若请求中包含敏感变量（如 Token），建议通过 <strong>“管理参数”</strong> 功能将其参数化，避免硬编码。</p>
+</blockquote>
+</li>
+<li><p>创建名为 <code>ApiToken</code> 的文本参数（<strong>主页 → 管理参数 → 新建参数</strong>），并将你的有效 Token 填入。</p>
+</li>
+<li><p>关闭并应用查询。成功后，你将获得一张结构化的数据表，包含地区名称、占比、产生重量、处置量等关键指标。</p>
+</li>
+</ol>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202511251533152.png" srcset="/img/loading.gif" lazyload alt="数据表成功加载示意图"></p>
+<hr>
+<h2 id="🧩-完整-M-代码"><a href="#🧩-完整-M-代码" class="headerlink" title="🧩 完整 M 代码"></a>🧩 完整 M 代码</h2><figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs m">let<br>    // <span class="hljs-number">1</span>. 构造 JSON 请求体<br>    BodyJson <span class="hljs-built_in">=</span> <span class="hljs-string">&quot;&#123;</span><br><span class="hljs-string">        &quot;</span><span class="hljs-string">&quot;date&quot;</span><span class="hljs-string">&quot;: &quot;</span><span class="hljs-string">&quot;2025-11-25&quot;</span><span class="hljs-string">&quot;,</span><br><span class="hljs-string">        &quot;</span><span class="hljs-string">&quot;type&quot;</span><span class="hljs-string">&quot;: &quot;</span><span class="hljs-string">&quot;年&quot;</span><span class="hljs-string">&quot;,</span><br><span class="hljs-string">        &quot;</span><span class="hljs-string">&quot;isRealTime&quot;</span><span class="hljs-string">&quot;: true,</span><br><span class="hljs-string">        &quot;</span><span class="hljs-string">&quot;wasteCodeList&quot;</span><span class="hljs-string">&quot;: [],</span><br><span class="hljs-string">        &quot;</span><span class="hljs-string">&quot;typeCode&quot;</span><span class="hljs-string">&quot;: &quot;</span><span class="hljs-string">&quot;&quot;</span><span class="hljs-string">&quot;,</span><br><span class="hljs-string">        &quot;</span><span class="hljs-string">&quot;wasteSc&quot;</span><span class="hljs-string">&quot;: &quot;</span><span class="hljs-string">&quot;&quot;</span><span class="hljs-string">&quot;</span><br><span class="hljs-string">    &#125;&quot;</span>,<br><br>    // <span class="hljs-number">2</span>. 发送 POST 请求（敏感信息已脱敏）<br>    Source <span class="hljs-built_in">=</span> Web.Contents(<br>        <span class="hljs-string">&quot;[内部API地址已脱敏]&quot;</span>,<br>        [<br>            Headers <span class="hljs-built_in">=</span> [<br>                #<span class="hljs-string">&quot;Content-Type&quot;</span> <span class="hljs-built_in">=</span> <span class="hljs-string">&quot;application/json;charset=UTF-8&quot;</span>,<br>                #<span class="hljs-string">&quot;Authorization&quot;</span> <span class="hljs-built_in">=</span> <span class="hljs-string">&quot;Bearer &quot;</span> &amp; ApiToken,<br>                #<span class="hljs-string">&quot;User-Agent&quot;</span> <span class="hljs-built_in">=</span> <span class="hljs-string">&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36&quot;</span>,<br>                #<span class="hljs-string">&quot;Origin&quot;</span> <span class="hljs-built_in">=</span> <span class="hljs-string">&quot;[Origin已脱敏]&quot;</span>,<br>                #<span class="hljs-string">&quot;Referer&quot;</span> <span class="hljs-built_in">=</span> <span class="hljs-string">&quot;[Referer已脱敏]&quot;</span><br>            ],<br>            Content <span class="hljs-built_in">=</span> Text.ToBinary(BodyJson),<br>            ManualStatusHandling <span class="hljs-built_in">=</span> &#123;<span class="hljs-number">400</span>, <span class="hljs-number">401</span>, <span class="hljs-number">403</span>, <span class="hljs-number">404</span>, <span class="hljs-number">500</span>&#125;<br>        ]<br>    ),<br><br>    // <span class="hljs-number">3</span>. 解析 JSON 响应<br>    JsonResponse <span class="hljs-built_in">=</span> <span class="hljs-built_in">try</span> Json.Document(Source) otherwise error <span class="hljs-string">&quot;无法解析 API 响应&quot;</span>,<br>    ResponseCode <span class="hljs-built_in">=</span> <span class="hljs-built_in">try</span> JsonResponse[#<span class="hljs-string">&quot;code&quot;</span>] otherwise -<span class="hljs-number">1</span>,<br><br>    // <span class="hljs-number">4</span>. 主逻辑：根据响应状态处理数据<br>    DataTable <span class="hljs-built_in">=</span><br>        <span class="hljs-built_in">if</span> ResponseCode <span class="hljs-built_in">=</span> <span class="hljs-number">200</span> <span class="hljs-built_in">then</span><br>            let<br>                DataList <span class="hljs-built_in">=</span> JsonResponse[#<span class="hljs-string">&quot;data&quot;</span>],<br>                ToTable <span class="hljs-built_in">=</span> Table.FromList(DataList, Splitter.SplitByNothing(), &#123;<span class="hljs-string">&quot;Data&quot;</span>&#125;),<br>                ExpandedTable <span class="hljs-built_in">=</span> Table.ExpandRecordColumn(ToTable, <span class="hljs-string">&quot;Data</span><br><span class="hljs-string">                ....</span><br><span class="hljs-string">                ....</span><br><span class="hljs-string">                ....</span><br><span class="hljs-string">                TypedTable</span><br><span class="hljs-string">        else</span><br><span class="hljs-string">            // 返回错误信息，便于调试</span><br><span class="hljs-string">            Table.FromRecords(&#123;[错误代码 = ResponseCode, 错误信息 = try JsonResponse[#&quot;</span>msg<span class="hljs-string">&quot;] otherwise &quot;</span>未知错误<span class="hljs-string">&quot;]&#125;)</span><br><span class="hljs-string">in</span><br><span class="hljs-string">    DataTable</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>🔒 <strong>脱敏说明</strong>：  </p>
+<ul>
+<li>原始 IP 和端口已替换为 <code>[内部API地址已脱敏]</code>  </li>
+<li>Origin 和 Referer 字段已模糊处理  </li>
+<li>Token 通过参数 <code>ApiToken</code> 动态传入，不暴露在代码中</li>
+</ul>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/powerBI/" class="print-no-link">#powerBI</a>
+      
+        <a href="/tags/Power-Query/" class="print-no-link">#Power_Query</a>
+      
+        <a href="/tags/%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96/" class="print-no-link">#数据获取</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>power bi  利用API 构建数据看板</div>
+      <div>https://maoyu92.github.io/2025/11/25/04 经验分享/power bi  利用API 构建数据看板 之数据获取/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/12/01/05%20%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3%E5%BB%B6%E8%BF%9F%E6%BB%A1%E8%B6%B3%EF%BC%9A%E4%B8%8D%E6%98%AF%E5%BF%8D%E8%80%90%EF%BC%8C%E8%80%8C%E6%98%AF%E7%9B%B8%E4%BF%A1/" title="重新理解延迟满足：不是忍耐，而是相信">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">重新理解延迟满足：不是忍耐，而是相信</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/14/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/AI%E9%87%8D%E5%A1%91%E4%B8%AA%E4%BD%93%20%E4%B9%8B%20%E6%80%9D%E8%80%83%E8%AE%B0%E5%BD%95%E7%B3%BB%E7%BB%9F/" title="AI重塑个体 之 思考记录系统">
+                        <span class="hidden-mobile">AI重塑个体 之 思考记录系统</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

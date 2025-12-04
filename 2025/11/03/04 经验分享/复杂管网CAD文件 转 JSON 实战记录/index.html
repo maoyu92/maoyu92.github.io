@@ -1,0 +1,839 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="引言随着智慧城市和智慧管网项目的日益普及，将传统的 CAD 图纸数据转换为 Web 前端友好的 JSON 格式，已成为我们经常面临的挑战。这个过程不仅涉及数据格式的转换，更重要的是对原始 CAD 数据进行高效、精准的清洗。本文将详细记录我如何将某区域的 CAD 管网图纸清洗并转换为 Web 前端友好的 JSON 数据，希望能为遇到类似问题的你提供一份实用的操作指南。 项目背景与资料概况本次项目资料">
+<meta property="og:type" content="article">
+<meta property="og:title" content="管网CAD 转 JSON 实战记录">
+<meta property="og:url" content="https://maoyu92.github.io/2025/11/03/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/%E5%A4%8D%E6%9D%82%E7%AE%A1%E7%BD%91CAD%E6%96%87%E4%BB%B6%20%E8%BD%AC%20JSON%20%E5%AE%9E%E6%88%98%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="引言随着智慧城市和智慧管网项目的日益普及，将传统的 CAD 图纸数据转换为 Web 前端友好的 JSON 格式，已成为我们经常面临的挑战。这个过程不仅涉及数据格式的转换，更重要的是对原始 CAD 数据进行高效、精准的清洗。本文将详细记录我如何将某区域的 CAD 管网图纸清洗并转换为 Web 前端友好的 JSON 数据，希望能为遇到类似问题的你提供一份实用的操作指南。 项目背景与资料概况本次项目资料">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202511031519372.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202511031515061.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202511031516628.png">
+<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202511031522873.png">
+<meta property="article:published_time" content="2025-11-03T07:04:00.000Z">
+<meta property="article:modified_time" content="2025-11-03T07:04:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="GIS">
+<meta property="article:tag" content="管网">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202511031519372.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>管网CAD 转 JSON 实战记录 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="管网CAD 转 JSON 实战记录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-03 15:04" pubdate>
+          2025年11月3日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">管网CAD 转 JSON 实战记录</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>随着智慧城市和智慧管网项目的日益普及，将传统的 CAD 图纸数据转换为 Web 前端友好的 JSON 格式，已成为我们经常面临的挑战。这个过程不仅涉及数据格式的转换，更重要的是对原始 CAD 数据进行高效、精准的清洗。本文将详细记录我如何将某区域的 CAD 管网图纸清洗并转换为 Web 前端友好的 JSON 数据，希望能为遇到类似问题的你提供一份实用的操作指南。</p>
+<h2 id="项目背景与资料概况"><a href="#项目背景与资料概况" class="headerlink" title="项目背景与资料概况"></a>项目背景与资料概况</h2><p>本次项目资料为某区域的管网 CAD 图纸，其中包含了地形地貌、地下建筑等多种不相关的图层。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202511031519372.png" srcset="/img/loading.gif" lazyload alt="CAD原始图纸"></p>
+<h3 id="CAD-数据面临的挑战"><a href="#CAD-数据面临的挑战" class="headerlink" title="CAD 数据面临的挑战"></a>CAD 数据面临的挑战</h3><p>在处理这份 CAD 图纸时，我们遇到了以下几个主要问题：</p>
+<ol>
+<li><strong>文件体积庞大</strong>：原始 CAD 文件非常大，对计算机性能（尤其是内存）要求较高，处理起来效率低下。</li>
+<li><strong>图层繁多复杂</strong>：图纸中包含大量与管网无关的图层，需要进行精细化筛选和清洗。</li>
+<li><strong>冗余信息干扰</strong>：需要处理的管网图层（如雨水、污水管网）中，包含大量流向箭头等多余线段，这些信息在转换为 JSON 后会增加数据量并干扰前端展示。</li>
+</ol>
+<h2 id="数据清洗与转换步骤"><a href="#数据清洗与转换步骤" class="headerlink" title="数据清洗与转换步骤"></a>数据清洗与转换步骤</h2><h3 id="1-CAD-数据初步处理"><a href="#1-CAD-数据初步处理" class="headerlink" title="1. CAD 数据初步处理"></a>1. CAD 数据初步处理</h3><p>首先，我们利用 CAD 的“选择相似”功能筛选出所需图层内容（例如雨水管网、污水管网），并将其复制到一个新的 CAD 文件中，确保坐标系不变。这一步旨在剥离不相关的图层，减少文件大小。</p>
+<h3 id="2-清洗冗余流向箭头"><a href="#2-清洗冗余流向箭头" class="headerlink" title="2. 清洗冗余流向箭头"></a>2. 清洗冗余流向箭头</h3><p>在数据清洗过程中，我遇到了一个棘手的问题：管网上的流向箭头与管线本身在样式（线型、宽度）上几乎一致，难以区分。经过仔细观察，我发现所有箭头的尺寸是相同的。因此，我编写了一个 LISP 脚本来自动删除特定长度范围内的多段线，从而高效地去除了上万个不必要的流向箭头，极大地简化了数据。</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs lisp">(<span class="hljs-name">defun</span> c<span class="hljs-symbol">:DelPLInRange</span> ( <span class="hljs-name">/</span> ss ent len target-ents min-len max-len cmdecho regenmode)<br>  <span class="hljs-comment">;; 定义长度范围</span><br>  (<span class="hljs-name">setq</span> min-len <span class="hljs-number">1.118</span>)<br>  (<span class="hljs-name">setq</span> max-len <span class="hljs-number">1.19</span>)<br>  <br>  <span class="hljs-comment">;; 保存系统变量</span><br>  (<span class="hljs-name">setq</span> cmdecho (<span class="hljs-name">getvar</span> <span class="hljs-string">&quot;CMDECHO&quot;</span>))<br>  (<span class="hljs-name">setq</span> regenmode (<span class="hljs-name">getvar</span> <span class="hljs-string">&quot;REGENMODE&quot;</span>))<br>  (<span class="hljs-name">setvar</span> <span class="hljs-string">&quot;CMDECHO&quot;</span> <span class="hljs-number">0</span>)<br>  (<span class="hljs-name">setvar</span> <span class="hljs-string">&quot;REGENMODE&quot;</span> <span class="hljs-number">0</span>)<br>  <br>  (<span class="hljs-name">princ</span> (<span class="hljs-name">strcat</span> <span class="hljs-string">&quot;\n正在扫描长度在 (&quot;</span> (<span class="hljs-name">rtos</span> min-len <span class="hljs-number">2</span> <span class="hljs-number">3</span>) <span class="hljs-string">&quot;, &quot;</span> (<span class="hljs-name">rtos</span> max-len <span class="hljs-number">2</span> <span class="hljs-number">3</span>) <span class="hljs-string">&quot;) 之间的多段线...&quot;</span>))<br>  <br>  <span class="hljs-comment">;; 选择所有多段线</span><br>  (<span class="hljs-name">setq</span> ss (<span class="hljs-name">ssget</span> <span class="hljs-string">&quot;_X&quot;</span> &#x27;((<span class="hljs-number">0</span> . <span class="hljs-string">&quot;LWPOLYLINE,POLYLINE&quot;</span>))))<br>  <br>  (<span class="hljs-name">if</span> (<span class="hljs-name">null</span> ss)<br>    (<span class="hljs-name">princ</span> <span class="hljs-string">&quot;\n未找到任何多段线。&quot;</span>)<br>    (<span class="hljs-name">progn</span><br>      (<span class="hljs-name">setq</span> target-ents <span class="hljs-literal">nil</span>)<br>      (<span class="hljs-name">repeat</span> (<span class="hljs-name">setq</span> i (<span class="hljs-name">sslength</span> ss))<br>        (<span class="hljs-name">setq</span> ent (<span class="hljs-name">ssname</span> ss (<span class="hljs-name">setq</span> i (<span class="hljs-number">1</span>- i))))<br>        (<span class="hljs-name">setq</span> len (<span class="hljs-name">vlax-curve-getDistAtParam</span> ent (<span class="hljs-name">vlax-curve-getEndParam</span> ent)))<br>        <span class="hljs-comment">;; 判断是否在开区间 (min-len, max-len)</span><br>        (<span class="hljs-name">if</span> (<span class="hljs-name">and</span> (<span class="hljs-name">&gt;</span> len min-len) (<span class="hljs-name">&lt;</span> len max-len))<br>          (<span class="hljs-name">setq</span> target-ents (<span class="hljs-name">cons</span> ent target-ents))<br>        )<br>      )<br>      <br>      (<span class="hljs-name">if</span> (<span class="hljs-name">null</span> target-ents)<br>        (<span class="hljs-name">progn</span><br>          (<span class="hljs-name">princ</span> (<span class="hljs-name">strcat</span> <span class="hljs-string">&quot;\n 未找到长度在 (&quot;</span> (<span class="hljs-name">rtos</span> min-len <span class="hljs-number">2</span> <span class="hljs-number">3</span>) <span class="hljs-string">&quot;, &quot;</span> (<span class="hljs-name">rtos</span> max-len <span class="hljs-number">2</span> <span class="hljs-number">3</span>) <span class="hljs-string">&quot;) 之间的多段线。&quot;</span>))<br>        )<br>        (<span class="hljs-name">progn</span><br>          (<span class="hljs-name">princ</span> (<span class="hljs-name">strcat</span> <span class="hljs-string">&quot;\n 找到 &quot;</span> (<span class="hljs-name">itoa</span> (<span class="hljs-name">length</span> target-ents)) <span class="hljs-string">&quot; 条符合条件的多段线。&quot;</span>))<br>          <br>          <span class="hljs-comment">;; 用户确认</span><br>          (<span class="hljs-name">initget</span> <span class="hljs-string">&quot;是否&quot;</span>)<br>          (<span class="hljs-name">setq</span> ans (<span class="hljs-name">getkword</span> <span class="hljs-string">&quot;\n 是否删除这些多段线？[是/否] &lt;否&gt;: &quot;</span>))<br>          <br>          (<span class="hljs-name">if</span> (<span class="hljs-name">=</span> ans <span class="hljs-string">&quot;是&quot;</span>)<br>            (<span class="hljs-name">progn</span><br>              (<span class="hljs-name">princ</span> <span class="hljs-string">&quot;\n 正在删除... 请稍候（数据量大时需耐心等待）...&quot;</span>)<br>              (<span class="hljs-name">foreach</span> e target-ents<br>                (<span class="hljs-name">entdel</span> e)<br>              )<br>              (<span class="hljs-name">redraw</span>)<br>              (<span class="hljs-name">princ</span> <span class="hljs-string">&quot;\n✅ 删除完成！&quot;</span>)<br>            )<br>            (<span class="hljs-name">princ</span> <span class="hljs-string">&quot;\n❌ 已取消删除。&quot;</span>)<br>          )<br>        )<br>      )<br>    )<br>  )<br>  <br>  <span class="hljs-comment">;; 恢复系统变量</span><br>  (<span class="hljs-name">setvar</span> <span class="hljs-string">&quot;CMDECHO&quot;</span> cmdecho)<br>  (<span class="hljs-name">setvar</span> <span class="hljs-string">&quot;REGENMODE&quot;</span> regenmode)<br>  (<span class="hljs-name">princ</span>)<br>)<br></code></pre></td></tr></table></figure>
+<p>这个 LISP 脚本极大地优化了数据，减少了不必要的信息量，为后续转换奠定了基础。</p>
+<h3 id="3-导入奥维互动地图并转换为图层文件"><a href="#3-导入奥维互动地图并转换为图层文件" class="headerlink" title="3. 导入奥维互动地图并转换为图层文件"></a>3. 导入奥维互动地图并转换为图层文件</h3><p>将清洗后的 CAD 文件导入奥维互动地图，并将其转换为图层文件。</p>
+<p><strong>关键步骤：</strong> 在导入奥维时，务必勾选“合并连续线段”和“合并相邻的等距直线”选项。这一操作能有效减少图形要素数量，因为原始 CAD 图中部分管网可能由多段线断开表示，合并后能形成完整的几何对象，提高数据质量和处理效率。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202511031515061.png" srcset="/img/loading.gif" lazyload alt="奥维导入设置"></p>
+<h3 id="4-坐标转换与投影选择"><a href="#4-坐标转换与投影选择" class="headerlink" title="4. 坐标转换与投影选择"></a>4. 坐标转换与投影选择</h3><p>在奥维中，点击“导入地图”后，进入“坐标转换”界面。选择“横轴墨卡托投影坐标”，然后根据实际情况选择对应的坐标系。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202511031516628.png" srcset="/img/loading.gif" lazyload alt="奥维坐标转换界面"></p>
+<p>这一步至关重要，需要根据您的项目实际情况来确定。例如，我的项目区域经纬度大致在 106°E, 29°N 附近，在 CAD 中对应的投影坐标为 356652, 373299。根据经验判断，这应属于 <strong>CGCS 2000_3_Degree_GK_Zone_36（3 度带第 36 带）</strong>。</p>
+<p><strong>小贴士：</strong> 在 ArcGIS 等 GIS 软件中，如果投影坐标的横坐标前两位是 <code>35</code>，通常说明使用的是 3 度带；如果是 <code>18</code>，则可能是 6 度带。</p>
+<p>选择合适的投影坐标后，点击确定即可完成转换。</p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202511031522873.png" srcset="/img/loading.gif" lazyload alt="奥维导入完成"></p>
+<h3 id="5-导出为-GeoJSON-格式"><a href="#5-导出为-GeoJSON-格式" class="headerlink" title="5. 导出为 GeoJSON 格式"></a>5. 导出为 GeoJSON 格式</h3><p>上述步骤针对单个管网图层（例如雨水管网）进行了详细说明。对于其他需要处理的图层，如污水管网、雨水井、污水井等，操作流程类似，只需重复数据清洗和导入转换过程即可。</p>
+<p>所有图层处理完毕并导入奥维后，即可选择导出为 GeoJSON 格式。GeoJSON 是一种轻量级的地理空间数据交换格式，非常适合 Web 前端应用。</p>
+<h2 id="深入理解：高斯-克吕格投影带的选择"><a href="#深入理解：高斯-克吕格投影带的选择" class="headerlink" title="深入理解：高斯-克吕格投影带的选择"></a>深入理解：高斯-克吕格投影带的选择</h2><p>为了帮助大家更好地理解和选择合适的投影坐标系，这里提供一份详细的高斯-克吕格投影带选择指南。</p>
+<p>经度 106°位于中国境内，选择合适的投影带需根据具体应用场景（如比例尺、测图精度要求）以及所使用的坐标系标准。以下是详细分析与建议：</p>
+<p><strong>一、判断适用的投影带类型</strong></p>
+<p>我国采用高斯-克吕格投影，分为 6 度带和 3 度带两种分带方式：</p>
+<table>
+<thead>
+<tr>
+<th align="left">分带类型</th>
+<th align="left">每带经差</th>
+<th align="left">全球带数</th>
+<th align="left">适用比例尺</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">6 度带</td>
+<td align="left">6°</td>
+<td align="left">60 带</td>
+<td align="left">1:2.5 万～1:50万</td>
+</tr>
+<tr>
+<td align="left">3 度带</td>
+<td align="left">3°</td>
+<td align="left">120 带</td>
+<td align="left">1:1万及更大比例尺</td>
+</tr>
+</tbody></table>
+<p><strong>二、计算 106°所属的投影带</strong></p>
+<ol>
+<li><p><strong>6 度带计算</strong><br>公式： $N &#x3D; \text{floor}((\text{经度} + 3) &#x2F; 6) + 1$<br>代入 106°： $106 \div 6 \approx 17.67 \rightarrow \text{取整为 } 17 \rightarrow \text{带号} &#x3D; 17 + 1 &#x3D; 18$</p>
+<ul>
+<li>第 18 带范围：102°～108°</li>
+<li>中央经线：105°</li>
+<li>106° 在此范围内，属于 6 度带第 18 带。</li>
+</ul>
+</li>
+<li><p><strong>3 度带计算</strong><br>公式： $N &#x3D; \text{floor}((\text{经度} + 1.5) &#x2F; 3)$<br>代入 106°： $106 \div 3 \approx 35.33 \rightarrow \text{取整为 } 35$</p>
+<ul>
+<li>第 35 带范围：103.5°～106.5°</li>
+<li>中央经线：105°</li>
+<li>106° 在此范围内，属于 3 度带第 35 带。</li>
+</ul>
+</li>
+</ol>
+<p>⚠️ <strong>注意：</strong> 106.5°是边界，若经度 $&gt;106.5°$，则进入第 36 带（106.5°～109.5°）。</p>
+<p> <strong>三、如何选择？——根据用途推荐</strong></p>
+<table>
+<thead>
+<tr>
+<th align="left">应用场景</th>
+<th align="left">推荐分带</th>
+<th align="left">理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">中小比例尺地图（如1:5万、1:25万）</td>
+<td align="left">6 度带（第 18 带）</td>
+<td align="left">符合国家标准，数据兼容性好</td>
+</tr>
+<tr>
+<td align="left">大比例尺测绘、城市工程、1:1万地形图</td>
+<td align="left">3 度带（第 35 带）</td>
+<td align="left">精度更高，变形小，适用于高精度测量</td>
+</tr>
+<tr>
+<td align="left">GIS 分析、CAD 制图、坐标转换</td>
+<td align="left">优先使用 3 度带</td>
+<td align="left">更适合局部区域高精度建模</td>
+</tr>
+</tbody></table>
+<p> <strong>四、补充说明（以重庆为例）</strong></p>
+<ul>
+<li>重庆市中心经度约 106.5°E，正好处于 6 度带第 18 带与 3 度带第 35 带的交界附近。</li>
+<li>实际工作中，重庆地区常用：<ul>
+<li>CGCS 2000_3_Degree_GK_Zone_35（3 度带第 35 带）</li>
+<li>或 CGCS 2000_GK_Zone_18（6 度带第 18 带）</li>
+</ul>
+</li>
+</ul>
+<p>📍 例如在 ArcGIS 中，若坐标横坐标前两位是 <code>35</code>，说明使用的是 3 度带；如果是 <code>18</code>，则是 6 度带。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>通过上述数据清洗、奥维导入与坐标转换、以及最终的 GeoJSON 导出，我们成功地将复杂的 CAD 管网图纸数据转化为 Web 前端可直接使用的友好格式。这个过程虽然涉及多个步骤和工具，但掌握其核心原理和操作技巧，将大大提高智慧管网项目的数据处理效率和质量。希望本文能为您在实际工作中提供有益的参考！<br>当然也可看出不仅仅是 json ,只要成功导入奥维就可以转换为 kml、shape file 等一系列的格式。</p>
+<blockquote>
+<p>[!tip]<br>如有帮助，请收藏、点赞、评论、转发一条龙~<br>微信公众号：环境猫 er<br>CSDN : 细节处有神明<br>个人博客：<a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a> </p>
+</blockquote>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/GIS/" class="print-no-link">#GIS</a>
+      
+        <a href="/tags/%E7%AE%A1%E7%BD%91/" class="print-no-link">#管网</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>管网CAD 转 JSON 实战记录</div>
+      <div>https://maoyu92.github.io/2025/11/03/04 经验分享/复杂管网CAD文件 转 JSON 实战记录/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/11/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/%E8%BD%BB%E6%9D%BE%E4%B8%8A%E6%89%8BDropIt%20%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E8%87%AA%E5%8A%A8%E5%BD%92%E7%B1%BB%E7%A5%9E%E5%99%A8/" title="轻松上手DropIt 桌面文件自动归类神器">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">轻松上手DropIt 桌面文件自动归类神器</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/10/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/n8n%20%E5%AE%9E%E6%88%98%EF%BC%9A%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E6%99%BA%E8%83%BD%E6%B0%B4%E8%B4%A8%E6%9F%A5%E8%AF%A2%E6%9C%BA%E5%99%A8%E4%BA%BA/" title="n8n实战：从零搭建智能水质查询机器人">
+                        <span class="hidden-mobile">n8n实战：从零搭建智能水质查询机器人</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

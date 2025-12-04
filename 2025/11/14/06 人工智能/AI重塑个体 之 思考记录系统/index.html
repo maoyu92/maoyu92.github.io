@@ -1,0 +1,916 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="让碎片化想法变成成长资产一、我们为什么需要记录思考?先说个扎心的事实。 你有多少次在洗澡时想到绝妙的点子,结果穿上衣服就忘了?有多少次在通勤路上思考清楚了一个问题的解决方案,到公司却想不起细节?又有多少次,在年底复盘时,明明这一年经历了很多,却说不出自己到底成长了什么? 问题不是你没有思考,而是思考没有被记录、整理、沉淀。 传统的解决方案是写日记。但我们都知道,写日记这件事有多难坚持:  白天太忙">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI重塑个体 之 思考记录系统">
+<meta property="og:url" content="https://maoyu92.github.io/2025/11/14/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/AI%E9%87%8D%E5%A1%91%E4%B8%AA%E4%BD%93%20%E4%B9%8B%20%E6%80%9D%E8%80%83%E8%AE%B0%E5%BD%95%E7%B3%BB%E7%BB%9F/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="让碎片化想法变成成长资产一、我们为什么需要记录思考?先说个扎心的事实。 你有多少次在洗澡时想到绝妙的点子,结果穿上衣服就忘了?有多少次在通勤路上思考清楚了一个问题的解决方案,到公司却想不起细节?又有多少次,在年底复盘时,明明这一年经历了很多,却说不出自己到底成长了什么? 问题不是你没有思考,而是思考没有被记录、整理、沉淀。 传统的解决方案是写日记。但我们都知道,写日记这件事有多难坚持:  白天太忙">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-11-14T13:59:00.000Z">
+<meta property="article:modified_time" content="2025-11-14T13:59:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>AI重塑个体 之 思考记录系统 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AI重塑个体 之 思考记录系统"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-14 21:59" pubdate>
+          2025年11月14日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AI重塑个体 之 思考记录系统</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="让碎片化想法变成成长资产"><a href="#让碎片化想法变成成长资产" class="headerlink" title="让碎片化想法变成成长资产"></a>让碎片化想法变成成长资产</h2><h3 id="一、我们为什么需要记录思考"><a href="#一、我们为什么需要记录思考" class="headerlink" title="一、我们为什么需要记录思考?"></a>一、我们为什么需要记录思考?</h3><p>先说个扎心的事实。</p>
+<p>你有多少次在洗澡时想到绝妙的点子,结果穿上衣服就忘了?有多少次在通勤路上思考清楚了一个问题的解决方案,到公司却想不起细节?又有多少次,在年底复盘时,明明这一年经历了很多,却说不出自己到底成长了什么?</p>
+<p><strong>问题不是你没有思考,而是思考没有被记录、整理、沉淀。</strong></p>
+<p>传统的解决方案是写日记。但我们都知道,写日记这件事有多难坚持:</p>
+<ul>
+<li>白天太忙,晚上太累,总觉得”明天再写吧”</li>
+<li>好不容易写了,过几个月翻开,发现就是流水账</li>
+<li>想找某次的想法,翻了半天也找不到</li>
+<li>写了一年,年底总结时,还是不知道从哪里开始梳理</li>
+</ul>
+<p>更要命的是,<strong>写完就结束了</strong>。那些记录就静静躺在笔记本里,不会主动提醒你”三个月前你也遇到过类似问题”,不会告诉你”你这个月反复在纠结同一件事”。</p>
+<p>这就是传统笔记的困境:<strong>它是单向的存储,不是双向的对话。</strong></p>
+<h3 id="二、AI如何改变思考记录这件事"><a href="#二、AI如何改变思考记录这件事" class="headerlink" title="二、AI如何改变思考记录这件事?"></a>二、AI如何改变思考记录这件事?</h3><p>AI的出现,彻底改变了游戏规则。</p>
+<p>想象一下,如果你有一个助手:</p>
+<ul>
+<li>你随时随地说句话,它就能帮你记下来、整理好</li>
+<li>你说”帮我回顾一下这周的想法”,它能立刻梳理出关键点</li>
+<li>你问”我上次纠结这个问题是怎么想的”,它能马上找出来</li>
+<li>每周、每月、每年,它主动帮你发现思考的模式和盲区</li>
+</ul>
+<p><strong>这不是幻想,这就是AI思考记录系统能做到的事。</strong></p>
+<p>核心变化有三个:</p>
+<p><strong>1. 记录成本接近于零</strong></p>
+<ul>
+<li>不用打字,语音就能转成结构化笔记</li>
+<li>不用考虑格式,AI自动提取关键信息</li>
+<li>不用强迫自己”坚持”,想记就记,AI帮你串起来</li>
+</ul>
+<p><strong>2. 记录能主动产生价值</strong></p>
+<ul>
+<li>AI会关联你的历史想法,发现你自己都没注意到的模式</li>
+<li>定期复盘时,AI能自动梳理成长轨迹和关键时刻</li>
+<li>遇到问题时,AI能从你的记录里找到过去的解决方案</li>
+</ul>
+<p><strong>3. 思考方式被重塑</strong></p>
+<ul>
+<li>因为记录无负担,你会更愿意思考</li>
+<li>因为AI能关联,你的碎片想法会自动形成体系</li>
+<li>因为有定期复盘,你会更清楚自己在想什么、做什么、要什么</li>
+</ul>
+<h3 id="三、实战工作流-从0到1搭建你的AI思考记录系统"><a href="#三、实战工作流-从0到1搭建你的AI思考记录系统" class="headerlink" title="三、实战工作流:从0到1搭建你的AI思考记录系统"></a>三、实战工作流:从0到1搭建你的AI思考记录系统</h3><h4 id="第一步-选对工具组合-不要纠结完美方案"><a href="#第一步-选对工具组合-不要纠结完美方案" class="headerlink" title="第一步:选对工具组合(不要纠结完美方案)"></a>第一步:选对工具组合(不要纠结完美方案)</h4><p>我现在用的组合:</p>
+<ul>
+<li><strong>快速记录</strong> - 手机自带备忘录、Flomo、Obsidian(选一个顺手的)</li>
+<li><strong>语音捕捉</strong> - 手机录音 + 讯飞听见&#x2F;剪映(语音转文字)</li>
+<li><strong>AI整理</strong> - Claude&#x2F;通义千问&#x2F;Kimi&#x2F;Gemini(选一个常用的)</li>
+<li><strong>长期存储</strong> - 腾讯元宝(支持上传笔记,形成个人知识库)</li>
+</ul>
+<p><strong>关键原则:先建立流程,再优化工具。不要花一周研究工具,却一个月没记录。</strong></p>
+<hr>
+<h4 id="第二步-建立”随时记录”的三个场景"><a href="#第二步-建立”随时记录”的三个场景" class="headerlink" title="第二步:建立”随时记录”的三个场景"></a>第二步:建立”随时记录”的三个场景</h4><h5 id="场景一-通勤-散步时的思考-最容易被浪费的黄金时间"><a href="#场景一-通勤-散步时的思考-最容易被浪费的黄金时间" class="headerlink" title="场景一:通勤&#x2F;散步时的思考(最容易被浪费的黄金时间)"></a>场景一:通勤&#x2F;散步时的思考(最容易被浪费的黄金时间)</h5><p><strong>以前:</strong></p>
+<ul>
+<li>灵感一闪而过,到家就忘了</li>
+<li>或者强行记在脑子里,结果越想越乱</li>
+</ul>
+<p><strong>现在这样做:</strong></p>
+<ol>
+<li><p><strong>打开手机录音,想到什么说什么</strong>(别管逻辑,别在意口误)</p>
+</li>
+<li><p><strong>录完用AI转文字</strong> - 现在手机软件基本都支持,准确率很高</p>
+</li>
+<li><p><strong>丢给AI整理</strong> - 用这个prompt:</p>
+</li>
+</ol>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs markdown">以下是我刚才散步时的一段语音转文字,内容比较零散。<br><br>请帮我:<br><span class="hljs-bullet">1.</span> 提取核心观点(3-5条,用一句话说清楚)<br><span class="hljs-bullet">2.</span> 识别可执行的行动项(如果有的话)<br><span class="hljs-bullet">3.</span> 用一段话总结这次思考的主题<br><span class="hljs-bullet">4.</span> 如果有值得深入的方向,请标注出来<br><br>[粘贴转写文字]<br></code></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><strong>保存到你的笔记工具</strong>,标签打上日期和主题</li>
+</ol>
+<p><strong>实战案例:</strong></p>
+<p>我有次散步时,吐槽了20分钟工作中的一个问题。语音转文字后,内容乱七八糟。但AI提取后,发现我其实在纠结三件事:</p>
+<ol>
+<li>这个项目的优先级到底该怎么排</li>
+<li>我担心某个同事的能力跟不上</li>
+<li>我自己在这件事上的决策逻辑是不是有问题</li>
+</ol>
+<p><strong>看到这三条,我突然清楚了:真正的问题不是项目本身,而是我对这个同事的信任度。</strong>第二天我主动找他聊了一次,问题解决了。</p>
+<p>如果没有这个记录和整理,这20分钟的思考就白费了。</p>
+<hr>
+<h5 id="场景二-工作中的即时记录-不要等到晚上"><a href="#场景二-工作中的即时记录-不要等到晚上" class="headerlink" title="场景二:工作中的即时记录(不要等到晚上)"></a>场景二:工作中的即时记录(不要等到晚上)</h5><p><strong>关键认知:不要试图写完美的日记,而是养成”即时记录”的习惯。</strong></p>
+<p>在Claude、ChatGPT或通义千问里,建一个”工作日志”的对话:</p>
+<p><strong>完成一个任务,立刻记录:</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs makefile">[任务名称]<br><span class="hljs-section">做了什么:</span><br><span class="hljs-section">遇到什么问题:</span><br><span class="hljs-section">怎么解决的:</span><br><span class="hljs-section">下次可以优化的:</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>开完会,用3分钟记录:</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile">[会议主题]<br><span class="hljs-section">核心决策:</span><br><span class="hljs-section">我的想法:</span><br><span class="hljs-section">后续要跟进:</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>学到新东西,马上记:</strong></p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs makefile">[知识点]<br><span class="hljs-section">我的理解:</span><br><span class="hljs-section">可能的应用场景:</span><br><span class="hljs-section">要深入学习的:</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>别怕记得乱,AI会帮你整理。重要的是先记下来。</strong></p>
+<p>我的习惯是,每天下班前5分钟,把这些碎片记录丢给AI:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs markdown">以下是我今天的工作记录,比较零散。<br><br>请帮我整理成一篇工作日志:<br><span class="hljs-bullet">1.</span> 今天完成的主要工作(3-5条)<br><span class="hljs-bullet">2.</span> 遇到的问题和解决方案<br><span class="hljs-bullet">3.</span> 今天的收获或反思<br><span class="hljs-bullet">4.</span> 明天需要跟进的事项<br><br>[粘贴今天所有记录]<br></code></pre></td></tr></table></figure>
+
+<p><strong>这样,每天5分钟,就有一篇结构清晰的工作日志。</strong></p>
+<hr>
+<h5 id="场景三-睡前的反思记录-一天的思考沉淀"><a href="#场景三-睡前的反思记录-一天的思考沉淀" class="headerlink" title="场景三:睡前的反思记录(一天的思考沉淀)"></a>场景三:睡前的反思记录(一天的思考沉淀)</h5><p>这是最传统的场景,但AI可以让它更高效。</p>
+<p><strong>不要再写流水账了。试试这个模板:</strong></p>
+<p>打开AI,说:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs markdown">今天是[日期],我来做个简单复盘。<br><br>发生的事:<br>[说说今天的主要事件,不用太详细]<br><br>感受:<br>[开心/焦虑/疲惫...说说真实感受]<br><br>思考:<br>[对某件事的看法,或者脑子里一直在想的问题]<br><br>请帮我:<br><span class="hljs-bullet">1.</span> 提取今天最值得记住的1-2件事<br><span class="hljs-bullet">2.</span> 如果有情绪,帮我分析可能的原因<br><span class="hljs-bullet">3.</span> 如果有纠结的问题,帮我梳理思路<br><span class="hljs-bullet">4.</span> 用一句话总结今天<br></code></pre></td></tr></table></figure>
+
+<p><strong>关键:不要求完美,说真话就好。AI能读懂你的情绪和困扰。</strong></p>
+<hr>
+<h4 id="第三步-定期复盘-让思考形成体系"><a href="#第三步-定期复盘-让思考形成体系" class="headerlink" title="第三步:定期复盘,让思考形成体系"></a>第三步:定期复盘,让思考形成体系</h4><p>这是整个系统的核心价值。</p>
+<h5 id="每周复盘-周日晚上-30分钟"><a href="#每周复盘-周日晚上-30分钟" class="headerlink" title="每周复盘(周日晚上,30分钟)"></a>每周复盘(周日晚上,30分钟)</h5><p>把这周的所有记录(语音整理、工作日志、睡前反思)都整理到一起,丢给AI:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs markdown">你是我的个人成长顾问。以下是我这周的所有记录。<br><br>请帮我:<br><span class="hljs-bullet">1.</span> 这周最重要的3个时刻是什么?(为什么重要?)<br><span class="hljs-bullet">2.</span> 我反复提到的问题或困扰是什么?(我可能自己都没意识到)<br><span class="hljs-bullet">3.</span> 对比周初的计划,我完成了什么?没完成的原因是什么?<br><span class="hljs-bullet">4.</span> 下周给我3个具体的行动建议<br><br>记录:<br>[粘贴这周的所有内容]<br></code></pre></td></tr></table></figure>
+
+<p><strong>你会惊讶地发现:</strong></p>
+<ul>
+<li>有些你以为的”大事”,其实不重要</li>
+<li>有些你忽略的细节,才是真正的转折点</li>
+<li>有些问题你一周提了5次,说明真的要重视了</li>
+</ul>
+<hr>
+<h5 id="每月复盘-月末-1小时"><a href="#每月复盘-月末-1小时" class="headerlink" title="每月复盘(月末,1小时)"></a>每月复盘(月末,1小时)</h5><p>如果你用Claude Projects或通义千问的长对话功能,AI已经陪你记录了一个月。这时候它对你的理解,比你自己还深。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs markdown">你已经陪伴我记录了一个月。现在请你:<br><br><span class="hljs-bullet">1.</span> 从所有记录中,提取我这个月的&quot;能力成长图谱&quot;<br><span class="hljs-bullet">   -</span> 哪些技能/知识有明显进步?<br><span class="hljs-bullet">   -</span> 哪些领域一直在原地打转?<br><span class="hljs-bullet">   -</span> 我解决问题的能力有什么变化?<br><br><span class="hljs-bullet">2.</span> 分析我的时间和精力分配<br><span class="hljs-bullet">   -</span> 最多时间花在什么事情上?<br><span class="hljs-bullet">   -</span> 哪些事情带来的价值最高?<br><span class="hljs-bullet">   -</span> 有没有&quot;低价值但占用大量时间&quot;的陷阱?<br><br><span class="hljs-bullet">3.</span> 发现我的思考模式和情绪模式<br><span class="hljs-bullet">   -</span> 我在什么情况下状态最好?<br><span class="hljs-bullet">   -</span> 什么类型的问题会反复困扰我?<br><span class="hljs-bullet">   -</span> 我的决策习惯有什么特点?<br><br><span class="hljs-bullet">4.</span> 下个月的优化建议<br><span class="hljs-bullet">   -</span> 要继续保持什么?<br><span class="hljs-bullet">   -</span> 要改变什么?<br><span class="hljs-bullet">   -</span> 具体怎么做?<br></code></pre></td></tr></table></figure>
+
+<p><strong>这份报告,会让你看到一个更清晰的自己。</strong></p>
+<hr>
+<h5 id="年度复盘-年底-半天"><a href="#年度复盘-年底-半天" class="headerlink" title="年度复盘(年底,半天)"></a>年度复盘(年底,半天)</h5><p>这是最有仪式感的时刻。</p>
+<p>把全年的月度复盘、重要的周复盘、关键的思考记录,全部整理好,让AI帮你写一份”个人年度报告”:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs markdown">你是我的个人成长教练。以下是我这一年的所有复盘记录。<br><br>请帮我写一份年度报告,包括:<br><br><span class="hljs-bullet">1.</span> 全年成长轨迹<br><span class="hljs-bullet">   -</span> 上半年和下半年的主要变化<br><span class="hljs-bullet">   -</span> 3个最重要的转折点<br><br><span class="hljs-bullet">2.</span> 能力盘点<br><span class="hljs-bullet">   -</span> 今年提升最大的3个能力<br><span class="hljs-bullet">   -</span> 今年最大的突破是什么<br><span class="hljs-bullet">   -</span> 还有哪些短板<br><br><span class="hljs-bullet">3.</span> 思维方式的变化<br><span class="hljs-bullet">   -</span> 我对什么问题的看法变了?<br><span class="hljs-bullet">   -</span> 我的决策方式有什么不同?<br><br><span class="hljs-bullet">4.</span> 明年的方向建议<br><span class="hljs-bullet">   -</span> 基于今年的情况,明年应该重点关注什么?<br><span class="hljs-bullet">   -</span> 有哪些具体的行动建议?<br><br>记录:<br>[粘贴年度所有内容]<br></code></pre></td></tr></table></figure>
+
+<p><strong>这份报告,就是你的”个人成长白皮书”。</strong></p>
+<hr>
+<h4 id="第四步-让思考记录真正”活起来”"><a href="#第四步-让思考记录真正”活起来”" class="headerlink" title="第四步:让思考记录真正”活起来”"></a>第四步:让思考记录真正”活起来”</h4><p>很多人做到第三步就停了,但还有最关键的一步:<strong>让你的记录持续产生价值。</strong></p>
+<h5 id="方法一-建立个人知识库"><a href="#方法一-建立个人知识库" class="headerlink" title="方法一:建立个人知识库"></a>方法一:建立个人知识库</h5><p>把你所有的思考记录,都上传到腾讯元宝或智谱清言这类支持文档的AI工具。</p>
+<p>这样,以后遇到问题时:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs markdown">我现在遇到[具体问题],我记得之前也想过类似的。<br><br>帮我从我的历史记录中,找出:<br><span class="hljs-bullet">1.</span> 我之前是怎么分析这个问题的?<br><span class="hljs-bullet">2.</span> 当时的解决方案是什么?<br><span class="hljs-bullet">3.</span> 这次和上次有什么不同?<br><span class="hljs-bullet">4.</span> 基于我的思考习惯,这次应该怎么做?<br></code></pre></td></tr></table></figure>
+
+<p><strong>你的每一次记录,都在为未来的自己提供弹药。</strong></p>
+<hr>
+<h5 id="方法二-定期问AI”我最近在想什么”"><a href="#方法二-定期问AI”我最近在想什么”" class="headerlink" title="方法二:定期问AI”我最近在想什么”"></a>方法二:定期问AI”我最近在想什么”</h5><p>每隔两周,问AI一个开放性问题:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs markdown">看看我最近两周的记录,你觉得:<br><span class="hljs-bullet">1.</span> 我最近的注意力主要在什么地方?<br><span class="hljs-bullet">2.</span> 有没有什么我应该关注但忽略了的事?<br><span class="hljs-bullet">3.</span> 我的状态怎么样?<br></code></pre></td></tr></table></figure>
+
+<p><strong>有时候,AI比你更了解你在想什么。</strong></p>
+<hr>
+<h5 id="方法三-用记录优化决策"><a href="#方法三-用记录优化决策" class="headerlink" title="方法三:用记录优化决策"></a>方法三:用记录优化决策</h5><p>在做重要决策前,问AI:</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs markdown">我现在要决定[具体事项]。<br><br>帮我看看我的历史记录:<br><span class="hljs-bullet">1.</span> 我以前做类似决策时,依据的是什么?<br><span class="hljs-bullet">2.</span> 哪些决策是对的?哪些是错的?<br><span class="hljs-bullet">3.</span> 我的决策盲区在哪里?<br><span class="hljs-bullet">4.</span> 这次应该注意什么?<br></code></pre></td></tr></table></figure>
+
+<p><strong>你的记录,就是你的”决策数据库”。</strong></p>
+<hr>
+<h3 id="四、三个月后-你会看到的变化"><a href="#四、三个月后-你会看到的变化" class="headerlink" title="四、三个月后,你会看到的变化"></a>四、三个月后,你会看到的变化</h3><p>坚持用AI思考记录系统三个月,你会发现:</p>
+<p><strong>1. 思考变清晰了</strong></p>
+<ul>
+<li>不再是脑子里一团浆糊</li>
+<li>问题能被拆解,困扰能被看清</li>
+<li>想法有了系统,不再是碎片</li>
+</ul>
+<p><strong>2. 行动更聚焦了</strong></p>
+<ul>
+<li>知道什么重要,什么不重要</li>
+<li>不再被琐事拖着走</li>
+<li>每周都在朝着清晰的方向前进</li>
+</ul>
+<p><strong>3. 成长可视化了</strong></p>
+<ul>
+<li>能清楚看到自己的进步</li>
+<li>知道自己在什么方面变强了</li>
+<li>不再是”好像有成长,但说不清”</li>
+</ul>
+<p><strong>4. 焦虑减少了</strong></p>
+<ul>
+<li>不用担心灵感会忘</li>
+<li>不用担心思考白费</li>
+<li>有个”外部大脑”随时帮你记着</li>
+</ul>
+<p><strong>5. 自我认知更准确了</strong></p>
+<ul>
+<li>知道自己的思考模式</li>
+<li>理解自己的情绪规律</li>
+<li>清楚自己的能力边界</li>
+</ul>
+<hr>
+<h3 id="五、常见问题答疑"><a href="#五、常见问题答疑" class="headerlink" title="五、常见问题答疑"></a>五、常见问题答疑</h3><p><strong>Q1:我不是每天都有时间记录怎么办?</strong></p>
+<p>A:不需要每天都记!关键是<strong>随时记录+定期复盘</strong>。通勤时说5分钟,睡前说5分钟,周末花30分钟整理,足够了。</p>
+<p><strong>Q2:用AI记录,会不会让我失去思考能力?</strong></p>
+<p>A:恰恰相反。AI承担的是”整理、检索、关联”这些机械工作,你的精力可以放在<strong>更深度的思考</strong>上。就像计算器没让我们失去数学能力,反而让我们能解决更复杂的问题。</p>
+<p><strong>Q3:我的想法很私密,上传给AI安全吗?</strong></p>
+<p>A:建议:</p>
+<ul>
+<li>敏感内容不要上传,或者用本地AI工具</li>
+<li>选择大厂的AI产品(Claude、通义千问、Kimi等),相对更安全</li>
+<li>定期清理对话记录</li>
+</ul>
+<p><strong>Q4:我不知道该记录什么?</strong></p>
+<p>A:记录这些就够了:</p>
+<ul>
+<li>今天发生的让你有感觉的事(开心&#x2F;难过&#x2F;焦虑)</li>
+<li>脑子里一直在想的问题</li>
+<li>做了什么决定,为什么这么决定</li>
+<li>学到的东西,或者突然想明白的事</li>
+</ul>
+<p><strong>不需要完美,真实就好。</strong></p>
+<hr>
+<h3 id="六、写在最后-思考是一种能力-记录让它升级"><a href="#六、写在最后-思考是一种能力-记录让它升级" class="headerlink" title="六、写在最后:思考是一种能力,记录让它升级"></a>六、写在最后:思考是一种能力,记录让它升级</h3><p>很多人以为,思考是天生的。</p>
+<p>但其实,<strong>持续的、有深度的思考,是需要训练的</strong>。而记录+复盘,就是最好的训练方式。</p>
+<p>AI的出现,把这件事的门槛降到了前所未有的低:</p>
+<ul>
+<li>不需要每天坐下来写一小时日记</li>
+<li>不需要强迫自己坚持</li>
+<li>不需要担心写了也想不起来</li>
+</ul>
+<p><strong>你只需要:随时说,定期看,AI帮你理。</strong></p>
+<p>三个月后,你会发现,你不只是”记录了思考”,而是<strong>重塑了思考的方式</strong>。</p>
+<p>从今天开始,试试看?</p>
+<hr>
+<p><strong>行动清单:</strong></p>
+<p>今天就可以做:</p>
+<ul>
+<li><input disabled="" type="checkbox"> 选一个AI工具(Claude&#x2F;通义千问&#x2F;Kimi),建一个”思考记录”对话</li>
+<li><input disabled="" type="checkbox"> 下次散步&#x2F;通勤时,打开手机录音,试着说5分钟</li>
+<li><input disabled="" type="checkbox"> 睡前用5分钟,跟AI说说今天的感受</li>
+</ul>
+<p>本周做:</p>
+<ul>
+<li><input disabled="" type="checkbox"> 周日晚上,花30分钟做第一次周复盘</li>
+</ul>
+<p>记住:<strong>完成比完美重要。先开始,再优化。</strong></p>
+<hr>
+<p><strong>下期预告:</strong> 《AI重构术02:主题学习加速器》- 如何用AI+知识库,把考证&#x2F;技能学习的效率提升3倍,备考时间缩短一半。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AI重塑个体 之 思考记录系统</div>
+      <div>https://maoyu92.github.io/2025/11/14/06 人工智能/AI重塑个体 之 思考记录系统/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月14日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/25/04%20%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/power%20bi%20%20%E5%88%A9%E7%94%A8API%20%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%9C%8B%E6%9D%BF%20%E4%B9%8B%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96/" title="power bi  利用API 构建数据看板">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">power bi  利用API 构建数据看板</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/13/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E5%9F%BA%E4%BA%8E%E5%A4%9A%E6%BA%90%E6%95%B0%E6%8D%AE%E8%9E%8D%E5%90%88%E7%9A%84%E5%8D%B1%E5%BA%9F%E7%9B%91%E7%AE%A1%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E6%9E%84%E5%BB%BA%E5%8F%8A%E5%85%A8%E9%87%8F%E7%BA%B3%E7%AE%A1%E5%BC%82%E5%B8%B8%E8%AF%86%E5%88%AB/" title="基于环保多元数据构建知识图谱 识别未纳管企业">
+                        <span class="hidden-mobile">基于环保多元数据构建知识图谱 识别未纳管企业</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
