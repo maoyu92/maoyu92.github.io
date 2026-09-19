@@ -347,12 +347,12 @@
 <h2 id="技术路线"><a href="#技术路线" class="headerlink" title="技术路线"></a>技术路线</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/%E7%94%B5%E5%BA%9F%E6%A8%A1%E5%9E%8B%E6%8A%80%E6%9C%AF%E8%B7%AF%E7%BA%BF.png" srcset="/img/loading.gif" lazyload alt="电废模型技术路线.png"></p>
 <h2 id="基础数据分析"><a href="#基础数据分析" class="headerlink" title="基础数据分析"></a>基础数据分析</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803101709918.png" srcset="/img/loading.gif" lazyload alt="所有企业相关性"></p>
 <p>纳入分析的企业共计 718 家，涵盖 43 个不同行业，涉及 224 个不同危废类别。其中，年产废量大于 50 吨的企业有 490 家。在全部企业中，用电量与产废量相关性达到 0.6 以上的企业占比为 20.6%。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803101757574.png" srcset="/img/loading.gif" lazyload alt=" "></p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803101807207.png" srcset="/img/loading.gif" lazyload alt=" "></p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803101818187.png" srcset="/img/loading.gif" lazyload alt=" "></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803101757574.png" srcset="/img/loading.gif" lazyload alt="图"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803101807207.png" srcset="/img/loading.gif" lazyload alt="图"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803101818187.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>在对纳入分析的 718 家企业（涵盖 43 个不同行业、涉及 224 个危废类别）进行基础数据分析时，我们发现，尽管年产废量大于 50 吨的企业占比高达 490 家，但整体而言，用电量与产废量相关性达到 0.6 以上的企业仅占 20.6%。进一步从行业和产废类别维度进行聚合分析，我们观察到，当行业或产废类别数量增多时，整体相关性趋于弱化甚至不相关。这与实际生产经验相符，即不同企业在生产效率和废物产出模式上存在显著差异。这一发现也明确指出，简单地从宏观行业或产废类别层面推导单个企业的用电量与产废量关联性是不可行的。因此，本研究的重点必须聚焦于<strong>单个企业自身的历史数据分析</strong>，以捕捉其独特的生产规律和异常模式。</p>
 <h2 id="算法概述"><a href="#算法概述" class="headerlink" title="算法概述"></a>算法概述</h2><p>鉴于企业生产模式的复杂性和数据特征的多样性，本研究并未采用单一的异常检测方法，而是根据不同的业务场景和数据特性，综合运用了五种核心算法，以期从多维度、多视角捕捉潜在的异常行为。这些算法包括：单位用电量产废量 MAD 分析、线性回归残差分析、归一化差异分析、突变趋势分析以及波动性同步性检验。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803102401162.png" srcset="/img/loading.gif" lazyload alt=" "></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803102401162.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h3 id="1-单位用电量产废量-MAD-分析-FeatureEngineeringDetector"><a href="#1-单位用电量产废量-MAD-分析-FeatureEngineeringDetector" class="headerlink" title="1. 单位用电量产废量 MAD 分析 (FeatureEngineeringDetector)"></a><strong>1. 单位用电量产废量 MAD 分析 (FeatureEngineeringDetector)</strong></h3><ul>
 <li><p><strong>核心思路</strong>：<br>该方法关注企业的<strong>生产效率</strong>。它假设在正常生产状态下，单位用电量所对应的产废量（即生产效率）应保持相对稳定。通过计算“单位用电量产废量”这一比率，并应用对异常值鲁棒的 MAD（中位数绝对偏差）方法，来识别那些生产效率显著偏离历史水平的异常点。例如，一个企业突然出现“高耗电、低产出”或“低耗电、高产出”的情况，可能预示着数据问题或生产状态异常。</p>
 </li>
@@ -537,7 +537,7 @@
 <li><strong>总用电数据颗粒度不足：</strong> 企业总用电量数据未能区分生产用电与非生产用电，或未能细化到具体产废工艺环节，导致关联分析的精度受限。</li>
 <li><strong>产废与填报信息不匹配：</strong> 实际产废量与平台填报数据之间存在滞后、偏差或统计口径不一致等问题，影响了数据真实性与模型判断的准确性。</li>
 </ol>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803103304073.png" srcset="/img/loading.gif" lazyload alt=" "></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20250803103304073.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="反思与总结"><a href="#反思与总结" class="headerlink" title="反思与总结"></a>反思与总结</h2><p>本次研究的实践深刻揭示了一个核心洞察：任何数据模型，其“失效”并非必然源于算法本身的缺陷，而更多是由于数据质量、企业生产模式的复杂性与模型预设假设之间存在不匹配。这再次印证了“放之四海而皆准”的单一模型在复杂工业场景中难以奏效。因此，在未来的智能监管实践中，我们必须坚持<strong>结合企业生产实际、明确模型边界、审慎评估适用条件</strong>的原则，进行<strong>分场景、精细化</strong>的分析与应用。这不仅要求技术层面的持续迭代，更需要业务与技术深度融合，共同构建更贴合实际、更具韧性的智能监管体系。</p>
 <h2 id="下一步完善思路"><a href="#下一步完善思路" class="headerlink" title="下一步完善思路"></a>下一步完善思路</h2><p>为进一步提升模型的准确性与实用性，未来的完善工作将聚焦于以下几个关键方向：</p>
 <ol>

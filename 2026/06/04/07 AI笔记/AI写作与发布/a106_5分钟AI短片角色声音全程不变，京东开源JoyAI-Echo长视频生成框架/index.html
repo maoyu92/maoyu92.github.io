@@ -363,7 +363,7 @@
 </tbody></table>
 <p>其中 DMD 一项技术就带来了约 <strong>7.5倍的速度提升</strong>。原本需要等很久的长视频生成，现在快了一个数量级。</p>
 <h3 id="3-Director-Agent-智能导演助理"><a href="#3-Director-Agent-智能导演助理" class="headerlink" title="3. Director Agent 智能导演助理"></a>3. Director Agent 智能导演助理</h3><p>用户用自然语言描述需求，系统自动拆分成剧本、角色、场景和镜头。</p>
-<p>最实用的功能是**“对话式编辑”**——哪里不满意，直接用对话方式告诉它修改，只重新生成有问题的局部镜头，整条视频不用重来。</p>
+<p>最实用的功能是**”对话式编辑”**——哪里不满意，直接用对话方式告诉它修改，只重新生成有问题的局部镜头，整条视频不用重来。</p>
 <p>这就像请了一个AI导演助理，你说”把第三个镜头的背景换成海边”，它就只改那一段。</p>
 <h3 id="4-轻量化实时超分"><a href="#4-轻量化实时超分" class="headerlink" title="4. 轻量化实时超分"></a>4. 轻量化实时超分</h3><p>配套专门的实时超分模块，支持两档分辨率提升：</p>
 <ul>
@@ -446,12 +446,12 @@
 <li><p>模型权重：约 46GB + Gemma-3-12B 约 24GB</p>
 </li>
 </ul>
-<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/jd-opensource/JoyAI-Echo.gitcd JoyAI-Echoconda <span class="hljs-built_in">env</span> create -f environment.ymlconda activate <span class="hljs-built_in">echo</span><br></code></pre></td></tr></table></figure>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/jd-opensource/JoyAI-Echo.gitcd JoyAI-Echoconda <span class="hljs-built_in">env</span> create -f environment.ymlconda activate <span class="hljs-built_in">echo</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="推理示例"><a href="#推理示例" class="headerlink" title="推理示例"></a>推理示例</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">python inference<span class="hljs-selector-class">.py</span> <span class="hljs-attr">--config</span> configs/inference.yaml<br></code></pre></td></tr></table></figure>
+<h3 id="推理示例"><a href="#推理示例" class="headerlink" title="推理示例"></a>推理示例</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">python inference<span class="hljs-selector-class">.py</span> <span class="hljs-attr">--config</span> configs/inference.yaml<br></code></pre></td></tr></table></figure>
 
 <p>对于显存较小的GPU，可以降低分辨率：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">python inference<span class="hljs-selector-class">.py</span> <span class="hljs-attr">--num-frames</span> <span class="hljs-number">121</span> <span class="hljs-attr">--video-height</span> <span class="hljs-number">480</span> <span class="hljs-attr">--video-width</span> <span class="hljs-number">832</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">python inference<span class="hljs-selector-class">.py</span> <span class="hljs-attr">--num-frames</span> <span class="hljs-number">121</span> <span class="hljs-attr">--video-height</span> <span class="hljs-number">480</span> <span class="hljs-attr">--video-width</span> <span class="hljs-number">832</span><br></code></pre></td></tr></table></figure>
 
 <h2 id="京东在AI视频赛道的卡位"><a href="#京东在AI视频赛道的卡位" class="headerlink" title="京东在AI视频赛道的卡位"></a>京东在AI视频赛道的卡位</h2><p>JoyAI-Echo 的发布，标志着京东在长视频生成领域<strong>进入全球第一梯队</strong>。</p>
 <p>从战略角度看：</p>

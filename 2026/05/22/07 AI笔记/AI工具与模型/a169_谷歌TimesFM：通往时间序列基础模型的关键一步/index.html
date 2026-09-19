@@ -398,7 +398,7 @@
 </li>
 </ul>
 <p>这种深度集成让企业用户可以零代码接入 TimesFM 的能力。</p>
-<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><p><code>import torch   import numpy as np   import timesfm      model = timesfm.TimesFM_2p5_200M_torch.from_pretrained(       &quot;google/timesfm-2.5-200m-pytorch&quot;   )      model.compile(       timesfm.ForecastConfig(           max_context=1024,           max_horizon=256,           normalize_inputs=True,           use_continuous_quantile_head=True,       )   )      point_forecast, quantile_forecast = model.forecast(       horizon=12,       inputs=[           np.linspace(0, 1, 100),           np.sin(np.linspace(0, 20, 67)),       ],   )   </code></p>
+<h2 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h2><p><code>import torch   import numpy as np   import timesfm      model = timesfm.TimesFM_2p5_200M_torch.from_pretrained(       &quot;google/timesfm-2.5-200m-pytorch&quot;   )      model.compile(       timesfm.ForecastConfig(           max_context=1024,           max_horizon=256,           normalize_inputs=True,           use_continuous_quantile_head=True,       )   )      point_forecast, quantile_forecast = model.forecast(       horizon=12,       inputs=[           np.linspace(0, 1, 100),           np.sin(np.linspace(0, 20, 67)),       ],   )   </code></p>
 <h2 id="落地场景"><a href="#落地场景" class="headerlink" title="落地场景"></a>落地场景</h2><p>TimesFM 的典型应用场景包括：</p>
 <ul>
 <li><p><strong>可观测性监控</strong>：Kubernetes 指标、服务器日志的异常检测与容量预测</p>

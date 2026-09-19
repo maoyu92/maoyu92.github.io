@@ -339,7 +339,7 @@
 <p>另一条是编辑路线。白底，正文 17px，章节标题纯黑加粗，小节标题用一条蓝色竖线带出来，剩下的全是留白。它的逻辑是「读者是来看字的」——装饰每多一分，注意力就被分走一分。</p>
 <p>我现在基本只走第二条。科技资讯、产品发布、研究解读、企业动态这类正文，信息密度本来就高，再叠装饰，读起来只会更累。</p>
 <p>怎么选，我给自己定了一条很土的标准：读者是来读完的，还是来扫一眼的。资讯、解读、发布这类要读进去的内容，走编辑路线；促销、活动、报名这类只要一眼看到按钮的内容，走装饰路线。我之前的毛病是两条路线用反了——该读的内容排得太花，该扫的内容又排得太素。</p>
-<p><img src="/uploads/ai-notes/a004/f97558b22289701f.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a004/f97558b22289701f.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>有一点得写在前面：这套技能的观感参数，来自对公开科技媒体公众号的逆向分析，是拿 1080px 的手机截图反推出来的，不是任何一家的页面源码。它复刻的只是视觉语言，不含原品牌资产、Logo 或 CSS。</p>
 <h2 id="二、它能做什么"><a href="#二、它能做什么" class="headerlink" title="二、它能做什么"></a>二、它能做什么</h2><p>给它一段 Markdown、一段纯文本，或者一篇你已经写好的公众号正文，它输出一段可以直接粘进微信编辑器的正文 HTML。</p>
 <p>拆开说是五件事。</p>
@@ -348,7 +348,7 @@
 <p><strong>骨架也给了</strong>。文档里推荐的结构是：开场正文或头图 → 黑色章节标题 → 正文段落 → 图片 → 小节标题 → 数据或图表 → 总结章节 → 轻量的互动提示。章节之间靠 42～46px 的留白切换，一屏通常只保留一个强视觉锚点。</p>
 <p><strong>保留原文</strong>。它只调整结构、样式和必要的全角标点，不扩写事实、不改图片顺序。图注更是只在原文本来就有说明，或者确实需要交代来源和口径时才生成，不允许编。</p>
 <p><strong>输出干净</strong>。成品里没有 <code>&lt;html&gt;</code>、<code>&lt;head&gt;</code>、<code>&lt;body&gt;</code>、<code>&lt;style&gt;</code>、<code>&lt;script&gt;</code>，也没有 <code>class</code> 和 <code>id</code>，所有样式写在 inline style 里；文字节点用 <code>&lt;span leaf=&quot;&quot;&gt;</code> 包住，图片保持原比例居中。整个产物就是一个 <code>&lt;section&gt;</code> 片段。</p>
-<p><img src="/uploads/ai-notes/a004/c071ffb92adf6691.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a004/c071ffb92adf6691.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="三、参数与规则"><a href="#三、参数与规则" class="headerlink" title="三、参数与规则"></a>三、参数与规则</h2><p>我把关键参数抄在下面，你大概能看出它的克制程度。</p>
 <table>
 <thead>
@@ -394,7 +394,7 @@
 <p>列表用蓝色圆点，有序列表用蓝色 01、02、03 编号，项与项之间留 10px；行内代码 14px，内边距 2px 6px；次要说明和实验口径用 15px 灰色 #999999、行高 2；标签和步骤号 13 到 14px；章节之间的分隔线是 1px 的 #EDEDED。</p>
 <p>提示类信息可以换成浅蓝底 #F7FAFF 加 4px 蓝色左线，警示换橙色、成功换绿色，颜色只承担状态含义。真实数据用 <code>&lt;table&gt;</code>，其它布局不用表格模拟。</p>
 <p>引用用 3px 浅蓝细线，不用四周虚线框；代码块用深色纯底，或者浅灰底加一条蓝色左线。图片居中、按原比例自适应，不统一加圆角和阴影；方形或竖图最多缩到 72% 宽，信息密集的图表默认占满。正文不两端对齐、不做首行缩进，中文段落一律左对齐。</p>
-<p><img src="/uploads/ai-notes/a004/05347c6c559a2ecf.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a004/05347c6c559a2ecf.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h3 id="为什么坚持-inline-style"><a href="#为什么坚持-inline-style" class="headerlink" title="为什么坚持 inline style"></a>为什么坚持 inline style</h3><p>这一点我单独说，因为它是整套方案里最容易踩坑的地方。</p>
 <p>公众号编辑器在粘贴富文本时，会把 <code>&lt;style&gt;</code> 标签、<code>class</code> 和相关选择器过滤掉，只保留行内样式。很多模板在浏览器里好看，一粘进后台就塌了，问题就出在这——它的层级是 class 撑起来的，class 没了，层级也就没了。</p>
 <p>这套输出把关键样式全部写进 inline style，粘进去就是最终效果，不需要你在后台再手动调一遍。代价是 HTML 啰嗦一点，但那是给机器看的，不影响你。</p>
@@ -410,9 +410,9 @@
 </ul>
 <p>技能内部的执行路径是：先读 <code>references/style-guide.md</code>，按里面的设计变量、标题体系、组件映射和文章骨架来排；需要对照组件时再读 <code>assets/theme-preview.html</code>。</p>
 <p>排出来的骨架大致长这样，这是 style-guide 里的真实片段，可以直接复制：</p>
-<p><code>&lt;section style=&quot;max-width:677px;margin:0 auto;padding:0 24px;background:#FFFFFF;color:#222222;font-family:-apple-system,BlinkMacSystemFont,&#39;PingFang SC&#39;,&#39;Hiragino Sans GB&#39;,&#39;Microsoft YaHei&#39;,sans-serif;box-sizing:border-box;&quot;&gt;     &lt;section style=&quot;margin:46px 0 30px;&quot;&gt;       &lt;h2 style=&quot;margin:0;font-size:22px;line-height:1.4;font-weight:800;color:#111111;letter-spacing:.2px;&quot;&gt;         &lt;span leaf=&quot;&quot;&gt;章节标题&lt;/span&gt;       &lt;/h2&gt;     &lt;/section&gt;     &lt;p style=&quot;margin:0 0 30px;font-size:17px;line-height:1.62;letter-spacing:.2px;color:#222222;text-align:left;&quot;&gt;       &lt;span leaf=&quot;&quot;&gt;正文段落&lt;/span&gt;     &lt;/p&gt;   &lt;/section&gt;   </code></p>
+<p><code>&lt;section style=&quot;max-width:677px;margin:0 auto;padding:0 24px;background:#FFFFFF;color:#222222;font-family:-apple-system,BlinkMacSystemFont,&#39;PingFang SC&#39;,&#39;Hiragino Sans GB&#39;,&#39;Microsoft YaHei&#39;,sans-serif;box-sizing:border-box;&quot;&gt;     &lt;section style=&quot;margin:46px 0 30px;&quot;&gt;       &lt;h2 style=&quot;margin:0;font-size:22px;line-height:1.4;font-weight:800;color:#111111;letter-spacing:.2px;&quot;&gt;         &lt;span leaf=&quot;&quot;&gt;章节标题&lt;/span&gt;       &lt;/h2&gt;     &lt;/section&gt;     &lt;p style=&quot;margin:0 0 30px;font-size:17px;line-height:1.62;letter-spacing:.2px;color:#222222;text-align:left;&quot;&gt;       &lt;span leaf=&quot;&quot;&gt;正文段落&lt;/span&gt;     &lt;/p&gt;   &lt;/section&gt;   </code></p>
 <p>最省事的用法就三步：</p>
-<p><code>1. 在 WorkBuddy 技能市场安装「科技编辑风公众号排版」   2. 对话里说：把这篇 Markdown 排成科技编辑风公众号正文   3. 复制输出的 HTML，粘贴进公众号后台编辑器   </code></p>
+<p><code>1. 在 WorkBuddy 技能市场安装「科技编辑风公众号排版」   2. 对话里说：把这篇 Markdown 排成科技编辑风公众号正文   3. 复制输出的 HTML，粘贴进公众号后台编辑器   </code></p>
 <h2 id="五、边界与注意"><a href="#五、边界与注意" class="headerlink" title="五、边界与注意"></a>五、边界与注意</h2><p>这一节我说直白一点。</p>
 <p><strong>它只管排版，不管内容</strong>。不替你写稿、不改事实、不编图注、不判断观点。排版里的取舍——哪里配图、哪里拆小标题——仍然是你的事，它按你给的结构排。它能顺手把标点规范成全角，但内容对不对，是你自己的责任。</p>
 <p><strong>它不是花哨营销风</strong>。技能文档里写得很清楚：避免卡片堆叠、渐变、阴影、花哨编号和大面积色块。如果你的场景是促销海报、活动裂变那种，它不合适，你要找的是另一种模板。</p>
@@ -508,9 +508,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a001_%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92%E6%A0%B8%E5%BF%83%EF%BC%9A%E5%85%88%E6%8A%8A%E5%9F%9F%E6%83%B3%E5%85%A8%EF%BC%8C%E6%8A%8A%E8%AF%8D%E8%AF%B4%E9%BD%90/" title="信息系统规划核心：先把域想全，把词说齐">
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a003_%E9%95%BF%E6%96%87%E6%9C%AC%E5%86%99%E4%BD%9C%E5%BC%95%E6%93%8E%EF%BC%9A%E5%85%88%E5%AE%9A%E5%A4%A7%E7%BA%B2%EF%BC%8C%E5%86%8D%E4%B8%80%E7%AB%A0%E4%B8%80%E7%AB%A0%E5%86%99/" title="长文本写作引擎：先定大纲，再一章一章写">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">信息系统规划核心：先把域想全，把词说齐</span>
+                        <span class="hidden-mobile">长文本写作引擎：先定大纲，再一章一章写</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -518,8 +518,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a003_%E9%95%BF%E6%96%87%E6%9C%AC%E5%86%99%E4%BD%9C%E5%BC%95%E6%93%8E%EF%BC%9A%E5%85%88%E5%AE%9A%E5%A4%A7%E7%BA%B2%EF%BC%8C%E5%86%8D%E4%B8%80%E7%AB%A0%E4%B8%80%E7%AB%A0%E5%86%99/" title="长文本写作引擎：先定大纲，再一章一章写">
-                        <span class="hidden-mobile">长文本写作引擎：先定大纲，再一章一章写</span>
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a005_%E5%85%AC%E4%BC%97%E5%8F%B7%E5%B0%81%E9%9D%A2%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9A%E6%88%91%E5%8F%97%E5%A4%9F%E4%BA%86%E6%AF%8F%E6%AC%A1%E9%83%BD%E5%9C%A8%E8%B0%83%E5%AD%97%E5%8F%B7/" title="公众号封面生成器：我受够了每次都在调字号">
+                        <span class="hidden-mobile">公众号封面生成器：我受够了每次都在调字号</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

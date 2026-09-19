@@ -334,7 +334,7 @@
 <p>写一次，处处可用。这是 MCP 对自己的定义，也是它正在兑现的承诺。</p>
 <hr>
 <h2 id="02-MCP-的三层架构"><a href="#02-MCP-的三层架构" class="headerlink" title="02 MCP 的三层架构"></a>02 MCP 的三层架构</h2><p>MCP 采用经典的客户端-服务端架构，核心角色有三个：</p>
-<p><code>┌─────────────────────────────────────────────────────┐   │                    AI 应用（Host）                    │   │              Claude Desktop / Cursor / etc.          │   └───────────────────────┬─────────────────────────────┘                           │  JSON-RPC 2.0   ┌───────────────────────▼─────────────────────────────┐   │               MCP Client（协议客户端）                  │   │    负责管理会话、发起调用请求、处理响应                  │   └───────────────────────┬─────────────────────────────┘                           │  stdio / SSE / WebSocket   ┌───────────────────────▼─────────────────────────────┐   │              MCP Server（工具提供方）                   │   │   GitHub Server / Database Server / File Server     │   └───────────────────────┬─────────────────────────────┘                           │                 ┌─────────▼─────────┐                 │  外部工具 / 数据源  │                 └─────────────────────┘   </code></p>
+<p><code>┌─────────────────────────────────────────────────────┐   │                    AI 应用（Host）                    │   │              Claude Desktop / Cursor / etc.          │   └───────────────────────┬─────────────────────────────┘                           │  JSON-RPC 2.0   ┌───────────────────────▼─────────────────────────────┐   │               MCP Client（协议客户端）                  │   │    负责管理会话、发起调用请求、处理响应                  │   └───────────────────────┬─────────────────────────────┘                           │  stdio / SSE / WebSocket   ┌───────────────────────▼─────────────────────────────┐   │              MCP Server（工具提供方）                   │   │   GitHub Server / Database Server / File Server     │   └───────────────────────┬─────────────────────────────┘                           │                 ┌─────────▼─────────┐                 │  外部工具 / 数据源  │                 └─────────────────────┘   </code></p>
 <p><strong>Host（AI 应用）</strong>：直接面向用户的 AI 应用，如 Claude Desktop、Cursor、Windsurf 等。MCP Client 内嵌其中。</p>
 <p><strong>Client（协议客户端）</strong>：维护与 MCP Server 之间的会话，管理工具列表、调用请求和响应解析。</p>
 <p><strong>Server（工具提供方）</strong>：对外暴露一组标准化的工具和数据源接口。每个 MCP Server 通常专注于一个领域——如 GitHub、文件系统、Slack 等。</p>
@@ -357,7 +357,7 @@
 <h2 id="04-长期记忆：向量数据库-知识图谱融合架构"><a href="#04-长期记忆：向量数据库-知识图谱融合架构" class="headerlink" title="04 长期记忆：向量数据库 + 知识图谱融合架构"></a>04 长期记忆：向量数据库 + 知识图谱融合架构</h2><p>MCP 解决的不仅是「工具调用标准化」，还有一个更本质的问题——<strong>上下文管理</strong>。</p>
 <p>当 AI Agent 需要处理跨会话的复杂任务时，短期上下文窗口（context window）的容量始终是瓶颈。MCP 协议设计中为此预留了 Resources（资源）机制：大模型可以主动请求读取某个外部资源，获取比单次对话窗口更丰富的信息。</p>
 <p>2026年的主流 Agent 架构已将 Resources 扩展为一套完整的<strong>长期记忆系统</strong>：</p>
-<p><code>┌─────────────┐     ┌──────────────────┐     ┌─────────────┐   │  向量数据库  │────▶│  知识图谱融合层   │◀────│  知识图谱   │   │ (语义检索)  │     │  （结构化推理）    │     │ (关系推理)  │   └─────────────┘     └──────────────────┘     └─────────────┘          │                    │                     │          └──────────────────▶│◀──────────────────┘                               │                       ┌───────▼────────┐                       │  MCP Memory    │                       │  Resource API │                       └───────────────┘   </code></p>
+<p><code>┌─────────────┐     ┌──────────────────┐     ┌─────────────┐   │  向量数据库  │────▶│  知识图谱融合层   │◀────│  知识图谱   │   │ (语义检索)  │     │  （结构化推理）    │     │ (关系推理)  │   └─────────────┘     └──────────────────┘     └─────────────┘          │                    │                     │          └──────────────────▶│◀──────────────────┘                               │                       ┌───────▼────────┐                       │  MCP Memory    │                       │  Resource API │                       └───────────────┘   </code></p>
 <p>这套架构的核心逻辑是：<strong>向量数据库负责语义相似性检索（”找到相关的信息”），知识图谱负责关系推理（”理解信息之间的关联”），两者融合后输送给 MCP Resource 层</strong>，供 Agent 在需要时主动拉取。</p>
 <p>这意味着，当用户说「帮我整理一下上次和某客户的会议要点」时，Agent 不再是被动地从单次对话中拼凑信息，而是可以从长期记忆中主动检索、关联、推理，给出真正有上下文支撑的回答。</p>
 <hr>
@@ -436,13 +436,13 @@
 <hr>
 <p><strong>参考资料</strong></p>
 <ul>
-<li><p>MCP 官方网站：<a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/[1/]">https://modelcontextprotocol.io\[1\]</a></p>
+<li><p>MCP 官方网站：<a href="https://modelcontextprotocol.io[1]">https://modelcontextprotocol.io[1]</a></p>
 </li>
-<li><p>MCP GitHub 仓库：<a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol/[2/]">https://github.com/modelcontextprotocol\[2\]</a></p>
+<li><p>MCP GitHub 仓库：<a target="_blank" rel="noopener" href="https://github.com/modelcontextprotocol[2]">https://github.com/modelcontextprotocol[2]</a></p>
 </li>
-<li><p>MCP 中文站：<a target="_blank" rel="noopener" href="https://mcpcn.com/[3/]">https://mcpcn.com\[3\]</a></p>
+<li><p>MCP 中文站：<a href="https://mcpcn.com[3]">https://mcpcn.com[3]</a></p>
 </li>
-<li><p>AtomGit MCP 协议解析：<a target="_blank" rel="noopener" href="https://gitcode.csdn.net/[4/]">https://gitcode.csdn.net\[4\]</a></p>
+<li><p>AtomGit MCP 协议解析：<a href="https://gitcode.csdn.net[4]">https://gitcode.csdn.net[4]</a></p>
 </li>
 <li><p>Anthropic Claude 官方博客</p>
 </li>

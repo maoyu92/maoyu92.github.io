@@ -348,7 +348,7 @@
 </ul>
 <p>最近 GitHub 上有一个项目非常火：<strong>mattpocock&#x2F;skills</strong>。</p>
 <p>项目地址：</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills/[1/]">https://github.com/mattpocock/skills\[1\]</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills[1]">https://github.com/mattpocock/skills[1]</a></p>
 <p>截至 2026 年 6 月，这个仓库已经超过 <strong>13 万 Star</strong>，Fork 超过 <strong>1.1 万</strong>。它的作者是 Matt Pocock，TypeScript 社区非常有影响力的工程师和教育者，也是 Total TypeScript 背后的核心人物。</p>
 <p>这个项目的 README 一开头就说得很直接：</p>
 <blockquote>
@@ -501,7 +501,7 @@
 <p>这里的 TDD 不是“先把所有测试写完，再让 AI 实现”。</p>
 <p>它明确反对这种 horizontal slicing。</p>
 <p>正确方式是 vertical slice：</p>
-<p><code>一个测试 → 一个实现 → 再下一个测试 → 再下一个实现   </code></p>
+<p><code>一个测试 → 一个实现 → 再下一个测试 → 再下一个实现   </code></p>
 <p>这很像 tracer bullet：用一条小的端到端路径证明方向是对的，然后逐步扩展。</p>
 <p>这对 Coding Agent 特别重要，因为 Agent 很容易“想象”一个不存在的系统，然后一次性写出一堆并不贴合真实代码的测试。</p>
 <h3 id="4-代码库变成一团泥"><a href="#4-代码库变成一团泥" class="headerlink" title="4. 代码库变成一团泥"></a>4. 代码库变成一团泥</h3><p>AI 写代码太快，会加速软件熵增。</p>
@@ -639,7 +639,7 @@
 <p>因为 Agent 最容易犯的错误，就是为了“完成任务”一次性写太多东西，然后测试也变成对想象中实现的确认。</p>
 <h3 id="5-diagnosing-bugs：诊断，而不是猜修"><a href="#5-diagnosing-bugs：诊断，而不是猜修" class="headerlink" title="5. diagnosing-bugs：诊断，而不是猜修"></a>5. diagnosing-bugs：诊断，而不是猜修</h3><p>很多 Agent 修 bug 的方式是：看到报错，猜一个原因，改一把，再看结果。</p>
 <p><code>diagnosing-bugs</code> 强调纪律化诊断：</p>
-<p><code>复现 → 最小化 → 假设 → 插桩 → 修复 → 回归测试   </code></p>
+<p><code>复现 → 最小化 → 假设 → 插桩 → 修复 → 回归测试   </code></p>
 <p>这其实是老派调试基本功。</p>
 <p>但在 AI 时代，它反而更重要。</p>
 <p>因为 Agent 的速度越快，胡乱修改造成的破坏也越快。</p>
@@ -699,9 +699,9 @@
 </li>
 </ul>
 <p>如果说 pm-skills 的关键词是：</p>
-<p><code>产品方法论 → 工作流 → 决策质量   </code></p>
+<p><code>产品方法论 → 工作流 → 决策质量   </code></p>
 <p>那么 mattpocock&#x2F;skills 的关键词就是：</p>
-<p><code>工程纪律 → 反馈循环 → 代码质量   </code></p>
+<p><code>工程纪律 → 反馈循环 → 代码质量   </code></p>
 <p>这两个项目放在一起看，很有意思。</p>
 <p>它们说明 Agent Skills 正在从“提示词收藏”演化成“职业工作系统”。</p>
 <h2 id="八、对我们有什么启发？"><a href="#八、对我们有什么启发？" class="headerlink" title="八、对我们有什么启发？"></a>八、对我们有什么启发？</h2><p>这个项目对“小欧”的启发非常直接。</p>
@@ -777,7 +777,7 @@
 <h3 id="3-AI-原生创业团队"><a href="#3-AI-原生创业团队" class="headerlink" title="3. AI 原生创业团队"></a>3. AI 原生创业团队</h3><p>小团队用 Agent 写代码很快，但更容易技术债失控。这套技能可以作为轻量工程治理机制。</p>
 <h3 id="4-想构建自己-Skills-库的人"><a href="#4-想构建自己-Skills-库的人" class="headerlink" title="4. 想构建自己 Skills 库的人"></a>4. 想构建自己 Skills 库的人</h3><p>这个仓库本身就是一个很好的设计样本：如何拆技能、如何区分调用方式、如何写边界、如何让技能互相调用。</p>
 <h2 id="十、怎么开始用？"><a href="#十、怎么开始用？" class="headerlink" title="十、怎么开始用？"></a>十、怎么开始用？</h2><p>官方推荐安装方式很简单：</p>
-<p><code>npx skills@latest add mattpocock/skills   </code></p>
+<p><code>npx skills@latest add mattpocock/skills   </code></p>
 <p>安装时选择你想要的 skills 和 coding agent。</p>
 <p>官方特别提醒：一定要选择：</p>
 <p><code>/setup-matt-pocock-skills   </code></p>
@@ -809,11 +809,11 @@
 <p>这也是小欧后续应该继续进化的方向。</p>
 <hr>
 <h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li><p>GitHub：mattpocock&#x2F;skills<br><a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills/[2/]">https://github.com/mattpocock/skills\[2\]</a></p>
+<li><p>GitHub：mattpocock&#x2F;skills<br><a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills[2]">https://github.com/mattpocock/skills[2]</a></p>
 </li>
-<li><p>Matt Pocock<br><a target="_blank" rel="noopener" href="https://www.totaltypescript.com/[3/]">https://www.totaltypescript.com\[3\]</a></p>
+<li><p>Matt Pocock<br><a href="https://www.totaltypescript.com[3]">https://www.totaltypescript.com[3]</a></p>
 </li>
-<li><p>skills.sh<br><a target="_blank" rel="noopener" href="https://skills.sh/mattpocock/skills/[4/]">https://skills.sh/mattpocock/skills\[4\]</a></p>
+<li><p>skills.sh<br><a target="_blank" rel="noopener" href="https://skills.sh/mattpocock/skills[4]">https://skills.sh/mattpocock/skills[4]</a></p>
 </li>
 </ul>
 <h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/mattpocock/skills">https://github.com/mattpocock/skills</a></em></p>

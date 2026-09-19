@@ -19,12 +19,12 @@
   <meta name="keywords" content="python,eco">
   <meta name="referrer" content="no-referrer" />
   
-    <meta name="description" content="FEATURE · 模型深度评测                    2026 年 7 月 21 日，Poolside 发布了 Laguna S 2.1。这是一个 118B 总参数的 MoE 模型，但每个 token 只激活 8B 参数——不到总参数的 7%。然而在 Terminal-Bench 2.1 上它拿到了 70.2%，在 SWE-Bench Multilingual 上拿到 78.5%">
+    <meta name="description" content="FEATURE · 模型深度评测          2026 年 7 月 21 日，Poolside 发布了 Laguna S 2.1。这是一个 118B 总参数的 MoE 模型，但每个 token 只激活 8B 参数——不到总参数的 7%。然而在 Terminal-Bench 2.1 上它拿到了 70.2%，在 SWE-Bench Multilingual 上拿到 78.5%（开源最高分），把参">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Laguna S 2.1 深度评测：118B MoE，8B 激活打爆千亿级">
 <meta property="og:url" content="https://maoyu92.github.io/2026/07/23/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a043_Laguna%20S%202.1%20%E6%B7%B1%E5%BA%A6%E8%AF%84%E6%B5%8B%EF%BC%9A118B%20MoE%EF%BC%8C8B%20%E6%BF%80%E6%B4%BB%E6%89%93%E7%88%86%E5%8D%83%E4%BA%BF%E7%BA%A7/index.html">
 <meta property="og:site_name" content="wallflowers">
-<meta property="og:description" content="FEATURE · 模型深度评测                    2026 年 7 月 21 日，Poolside 发布了 Laguna S 2.1。这是一个 118B 总参数的 MoE 模型，但每个 token 只激活 8B 参数——不到总参数的 7%。然而在 Terminal-Bench 2.1 上它拿到了 70.2%，在 SWE-Bench Multilingual 上拿到 78.5%">
+<meta property="og:description" content="FEATURE · 模型深度评测          2026 年 7 月 21 日，Poolside 发布了 Laguna S 2.1。这是一个 118B 总参数的 MoE 模型，但每个 token 只激活 8B 参数——不到总参数的 7%。然而在 Terminal-Bench 2.1 上它拿到了 70.2%，在 SWE-Bench Multilingual 上拿到 78.5%（开源最高分），把参">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-23T00:01:00.000Z">
 <meta property="article:modified_time" content="2026-07-23T00:01:00.000Z">
@@ -323,42 +323,66 @@
             
               <div class="markdown-body">
                 
-                <p>FEATURE · 模型深度评测      </p>
-<p>     </p>
-<p>       2026 年 7 月 21 日，Poolside 发布了 Laguna S 2.1。这是一个 118B 总参数的 MoE 模型，但每个 token 只激活 8B 参数——不到总参数的 7%。然而在 Terminal-Bench 2.1 上它拿到了 70.2%，在 SWE-Bench Multilingual 上拿到 78.5%（开源最高分），把参数量数十倍于它的模型甩在身后。更夸张的是，它曾连续执行 181 个步骤，用约 50 分钟从空文件夹构建出一个可运行的浏览器渲染引擎。      </p>
-<p>   </p>
-<p>   </p>
-<p>     </p>
-<p>       Laguna S 2.1 · 118B MoE 编程模型      </p>
-<p>     OpenMDW-1.1    </p>
-<p> </p>
-<p>   </p>
-<p>   这篇文章带你拆解这个模型到底强在哪、能不能在你的机器上跑、以及它还有哪些坑。  </p>
-<p>   </p>
-<p>   </p>
-<p>     架构：256 个专家的 MoE 是怎么设计的    </p>
-<p>   </p>
-<p>     Laguna S 2.1 的核心架构参数：总参数 118B，每 token 激活约 8B。48 层（12 层全局注意力 + 36 层滑动窗口注意力）。256 个路由专家（top-10）+ 1 个共享专家。分组查询注意力，8 个 KV 头。滑动窗口 512 tokens。上下文窗口 1,048,576 tokens（1M）。词表 100,352 tokens。许可证 OpenMDW-1.1（商用可）。    </p>
-<p>   </p>
-<p>     256 专家意味着什么    </p>
-<p>   </p>
-<p>     MoE 不是新鲜事，但 256 专家 + 48 层的组合在开源模型中不多见。每个 token 只激活 top-10 专家（约 6.8%），配合一个共享专家，实现 118B 驻留、8B 激活的稀疏计算。这意味着推理时的计算量接近 8B 密集模型，但模型的知识容量接近 118B 密集模型。    </p>
-<p>   </p>
-<p>     混合注意力机制    </p>
-<p>   </p>
-<p>     48 层中 12 层用全局注意力（保持长程依赖），36 层用滑动窗口注意力（window&#x3D;512，降低 KV cache 开销）。每层还有 per-head 的 softplus 输出门控和 per-layer-type 的 rotary 缩放——这是 Poolside 从 Laguna M.1 延续下来的技术积累。    </p>
-<p>   </p>
-<p>     原生推理支持    </p>
-<p>   </p>
-<p>     模型支持思考模式（thinking mode），可以在工具调用之间穿插思考过程。通过      enable_thinking       参数控制，这是 agentic coding 的关键能力——模型不是一次性输出答案，而是在执行过程中边思考边调整。    </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     跑分：越级打怪，开源最强编程模型    </p>
-<p>   </p>
-<p>     Poolside 官方公布的基准测试结果，Laguna S 2.1 在核心编程基准上表现亮眼。    </p>
-<p>   </p>
-<p>                                                                                                                                                                                                                                                                                                                                                                                           </p>
+                <p>FEATURE · 模型深度评测      </p>
+<pre><code class="hljs">   2026 年 7 月 21 日，Poolside 发布了 Laguna S 2.1。这是一个 118B 总参数的 MoE 模型，但每个 token 只激活 8B 参数——不到总参数的 7%。然而在 Terminal-Bench 2.1 上它拿到了 70.2%，在 SWE-Bench Multilingual 上拿到 78.5%（开源最高分），把参数量数十倍于它的模型甩在身后。更夸张的是，它曾连续执行 181 个步骤，用约 50 分钟从空文件夹构建出一个可运行的浏览器渲染引擎。      
+
+
+
+
+
+ 
+
+   Laguna S 2.1 · 118B MoE 编程模型      
+
+ OpenMDW-1.1    
+</code></pre>
+<p>   这篇文章带你拆解这个模型到底强在哪、能不能在你的机器上跑、以及它还有哪些坑。  </p>
+<pre><code class="hljs"> 架构：256 个专家的 MoE 是怎么设计的    
+
+
+
+ Laguna S 2.1 的核心架构参数：总参数 118B，每 token 激活约 8B。48 层（12 层全局注意力 + 36 层滑动窗口注意力）。256 个路由专家（top-10）+ 1 个共享专家。分组查询注意力，8 个 KV 头。滑动窗口 512 tokens。上下文窗口 1,048,576 tokens（1M）。词表 100,352 tokens。许可证 OpenMDW-1.1（商用可）。    
+
+
+
+ 256 专家意味着什么    
+
+
+
+ MoE 不是新鲜事，但 256 专家 + 48 层的组合在开源模型中不多见。每个 token 只激活 top-10 专家（约 6.8%），配合一个共享专家，实现 118B 驻留、8B 激活的稀疏计算。这意味着推理时的计算量接近 8B 密集模型，但模型的知识容量接近 118B 密集模型。    
+
+
+
+ 混合注意力机制    
+
+
+
+ 48 层中 12 层用全局注意力（保持长程依赖），36 层用滑动窗口注意力（window=512，降低 KV cache 开销）。每层还有 per-head 的 softplus 输出门控和 per-layer-type 的 rotary 缩放——这是 Poolside 从 Laguna M.1 延续下来的技术积累。    
+
+
+
+ 原生推理支持    
+
+
+
+ 模型支持思考模式（thinking mode），可以在工具调用之间穿插思考过程。通过      enable_thinking       参数控制，这是 agentic coding 的关键能力——模型不是一次性输出答案，而是在执行过程中边思考边调整。    
+
+
+
+
+
+
+
+ 跑分：越级打怪，开源最强编程模型    
+
+
+
+ Poolside 官方公布的基准测试结果，Laguna S 2.1 在核心编程基准上表现亮眼。    
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                       
+</code></pre>
 <table>
 <thead>
 <tr>
@@ -393,35 +417,60 @@
 <td>Inkling(975B) 45.5%</td>
 </tr>
 </tbody></table>
-<p>   </p>
-<p>   </p>
-<p>     DeepSWE 上 40.4% vs DeepSeek-V4-Pro-Max 的 9.0%，差距超过 4 倍。注意 DeepSeek-V4-Pro-Max 是 1.6T 总参数、49B 激活的模型，比 Laguna S 2.1 大 13 倍。Laguna S 2.1 以六分之一的激活参数打出了 4 倍以上的优势。    </p>
-<p>   </p>
-<p>     思考模式对跑分的影响    </p>
-<p>   </p>
-<p>     Poolside 公开了 thinking off vs max 的对比数据：Terminal-Bench 从 60.4% 提升到 70.2%（+9.8pp），DeepSWE 从 16.5% 提升到 40.4%（+23.9pp）。平均 completion tokens 从 ~99k 增加到 ~249k。思考模式大幅提升了 long-horizon 任务的解决率，但 token 消耗也显著增加。对于复杂编程任务，max thinking 是质变级的能力。    </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     真实案例：181 步自主构建浏览器渲染引擎    </p>
-<p>   </p>
-<p>     Poolside 在博客中披露了两个令人印象深刻的实际案例。    </p>
-<p>   </p>
-<p>     案例一：从空文件夹到浏览器渲染引擎    </p>
-<p>   </p>
-<p>     Laguna S 2.1 在无人工干预的情况下，连续执行 181 个步骤，耗时约 50 分钟，从空文件夹开始构建出一个可运行的 HTML&#x2F;CSS 浏览器渲染引擎。这包括编写 HTML 解析器、CSS 样式计算、布局引擎、绘制逻辑，以及最终的测试和调试。    </p>
-<p>   </p>
-<p>     案例二：自主优化自己的 Agent Harness    </p>
-<p>   </p>
-<p>     模型还自主优化了 Poolside 自己的 Agent Harness，让运行速度提升约 5.2%，内存分配降低约 70%。这已经接近”自我改进”的范畴了——模型不仅能写代码，还能优化运行它的工具链本身。    </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     部署：你的机器能跑吗    </p>
-<p>   </p>
-<p>     量化版本一览    </p>
-<p>   </p>
-<p>                                                                                                                                                                                                                                                                                                                                                                                           </p>
+<pre><code class="hljs"> DeepSWE 上 40.4% vs DeepSeek-V4-Pro-Max 的 9.0%，差距超过 4 倍。注意 DeepSeek-V4-Pro-Max 是 1.6T 总参数、49B 激活的模型，比 Laguna S 2.1 大 13 倍。Laguna S 2.1 以六分之一的激活参数打出了 4 倍以上的优势。    
+
+
+
+ 思考模式对跑分的影响    
+
+
+
+ Poolside 公开了 thinking off vs max 的对比数据：Terminal-Bench 从 60.4% 提升到 70.2%（+9.8pp），DeepSWE 从 16.5% 提升到 40.4%（+23.9pp）。平均 completion tokens 从 ~99k 增加到 ~249k。思考模式大幅提升了 long-horizon 任务的解决率，但 token 消耗也显著增加。对于复杂编程任务，max thinking 是质变级的能力。    
+
+
+
+
+
+
+
+ 真实案例：181 步自主构建浏览器渲染引擎    
+
+
+
+ Poolside 在博客中披露了两个令人印象深刻的实际案例。    
+
+
+
+ 案例一：从空文件夹到浏览器渲染引擎    
+
+
+
+ Laguna S 2.1 在无人工干预的情况下，连续执行 181 个步骤，耗时约 50 分钟，从空文件夹开始构建出一个可运行的 HTML/CSS 浏览器渲染引擎。这包括编写 HTML 解析器、CSS 样式计算、布局引擎、绘制逻辑，以及最终的测试和调试。    
+
+
+
+ 案例二：自主优化自己的 Agent Harness    
+
+
+
+ 模型还自主优化了 Poolside 自己的 Agent Harness，让运行速度提升约 5.2%，内存分配降低约 70%。这已经接近&quot;自我改进&quot;的范畴了——模型不仅能写代码，还能优化运行它的工具链本身。    
+
+
+
+
+
+
+
+ 部署：你的机器能跑吗    
+
+
+
+ 量化版本一览    
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                                       
+</code></pre>
 <table>
 <thead>
 <tr>
@@ -456,50 +505,89 @@
 <td>48GB+ 单卡</td>
 </tr>
 </tbody></table>
-<p>   </p>
-<p>   </p>
-<p>     在双 5070 Ti（32GB）上    </p>
-<p>   </p>
-<p>     纯 GPU 部署不可行。即使最激进的 Unsloth 量化也需要 40GB，而 32GB 差得远。但有一个可行的方案：CPU + GPU 混合卸载。你的机器有 125GB 系统内存，加载 75GB 的 Q4_K_M GGUF 没问题，再配合 GPU 卸载部分层。推理速度会慢（1-3 tok&#x2F;s），但至少能跑起来验证效果。    </p>
-<p>   </p>
-<p>     最实际的方案是先用 OpenRouter 的免费接口（256K 上下文，免登录）体验模型能力，再决定是否值得折腾本地部署。如果预算允许，可以考虑 Laguna XS 2.1（33B-A3B），Q4_K_M 约 20GB，32GB VRAM 完全能装下。    </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     已知问题与局限    </p>
-<p>   </p>
-<p>     过度思考    </p>
-<p>   </p>
-<p>     Thinking max 模式下，模型有时会过度分析简单问题。一个简单的函数可能引发数百 token 的思考过程。对于简单任务，建议关闭 thinking 模式。    </p>
-<p>   </p>
-<p>     工具调用适配    </p>
-<p>   </p>
-<p>     模型使用 Poolside 自家的 tool-call-parser（poolside_v1），迁移到其他框架（如 Hermes、Claude Code）时可能需要适配。目前 OpenRouter 和 vLLM 已原生支持，但自定义 agent 框架需要额外工作。    </p>
-<p>   </p>
-<p>     1M 上下文的质量问题    </p>
-<p>   </p>
-<p>     虽然模型原生支持 1M 上下文，但官方推荐使用 256K 配置。超过 256K 后可能出现质量退化，需要小心调参。    </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     小结    </p>
-<p>   </p>
-<p>     Laguna S 2.1 是 2026 年开源编程模型的一个重要里程碑。它以 118B 驻留、8B 激活的 MoE 架构，在多个编程基准上实现了越级表现，甚至在 DeepSWE 上以 4 倍优势碾压 13 倍大的对手。    </p>
-<p>   </p>
-<p>     对于本地部署玩家，这是显卡配置的分水岭——32GB 以下用户建议走 OpenRouter 或考虑 XS 2.1 小兄弟。但对于有 48GB+ 单卡或集群的用户，Laguna S 2.1 是目前开源编程模型中性价比较高的选择之一。    </p>
-<p>   </p>
-<p>     </p>
-<p>       Laguna S 2.1 已发布在 Hugging Face（        poolside&#x2F;Laguna-S-2.1        ），OpenRouter 提供 256K 免费体验。GGUF 和 Ollama 版本已可用，vLLM 需 0.25.0+。      </p>
-<p>   </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>       
-   </p>
-<p>   </p>
-<p>     我是文茂，热衷于分享 AI 工具与开发者生态观察。    </p>
-<p>   </p>
-<p>     如果你觉得今天这篇有收获，欢迎      <strong>点赞、在看、转发</strong>      三连，我们下篇见。</p>
+<pre><code class="hljs"> 在双 5070 Ti（32GB）上    
+
+
+
+ 纯 GPU 部署不可行。即使最激进的 Unsloth 量化也需要 40GB，而 32GB 差得远。但有一个可行的方案：CPU + GPU 混合卸载。你的机器有 125GB 系统内存，加载 75GB 的 Q4_K_M GGUF 没问题，再配合 GPU 卸载部分层。推理速度会慢（1-3 tok/s），但至少能跑起来验证效果。    
+
+
+
+ 最实际的方案是先用 OpenRouter 的免费接口（256K 上下文，免登录）体验模型能力，再决定是否值得折腾本地部署。如果预算允许，可以考虑 Laguna XS 2.1（33B-A3B），Q4_K_M 约 20GB，32GB VRAM 完全能装下。    
+
+
+
+
+
+
+
+ 已知问题与局限    
+
+
+
+ 过度思考    
+
+
+
+ Thinking max 模式下，模型有时会过度分析简单问题。一个简单的函数可能引发数百 token 的思考过程。对于简单任务，建议关闭 thinking 模式。    
+
+
+
+ 工具调用适配    
+
+
+
+ 模型使用 Poolside 自家的 tool-call-parser（poolside_v1），迁移到其他框架（如 Hermes、Claude Code）时可能需要适配。目前 OpenRouter 和 vLLM 已原生支持，但自定义 agent 框架需要额外工作。    
+
+
+
+ 1M 上下文的质量问题    
+
+
+
+ 虽然模型原生支持 1M 上下文，但官方推荐使用 256K 配置。超过 256K 后可能出现质量退化，需要小心调参。    
+
+
+
+
+
+
+
+ 小结    
+
+
+
+ Laguna S 2.1 是 2026 年开源编程模型的一个重要里程碑。它以 118B 驻留、8B 激活的 MoE 架构，在多个编程基准上实现了越级表现，甚至在 DeepSWE 上以 4 倍优势碾压 13 倍大的对手。    
+
+
+
+ 对于本地部署玩家，这是显卡配置的分水岭——32GB 以下用户建议走 OpenRouter 或考虑 XS 2.1 小兄弟。但对于有 48GB+ 单卡或集群的用户，Laguna S 2.1 是目前开源编程模型中性价比较高的选择之一。    
+
+
+
+ 
+
+   Laguna S 2.1 已发布在 Hugging Face（        poolside/Laguna-S-2.1        ），OpenRouter 提供 256K 免费体验。GGUF 和 Ollama 版本已可用，vLLM 需 0.25.0+。      
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+ 我是文茂，热衷于分享 AI 工具与开发者生态观察。    
+
+
+
+ 如果你觉得今天这篇有收获，欢迎      **点赞、在看、转发**      三连，我们下篇见。
+</code></pre>
 
                 
               </div>

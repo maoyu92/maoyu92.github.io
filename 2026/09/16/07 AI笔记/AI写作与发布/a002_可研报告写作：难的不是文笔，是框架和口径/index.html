@@ -345,7 +345,7 @@
 <p><strong>各章的写作套路</strong>。项目概况怎么写、设计依据分几类怎么排序、建设内容及规模怎么分项、必要性怎么论证、结论章怎么收口，都有对应的写法和句式。</p>
 <p><strong>python-docx 实现要点</strong>。中文字体要额外设 eastAsia、目录要插 TOC 域、页码要插 PAGE 域，还有几个我踩过的 API 坑，都写在文档里。</p>
 <p><strong>一份交付 QA 清单</strong>。10 条，从标题层级有没有跳级，到 <code>$xx$</code>、<code>&#123;&#123;&#125;&#125;</code>、<code>&lt;TODO&gt;</code> 这类占位符有没有漏在正文里，交付前逐条过一遍。</p>
-<p><img src="/uploads/ai-notes/a002/a627eb2bd88ec0ed.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a002/a627eb2bd88ec0ed.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="三、框架与套路"><a href="#三、框架与套路" class="headerlink" title="三、框架与套路"></a>三、框架与套路</h2><p>先说框架。技能文档里管它叫「19 章框架」，逐条列出来是 17 个编号章，7 章标 ★。</p>
 <p>第一章综合说明是全文的压缩版，也是信息密度最高的一章：项目概况要列七项属性，名称、地点、业主、编制单位、类别、性质、主要实施范围；设计依据分法律法规、标准规范、其他依据三类；后面接着设计目的、设计原则、设计范围、建设内容及规模、建设工期、工程总投资；最后是建设必要性，还要单独论证规划政策符合性。</p>
 <p>第三章开始进入项目本身，对每个对象都是四段式：基本情况、范围或保护区划分、环境质量状况、规范化建设情况。对象有几个，这套结构就重复几遍。</p>
@@ -354,11 +354,11 @@
 <p>第十七章结论与建议负责收口：先呼应规划符合性，再复述建设内容及规模，报出总投资，给出总体论证结论，最后落 3 到 5 条建议，从工程性质、管理、资金、运营这几个角度提。</p>
 <p>再说套路。我觉得最有用的是设计依据那一节的写法：法律法规按效力层级排，每条写成「（序号）《书名》（文号或日期）」，能列二十多部；标准规范列三十多部国标行标；最后一类其他设计依据，把设计合同、可研报告、上位规划、现场踏勘资料、业主提供的其他资料统统兜进去。这一套结构摆出来，至少在依据上没人挑得出毛病。</p>
 <p>编号体系也定了规矩，而且不许混用：章标题走 1、1.1、1.1.1 的自动多级编号，最多五级，用 Word 多级列表而不是手输数字；章内的论证列表用（1）（2）（3），二级用 ①②③；图表按章编号，写成「表 3.1」「图 2.21」。</p>
-<p><img src="/uploads/ai-notes/a002/4642e89d8b60fc64.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a002/4642e89d8b60fc64.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>最后是格式和检查。上面列过的参数之外，还有两条容易漏：三个以上标题就必须加自动目录；页眉放项目全称，页脚放居中页码。</p>
 <p>交付 QA 那 10 条里，我最看重两条。一是用 python-docx 重新打开生成的文档，遍历段落核对层级、字号、缩进，再全文检索一遍占位符残留；二是找一篇格式标准的范例文档做对比复核，至少核对标题的字号、加粗和缩进。</p>
 <p>为什么强调「重新打开核对」？因为这份技能的第一条判断原则就是：人工写的 Word 文档，标题的实际呈现效果常常和样式定义不一致，判断层级必须以最终呈现为准。生成新文档时则反过来，样式定义和想要的效果必须一致，别留两层脱节。</p>
-<p><img src="/uploads/ai-notes/a002/3cb30d8282e82e8d.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a002/3cb30d8282e82e8d.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="四、怎么调用"><a href="#四、怎么调用" class="headerlink" title="四、怎么调用"></a>四、怎么调用</h2><p>技能上架在「办公协同」分类下。在技能市场点右上角加号安装，之后在对话里说人话就行——它是纯规则型技能，包里没有脚本，不联网，也不需要任何 Key。</p>
 <p>可以这么触发：</p>
 <ul>
@@ -370,10 +370,10 @@
 </li>
 </ul>
 <p>技能内部没有可执行脚本，落地靠 python-docx。文档里给的起手式是这样的，规格已经按格式规范填好，可以直接复制：</p>
-<p><code>from docx import Document   from docx.shared import Pt, Cm   from docx.oxml.ns import qn      doc = Document()   sec = doc.sections[0]   sec.page_width, sec.page_height = Cm(21.0), Cm(29.7)   sec.top_margin = sec.bottom_margin = Cm(2.54)   sec.left_margin = sec.right_margin = Cm(3.18)      # 标题样式：字号/加粗按规格设置；中文字体须同时设 eastAsia   style = doc.styles[&quot;Heading 1&quot;]   style.font.size = Pt(18)   style.font.bold = True   style.font.name = &quot;Times New Roman&quot;   style.element.rPr.rFonts.set(qn(&quot;w:eastAsia&quot;), &quot;黑体&quot;)      doc.add_heading(&quot;1 综合说明&quot;, level=1)   doc.save(&quot;报告.docx&quot;)   </code></p>
+<p><code>from docx import Document   from docx.shared import Pt, Cm   from docx.oxml.ns import qn      doc = Document()   sec = doc.sections[0]   sec.page_width, sec.page_height = Cm(21.0), Cm(29.7)   sec.top_margin = sec.bottom_margin = Cm(2.54)   sec.left_margin = sec.right_margin = Cm(3.18)      # 标题样式：字号/加粗按规格设置；中文字体须同时设 eastAsia   style = doc.styles[&quot;Heading 1&quot;]   style.font.size = Pt(18)   style.font.bold = True   style.font.name = &quot;Times New Roman&quot;   style.element.rPr.rFonts.set(qn(&quot;w:eastAsia&quot;), &quot;黑体&quot;)      doc.add_heading(&quot;1 综合说明&quot;, level=1)   doc.save(&quot;报告.docx&quot;)   </code></p>
 <p>有个坑值得单独提：如果要手动插首行缩进的 XML，<code>&lt;w:ind&gt;</code> 必须按 OOXML 的元素顺序放在 <code>w:spacing</code> 之后、<code>w:jc</code> 之前，否则 Word 打开会报 <code>unexpected child element &#39;ind&#39;</code> 的 schema 错误。稳妥的写法是 <code>jc.addprevious(ind)</code>，而不是直接 append。</p>
 <p>最省事的用法就三步：</p>
-<p><code>1. 在 WorkBuddy 技能市场安装「可研报告写作」   2. 对话里说：按 19 章框架起草综合说明，并列出必备核心章   3. 生成后按交付 QA 清单逐项核对，在 Word 里更新域重算页码   </code></p>
+<p><code>1. 在 WorkBuddy 技能市场安装「可研报告写作」   2. 对话里说：按 19 章框架起草综合说明，并列出必备核心章   3. 生成后按交付 QA 清单逐项核对，在 Word 里更新域重算页码   </code></p>
 <h2 id="五、边界与注意"><a href="#五、边界与注意" class="headerlink" title="五、边界与注意"></a>五、边界与注意</h2><p>这一节我说直白一点。</p>
 <p><strong>它不提供数据，也不给行业参数</strong>。投资单价、工程定额、设备参数、地质水文指标这些，必须来自你的项目资料、现场踏勘和业主提供的材料。技能能告诉你投资概算这一章要有哪几张表，但表里的数字得你自己填，它也不会替你估一个。</p>
 <p><strong>它不替代咨询资质的实质判断</strong>。报告的责任主体是编制单位和持证的咨询工程师，技术方案怎么取舍、结论怎么担责、评审意见怎么回应，都不在技能范围内。它做的是把格式、框架、口径这三层摆整齐，让你少返工。</p>
@@ -467,9 +467,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a009_%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92%E8%BE%B9%E7%95%8C%EF%BC%9A%E6%88%91%E4%B8%8D%E6%83%B3%E5%86%8D%E6%89%8B%E6%89%92%E5%9C%B0%E5%9B%BE%E6%95%B0%E6%8D%AE%E4%BA%86/" title="行政区划边界：我不想再手扒地图数据了">
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a001_%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92%E6%A0%B8%E5%BF%83%EF%BC%9A%E5%85%88%E6%8A%8A%E5%9F%9F%E6%83%B3%E5%85%A8%EF%BC%8C%E6%8A%8A%E8%AF%8D%E8%AF%B4%E9%BD%90/" title="信息系统规划核心：先把域想全，把词说齐">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">行政区划边界：我不想再手扒地图数据了</span>
+                        <span class="hidden-mobile">信息系统规划核心：先把域想全，把词说齐</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -477,8 +477,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a001_%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92%E6%A0%B8%E5%BF%83%EF%BC%9A%E5%85%88%E6%8A%8A%E5%9F%9F%E6%83%B3%E5%85%A8%EF%BC%8C%E6%8A%8A%E8%AF%8D%E8%AF%B4%E9%BD%90/" title="信息系统规划核心：先把域想全，把词说齐">
-                        <span class="hidden-mobile">信息系统规划核心：先把域想全，把词说齐</span>
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a003_%E9%95%BF%E6%96%87%E6%9C%AC%E5%86%99%E4%BD%9C%E5%BC%95%E6%93%8E%EF%BC%9A%E5%85%88%E5%AE%9A%E5%A4%A7%E7%BA%B2%EF%BC%8C%E5%86%8D%E4%B8%80%E7%AB%A0%E4%B8%80%E7%AB%A0%E5%86%99/" title="长文本写作引擎：先定大纲，再一章一章写">
+                        <span class="hidden-mobile">长文本写作引擎：先定大纲，再一章一章写</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -371,7 +371,7 @@
 <p>4 级标题为问题，4 级标题以下为答案，具体如何设置根据自己的需要来定。<br>以上就完成了初步配置。<br>只要在 obsidian 没有被忽略的笔记中添加对应格式笔记，点击左侧按钮就能同步到 anki Default 卡组中。笔记格式示例如下：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">Q: How <span class="hljs-keyword">do</span> you use <span class="hljs-keyword">this</span> style?<br>A: Just like <span class="hljs-keyword">this</span>.<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221028348.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221028348.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>成功后，在 obsidian 对应的笔记后面会多一个标记<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221035113.png" srcset="/img/loading.gif" lazyload alt="image.png"><br>在 anki 中会增加卡片。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221037904.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <h3 id="Obsidian-管理-anki-卡组"><a href="#Obsidian-管理-anki-卡组" class="headerlink" title="Obsidian 管理 anki 卡组"></a>Obsidian 管理 anki 卡组</h3><p>使用 Obsidian to anki 插件不仅可以批量添加卡片，还可以实现指定目标卡组，删除卡片，修改卡片内容。</p>
 <h5 id="指定目标卡组"><a href="#指定目标卡组" class="headerlink" title="指定目标卡组"></a>指定目标卡组</h5><p>在 anki 牌组界面下，点击创建自己的卡组，在 obsidian 笔记前添加 TARGET DECK 字段设置目标卡组。</p>
@@ -385,7 +385,7 @@
 
 <p>Obsidian 笔记</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs markdown">Q: 卡片支持哪些美化功能?<br>A: 1. <span class="hljs-strong">**加粗**</span>：关键词<br><span class="hljs-bullet">2.</span> <span class="hljs-emphasis">_斜体_</span>：用于句首，可以理解为卡片的结构化写法<br><span class="hljs-bullet">3.</span> ==高亮==：简记的形式——记忆法的延伸<br><span class="hljs-bullet">4.</span> 内容断行：先回车，然后“<span class="hljs-strong">**空一格**</span>”，然后再回车，这样就可以在卡片中进行内容的分隔（这个没有什么特别的说法，单纯是因为插件代码就是这么写的）。<br> <br><span class="hljs-quote">&gt;  “人生就是一连串的刹那”</span><br><span class="hljs-quote">&gt; ——《被讨厌的勇气》</span><br></code></pre></td></tr></table></figure>
-<p>结果预览：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221117029.png" srcset="/img/loading.gif" lazyload></p>
+<p>结果预览：<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408221117029.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="Anki-web-卡组同步"><a href="#Anki-web-卡组同步" class="headerlink" title="Anki web 卡组同步"></a>Anki web 卡组同步</h2><p>做好牌组后，可通过 Anki web 能帮我们实现多端同步。点击 anki 的同步按钮即可注册、登录账户，安卓端推荐 ankichina 下载 ankidroid，注意软件是免费的。</p>
 <h2 id="端口占用处理记录"><a href="#端口占用处理记录" class="headerlink" title="端口占用处理记录"></a>端口占用处理记录</h2><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202408211650449.png" srcset="/img/loading.gif" lazyload alt="image.png"></p>
 <p>问题原因是有程序占用 8765 端口，两插件不支持修改默认端口，只能杀掉本地运行的端口程序。<br>Cmd 输入代码查询占用程序 netstat -ano | findstr : 8765。</p>

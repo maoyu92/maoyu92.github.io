@@ -329,11 +329,11 @@
                 <blockquote>
 <p>某地区实测：多因子协变量让T+3预测R²从0.19升至0.48，水华预警F1最高0.97。</p>
 </blockquote>
-<p><img src="/uploads/ai-notes/a011/508d3e50621d38a0.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a011/508d3e50621d38a0.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p><strong>某地区 X 点位，2025 年 6 月 27 日。</strong></p>
 <p>水华预警系统提前 3 天发出红色警报：叶绿素 a 浓度预计突破 90 µg&#x2F;L。现场人员提前采取拦截措施，最终实测值 94.2 µg&#x2F;L，误差仅 4.2 µg&#x2F;L。</p>
 <p>这不是偶然的精准，而是一个 0.3B 参数的时间序列基础模型做到的。</p>
-<p>过去两年，我们团队用传统监督模型（LightGBM）反复调参，T+3 预测 R² 始终卡在 0.15 左右。今年我们把 Google 的 <strong>TimesFM 3.0</strong> 放进来做零样本对比，结果出乎意料：<strong>同一套数据、同样测试段，T+3 R² 直接拉到 0.48，水华预警 F1 最高 0.97。</strong></p>
+<p>过去两年，我们团队用传统监督模型（LightGBM）反复调参，T+3 预测 R² 始终卡在 0.15 左右。今年我们把 Google 的 <strong>TimesFM 3.0</strong> 放进来做零样本对比，结果出乎意料：<strong>同一套数据、同样测试段，T+3 R² 直接拉到 0.48，水华预警 F1 最高 0.97。</strong></p>
 <p>这篇文章把完整实验链路摊开：从数据清洗、PCA 因子筛选中，我们看到哪些变量真正驱动藻类爆发；从多因子协变量接入 TimesFM 的方式里，我们看到基础模型如何用” season-dynamic prior “弥补小样本瓶颈。</p>
 <p><strong>结论先行：零样本 + 多因子，已经可以上岗。</strong></p>
 <h2 id="从”手工作坊”到”通用预测器”"><a href="#从”手工作坊”到”通用预测器”" class="headerlink" title="从”手工作坊”到”通用预测器”"></a>从”手工作坊”到”通用预测器”</h2><p>时间序列预测曾经高度依赖领域专家手工设计特征：把气温、光照、降雨、流量排进 LightGBM，再靠交叉验证调参。这种模式有两个硬伤：</p>
@@ -570,7 +570,7 @@
 <p> | </p>
 <p>14 日均</p>
 <p> |</p>
-<p>前 5 个因子全部属于”光照-温度-清澈度”主轴，解释了叶绿素 a 变异的 <strong>40% 以上</strong>。</p>
+<p>前 5 个因子全部属于”光照-温度-清澈度”主轴，解释了叶绿素 a 变异的 <strong>40% 以上</strong>。</p>
 <h3 id="因子筛选：33-保留，5-剔除"><a href="#因子筛选：33-保留，5-剔除" class="headerlink" title="因子筛选：33 保留，5 剔除"></a>因子筛选：33 保留，5 剔除</h3><p>规则：|r| ≥ 0.20 保留；0.12~0.20 且落在高相关主成分前列的保留。</p>
 <p><strong>剔除的 5 个因子</strong>：</p>
 <ul>
@@ -594,7 +594,7 @@
 <li><p><strong>past_future_covariates</strong>：未来可知（ERA5 气象 &#x3D; 完美预报上界）。</p>
 </li>
 </ul>
-<p>配合 <strong>Variate Attention</strong> 机制，模型在不同变量之间做注意力交互，而不是把多变量展平成一维序列。</p>
+<p>配合 <strong>Variate Attention</strong> 机制，模型在不同变量之间做注意力交互，而不是把多变量展平成一维序列。</p>
 <p>实验设置：</p>
 <ul>
 <li><p>回测协议：滚动起点，train 2024-01-01 ~ 2025-01-05（隔日），val 2025-01-06 ~ 03-31（每日），test 2025-04-01 ~ 06-27（每日）；</p>
@@ -606,7 +606,7 @@
 <li><p>协变量标准化：每个预测起点仅用上下文段统计量 z-score，防数据泄漏。</p>
 </li>
 </ul>
-<h2 id="核心结果：零样本打赢监督学习"><a href="#核心结果：零样本打赢监督学习" class="headerlink" title="核心结果：零样本打赢监督学习"></a>核心结果：零样本打赢监督学习</h2><p><img src="/uploads/ai-notes/a011/cee5ce475e37b81f.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="核心结果：零样本打赢监督学习"><a href="#核心结果：零样本打赢监督学习" class="headerlink" title="核心结果：零样本打赢监督学习"></a>核心结果：零样本打赢监督学习</h2><p><img src="/uploads/ai-notes/a011/cee5ce475e37b81f.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h3 id="T-1-天：R²-0-76-0-86，已可上线"><a href="#T-1-天：R²-0-76-0-86，已可上线" class="headerlink" title="T+1 天：R² 0.76~0.86，已可上线"></a>T+1 天：R² 0.76~0.86，已可上线</h3><p>|<br>站点</p>
 <p> | </p>
 <p>持续性基线</p>
@@ -754,9 +754,9 @@
 <p><strong>结果</strong>：covfull ≈ covred ≈ 略优于 univ，但在 T+3&#x2F;T+7 上，多因子版本普遍高出 0.03~0.14。</p>
 <p><strong>典型案例</strong>：</p>
 <ul>
-<li><p>C 站 T+7：univ -0.10 → covfull <strong>+0.10</strong>；</p>
+<li><p>C 站 T+7：univ -0.10 → covfull <strong>+0.10</strong>；</p>
 </li>
-<li><p>D 站 T+7：univ -0.64 → covfull <strong>-0.37</strong>。</p>
+<li><p>D 站 T+7：univ -0.64 → covfull <strong>-0.37</strong>。</p>
 </li>
 </ul>
 <p>协变量在长期预测上挽回了模型，说明**气象和水文因子确实提供了超越历史模式的”未来信息”**。</p>
@@ -764,10 +764,10 @@
 <p>这意味着 TimesFM 的系统偏差<strong>无法用当前因子集解释</strong>。残差里是”新信息”——2025 年春季水华的新状态，而不是因子可修正的偏差。</p>
 <p>换句话说，模型在 2025 年遇到了它预训练数据里没见过的”新情况”，而且它诚实地说”我不确定”。</p>
 <h2 id="下一步建议"><a href="#下一步建议" class="headerlink" title="下一步建议"></a>下一步建议</h2><p>基于本次实验，我们建议：</p>
-<p><strong>① 立即上线四站 T+1&#x2F;T+3 预测 + 分级预警</strong><br>TimesFM-covfull 为主模型，LightGBM 为备份。T+1 数值预测误差 5.8<del>26.5 µg&#x2F;L，水华 F1 0.79</del>0.97，已满足业务需求。</p>
-<p><strong>② 修复 E、F 站传感器后重新纳入</strong><br>E 站高值截断、F 站反演失效，硬件问题解决后数据可恢复。</p>
-<p><strong>③ 用真实数值天气预报替换 ERA5</strong><br>当前 ERA5 是”完美预报上界”，接入 NWP 后会折损，需重测校准。</p>
-<p><strong>④ 每季度滚动复评，满 3 个季节循环后重攻 T+7</strong><br>当前只有 2 个完整季节，T+7 的不确定性主要来自年际规律不足，不是模型能力问题。</p>
+<h2 id="①-立即上线四站-T-1-T-3-预测-分级预警"><a href="#①-立即上线四站-T-1-T-3-预测-分级预警" class="headerlink" title="① 立即上线四站 T+1&#x2F;T+3 预测 + 分级预警"></a>① 立即上线四站 T+1&#x2F;T+3 预测 + 分级预警</h2><p>TimesFM-covfull 为主模型，LightGBM 为备份。T+1 数值预测误差 5.8<del>26.5 µg&#x2F;L，水华 F1 0.79</del>0.97，已满足业务需求。</p>
+<h2 id="②-修复-E、F-站传感器后重新纳入"><a href="#②-修复-E、F-站传感器后重新纳入" class="headerlink" title="② 修复 E、F 站传感器后重新纳入"></a>② 修复 E、F 站传感器后重新纳入</h2><p>E 站高值截断、F 站反演失效，硬件问题解决后数据可恢复。</p>
+<h2 id="③-用真实数值天气预报替换-ERA5"><a href="#③-用真实数值天气预报替换-ERA5" class="headerlink" title="③ 用真实数值天气预报替换 ERA5"></a>③ 用真实数值天气预报替换 ERA5</h2><p>当前 ERA5 是”完美预报上界”，接入 NWP 后会折损，需重测校准。</p>
+<h2 id="④-每季度滚动复评，满-3-个季节循环后重攻-T-7"><a href="#④-每季度滚动复评，满-3-个季节循环后重攻-T-7" class="headerlink" title="④ 每季度滚动复评，满 3 个季节循环后重攻 T+7"></a>④ 每季度滚动复评，满 3 个季节循环后重攻 T+7</h2><p>当前只有 2 个完整季节，T+7 的不确定性主要来自年际规律不足，不是模型能力问题。</p>
 <hr>
 <p><em>实验环境：TimesFM 3.0 (google&#x2F;timesfm-3.0-pytorch)，局域网 GPU 服务器（RTX 5070 Ti），timesfm 3.0.1 + torch 2.14 + CUDA。测试段 2025-04-01~06-27，全程未参与训练&#x2F;调参。站点均已脱敏。</em></p>
 

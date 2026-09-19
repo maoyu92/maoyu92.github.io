@@ -331,7 +331,7 @@
 <p><img src="/images/7da71b6e1bbedbbb.png" srcset="/img/loading.gif" lazyload alt="花园技能全景图" title="花园技能全景图"></p>
 <hr>
 <h2 id="先搞懂：什么是-Skill？"><a href="#先搞懂：什么是-Skill？" class="headerlink" title="先搞懂：什么是 Skill？"></a>先搞懂：什么是 Skill？</h2><p>简单说，Skill 是 Agent 可以按需加载的「自包含技能包」。它的标准结构如下：</p>
-<p><code>&lt;skill-name&gt;/   ├── SKILL.md       ← 必需：什么时候用 + 怎么用   ├── README.md      ← 给人看的文档   ├── references/    ← 可选：Agent 按需加载的扩展文档   ├── scripts/       ← 可选：确定性可执行脚本   └── assets/       ← 可选：模板、字体、图标等   </code></p>
+<p><code>&lt;skill-name&gt;/   ├── SKILL.md       ← 必需：什么时候用 + 怎么用   ├── README.md      ← 给人看的文档   ├── references/    ← 可选：Agent 按需加载的扩展文档   ├── scripts/       ← 可选：确定性可执行脚本   └── assets/       ← 可选：模板、字体、图标等   </code></p>
 <p>一个 SKILL.md（YAML frontmatter + 指令）配合可选的辅助文件，就构成了一个完整的技能单元。Agent 会根据 frontmatter 里的 description 决定是否激活这个 Skill——所以 description 就是你和 Agent 之间的契约。</p>
 <hr>
 <h2 id="四个核心-Skill，总有一款适合你"><a href="#四个核心-Skill，总有一款适合你" class="headerlink" title="四个核心 Skill，总有一款适合你"></a>四个核心 Skill，总有一款适合你</h2><h3 id="🌐-web-design-engineer：设计工程师级别的网页构建"><a href="#🌐-web-design-engineer：设计工程师级别的网页构建" class="headerlink" title="🌐 web-design-engineer：设计工程师级别的网页构建"></a>🌐 web-design-engineer：设计工程师级别的网页构建</h3><p><strong>类别</strong>：设计 &#x2F; 前端<br><strong>适合场景</strong>：网页、落地页、仪表盘、交互原型、HTML 幻灯片、动画、UI 样机、数据可视化</p>
@@ -445,9 +445,9 @@
 </tr>
 </tbody></table>
 <p>最推荐的方式是用 <strong>npx skills add</strong>：</p>
-<p><code># 一次装上整个仓库（4 个 Skill）   npx skills add ConardLi/garden-skills      # 只装某一个 Skill   npx skills add ConardLi/garden-skills -s web-design-engineer      # 装到全局而不是当前项目   npx skills add ConardLi/garden-skills -s gpt-image-2 --global      # 指定目标 Agent   npx skills add ConardLi/garden-skills -s kb-retriever -a claude-code   </code></p>
+<p><code># 一次装上整个仓库（4 个 Skill）   npx skills add ConardLi/garden-skills      # 只装某一个 Skill   npx skills add ConardLi/garden-skills -s web-design-engineer      # 装到全局而不是当前项目   npx skills add ConardLi/garden-skills -s gpt-image-2 --global      # 指定目标 Agent   npx skills add ConardLi/garden-skills -s kb-retriever -a claude-code   </code></p>
 <p>CI &#x2F; 生产环境建议钉版本：</p>
-<p><code>SKILL=web-design-engineer   VERSION=1.1.0      curl -fsSL -o &quot;$&#123;SKILL&#125;.zip&quot; \     &quot;https://github.com/ConardLi/garden-skills/releases/download/$&#123;SKILL&#125;-v$&#123;VERSION&#125;/$&#123;SKILL&#125;-$&#123;VERSION&#125;.zip&quot;      # 校验后解压   shasum -a 256 -c &quot;$&#123;SKILL&#125;.zip.sha256&quot;   unzip -q &quot;$&#123;SKILL&#125;.zip&quot; -d .claude/skills/   </code></p>
+<p><code>SKILL=web-design-engineer   VERSION=1.1.0      curl -fsSL -o &quot;$&#123;SKILL&#125;.zip&quot; \     &quot;https://github.com/ConardLi/garden-skills/releases/download/$&#123;SKILL&#125;-v$&#123;VERSION&#125;/$&#123;SKILL&#125;-$&#123;VERSION&#125;.zip&quot;      # 校验后解压   shasum -a 256 -c &quot;$&#123;SKILL&#125;.zip.sha256&quot;   unzip -q &quot;$&#123;SKILL&#125;.zip&quot; -d .claude/skills/   </code></p>
 <p><img src="/images/f6ac082986bf6055.png" srcset="/img/loading.gif" lazyload alt="安装流程图" title="安装流程图"></p>
 <hr>
 <h2 id="Agent-兼容性一览"><a href="#Agent-兼容性一览" class="headerlink" title="Agent 兼容性一览"></a>Agent 兼容性一览</h2><table>
@@ -493,7 +493,7 @@
 <hr>
 <h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>garden-skills 是一个难得的开源 Agent Skills 集合，作者 ConardLi 不仅提供了高质量的 Skill 实现，还有完善的文档、版本管理（SHA-256 校验的不可变 release）和多语言 README（中文&#x2F;英文&#x2F;日文）。</p>
 <p>如果你想让 AI Agent 在特定任务上更专业、更稳定，与其反复在 System Prompt 里写规则，不如试试直接装一个 Skill。</p>
-<p><strong>GitHub 地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/ConardLi/garden-skills/[1/]">https://github.com/ConardLi/garden-skills\[1\]</a></p>
+<p><strong>GitHub 地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/ConardLi/garden-skills[1]">https://github.com/ConardLi/garden-skills[1]</a></p>
 <hr>
 <p><em>如果觉得有帮助，欢迎去 GitHub 点个 Star ⭐</em></p>
 <h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/ConardLi/garden-skills">https://github.com/ConardLi/garden-skills</a></em></p>

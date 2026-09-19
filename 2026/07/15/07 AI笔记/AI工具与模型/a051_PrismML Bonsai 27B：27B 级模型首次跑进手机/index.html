@@ -19,12 +19,12 @@
   <meta name="keywords" content="python,eco">
   <meta name="referrer" content="no-referrer" />
   
-    <meta name="description" content="“              27B 参数      的模型压缩到      3.9 GB      同时保留 90% 的推理能力——这扇门一旦推开，本地模型的格局就彻底改变了              —— 实测手记                    7 月 14 日，PrismML 发布了基于 Qwen3.6-27B 的 Bonsai 27B 模型，提供 1-bit 和 Ternary 两">
+    <meta name="description" content="“      27B 参数      的模型压缩到      3.9 GB      同时保留 90% 的推理能力——这扇门一旦推开，本地模型的格局就彻底改变了         —— 实测手记             7 月 14 日，PrismML 发布了基于 Qwen3.6-27B 的 Bonsai 27B 模型，提供 1-bit 和 Ternary 两个极端量化版本。         1-b">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PrismML Bonsai 27B：27B 级模型首次跑进手机">
 <meta property="og:url" content="https://maoyu92.github.io/2026/07/15/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a051_PrismML%20Bonsai%2027B%EF%BC%9A27B%20%E7%BA%A7%E6%A8%A1%E5%9E%8B%E9%A6%96%E6%AC%A1%E8%B7%91%E8%BF%9B%E6%89%8B%E6%9C%BA/index.html">
 <meta property="og:site_name" content="wallflowers">
-<meta property="og:description" content="“              27B 参数      的模型压缩到      3.9 GB      同时保留 90% 的推理能力——这扇门一旦推开，本地模型的格局就彻底改变了              —— 实测手记                    7 月 14 日，PrismML 发布了基于 Qwen3.6-27B 的 Bonsai 27B 模型，提供 1-bit 和 Ternary 两">
+<meta property="og:description" content="“      27B 参数      的模型压缩到      3.9 GB      同时保留 90% 的推理能力——这扇门一旦推开，本地模型的格局就彻底改变了         —— 实测手记             7 月 14 日，PrismML 发布了基于 Qwen3.6-27B 的 Bonsai 27B 模型，提供 1-bit 和 Ternary 两个极端量化版本。         1-b">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-07-15T06:43:00.000Z">
 <meta property="article:modified_time" content="2026-07-15T06:43:00.000Z">
@@ -262,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.8k 字
+          1.9k 字
         
       </span>
     
@@ -323,63 +323,63 @@
             
               <div class="markdown-body">
                 
-                <p>“    </p>
-<p>   </p>
-<p>     27B 参数      的模型压缩到      3.9 GB      同时保留 90% 的推理能力——这扇门一旦推开，本地模型的格局就彻底改变了    </p>
-<p>   </p>
-<p>     —— 实测手记    </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     7 月 14 日，PrismML 发布了基于 Qwen3.6-27B 的 Bonsai 27B 模型，提供 1-bit 和 Ternary 两个极端量化版本。    </p>
-<p>   </p>
-<p>     1-bit 版本仅 3.9 GB，可在 iPhone 17 Pro Max 上运行；Ternary 版本 7.2 GB，保留 95% 全精度性能，面向笔记本和台式机部署。    </p>
-<p>   </p>
-<p>     我在双 RTX 5070 Ti 上完整部署了 Ternary 版本并做了全维度实测，本文是完整的部署记录和性能评估。    </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     📌 本文看点    </p>
-<p>   </p>
-<p>     </p>
-<p>       </p>
+                <p>“    </p>
+<pre><code class="hljs"> 27B 参数      的模型压缩到      3.9 GB      同时保留 90% 的推理能力——这扇门一旦推开，本地模型的格局就彻底改变了    
+
+
+
+ —— 实测手记    
+
+
+
+
+
+
+
+ 7 月 14 日，PrismML 发布了基于 Qwen3.6-27B 的 Bonsai 27B 模型，提供 1-bit 和 Ternary 两个极端量化版本。    
+
+
+
+ 1-bit 版本仅 3.9 GB，可在 iPhone 17 Pro Max 上运行；Ternary 版本 7.2 GB，保留 95% 全精度性能，面向笔记本和台式机部署。    
+
+
+
+ 我在双 RTX 5070 Ti 上完整部署了 Ternary 版本并做了全维度实测，本文是完整的部署记录和性能评估。    
+
+
+
+
+
+
+
+ 📌 本文看点    
+
+
+
+ 
+
+   
+</code></pre>
 <p>01</p>
-<p>       </p>
 <p>极端量化实测</p>
-<p>     </p>
-<p>     </p>
-<p>       </p>
 <p>02</p>
-<p>       </p>
 <p>76 tok&#x2F;s 的 27B</p>
-<p>     </p>
-<p>     </p>
-<p>       </p>
 <p>03</p>
-<p>       </p>
 <p>262K 上下文实测</p>
-<p>     </p>
-<p>   </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>       
-   </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     </p>
-<p>       01        </p>
-<p>         </p>
-<p>           INTRO          </p>
-<p>         </p>
-<h3 id="Bonsai-27B-是什么"><a href="#Bonsai-27B-是什么" class="headerlink" title="Bonsai 27B 是什么"></a>Bonsai 27B 是什么</h3><p>       </p>
-<p>     </p>
-<p>   </p>
-<p>   </p>
-<p>     Bonsai 27B 基于阿里巴巴的 <strong>Qwen3.6-27B</strong>（Hybrid Attention 架构，约 75% Linear Attention + 25% Full Attention），PrismML 在此之上做了端到端的极端量化。两个版本的核心区别：    </p>
-<p>       </p>
-<p>                                                                                                                                                                                   </p>
+<pre><code class="hljs">   01        
+
+     
+
+       INTRO          
+
+     
+</code></pre>
+<h3 id="Bonsai-27B-是什么"><a href="#Bonsai-27B-是什么" class="headerlink" title="Bonsai 27B 是什么"></a>Bonsai 27B 是什么</h3><pre><code class="hljs"> Bonsai 27B 基于阿里巴巴的 **Qwen3.6-27B**（Hybrid Attention 架构，约 75% Linear Attention + 25% Full Attention），PrismML 在此之上做了端到端的极端量化。两个版本的核心区别：    
+
+   
+
+                                                                                                                                                                               
+</code></pre>
 <table>
 <thead>
 <tr>
@@ -429,39 +429,46 @@
 <td>笔记本&#x2F;台式机</td>
 </tr>
 </tbody></table>
-<p>   </p>
-<p>       </p>
-<p>     1-bit 版本的真正意义    </p>
-<p>   </p>
-<p>     27B 模型装在 3.9 GB 里跑在手机上——这是最令人震惊的数字。对比一下各精度体积：    </p>
-<p>   </p>
-<p>     </p>
-<p>       1        </p>
+<pre><code class="hljs"> 1-bit 版本的真正意义    
+
+
+
+ 27B 模型装在 3.9 GB 里跑在手机上——这是最令人震惊的数字。对比一下各精度体积：    
+
+
+
+ 
+
+   1        
+</code></pre>
 <p>FP16 精度：<strong>54 GB</strong>——需要数据中心级 GPU</p>
-<p>     </p>
-<p>     </p>
-<p>       2        </p>
+<pre><code class="hljs">   2        
+</code></pre>
 <p>常规 4-bit（Q4_K_XL）：<strong>17.6 GB</strong>——笔记本勉强能用，手机不可能</p>
-<p>     </p>
-<p>     </p>
-<p>       3        </p>
+<pre><code class="hljs">   3        
+</code></pre>
 <p>常规 2-bit（IQ2_XXS）：<strong>9.4 GB</strong>——但真实 bpw 是 2.8，标签虚标</p>
-<p>     </p>
-<p>     </p>
-<p>       4        </p>
+<pre><code class="hljs">   4        
+</code></pre>
 <p><strong>Bonsai 1-bit：3.9 GB</strong>——真 1.125 bpw，嵌入层到 LM Head 全部二值，没有高精度后门</p>
-<p>     </p>
-<p>   </p>
-<p>   </p>
-<p>     PrismML 特意指出了行业潜规则：很多模型标称的 「2-bit」实际平均位宽是 2.8 bpw（因为使用了高精度逃逸口）。Bonsai 的 1-bit 没有这种后门。1-bit 版本在 iPhone 17 Pro Max 上实测约 11 tok&#x2F;s，足以做交互式对话。    </p>
-<p>       </p>
-<p>     Ternary 版本的质量    </p>
-<p>   </p>
-<p>     Ternary 版本是 质量导向的选择，7.2 GB 部署体积，94.6% 的 FP16 基准性能。关键能力保留率极高：数学（GSM8K 96.06，超过 FP16 的 95.30）、编码（HumanEval+ 93.90 vs 95.12）、工具调用（BFCL v3 74.41 vs 77.10，保留率 96.5%）。    </p>
-<p>       </p>
-<p>     和当前最强竞品对比：    </p>
-<p>   </p>
-<p>                                                                                                                                                                             </p>
+<pre><code class="hljs"> PrismML 特意指出了行业潜规则：很多模型标称的 「2-bit」实际平均位宽是 2.8 bpw（因为使用了高精度逃逸口）。Bonsai 的 1-bit 没有这种后门。1-bit 版本在 iPhone 17 Pro Max 上实测约 11 tok/s，足以做交互式对话。    
+
+   
+
+ Ternary 版本的质量    
+
+
+
+ Ternary 版本是 质量导向的选择，7.2 GB 部署体积，94.6% 的 FP16 基准性能。关键能力保留率极高：数学（GSM8K 96.06，超过 FP16 的 95.30）、编码（HumanEval+ 93.90 vs 95.12）、工具调用（BFCL v3 74.41 vs 77.10，保留率 96.5%）。    
+
+   
+
+ 和当前最强竞品对比：    
+
+
+
+                                                                                                                                                                         
+</code></pre>
 <table>
 <thead>
 <tr>
@@ -508,93 +515,110 @@
 <td>89.5%</td>
 </tr>
 </tbody></table>
-<p>   </p>
-<p>   </p>
-<p>     Ternary Bonsai 以 5.9 GB 做到 80.49 分，比 IQ2_XXS 少 3.5 GB 却高 7.76 分——极端量化的收益在此刻体现得淋漓尽致。    </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>       
-   </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     </p>
-<p>       02        </p>
-<p>         </p>
-<p>           DEPLOYMENT          </p>
-<p>         </p>
-<h3 id="部署实录"><a href="#部署实录" class="headerlink" title="部署实录"></a>部署实录</h3><p>       </p>
-<p>     </p>
-<p>   </p>
-<p>   </p>
-<p>     由于 PrismML 的 Q2_0_g128 量化格式需要定制化 CUDA kernel，<strong>无法直接通过 Ollama 加载</strong>。部署过程分为编译 PrismML 的 llama.cpp 分支和运行 llama-server 两步。    </p>
-<p>   </p>
-<p>     </p>
-<p>       1        </p>
+<pre><code class="hljs"> Ternary Bonsai 以 5.9 GB 做到 80.49 分，比 IQ2_XXS 少 3.5 GB 却高 7.76 分——极端量化的收益在此刻体现得淋漓尽致。    
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+ 
+
+   02        
+
+     
+
+       DEPLOYMENT          
+
+     
+</code></pre>
+<h3 id="部署实录"><a href="#部署实录" class="headerlink" title="部署实录"></a>部署实录</h3><pre><code class="hljs"> 由于 PrismML 的 Q2_0_g128 量化格式需要定制化 CUDA kernel，**无法直接通过 Ollama 加载**。部署过程分为编译 PrismML 的 llama.cpp 分支和运行 llama-server 两步。    
+
+
+
+ 
+
+   1        
+</code></pre>
 <p><strong>编译</strong>：从 PrismML GitHub 克隆 llama.cpp 分支，启用 CUDA 后端（设置 CMAKE_CUDA_ARCHITECTURES&#x3D;89）。约 3 分钟编译 185 个 CUDA kernel 文件。</p>
-<p>     </p>
-<p>     </p>
-<p>       2        </p>
-<p><strong>GPU 绑定</strong>：llama-server 绑定到 GPU1（--main-gpu 1 –split-mode none），端口 8002，避免与 GPU0 上的 Ollama 冲突。</p>
-<p>     </p>
-<p>     </p>
-<p>       3        </p>
+<pre><code class="hljs">   2        
+</code></pre>
+<p><strong>GPU 绑定</strong>：llama-server 绑定到 GPU1（–main-gpu 1 –split-mode none），端口 8002，避免与 GPU0 上的 Ollama 冲突。</p>
+<pre><code class="hljs">   3        
+</code></pre>
 <p><strong>视觉塔</strong>：可选加载 629 MB 的 mmproj（4-bit HQQ 视觉投影层），支持图片输入。</p>
-<p>     </p>
-<p>     </p>
-<p>       4        </p>
+<pre><code class="hljs">   4        
+</code></pre>
 <p><strong>systemd 服务</strong>：开机自启，故障自动恢复。</p>
-<p>     </p>
-<p>   </p>
-<p>       </p>
-<p>     最终资源占用：    </p>
-<p>   </p>
-<p>     </p>
-<p>       </p>
+<pre><code class="hljs"> 最终资源占用：    
+
+
+
+ 
+
+   
+</code></pre>
 <p>GPU0</p>
-<p>       </p>
 <p>8.5 GB &#x2F; 16 GB</p>
-<p>       </p>
 <p>Ollama + vLLM</p>
-<p>     </p>
-<p>     </p>
-<p>       </p>
 <p>GPU1</p>
-<p>       </p>
 <p>9.5 GB &#x2F; 16 GB</p>
-<p>       </p>
 <p>Bonsai 27B Ternary</p>
-<p>     </p>
-<p>   </p>
-<p>   </p>
-<p>     GPU1 原来空着约 15.8 GB，现在只用了不到 10 GB，还有大量余量给 KV cache 和并行请求。    </p>
-<p>       </p>
-<p>     </p>
-<p>       ！踩坑提示 🕳      </p>
-<p>     </p>
-<p>       编译时若未设置 CMAKE_CUDA_ARCHITECTURES，cmake 会编译所有 CUDA arch（约 185 个 kernel 文件），耗时 15 分钟以上。限制为 sm_89（RTX 5070 Ti）后只需 3–5 分钟。      </p>
-<p>   </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>       
-   </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     </p>
-<p>       03        </p>
-<p>         </p>
-<p>           BENCHMARK          </p>
-<p>         </p>
-<h3 id="性能测评"><a href="#性能测评" class="headerlink" title="性能测评"></a>性能测评</h3><p>       </p>
-<p>     </p>
-<p>   </p>
-<p>   </p>
-<p>     以下测试均基于双 5070 Ti 上 GPU1 独占运行的 Ternary Bonsai 27B，对比同一台机器上通过 Ollama 运行的 gemma4 e4b（8B 模型，GPU0）。    </p>
-<p>       </p>
-<p>                                                                                                                                                                                                       </p>
+<pre><code class="hljs"> GPU1 原来空着约 15.8 GB，现在只用了不到 10 GB，还有大量余量给 KV cache 和并行请求。    
+
+   
+
+ 
+
+   ！踩坑提示 🕳      
+
+ 
+
+   编译时若未设置 CMAKE_CUDA_ARCHITECTURES，cmake 会编译所有 CUDA arch（约 185 个 kernel 文件），耗时 15 分钟以上。限制为 sm_89（RTX 5070 Ti）后只需 3–5 分钟。      
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+ 
+
+   03        
+
+     
+
+       BENCHMARK          
+
+     
+</code></pre>
+<h3 id="性能测评"><a href="#性能测评" class="headerlink" title="性能测评"></a>性能测评</h3><pre><code class="hljs"> 以下测试均基于双 5070 Ti 上 GPU1 独占运行的 Ternary Bonsai 27B，对比同一台机器上通过 Ollama 运行的 gemma4 e4b（8B 模型，GPU0）。    
+
+   
+
+                                                                                                                                                                                                   
+</code></pre>
 <table>
 <thead>
 <tr>
@@ -654,44 +678,56 @@
 <td>0.33s</td>
 </tr>
 </tbody></table>
-<p>   </p>
-<p>       </p>
-<p>   </p>
-<p>     — Bonsai 27B vs gemma4 e4b 性能对比（tok&#x2F;s × 首 Token 延迟）    </p>
-<p>   </p>
-<p>     Bonsai 27B 的生成速度稳定在 <strong>76–77 tok&#x2F;s</strong>，作为 27B 模型居然比 8B 的 gemma4 e4b 还快。原因清晰：Bonsai 走 GPU1 独占 + llama-server 直接 CUDA 推理，而 e4b 走 Ollama，后者有 Go 语言桥接和模型调度开销。    </p>
-<p>       </p>
-<p>     视觉识别    </p>
-<p>   </p>
-<p>     </p>
-<p>       </p>
+<pre><code class="hljs"> — Bonsai 27B vs gemma4 e4b 性能对比（tok/s × 首 Token 延迟）    
+
+
+
+ Bonsai 27B 的生成速度稳定在 **76–77 tok/s**，作为 27B 模型居然比 8B 的 gemma4 e4b 还快。原因清晰：Bonsai 走 GPU1 独占 + llama-server 直接 CUDA 推理，而 e4b 走 Ollama，后者有 Go 语言桥接和模型调度开销。    
+
+   
+
+ 视觉识别    
+
+
+
+ 
+
+   
+</code></pre>
 <p>905.3</p>
-<p>       </p>
 <p>Prefill tok&#x2F;s（含视觉）</p>
-<p>     </p>
-<p>     </p>
-<p>       </p>
 <p>0.46B</p>
-<p>       </p>
 <p>视觉塔参数量（27 blocks）</p>
-<p>     </p>
-<p>   </p>
-<p>   </p>
-<p>     Bonsai 的视觉是 「能用」级别——通过 4-bit HQQ 量化的 0.46B 参数视觉塔实现。能正确识别景物、文字等基本要素，更适合辅助性任务（识图理解文档&#x2F;截图），而非专业图像分析。    </p>
-<p>       </p>
-<p>     工具调用    </p>
-<p>   </p>
-<p>     Bonsai 27B 的官方基准在 BFCL v3 上达到 74.41（FP16 为 77.10），保留率达 96.5%——是所有能力中保留率最高的。    </p>
-<p>   </p>
-<p>     </p>
-<p>       实测：要求模型调用 get_current_time 函数查询北京时间 → 模型正确返回 get_current_time({“city”: “北京”})，参数格式完全正确，可直接对接 Hermes 等 Agent 框架。      </p>
-<p>   </p>
-<p>       </p>
-<p>     与 gemma4 e4b 的定位对比    </p>
-<p>   </p>
-<p>     需要明确：<strong>Bonsai 27B（27B 参数）和 gemma4 e4b（8B 参数）不是同一定位</strong>。直接比「谁强」不公平，以下是对比维度：    </p>
-<p>   </p>
-<p>                                                                                                                                                                         </p>
+<pre><code class="hljs"> Bonsai 的视觉是 「能用」级别——通过 4-bit HQQ 量化的 0.46B 参数视觉塔实现。能正确识别景物、文字等基本要素，更适合辅助性任务（识图理解文档/截图），而非专业图像分析。    
+
+   
+
+ 工具调用    
+
+
+
+ Bonsai 27B 的官方基准在 BFCL v3 上达到 74.41（FP16 为 77.10），保留率达 96.5%——是所有能力中保留率最高的。    
+
+
+
+ 
+
+   实测：要求模型调用 get_current_time 函数查询北京时间 → 模型正确返回 get_current_time(&#123;&quot;city&quot;: &quot;北京&quot;&#125;)，参数格式完全正确，可直接对接 Hermes 等 Agent 框架。      
+
+
+
+   
+
+ 与 gemma4 e4b 的定位对比    
+
+
+
+ 需要明确：**Bonsai 27B（27B 参数）和 gemma4 e4b（8B 参数）不是同一定位**。直接比「谁强」不公平，以下是对比维度：    
+
+
+
+                                                                                                                                                                     
+</code></pre>
 <table>
 <thead>
 <tr>
@@ -736,31 +772,43 @@
 <td>日常快速问答</td>
 </tr>
 </tbody></table>
-<p>   </p>
-<p>   </p>
-<p>     如果你日常跑的都是短文本对话，e4b 更合适。但一旦涉及长文档分析、多轮 Agentic 工作流，Bonsai 的 262K 上下文就是质变。    </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>       
-   </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     </p>
-<p>       04        </p>
-<p>         </p>
-<p>           EXPERIENCE          </p>
-<p>         </p>
-<h3 id="使用体验"><a href="#使用体验" class="headerlink" title="使用体验"></a>使用体验</h3><p>       </p>
-<p>     </p>
-<p>   </p>
-<p>       </p>
-<p>     长上下文实测    </p>
-<p>   </p>
-<p>     262K 上下文的具体含义：可以一次性输入整本小说、整个代码仓库，或者一小时会议的完整转写稿——模型从头到尾都能看到。    </p>
-<p>       </p>
-<p>                                                                                                                                           </p>
+<pre><code class="hljs"> 如果你日常跑的都是短文本对话，e4b 更合适。但一旦涉及长文档分析、多轮 Agentic 工作流，Bonsai 的 262K 上下文就是质变。    
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+ 
+
+   04        
+
+     
+
+       EXPERIENCE          
+
+     
+</code></pre>
+<h3 id="使用体验"><a href="#使用体验" class="headerlink" title="使用体验"></a>使用体验</h3><pre><code class="hljs"> 长上下文实测    
+
+
+
+ 262K 上下文的具体含义：可以一次性输入整本小说、整个代码仓库，或者一小时会议的完整转写稿——模型从头到尾都能看到。    
+
+   
+
+                                                                                                                                       
+</code></pre>
 <table>
 <thead>
 <tr>
@@ -790,49 +838,62 @@
 <td>—</td>
 </tr>
 </tbody></table>
-<p>   </p>
-<p>   </p>
-<p>     在 262K 上下文下仅需约 12.8 GB 峰值显存——我的双 5070 Ti 单卡 16 GB 都够用。这是 Hybrid Attention + 4-bit KV cache 压缩共同作用的结果。    </p>
-<p>       </p>
-<p>     DSpark 推测解码    </p>
-<p>   </p>
-<p>     Bonsai 27B 内置了一个 DSpark 推测解码 drafter，六层 block-parallel transformer，在 CUDA 路径上可实现约 1.34x–1.37x 的端到端加速。Drafter 使用 Q4_1 量化（1.95 GB 可选加载），与目标模型共享嵌入层和输出头，验证过程保持输出分布不变——drafter 精度只影响速度，不影响输出质量。目前只在 CUDA 批量推理路径上生效。    </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>       
-   </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     </p>
-<p>       ∞        </p>
-<p>         </p>
-<p>           THE END          </p>
-<p>         </p>
-<h3 id="总结与建议"><a href="#总结与建议" class="headerlink" title="总结与建议"></a>总结与建议</h3><p>       </p>
-<p>     </p>
-<p>   </p>
-<p>   </p>
-<p>     PrismML Bonsai 27B 是极端量化的里程碑。它证明了三件事：    </p>
-<p>   </p>
-<p>     </p>
-<p>       1        </p>
+<pre><code class="hljs"> 在 262K 上下文下仅需约 12.8 GB 峰值显存——我的双 5070 Ti 单卡 16 GB 都够用。这是 Hybrid Attention + 4-bit KV cache 压缩共同作用的结果。    
+
+   
+
+ DSpark 推测解码    
+
+
+
+ Bonsai 27B 内置了一个 DSpark 推测解码 drafter，六层 block-parallel transformer，在 CUDA 路径上可实现约 1.34x–1.37x 的端到端加速。Drafter 使用 Q4_1 量化（1.95 GB 可选加载），与目标模型共享嵌入层和输出头，验证过程保持输出分布不变——drafter 精度只影响速度，不影响输出质量。目前只在 CUDA 批量推理路径上生效。    
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+ 
+
+   ∞        
+
+     
+
+       THE END          
+
+     
+</code></pre>
+<h3 id="总结与建议"><a href="#总结与建议" class="headerlink" title="总结与建议"></a>总结与建议</h3><pre><code class="hljs"> PrismML Bonsai 27B 是极端量化的里程碑。它证明了三件事：    
+
+
+
+ 
+
+   1        
+</code></pre>
 <p>1-bit 权重可以承载 27B 级推理——AIME 数学 &gt;87、编码 &gt;81，知识密集型任务没有崩溃</p>
-<p>     </p>
-<p>     </p>
-<p>       2        </p>
+<pre><code class="hljs">   2        
+</code></pre>
 <p>27B 模型可以上手机——3.9 GB 部署体积在物理上可行</p>
-<p>     </p>
-<p>     </p>
-<p>       3        </p>
+<pre><code class="hljs">   3        
+</code></pre>
 <p>Agentic 能力在极端量化下保持最好——工具调用的保留率（96.5%）高于知识&#x2F;推理能力</p>
-<p>     </p>
-<p>   </p>
-<p>       </p>
-<p>     综合评分：    </p>
-<p>   </p>
-<p>                                                                                                                                                                         </p>
+<pre><code class="hljs"> 综合评分：    
+
+
+
+                                                                                                                                                                     
+</code></pre>
 <table>
 <thead>
 <tr>
@@ -877,46 +938,82 @@
 <td>技术开创性大于实用紧迫性</td>
 </tr>
 </tbody></table>
-<p>   </p>
-<p>       </p>
-<p>     本地该不该部署？    </p>
-<p>   </p>
-<p>     </p>
-<p>                          如果你的主要需求是 Agentic 工作流和长文档分析              </p>
-<p>     </p>
-<p>       → ✅ 强烈推荐，262K 上下文是质变。      </p>
-<p>   </p>
-<p>   </p>
-<p>     </p>
-<p>                          如果你的 GPU 显存充裕（≥16 GB）              </p>
-<p>     </p>
-<p>       → ✅ Ternary 版本部署简单、效果好。      </p>
-<p>   </p>
-<p>   </p>
-<p>     </p>
-<p>                          如果你只想快速问答              </p>
-<p>     </p>
-<p>       → ❌ gemma4 e4b 或类似 7–8B 模型更合适。      </p>
-<p>   </p>
-<p>   </p>
-<p>     </p>
-<p>                          如果追求手机端部署              </p>
-<p>     </p>
-<p>       → ⏳ 等 1-bit 版本通过 MLX Swift 进入主流。      </p>
-<p>   </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     </p>
-<p>       <br>       END          
-     </p>
-<p>   </p>
-<p> </p>
-<p>   </p>
-<p>   </p>
-<p>     我是 ，一个热衷于探索本地 AI 部署极致的开发者。    </p>
-<p>   </p>
-<p>     如果你觉得今天这篇有收获，欢迎      <strong>点赞、在看、转发</strong>      三连，我们下篇见。</p>
+<pre><code class="hljs"> 本地该不该部署？    
+
+
+
+ 
+
+                      如果你的主要需求是 Agentic 工作流和长文档分析              
+
+ 
+
+   → ✅ 强烈推荐，262K 上下文是质变。      
+
+
+
+
+
+ 
+
+                      如果你的 GPU 显存充裕（≥16 GB）              
+
+ 
+
+   → ✅ Ternary 版本部署简单、效果好。      
+
+
+
+
+
+ 
+
+                      如果你只想快速问答              
+
+ 
+
+   → ❌ gemma4 e4b 或类似 7–8B 模型更合适。      
+
+
+
+
+
+ 
+
+                      如果追求手机端部署              
+
+ 
+
+   → ⏳ 等 1-bit 版本通过 MLX Swift 进入主流。      
+
+
+
+
+
+
+
+
+
+ 
+
+     
+   END          
+ 
+
+
+
+
+
+
+
+
+
+ 我是 &#123;&#123;作者名&#125;&#125;，一个热衷于探索本地 AI 部署极致的开发者。    
+
+
+
+ 如果你觉得今天这篇有收获，欢迎      **点赞、在看、转发**      三连，我们下篇见。
+</code></pre>
 
                 
               </div>

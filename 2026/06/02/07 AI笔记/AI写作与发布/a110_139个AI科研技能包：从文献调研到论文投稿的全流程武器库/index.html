@@ -390,7 +390,7 @@
 <p>把上面三个模块串联成完整流程：</p>
 <p>10 个阶段，每个阶段都有自适应检查点、声明验证、Material Passport（材料护照），以及可选的跨模型完整性验证。</p>
 <h3 id="2-3-安装方式"><a href="#2-3-安装方式" class="headerlink" title="2.3 安装方式"></a>2.3 安装方式</h3><p><strong>Claude Code（推荐）：</strong></p>
-<p><code># 在 Claude Code 中   /plugin marketplace add crazymsn/academic-shcolar-skills   /plugin install academic-research-skills      # 然后运行   /ars-plan   </code></p>
+<p><code># 在 Claude Code 中   /plugin marketplace add crazymsn/academic-shcolar-skills   /plugin install academic-research-skills      # 然后运行   /ars-plan   </code></p>
 <p><strong>传统安装：</strong></p>
 <p>把四个文件夹复制到 <code>.claude/skills/</code>：</p>
 <ul>
@@ -467,9 +467,9 @@
 <li><p>引用管理、文档处理</p>
 </li>
 </ul>
-<h3 id="3-3-安装方式"><a href="#3-3-安装方式" class="headerlink" title="3.3 安装方式"></a>3.3 安装方式</h3><p><code># 预览可用技能   npx skills add crazymsn/academic-skills --list --full-depth      # 安装所有技能（Claude Code 项目级）   npx skills add crazymsn/academic-skills --skill &#39;*&#39; --agent claude-code --copy -y --full-depth      # 安装所有技能（全局）   npx skills add crazymsn/academic-skills --skill &#39;*&#39; --agent claude-code --global --copy -y --full-depth      # 安装单个技能   npx skills add crazymsn/academic-skills --skill scanpy --agent claude-code --copy -y --full-depth   </code></p>
+<h3 id="3-3-安装方式"><a href="#3-3-安装方式" class="headerlink" title="3.3 安装方式"></a>3.3 安装方式</h3><p><code># 预览可用技能   npx skills add crazymsn/academic-skills --list --full-depth      # 安装所有技能（Claude Code 项目级）   npx skills add crazymsn/academic-skills --skill &#39;*&#39; --agent claude-code --copy -y --full-depth      # 安装所有技能（全局）   npx skills add crazymsn/academic-skills --skill &#39;*&#39; --agent claude-code --global --copy -y --full-depth      # 安装单个技能   npx skills add crazymsn/academic-skills --skill scanpy --agent claude-code --copy -y --full-depth   </code></p>
 <h3 id="3-4-安全审查"><a href="#3-4-安全审查" class="headerlink" title="3.4 安全审查"></a>3.4 安全审查</h3><p>每个技能都包含 <code>SKILL.md</code> 文件，可能影响 AI Agent 的行为（运行命令、安装包、网络请求等）。项目提供了安全扫描工具：</p>
-<p><code># 安全扫描   uv pip install cisco-ai-skill-scanner   skill-scanner scan academic-skills --use-behavioral   </code></p>
+<p><code># 安全扫描   uv pip install cisco-ai-skill-scanner   skill-scanner scan academic-skills --use-behavioral   </code></p>
 <h2 id="四、两个项目的关系"><a href="#四、两个项目的关系" class="headerlink" title="四、两个项目的关系"></a>四、两个项目的关系</h2><table>
 <thead>
 <tr>

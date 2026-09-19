@@ -339,7 +339,7 @@
 <p>另一个是口径漂移。一份上百页的方案，前面写「四层架构」，后面变成「三层」；前面叫「数据元」，后面写成「数据元素」。读的人不吭声，评的人会当场指出来。</p>
 <p>这两件事听着都像文字工作，代价却很实在。域没想全，方案过了评审，实施阶段才发现还得补一套权限体系，工期和预算一起改；口径没对齐，同一份文档里前后打架，读的人就开始怀疑你懂不懂业务。</p>
 <p>两个坑都不难填，前提是手边有一份说得清的框架。这次上架的技能，就是把我平时翻来覆去用的那套框架，整理成了一个可索引的包。</p>
-<p><img src="/uploads/ai-notes/a001/ca722d1e38dd6ccf.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a001/ca722d1e38dd6ccf.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="二、七章框架"><a href="#二、七章框架" class="headerlink" title="二、七章框架"></a>二、七章框架</h2><p>技能覆盖的是规划与架构这条主线，7 章，每章解决一类问题。</p>
 <p><strong>规划总论</strong>。讲规划的价值、原则、成熟度 5 阶段、分系统划分，以及组织、技术、任务三套体系；SST、BSP、CSF、VCA、Zachman 这 5 大常用方法都在这一章。</p>
 <p>成熟度这一段值得单独说。技能给的是「打基础、提效率、做协同、强决策、构生态」这 5 个阶段，既能给组织定位，也能约束规划的野心——下一阶段只能是当前阶段的上一级，不能直接跳到理想态。写方案时这条特别有用，它直接决定任务清单该写什么、不该写什么。</p>
@@ -353,7 +353,7 @@
 <h2 id="三、速查与口径"><a href="#三、速查与口径" class="headerlink" title="三、速查与口径"></a>三、速查与口径</h2><p>框架多，用法其实不复杂：写到哪一章就翻哪一章，现场讨论就翻速查卡。</p>
 <p>速查卡是我用得最多的一份。它开篇就写明「不打术语，只给遇到 X 选 Y」，实际就是一张张决策表。</p>
 <p>比如规划方法怎么选，它给的是一棵决策树。</p>
-<p><code>要规划什么？   ├─ 承接组织战略 → IS 战略      → SST   ├─ 梳理过程/数据、防孤岛       → BSP   ├─ 资源有限、抓重点            → CSF   ├─ 找价值链增值点             → VCA   └─ 完整企业架构               → Zachman   </code></p>
+<p><code>要规划什么？   ├─ 承接组织战略 → IS 战略      → SST   ├─ 梳理过程/数据、防孤岛       → BSP   ├─ 资源有限、抓重点            → CSF   ├─ 找价值链增值点             → VCA   └─ 完整企业架构               → Zachman   </code></p>
 <p>分布式事务那张表是同样的用法：要强一致、低并发就走 XA；高吞吐、能容忍最终一致就走消息；要隔离可控、能承受侵入就用 TCC；有补偿逻辑、开发能力强就用 SAGA；想要低代码自动回滚则用 SEATA-AT。五句话，把选型会从一小时压到十分钟。</p>
 <p>再比如网络隔离强度，它排成一条阶梯：VLAN 用于部门内，VXLAN 跨大二层，VPN 或 MPLS 走远程专网，网闸是「无协议摆渡」的最强隔离。这种一句话结论，在评审现场比讲十分钟原理管用。</p>
 <p>那张云原生 5 步路线图也值得单独说：微服务加容器云、服务治理、持续交付与安全、自服务基础设施、韧性与安全。文档里特意标了「顺序敏感」——顺序错了，微服务数量一上来就会失控。</p>
@@ -361,7 +361,7 @@
 <p>术语表收录的是「教科书原名 + 一句话定义」，专门用来对齐口径：同一个词，在方案、评审、客户会上必须是一个意思。</p>
 <p>访问控制四模型也是同理：自主 DAC、角色 RBAC、规则 Rule-BAC、强制 MAC，四个词对应四种适用场景，客户会上直接报名字，不用现场从头解释。</p>
 <p>模式库放的是跨章可复用的套路，比如战略对齐三问、诊断到路线的四段式、可观测三件套、风险闭环 7 步。写方案卡住的时候，我一般先去这里翻一遍，看有没有现成的骨架可以套。</p>
-<p><img src="/uploads/ai-notes/a001/a6333aa080a39a6c.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a001/a6333aa080a39a6c.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="四、怎么调用"><a href="#四、怎么调用" class="headerlink" title="四、怎么调用"></a>四、怎么调用</h2><p>在 WorkBuddy 技能市场安装「信息系统规划核心」之后，对话里说人话就能用。它是纯知识型技能，没有脚本、没有依赖、不需要任何 Key。</p>
 <p>几个我自己真会问的句子：</p>
 <ul>
@@ -373,10 +373,10 @@
 </li>
 </ul>
 <p>技能内部的取数路径是固定的：先在 <code>SKILL.md</code> 里定位领域——它有一页 Core Frameworks 速览、一张 Chapter Index 表和一个按任务检索的 Topic Index；再按需读对应章节；跨章判断查 <code>patterns.md</code>，现场决策查 <code>cheatsheet.md</code>，术语对齐查 <code>glossary.md</code>。</p>
-<p><code>1. 在 WorkBuddy 技能市场安装「信息系统规划核心」   2. 对话里说：帮我按 7 章框架梳理这份信息化规划方案   3. 技能先读 SKILL.md 定位领域，再按需读 chapters/ch01-*.md 到 ch07-*.md   4. 跨章判断用 patterns.md，现场决策用 cheatsheet.md，术语对齐用 glossary.md   </code></p>
+<p><code>1. 在 WorkBuddy 技能市场安装「信息系统规划核心」   2. 对话里说：帮我按 7 章框架梳理这份信息化规划方案   3. 技能先读 SKILL.md 定位领域，再按需读 chapters/ch01-*.md 到 ch07-*.md   4. 跨章判断用 patterns.md，现场决策用 cheatsheet.md，术语对齐用 glossary.md   </code></p>
 <p>提问也有点小技巧：说得越具体，它给的框架越贴。说「帮我做信息化规划」，它只能给你七章骨架；说「集团总部加 5 个分支，先写网络环境规划这一章」，它给的就会细到拓扑、地址规划、VLAN 划分和网管口径。</p>
 <p>有一点值得说明：章节文件是「按需读取」，不是一次性全量加载。7 章正文加起来一万三千多字，全塞进上下文又慢又贵，用到哪章取哪章才是正确姿势。</p>
-<p><img src="/uploads/ai-notes/a001/ce6b3e4423480f2e.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a001/ce6b3e4423480f2e.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="五、边界与注意"><a href="#五、边界与注意" class="headerlink" title="五、边界与注意"></a>五、边界与注意</h2><p>这一节必须写清楚，因为它是知识型技能，边界比工具型技能更值得交代。</p>
 <p><strong>它是框架提炼，不是原文教材</strong>。技能文档里写明：本技能是对公开出版教材的知识框架提炼，提取的是结构与命名，不包含原文段落。想拿它替代教材，会失望；它的价值是把 7 章的骨架和口径摆到一张桌上。</p>
 <p><strong>标准条款要以原文为准</strong>。等保、GB&#x2F;T 这类标准，技能给的是框架和层级，比如等保五级、一个中心三重防御；具体条款、标准号、参数，文档里明确要求以最新国标和法规原文为准。</p>
@@ -471,9 +471,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a002_%E5%8F%AF%E7%A0%94%E6%8A%A5%E5%91%8A%E5%86%99%E4%BD%9C%EF%BC%9A%E9%9A%BE%E7%9A%84%E4%B8%8D%E6%98%AF%E6%96%87%E7%AC%94%EF%BC%8C%E6%98%AF%E6%A1%86%E6%9E%B6%E5%92%8C%E5%8F%A3%E5%BE%84/" title="可研报告写作：难的不是文笔，是框架和口径">
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a009_%E8%A1%8C%E6%94%BF%E5%8C%BA%E5%88%92%E8%BE%B9%E7%95%8C%EF%BC%9A%E6%88%91%E4%B8%8D%E6%83%B3%E5%86%8D%E6%89%8B%E6%89%92%E5%9C%B0%E5%9B%BE%E6%95%B0%E6%8D%AE%E4%BA%86/" title="行政区划边界：我不想再手扒地图数据了">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">可研报告写作：难的不是文笔，是框架和口径</span>
+                        <span class="hidden-mobile">行政区划边界：我不想再手扒地图数据了</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -481,8 +481,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a004_%E7%A7%91%E6%8A%80%E7%BC%96%E8%BE%91%E9%A3%8E%E6%8E%92%E7%89%88%EF%BC%9A%E6%AD%A3%E6%96%87%E6%88%91%E5%8F%AA%E7%94%A8%E7%95%99%E7%99%BD%E5%92%8C%E5%B1%82%E7%BA%A7/" title="科技编辑风排版：正文我只用留白和层级">
-                        <span class="hidden-mobile">科技编辑风排版：正文我只用留白和层级</span>
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a002_%E5%8F%AF%E7%A0%94%E6%8A%A5%E5%91%8A%E5%86%99%E4%BD%9C%EF%BC%9A%E9%9A%BE%E7%9A%84%E4%B8%8D%E6%98%AF%E6%96%87%E7%AC%94%EF%BC%8C%E6%98%AF%E6%A1%86%E6%9E%B6%E5%92%8C%E5%8F%A3%E5%BE%84/" title="可研报告写作：难的不是文笔，是框架和口径">
+                        <span class="hidden-mobile">可研报告写作：难的不是文笔，是框架和口径</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

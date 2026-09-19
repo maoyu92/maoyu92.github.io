@@ -19,12 +19,12 @@
   <meta name="keywords" content="python,eco">
   <meta name="referrer" content="no-referrer" />
   
-    <meta name="description" content="CLI 畅想：让智能体接管一切当我们谈论 AI 智能体的未来时，很多人还在纠结大模型的参数大小、推理速度、上下文窗口。大家都在往上卷模型能力，却少有人关注另一个根本问题：就算模型足够聪明，它怎么去使用这个世界上已有的成千上万的软件和服务？ 最近在 GitHub 上看到两个有趣的项目——来自香港大学数据科学实验室 HKUDS 的 CLI-Anything[1] 和开发者 jackwener 的 op">
+    <meta name="description" content="CLI 畅想：让智能体接管一切当我们谈论 AI 智能体的未来时，很多人还在纠结大模型的参数大小、推理速度、上下文窗口。大家都在往上卷模型能力，却少有人关注另一个根本问题：就算模型足够聪明，它怎么去使用这个世界上已有的成千上万的软件和服务？ 最近在 GitHub 上看到两个有趣的项目——来自香港大学数据科学实验室 HKUDS 的 CLI-Anything[1] 和开发者 jackwener 的 **">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CLI 畅想：让智能体接管一切">
 <meta property="og:url" content="https://maoyu92.github.io/2026/04/02/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a226_CLI%20%E7%95%85%E6%83%B3%EF%BC%9A%E8%AE%A9%E6%99%BA%E8%83%BD%E4%BD%93%E6%8E%A5%E7%AE%A1%E4%B8%80%E5%88%87/index.html">
 <meta property="og:site_name" content="wallflowers">
-<meta property="og:description" content="CLI 畅想：让智能体接管一切当我们谈论 AI 智能体的未来时，很多人还在纠结大模型的参数大小、推理速度、上下文窗口。大家都在往上卷模型能力，却少有人关注另一个根本问题：就算模型足够聪明，它怎么去使用这个世界上已有的成千上万的软件和服务？ 最近在 GitHub 上看到两个有趣的项目——来自香港大学数据科学实验室 HKUDS 的 CLI-Anything[1] 和开发者 jackwener 的 op">
+<meta property="og:description" content="CLI 畅想：让智能体接管一切当我们谈论 AI 智能体的未来时，很多人还在纠结大模型的参数大小、推理速度、上下文窗口。大家都在往上卷模型能力，却少有人关注另一个根本问题：就算模型足够聪明，它怎么去使用这个世界上已有的成千上万的软件和服务？ 最近在 GitHub 上看到两个有趣的项目——来自香港大学数据科学实验室 HKUDS 的 CLI-Anything[1] 和开发者 jackwener 的 **">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-04-02T09:18:00.000Z">
 <meta property="article:modified_time" content="2026-04-02T09:18:00.000Z">
@@ -324,7 +324,7 @@
               <div class="markdown-body">
                 
                 <h1 id="CLI-畅想：让智能体接管一切"><a href="#CLI-畅想：让智能体接管一切" class="headerlink" title="CLI 畅想：让智能体接管一切"></a>CLI 畅想：让智能体接管一切</h1><p>当我们谈论 AI 智能体的未来时，很多人还在纠结大模型的参数大小、推理速度、上下文窗口。大家都在往上卷模型能力，却少有人关注另一个根本问题：<strong>就算模型足够聪明，它怎么去使用这个世界上已有的成千上万的软件和服务？</strong></p>
-<p>最近在 GitHub 上看到两个有趣的项目——来自香港大学数据科学实验室 HKUDS 的 <strong>CLI-Anything[1]</strong> 和开发者 jackwener 的 <strong>opencli[2]</strong>——给这个问题指出了一个清晰而优雅的方向：让一切软件都成为标准 CLI，让智能体通过 CLI 接管整个数字世界。</p>
+<p>最近在 GitHub 上看到两个有趣的项目——来自香港大学数据科学实验室 HKUDS 的 <strong>CLI-Anything[1]</strong> 和开发者 jackwener 的 **opencli[2]**——给这个问题指出了一个清晰而优雅的方向：让一切软件都成为标准 CLI，让智能体通过 CLI 接管整个数字世界。</p>
 <p>这个想法一点都不复杂，但足够震撼。</p>
 <h2 id="两个新锐项目，同一个方向"><a href="#两个新锐项目，同一个方向" class="headerlink" title="两个新锐项目，同一个方向"></a>两个新锐项目，同一个方向</h2><h3 id="CLI-Anything：一键让所有软件-Agent-Native"><a href="#CLI-Anything：一键让所有软件-Agent-Native" class="headerlink" title="CLI-Anything：一键让所有软件 Agent-Native"></a>CLI-Anything：一键让所有软件 Agent-Native</h3><p>CLI-Anything 的核心理念非常直接：**Today’s Software Serves Humans. Tomorrow’s Users will be Agents.**（今天的软件服务人类，明天的用户将是智能体。）我们需要一座桥梁，把为人类设计的现有软件世界，无痛连接到 AI 智能体时代。</p>
 <p>它的做法堪称暴力美学：你只需要给任意一个带源码的软件跑一条命令 <code>/cli-anything &lt;软件路径或仓库地址&gt;</code>，它就能自动完成全部 7 个阶段的工作，把整个软件改造成智能体可用的 CLI：</p>

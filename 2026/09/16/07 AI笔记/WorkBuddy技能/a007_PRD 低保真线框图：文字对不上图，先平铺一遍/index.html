@@ -345,14 +345,14 @@
 <p><strong>流程分组与屏幕卡片</strong>。一个分组就是一条核心流程，组头写着流程名和它的入口、出口。组里的每张卡片是一屏，卡片头是屏幕编号、页面名称和状态标签，下面依次排着流程位置（第几屏、上一步、下一步）、黑白灰的线框主体，还有一张操作表：每一步操作会进入哪个页面或状态，都能对上 PRD 的依据章节。</p>
 <p><strong>待确认清单</strong>。文末汇总成一张表，编号、所在屏幕、问题描述、建议确认方，一列不少。</p>
 <p>整个文件零外部依赖，不引外部 CSS、JS、字体和图片，全部内联，双击离线就能打开。这一点在评审场景里很实用：不用装环境，丢进群里谁都能看。</p>
-<p><img src="/uploads/ai-notes/a007/91ce2779fcb7239b.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a007/91ce2779fcb7239b.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="三、六条铁律"><a href="#三、六条铁律" class="headerlink" title="三、六条铁律"></a>三、六条铁律</h2><p>技能文档把行为约束写成了六条铁律，其中几条直接决定了产出能不能用。</p>
 <p><strong>只做低保真，不做正式 UI</strong>。黑白灰、基础框线、图片占位块，只表达信息层级、核心文案、按钮位置和页面状态，层级靠字号和深浅区分，不靠颜色。这是刻意的：图上一旦有了颜色，讨论就会滑向「这个蓝是不是太深」，结构问题反而没人提。主按钮是深灰底白字，次按钮是白底细边框，图片占位是浅灰块加对角交叉线，翻来覆去就这几样。</p>
 <p><strong>按用户真实使用的顺序平铺</strong>。分组顺序不跟着 PRD 的章节走，而是按用户实际会走的路径：典型是首次启动或引导、注册登录、核心任务、次要功能、设置。被多个流程共用的页面只画一次，放在首次出现的流程里，别的地方写一句「→ 见 2-1」。</p>
 <p><strong>每一屏标清四要素</strong>：页面名称、它在流程里的位置、用户可以执行的操作、操作之后会进入哪个页面或状态。四样缺一个，评审就会退回到猜。</p>
 <p><strong>状态要补，但补得有依据</strong>。PRD 明确提到的状态必须全部画出来，漏一个算缺陷；PRD 没提、但明显适用的通用状态，比如异步页面的加载中，技能会补画，并在卡片角上标「通用状态」，保留还是删掉交给你评审决定。状态变体屏单独成卡，编号加后缀，2-1a 就是 2-1 的加载态。</p>
 <p><strong>不擅自加功能，说不清就标「待确认」</strong>。这是我觉得最难得的一条：宁可图上有空缺，也不替你把 PRD 没写的功能补上。含糊、矛盾、缺失的地方统一登记为待确认项，页内是琥珀色虚线标注块，卡片角上是编号 WD-01、WD-02，文末还要有汇总表，写清问题所在屏幕、问题描述，以及建议找产品、后端还是设计确认。</p>
-<p><img src="/uploads/ai-notes/a007/f3b2931ac29f8674.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a007/f3b2931ac29f8674.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="四、怎么调用"><a href="#四、怎么调用" class="headerlink" title="四、怎么调用"></a>四、怎么调用</h2><p>技能装好之后，在对话里用自然语言说就行。技能的 description 里写明了用途和触发词，提到画线框图、低保真原型、wireframe、把流程平铺出来检查，都能触发。我真实会用到的说法大概是这几种：</p>
 <ul>
 <li><p>「这是我们的 PRD，帮我把核心流程平铺成低保真线框图，重点看看哪些状态没定义」</p>
@@ -365,9 +365,9 @@
 <p>它内部走的流程大致是六步：通读 PRD 建流程清单、划分流程分组、逐屏生成线框卡片、补状态和标待确认、组装单页 HTML、自检后交付。</p>
 <p>第一步会先产出一张「流程 → 屏幕编号」矩阵，比如 1-1、1-2、2-1 这样的编号，这张矩阵就是最终 HTML 的骨架；每一屏同时记下 PRD 依据，也就是章节号或原文要点。所以你在卡片上看到「点击重试 → 回到 1-1a」时，旁边一定跟着 § 章节号，能回查。</p>
 <p>产物打开就是几条系统命令的事：</p>
-<p><code># 默认输出在项目根目录，可以按产品命名，也可以指定路径   start wireframes.html        # Windows   open  wireframes.html        # macOS   xdg-open wireframes.html     # Linux   </code></p>
+<p><code># 默认输出在项目根目录，可以按产品命名，也可以指定路径   start wireframes.html        # Windows   open  wireframes.html        # macOS   xdg-open wireframes.html     # Linux   </code></p>
 <p>交付时技能会给出三样东西：文件路径、屏数与状态数与待确认数的统计，以及待确认清单全文。这份清单不只写在文件里，回复里也会列一遍，这是文档里写明的交付约定，评审时照着推进就行。</p>
-<p><img src="/uploads/ai-notes/a007/de8cb41948492e9b.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a007/de8cb41948492e9b.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="五、边界与注意"><a href="#五、边界与注意" class="headerlink" title="五、边界与注意"></a>五、边界与注意</h2><p>先说最容易误解的一点：<strong>它不是设计稿</strong>。技能文档写得很直白，不适用高保真视觉稿、带真实交互的可点击原型和正式 UI 设计。线框图上没有配色、字号、间距和动效，按钮位置与文案只代表 PRD 里的描述，拿它做视觉验收一定跑偏。</p>
 <p><strong>它也替代不了交互设计</strong>。产出是一个静态 HTML，除了流程总览里的锚点跳转，页面本身点不动。要验证交互手感，还得靠可点击原型。</p>
 <p><strong>它是个后置工具，不是需求生成器</strong>。前提是项目里已经有成文的 PRD，PRD 写得空，出来的图就空。它做的是把已经写下的东西可视化，再把没写下的地方标出来，不会凭空替你想功能。</p>
@@ -459,9 +459,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a006_%E5%85%AC%E4%BC%97%E5%8F%B7%E5%85%A8%E6%B5%81%E7%A8%8B%E5%8F%91%E5%B8%83%EF%BC%9A%E8%B6%85%E4%B8%80%E5%AD%97%E8%8A%82%EF%BC%8C%E5%BE%AE%E4%BF%A1%E7%9B%B4%E6%8E%A5%E6%8B%92/" title="公众号全流程发布：超一字节，微信直接拒">
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a005_%E5%85%AC%E4%BC%97%E5%8F%B7%E5%B0%81%E9%9D%A2%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9A%E6%88%91%E5%8F%97%E5%A4%9F%E4%BA%86%E6%AF%8F%E6%AC%A1%E9%83%BD%E5%9C%A8%E8%B0%83%E5%AD%97%E5%8F%B7/" title="公众号封面生成器：我受够了每次都在调字号">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">公众号全流程发布：超一字节，微信直接拒</span>
+                        <span class="hidden-mobile">公众号封面生成器：我受够了每次都在调字号</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

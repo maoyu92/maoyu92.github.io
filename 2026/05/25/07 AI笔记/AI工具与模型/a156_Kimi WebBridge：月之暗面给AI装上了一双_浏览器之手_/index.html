@@ -359,7 +359,7 @@
 </tr>
 </tbody></table>
 <p>数据流向是这样的：</p>
-<p><code>AI Agent → 本地桥接服务 → Chrome DevTools Protocol → 你的 Chrome/Edge 浏览器                                       ↓                                 执行结果返回 Agent   </code></p>
+<p><code>AI Agent → 本地桥接服务 → Chrome DevTools Protocol → 你的 Chrome/Edge 浏览器                                       ↓                                 执行结果返回 Agent   </code></p>
 <p><strong>关键特性：所有操作都在本地完成。</strong> 你的登录态、Cookie、页面内容不会离开你的设备。这与 OpenAI Operator 等云端方案形成了本质差异。</p>
 <p>技术后盾是月之暗面自研的 <strong>Kimi K2.6 模型</strong>（2026 年 4 月发布），在 SWE-Bench Pro 基准测试中得分 58.6%，超越了 GPT-5.4（57.7%）和 Claude Opus 4.6（53.4%）。K2.6 支持最多 300 个并行子 Agent，是 WebBridge 处理复杂多步骤浏览器任务的基础。</p>
 <hr>
@@ -411,12 +411,12 @@
 <h2 id="五、安装配置：3-步搞定"><a href="#五、安装配置：3-步搞定" class="headerlink" title="五、安装配置：3 步搞定"></a>五、安装配置：3 步搞定</h2><h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><p>第一步：安装浏览器扩展</p>
 <p>在 Chrome 应用商店或 Edge 插件商店搜索 **”Kimi WebBridge”**，点击安装。</p>
 <p>「Chrome 应用商店安装界面示意」（可在 Chrome Web Store 搜索 “Kimi WebBridge” 找到）</p>
-<p>（如果网络访问困难，也可以手动下载安装，官方提供了离线包：<a target="_blank" rel="noopener" href="https://cdn.kimi.com/webbridge/latest/releases/%EF%BC%89/[1/]">https://cdn.kimi.com/webbridge/latest/releases/）\[1\]</a></p>
+<p>（如果网络访问困难，也可以手动下载安装，官方提供了离线包：<a target="_blank" rel="noopener" href="https://cdn.kimi.com/webbridge/latest/releases/%EF%BC%89[1]">https://cdn.kimi.com/webbridge/latest/releases/）[1]</a></p>
 <h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><p>第二步：安装本地桥接服务</p>
 <p>在终端运行：</p>
-<p><code>curl -fsSL https://kimi-web-img.moonshot.cn/webbridge/install.sh | bash   </code></p>
+<p><code>curl -fsSL https://kimi-web-img.moonshot.cn/webbridge/install.sh | bash   </code></p>
 <p>安装完成后可通过以下命令检查状态：</p>
-<p><code>kimi-webbridge status   </code></p>
+<p><code>kimi-webbridge status   </code></p>
 <h3 id="-7"><a href="#-7" class="headerlink" title=""></a></h3><p>第三步：连接你的 AI Agent</p>
 <p>以 OpenClaw 为例，直接发送：</p>
 <blockquote>
@@ -480,13 +480,21 @@
 </tbody></table>
 <p>WebBridge 的核心优势是<strong>跨越了数字身份的鸿沟</strong>——传统工具需要自己维护登录态，而 WebBridge 直接继承了你浏览器里已有的身份，让 AI 能以你的真实身份在网页世界中自主行动。</p>
 <hr>
-<h2 id="七、为什么它值得你关注"><a href="#七、为什么它值得你关注" class="headerlink" title="七、为什么它值得你关注"></a>七、为什么它值得你关注</h2><h3 id="-8"><a href="#-8" class="headerlink" title=""></a></h3><p>1. 数据隐私优先</p>
+<h2 id="七、为什么它值得你关注"><a href="#七、为什么它值得你关注" class="headerlink" title="七、为什么它值得你关注"></a>七、为什么它值得你关注</h2><h3 id="-8"><a href="#-8" class="headerlink" title=""></a></h3><ol>
+<li>数据隐私优先</li>
+</ol>
 <p>在这个 AI Agent 疯狂访问你数据的时代，本地优先是一个重要的信任信号。WebBridge 的设计确保了你的账号、Cookie、页面内容不会流经任何第三方服务器。</p>
-<h3 id="-9"><a href="#-9" class="headerlink" title=""></a></h3><p>2. 真正的”真人级”操作</p>
+<h3 id="-9"><a href="#-9" class="headerlink" title=""></a></h3><ol start="2">
+<li>真正的”真人级”操作</li>
+</ol>
 <p>与需要手动维护 Session 的传统方案不同，WebBridge 直接使用你当前的浏览器状态。对目标网站来说，这就是你本人在操作。</p>
-<h3 id="-10"><a href="#-10" class="headerlink" title=""></a></h3><p>3. 降低 AI Agent 的能力天花板</p>
+<h3 id="-10"><a href="#-10" class="headerlink" title=""></a></h3><ol start="3">
+<li>降低 AI Agent 的能力天花板</li>
+</ol>
 <p>过去 AI Agent 的能力边界止步于”无法触碰浏览器”——这限制了它在办公自动化领域的发挥空间。WebBridge 补上了这关键一环。</p>
-<h3 id="-11"><a href="#-11" class="headerlink" title=""></a></h3><p>4. 生态开放，不锁死</p>
+<h3 id="-11"><a href="#-11" class="headerlink" title=""></a></h3><ol start="4">
+<li>生态开放，不锁死</li>
+</ol>
 <p>月之暗面没有把 WebBridge 做成 Kimi 独占，而是选择支持所有主流 AI Agent。这是明智的生态策略，也让更多用户能从中受益。</p>
 <hr>
 <h2 id="八、局限性与注意事项"><a href="#八、局限性与注意事项" class="headerlink" title="八、局限性与注意事项"></a>八、局限性与注意事项</h2><ul>
@@ -505,7 +513,7 @@
 <p>当 AI 能像你一样操作浏览器的那一刻，办公自动化的边界正在被重新定义。</p>
 <p><strong>如果你也在用 AI Agent 办公，强烈建议去体验一下 Kimi WebBridge。</strong> 你会发现，AI 辅助办公的体验直接跃升好几个档次。</p>
 <hr>
-<p><strong>官网地址</strong>：<a target="_blank" rel="noopener" href="https://www.kimi.com/features/webbridge/[2/]">https://www.kimi.com/features/webbridge\[2\]</a><br><strong>Chrome 扩展</strong>：<a target="_blank" rel="noopener" href="https://chromewebstore.google.com/detail/kimi-webbridge/fldmhceldgbpfpkbgopacenieobmligc/[3/]">https://chromewebstore.google.com/detail/kimi-webbridge/fldmhceldgbpfpkbgopacenieobmligc\[3\]</a><br><strong>适用 Agent</strong>：Kimi Code &#x2F; Claude Code &#x2F; Cursor &#x2F; Codex &#x2F; Hermes Agent &#x2F; OpenClaw</p>
+<p><strong>官网地址</strong>：<a target="_blank" rel="noopener" href="https://www.kimi.com/features/webbridge[2]">https://www.kimi.com/features/webbridge[2]</a><br><strong>Chrome 扩展</strong>：<a target="_blank" rel="noopener" href="https://chromewebstore.google.com/detail/kimi-webbridge/fldmhceldgbpfpkbgopacenieobmligc[3]">https://chromewebstore.google.com/detail/kimi-webbridge/fldmhceldgbpfpkbgopacenieobmligc[3]</a><br><strong>适用 Agent</strong>：Kimi Code &#x2F; Claude Code &#x2F; Cursor &#x2F; Codex &#x2F; Hermes Agent &#x2F; OpenClaw</p>
 <blockquote>
 <p>“</p>
 <p>本文使用 Kimi WebBridge 相关素材编写。如果你也想让 AI 真正”动手”为你工作，欢迎体验这款插件。</p>

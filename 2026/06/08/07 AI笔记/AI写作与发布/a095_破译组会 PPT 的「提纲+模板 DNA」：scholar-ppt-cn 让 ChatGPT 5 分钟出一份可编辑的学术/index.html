@@ -357,7 +357,7 @@
 </ul>
 <p>scholar-ppt-cn 正是为了解决这一组问题而生的。</p>
 <h2 id="二、它提出了一个关键概念：模板-DNA"><a href="#二、它提出了一个关键概念：模板-DNA" class="headerlink" title="二、它提出了一个关键概念：模板 DNA"></a>二、它提出了一个关键概念：模板 DNA</h2><p>scholar-ppt-cn 在文档中反复强调 4 句话，<strong>请把它们刻进脑子里</strong>：</p>
-<p><code>提纲决定讲述顺序；   详细版式库决定页面结构；   模板 DNA 决定视觉风格；   image model 或 Python 负责生成。   </code></p>
+<p><code>提纲决定讲述顺序；   详细版式库决定页面结构；   模板 DNA 决定视觉风格；   image model 或 Python 负责生成。   </code></p>
 <p>最后一句是”工具”，前三句是”方法论”。这是它和所有”AI 一键生成 PPT”工具的最大区别。</p>
 <p><img src="/images/94884bec34ffcbc4.png" srcset="/img/loading.gif" lazyload alt="模板 DNA：把「风格」从玄学变成参数" title="模板 DNA：把「风格」从玄学变成参数"></p>
 <p><strong>模板 DNA 是什么？</strong> 它是一个 PPT 文件里那些”抽象出来还能用”的元素：</p>
@@ -413,7 +413,7 @@
 <p><strong>家族 vs variant 的关系</strong>：家族是”视觉系统单位”，variant 是”具体版式选项”。两者都不是死板模板，可以根据内容灵活调整。</p>
 <p><strong>为什么需要这一步？</strong> 没有它，AI 生成的 PPT 经常<strong>前 5 页是左图右文、后 5 页变成上图下文、最后几页又变成纯文字</strong>——视觉系统是碎的。</p>
 <h3 id="3-3-第-3-步：Image-Model-样板页（路线-A）"><a href="#3-3-第-3-步：Image-Model-样板页（路线-A）" class="headerlink" title="3.3 第 3 步：Image Model 样板页（路线 A）"></a>3.3 第 3 步：Image Model 样板页（路线 A）</h3><p>如果你想让 AI 先给你看几张”风格样张”，就走这条路线：</p>
-<p><code>规划表 → Mockup family + variants 蓝图 → 模板 DNA         → 图像模型生成 full-slide mockup variants         → 用户确认         → 锁定视觉系统         → mockup 派生 archetype         → 可编辑 PPTX 重建   </code></p>
+<p><code>规划表 → Mockup family + variants 蓝图 → 模板 DNA         → 图像模型生成 full-slide mockup variants         → 用户确认         → 锁定视觉系统         → mockup 派生 archetype         → 可编辑 PPTX 重建   </code></p>
 <p><strong>关键规则</strong>：</p>
 <ul>
 <li><p>每次先生成 1-2 张 pilot 测试视觉系统</p>
@@ -431,7 +431,7 @@
 </ul>
 <p><strong>注意：路线 A 的产物是”高完成度视觉稿”，不是可编辑 PPT</strong>。文字、图形、装饰元素不能像原生 PPT 一样逐项编辑——这是 image-first 路线本身的限制。</p>
 <h3 id="3-4-第-4-步：可编辑-PPTX-重建（路线-B）"><a href="#3-4-第-4-步：可编辑-PPTX-重建（路线-B）" class="headerlink" title="3.4 第 4 步：可编辑 PPTX 重建（路线 B）"></a>3.4 第 4 步：可编辑 PPTX 重建（路线 B）</h3><p>如果你想跳过图像生成、直接出可编辑 PPT，走这条路线：</p>
-<p><code>规划表 → Mockup family + variants 蓝图 → 模板 DNA         → 详细版式 archetype 库         → 模板 DNA 参数化         → 可编辑 PPTX         → QA   </code></p>
+<p><code>规划表 → Mockup family + variants 蓝图 → 模板 DNA         → 详细版式 archetype 库         → 模板 DNA 参数化         → 可编辑 PPTX         → QA   </code></p>
 <p><strong>路线 B 必备</strong>：模板 DNA + 详细版式 archetype 库。光有 DNA 不够，必须有 archetype。</p>
 <p>这条路线的产物是<strong>完全可编辑的 PPTX</strong>，文字、形状、图表都能二次修改，更适合学术场景（毕竟要插公式、改 Figure）。</p>
 <h3 id="3-5-第-5-步：Montage-QA"><a href="#3-5-第-5-步：Montage-QA" class="headerlink" title="3.5 第 5 步：Montage QA"></a>3.5 第 5 步：Montage QA</h3><p>最后一步把所有页拼起来做”对比蒙太奇”质量检查：</p>
@@ -450,13 +450,13 @@
 <p><strong>注意</strong>：QA 必须诚实。如果在 ChatGPT 环境下没有渲染工具，<strong>不要假装做了检查</strong>，要明确说”哪些本地 QA 步骤还需要导出后再做”。</p>
 <h2 id="四、它支持-4-类叙事场景"><a href="#四、它支持-4-类叙事场景" class="headerlink" title="四、它支持 4 类叙事场景"></a>四、它支持 4 类叙事场景</h2><p>scholar-ppt-cn 预设了 4 类 hidden narrative presets（叙事预设），你只要告诉它”做文献汇报 &#x2F; 答辩 &#x2F; 组会 &#x2F; 课程”，它会自动套对应结构：</p>
 <h3 id="4-1-文献汇报-Journal-Club"><a href="#4-1-文献汇报-Journal-Club" class="headerlink" title="4.1 文献汇报 &#x2F; Journal Club"></a>4.1 文献汇报 &#x2F; Journal Club</h3><p>默认叙事顺序（10-15 分钟约 14-18 页，复杂论文 18-24 页）：</p>
-<p><code>封面 → 报告地图/概述 → 背景/引言 → 研究空白/问题        → 目标/贡献 → 研究区/材料/数据/方法 → 结果/证据链        → 讨论/机制/解读 → 结论 → 致谢   </code></p>
+<p><code>封面 → 报告地图/概述 → 背景/引言 → 研究空白/问题        → 目标/贡献 → 研究区/材料/数据/方法 → 结果/证据链        → 讨论/机制/解读 → 结论 → 致谢   </code></p>
 <h3 id="4-2-学位答辩"><a href="#4-2-学位答辩" class="headerlink" title="4.2 学位答辩"></a>4.2 学位答辩</h3><p>默认叙事顺序：</p>
-<p><code>封面 → 提纲 → 背景与意义 → 研究现状        → 研究空白/科学/实践问题 → 目标/内容/贡献        → 技术路线/数据/方法/工作量 → 主要章节/主要结果        → 综合讨论/机制/系统视角 → 结论与展望 → 致谢   </code></p>
+<p><code>封面 → 提纲 → 背景与意义 → 研究现状        → 研究空白/科学/实践问题 → 目标/内容/贡献        → 技术路线/数据/方法/工作量 → 主要章节/主要结果        → 综合讨论/机制/系统视角 → 结论与展望 → 致谢   </code></p>
 <h3 id="4-3-课题组会"><a href="#4-3-课题组会" class="headerlink" title="4.3 课题组会"></a>4.3 课题组会</h3><p>默认叙事顺序（更轻量）：</p>
-<p><code>封面 → 进展概览 → 研究问题/目标 → 已完成工作        → 关键结果 → 当前问题 → 下一步计划 → 讨论/所需帮助   </code></p>
+<p><code>封面 → 进展概览 → 研究问题/目标 → 已完成工作        → 关键结果 → 当前问题 → 下一步计划 → 讨论/所需帮助   </code></p>
 <h3 id="4-4-通用课程-主题汇报"><a href="#4-4-通用课程-主题汇报" class="headerlink" title="4.4 通用课程&#x2F;主题汇报"></a>4.4 通用课程&#x2F;主题汇报</h3><p>最简结构：</p>
-<p><code>封面 → 背景 → 问题 → 主体 1 → 主体 2 → 主体 3 → 小结   </code></p>
+<p><code>封面 → 背景 → 问题 → 主体 1 → 主体 2 → 主体 3 → 小结   </code></p>
 <p><strong>关键设计</strong>：如果用户<strong>明确给了提纲或目录</strong>，以用户给的为准，不套预设。</p>
 <h2 id="五、和同类工具的差异"><a href="#五、和同类工具的差异" class="headerlink" title="五、和同类工具的差异"></a>五、和同类工具的差异</h2><p>我把市面上主流的 AI 学术 PPT 工具拉了个横评（截至 2026-06-08）：</p>
 <table>
@@ -574,10 +574,10 @@
 <li><p><strong>Mockup family + variants</strong>：在家族稳定性和变化自由度之间找到平衡，既不会千篇一律，也不会视觉系统碎裂</p>
 </li>
 </ol>
-<h2 id="六、5-分钟上手指南"><a href="#六、5-分钟上手指南" class="headerlink" title="六、5 分钟上手指南"></a>六、5 分钟上手指南</h2><h3 id="6-1-安装（Codex-CLI）"><a href="#6-1-安装（Codex-CLI）" class="headerlink" title="6.1 安装（Codex CLI）"></a>6.1 安装（Codex CLI）</h3><p><code># 1. 克隆仓库   git clone https://github.com/deathcats4/scholar-ppt-cn.git      # 2. 复制 skill 到 Codex skills 目录   cp -r scholar-ppt-cn ~/.codex/skills/scholar-ppt-cn      # 3. 重启 Codex   codex   </code></p>
-<h3 id="6-2-安装（Claude-Code）"><a href="#6-2-安装（Claude-Code）" class="headerlink" title="6.2 安装（Claude Code）"></a>6.2 安装（Claude Code）</h3><p><code>git clone https://github.com/deathcats4/scholar-ppt-cn.git   cp -r scholar-ppt-cn ~/.claude/skills/scholar-ppt-cn   </code></p>
+<h2 id="六、5-分钟上手指南"><a href="#六、5-分钟上手指南" class="headerlink" title="六、5 分钟上手指南"></a>六、5 分钟上手指南</h2><h3 id="6-1-安装（Codex-CLI）"><a href="#6-1-安装（Codex-CLI）" class="headerlink" title="6.1 安装（Codex CLI）"></a>6.1 安装（Codex CLI）</h3><p><code># 1. 克隆仓库   git clone https://github.com/deathcats4/scholar-ppt-cn.git      # 2. 复制 skill 到 Codex skills 目录   cp -r scholar-ppt-cn ~/.codex/skills/scholar-ppt-cn      # 3. 重启 Codex   codex   </code></p>
+<h3 id="6-2-安装（Claude-Code）"><a href="#6-2-安装（Claude-Code）" class="headerlink" title="6.2 安装（Claude Code）"></a>6.2 安装（Claude Code）</h3><p><code>git clone https://github.com/deathcats4/scholar-ppt-cn.git   cp -r scholar-ppt-cn ~/.claude/skills/scholar-ppt-cn   </code></p>
 <h3 id="6-3-第一份组会-PPT"><a href="#6-3-第一份组会-PPT" class="headerlink" title="6.3 第一份组会 PPT"></a>6.3 第一份组会 PPT</h3><p>最简提示词（”这页图太小，字体不对，修一下”是其中一种常用语）：</p>
-<p><code>&quot;参考 templates/scholar-ppt-cn-reference-template.pptx 这份模板，   我有一篇论文要做组会汇报 [附 PDF/链接/标题]，   按 scholar-ppt-cn skill 的默认流程：   1. 先做生产规划表   2. 再做 Mockup family + variants 蓝图   3. 先做 5-8 张视觉样板给我确认   4. 确认后扩展成完整可编辑 PPTX&quot;   </code></p>
+<p><code>&quot;参考 templates/scholar-ppt-cn-reference-template.pptx 这份模板，   我有一篇论文要做组会汇报 [附 PDF/链接/标题]，   按 scholar-ppt-cn skill 的默认流程：   1. 先做生产规划表   2. 再做 Mockup family + variants 蓝图   3. 先做 5-8 张视觉样板给我确认   4. 确认后扩展成完整可编辑 PPTX&quot;   </code></p>
 <h3 id="6-4-实战小技巧"><a href="#6-4-实战小技巧" class="headerlink" title="6.4 实战小技巧"></a>6.4 实战小技巧</h3><ul>
 <li><p><strong>路线 A 还是 B？</strong> 想要精美视觉走 A，想要可编辑走 B。第一次用建议走 B，更稳</p>
 </li>
@@ -644,7 +644,7 @@
 <p>[10]Anthropic 官方 pptx skill（通用对照）: <em><a target="_blank" rel="noopener" href="https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md">https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md</a></em></p>
 <p>[11]codex-ppt（image-first 对照）: <em><a target="_blank" rel="noopener" href="https://github.com/ningzimu/codex-ppt-skill">https://github.com/ningzimu/codex-ppt-skill</a></em></p>
 <p>[12]ppt-master（可编辑 PPTX 对照）: <em><a target="_blank" rel="noopener" href="https://github.com/hugohe3/ppt-master">https://github.com/hugohe3/ppt-master</a></em></p>
-<p>[13]清华大学学术 PPT 教程（PDF）: <em><a target="_blank" rel="noopener" href="http://chengqingli.com/htwrp/_c/Mima-Academic-PPT-CN.pdf">http://chengqingli.com/htwrp\_c/Mima-Academic-PPT-CN.pdf</a></em></p>
+<p>[13]清华大学学术 PPT 教程（PDF）: <em><a target="_blank" rel="noopener" href="http://chengqingli.com/htwrp_c/Mima-Academic-PPT-CN.pdf">http://chengqingli.com/htwrp_c/Mima-Academic-PPT-CN.pdf</a></em></p>
 <p>[14]37 Claude PPT Skills 横向评测（powerpoint.md）: <em><a target="_blank" rel="noopener" href="https://powerpoint.md/">https://powerpoint.md</a></em></p>
 
                 

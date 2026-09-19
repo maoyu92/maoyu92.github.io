@@ -368,17 +368,17 @@
 </li>
 </ul>
 <p>技能 description 里给的触发场景也偏后面这一类，模型调研、部署分析、工具测评的配图，默认都走左文右图。</p>
-<p><img src="/uploads/ai-notes/a005/47d1e96f60636ed1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a005/47d1e96f60636ed1.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="四、字体与配色"><a href="#四、字体与配色" class="headerlink" title="四、字体与配色"></a>四、字体与配色</h2><p><strong>字号是算出来的，不是试出来的</strong>。画布中央的安全区是 600×337 像素，主标题的宽度上限取它的 95%，也就是 570 像素。系统从 80px 开始试：量一遍单行宽度，放不下就把字号减 1 再量，直到放下为止，主标题的下限是 24px。副标题从主标题的 0.82 倍起算，范围是 22px 到比主标题小 4px。主副标题间距固定 22px，整组文字在安全区里垂直居中。</p>
 <p>有一条硬约束要说清楚：主副标题<strong>强制单行，绝不换行</strong>。因为换行会让文字块高度失控，所以它选择缩字号。这也意味着主标题不适合放长句，缩到 24px 以下就不好看了。</p>
 <p>文字还带黑色描边，主标题 3px、副标题 2px。所以叠在任何底图上都还能读，这也是底图叠加模式敢把字压在中间的原因。</p>
-<p><img src="/uploads/ai-notes/a005/002fc237f5f62fb8.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a005/002fc237f5f62fb8.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p><strong>配色定成暖纸编辑风，是刻意的</strong>。背景是暖奶油纸色 <code>#F4EFE6</code>，标题是炭黑 <code>#24221F</code>，主图形是陶土橙 <code>#D97757</code>，另外留了一个柔和赭黄 <code>#C89A45</code> 只作少量强调。</p>
 <p>为什么不用深蓝渐变？因为这个技能的定位是「个人科技作者的研究手记」，不是企业宣传物料。纸色、炭黑、陶土橙是印刷物和人文编辑的语汇，放在一屏深蓝发光的科技封面里，反而更容易被认出来。所以它默认不用紫色科技渐变、不用霓虹光效、不用条纹或网格背景，也不会因为文章讲的是 AI 就自动改成深蓝紫。</p>
 <p><strong>右侧图形得说实话</strong>。它不是 AI 生图，是纯几何绘制：一个陶土橙的中心圆，加四个圆角子节点，中间用线连起来。四个子节点的图形母题是固定的四种，柱状、分层、芯片、服务；你能换的是标签文字，还有中心圆里的两三个字，中心文字会按 105 像素宽度自动缩字号。</p>
 <p>好处是确定性和可复现：同样的参数永远出同样的图，不抽卡。代价是它不理解语义，图形母题是「挑一个最接近的」，不是「为这篇文章画一个画面」。</p>
 <p>技能包里还放了一张参考图，作为默认风格的视觉基准。以后想换配色，可以对着它比一眼，避免改着改着又滑回深蓝渐变那一套。</p>
-<p><img src="/uploads/ai-notes/a005/ae0d955b6a51c3c5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a005/ae0d955b6a51c3c5.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="五、怎么调用"><a href="#五、怎么调用" class="headerlink" title="五、怎么调用"></a>五、怎么调用</h2><p>在 WorkBuddy 上，它和其他技能一样：进技能市场，点技能右上角的加号安装，然后就在对话里用自然语言调用。技能的 description 里写清了用途和触发词，AI 会据此自动触发，不需要你记函数名。</p>
 <p>可以直接这样说：</p>
 <ul>
@@ -390,8 +390,8 @@
 </li>
 </ul>
 <p>要自己接进脚本，两个入口长这样：</p>
-<p><code># 默认模式：左文右图（暖纸编辑风）   from scripts.generate_split_cover import generate_split_infographic_cover      generate_split_infographic_cover(       model_name=&quot;公众号封面生成器 v2.3&quot;,   # 左侧第一行       headline=&quot;发文不该卡在封面上&quot;,         # 左侧第二行       subtitle=&quot;三种模式 · 安全区 · 字号自动缩减&quot;,       center_label=&quot;封面&quot;,                  # 右侧中心圆的文字       diagram_labels=(&quot;尺寸&quot;, &quot;安全区&quot;, &quot;字号&quot;, &quot;风格&quot;),       output_path=&quot;./output/cover.png&quot;,   )   </code></p>
-<p><code># 居中文字 / 底图叠加   from scripts.generate_cover import generate_wechat_cover      generate_wechat_cover(       main_title=&quot;主标题一行&quot;,       sub_title=&quot;副标题一行&quot;,       output_path=&quot;./output/cover_center.png&quot;,       bg_image=&quot;/path/to/your_bg.png&quot;,  # 有底图就传这个       # bg_color=&quot;#0d1b2a&quot;,             # 或者只给一个底色   )   </code></p>
+<p><code># 默认模式：左文右图（暖纸编辑风）   from scripts.generate_split_cover import generate_split_infographic_cover      generate_split_infographic_cover(       model_name=&quot;公众号封面生成器 v2.3&quot;,   # 左侧第一行       headline=&quot;发文不该卡在封面上&quot;,         # 左侧第二行       subtitle=&quot;三种模式 · 安全区 · 字号自动缩减&quot;,       center_label=&quot;封面&quot;,                  # 右侧中心圆的文字       diagram_labels=(&quot;尺寸&quot;, &quot;安全区&quot;, &quot;字号&quot;, &quot;风格&quot;),       output_path=&quot;./output/cover.png&quot;,   )   </code></p>
+<p><code># 居中文字 / 底图叠加   from scripts.generate_cover import generate_wechat_cover      generate_wechat_cover(       main_title=&quot;主标题一行&quot;,       sub_title=&quot;副标题一行&quot;,       output_path=&quot;./output/cover_center.png&quot;,       bg_image=&quot;/path/to/your_bg.png&quot;,  # 有底图就传这个       # bg_color=&quot;#0d1b2a&quot;,             # 或者只给一个底色   )   </code></p>
 <h2 id="六、边界与注意"><a href="#六、边界与注意" class="headerlink" title="六、边界与注意"></a>六、边界与注意</h2><p><strong>它不会画图</strong>。这是最需要提前知道的一点：整张封面都是几何图形和文字画出来的，没有生成模型参与。右侧图形是按内容挑一个最接近的母题，不是生成一张画面。要 AI 配图，得换别的工具。</p>
 <p><strong>主标题要短</strong>。主副标题强制单行、绝不换行，超宽就缩字号，最小能缩到 24px。真要塞一句长标题，字会小到缩略图里看不清。</p>
 <p><strong>角标小字是写死的</strong>。左文右图模式的顶部和底部各有一行英文小字，目前不通过参数传入。它是按模型调研类文章准备的，用在其他主题上会显得不搭，这点我还没改。</p>
@@ -401,7 +401,7 @@
 <p><strong>只保证不出错，不保证好看</strong>。尺寸、安全区、字号、风格统一，这四件事它兜住；好不好看，还是你自己的事。</p>
 <p><strong>尺寸只覆盖首条封面</strong>。它按公众号首条封面的规格输出，同一次推送里其他位置要用的图，尺寸和比例都不一样，不在这个技能的范围内，别直接拿它顶。</p>
 <p>最后给一条最短路径，先跑通再改参数：</p>
-<p><code>pip install pillow   python scripts/generate_split_cover.py   # 用脚本自带的示例参数跑一张，确认字体和依赖正常   </code></p>
+<p><code>pip install pillow   python scripts/generate_split_cover.py   # 用脚本自带的示例参数跑一张，确认字体和依赖正常   </code></p>
 <p>跑通后会在当前目录生成一张示例封面，确认没问题再换成你自己的标题。</p>
 <p>我是文茂，热衷于分享 AI 工具与开发者生态观察。觉得有用欢迎点赞、在看、转发三连。</p>
 
@@ -487,9 +487,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a003_%E9%95%BF%E6%96%87%E6%9C%AC%E5%86%99%E4%BD%9C%E5%BC%95%E6%93%8E%EF%BC%9A%E5%85%88%E5%AE%9A%E5%A4%A7%E7%BA%B2%EF%BC%8C%E5%86%8D%E4%B8%80%E7%AB%A0%E4%B8%80%E7%AB%A0%E5%86%99/" title="长文本写作引擎：先定大纲，再一章一章写">
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a004_%E7%A7%91%E6%8A%80%E7%BC%96%E8%BE%91%E9%A3%8E%E6%8E%92%E7%89%88%EF%BC%9A%E6%AD%A3%E6%96%87%E6%88%91%E5%8F%AA%E7%94%A8%E7%95%99%E7%99%BD%E5%92%8C%E5%B1%82%E7%BA%A7/" title="科技编辑风排版：正文我只用留白和层级">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">长文本写作引擎：先定大纲，再一章一章写</span>
+                        <span class="hidden-mobile">科技编辑风排版：正文我只用留白和层级</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -497,8 +497,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a006_%E5%85%AC%E4%BC%97%E5%8F%B7%E5%85%A8%E6%B5%81%E7%A8%8B%E5%8F%91%E5%B8%83%EF%BC%9A%E8%B6%85%E4%B8%80%E5%AD%97%E8%8A%82%EF%BC%8C%E5%BE%AE%E4%BF%A1%E7%9B%B4%E6%8E%A5%E6%8B%92/" title="公众号全流程发布：超一字节，微信直接拒">
-                        <span class="hidden-mobile">公众号全流程发布：超一字节，微信直接拒</span>
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/WorkBuddy%E6%8A%80%E8%83%BD/a007_PRD%20%E4%BD%8E%E4%BF%9D%E7%9C%9F%E7%BA%BF%E6%A1%86%E5%9B%BE%EF%BC%9A%E6%96%87%E5%AD%97%E5%AF%B9%E4%B8%8D%E4%B8%8A%E5%9B%BE%EF%BC%8C%E5%85%88%E5%B9%B3%E9%93%BA%E4%B8%80%E9%81%8D/" title="PRD 低保真线框图：文字对不上图，先平铺一遍">
+                        <span class="hidden-mobile">PRD 低保真线框图：文字对不上图，先平铺一遍</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

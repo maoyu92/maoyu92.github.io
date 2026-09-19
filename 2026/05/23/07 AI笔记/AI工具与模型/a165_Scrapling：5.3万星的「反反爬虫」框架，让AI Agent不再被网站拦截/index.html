@@ -370,7 +370,7 @@
 <h2 id="三、核心能力拆解"><a href="#三、核心能力拆解" class="headerlink" title="三、核心能力拆解"></a>三、核心能力拆解</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>3.1 自适应元素追踪：网站改版也不怕</p>
 <p>这是 Scrapling 最「黑科技」的功能。传统爬虫的选择器是「死」的——<code>div.product-title</code> 一旦网站改名为 <code>div.item-name</code>，就废了。</p>
 <p>Scrapling 的做法完全不同：它用<strong>智能相似度算法</strong>追踪元素。即使页面结构变了，它也能根据元素的上下文、文本内容、DOM 位置等特征，自动「找到」原来那个元素。</p>
-<p><code>from scrapling.fetchers import StealthyFetcher      StealthyFetcher.adaptive = True   page = StealthyFetcher.fetch(&#39;https://example.com&#39;, headless=True)      # 第一次抓取，标记 auto_save   products = page.css(&#39;.product&#39;, auto_save=True)      # 网站改版后，用 adaptive=True 自动追踪   products = page.css(&#39;.product&#39;, adaptive=True)  # 还是能找到！   </code></p>
+<p><code>from scrapling.fetchers import StealthyFetcher      StealthyFetcher.adaptive = True   page = StealthyFetcher.fetch(&#39;https://example.com&#39;, headless=True)      # 第一次抓取，标记 auto_save   products = page.css(&#39;.product&#39;, auto_save=True)      # 网站改版后，用 adaptive=True 自动追踪   products = page.css(&#39;.product&#39;, adaptive=True)  # 还是能找到！   </code></p>
 <h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>3.2 三种获取模式，覆盖所有场景</p>
 <p>Scrapling 提供三种获取器，从轻到重：</p>
 <p><strong>Fetcher（轻量 HTTP）</strong></p>
@@ -400,10 +400,10 @@
 <li><p>适合 SPA 单页应用</p>
 </li>
 </ul>
-<p><code>from scrapling.fetchers import Fetcher, StealthyFetcher, DynamicFetcher      # 轻量级：不被拦截的普通页面   page = Fetcher.get(&#39;https://example.com&#39;)      # 隐身级：被 Cloudflare 挡住的页面   page = StealthyFetcher.fetch(&#39;https://protected-site.com&#39;, headless=True)      # 完整级：需要 JS 渲染的 SPA   page = DynamicFetcher.fetch(&#39;https://spa-app.com&#39;, headless=True, network_idle=True)   </code></p>
+<p><code>from scrapling.fetchers import Fetcher, StealthyFetcher, DynamicFetcher      # 轻量级：不被拦截的普通页面   page = Fetcher.get(&#39;https://example.com&#39;)      # 隐身级：被 Cloudflare 挡住的页面   page = StealthyFetcher.fetch(&#39;https://protected-site.com&#39;, headless=True)      # 完整级：需要 JS 渲染的 SPA   page = DynamicFetcher.fetch(&#39;https://spa-app.com&#39;, headless=True, network_idle=True)   </code></p>
 <h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>3.3 全站爬虫：Scrapy 风格 API</p>
 <p>需要爬几千几万个页面？Scrapling 内置了 Scrapy 风格的 Spider API：</p>
-<p><code>from scrapling.spiders import Spider, Response      class MySpider(Spider):       name = &quot;demo&quot;       start_urls = [&quot;https://example.com/&quot;]          async def parse(self, response: Response):           for item in response.css(&#39;.product&#39;):               yield &#123;&quot;title&quot;: item.css(&#39;h2::text&#39;).get()&#125;      MySpider().start()   </code></p>
+<p><code>from scrapling.spiders import Spider, Response      class MySpider(Spider):       name = &quot;demo&quot;       start_urls = [&quot;https://example.com/&quot;]          async def parse(self, response: Response):           for item in response.css(&#39;.product&#39;):               yield &#123;&quot;title&quot;: item.css(&#39;h2::text&#39;).get()&#125;      MySpider().start()   </code></p>
 <p>支持：</p>
 <ul>
 <li><p><strong>并发控制</strong>：可配置并发数、每域限流</p>
@@ -429,7 +429,7 @@
 </ul>
 <p>这对于 Claude Code、Cursor 等 AI 编程助手来说非常实用。</p>
 <h2 id="四、OpenClaw-集成：一行命令安装"><a href="#四、OpenClaw-集成：一行命令安装" class="headerlink" title="四、OpenClaw 集成：一行命令安装"></a>四、OpenClaw 集成：一行命令安装</h2><p>Scrapling 已经有 OpenClaw 官方技能包（<code>scrapling-scraper</code>），安装方式：</p>
-<p><code># 克隆技能仓库   git clone https://github.com/hczs/openclaw-skills.git   cd openclaw-skills      # 复制技能到 OpenClaw workspace   cp -r scrapling-scraper ~/.openclaw/workspace/skills/scrapling-scraper   </code></p>
+<p><code># 克隆技能仓库   git clone https://github.com/hczs/openclaw-skills.git   cd openclaw-skills      # 复制技能到 OpenClaw workspace   cp -r scrapling-scraper ~/.openclaw/workspace/skills/scrapling-scraper   </code></p>
 <p>安装后，对 AI Agent 说「爬这个页面」「抓取这个网站的数据」「被 Cloudflare 挡住了」，就会自动触发 Scrapling 技能。</p>
 <p>技能支持的场景：</p>
 <ul>
@@ -560,17 +560,17 @@
 <hr>
 <p><strong>🔗 相关链接</strong></p>
 <ul>
-<li><p>Scrapling GitHub：<a target="_blank" rel="noopener" href="https://github.com/D4Vinci/Scrapling/[1/]">https://github.com/D4Vinci/Scrapling\[1\]</a></p>
+<li><p>Scrapling GitHub：<a target="_blank" rel="noopener" href="https://github.com/D4Vinci/Scrapling[1]">https://github.com/D4Vinci/Scrapling[1]</a></p>
 </li>
-<li><p>官方文档：<a target="_blank" rel="noopener" href="https://scrapling.readthedocs.io/[2/]">https://scrapling.readthedocs.io\[2\]</a></p>
+<li><p>官方文档：<a href="https://scrapling.readthedocs.io[2]">https://scrapling.readthedocs.io[2]</a></p>
 </li>
-<li><p>OpenClaw 技能包：<a target="_blank" rel="noopener" href="https://github.com/hczs/openclaw-skills/[3/]">https://github.com/hczs/openclaw-skills\[3\]</a></p>
+<li><p>OpenClaw 技能包：<a target="_blank" rel="noopener" href="https://github.com/hczs/openclaw-skills[3]">https://github.com/hczs/openclaw-skills[3]</a></p>
 </li>
-<li><p>PyPI：<a target="_blank" rel="noopener" href="https://pypi.org/project/Scrapling//[4/]">https://pypi.org/project/Scrapling/\[4\]</a></p>
+<li><p>PyPI：<a target="_blank" rel="noopener" href="https://pypi.org/project/Scrapling/[4]">https://pypi.org/project/Scrapling/[4]</a></p>
 </li>
-<li><p>MCP Server 文档：<a target="_blank" rel="noopener" href="https://scrapling.readthedocs.io/en/latest/ai/mcp-server.html/[5/]">https://scrapling.readthedocs.io/en/latest/ai/mcp-server.html\[5\]</a></p>
+<li><p>MCP Server 文档：<a target="_blank" rel="noopener" href="https://scrapling.readthedocs.io/en/latest/ai/mcp-server.html[5]">https://scrapling.readthedocs.io/en/latest/ai/mcp-server.html[5]</a></p>
 </li>
-<li><p>Docker 镜像：<a target="_blank" rel="noopener" href="https://github.com/D4Vinci/Scrapling/pkgs/container/scrapling/[6/]">https://github.com/D4Vinci/Scrapling/pkgs/container/scrapling\[6\]</a></p>
+<li><p>Docker 镜像：<a target="_blank" rel="noopener" href="https://github.com/D4Vinci/Scrapling/pkgs/container/scrapling[6]">https://github.com/D4Vinci/Scrapling/pkgs/container/scrapling[6]</a></p>
 </li>
 </ul>
 <h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><p>引用链接</p>

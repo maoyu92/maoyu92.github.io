@@ -339,32 +339,32 @@
 <h2 id="为什么需要-DropIt？"><a href="#为什么需要-DropIt？" class="headerlink" title="为什么需要 DropIt？"></a>为什么需要 DropIt？</h2><p>在快节奏的工作和生活中，我们的电脑桌面、下载文件夹常常会变得一团糟，各种文件堆积如山，找起来费时费力。你是否也曾为这些数字“垃圾”感到头疼？我一直在寻找一款高效的文件整理工具，直到最近，我“挖”到了一款虽然有些年头，但依然强大且实用的软件-&gt;<strong>DropIt</strong>。</p>
 <p>DropIt 以其极致简洁的界面和强大的自动化能力征服了我。它能帮你轻松实现文件的批量移动、复制和智能归类，让你的数字生活井井有条。虽然它的官方文档是英文的，初次上手可能有些门槛，但别担心，本文将手把手带你快速掌握这款文件整理神器，让你的桌面重回清爽！</p>
 <h2 id="初识-DropIt"><a href="#初识-DropIt" class="headerlink" title="初识 DropIt"></a>初识 DropIt</h2><p>下载并安装 DropIt 后（你可以从 <a target="_blank" rel="noopener" href="https://www.dropitproject.com/download">DropIt官网下载</a> 或通过 <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/dropit/">SourceForge下载</a>），你会发现它非常轻巧。运行后，桌面会出现一个醒目的向下箭头图标，就像这样：</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111214330552.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111214330552.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>这个小小的箭头就是 DropIt 的核心操作区域。你可以将文件或文件夹直接拖拽到它上面，DropIt 就会根据你预设的规则进行处理。双击图标，它会乖巧地缩小到任务栏，不占用桌面空间。</p>
 <p>右键点击这个图标，你会看到 DropIt 的各项功能和配置选项。其中，<strong>“协议”（Profiles）</strong>和<strong>“规则”（Rules）</strong>是 DropIt 最强大的地方，它们能帮助你实现文件的快速批量移动、复制和智能归类。虽然 DropIt 还提供了一些如图片墙、清单等小功能，但对我而言，文件自动归类才是最核心的需求，本文也将重点围绕这一功能展开。</p>
 <p>DropIt 的强大之处在于其高度可定制的“协议”和“规则”。通过简单的配置，你就能让它成为你专属的文件整理专家。</p>
 <h3 id="图标与协议"><a href="#图标与协议" class="headerlink" title="图标与协议"></a>图标与协议</h3><p>想要让你的 DropIt 更具个性？你可以轻松更换协议的图标。右键点击 DropIt 图标，选择“协议” -&gt; “配置协议” -&gt; “自定义”，在这里你可以选择 DropIt 自带的图标，也可以从外部导入。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111214606816.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111214606816.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>如果你想寻找更多精美的图标，<strong>阿里巴巴矢量库</strong>（<a target="_blank" rel="noopener" href="https://www.iconfont.cn/">iconfont.cn</a>）是一个非常棒的资源网站，你可以在那里找到海量免费图标，下载后导入即可使用。</p>
 <p>配置一个新的文件整理协议也非常简单。右键点击 DropIt 图标，选择“协议”，然后点击“加号”图标，就可以开始创建你的新协议了。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111215115404.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111215115404.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>每个协议都包含“名称”、“规则”和“操作”等关键设置。</p>
 <h3 id="规则与操作详解"><a href="#规则与操作详解" class="headerlink" title="规则与操作详解"></a>规则与操作详解</h3><p><strong>规则（Rules）</strong>是 DropIt 识别文件的“眼睛”。你可以通过表达式来限定文件名称、后缀名等。最简单也最常用的是根据文件后缀名进行分类移动，例如将所有 <code>.pdf</code> 文件移动到“电子书”文件夹。如果你的文件名本身就比较规范，那么 DropIt 的可玩性将大大增加。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111215709817.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111215709817.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>这里有一个非常重要的技巧：<strong>规则的优先级</strong>。在规则列表旁边，你会看到一个星号（<code>*</code>）。这个星号表示该规则将优先执行。例如，你可以设置一个针对 <code>*.docx</code> 文件的规则，再设置一个针对 <code>*.*</code>（所有文件）的通用规则。如果 <code>*.docx</code> 规则带有星号，那么所有 Word 文档都会优先进入其指定的文件夹，避免被通用规则捕获。这对于处理一些特定或不常见的后缀名文件非常有用，确保它们能被正确分类。</p>
 <p><strong>目标文件夹（Destination Folder）</strong>的设置也很有讲究。我强烈建议使用<strong>相对路径</strong>，例如填写 <code>/电子书</code>。这样，DropIt 会在当前操作目录下自动创建一个名为“电子书”的文件夹来存放文件，这使得你的协议更具通用性，无论你在哪个文件夹下使用，都能保持一致的整理逻辑。如果使用绝对路径，则协议只能在特定路径下生效。</p>
 <p><strong>操作（Actions）</strong>则定义了 DropIt 对识别到的文件执行什么动作。除了最常用的“移动”（Move），你还可以选择“复制”（Copy）、“压缩”（Compress）、“提取”（Extract）、“重命名”（Rename）等多种操作，满足你不同的文件处理需求。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111215227158.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111215227158.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h3 id="进阶技巧"><a href="#进阶技巧" class="headerlink" title="进阶技巧"></a>进阶技巧</h3><p>如果你觉得一个一个配置规则太麻烦，DropIt 还提供了一个“作弊”方法！你可以找到 DropIt 的配置文件（通常在 <code>C:\Users\你的用户名\AppData\Roaming\DropIt</code> 目录下），然后利用 AI 工具（如 ChatGPT、文心一言等）帮你生成一套复杂的规则配置代码，直接复制粘贴到配置文件中即可。这能大大节省你的时间，让你瞬间拥有一个功能强大的文件整理方案。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111214938381.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111214938381.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="DropIt-的实战应用"><a href="#DropIt-的实战应用" class="headerlink" title="DropIt 的实战应用"></a>DropIt 的实战应用</h2><p>理论知识讲完了，现在让我们通过一个实际例子来看看 DropIt 是如何大显身手的。</p>
 <p>假设你的“下载”文件夹里堆满了各种类型的文件，杂乱无章。你只需将这些文件全部选中，然后拖拽到桌面上的 DropIt 图标上。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111213251805.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111213251805.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>DropIt 会弹出一个窗口，显示即将执行的操作。点击“开始”（Start）后，你会看到文件瞬间被分类整理好，移动到各自的目标文件夹中。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111213334290.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111213350166.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111213334290.png" srcset="/img/loading.gif" lazyload alt="图"></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111213350166.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>看，是不是瞬间就整理得井井有条了？虽然有人可能会说，手动通过后缀名也能解决，但 DropIt 的魅力在于其<strong>自动化和批量处理能力</strong>。只需简单配置，就能快速整理大量文件，极大地提升了效率。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111213842991.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/20251111213842991.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="总结与思考"><a href="#总结与思考" class="headerlink" title="总结与思考"></a>总结与思考</h2><p>DropIt 无疑是一款非常实用的效率工具，尤其适用于应对长时间未整理的桌面、下载文件夹等容易“积灰”的地方。它能帮助我们快速清理混乱，让文件各归其位。</p>
 <p>然而，工具始终是辅助。最最关键的，还是我们自身要养成<strong>及时整理文件的习惯</strong>，并建立一套<strong>良好的文件归档和命名方法</strong>。DropIt 只是一个强大的起点，它能帮你迈出整理的第一步，并维持一个整洁的数字环境。</p>
 <p>希望这篇教程能帮助你快速上手 DropIt，告别桌面混乱，享受高效有序的数字生活！</p>

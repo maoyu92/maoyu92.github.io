@@ -362,29 +362,29 @@
 <p>它更像是“给工程师用的 Agent 框架”，不是“给普通用户用的 AI 编程盒子”。</p>
 <h2 id="二、安装-Pi"><a href="#二、安装-Pi" class="headerlink" title="二、安装 Pi"></a>二、安装 Pi</h2><p>Pi 以 npm 包形式发布。</p>
 <p>官方推荐安装方式：</p>
-<p><code>npm install -g --ignore-scripts @earendil-works/pi-coding-agent   </code></p>
+<p><code>npm install -g --ignore-scripts @earendil-works/pi-coding-agent   </code></p>
 <p>其中 <code>--ignore-scripts</code> 是为了禁用 npm 依赖安装时的 lifecycle scripts。Pi 正常安装不依赖这些脚本，安全性更好。</p>
 <p>Linux &#x2F; macOS 也可以使用官方安装脚本：</p>
-<p><code>curl -fsSL https://pi.dev/install.sh | sh   </code></p>
+<p><code>curl -fsSL https://pi.dev/install.sh | sh   </code></p>
 <p>安装完成后，进入项目目录：</p>
-<p><code>cd /path/to/project   pi   </code></p>
+<p><code>cd /path/to/project   pi   </code></p>
 <p>第一次启动后，可以通过 <code>/login</code> 登录订阅类模型服务，也可以通过环境变量配置 API Key。</p>
 <p>例如：</p>
-<p><code>export ANTHROPIC_API_KEY=***   pi   </code></p>
+<p><code>export ANTHROPIC_API_KEY=***   pi   </code></p>
 <p>Pi 支持的模型供应商很多，包括 Anthropic、OpenAI、Google、Azure、Bedrock、Mistral、Groq、Cerebras、xAI、Hugging Face、Kimi For Coding、MiniMax、OpenRouter、Ollama、小米 MiMo 等。</p>
 <h2 id="三、Pi-的基本使用方法"><a href="#三、Pi-的基本使用方法" class="headerlink" title="三、Pi 的基本使用方法"></a>三、Pi 的基本使用方法</h2><p>启动 Pi 后，它会进入一个终端 TUI 界面。</p>
 <p>你可以直接输入任务：</p>
-<p><code>Summarize this repository and tell me how to run its checks.   </code></p>
+<p><code>Summarize this repository and tell me how to run its checks.   </code></p>
 <p>Pi 会读取项目文件，分析仓库结构，然后给出运行方式、检查命令、可能的改动建议。</p>
 <h3 id="1-引用文件"><a href="#1-引用文件" class="headerlink" title="1. 引用文件"></a>1. 引用文件</h3><p>在输入框里输入 <code>@</code>，可以模糊搜索并引用项目文件。</p>
 <p>也可以在命令行中直接传入文件：</p>
-<p><code>pi @README.md &quot;Summarize this&quot;   pi @src/app.ts @src/app.test.ts &quot;Review these together&quot;   </code></p>
+<p><code>pi @README.md &quot;Summarize this&quot;   pi @src/app.ts @src/app.test.ts &quot;Review these together&quot;   </code></p>
 <p>这对代码审查、重构、测试分析很方便。</p>
 <h3 id="2-执行-shell-命令"><a href="#2-执行-shell-命令" class="headerlink" title="2. 执行 shell 命令"></a>2. 执行 shell 命令</h3><p>交互模式里可以用：</p>
-<p><code>!npm run lint   </code></p>
+<p><code>!npm run lint   </code></p>
 <p>命令输出会进入模型上下文，Agent 可以基于结果继续分析。</p>
 <p>如果你想执行命令，但不想把输出喂给模型，可以用：</p>
-<p><code>!!npm run lint   </code></p>
+<p><code>!!npm run lint   </code></p>
 <p>这适合一些输出很长、但只需要你自己看的命令。</p>
 <h3 id="3-切换模型"><a href="#3-切换模型" class="headerlink" title="3. 切换模型"></a>3. 切换模型</h3><p>Pi 支持运行中切换模型：</p>
 <p><code>/model   </code></p>
@@ -400,11 +400,11 @@
 <p>这点对工程使用很实用：简单任务用便宜模型，复杂重构切高推理模型。</p>
 <h3 id="4-一次性命令模式"><a href="#4-一次性命令模式" class="headerlink" title="4. 一次性命令模式"></a>4. 一次性命令模式</h3><p>Pi 不一定要进入交互界面，也可以当作命令行工具用。</p>
 <p>例如：</p>
-<p><code>pi -p &quot;Summarize this codebase&quot;   </code></p>
+<p><code>pi -p &quot;Summarize this codebase&quot;   </code></p>
 <p>管道输入：</p>
-<p><code>cat README.md | pi -p &quot;Summarize this text&quot;   </code></p>
+<p><code>cat README.md | pi -p &quot;Summarize this text&quot;   </code></p>
 <p>指定图片：</p>
-<p><code>pi -p @screenshot.png &quot;What&#39;s in this image?&quot;   </code></p>
+<p><code>pi -p @screenshot.png &quot;What&#39;s in this image?&quot;   </code></p>
 <p>这意味着 Pi 可以被嵌入 shell 脚本、CI 流水线、代码审查流程中，不只是一个 TUI 聊天工具。</p>
 <h2 id="四、项目上下文：AGENTS-md-是-Pi-的工作说明书"><a href="#四、项目上下文：AGENTS-md-是-Pi-的工作说明书" class="headerlink" title="四、项目上下文：AGENTS.md 是 Pi 的工作说明书"></a>四、项目上下文：AGENTS.md 是 Pi 的工作说明书</h2><p>Pi 会自动读取项目里的上下文文件。</p>
 <p>包括：</p>
@@ -417,7 +417,7 @@
 </li>
 </ul>
 <p>你可以在项目根目录写一个 <code>AGENTS.md</code>：</p>
-<p><code># Project Instructions      - Run `npm run check` after code changes.   - Do not run production migrations locally.   - Keep responses concise.   - Use TypeScript strict mode.   </code></p>
+<p><code># Project Instructions      - Run `npm run check` after code changes.   - Do not run production migrations locally.   - Keep responses concise.   - Use TypeScript strict mode.   </code></p>
 <p>这样 Pi 每次进入项目都会自动知道项目约定。</p>
 <p>这对长期项目非常重要。否则每次都要重新告诉 Agent：</p>
 <ul>
@@ -508,27 +508,27 @@
 <p>或者项目本地：</p>
 <p><code>.pi/extensions/   </code></p>
 <p>一个最小扩展示例：</p>
-<p><code>import type &#123; ExtensionAPI &#125; from &quot;@earendil-works/pi-coding-agent&quot;;   import &#123; Type &#125; from &quot;typebox&quot;;      export default function (pi: ExtensionAPI) &#123;     pi.on(&quot;session_start&quot;, async (_event, ctx) =&gt; &#123;       ctx.ui.notify(&quot;Extension loaded!&quot;, &quot;info&quot;);     &#125;);        pi.registerTool(&#123;       name: &quot;greet&quot;,       label: &quot;Greet&quot;,       description: &quot;Greet someone by name&quot;,       parameters: Type.Object(&#123;         name: Type.String(&#123; description: &quot;Name to greet&quot; &#125;),       &#125;),       async execute(toolCallId, params) &#123;         return &#123;           content: [&#123; type: &quot;text&quot;, text: `Hello, $&#123;params.name&#125;!` &#125;],           details: &#123;&#125;,         &#125;;       &#125;,     &#125;);        pi.registerCommand(&quot;hello&quot;, &#123;       description: &quot;Say hello&quot;,       handler: async (args, ctx) =&gt; &#123;         ctx.ui.notify(`Hello $&#123;args || &quot;world&quot;&#125;!`, &quot;info&quot;);       &#125;,     &#125;);   &#125;   </code></p>
+<p><code>import type &#123; ExtensionAPI &#125; from &quot;@earendil-works/pi-coding-agent&quot;;   import &#123; Type &#125; from &quot;typebox&quot;;      export default function (pi: ExtensionAPI) &#123;     pi.on(&quot;session_start&quot;, async (_event, ctx) =&gt; &#123;       ctx.ui.notify(&quot;Extension loaded!&quot;, &quot;info&quot;);     &#125;);        pi.registerTool(&#123;       name: &quot;greet&quot;,       label: &quot;Greet&quot;,       description: &quot;Greet someone by name&quot;,       parameters: Type.Object(&#123;         name: Type.String(&#123; description: &quot;Name to greet&quot; &#125;),       &#125;),       async execute(toolCallId, params) &#123;         return &#123;           content: [&#123; type: &quot;text&quot;, text: `Hello, $&#123;params.name&#125;!` &#125;],           details: &#123;&#125;,         &#125;;       &#125;,     &#125;);        pi.registerCommand(&quot;hello&quot;, &#123;       description: &quot;Say hello&quot;,       handler: async (args, ctx) =&gt; &#123;         ctx.ui.notify(`Hello $&#123;args || &quot;world&quot;&#125;!`, &quot;info&quot;);       &#125;,     &#125;);   &#125;   </code></p>
 <p>启动时加载：</p>
-<p><code>pi -e ./my-extension.ts   </code></p>
+<p><code>pi -e ./my-extension.ts   </code></p>
 <p>如果放在自动发现目录中，运行：</p>
 <p><code>/reload   </code></p>
 <p>就可以热重载。</p>
 <p>这就是 Pi 的核心价值：<strong>它不是只让 Agent 写业务代码，它允许 Agent 改造自己。</strong></p>
 <p>你可以对 Pi 说：</p>
-<p><code>帮我写一个 extension：所有 bash 命令里如果出现 rm -rf、sudo、docker prune，就先弹确认框。   </code></p>
+<p><code>帮我写一个 extension：所有 bash 命令里如果出现 rm -rf、sudo、docker prune，就先弹确认框。   </code></p>
 <p>Pi 可以直接给自己加一个 permission gate。</p>
 <p>或者：</p>
-<p><code>帮我写一个 extension：每次改代码前自动 git diff，改完后自动运行 npm test，并把结果放到底部状态栏。   </code></p>
+<p><code>帮我写一个 extension：每次改代码前自动 git diff，改完后自动运行 npm test，并把结果放到底部状态栏。   </code></p>
 <p>这就变成了你自己的编程工作流。</p>
 <h2 id="七、Skills：让能力按需加载"><a href="#七、Skills：让能力按需加载" class="headerlink" title="七、Skills：让能力按需加载"></a>七、Skills：让能力按需加载</h2><p>Pi 支持 Agent Skills 标准。</p>
 <p>Skill 是一个自包含能力包，通常结构如下：</p>
-<p><code>my-skill/   ├── SKILL.md   ├── scripts/   │   └── process.sh   ├── references/   │   └── api-reference.md   └── assets/       └── template.json   </code></p>
+<p><code>my-skill/   ├── SKILL.md   ├── scripts/   │   └── process.sh   ├── references/   │   └── api-reference.md   └── assets/       └── template.json   </code></p>
 <p><code>SKILL.md</code> 里写清楚技能名称、描述、使用场景、操作步骤。</p>
 <p>Pi 启动时只把 skill 的名称和描述放进上下文；当任务匹配时，再读取完整 <code>SKILL.md</code>。</p>
 <p>这叫 progressive disclosure：<strong>能力很多，但上下文不爆炸。</strong></p>
 <p>你也可以手动调用：</p>
-<p><code>/skill:brave-search   /skill:pdf-tools extract   </code></p>
+<p><code>/skill:brave-search   /skill:pdf-tools extract   </code></p>
 <p>这套机制很适合把高频流程沉淀下来，例如：</p>
 <ul>
 <li><p>PDF 处理</p>
@@ -576,24 +576,24 @@
 </li>
 </ul>
 <p>可以通过 npm 或 git 安装：</p>
-<p><code>pi install npm:@foo/pi-tools   pi install git:github.com/user/repo@v1   </code></p>
+<p><code>pi install npm:@foo/pi-tools   pi install git:github.com/user/repo@v1   </code></p>
 <p>也可以项目级安装：</p>
-<p><code>pi install -l git:github.com/team/project-pi-tools   </code></p>
+<p><code>pi install -l git:github.com/team/project-pi-tools   </code></p>
 <p>项目级 package 会写入 <code>.pi/settings.json</code>，团队成员进入项目后，Pi 可以加载同一套工作流。</p>
 <p>这意味着你可以为一个项目定制完整的 Agent 工作环境：</p>
-<p><code>.pi/   ├── settings.json   ├── extensions/   ├── skills/   ├── prompts/   └── themes/   </code></p>
+<p><code>.pi/   ├── settings.json   ├── extensions/   ├── skills/   ├── prompts/   └── themes/   </code></p>
 <p>这对团队工程化很有价值。</p>
 <p>不是每个人各自调 Prompt，而是把 Agent 能力版本化、仓库化、可审查化。</p>
 <h2 id="十、Pi-的几个妙用场景"><a href="#十、Pi-的几个妙用场景" class="headerlink" title="十、Pi 的几个妙用场景"></a>十、Pi 的几个妙用场景</h2><h3 id="1-把-Pi-当成“可改造的-Claude-Code”"><a href="#1-把-Pi-当成“可改造的-Claude-Code”" class="headerlink" title="1. 把 Pi 当成“可改造的 Claude Code”"></a>1. 把 Pi 当成“可改造的 Claude Code”</h3><p>如果只是日常写代码，可以这样用：</p>
-<p><code>cd your-project   pi   </code></p>
+<p><code>cd your-project   pi   </code></p>
 <p>然后让它：</p>
 <p><code>阅读这个项目，告诉我如何启动、如何测试、主要模块是什么。   </code></p>
 <p>再让它：</p>
-<p><code>帮我修复这个 failing test，改动前先说明原因，改动后运行测试。   </code></p>
+<p><code>帮我修复这个 failing test，改动前先说明原因，改动后运行测试。   </code></p>
 <p>这种用法和其他 coding agent 类似。</p>
 <p>但 Pi 更进一步：当你发现默认行为不顺手时，可以直接让它改自己。</p>
 <p>比如：</p>
-<p><code>以后每次修改代码前，先自动创建 git checkpoint。帮我写一个 extension。   </code></p>
+<p><code>以后每次修改代码前，先自动创建 git checkpoint。帮我写一个 extension。   </code></p>
 <p>这就是 Pi 的强项。</p>
 <h3 id="2-做“项目级-AI-工程规范”"><a href="#2-做“项目级-AI-工程规范”" class="headerlink" title="2. 做“项目级 AI 工程规范”"></a>2. 做“项目级 AI 工程规范”</h3><p>在项目根目录写：</p>
 <p><code>AGENTS.md   .pi/settings.json   .pi/prompts/   .pi/skills/   </code></p>
@@ -603,7 +603,7 @@
 <p>拿到的是同一套 Agent 行为。</p>
 <p>这比口头约定强得多。</p>
 <h3 id="3-做代码审查机器人"><a href="#3-做代码审查机器人" class="headerlink" title="3. 做代码审查机器人"></a>3. 做代码审查机器人</h3><p>用只读工具启动：</p>
-<p><code>pi --tools read,grep,find,ls -p &quot;Review this repository and identify risky code paths.&quot;   </code></p>
+<p><code>pi --tools read,grep,find,ls -p &quot;Review this repository and identify risky code paths.&quot;   </code></p>
 <p>这样 Pi 只能读，不能写，也不能跑命令。</p>
 <p>适合：</p>
 <ul>
@@ -620,14 +620,14 @@
 </ul>
 <h3 id="4-做-CI-辅助分析器"><a href="#4-做-CI-辅助分析器" class="headerlink" title="4. 做 CI 辅助分析器"></a>4. 做 CI 辅助分析器</h3><p>Pi 的 print 模式适合脚本化。</p>
 <p>例如：</p>
-<p><code>npm test 2&gt;&amp;1 | pi -p &quot;Analyze this test failure and suggest the likely fix.&quot;   </code></p>
+<p><code>npm test 2&gt;&amp;1 | pi -p &quot;Analyze this test failure and suggest the likely fix.&quot;   </code></p>
 <p>或者：</p>
-<p><code>cat build.log | pi -p &quot;Summarize this build failure in Chinese.&quot;   </code></p>
+<p><code>cat build.log | pi -p &quot;Summarize this build failure in Chinese.&quot;   </code></p>
 <p>这可以接到 CI 里，自动生成失败原因说明。</p>
 <h3 id="5-做“可分叉的技术方案实验台”"><a href="#5-做“可分叉的技术方案实验台”" class="headerlink" title="5. 做“可分叉的技术方案实验台”"></a>5. 做“可分叉的技术方案实验台”</h3><p>复杂重构时，最怕 Agent 一条路走到黑。</p>
 <p>Pi 的 <code>/tree</code> 很适合探索多个方案。</p>
 <p>例如：</p>
-<p><code>方案 A：最小改动修复。   方案 B：重构 service 层。   方案 C：引入状态机。   </code></p>
+<p><code>方案 A：最小改动修复。   方案 B：重构 service 层。   方案 C：引入状态机。   </code></p>
 <p>每个方案可以在同一个 session 树里保留。最后你可以比较差异，再决定采用哪条路径。</p>
 <p>这对架构设计、重构试验、Prompt 评估都很有用。</p>
 <h3 id="6-做团队内部-Agent-平台的原型底座"><a href="#6-做团队内部-Agent-平台的原型底座" class="headerlink" title="6. 做团队内部 Agent 平台的原型底座"></a>6. 做团队内部 Agent 平台的原型底座</h3><p>Pi 支持四种模式：</p>
@@ -726,41 +726,41 @@
 </blockquote>
 <p>这就是 Pi Coding Agent 最妙的地方。</p>
 <p>它不是一个封闭的 AI 编程工具，而是一个可以长成你自己工作流形状的 Agent Harness。</p>
-<h2 id="附：快速操作清单"><a href="#附：快速操作清单" class="headerlink" title="附：快速操作清单"></a>附：快速操作清单</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>npm install -g --ignore-scripts @earendil-works/pi-coding-agent   </code></p>
-<h3 id="进入项目"><a href="#进入项目" class="headerlink" title="进入项目"></a>进入项目</h3><p><code>cd /path/to/project   pi   </code></p>
+<h2 id="附：快速操作清单"><a href="#附：快速操作清单" class="headerlink" title="附：快速操作清单"></a>附：快速操作清单</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>npm install -g --ignore-scripts @earendil-works/pi-coding-agent   </code></p>
+<h3 id="进入项目"><a href="#进入项目" class="headerlink" title="进入项目"></a>进入项目</h3><p><code>cd /path/to/project   pi   </code></p>
 <h3 id="登录模型供应商"><a href="#登录模型供应商" class="headerlink" title="登录模型供应商"></a>登录模型供应商</h3><p><code>/login   </code></p>
 <p>或使用环境变量：</p>
-<p><code>export ANTHROPIC_API_KEY=***   pi   </code></p>
-<h3 id="引用文件"><a href="#引用文件" class="headerlink" title="引用文件"></a>引用文件</h3><p><code>pi @README.md &quot;Summarize this&quot;   </code></p>
-<h3 id="一次性任务"><a href="#一次性任务" class="headerlink" title="一次性任务"></a>一次性任务</h3><p><code>pi -p &quot;Summarize this codebase&quot;   </code></p>
-<h3 id="管道输入"><a href="#管道输入" class="headerlink" title="管道输入"></a>管道输入</h3><p><code>cat README.md | pi -p &quot;Summarize this text&quot;   </code></p>
-<h3 id="只读审查"><a href="#只读审查" class="headerlink" title="只读审查"></a>只读审查</h3><p><code>pi --tools read,grep,find,ls -p &quot;Review this repository.&quot;   </code></p>
+<p><code>export ANTHROPIC_API_KEY=***   pi   </code></p>
+<h3 id="引用文件"><a href="#引用文件" class="headerlink" title="引用文件"></a>引用文件</h3><p><code>pi @README.md &quot;Summarize this&quot;   </code></p>
+<h3 id="一次性任务"><a href="#一次性任务" class="headerlink" title="一次性任务"></a>一次性任务</h3><p><code>pi -p &quot;Summarize this codebase&quot;   </code></p>
+<h3 id="管道输入"><a href="#管道输入" class="headerlink" title="管道输入"></a>管道输入</h3><p><code>cat README.md | pi -p &quot;Summarize this text&quot;   </code></p>
+<h3 id="只读审查"><a href="#只读审查" class="headerlink" title="只读审查"></a>只读审查</h3><p><code>pi --tools read,grep,find,ls -p &quot;Review this repository.&quot;   </code></p>
 <h3 id="切换模型"><a href="#切换模型" class="headerlink" title="切换模型"></a>切换模型</h3><p><code>/model   </code></p>
-<h3 id="继续最近会话"><a href="#继续最近会话" class="headerlink" title="继续最近会话"></a>继续最近会话</h3><p><code>pi -c   </code></p>
-<h3 id="浏览历史会话"><a href="#浏览历史会话" class="headerlink" title="浏览历史会话"></a>浏览历史会话</h3><p><code>pi -r   </code></p>
+<h3 id="继续最近会话"><a href="#继续最近会话" class="headerlink" title="继续最近会话"></a>继续最近会话</h3><p><code>pi -c   </code></p>
+<h3 id="浏览历史会话"><a href="#浏览历史会话" class="headerlink" title="浏览历史会话"></a>浏览历史会话</h3><p><code>pi -r   </code></p>
 <h3 id="查看会话树"><a href="#查看会话树" class="headerlink" title="查看会话树"></a>查看会话树</h3><p><code>/tree   </code></p>
-<h3 id="导出会话"><a href="#导出会话" class="headerlink" title="导出会话"></a>导出会话</h3><p><code>/export output.html   </code></p>
-<h3 id="安装-Pi-package"><a href="#安装-Pi-package" class="headerlink" title="安装 Pi package"></a>安装 Pi package</h3><p><code>pi install npm:@foo/pi-tools   pi install git:github.com/user/repo@v1   </code></p>
+<h3 id="导出会话"><a href="#导出会话" class="headerlink" title="导出会话"></a>导出会话</h3><p><code>/export output.html   </code></p>
+<h3 id="安装-Pi-package"><a href="#安装-Pi-package" class="headerlink" title="安装 Pi package"></a>安装 Pi package</h3><p><code>pi install npm:@foo/pi-tools   pi install git:github.com/user/repo@v1   </code></p>
 <h2 id="资料来源"><a href="#资料来源" class="headerlink" title="资料来源"></a>资料来源</h2><ul>
-<li><p>Pi 官网：<a target="_blank" rel="noopener" href="https://pi.dev//[1/]">https://pi.dev/\[1\]</a></p>
+<li><p>Pi 官网：<a target="_blank" rel="noopener" href="https://pi.dev/[1]">https://pi.dev/[1]</a></p>
 </li>
-<li><p>Pi 官方文档：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/[2/]">https://pi.dev/docs/latest\[2\]</a></p>
+<li><p>Pi 官方文档：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest[2]">https://pi.dev/docs/latest[2]</a></p>
 </li>
-<li><p>Quickstart：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/quickstart/[3/]">https://pi.dev/docs/latest/quickstart\[3\]</a></p>
+<li><p>Quickstart：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/quickstart[3]">https://pi.dev/docs/latest/quickstart[3]</a></p>
 </li>
-<li><p>Using Pi：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/usage/[4/]">https://pi.dev/docs/latest/usage\[4\]</a></p>
+<li><p>Using Pi：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/usage[4]">https://pi.dev/docs/latest/usage[4]</a></p>
 </li>
-<li><p>Providers：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/providers/[5/]">https://pi.dev/docs/latest/providers\[5\]</a></p>
+<li><p>Providers：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/providers[5]">https://pi.dev/docs/latest/providers[5]</a></p>
 </li>
-<li><p>Extensions：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/extensions/[6/]">https://pi.dev/docs/latest/extensions\[6\]</a></p>
+<li><p>Extensions：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/extensions[6]">https://pi.dev/docs/latest/extensions[6]</a></p>
 </li>
-<li><p>Skills：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/skills/[7/]">https://pi.dev/docs/latest/skills\[7\]</a></p>
+<li><p>Skills：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/skills[7]">https://pi.dev/docs/latest/skills[7]</a></p>
 </li>
-<li><p>Sessions：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/sessions/[8/]">https://pi.dev/docs/latest/sessions\[8\]</a></p>
+<li><p>Sessions：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/sessions[8]">https://pi.dev/docs/latest/sessions[8]</a></p>
 </li>
-<li><p>Security：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/security/[9/]">https://pi.dev/docs/latest/security\[9\]</a></p>
+<li><p>Security：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/security[9]">https://pi.dev/docs/latest/security[9]</a></p>
 </li>
-<li><p>Packages：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/packages/[10/]">https://pi.dev/docs/latest/packages\[10\]</a></p>
+<li><p>Packages：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/packages[10]">https://pi.dev/docs/latest/packages[10]</a></p>
 </li>
 </ul>
 <h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://pi.dev/">https://pi.dev/</a></em></p>

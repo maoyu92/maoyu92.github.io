@@ -362,7 +362,7 @@
 <h3 id="可观测性"><a href="#可观测性" class="headerlink" title="可观测性"></a>可观测性</h3><p>Bifrost 原生支持 OpenTelemetry，还自带 Dashboard，不需要额外搭一套监控就能看调用量、延迟、错误率。</p>
 <h3 id="MCP-Gateway"><a href="#MCP-Gateway" class="headerlink" title="MCP Gateway"></a>MCP Gateway</h3><p>这是它和传统 LLM 网关最大的区别之一。传统网关只管模型调用，Bifrost 还试图管 Agent 工具层，把 MCP Server 的连接和权限也纳入统一治理。</p>
 <h2 id="一分钟部署：Docker-Compose-跑起来"><a href="#一分钟部署：Docker-Compose-跑起来" class="headerlink" title="一分钟部署：Docker Compose 跑起来"></a>一分钟部署：Docker Compose 跑起来</h2><p>官方给出的 Docker 部署非常直接：</p>
-<p><code>services:     bifrost:       image: maximhq/bifrost:v1.6.2       container_name: bifrost       ports:         - &quot;8080:8080&quot;       environment:         BIFROST_ADMIN_USERNAME: $&#123;BIFROST_ADMIN_USERNAME&#125;         BIFROST_ADMIN_PASSWORD: $&#123;BIFROST_ADMIN_PASSWORD&#125;       volumes:         - ./data:/app/data       restart: unless-stopped   </code></p>
+<p><code>services:     bifrost:       image: maximhq/bifrost:v1.6.2       container_name: bifrost       ports:         - &quot;8080:8080&quot;       environment:         BIFROST_ADMIN_USERNAME: $&#123;BIFROST_ADMIN_USERNAME&#125;         BIFROST_ADMIN_PASSWORD: $&#123;BIFROST_ADMIN_PASSWORD&#125;       volumes:         - ./data:/app/data       restart: unless-stopped   </code></p>
 <p>启动后，访问 <code>http://&lt;服务器地址&gt;:8080</code>，先在 Web UI 里配置供应商和 API Key，再把应用指向 Bifrost 地址即可。</p>
 <p>官方文档里还单独给了 DeepSeek 接入示例，说明国产模型兼容已经是重点场景。</p>
 <h2 id="和-LiteLLM-比，该怎么选"><a href="#和-LiteLLM-比，该怎么选" class="headerlink" title="和 LiteLLM 比，该怎么选"></a>和 LiteLLM 比，该怎么选</h2><p>并不是说 LiteLLM 不好，而是两者的设计重心不同：</p>

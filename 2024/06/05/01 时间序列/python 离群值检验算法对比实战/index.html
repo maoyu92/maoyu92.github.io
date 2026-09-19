@@ -346,9 +346,9 @@
 <h2 id="Z-Score-方法"><a href="#Z-Score-方法" class="headerlink" title="Z-Score 方法"></a>Z-Score 方法</h2><p>Z-Score 方法，也称为标准分数，是一种用于评估数据点相对于数据集平均值的标准偏差的统计方法。这种方法通过计算每个数据点与数据集平均值的偏差，然后除以数据集的标准差，来衡量每个数据点的异常程度。具体来说，Z-Score 的计算公式如下：<br>$$<br>Z &#x3D; \frac{(X - \mu)}{\sigma}<br>$$<br>其中：</p>
 <ul>
 <li>𝑍是标准分数。</li>
-<li>𝑋 是数据点的值。</li>
+<li>𝑋 是数据点的值。</li>
 <li>𝜇是数据集的平均值。</li>
-<li>𝜎 是数据集的标准差。</li>
+<li>𝜎 是数据集的标准差。</li>
 </ul>
 <p>Z-Score 的值可以用于判断数据点是否为离群值。一般来说，如果一个数据点的 Z-Score 大于 3 或小于-3，那么它就被认为是离群值。这是因为，根据正态分布的性质，大约 99.7%的数据点（在正态分布中）的 Z-Score 将落在-3 到 3 之间。因此，Z-Score 大于 3 或小于-3 的数据点可以被认为是异常值。</p>
 <p>总之，Z-Score 方法是一种简单而强大的离群值检测方法，它通过计算数据点与数据集平均值的标准偏差来衡量每个数据点的异常程度。</p>
@@ -370,11 +370,11 @@
 
 
 <p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406051147385.png" srcset="/img/loading.gif" lazyload alt="fig3. Z-Score 方法离群值可视化"></p>
-<h3 id="3σ原则"><a href="#3σ原则" class="headerlink" title="3σ原则"></a>3σ原则</h3><p>3σ原则（3 倍标准差原则）是一种用于检测数据集中离群值的经典方法。根据这个原则，如果一个数据点的值大于 𝜇+3𝜎或小于 𝜇−3𝜎（其中 𝜇是数据的平均值，𝜎 是标准差），那么这个数据点就可以被认为是离群值。可以看到 3σ原则与 Z-Score 方法 z_threshold 取 3 意义是一样的，<br>两者的异同点如下：</p>
+<h3 id="3σ原则"><a href="#3σ原则" class="headerlink" title="3σ原则"></a>3σ原则</h3><p>3σ原则（3 倍标准差原则）是一种用于检测数据集中离群值的经典方法。根据这个原则，如果一个数据点的值大于 𝜇+3𝜎或小于 𝜇−3𝜎（其中 𝜇是数据的平均值，𝜎 是标准差），那么这个数据点就可以被认为是离群值。可以看到 3σ原则与 Z-Score 方法 z_threshold 取 3 意义是一样的，<br>两者的异同点如下：</p>
 <ul>
-<li><strong>相同点：</strong> 两者都依赖于数据的均值 (𝜇) 和标准差 (𝜎)，并且都是用来识别数据中的极端值或离群点。</li>
-<li><strong>不同点：</strong> Z-Score 提供了每个数据点相对于分布中心位置的标准化度量，适用于更广泛的分析场景，包括但不限于离群值检测；而 3σ原则是一个更具体的规则，直接用来界定离群值的界限，且主要基于正态分布的特性。</li>
-<li><strong>适用性：</strong> Z-Score 方法更为灵活，可以用于理解数据点的相对位置，而 3σ原则则是一个快速且直观的筛选工具，尤其适合正态分布数据集的初步离群值识别。</li>
+<li><strong>相同点：</strong> 两者都依赖于数据的均值 (𝜇) 和标准差 (𝜎)，并且都是用来识别数据中的极端值或离群点。</li>
+<li><strong>不同点：</strong> Z-Score 提供了每个数据点相对于分布中心位置的标准化度量，适用于更广泛的分析场景，包括但不限于离群值检测；而 3σ原则是一个更具体的规则，直接用来界定离群值的界限，且主要基于正态分布的特性。</li>
+<li><strong>适用性：</strong> Z-Score 方法更为灵活，可以用于理解数据点的相对位置，而 3σ原则则是一个快速且直观的筛选工具，尤其适合正态分布数据集的初步离群值识别。</li>
 </ul>
 <p>Python 代码实现：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 加载CSV文件 </span><br>file_path = <span class="hljs-string">&#x27;/mnt/data/2024-06-05T03-18_export.csv&#x27;</span> <br>df = pd.read_csv(file_path)<br><span class="hljs-comment"># 使用双河口列的数据</span><br>data_column = <span class="hljs-string">&#x27;双河口&#x27;</span><br><span class="hljs-comment"># 计算 mean 和 std</span><br>mean = df[data_column].mean()<br>std = df[data_column].std()<br><br><span class="hljs-comment"># 应用3σ法则来检测离群值</span><br>outliers = <span class="hljs-built_in">abs</span>(df[data_column] - mean) &gt; <span class="hljs-number">3</span> * std<br><span class="hljs-comment"># 将监测时间列转换为日期时间格式</span><br>df[<span class="hljs-string">&#x27;监测时间&#x27;</span>] = pd.to_datetime(df[<span class="hljs-string">&#x27;监测时间&#x27;</span>])<br><br><span class="hljs-comment"># 重新绘制时间序列和离群值</span><br>plt.figure(figsize=(<span class="hljs-number">12</span>, <span class="hljs-number">6</span>))<br>plt.plot(df[<span class="hljs-string">&#x27;监测时间&#x27;</span>], df[data_column], label=<span class="hljs-string">&quot;时间序列&quot;</span>)<br>plt.plot(df[<span class="hljs-string">&#x27;监测时间&#x27;</span>][outliers], df[data_column][outliers], <span class="hljs-string">&#x27;ro&#x27;</span>, label=<span class="hljs-string">&quot;离群值&quot;</span>)  <span class="hljs-comment"># 离群值用红色圆圈标记</span><br>plt.axhline(mean + <span class="hljs-number">3</span> * std, color=<span class="hljs-string">&#x27;r&#x27;</span>, linestyle=<span class="hljs-string">&#x27;--&#x27;</span>, label=<span class="hljs-string">&quot;上界&quot;</span>)<br>plt.axhline(mean - <span class="hljs-number">3</span> * std, color=<span class="hljs-string">&#x27;r&#x27;</span>, linestyle=<span class="hljs-string">&#x27;--&#x27;</span>, label=<span class="hljs-string">&quot;下界&quot;</span>)<br>plt.legend()<br>plt.title(<span class="hljs-string">&quot;时间序列离群值检测&quot;</span>)<br>plt.xlabel(<span class="hljs-string">&quot;监测时间&quot;</span>)<br>plt.ylabel(<span class="hljs-string">&quot;双河口值&quot;</span>)<br>plt.tight_layout()  <span class="hljs-comment"># 调整布局</span><br>plt.show()<br><span class="hljs-comment"># 计算有多少异常值 </span><br>outliers.<span class="hljs-built_in">sum</span>()<br></code></pre></td></tr></table></figure>
@@ -384,17 +384,17 @@
 <h3 id="孤立森林法"><a href="#孤立森林法" class="headerlink" title="孤立森林法"></a>孤立森林法</h3><p>孤立森林（Isolation Forest）是一种用于检测离群值的机器学习方法，它适用于高维数据集，并且是一种无监督学习方法，不需要标签数据。但是缺点也很明显，就是配置参数较多，使用不方便。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.ensemble <span class="hljs-keyword">import</span> IsolationForest<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">detect_outliers_isolation_forest</span>(<span class="hljs-params">data_series</span>):<br>    iso_forest = IsolationForest(n_estimators=<span class="hljs-number">100</span>, random_state=<span class="hljs-number">42</span>)<br>    outliers = iso_forest.fit_predict(data_series.values.reshape(-<span class="hljs-number">1</span>, <span class="hljs-number">1</span>))<br>    <span class="hljs-keyword">return</span> data_series[outliers == -<span class="hljs-number">1</span>]<br><span class="hljs-comment"># Apply the Isolation Forest method to detect outliers in the &#x27;双河口&#x27; column</span><br>outliers_isolation_forest = detect_outliers_isolation_forest(data_sorted[<span class="hljs-string">&#x27;双河口&#x27;</span>])<br><span class="hljs-comment"># Create a boolean mask for the outliers for plotting</span><br>outliers_mask = data_sorted[<span class="hljs-string">&#x27;双河口&#x27;</span>].isin(outliers_isolation_forest)<br><span class="hljs-comment"># Plot the time series with outliers highlighted using Isolation Forest</span><br>plt.figure(figsize=(<span class="hljs-number">14</span>, <span class="hljs-number">7</span>))<br>plt.plot(data_sorted[<span class="hljs-string">&#x27;监测时间&#x27;</span>], data_sorted[<span class="hljs-string">&#x27;双河口&#x27;</span>], label=<span class="hljs-string">&#x27;双河口 Value&#x27;</span>)<br><span class="hljs-comment"># Highlight the outliers with red circles</span><br>plt.scatter(data_sorted[outliers_mask][<span class="hljs-string">&#x27;监测时间&#x27;</span>], <br>            data_sorted[outliers_mask][<span class="hljs-string">&#x27;双河口&#x27;</span>], <br>            color=<span class="hljs-string">&#x27;red&#x27;</span>, <br>            label=<span class="hljs-string">&#x27;Outliers&#x27;</span>)<br><br>plt.title(<span class="hljs-string">&#x27;双河口 Time Series with Outliers Highlighted by Isolation Forest&#x27;</span>)<br>plt.xlabel(<span class="hljs-string">&#x27;Monitoring Time&#x27;</span>)<br>plt.ylabel(<span class="hljs-string">&#x27;双河口 Value&#x27;</span>)<br>plt.legend()<br>plt.grid(<span class="hljs-literal">True</span>)<br>plt.xticks(rotation=<span class="hljs-number">45</span>)  <span class="hljs-comment"># Rotate x-axis labels for better readability</span><br>plt.tight_layout()  <span class="hljs-comment"># Adjust layout to ensure all labels are displayed</span><br><span class="hljs-comment"># Show the plot</span><br>plt.show()<br><span class="hljs-comment"># Display the outliers detected by Isolation Forest</span><br>outliers_isolation_forest<br><br></code></pre></td></tr></table></figure>
 <p>结果。<br><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202406051233465.png" srcset="/img/loading.gif" lazyload alt="fig5. 孤立森林法离群值可视化"></p>
-<p>监测到离群值的数量太多，即使修改参数也很难达到想要的效果。<br>以下是 <code>IsolationForest</code> 算法中一些重要参数的介绍：</p>
+<p>监测到离群值的数量太多，即使修改参数也很难达到想要的效果。<br>以下是 <code>IsolationForest</code> 算法中一些重要参数的介绍：</p>
 <ol>
 <li><code>n_estimators</code>:    <ul>
 <li>表示决策树的数量。</li>
-<li>增加 <code>n_estimators</code> 的值可以提高模型的稳定性，但同时可能会增加计算成本。</li>
-<li>减少 <code>n_estimators</code> 的值可能会使模型对离群值的检测更加“宽容”，从而减少检测到的离群值数量。</li>
+<li>增加 <code>n_estimators</code> 的值可以提高模型的稳定性，但同时可能会增加计算成本。</li>
+<li>减少 <code>n_estimators</code> 的值可能会使模型对离群值的检测更加“宽容”，从而减少检测到的离群值数量。</li>
 </ul>
 </li>
 <li><code>max_samples</code>:    <ul>
 <li>表示从数据集中抽取用于训练每棵决策树的最大样本数。</li>
-<li>减少 <code>max_samples</code> 的值可能会使模型对离群值的检测更加“宽容”，因为它限制了每棵树看到的数据点的数量。</li>
+<li>减少 <code>max_samples</code> 的值可能会使模型对离群值的检测更加“宽容”，因为它限制了每棵树看到的数据点的数量。</li>
 <li>默认值是‘auto’，表示每个节点都会从所有样本中随机抽取一个子样本。</li>
 </ul>
 </li>
@@ -406,7 +406,7 @@
 </li>
 <li><code>random_state</code>:    <ul>
 <li>表示随机数生成器的种子，用于确保结果的可重复性。</li>
-<li>设置 <code>random_state</code> 为一个固定的值（例如 42），可以确保每次运行模型时，生成的随机数序列是相同的。<br>在使用 <code>IsolationForest</code> 算法时，通常需要根据具体的数据集和应用场景来调整这些参数。在实际应用中，可能需要多次尝试不同的参数设置，以找到最适合特定数据集的配置。</li>
+<li>设置 <code>random_state</code> 为一个固定的值（例如 42），可以确保每次运行模型时，生成的随机数序列是相同的。<br>在使用 <code>IsolationForest</code> 算法时，通常需要根据具体的数据集和应用场景来调整这些参数。在实际应用中，可能需要多次尝试不同的参数设置，以找到最适合特定数据集的配置。</li>
 </ul>
 </li>
 </ol>

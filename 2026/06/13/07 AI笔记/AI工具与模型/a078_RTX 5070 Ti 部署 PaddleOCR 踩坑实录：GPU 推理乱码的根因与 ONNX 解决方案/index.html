@@ -326,12 +326,12 @@
                 <h1 id="RTX-5070-Ti-部署-PaddleOCR-踩坑实录"><a href="#RTX-5070-Ti-部署-PaddleOCR-踩坑实录" class="headerlink" title="RTX 5070 Ti 部署 PaddleOCR 踩坑实录"></a>RTX 5070 Ti 部署 PaddleOCR 踩坑实录</h1><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>百度飞桨 PaddleOCR 是国内最流行的开源 OCR 系统，2026年6月刚发布 PP-OCRv6，号称用千万级参数超越千亿级多模态大模型的 OCR 能力。</p>
 <p>我在本地双 5070 Ti 机器上部署 PaddleOCR，目标是提供 REST API + 前端 Demo。结果遇到了一个非常隐蔽的坑——<strong>GPU 推理正常运行，但输出全是乱码</strong>。</p>
 <h2 id="问题现象"><a href="#问题现象" class="headerlink" title="问题现象"></a>问题现象</h2><p>安装 <code>paddlepaddle-gpu 2.6.2 + paddleocr 2.9.1</code> 后，OCR 服务启动正常，GPU 识别正常，检测框也能正确找到文字区域。但识别结果却是这样的：</p>
-<p><code>输入: 百度飞桨OCR文字识别   输出: 岑博振腺扭唤爸²扭の腺²      输入: Hello World 2026   输出: leuoworia 207   </code></p>
+<p><code>输入: 百度飞桨OCR文字识别   输出: 岑博振腺扭唤爸²扭の腺²      输入: Hello World 2026   输出: leuoworia 207   </code></p>
 <p>完全乱码，但置信度全是 1.00。</p>
 <h2 id="根因分析"><a href="#根因分析" class="headerlink" title="根因分析"></a>根因分析</h2><p>经过大量排查，终于找到了根因：</p>
 <p><strong>RTX 5070 Ti 的 CUDA Compute Capability &#x3D; 12.0（Blackwell 架构），PaddlePaddle 2.6.2 只支持到 CC 9.0（Ada Lovelace）。</strong></p>
 <p>关键日志：</p>
-<p><code>W: The GPU compute capability in your current machine is 120,      which is not supported by Paddle, it is recommended to install      the corresponding wheel package according to the installation      information on the official Paddle website.   </code></p>
+<p><code>W: The GPU compute capability in your current machine is 120,      which is not supported by Paddle, it is recommended to install      the corresponding wheel package according to the installation      information on the official Paddle website.   </code></p>
 <p><strong>推理引擎使用了不兼容的 CUDA kernel，不报错但输出错误。</strong> 这是最危险的——程序正常运行，结果完全错误，没有任何异常提示。</p>
 <h2 id="为什么不用-PaddlePaddle-3-x？"><a href="#为什么不用-PaddlePaddle-3-x？" class="headerlink" title="为什么不用 PaddlePaddle 3.x？"></a>为什么不用 PaddlePaddle 3.x？</h2><p>PaddlePaddle 3.3.1 已经支持 CUDA 12.9，但问题是：</p>
 <ul>
@@ -345,14 +345,14 @@
 <p>所以通过 <code>pip install</code> 无法获得支持 RTX 5070 Ti 的 PaddlePaddle。</p>
 <h2 id="解决方案：ONNX-Runtime"><a href="#解决方案：ONNX-Runtime" class="headerlink" title="解决方案：ONNX Runtime"></a>解决方案：ONNX Runtime</h2><p>既然 PaddlePaddle 的推理引擎不行，那就换一个。ONNX Runtime 是微软开源的推理引擎，支持所有主流 GPU 架构。</p>
 <h3 id="步骤-1：获取-ONNX-模型"><a href="#步骤-1：获取-ONNX-模型" class="headerlink" title="步骤 1：获取 ONNX 模型"></a>步骤 1：获取 ONNX 模型</h3><p>从 HuggingFace 下载 PP-OCRv4 的 ONNX 格式模型：</p>
-<p><code>from huggingface_hub import hf_hub_download      # 检测模型   hf_hub_download(&quot;OleehyO/paddleocrv4.onnx&quot;, &quot;ch_PP-OCRv4_det.onnx&quot;)   # 识别模型   hf_hub_download(&quot;OleehyO/paddleocrv4.onnx&quot;, &quot;ch_PP-OCRv4_rec.onnx&quot;)   </code></p>
-<h3 id="步骤-2：安装-ONNX-Runtime"><a href="#步骤-2：安装-ONNX-Runtime" class="headerlink" title="步骤 2：安装 ONNX Runtime"></a>步骤 2：安装 ONNX Runtime</h3><p><code>pip install onnxruntime  # CPU 版   # 或   pip install onnxruntime-gpu  # GPU 版（支持 CUDA 12.x）   </code></p>
-<h3 id="步骤-3：构建-OCR-流水线"><a href="#步骤-3：构建-OCR-流水线" class="headerlink" title="步骤 3：构建 OCR 流水线"></a>步骤 3：构建 OCR 流水线</h3><p><code>import onnxruntime as ort   import numpy as np      # 加载模型   det = ort.InferenceSession(&quot;ch_PP-OCRv4_det.onnx&quot;)   rec = ort.InferenceSession(&quot;ch_PP-OCRv4_rec.onnx&quot;)      # 检测 → 裁剪 → 识别   # 完整代码见项目仓库   </code></p>
+<p><code>from huggingface_hub import hf_hub_download      # 检测模型   hf_hub_download(&quot;OleehyO/paddleocrv4.onnx&quot;, &quot;ch_PP-OCRv4_det.onnx&quot;)   # 识别模型   hf_hub_download(&quot;OleehyO/paddleocrv4.onnx&quot;, &quot;ch_PP-OCRv4_rec.onnx&quot;)   </code></p>
+<h3 id="步骤-2：安装-ONNX-Runtime"><a href="#步骤-2：安装-ONNX-Runtime" class="headerlink" title="步骤 2：安装 ONNX Runtime"></a>步骤 2：安装 ONNX Runtime</h3><p><code>pip install onnxruntime  # CPU 版   # 或   pip install onnxruntime-gpu  # GPU 版（支持 CUDA 12.x）   </code></p>
+<h3 id="步骤-3：构建-OCR-流水线"><a href="#步骤-3：构建-OCR-流水线" class="headerlink" title="步骤 3：构建 OCR 流水线"></a>步骤 3：构建 OCR 流水线</h3><p><code>import onnxruntime as ort   import numpy as np      # 加载模型   det = ort.InferenceSession(&quot;ch_PP-OCRv4_det.onnx&quot;)   rec = ort.InferenceSession(&quot;ch_PP-OCRv4_rec.onnx&quot;)      # 检测 → 裁剪 → 识别   # 完整代码见项目仓库   </code></p>
 <h2 id="踩坑总结"><a href="#踩坑总结" class="headerlink" title="踩坑总结"></a>踩坑总结</h2><h3 id="坑-1：GPU-推理”能跑”≠”跑对”"><a href="#坑-1：GPU-推理”能跑”≠”跑对”" class="headerlink" title="坑 1：GPU 推理”能跑”≠”跑对”"></a>坑 1：GPU 推理”能跑”≠”跑对”</h3><p>RTX 5070 Ti 是 Blackwell 架构，老版本框架可能静默出错。<strong>升级 GPU 后一定要验证推理结果的正确性，不能只看程序是否正常运行。</strong></p>
 <h3 id="坑-2：字典必须匹配"><a href="#坑-2：字典必须匹配" class="headerlink" title="坑 2：字典必须匹配"></a>坑 2：字典必须匹配</h3><p>PaddleOCR 的识别模型输出维度 &#x3D; 字典大小 + blank + space。不同模型使用不同字典，混用会导致乱码。</p>
-<p><code># 正确: 6625 维模型 + 6625 字字典   dict_path = &quot;ppocr_keys_v1.txt&quot;  # 6623字 + blank + space = 6625   </code></p>
+<p><code># 正确: 6625 维模型 + 6625 字字典   dict_path = &quot;ppocr_keys_v1.txt&quot;  # 6623字 + blank + space = 6625   </code></p>
 <h3 id="坑-3：DB-检测需要-padding"><a href="#坑-3：DB-检测需要-padding" class="headerlink" title="坑 3：DB 检测需要 padding"></a>坑 3：DB 检测需要 padding</h3><p>PaddleOCR 的 DB 检测算法只激活文字笔画的核心区域（约文字高度的 1&#x2F;3），不是完整文字框。裁剪时必须加 padding：</p>
-<p><code># 裁剪区域上下各加 30px padding   pts[0][1] = pts[1][1] = cy - half_h - 30  # top   pts[2][1] = pts[3][1] = cy + half_h + 30  # bottom   </code></p>
+<p><code># 裁剪区域上下各加 30px padding   pts[0][1] = pts[1][1] = cy - half_h - 30  # top   pts[2][1] = pts[3][1] = cy + half_h + 30  # bottom   </code></p>
 <h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><table>
 <thead>
 <tr>
@@ -381,7 +381,7 @@
 </li>
 </ol>
 <hr>
-<p><em>项目地址: &#x2F;data&#x2F;research&#x2F;pp-ocr-v6</em> <em>外网 Demo: <a target="_blank" rel="noopener" href="http://219.152.238.231:36510/ocr//[1/]">http://219.152.238.231:36510/ocr/\[1\]</a></em></p>
+<p><em>项目地址: &#x2F;data&#x2F;research&#x2F;pp-ocr-v6</em> <em>外网 Demo: <a target="_blank" rel="noopener" href="http://219.152.238.231:36510/ocr/[1]">http://219.152.238.231:36510/ocr/[1]</a></em></p>
 <h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="http://219.152.238.231:36510/ocr/">http://219.152.238.231:36510/ocr/</a></em></p>
 
                 

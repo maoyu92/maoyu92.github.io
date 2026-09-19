@@ -382,9 +382,9 @@
 <h3 id="安装-nginx"><a href="#安装-nginx" class="headerlink" title="安装 nginx"></a>安装 nginx</h3><p>进入宝塔页面，会推荐安装 nginx，其他工具的根据自己情况安装。</p>
 <h3 id="配置-html-项目"><a href="#配置-html-项目" class="headerlink" title="配置 html 项目"></a>配置 html 项目</h3><p>由于我是用的 hexo 主题为 fulid 很多 css 用的是 https ，需要申请证书，如果没有添加证书，很多效果无法展示，因此需要在阿里云服务器里申请免费的 SSL 证书，个人证书只有 90 天的权限，具体步骤直接在服务器搜索，这里略过不提。</p>
 <p>在宝塔内点击网址-html 项目-添加项目，添加域名、根目录信息，点击确定。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202501242046940.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202501242046940.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>在新增的html网站项目里，点击部署 SSL 证书，将阿里云上的证书下载下来，把 key 和 pem 复制到对应的位置，点击确定即可。</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202501242050218.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202501242050218.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>用下面代码检查一下配置是否正常，若一切正常，重载配置，浏览域名就可以看到内容啦。</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">nginx -t</span><br></code></pre></td></tr></table></figure>
 

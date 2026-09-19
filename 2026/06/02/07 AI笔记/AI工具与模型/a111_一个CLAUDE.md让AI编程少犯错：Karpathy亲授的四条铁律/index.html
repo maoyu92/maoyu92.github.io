@@ -401,7 +401,7 @@
 <p>用户说：”写一个函数判断字符串是否回文。”</p>
 <p>LLM 的错误做法：写一个 80 行的类，包含抽象基类、策略模式、配置注入、多种回文算法……</p>
 <p>正确做法：</p>
-<p><code>def is_palindrome(s: str) -&gt; bool:       cleaned = &#39;&#39;.join(c.lower() for c in s if c.isalnum())       return cleaned == cleaned[::-1]   </code></p>
+<p><code>def is_palindrome(s: str) -&gt; bool:       cleaned = &#39;&#39;.join(c.lower() for c in s if c.isalnum())       return cleaned == cleaned[::-1]   </code></p>
 <p>3 行搞定。</p>
 <h3 id="铁律三：Surgical-Changes（外科手术式修改）"><a href="#铁律三：Surgical-Changes（外科手术式修改）" class="headerlink" title="铁律三：Surgical Changes（外科手术式修改）"></a>铁律三：Surgical Changes（外科手术式修改）</h3><p><strong>对治问题</strong>：顺手改了不该改的代码</p>
 <p>核心要求：</p>
@@ -443,11 +443,11 @@
 </tr>
 </tbody></table>
 <p><strong>多步任务的计划模板</strong>：</p>
-<p><code>1. [步骤] → 验证：[检查方式]   2. [步骤] → 验证：[检查方式]   3. [步骤] → 验证：[检查方式]   </code></p>
+<p><code>1. [步骤] → 验证：[检查方式]   2. [步骤] → 验证：[检查方式]   3. [步骤] → 验证：[检查方式]   </code></p>
 <p>强成功标准让 LLM 可以独立循环。弱标准（”让它能用”）需要不断澄清。</p>
-<h2 id="四、安装方式：两种姿势"><a href="#四、安装方式：两种姿势" class="headerlink" title="四、安装方式：两种姿势"></a>四、安装方式：两种姿势</h2><h3 id="方式一：Claude-Code-插件（推荐）"><a href="#方式一：Claude-Code-插件（推荐）" class="headerlink" title="方式一：Claude Code 插件（推荐）"></a>方式一：Claude Code 插件（推荐）</h3><p><code># 在 Claude Code 中添加市场   /plugin marketplace add forrestchang/andrej-karpathy-skills      # 安装插件   /plugin install andrej-karpathy-skills@karpathy-skills   </code></p>
+<h2 id="四、安装方式：两种姿势"><a href="#四、安装方式：两种姿势" class="headerlink" title="四、安装方式：两种姿势"></a>四、安装方式：两种姿势</h2><h3 id="方式一：Claude-Code-插件（推荐）"><a href="#方式一：Claude-Code-插件（推荐）" class="headerlink" title="方式一：Claude Code 插件（推荐）"></a>方式一：Claude Code 插件（推荐）</h3><p><code># 在 Claude Code 中添加市场   /plugin marketplace add forrestchang/andrej-karpathy-skills      # 安装插件   /plugin install andrej-karpathy-skills@karpathy-skills   </code></p>
 <p>这会把规则安装为 Claude Code 插件，所有项目通用。</p>
-<h3 id="方式二：CLAUDE-md-文件（按项目）"><a href="#方式二：CLAUDE-md-文件（按项目）" class="headerlink" title="方式二：CLAUDE.md 文件（按项目）"></a>方式二：CLAUDE.md 文件（按项目）</h3><p><code># 新项目   curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md      # 已有项目（追加）   echo &quot;&quot; &gt;&gt; CLAUDE.md   curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md &gt;&gt; CLAUDE.md   </code></p>
+<h3 id="方式二：CLAUDE-md-文件（按项目）"><a href="#方式二：CLAUDE-md-文件（按项目）" class="headerlink" title="方式二：CLAUDE.md 文件（按项目）"></a>方式二：CLAUDE.md 文件（按项目）</h3><p><code># 新项目   curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md      # 已有项目（追加）   echo &quot;&quot; &gt;&gt; CLAUDE.md   curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md &gt;&gt; CLAUDE.md   </code></p>
 <p>同时支持 Cursor（项目根目录放 <code>.cursor/rules/karpathy-guidelines.mdc</code>）。</p>
 <h2 id="五、效果验证：怎么判断规则生效了？"><a href="#五、效果验证：怎么判断规则生效了？" class="headerlink" title="五、效果验证：怎么判断规则生效了？"></a>五、效果验证：怎么判断规则生效了？</h2><p>装完之后，观察这几个信号：</p>
 <ul>

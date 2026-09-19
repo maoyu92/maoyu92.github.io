@@ -378,7 +378,7 @@
 </ul>
 <p>这意味着 1B 模型不仅能在”智能密度”维度反超 2B，还能在<strong>生产场景最关心的代码与工具调用维度</strong>做出”以小博大”。</p>
 <h2 id="双模式推理：1-份权重-2-种行为"><a href="#双模式推理：1-份权重-2-种行为" class="headerlink" title="双模式推理：1 份权重 &#x3D; 2 种行为"></a>双模式推理：1 份权重 &#x3D; 2 种行为</h2><p>MiniCPM5-1B 用了<strong>标准 LlamaForCausalLM 架构</strong>（业内最广泛兼容，零迁移成本），但内置了一个有意思的设计——<strong>Think &#x2F; No Think 双模式</strong>。</p>
-<p><code># 切换深度推理   inputs = tokenizer.apply_chat_template(       messages,       enable_thinking=True,   # 深度思考模式       ...   )      # 切换快速响应   inputs = tokenizer.apply_chat_template(       messages,       enable_thinking=False,  # 快速对话模式       ...   )   </code></p>
+<p><code># 切换深度推理   inputs = tokenizer.apply_chat_template(       messages,       enable_thinking=True,   # 深度思考模式       ...   )      # 切换快速响应   inputs = tokenizer.apply_chat_template(       messages,       enable_thinking=False,  # 快速对话模式       ...   )   </code></p>
 <table>
 <thead>
 <tr>
@@ -400,7 +400,7 @@
 </tbody></table>
 <p><strong>端侧价值</strong>：1 份权重 &#x3D; 2 种行为，按需切换——简单任务走 No Think 省电省时间，复杂任务走 Think 拿质量。维护成本、存储成本、调度复杂度全部减半。</p>
 <h2 id="工具调用：SGLang-原生支持"><a href="#工具调用：SGLang-原生支持" class="headerlink" title="工具调用：SGLang 原生支持"></a>工具调用：SGLang 原生支持</h2><p>MiniCPM5-1B 以 <strong>XML 格式</strong>产出工具调用，配合 SGLang 内置的 <code>minicpm5 parser</code>，自动转成 OpenAI 兼容的 <code>tool_calls</code> 字段：</p>
-<p><code>python -m sglang.launch_server \       --model-path openbmb/MiniCPM5-1B \       --port 30000 --tool-call-parser minicpm5   </code></p>
+<p><code>python -m sglang.launch_server \       --model-path openbmb/MiniCPM5-1B \       --port 30000 --tool-call-parser minicpm5   </code></p>
 <p><strong>Coding Agent 价值</strong>：工具调用 + 代码能力双第一，<strong>是端侧 Coding Agent 的最佳基座候选</strong>。</p>
 <h2 id="AI-自进化飞轮：行业首个”AI-写训练框架”"><a href="#AI-自进化飞轮：行业首个”AI-写训练框架”" class="headerlink" title="AI 自进化飞轮：行业首个”AI 写训练框架”"></a>AI 自进化飞轮：行业首个”AI 写训练框架”</h2><p>如果说 1B 打败 2B 是结果，那么真正让这个结果”可复现、可迭代”的是背后的<strong>Forge Engineering 范式</strong>。</p>
 <h3 id="ForgeTrain：行业首个-AI-编写的生产级训练框架"><a href="#ForgeTrain：行业首个-AI-编写的生产级训练框架" class="headerlink" title="ForgeTrain：行业首个 AI 编写的生产级训练框架"></a>ForgeTrain：行业首个 AI 编写的生产级训练框架</h3><p>MiniCPM5-1B 的 Base 模型由 <strong>ForgeTrain</strong> 预训练完成——这是<strong>全球首个完全由 AI 编写、并成功训练出工业生产级模型的大模型训练框架</strong>。</p>
@@ -452,7 +452,7 @@
 </tbody></table>
 <p><strong>核心理念</strong>：「<strong>人类定义标准、AI 执行操作</strong>」。把数据从”粗放式清洗”升级为”精准分级”。</p>
 <p>配合开源的 <strong>Ultra-FineWeb</strong> 数据集（超 1T tokens，<strong>中文部分开源最大</strong>），MiniCPM5-1B 的”食物”是高密度的精料，而非海量的低质原料。</p>
-<h3 id="自进化飞轮（核心机制）"><a href="#自进化飞轮（核心机制）" class="headerlink" title="自进化飞轮（核心机制）"></a>自进化飞轮（核心机制）</h3><p><code>强基座模型       │       ├─→ 用 ForgeTrain 生成更好的训练框架       │       └─→ 从海量语料筛选更好的 L3 训练数据      新框架 + 新数据       │       └─→ 训练出下一代更强的模型 ──→ 回到强基座模型   </code></p>
+<h3 id="自进化飞轮（核心机制）"><a href="#自进化飞轮（核心机制）" class="headerlink" title="自进化飞轮（核心机制）"></a>自进化飞轮（核心机制）</h3><p><code>强基座模型       │       ├─→ 用 ForgeTrain 生成更好的训练框架       │       └─→ 从海量语料筛选更好的 L3 训练数据      新框架 + 新数据       │       └─→ 训练出下一代更强的模型 ──→ 回到强基座模型   </code></p>
 <p>模型越强 → 生成的框架与数据越优 → 下一代模型更强 → 循环加速。</p>
 <blockquote>
 <p>这不是 PPT 上的”AI 制造 AI”概念，是已经<strong>跑通一整轮、产出 MiniCPM5-1B 工业级模型</strong>的工程范式。</p>
@@ -546,7 +546,7 @@
 </ul>
 <p><strong>多款芯片的 TTFT（首 token 延迟）低于 NVIDIA H20 原生基线</strong>——国产芯片性能已可对标 NVIDIA。</p>
 <h3 id="Agent-Skills（差异化亮点）"><a href="#Agent-Skills（差异化亮点）" class="headerlink" title="Agent Skills（差异化亮点）"></a>Agent Skills（差异化亮点）</h3><p>在 Cursor &#x2F; Claude Code 中，<strong>一句话完成部署</strong>：</p>
-<p><code>@minicpm5-deploy 用 vLLM 在 8000 端口起 openbmb/MiniCPM5-1B   @minicpm5-finetune 用 unsloth + LoRA 微调 /data/my_chat.jsonl，输出到 ./out   </code></p>
+<p><code>@minicpm5-deploy 用 vLLM 在 8000 端口起 openbmb/MiniCPM5-1B   @minicpm5-finetune 用 unsloth + LoRA 微调 /data/my_chat.jsonl，输出到 ./out   </code></p>
 <p>Agent 读取顶层 Skill，根据目标后端、硬件、数据路径选择对应子 Skill 与 cookbook，自动执行命令并回报结果。</p>
 <p>**这是 MiniCPM5-1B 区别于其他开源模型的”杀手锏”**——把”部署”这个最易劝退的环节，封装成了 Agent 原语。</p>
 <h2 id="商业与生态价值"><a href="#商业与生态价值" class="headerlink" title="商业与生态价值"></a>商业与生态价值</h2><h3 id="1-端侧-AI-应用的三大爆发点"><a href="#1-端侧-AI-应用的三大爆发点" class="headerlink" title="1. 端侧 AI 应用的三大爆发点"></a>1. 端侧 AI 应用的三大爆发点</h3><table>
@@ -611,19 +611,19 @@
 <blockquote>
 <p><strong>相关链接</strong></p>
 <ul>
-<li><p>Hugging Face 模型：<a target="_blank" rel="noopener" href="https://huggingface.co/openbmb/MiniCPM5-1B/[1/]">https://huggingface.co/openbmb/MiniCPM5-1B\[1\]</a></p>
+<li><p>Hugging Face 模型：<a target="_blank" rel="noopener" href="https://huggingface.co/openbmb/MiniCPM5-1B[1]">https://huggingface.co/openbmb/MiniCPM5-1B[1]</a></p>
 </li>
-<li><p>GitHub 仓库：<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/MiniCPM/[2/]">https://github.com/OpenBMB/MiniCPM\[2\]</a></p>
+<li><p>GitHub 仓库：<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/MiniCPM[2]">https://github.com/OpenBMB/MiniCPM[2]</a></p>
 </li>
-<li><p>ForgeTrain 框架：<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/ForgeTrain/[3/]">https://github.com/OpenBMB/ForgeTrain\[3\]</a></p>
+<li><p>ForgeTrain 框架：<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/ForgeTrain[3]">https://github.com/OpenBMB/ForgeTrain[3]</a></p>
 </li>
-<li><p>UltraData 平台：<a target="_blank" rel="noopener" href="https://ultradata.openbmb.cn//[4/]">https://ultradata.openbmb.cn/\[4\]</a></p>
+<li><p>UltraData 平台：<a target="_blank" rel="noopener" href="https://ultradata.openbmb.cn/[4]">https://ultradata.openbmb.cn/[4]</a></p>
 </li>
-<li><p>ModelScope 镜像：<a target="_blank" rel="noopener" href="https://modelscope.cn/models/OpenBMB/MiniCPM5-1B/[5/]">https://modelscope.cn/models/OpenBMB/MiniCPM5-1B\[5\]</a></p>
+<li><p>ModelScope 镜像：<a target="_blank" rel="noopener" href="https://modelscope.cn/models/OpenBMB/MiniCPM5-1B[5]">https://modelscope.cn/models/OpenBMB/MiniCPM5-1B[5]</a></p>
 </li>
-<li><p>FlagOS 跨芯片生态：<a target="_blank" rel="noopener" href="https://flagos.io//[6/]">https://flagos.io/\[6\]</a></p>
+<li><p>FlagOS 跨芯片生态：<a target="_blank" rel="noopener" href="https://flagos.io/[6]">https://flagos.io/[6]</a></p>
 </li>
-<li><p>AA-Index 榜单：<a target="_blank" rel="noopener" href="https://artificialanalysis.ai//[7/]">https://artificialanalysis.ai/\[7\]</a></p>
+<li><p>AA-Index 榜单：<a target="_blank" rel="noopener" href="https://artificialanalysis.ai/[7]">https://artificialanalysis.ai/[7]</a></p>
 </li>
 </ul>
 </blockquote>

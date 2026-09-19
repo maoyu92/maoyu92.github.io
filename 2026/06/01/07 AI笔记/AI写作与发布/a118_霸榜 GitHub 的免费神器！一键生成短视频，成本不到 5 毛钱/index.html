@@ -331,7 +331,7 @@
 <p>最近 GitHub 上有一个项目连续霸榜Trending，不是 Sora 那种 AI 视频生成，而是另一个技术路线：<strong>全自动短视频生成工具 MoneyPrinterTurbo</strong>。</p>
 <p>25,000+ Stars，MIT 协议可商用，完全开源。今天带你彻底搞清楚它是什么、怎么用、值不值得入手。</p>
 <h2 id="它到底在解决什么问题？"><a href="#它到底在解决什么问题？" class="headerlink" title="它到底在解决什么问题？"></a>它到底在解决什么问题？</h2><p>很多人以为 MoneyPrinterTurbo 是 AI 生成视频的工具——<strong>其实不是</strong>。</p>
-<p>它的核心技术路线是**“智能缝合 + AI 配音”**：</p>
+<p>它的核心技术路线是**”智能缝合 + AI 配音”**：</p>
 <ul>
 <li><p>给它一个主题（比如”为什么早起的人更成功”）</p>
 </li>
@@ -382,7 +382,7 @@
 </ul>
 <p>对于需要<strong>批量生产短视频</strong>的自媒体、企业营销、内容矩阵玩家来说，这简直是白菜价。</p>
 <h2 id="技术架构长什么样？"><a href="#技术架构长什么样？" class="headerlink" title="技术架构长什么样？"></a>技术架构长什么样？</h2><p>整个流水线分 5 步：</p>
-<p><code>输入主题（&quot;如何培养阅读习惯&quot;）     │     ▼   Step 1: LLM 生成文案脚本     │     ▼   Step 2: TTS 合成配音 + 获取时间轴     │     ▼   Step 3: 按关键词从 Pexels/Pixabay 匹配素材     │     ▼   Step 4: 字幕生成（edge 模式或 whisper 模式）     │     ▼   Step 5: FFmpeg + MoviePy 拼接合成最终视频   </code></p>
+<p><code>输入主题（&quot;如何培养阅读习惯&quot;）     │     ▼   Step 1: LLM 生成文案脚本     │     ▼   Step 2: TTS 合成配音 + 获取时间轴     │     ▼   Step 3: 按关键词从 Pexels/Pixabay 匹配素材     │     ▼   Step 4: 字幕生成（edge 模式或 whisper 模式）     │     ▼   Step 5: FFmpeg + MoviePy 拼接合成最终视频   </code></p>
 <p>依赖的技术栈：</p>
 <ul>
 <li><p><strong>Python 3.11</strong>（推荐 uv 管理依赖）</p>
@@ -422,7 +422,7 @@
 </li>
 </ul>
 <h2 id="快速上手指南"><a href="#快速上手指南" class="headerlink" title="快速上手指南"></a>快速上手指南</h2><p>最简单的方式是 Docker 一键部署：</p>
-<p><code># 1. 克隆项目   git clone https://github.com/harry0703/MoneyPrinterTurbo.git   cd MoneyPrinterTurbo      # 2. 复制配置文件   cp config.example.toml config.toml      # 3. 编辑 config.toml，填入必要配置   # - pexels_api_keys（https://www.pexels.com/api/ 免费申请）   # - llm_provider 填 deepseek，deepseek_api_key 填你的 key   # - tts.provider 填 edge-tts（免费）      # 4. Docker 启动   docker compose up      # 5. 访问 Web UI   open http://localhost:8501   </code></p>
+<p><code># 1. 克隆项目   git clone https://github.com/harry0703/MoneyPrinterTurbo.git   cd MoneyPrinterTurbo      # 2. 复制配置文件   cp config.example.toml config.toml      # 3. 编辑 config.toml，填入必要配置   # - pexels_api_keys（https://www.pexels.com/api/ 免费申请）   # - llm_provider 填 deepseek，deepseek_api_key 填你的 key   # - tts.provider 填 edge-tts（免费）      # 4. Docker 启动   docker compose up      # 5. 访问 Web UI   open http://localhost:8501   </code></p>
 <p>关键配置项速查：</p>
 <table>
 <thead>
@@ -494,7 +494,7 @@
 <p>和商业 SaaS 工具比，MoneyPrinterTurbo 的核心优势是：<strong>开源可私有化 + 模型自由 + 无水印无版权风险</strong>。</p>
 <h2 id="对内容创作者的价值"><a href="#对内容创作者的价值" class="headerlink" title="对内容创作者的价值"></a>对内容创作者的价值</h2><p>如果你运营公众号或内容平台，可以这样改造：</p>
 <p><strong>方案一：API 集成</strong></p>
-<p><code># 公众号文章列表 → 批量调用 MoneyPrinterTurbo API   articles = [&quot;文章1标题&quot;, &quot;文章2标题&quot;, &quot;文章3标题&quot;]   for title in articles:       response = requests.post(           &quot;http://localhost:8080/api/v1/videos/generate&quot;,           json=&#123;&quot;topic&quot;: title, &quot;aspect_ratio&quot;: &quot;9:16&quot;, &quot;language&quot;: &quot;zh-CN&quot;&#125;       )       video_url = response.json()[&quot;video_url&quot;]       # 存储 video_url 用于后续嵌入公众号文章   </code></p>
+<p><code># 公众号文章列表 → 批量调用 MoneyPrinterTurbo API   articles = [&quot;文章1标题&quot;, &quot;文章2标题&quot;, &quot;文章3标题&quot;]   for title in articles:       response = requests.post(           &quot;http://localhost:8080/api/v1/videos/generate&quot;,           json=&#123;&quot;topic&quot;: title, &quot;aspect_ratio&quot;: &quot;9:16&quot;, &quot;language&quot;: &quot;zh-CN&quot;&#125;       )       video_url = response.json()[&quot;video_url&quot;]       # 存储 video_url 用于后续嵌入公众号文章   </code></p>
 <p><strong>方案二：素材本地化</strong> 将公众号文章已有的图片&#x2F;视频素材放到本地素材目录，通过 <code>material_source=&quot;local&quot;</code> 优先使用自有素材，AI 生成配音和字幕，保留原有画面。</p>
 <h2 id="值得注意的坑"><a href="#值得注意的坑" class="headerlink" title="值得注意的坑"></a>值得注意的坑</h2><ol>
 <li><p><strong>内容质量</strong>：AI 生成的文案和素材匹配仍有局限性，建议人工审核后再发布</p>
@@ -508,9 +508,9 @@
 </ol>
 <hr>
 <h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li><p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/harry0703/MoneyPrinterTurbo/[1/]">https://github.com/harry0703/MoneyPrinterTurbo\[1\]</a></p>
+<li><p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/harry0703/MoneyPrinterTurbo[1]">https://github.com/harry0703/MoneyPrinterTurbo[1]</a></p>
 </li>
-<li><p>飞书调研报告：<a target="_blank" rel="noopener" href="https://www.feishu.cn/docx/IxK5dP3OfoDXUrx4pllcNePSnTg/[2/]">https://www.feishu.cn/docx/IxK5dP3OfoDXUrx4pllcNePSnTg\[2\]</a></p>
+<li><p>飞书调研报告：<a target="_blank" rel="noopener" href="https://www.feishu.cn/docx/IxK5dP3OfoDXUrx4pllcNePSnTg[2]">https://www.feishu.cn/docx/IxK5dP3OfoDXUrx4pllcNePSnTg[2]</a></p>
 </li>
 </ul>
 <h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>引用链接</p>

@@ -329,7 +329,7 @@
 <p>不是所有知识检索，都要先把文件切成向量、再建索引、再等召回。 Sirchmunk 想证明：直接把原始数据扔进去，系统也能越搜越聪明。</p>
 </blockquote>
 <h2 id="这不是又一个-RAG-优化项目"><a href="#这不是又一个-RAG-优化项目" class="headerlink" title="这不是又一个 RAG 优化项目"></a>这不是又一个 RAG 优化项目</h2><p>过去几年，RAG 几乎成了“企业知识库”的代名词：文档切块、Embedding、建向量索引、召回 rerank、最后喂给大模型。流程很成熟，但也很重——数据一变就要重建索引，向量近似总会丢上下文，ETL 和 GPU 成本并不低。</p>
-<p>ModelScope 开源的 <strong>Sirchmunk</strong> 走了一条更激进的路：<strong>不做向量库，不做预索引，直接对原始文件做实时检索</strong>。它的口号也很直接：Raw data to self-evolving intelligence, real time.</p>
+<p>ModelScope 开源的 <strong>Sirchmunk</strong> 走了一条更激进的路：<strong>不做向量库，不做预索引，直接对原始文件做实时检索</strong>。它的口号也很直接：Raw data to self-evolving intelligence, real time.</p>
 <p>如果这个方向成立，最直接的改变是：你不再需要维护一套“索引即真理”的基础设施；文件更新后，系统下一秒就能搜到最新内容。</p>
 <h2 id="它到底想解决什么问题"><a href="#它到底想解决什么问题" class="headerlink" title="它到底想解决什么问题"></a>它到底想解决什么问题</h2><p>Sirchmunk 在官方文档里把传统 RAG 的核心痛点总结得很直接：</p>
 <ul>
@@ -343,7 +343,7 @@
 <p>所以它的解法也很明确：<strong>放弃向量库这个中间层，回到原始数据本身</strong>，靠文件路径元信息、关键词、知识聚类和少量 LLM 推理来完成检索与综合。</p>
 <p>这种做法不是完全否定 Embedding，而是把“语义理解”尽量后置，只在证据提炼和知识整理时才调用模型，从而控制成本。</p>
 <h2 id="核心工作流：六阶段检索管线"><a href="#核心工作流：六阶段检索管线" class="headerlink" title="核心工作流：六阶段检索管线"></a>核心工作流：六阶段检索管线</h2><p>Sirchmunk 的搜索过程分成六个阶段，官方文档给了一张很清晰的管线图：</p>
-<p><code>Query    |    v   +----------------------------------------------+   | Phase 0: Knowledge Reuse                     |   | &quot;Have we seen a similar question before?&quot;    |   | YES -&gt; return immediately | NO -&gt; continue    |   +-------------------+--------------------------+    v   +----------------------------------------------+   | Phase 1: Parallel Probing                    |   | - LLM keyword extraction                     |   | - Directory structure scan                   |   | - Knowledge cache lookup                     |   | - Spec-path context cache load               |   +-------------------+--------------------------+    v   +----------------------------------------------+   | Phase 2: Retrieval &amp; Ranking                 |   | - Keyword-based content retrieval (IDF)      |   | - LLM-guided file candidate ranking          |   +-------------------+--------------------------+    v   +----------------------------------------------+   | Phase 3: Knowledge Cluster Construction      |   | - Merge &amp; deduplicate                        |   | - Monte Carlo evidence extraction            |   | - LLM synthesis -&gt; cluster                   |   +-------------------+--------------------------+    v   +----------------------------------------------+   | Phase 4: Output &amp; Refinement                 |   | - Evidence found -&gt; LLM summarization        |   | - No evidence -&gt; ReAct agent refinement      |   +-------------------+--------------------------+    v   +----------------------------------------------+   | Phase 5: Persist                             |   | - Save cluster for future reuse              |   +----------------------------------------------+   </code></p>
+<p><code>Query    |    v   +----------------------------------------------+   | Phase 0: Knowledge Reuse                     |   | &quot;Have we seen a similar question before?&quot;    |   | YES -&gt; return immediately | NO -&gt; continue    |   +-------------------+--------------------------+    v   +----------------------------------------------+   | Phase 1: Parallel Probing                    |   | - LLM keyword extraction                     |   | - Directory structure scan                   |   | - Knowledge cache lookup                     |   | - Spec-path context cache load               |   +-------------------+--------------------------+    v   +----------------------------------------------+   | Phase 2: Retrieval &amp; Ranking                 |   | - Keyword-based content retrieval (IDF)      |   | - LLM-guided file candidate ranking          |   +-------------------+--------------------------+    v   +----------------------------------------------+   | Phase 3: Knowledge Cluster Construction      |   | - Merge &amp; deduplicate                        |   | - Monte Carlo evidence extraction            |   | - LLM synthesis -&gt; cluster                   |   +-------------------+--------------------------+    v   +----------------------------------------------+   | Phase 4: Output &amp; Refinement                 |   | - Evidence found -&gt; LLM summarization        |   | - No evidence -&gt; ReAct agent refinement      |   +-------------------+--------------------------+    v   +----------------------------------------------+   | Phase 5: Persist                             |   | - Save cluster for future reuse              |   +----------------------------------------------+   </code></p>
 <p>几个关键设计值得单独看：</p>
 <ul>
 <li><p><strong>Phase 0 知识复用</strong>：先问一句“这个问题以前见过吗”。如果命中相似查询，直接复用已有知识簇，不用重新走完整检索。这是整个系统“越用越省”的起点。</p>
@@ -380,7 +380,7 @@
 </ul>
 <p>换句话说，它更像是“把检索模型从向量空间搬回了文本和元数据空间”，再在上面叠加一层 LLM 推理。</p>
 <h2 id="Monte-Carlo-Evidence-Sampling：少读文件，也能找对证据"><a href="#Monte-Carlo-Evidence-Sampling：少读文件，也能找对证据" class="headerlink" title="Monte Carlo Evidence Sampling：少读文件，也能找对证据"></a>Monte Carlo Evidence Sampling：少读文件，也能找对证据</h2><p>很多 RAG 系统的通病是：为了找一段证据，先读大文件，再让模型总结。Sirchmunk 的思路是，能不能只读取最像答案的那部分？</p>
-<p>它的做法很像统计采样：不是通读全文，而是根据候选文件做有策略的抽样，只读取最相关区域，再用 LLM 提炼证据。官方文档里把这套方法叫做 <strong>Monte Carlo Evidence Sampling</strong>。</p>
+<p>它的做法很像统计采样：不是通读全文，而是根据候选文件做有策略的抽样，只读取最相关区域，再用 LLM 提炼证据。官方文档里把这套方法叫做 <strong>Monte Carlo Evidence Sampling</strong>。</p>
 <p>这种方式的核心收益是 Token 效率：模型不需要每次都吞整份文档，尤其适合代码库、论文集、日志目录这类大体量文件集合。</p>
 <h2 id="自进化：知识簇会随时间变厚"><a href="#自进化：知识簇会随时间变厚" class="headerlink" title="自进化：知识簇会随时间变厚"></a>自进化：知识簇会随时间变厚</h2><p>如果说“免向量库”是 Sirchmunk 的起点，那么“自进化”就是它想长期建立的壁垒。</p>
 <p>系统会把每次检索结果沉淀成知识簇。随着使用次数增加：</p>
@@ -389,7 +389,7 @@
 </li>
 <li><p>簇内部会记录哪些问题曾催生哪些答案，形成查询历史；</p>
 </li>
-<li><p>2026 年 7 月发布的 v0.0.9 还引入了 <strong>KnowledgeEvolver</strong>：知识图谱会自动做连接合并、边刷新、元聚类发现和全局更新。</p>
+<li><p>2026 年 7 月发布的 v0.0.9 还引入了 <strong>KnowledgeEvolver</strong>：知识图谱会自动做连接合并、边刷新、元聚类发现和全局更新。</p>
 </li>
 </ul>
 <p>也就是说，系统不是“静态检索工具”，而是会随着数据和使用一起成长。</p>
@@ -408,7 +408,7 @@
 <li><p>Web UI</p>
 </li>
 </ul>
-<p>其中对 AI Agent 场景最直接的是 <strong>MCP</strong> 和 <strong>OpenClaw Skill</strong>。也就是说，它已经设计成可以被 Claude Desktop、Cursor、OpenClaw 这类宿主直接调用，而不是让你先搞一套独立服务。</p>
+<p>其中对 AI Agent 场景最直接的是 <strong>MCP</strong> 和 <strong>OpenClaw Skill</strong>。也就是说，它已经设计成可以被 Claude Desktop、Cursor、OpenClaw 这类宿主直接调用，而不是让你先搞一套独立服务。</p>
 <p>对于公众号读者来说，这意味着：如果你想给自己的 AI 助手接一个“本地文件智能问答”，现在有了一条比传统 RAG 更轻的路线。</p>
 <h2 id="从-RAG-到-In-Context-Search，搜索范式正在变"><a href="#从-RAG-到-In-Context-Search，搜索范式正在变" class="headerlink" title="从 RAG 到 In-Context Search，搜索范式正在变"></a>从 RAG 到 In-Context Search，搜索范式正在变</h2><p>Sirchmunk 官方博客里有一篇值得一读的文章：《From Index-Centric Retrieval to In-Context Reasoning》。它把当前趋势总结成一句话：传统 RAG 依赖静态索引，下一代搜索更像“实时上下文推理”。</p>
 <p>Sirchmunk 不是唯一这么想的产品，但它把“无向量库”这条路线做成了一个完整系统，而不是概念验证。它既有论文，也有 Web UI、Docker、MCP 和 OpenClaw 接入，说明团队不是只发 Paper，而是在认真做工程化。</p>
@@ -436,11 +436,11 @@
 <li><p>Sirchmunk Web 前端仓库[5]</p>
 </li>
 </ul>
-<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]Sirchmunk 官方仓库: <em><a target="_blank" rel="noopener" href="https://github.com/modelscope/sirchmunk">https://github.com/modelscope/sirchmunk</a></em></p>
-<p>[2]Sirchmunk 官方文档与 Web UI: <em><a target="_blank" rel="noopener" href="https://modelscope.github.io/sirchmunk-web/">https://modelscope.github.io/sirchmunk-web/</a></em></p>
-<p>[3]Sirchmunk 技术长文博客: <em><a target="_blank" rel="noopener" href="https://modelscope.github.io/sirchmunk-web/blog/technical-deep-dive/">https://modelscope.github.io/sirchmunk-web/blog/technical-deep-dive/</a></em></p>
-<p>[4]Sirchmunk 论文：arXiv 2608.16185: <em><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16185">https://arxiv.org/pdf/2608.16185</a></em></p>
-<p>[5]Sirchmunk Web 前端仓库: <em><a target="_blank" rel="noopener" href="https://github.com/modelscope/sirchmunk-web">https://github.com/modelscope/sirchmunk-web</a></em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]Sirchmunk 官方仓库: <em><a target="_blank" rel="noopener" href="https://github.com/modelscope/sirchmunk">https://github.com/modelscope/sirchmunk</a></em></p>
+<p>[2]Sirchmunk 官方文档与 Web UI: <em><a target="_blank" rel="noopener" href="https://modelscope.github.io/sirchmunk-web/">https://modelscope.github.io/sirchmunk-web/</a></em></p>
+<p>[3]Sirchmunk 技术长文博客: <em><a target="_blank" rel="noopener" href="https://modelscope.github.io/sirchmunk-web/blog/technical-deep-dive/">https://modelscope.github.io/sirchmunk-web/blog/technical-deep-dive/</a></em></p>
+<p>[4]Sirchmunk 论文：arXiv 2608.16185: <em><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2608.16185">https://arxiv.org/pdf/2608.16185</a></em></p>
+<p>[5]Sirchmunk Web 前端仓库: <em><a target="_blank" rel="noopener" href="https://github.com/modelscope/sirchmunk-web">https://github.com/modelscope/sirchmunk-web</a></em></p>
 
                 
               </div>

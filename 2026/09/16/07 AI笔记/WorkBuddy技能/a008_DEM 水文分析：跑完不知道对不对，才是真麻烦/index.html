@@ -356,13 +356,13 @@
 <li><p><strong>出图与报告</strong>：生成三张中文专题图与 <code>manifest.json</code>。</p>
 </li>
 </ol>
-<p><img src="/uploads/ai-notes/a008/a1b1310382ce2c39.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a008/a1b1310382ce2c39.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="三、产物长啥样"><a href="#三、产物长啥样" class="headerlink" title="三、产物长啥样"></a>三、产物长啥样</h2><p>一次成功运行后的输出目录：</p>
-<p><code>output/hydro/   ├── manifest.json       质检报告   ├── rasters/            11 个 GeoTIFF   ├── vectors/hydrology.gpkg   ├── figures/            3 张 PNG 专题图   └── work/               中间产物，加 --keep-work 才保留   </code></p>
+<p><code>output/hydro/   ├── manifest.json       质检报告   ├── rasters/            11 个 GeoTIFF   ├── vectors/hydrology.gpkg   ├── figures/            3 张 PNG 专题图   └── work/               中间产物，加 --keep-work 才保留   </code></p>
 <p>栅格目录里是一整套：填洼前后的 DEM、D8 流向、汇流累积、选定河网、Strahler 分级、子流域、流域，加上坡度、坡向、山体阴影，共 11 个文件。</p>
 <p>矢量只有一个 <code>hydrology.gpkg</code>，四个图层：<code>streams</code>（河网线）、<code>subbasins</code>（子流域面）、<code>watershed</code>（流域面）、<code>outlets</code>（吸附后的出口点）。技能文档特别说明，中间的 Shapefile 只算实现产物，对外交付推荐 GeoPackage——一个文件带走全部图层，坐标系不会丢，交付时省心不少。中间转换出来的 Shapefile 有时不带坐标系文件，脚本会按分析 CRS 补上再写入，避免图层在别的软件里变成「未知坐标系」。</p>
 <p>专题图三张：水文分析总览（山体阴影叠子流域、河网与出口点）、D8 汇流累积、坡度图。环境里有 CJK 字体时，图内标注是中文。脚本还会顺手检查三张图的文件体积，偏小就写进警告，提示可能渲染异常。</p>
-<p><img src="/uploads/ai-notes/a008/f0c78d31eb7fc0b5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a008/f0c78d31eb7fc0b5.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="四、质检报告"><a href="#四、质检报告" class="headerlink" title="四、质检报告"></a>四、质检报告</h2><p><code>manifest.json</code> 是这个技能我最喜欢的设计，它把「跑完不知道对不对」拆成了逐项核对。</p>
 <p><strong>数据与坐标系</strong>：源 CRS、是否用了覆盖声明、实际分析 CRS、有没有发生重投影，以及栅格尺寸、分辨率、有效栅格数与有效面积。</p>
 <p><strong>地形与汇流</strong>：高程范围、最大汇流累积栅格数及其对应的上游面积。</p>
@@ -373,7 +373,7 @@
 <p>最后是<strong>警告清单</strong>。从脚本逻辑看，它至少会在这几种情况下出声：没有参考河网也没指定阈值；最优阈值正好落在候选区间端点上；主出口与第二候选差距不够大，没形成明显主导出口；主出口贴着 DEM 边界，上游来水可能被截断；研究边界没完全落在 DEM 里，或者超出 DEM 范围又没有缓冲；再就是 GeoPackage 里哪个图层是空的，警告会直接点名，并提示回头检查阈值与出口点设置。这些警告不是报错，但每一条都在提醒结果该怎么用。</p>
 <p>技能文档还写了成功标准，不是「文件存在」就算完：退出码为 0、<code>manifest.json</code> 里 <code>status</code> 为 <code>success</code>、核心栅格齐全、GeoPackage 四个图层非空、三张图非空，最后还要人自己看一眼总览图。</p>
 <p>报告开头记着生成时间、耗时、引擎信息（WhiteboxTools 经 pywbt 调用，MIT 许可）和二进制缓存目录；结尾的 <code>outputs</code> 段列出 manifest、栅格目录、GeoPackage 的各图层数量和三张图的文件名。要复现一次结果，看这几段就够了。</p>
-<p><img src="/uploads/ai-notes/a008/da4e7636cd4f73c5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a008/da4e7636cd4f73c5.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="五、怎么调用"><a href="#五、怎么调用" class="headerlink" title="五、怎么调用"></a>五、怎么调用</h2><p>在 WorkBuddy 技能市场装好之后，直接对话调用就行，比如：</p>
 <ul>
 <li><p>「帮我跑一遍这份 DEM 的河网提取和子流域划分，结果输出到 hydro 目录」</p>
@@ -384,9 +384,9 @@
 </li>
 </ul>
 <p>命令行用法就两种。先体检：</p>
-<p><code>python scripts/hydrology.py inspect --dem &quot;./data/dem.tif&quot;   </code></p>
+<p><code>python scripts/hydrology.py inspect --dem &quot;./data/dem.tif&quot;   </code></p>
 <p>再跑完整分析：</p>
-<p><code>python scripts/hydrology.py run \     --dem &quot;./data/dem.tif&quot; \     --boundary &quot;./data/boundary.geojson&quot; \     --reference-streams &quot;./data/streams.geojson&quot; \     --dem-crs-override EPSG:4326 \     --output-dir &quot;./output/hydro&quot;   </code></p>
+<p><code>python scripts/hydrology.py run \     --dem &quot;./data/dem.tif&quot; \     --boundary &quot;./data/boundary.geojson&quot; \     --reference-streams &quot;./data/streams.geojson&quot; \     --dem-crs-override EPSG:4326 \     --output-dir &quot;./output/hydro&quot;   </code></p>
 <p><code>--boundary</code>、<code>--reference-streams</code>、<code>--pour-points</code> 都是可选的；阈值可以用 <code>--thresholds-km2</code> 改（默认 <code>0.25,0.5,1,2,5</code>），也可以用 <code>--default-threshold-km2</code> 指定一个数或写 <code>auto</code>。<code>--dem-crs-override</code> 只在 DEM 确实没有坐标系、而且有可靠依据时使用，覆盖声明会写进报告。想留着中间文件排查，加 <code>--keep-work</code>。</p>
 <p>自动识别出口点时会保留 5 个候选，主出口要领先第二名 1.5 倍才算明显主导，这两个数分别由 <code>--max-outlets</code> 和 <code>--main-outlet-ratio</code> 控制；出口点吸附距离默认取 3 倍分辨率，也可以用 <code>--snap-distance-m</code> 指定。</p>
 <h2 id="六、边界与注意"><a href="#六、边界与注意" class="headerlink" title="六、边界与注意"></a>六、边界与注意</h2><p>先说依赖。Python 3.9 以上；首次运行脚本会尝试自动安装 numpy、rasterio、pyproj、shapely、geopandas、matplotlib、pywbt，离线环境请提前执行 <code>pip install -r scripts/requirements.txt</code>。WhiteboxTools 二进制约 90 MB，由 pywbt 在首次调用时下载，默认缓存在用户主目录下的 <code>.cache/wbt</code>，可用 <code>--wbt-root</code> 换位置，所以第一次跑必须联网。</p>
@@ -491,8 +491,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/09/13/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a010_%E4%BA%BA%E7%94%9F%20Harness%EF%BC%9A%E6%88%91%E6%8A%8A%E4%BA%BA%E7%94%9F%E5%BD%93%E6%88%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9D%A5%E7%BB%B4%E6%8A%A4/" title="人生 Harness：我把人生当成操作系统来维护">
-                        <span class="hidden-mobile">人生 Harness：我把人生当成操作系统来维护</span>
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a006_%E5%85%AC%E4%BC%97%E5%8F%B7%E5%85%A8%E6%B5%81%E7%A8%8B%E5%8F%91%E5%B8%83%EF%BC%9A%E8%B6%85%E4%B8%80%E5%AD%97%E8%8A%82%EF%BC%8C%E5%BE%AE%E4%BF%A1%E7%9B%B4%E6%8E%A5%E6%8B%92/" title="公众号全流程发布：超一字节，微信直接拒">
+                        <span class="hidden-mobile">公众号全流程发布：超一字节，微信直接拒</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

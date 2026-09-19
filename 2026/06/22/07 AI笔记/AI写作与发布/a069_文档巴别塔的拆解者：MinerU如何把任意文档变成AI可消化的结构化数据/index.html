@@ -484,12 +484,12 @@
 </tr>
 </tbody></table>
 <p>从版本节奏看，团队显然在「精度」和「效率」之间找到了正确的平衡方向——3.3 的 effort 参数让用户自主选择精度&#x2F;速度权衡，3.4 又在 OCR 速度上做了质的提升。</p>
-<h2 id="七、实战：5-分钟上手"><a href="#七、实战：5-分钟上手" class="headerlink" title="七、实战：5 分钟上手"></a>七、实战：5 分钟上手</h2><h3 id="7-1-安装"><a href="#7-1-安装" class="headerlink" title="7.1 安装"></a>7.1 安装</h3><p><code>pip install mineru   </code></p>
-<h3 id="7-2-命令行使用"><a href="#7-2-命令行使用" class="headerlink" title="7.2 命令行使用"></a>7.2 命令行使用</h3><p><code># 解析单个 PDF   mineru -p /path/to/document.pdf -o /path/to/output      # 使用 Hybrid 引擎（高精度模式）   mineru -p document.pdf -o output -b hybrid -e high      # 批量处理   mineru -p /path/to/folder -o /path/to/output   </code></p>
-<h3 id="7-3-Python-API"><a href="#7-3-Python-API" class="headerlink" title="7.3 Python API"></a>7.3 Python API</h3><p><code>from mineru import MinerU      # 初始化（自动检测最佳引擎）   mu = MinerU()      # 解析文档   result = mu.parse(&quot;document.pdf&quot;)      # 获取 Markdown   print(result.markdown)      # 获取 JSON   print(result.json)      # 获取表格   for table in result.tables:       print(table.html)   </code></p>
-<h3 id="7-4-接入-RAG-管线"><a href="#7-4-接入-RAG-管线" class="headerlink" title="7.4 接入 RAG 管线"></a>7.4 接入 RAG 管线</h3><p><code>from langchain.document_loaders import MinerULoader      loader = MinerULoader(&quot;document.pdf&quot;)   documents = loader.load()      # 直接喂给向量数据库   vectorstore.add_documents(documents)   </code></p>
+<h2 id="七、实战：5-分钟上手"><a href="#七、实战：5-分钟上手" class="headerlink" title="七、实战：5 分钟上手"></a>七、实战：5 分钟上手</h2><h3 id="7-1-安装"><a href="#7-1-安装" class="headerlink" title="7.1 安装"></a>7.1 安装</h3><p><code>pip install mineru   </code></p>
+<h3 id="7-2-命令行使用"><a href="#7-2-命令行使用" class="headerlink" title="7.2 命令行使用"></a>7.2 命令行使用</h3><p><code># 解析单个 PDF   mineru -p /path/to/document.pdf -o /path/to/output      # 使用 Hybrid 引擎（高精度模式）   mineru -p document.pdf -o output -b hybrid -e high      # 批量处理   mineru -p /path/to/folder -o /path/to/output   </code></p>
+<h3 id="7-3-Python-API"><a href="#7-3-Python-API" class="headerlink" title="7.3 Python API"></a>7.3 Python API</h3><p><code>from mineru import MinerU      # 初始化（自动检测最佳引擎）   mu = MinerU()      # 解析文档   result = mu.parse(&quot;document.pdf&quot;)      # 获取 Markdown   print(result.markdown)      # 获取 JSON   print(result.json)      # 获取表格   for table in result.tables:       print(table.html)   </code></p>
+<h3 id="7-4-接入-RAG-管线"><a href="#7-4-接入-RAG-管线" class="headerlink" title="7.4 接入 RAG 管线"></a>7.4 接入 RAG 管线</h3><p><code>from langchain.document_loaders import MinerULoader      loader = MinerULoader(&quot;document.pdf&quot;)   documents = loader.load()      # 直接喂给向量数据库   vectorstore.add_documents(documents)   </code></p>
 <h3 id="7-5-MCP-Server-配置"><a href="#7-5-MCP-Server-配置" class="headerlink" title="7.5 MCP Server 配置"></a>7.5 MCP Server 配置</h3><p>在 Claude Desktop 的配置文件中添加：</p>
-<p><code>&#123;     &quot;mcpServers&quot;: &#123;       &quot;mineru&quot;: &#123;         &quot;command&quot;: &quot;uvx&quot;,         &quot;args&quot;: [&quot;mineru-mcp&quot;]       &#125;     &#125;   &#125;   </code></p>
+<p><code>&#123;     &quot;mcpServers&quot;: &#123;       &quot;mineru&quot;: &#123;         &quot;command&quot;: &quot;uvx&quot;,         &quot;args&quot;: [&quot;mineru-mcp&quot;]       &#125;     &#125;   &#125;   </code></p>
 <p>配置完成后，直接在对话中说「解析这个 PDF」即可。</p>
 <h2 id="八、与同类工具对比"><a href="#八、与同类工具对比" class="headerlink" title="八、与同类工具对比"></a>八、与同类工具对比</h2><table>
 <thead>

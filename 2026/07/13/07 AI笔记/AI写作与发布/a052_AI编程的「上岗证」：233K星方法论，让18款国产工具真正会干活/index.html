@@ -338,9 +338,9 @@
 <p>而今天的主角，是它的中国增强版——<strong>superpowers-zh</strong>[2]，一个由中国开发者社区驱动的「方法论汉化 + 国产工具适配 + 中国特色增强」项目。</p>
 <h2 id="二、装上之后，AI-变了"><a href="#二、装上之后，AI-变了" class="headerlink" title="二、装上之后，AI 变了"></a>二、装上之后，AI 变了</h2><p>来对比一下。</p>
 <p><strong>没装 superpowers-zh：</strong></p>
-<p><code>你：给用户模块加个批量导出功能   AI：好的，我来实现……（直接开始写代码）     export async function exportUsers() &#123; ... &#125;   你：等等，格式不对，没分页，大数据量会 OOM……   </code></p>
+<p><code>你：给用户模块加个批量导出功能   AI：好的，我来实现……（直接开始写代码）     export async function exportUsers() &#123; ... &#125;   你：等等，格式不对，没分页，大数据量会 OOM……   </code></p>
 <p><strong>装了 superpowers-zh：</strong></p>
-<p><code>你：给用户模块加个批量导出功能   AI：在开始实现之前，需要了解几个关键问题：     1. 导出格式是 CSV 还是 Excel？     2. 预计数据量多大？需要异步处理吗？     3. 有权限要求吗？     → 给出 2-3 个方案，确认后再动手   </code></p>
+<p><code>你：给用户模块加个批量导出功能   AI：在开始实现之前，需要了解几个关键问题：     1. 导出格式是 CSV 还是 Excel？     2. 预计数据量多大？需要异步处理吗？     3. 有权限要求吗？     → 给出 2-3 个方案，确认后再动手   </code></p>
 <p>区别在哪？<strong>不是模型变聪明了，而是它被注入了一套工程方法论。</strong></p>
 <p>superpowers 的核心设计理念是：AI 编程不是「你说需求，AI 写代码」，而是 <strong>brainstorming → writing-plans → TDD → systematic-debugging → code-review → verification-before-completion</strong> 的完整闭环。</p>
 <p>每一步都有对应的 skill 把关，skill 之间彼此衔接，AI 会在合适的节点自动触发对应方法论。</p>
@@ -421,7 +421,7 @@
 </li>
 </ul>
 <p>安装方式也做了大幅简化。上游需要按工具分别执行不同的 marketplace 命令，superpowers-zh 只需要：</p>
-<p><code>npx superpowers-zh   </code></p>
+<p><code>npx superpowers-zh   </code></p>
 <p>一条命令自动识别项目目录里用的是哪款工具，把 skill 文件装到对应位置。识别不出？加 <code>--tool &lt;name&gt;</code> 显式指定。装完重启工具，AI 生效。</p>
 <p><strong>零依赖、纯 Markdown、不联网、不上传代码。</strong> 按需触发，零运行时开销。</p>
 <p><img src="/images/153effc38d421110.png" srcset="/img/loading.gif" lazyload alt="superpowers vs superpowers-zh 全方位对比" title="superpowers vs superpowers-zh 全方位对比"></p>
@@ -458,7 +458,7 @@
 <p>superpowers 要解决的就是这个「最后一公里」问题：<strong>让 AI 不仅会写代码，更会按工程方法论干活。</strong></p>
 <p>而 superpowers-zh 在此基础上，让这套方法论能在中国开发者的工具箱里跑起来。</p>
 <p>一条命令，20 个 skill，覆盖 18 款工具。免费、开源、零依赖。</p>
-<p><code>npx superpowers-zh   </code></p>
+<p><code>npx superpowers-zh   </code></p>
 <p>装好之后，你的 AI 编程工具，才算真正「上岗」了。</p>
 <h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
 <li><p>superpowers（英文上游）[4]</p>

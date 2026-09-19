@@ -334,7 +334,7 @@
 <p>本地 HTTP 代理，让 OpenAI Codex CLI &#x2F; 桌面端接入小米 MiMo、DeepSeek，以及任意 OpenAI Chat Completions 兼容模型。</p>
 </blockquote>
 <p><strong>三种安装方式</strong>：</p>
-<p><code># 方式1：npm 一行安装   npm install -g mimo2codex      # 方式2：Linux/macOS curl   curl -fsSL https://raw.githubusercontent.com/7as0nch/mimo2codex/main/scripts/install.sh | bash      # 方式3：Windows PowerShell   irm https://raw.githubusercontent.com/7as0nch/mimo2codex/main/scripts/install.ps1 | iex   </code></p>
+<p><code># 方式1：npm 一行安装   npm install -g mimo2codex      # 方式2：Linux/macOS curl   curl -fsSL https://raw.githubusercontent.com/7as0nch/mimo2codex/main/scripts/install.sh | bash      # 方式3：Windows PowerShell   irm https://raw.githubusercontent.com/7as0nch/mimo2codex/main/scripts/install.ps1 | iex   </code></p>
 <p>桌面端（macOS &#x2F; Windows）也有安装包，下载后后台运行，开机自启，无需终端操作。</p>
 <h2 id="三、核心功能一览"><a href="#三、核心功能一览" class="headerlink" title="三、核心功能一览"></a>三、核心功能一览</h2><h3 id="支持的模型"><a href="#支持的模型" class="headerlink" title="支持的模型"></a>支持的模型</h3><table>
 <thead>
@@ -362,17 +362,17 @@
 <p><strong>Web search</strong>：Codex 的 <code>web_search</code> &#x2F; <code>web_search_preview</code> 自动翻译为 MiMo 原生 web_search builtin。如果账号未开通插件，自动 strip 后重试并记住结果，后续请求直接跳过，无需配置。</p>
 <p><strong>Vision（多模态）</strong>：只有 mimo-v2.5 &#x2F; mimo-v2-omni 支持；非 vision 模型自动 strip 图片并加占位符。</p>
 <p><strong>Reasoning passthrough</strong>：MiMo 的 <code>reasoning_content</code> 多轮正确回传。加 <code>--no-reasoning</code> 参数可以隐藏 terminal 输出（推理过程不显示），但跨轮次传递仍然保留。</p>
-<p><strong>Admin Web UI</strong>：浏览器访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8788/admin/%EF%BC%8C%E6%9F%A5%E7%9C%8B/[1/]">http://127.0.0.1:8788/admin/，查看\[1\]</a> dashboard、聊天记录、模型目录、设置。</p>
+<p><strong>Admin Web UI</strong>：浏览器访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8788/admin/%EF%BC%8C%E6%9F%A5%E7%9C%8B[1]">http://127.0.0.1:8788/admin/，查看[1]</a> dashboard、聊天记录、模型目录、设置。</p>
 <p><strong>SQLite 持久化</strong>：聊天记录、token 统计、模型别名、运行时设置全部存入 <code>~/.mimo2codex/data.db</code>。</p>
 <p><strong>Codex Enable</strong>：Web UI 内一键写入 <code>~/.codex/auth.json</code> + <code>config.toml</code>，无需手动编辑配置文件。</p>
 <p><strong>mimoskill</strong>：Python 脚本（stdlib only，无外部依赖），补充 MiMo 原生不支持的能力——OCR、图像生成、宠物生成。</p>
-<h2 id="四、如何使用"><a href="#四、如何使用" class="headerlink" title="四、如何使用"></a>四、如何使用</h2><h3 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h3><p><code>export MIMO_API_KEY=sk-xxx...xxx    # 小米 MiMo key   export DS_API_KEY=sk-xxx...xxx     # DeepSeek key（可选）   mimo2codex   </code></p>
-<p>启动后访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8788/admin/%EF%BC%8C%E7%82%B9%E5%87%BB/[2/]">http://127.0.0.1:8788/admin/，点击\[2\]</a> <strong>Codex Enable</strong>，一键完成认证配置，Codex 即可使用。</p>
+<h2 id="四、如何使用"><a href="#四、如何使用" class="headerlink" title="四、如何使用"></a>四、如何使用</h2><h3 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h3><p><code>export MIMO_API_KEY=sk-xxx...xxx    # 小米 MiMo key   export DS_API_KEY=sk-xxx...xxx     # DeepSeek key（可选）   mimo2codex   </code></p>
+<p>启动后访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8788/admin/%EF%BC%8C%E7%82%B9%E5%87%BB[2]">http://127.0.0.1:8788/admin/，点击[2]</a> <strong>Codex Enable</strong>，一键完成认证配置，Codex 即可使用。</p>
 <h3 id="配置通用-provider"><a href="#配置通用-provider" class="headerlink" title="配置通用 provider"></a>配置通用 provider</h3><p>编辑 <code>~/.mimo2codex/providers.json</code>：</p>
-<p><code>&#123;     &quot;providers&quot;: [       &#123;         &quot;id&quot;: &quot;qwen&quot;,         &quot;displayName&quot;: &quot;Qwen (DashScope)&quot;,         &quot;baseUrl&quot;: &quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;,         &quot;envKey&quot;: &quot;QWEN_API_KEY&quot;,         &quot;defaultModel&quot;: &quot;qwen3-max&quot;       &#125;     ]   &#125;   </code></p>
+<p><code>&#123;     &quot;providers&quot;: [       &#123;         &quot;id&quot;: &quot;qwen&quot;,         &quot;displayName&quot;: &quot;Qwen (DashScope)&quot;,         &quot;baseUrl&quot;: &quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;,         &quot;envKey&quot;: &quot;QWEN_API_KEY&quot;,         &quot;defaultModel&quot;: &quot;qwen3-max&quot;       &#125;     ]   &#125;   </code></p>
 <p>然后：</p>
-<p><code>QWEN_API_KEY=*** mimo2codex --model qwen   </code></p>
-<h2 id="五、技术原理"><a href="#五、技术原理" class="headerlink" title="五、技术原理"></a>五、技术原理</h2><h3 id="请求流程"><a href="#请求流程" class="headerlink" title="请求流程"></a>请求流程</h3><p><code>Codex CLI → mimo2codex (:8788)       → selectProvider（按 model 字段匹配 provider）       → reqToChat（Responses API → Chat Completions）       → 上游 HTTP 调用（MiMo / DeepSeek / 通用 provider）       → respToResponses / streamToSSE（Chat Completions → Responses API SSE）       → Codex   </code></p>
+<p><code>QWEN_API_KEY=*** mimo2codex --model qwen   </code></p>
+<h2 id="五、技术原理"><a href="#五、技术原理" class="headerlink" title="五、技术原理"></a>五、技术原理</h2><h3 id="请求流程"><a href="#请求流程" class="headerlink" title="请求流程"></a>请求流程</h3><p><code>Codex CLI → mimo2codex (:8788)       → selectProvider（按 model 字段匹配 provider）       → reqToChat（Responses API → Chat Completions）       → 上游 HTTP 调用（MiMo / DeepSeek / 通用 provider）       → respToResponses / streamToSSE（Chat Completions → Responses API SSE）       → Codex   </code></p>
 <h3 id="关键技术细节"><a href="#关键技术细节" class="headerlink" title="关键技术细节"></a>关键技术细节</h3><p><strong>per-request 路由</strong>：请求中 model 字段匹配到哪个 provider 的目录，就发往哪个 provider，不匹配才 fallback 到默认 provider。</p>
 <p><strong>parallel_tool_calls 自动开启</strong>：MiMo 默认不开启 parallel tool calls，mimo2codex 强制开启，减少 round-trips，提升工具调用效率。</p>
 <p><strong>context overflow 友好处理</strong>：上游返回 400（context window exceeded）时，自动重写为双语气提示，引导用户使用 Codex 的 <code>/compact</code> 命令压缩上下文。</p>
@@ -424,11 +424,11 @@
 <hr>
 <p><strong>相关链接</strong>：</p>
 <ul>
-<li><p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/7as0nch/mimo2codex/[3/]">https://github.com/7as0nch/mimo2codex\[3\]</a></p>
+<li><p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/7as0nch/mimo2codex[3]">https://github.com/7as0nch/mimo2codex[3]</a></p>
 </li>
-<li><p>下载（桌面端）：<a target="_blank" rel="noopener" href="https://mimodoc.chengj.online/download/[4/]">https://mimodoc.chengj.online/download\[4\]</a></p>
+<li><p>下载（桌面端）：<a target="_blank" rel="noopener" href="https://mimodoc.chengj.online/download[4]">https://mimodoc.chengj.online/download[4]</a></p>
 </li>
-<li><p>详细文档：<a target="_blank" rel="noopener" href="https://github.com/7as0nch/mimo2codex/tree/main/doc/[5/]">https://github.com/7as0nch/mimo2codex/tree/main/doc\[5\]</a></p>
+<li><p>详细文档：<a target="_blank" rel="noopener" href="https://github.com/7as0nch/mimo2codex/tree/main/doc[5]">https://github.com/7as0nch/mimo2codex/tree/main/doc[5]</a></p>
 </li>
 </ul>
 <h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<a target="_blank" rel="noopener" href="http://127.0.0.1:8788/admin/%EF%BC%8C%E6%9F%A5%E7%9C%8B">http://127.0.0.1:8788/admin/，查看</a>: <em><a target="_blank" rel="noopener" href="http://127.0.0.1:8788/admin/%EF%BC%8C%E6%9F%A5%E7%9C%8B">http://127.0.0.1:8788/admin/%EF%BC%8C%E6%9F%A5%E7%9C%8B</a></em></p>

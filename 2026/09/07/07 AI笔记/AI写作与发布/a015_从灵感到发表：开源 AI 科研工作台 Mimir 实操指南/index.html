@@ -372,11 +372,11 @@
 <h2 id="Agent-工具与-eleven-bundled-skills"><a href="#Agent-工具与-eleven-bundled-skills" class="headerlink" title="Agent 工具与 eleven bundled skills"></a>Agent 工具与 eleven bundled skills</h2><p>Mimir 不只是 Web 界面。它还提供一组 Agent 可调用的工具和斜杠命令，例如：</p>
 <p><code>/research-idea   /research-plan   /research-review   /paper-write   /paper-compile   </code></p>
 <p>以及具体工具：</p>
-<p><code>arxiv_search   web_search   wiki_note   figure_save   latex_compile   meeting_deck   venue_search   server_list / server_check / server_submit_job / server_list_jobs   </code></p>
+<p><code>arxiv_search   web_search   wiki_note   figure_save   latex_compile   meeting_deck   venue_search   server_list / server_check / server_submit_job / server_list_jobs   </code></p>
 <p>这意味着 Mimir 不只是“给人用的科研台”，也是<strong>给 AI 研究助理设计的可编程工作台</strong>。一个 Agent 可以自动检索文献、整理笔记、编排实验、协助写作和编译，这在传统科研工具里并不常见。</p>
 <p>此外，项目还内置了 <strong>11 个研究技能</strong>，覆盖文献综述、创新点检查、实验规划、引用审计、双语去 AI 味润色、rebuttal 等，相当于把科研方法论提前打包进系统里。</p>
 <h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>Mimir 依赖 DeepSeek Harness CLI（dsh）和 Node.js ≥ 22。基本安装步骤如下：</p>
-<p><code>npm install -g @deepseek-ai/dsh   dsh plugin --profile web add dsh-mimir@latest   dsh web   </code></p>
+<p><code>npm install -g @deepseek-ai/dsh   dsh plugin --profile web add dsh-mimir@latest   dsh web   </code></p>
 <p>打开后会在 <code>http://127.0.0.1:3080</code> 看到工作台界面。数据默认保存在本地：</p>
 <ul>
 <li><p>研究 Wiki：<code>~/.dsh/storages/research_wiki.json</code></p>

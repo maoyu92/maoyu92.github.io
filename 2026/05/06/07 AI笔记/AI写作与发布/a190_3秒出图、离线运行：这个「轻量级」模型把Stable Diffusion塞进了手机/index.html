@@ -423,7 +423,7 @@
 <p>从这次测试看，图像编辑功能（输入一张图，按 prompt 修改局部）目前稳定性稍弱，尤其是需要精确理解图片内容再做局部编辑时，效果不如纯文生图稳定。这个问题不只是 DreamLite，几乎所有端侧模型都有这个短板。</p>
 <p><strong>结论：对「理解图片 + 精准标注异常区域」这类任务，当前端侧模型的编辑能力还不够稳，需要配合检测&#x2F;分割模型一起用。</strong></p>
 <h2 id="模型文件大小参考"><a href="#模型文件大小参考" class="headerlink" title="模型文件大小参考"></a>模型文件大小参考</h2><p>mobile 版权重目录约 5GB，其中 text_encoder 单文件约 4.26GB。目录结构如下：</p>
-<p><code>models/DreamLite-mobile/   ├── text_encoder/        # 4.26 GB   ├── unet/                # 780 MB   └── vae/                 # 4.9 MB   </code></p>
+<p><code>models/DreamLite-mobile/   ├── text_encoder/        # 4.26 GB   ├── unet/                # 780 MB   └── vae/                 # 4.9 MB   </code></p>
 <p>直接搬到手机上不行，但可以通过拆分 pipeline + 量化的方式做端侧部署。</p>
 <h2 id="开源与许可"><a href="#开源与许可" class="headerlink" title="开源与许可"></a>开源与许可</h2><p>代码是 <strong>Apache 2.0</strong>，完全开源，可以商用。模型权重是 <strong>CC BY-NC 4.0</strong>，个人研究和非商业用途免费，需要邮件申请权限。</p>
 <p>LoRA 微调也开源了，可以在自己的数据集上做轻量定制。</p>
@@ -451,13 +451,13 @@
 <hr>
 <p><strong>相关链接：</strong></p>
 <ul>
-<li><p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/ByteVisionLab/DreamLite/[1/]">https://github.com/ByteVisionLab/DreamLite\[1\]</a></p>
+<li><p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/ByteVisionLab/DreamLite[1]">https://github.com/ByteVisionLab/DreamLite[1]</a></p>
 </li>
-<li><p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.28713/[2/]">https://arxiv.org/abs/2603.28713\[2\]</a></p>
+<li><p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.28713[2]">https://arxiv.org/abs/2603.28713[2]</a></p>
 </li>
-<li><p>在线 Demo：<a target="_blank" rel="noopener" href="https://huggingface.co/spaces/carlofkl/DreamLite/[3/]">https://huggingface.co/spaces/carlofkl/DreamLite\[3\]</a></p>
+<li><p>在线 Demo：<a target="_blank" rel="noopener" href="https://huggingface.co/spaces/carlofkl/DreamLite[3]">https://huggingface.co/spaces/carlofkl/DreamLite[3]</a></p>
 </li>
-<li><p>项目主页：<a target="_blank" rel="noopener" href="https://carlofkl.github.io/dreamlite//[4/]">https://carlofkl.github.io/dreamlite/\[4\]</a></p>
+<li><p>项目主页：<a target="_blank" rel="noopener" href="https://carlofkl.github.io/dreamlite/[4]">https://carlofkl.github.io/dreamlite/[4]</a></p>
 </li>
 </ul>
 <h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>引用链接</p>

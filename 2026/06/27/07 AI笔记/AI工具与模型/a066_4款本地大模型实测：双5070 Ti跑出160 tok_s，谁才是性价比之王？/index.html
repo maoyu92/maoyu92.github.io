@@ -384,7 +384,7 @@
 </li>
 </ol>
 <p>通过 ollama 原生 API 和 vLLM OpenAI API 获取精确的 eval_count 和 eval_duration，不靠数字符估算。</p>
-<h2 id="核心数据：速度对比"><a href="#核心数据：速度对比" class="headerlink" title="核心数据：速度对比"></a>核心数据：速度对比</h2><p><img src="/uploads/ai-notes/a066/a130acf99a09998e.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="核心数据：速度对比"><a href="#核心数据：速度对比" class="headerlink" title="核心数据：速度对比"></a>核心数据：速度对比</h2><p><img src="/uploads/ai-notes/a066/a130acf99a09998e.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>这张图说明一切：</p>
 <p><strong>gemma4-26B 以 160 tok&#x2F;s 碾压全场</strong>，是第二名的 3 倍。</p>
 <p>原因很简单：gemma4-26B 虽然总参数量 26B，但它是 <strong>MoE（混合专家）架构</strong>，每次推理只激活 4B 参数。12B 的计算量，26B 的知识量——这就是 MoE 的威力。</p>

@@ -331,7 +331,7 @@
 <p>LangChain 在2026年发布了一份里程碑式的报告——《State of Agent Engineering》。报告基于对万级以上员工规模企业的调研，揭示了一个核心矛盾：</p>
 <p><strong>81%的组织计划在2026年将Agent项目从简单任务自动化推向更复杂的场景，但”幻觉”和”输出一致性”仍然是最大的拦路虎。</strong></p>
 <p>这意味着什么？Agent 的技术可行性已经验证，但从 Demo 跑到生产环境，中间横着一条”最后一公里”——涉及可靠性、可观测性、评估体系、上下文工程等一系列工程化挑战。</p>
-<p>LangChain 首次将这个过程定义为**“Agent工程”（Agent Engineering）**——一门正在成型的新学科。</p>
+<p>LangChain 首次将这个过程定义为**”Agent工程”（Agent Engineering）**——一门正在成型的新学科。</p>
 <hr>
 <h2 id="二、报告核心发现：三大趋势"><a href="#二、报告核心发现：三大趋势" class="headerlink" title="二、报告核心发现：三大趋势"></a>二、报告核心发现：三大趋势</h2><h3 id="趋势一：Agent-已进入规模化部署"><a href="#趋势一：Agent-已进入规模化部署" class="headerlink" title="趋势一：Agent 已进入规模化部署"></a>趋势一：Agent 已进入规模化部署</h3><p>LangChain 报告最重磅的结论是：</p>
 <blockquote>
@@ -580,7 +580,7 @@
 </tbody></table>
 <hr>
 <h2 id="四、怎么选？一张决策图"><a href="#四、怎么选？一张决策图" class="headerlink" title="四、怎么选？一张决策图"></a>四、怎么选？一张决策图</h2><p>用一句话总结选型逻辑：<strong>从你最核心的约束出发。</strong></p>
-<p><code>你的核心需求是什么？   │   ├── 需要精确控制流程 → LangGraph   │   ├── 深度使用 Claude → Claude Agent SDK   │   ├── 快速出原型验证 → CrewAI   │   ├── 研究型对话探索 → AutoGen / AG2   │   ├── 微软 / .NET 技术栈 → Semantic Kernel   │   ├── 以私有数据查询为主 → LlamaIndex   │   └── 追求代码质量和类型安全 → Pydantic AI   </code></p>
+<p><code>你的核心需求是什么？   │   ├── 需要精确控制流程 → LangGraph   │   ├── 深度使用 Claude → Claude Agent SDK   │   ├── 快速出原型验证 → CrewAI   │   ├── 研究型对话探索 → AutoGen / AG2   │   ├── 微软 / .NET 技术栈 → Semantic Kernel   │   ├── 以私有数据查询为主 → LlamaIndex   │   └── 追求代码质量和类型安全 → Pydantic AI   </code></p>
 <p>一个常见模式：<strong>用 CrewAI 管理整体流程，用 LangGraph 处理需要复杂循环逻辑的具体任务</strong>——两种框架并不互斥。</p>
 <hr>
 <h2 id="五、Agent工程的实践建议"><a href="#五、Agent工程的实践建议" class="headerlink" title="五、Agent工程的实践建议"></a>五、Agent工程的实践建议</h2><h3 id="1-先解决可观测性，再谈上线"><a href="#1-先解决可观测性，再谈上线" class="headerlink" title="1. 先解决可观测性，再谈上线"></a>1. 先解决可观测性，再谈上线</h3><p>Agent 不像传统 API，它的行为是非确定性的。<strong>你需要看到 Agent 每一步在干什么。</strong> LangSmith、Langfuse 等工具提供了 Agent 级别的追踪和评估能力，这是生产部署的前提。</p>
@@ -599,21 +599,21 @@
 <h3 id="4-不要追求”银弹”，拥抱”组合拳”"><a href="#4-不要追求”银弹”，拥抱”组合拳”" class="headerlink" title="4. 不要追求”银弹”，拥抱”组合拳”"></a>4. 不要追求”银弹”，拥抱”组合拳”</h3><p>没有一个框架能解决所有问题。2026年的最佳实践是：<strong>根据场景组合使用多个框架</strong>，通过 API 或集成层连接。</p>
 <hr>
 <h2 id="六、相关链接"><a href="#六、相关链接" class="headerlink" title="六、相关链接"></a>六、相关链接</h2><ul>
-<li><p>LangChain《Agent工程状态报告》：<a target="_blank" rel="noopener" href="https://www.langchain.com/state-of-agent-engineering/[1/]">https://www.langchain.com/state-of-agent-engineering\[1\]</a></p>
+<li><p>LangChain《Agent工程状态报告》：<a target="_blank" rel="noopener" href="https://www.langchain.com/state-of-agent-engineering[1]">https://www.langchain.com/state-of-agent-engineering[1]</a></p>
 </li>
-<li><p>Agent Engineering: A New Discipline：<a target="_blank" rel="noopener" href="https://www.langchain.com/agent-engineering-a-new-discipline/[2/]">https://www.langchain.com/agent-engineering-a-new-discipline\[2\]</a></p>
+<li><p>Agent Engineering: A New Discipline：<a target="_blank" rel="noopener" href="https://www.langchain.com/agent-engineering-a-new-discipline[2]">https://www.langchain.com/agent-engineering-a-new-discipline[2]</a></p>
 </li>
-<li><p>Context Engineering for Agents：<a target="_blank" rel="noopener" href="https://www.langchain.com/blog/context-engineering-for-agents/[3/]">https://www.langchain.com/blog/context-engineering-for-agents\[3\]</a></p>
+<li><p>Context Engineering for Agents：<a target="_blank" rel="noopener" href="https://www.langchain.com/blog/context-engineering-for-agents[3]">https://www.langchain.com/blog/context-engineering-for-agents[3]</a></p>
 </li>
-<li><p>Alice Labs 2026框架排名：<a target="_blank" rel="noopener" href="https://alicelabs.ai/en/insights/best-ai-agent-frameworks-2026/[4/]">https://alicelabs.ai/en/insights/best-ai-agent-frameworks-2026\[4\]</a></p>
+<li><p>Alice Labs 2026框架排名：<a target="_blank" rel="noopener" href="https://alicelabs.ai/en/insights/best-ai-agent-frameworks-2026[4]">https://alicelabs.ai/en/insights/best-ai-agent-frameworks-2026[4]</a></p>
 </li>
-<li><p>LangGraph vs CrewAI vs AutoGen 企业选型指南：<a target="_blank" rel="noopener" href="https://pub.towardsai.net/langgraph-vs-crewai-vs-autogen-which-ai-agent-framework-should-your-enterprise-use-in-2026-3a9ebb407b09/[5/]">https://pub.towardsai.net/langgraph-vs-crewai-vs-autogen-which-ai-agent-framework-should-your-enterprise-use-in-2026-3a9ebb407b09\[5\]</a></p>
+<li><p>LangGraph vs CrewAI vs AutoGen 企业选型指南：<a target="_blank" rel="noopener" href="https://pub.towardsai.net/langgraph-vs-crewai-vs-autogen-which-ai-agent-framework-should-your-enterprise-use-in-2026-3a9ebb407b09[5]">https://pub.towardsai.net/langgraph-vs-crewai-vs-autogen-which-ai-agent-framework-should-your-enterprise-use-in-2026-3a9ebb407b09[5]</a></p>
 </li>
-<li><p>AI Agent框架对比2026（JetBrains）：<a target="_blank" rel="noopener" href="https://blog.jetbrains.com/pycharm/2026/06/top-agentic-frameworks-for-building-applications-2026/[6/]">https://blog.jetbrains.com/pycharm/2026/06/top-agentic-frameworks-for-building-applications-2026\[6\]</a></p>
+<li><p>AI Agent框架对比2026（JetBrains）：<a target="_blank" rel="noopener" href="https://blog.jetbrains.com/pycharm/2026/06/top-agentic-frameworks-for-building-applications-2026[6]">https://blog.jetbrains.com/pycharm/2026/06/top-agentic-frameworks-for-building-applications-2026[6]</a></p>
 </li>
-<li><p>awesome-ai-agents-2026 资源清单：<a target="_blank" rel="noopener" href="https://github.com/caramaschiHG/awesome-ai-agents-2026/[7/]">https://github.com/caramaschiHG/awesome-ai-agents-2026\[7\]</a></p>
+<li><p>awesome-ai-agents-2026 资源清单：<a target="_blank" rel="noopener" href="https://github.com/caramaschiHG/awesome-ai-agents-2026[7]">https://github.com/caramaschiHG/awesome-ai-agents-2026[7]</a></p>
 </li>
-<li><p>10大Agent框架速览：<a target="_blank" rel="noopener" href="https://medium.com/@atnoforgenai/10-ai-agent-frameworks-you-should-know-in-2026-langgraph-crewai-autogen-more-2e0be4055556/[8/]">https://medium.com/@atnoforgenai/10-ai-agent-frameworks-you-should-know-in-2026-langgraph-crewai-autogen-more-2e0be4055556\[8\]</a></p>
+<li><p>10大Agent框架速览：<a target="_blank" rel="noopener" href="https://medium.com/@atnoforgenai/10-ai-agent-frameworks-you-should-know-in-2026-langgraph-crewai-autogen-more-2e0be4055556[8]">https://medium.com/@atnoforgenai/10-ai-agent-frameworks-you-should-know-in-2026-langgraph-crewai-autogen-more-2e0be4055556[8]</a></p>
 </li>
 </ul>
 <h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://www.langchain.com/state-of-agent-engineering">https://www.langchain.com/state-of-agent-engineering</a></em></p>

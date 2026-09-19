@@ -458,7 +458,7 @@
 <blockquote>
 <p>如果 SenseVoice 或标点模型不存在，引擎会自动回退到 Paraformer + 默认逗号模式。</p>
 </blockquote>
-<h3 id="3-3-推理管线：从音频到文字的四步走"><a href="#3-3-推理管线：从音频到文字的四步走" class="headerlink" title="3.3 推理管线：从音频到文字的四步走"></a>3.3 推理管线：从音频到文字的四步走</h3><p><code>长按右侧 Control 键       ↓   PulseAudio 录音（16kHz/16bit/单声道）       ↓   kaldi-native-fbank 特征提取     → 80 维 FBank → LFR(7,6) 拼接 → CMVN 归一化       ↓   ONNX Runtime 推理（Paraformer 量化模型）     → logits → argmax 解码 → token 合并       ↓   文本上屏（自动补逗号）   </code></p>
+<h3 id="3-3-推理管线：从音频到文字的四步走"><a href="#3-3-推理管线：从音频到文字的四步走" class="headerlink" title="3.3 推理管线：从音频到文字的四步走"></a>3.3 推理管线：从音频到文字的四步走</h3><p><code>长按右侧 Control 键       ↓   PulseAudio 录音（16kHz/16bit/单声道）       ↓   kaldi-native-fbank 特征提取     → 80 维 FBank → LFR(7,6) 拼接 → CMVN 归一化       ↓   ONNX Runtime 推理（Paraformer 量化模型）     → logits → argmax 解码 → token 合并       ↓   文本上屏（自动补逗号）   </code></p>
 <p>整个管线从录音结束到文字上屏，通常在 <strong>20~80ms</strong> 内完成。</p>
 <h2 id="四、配置要求：需要什么硬件和软件？"><a href="#四、配置要求：需要什么硬件和软件？" class="headerlink" title="四、配置要求：需要什么硬件和软件？"></a>四、配置要求：需要什么硬件和软件？</h2><h3 id="4-1-硬件要求"><a href="#4-1-硬件要求" class="headerlink" title="4.1 硬件要求"></a>4.1 硬件要求</h3><table>
 <thead>
@@ -496,12 +496,12 @@
 </tbody></table>
 <p><strong>关键点：不需要 GPU。</strong> 这是项目最大的卖点之一。使用量化 ONNX 模型后，普通笔记本的 CPU 就能跑。</p>
 <h3 id="4-2-软件依赖"><a href="#4-2-软件依赖" class="headerlink" title="4.2 软件依赖"></a>4.2 软件依赖</h3><p><strong>基础编译依赖（必须）：</strong></p>
-<p><code>sudo apt install ibus libpinyin-dev libpinyin-utils libsqlite3-dev \     libglib2.0-dev libgtk-3-dev libibus-1.0-dev \     python3 lua5.1 liblua5.1-dev gettext   </code></p>
+<p><code>sudo apt install ibus libpinyin-dev libpinyin-utils libsqlite3-dev \     libglib2.0-dev libgtk-3-dev libibus-1.0-dev \     python3 lua5.1 liblua5.1-dev gettext   </code></p>
 <p><strong>语音功能依赖（可选但必要）：</strong></p>
-<p><code>sudo apt install libonnxruntime-dev libpulse-dev   </code></p>
-<h3 id="4-3-编译安装"><a href="#4-3-编译安装" class="headerlink" title="4.3 编译安装"></a>4.3 编译安装</h3><p><code>git clone https://github.com/wsyb/ibus-libpinyin-voice.git   cd ibus-libpinyin-voice      # 基础编译（不含语音）   ./autogen.sh   ./configure --prefix=/usr      # 启用语音功能   ./autogen.sh   ./configure --prefix=/usr --enable-onnxruntime      make -j$(nproc)   sudo make install   ibus restart   </code></p>
+<p><code>sudo apt install libonnxruntime-dev libpulse-dev   </code></p>
+<h3 id="4-3-编译安装"><a href="#4-3-编译安装" class="headerlink" title="4.3 编译安装"></a>4.3 编译安装</h3><p><code>git clone https://github.com/wsyb/ibus-libpinyin-voice.git   cd ibus-libpinyin-voice      # 基础编译（不含语音）   ./autogen.sh   ./configure --prefix=/usr      # 启用语音功能   ./autogen.sh   ./configure --prefix=/usr --enable-onnxruntime      make -j$(nproc)   sudo make install   ibus restart   </code></p>
 <h3 id="4-4-模型下载"><a href="#4-4-模型下载" class="headerlink" title="4.4 模型下载"></a>4.4 模型下载</h3><p>模型通过 install.sh 自动从 ModelScope 下载，也可以手动放置：</p>
-<p><code># Paraformer（必需，~228MB）   # install.sh 会自动下载到：   # ~/.cache/modelscope/hub/models/iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-onnx/      # SenseVoice（可选，~231MB）   # ~/.cache/modelscope/hub/models/iic/SenseVoiceSmall-onnx/      # 标点模型（可选，~270MB）   # ~/.cache/modelscope/hub/models/iic/punc_ct-transformer_zh-cn-common-vocab272727-onnx/   </code></p>
+<p><code># Paraformer（必需，~228MB）   # install.sh 会自动下载到：   # ~/.cache/modelscope/hub/models/iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-onnx/      # SenseVoice（可选，~231MB）   # ~/.cache/modelscope/hub/models/iic/SenseVoiceSmall-onnx/      # 标点模型（可选，~270MB）   # ~/.cache/modelscope/hub/models/iic/punc_ct-transformer_zh-cn-common-vocab272727-onnx/   </code></p>
 <h2 id="五、使用体验：长按-Control，松开即上屏"><a href="#五、使用体验：长按-Control，松开即上屏" class="headerlink" title="五、使用体验：长按 Control，松开即上屏"></a>五、使用体验：长按 Control，松开即上屏</h2><p>操作极其简单：</p>
 <ol>
 <li><p><strong>长按键盘右侧 Control 键</strong> → 听到提示音后开始说话</p>
@@ -552,7 +552,7 @@
 </ul>
 <h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]GitHub: wsyb&#x2F;ibus-libpinyin-voice: <em><a target="_blank" rel="noopener" href="https://github.com/wsyb/ibus-libpinyin-voice">https://github.com/wsyb/ibus-libpinyin-voice</a></em></p>
 <p>[2]上游项目: libpinyin&#x2F;ibus-libpinyin: <em><a target="_blank" rel="noopener" href="https://github.com/libpinyin/ibus-libpinyin">https://github.com/libpinyin/ibus-libpinyin</a></em></p>
-<p>[3]Paraformer 模型（ModelScope）: <em><a target="_blank" rel="noopener" href="https://www.modelscope.cn/models/iic/speech/_paraformer-large/_asr/_nat-zh-cn-16k-common-vocab8404-onnx">https://www.modelscope.cn/models/iic/speech\_paraformer-large\_asr\_nat-zh-cn-16k-common-vocab8404-onnx</a></em></p>
+<p>[3]Paraformer 模型（ModelScope）: <em><a target="_blank" rel="noopener" href="https://www.modelscope.cn/models/iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-onnx">https://www.modelscope.cn/models/iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-onnx</a></em></p>
 <p>[4]SenseVoice 模型（ModelScope）: <em><a target="_blank" rel="noopener" href="https://www.modelscope.cn/models/iic/SenseVoiceSmall-onnx">https://www.modelscope.cn/models/iic/SenseVoiceSmall-onnx</a></em></p>
 <p>[5]阿里达摩院 Paraformer 论文: <em><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2206.08317">https://arxiv.org/abs/2206.08317</a></em></p>
 

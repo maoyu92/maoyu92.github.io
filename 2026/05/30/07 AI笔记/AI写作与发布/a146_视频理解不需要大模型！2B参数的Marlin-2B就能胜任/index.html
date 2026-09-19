@@ -335,23 +335,23 @@
 <p>Marlin-2B 的出发点很直接：<strong>不要通用，只要精确。</strong></p>
 <p>它只回答两个问题：</p>
 <ol>
-<li><p><strong>What</strong> — 视频里正在发生什么？（结构化的场景 + 事件描述）</p>
+<li><p><strong>What</strong> — 视频里正在发生什么？（结构化的场景 + 事件描述）</p>
 </li>
-<li><p><strong>When</strong> — 这件事发生在第几秒？（秒级精确的时间定位）</p>
+<li><p><strong>When</strong> — 这件事发生在第几秒？（秒级精确的时间定位）</p>
 </li>
 </ol>
 <p>围绕这两个核心问题，Marlin-2B 把每一项能力都调到了 2B 参数级别的极致。</p>
 <hr>
 <h2 id="二、核心能力：两种模式"><a href="#二、核心能力：两种模式" class="headerlink" title="二、核心能力：两种模式"></a>二、核心能力：两种模式</h2><p>Marlin-2B 暴露两个接口，对应两种核心能力：</p>
 <h3 id="caption-模式：密集字幕"><a href="#caption-模式：密集字幕" class="headerlink" title="caption 模式：密集字幕"></a>caption 模式：密集字幕</h3><p>输入一段视频，输出结构化的场景描述 + 带秒级时间戳的事件列表。</p>
-<p><code>from marlin import MarlinRunner      runner = MarlinRunner.from_pretrained(&quot;NemoStation/Marlin-2B&quot;)   result = runner.caption(       video_path=&quot;input.mp4&quot;,       prompt=&quot;详细描述这个视频里发生的事情&quot;   )   # 输出: &#123;scenes: [...], events: [&#123;start: 1.0, end: 3.5, description: &quot;...&quot;&#125;]&#125;   </code></p>
+<p><code>from marlin import MarlinRunner      runner = MarlinRunner.from_pretrained(&quot;NemoStation/Marlin-2B&quot;)   result = runner.caption(       video_path=&quot;input.mp4&quot;,       prompt=&quot;详细描述这个视频里发生的事情&quot;   )   # 输出: &#123;scenes: [...], events: [&#123;start: 1.0, end: 3.5, description: &quot;...&quot;&#125;]&#125;   </code></p>
 <p>不是给一段话，而是给你一个带时间戳的事件清单。你可以把它理解为——视频的结构化索引。</p>
-<p><img src="/uploads/ai-notes/a146/97573ebd4a7065b4.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a146/97573ebd4a7065b4.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>find 模式：时间定位</p>
 <p>用自然语言问一个问题，模型返回事件发生的时间段。</p>
-<p><code>result = runner.find(       video_path=&quot;input.mp4&quot;,       query=&quot;这个人什么时候开始跑步的？&quot;   )   # 输出: &#123;spans: [&#123;start: 12.0, end: 18.5, reason: &quot;...&quot;&#125;]&#125;   </code></p>
+<p><code>result = runner.find(       video_path=&quot;input.mp4&quot;,       query=&quot;这个人什么时候开始跑步的？&quot;   )   # 输出: &#123;spans: [&#123;start: 12.0, end: 18.5, reason: &quot;...&quot;&#125;]&#125;   </code></p>
 <p>问”什么时候”，它给你精确的起止时间戳。这就是”时间 grounding”——把自然语言 query 映射到视频里的时间区间。</p>
-<p><img src="/uploads/ai-notes/a146/621bb5b62b6f6135.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a146/621bb5b62b6f6135.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="三、硬核数据：打平还是超越"><a href="#三、硬核数据：打平还是超越" class="headerlink" title="三、硬核数据：打平还是超越"></a>三、硬核数据：打平还是超越</h2><p>光吹不行，看数据。</p>
 <p>Marlin-2B 官方在三个主流基准上做了评测：</p>
 <p>|<br>基准</p>
@@ -384,7 +384,7 @@
 <p>成本呢？单张消费级显卡（建议 8GB+ VRAM）直接跑。</p>
 <hr>
 <h2 id="四、技术架构：为什么2B能打这么狠"><a href="#四、技术架构：为什么2B能打这么狠" class="headerlink" title="四、技术架构：为什么2B能打这么狠"></a>四、技术架构：为什么2B能打这么狠</h2><p>Marlin-2B 之所以能在 2B 量级打出这种效果，背后的设计思路值得关注：</p>
-<p><strong>基座：Qwen3.5-2B</strong> 基于 Qwen3.5-2B 基座模型，Qwen 家族在多模态上的早熟积累直接受益。</p>
+<p><strong>基座：Qwen3.5-2B</strong> 基于 Qwen3.5-2B 基座模型，Qwen 家族在多模态上的早熟积累直接受益。</p>
 <p><strong>训练范式：两阶段 SFT + SimPO</strong></p>
 <ul>
 <li><p>SFT（监督微调）：先让模型学会正确的输出格式和结构</p>
@@ -392,8 +392,8 @@
 <li><p>SimPO（Simple Preference Optimization）：在高质量视频数据上做偏好优化，强化”答对问题”的能力</p>
 </li>
 </ul>
-<p><strong>输入处理：2 FPS 采样</strong> 视频以每秒 2 帧的频率采样，最多处理 240 帧（约 2 分钟）。这个采样率在保证信息密度的同时控制了计算量，让 2B 模型也能处理长视频。</p>
-<p><strong>输出设计：结构化而非文本</strong> 通过 <code>modeling_marlin.py</code> 里的自定义建模代码，强制模型输出 <code>&#123;scenes, events&#125;</code> 或 <code>&#123;spans&#125;</code> 这样的结构化字典，不是自由的文本描述——这直接提升了时间定位的准确性。</p>
+<p><strong>输入处理：2 FPS 采样</strong> 视频以每秒 2 帧的频率采样，最多处理 240 帧（约 2 分钟）。这个采样率在保证信息密度的同时控制了计算量，让 2B 模型也能处理长视频。</p>
+<p><strong>输出设计：结构化而非文本</strong> 通过 <code>modeling_marlin.py</code> 里的自定义建模代码，强制模型输出 <code>&#123;scenes, events&#125;</code> 或 <code>&#123;spans&#125;</code> 这样的结构化字典，不是自由的文本描述——这直接提升了时间定位的准确性。</p>
 <hr>
 <h2 id="五、局限性"><a href="#五、局限性" class="headerlink" title="五、局限性"></a>五、局限性</h2><p>说完了好，也要说清楚它的局限：</p>
 <ul>
@@ -411,11 +411,11 @@
 <h2 id="六、安装和使用：两行代码跑起来"><a href="#六、安装和使用：两行代码跑起来" class="headerlink" title="六、安装和使用：两行代码跑起来"></a>六、安装和使用：两行代码跑起来</h2><p><strong>环境依赖</strong></p>
 <p><code>pip install torch transformers accelerate   </code></p>
 <p><strong>模型加载（HuggingFace）</strong></p>
-<p><code>from transformers import AutoModelForCausalLM, AutoProcessor   from marlin.marlin_runner import MarlinRunner      runner = MarlinRunner.from_pretrained(&quot;NemoStation/Marlin-2B&quot;)   </code></p>
+<p><code>from transformers import AutoModelForCausalLM, AutoProcessor   from marlin.marlin_runner import MarlinRunner      runner = MarlinRunner.from_pretrained(&quot;NemoStation/Marlin-2B&quot;)   </code></p>
 <p><strong>密集字幕任务</strong></p>
-<p><code>result = runner.caption(       video_path=&quot;your_video.mp4&quot;,       prompt=&quot;详细描述这个视频的所有事件&quot;   )   for event in result[&quot;events&quot;]:       print(f&quot;&#123;event[&#39;start&#39;]:.1f&#125;s - &#123;event[&#39;end&#39;]:.1f&#125;s: &#123;event[&#39;description&#39;]&#125;&quot;)   </code></p>
+<p><code>result = runner.caption(       video_path=&quot;your_video.mp4&quot;,       prompt=&quot;详细描述这个视频的所有事件&quot;   )   for event in result[&quot;events&quot;]:       print(f&quot;&#123;event[&#39;start&#39;]:.1f&#125;s - &#123;event[&#39;end&#39;]:.1f&#125;s: &#123;event[&#39;description&#39;]&#125;&quot;)   </code></p>
 <p><strong>时间定位任务</strong></p>
-<p><code>result = runner.find(       video_path=&quot;your_video.mp4&quot;,       query=&quot;目标人物出现在画面的时间段是？&quot;   )   for span in result[&quot;spans&quot;]:       print(f&quot;&#123;span[&#39;start&#39;]:.1f&#125;s - &#123;span[&#39;end&#39;]:.1f&#125;s: &#123;span[&#39;reason&#39;]&#125;&quot;)   </code></p>
+<p><code>result = runner.find(       video_path=&quot;your_video.mp4&quot;,       query=&quot;目标人物出现在画面的时间段是？&quot;   )   for span in result[&quot;spans&quot;]:       print(f&quot;&#123;span[&#39;start&#39;]:.1f&#125;s - &#123;span[&#39;end&#39;]:.1f&#125;s: &#123;span[&#39;reason&#39;]&#125;&quot;)   </code></p>
 <p><strong>国内镜像（ModelScope）</strong></p>
 <p><code>runner = MarlinRunner.from_pretrained(&quot;NemoStation/Marlin-2B&quot;, hub=&quot;modelscope&quot;)   </code></p>
 <hr>

@@ -364,7 +364,7 @@
 <td>自动发现的harness超过了最好的人工设计基线，达到 <strong>76.4%</strong></td>
 </tr>
 </tbody></table>
-<h2 id="GitHub-开源代码"><a href="#GitHub-开源代码" class="headerlink" title="GitHub 开源代码"></a>GitHub 开源代码</h2><p>对应论文，斯坦福 IRIS 实验室开源了 TerminalBench 2.0 上的实验代码：<br><a target="_blank" rel="noopener" href="https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact/[1/]">https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact\[1\]</a></p>
+<h2 id="GitHub-开源代码"><a href="#GitHub-开源代码" class="headerlink" title="GitHub 开源代码"></a>GitHub 开源代码</h2><p>对应论文，斯坦福 IRIS 实验室开源了 TerminalBench 2.0 上的实验代码：<br><a target="_blank" rel="noopener" href="https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact[1]">https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact[1]</a></p>
 <p>这是一个已经通过自动进化发现的agent scaffold，基于 KRAFTON AI 的 Terminus-KIRA 和 Harbor 的 Terminus-2 框架构建：</p>
 <ul>
 <li><p><strong>核心改进</strong>：环境自举（environment bootstrapping）</p>
@@ -438,11 +438,11 @@
 <h2 id="这篇论文有意思在哪？"><a href="#这篇论文有意思在哪？" class="headerlink" title="这篇论文有意思在哪？"></a>这篇论文有意思在哪？</h2><h3 id="1-方向正确：让AI优化AI"><a href="#1-方向正确：让AI优化AI" class="headerlink" title="1. 方向正确：让AI优化AI"></a>1. 方向正确：让AI优化AI</h3><p>现在大家都在说”AI写代码”，但大多数停留在”人类提需求，AI写一遍”。Meta-Harness走得更远：<strong>让AI持续迭代优化自己的基础设施代码</strong>。</p>
 <h3 id="2-细节到位：完整反馈比压缩分数更有用"><a href="#2-细节到位：完整反馈比压缩分数更有用" class="headerlink" title="2. 细节到位：完整反馈比压缩分数更有用"></a>2. 细节到位：完整反馈比压缩分数更有用</h3><p>之前很多方法把执行结果压缩成一个标量分数给LLM，丢失了大量诊断信息。Meta-Harness让LLM直接看完整日志、源码、历史——既然LLM能读代码，为什么要帮它总结？</p>
 <h3 id="3-收益立竿见影：不改模型权重，只调框架就能涨点"><a href="#3-收益立竿见影：不改模型权重，只调框架就能涨点" class="headerlink" title="3. 收益立竿见影：不改模型权重，只调框架就能涨点"></a>3. 收益立竿见影：不改模型权重，只调框架就能涨点</h3><p>这对于工业界特别有吸引力：你已经有了模型，不需要重新训练，只要让AI帮你调外围框架，就能直接涨点还省token。</p>
-<h2 id="如何试用？"><a href="#如何试用？" class="headerlink" title="如何试用？"></a>如何试用？</h2><p><code># 安装harbor框架   pip install harbor      # 设置API key   export ANTHROPIC_API_KEY=&lt;your-key&gt;      # 运行Meta-Harness agent   harbor run \    --agent-import-path agent:AgentHarness \    -d terminal-bench@2.0 \    -m anthropic/claude-opus-4-6 \    -e runloop \    -n 20 \    --n-attempts 5   </code></p>
+<h2 id="如何试用？"><a href="#如何试用？" class="headerlink" title="如何试用？"></a>如何试用？</h2><p><code># 安装harbor框架   pip install harbor      # 设置API key   export ANTHROPIC_API_KEY=&lt;your-key&gt;      # 运行Meta-Harness agent   harbor run \    --agent-import-path agent:AgentHarness \    -d terminal-bench@2.0 \    -m anthropic/claude-opus-4-6 \    -e runloop \    -n 20 \    --n-attempts 5   </code></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Meta-Harness 这篇论文提出了一个很有前途的方向：<strong>harness工程也可以自动化</strong>。</p>
 <p>当我们已经有了足够强大的基础模型，接下来的问题就是：如何让框架也跟上？既然AI已经能帮我们写代码了，为什么不让它自己优化自己的运行框架呢？</p>
 <p>目前来看，这个思路在三个不同领域都验证有效：文本分类、数学推理、Agent编程。说不定未来越来越多AI系统的框架代码，真的会完全由AI自动发现和维护。</p>
-<p><strong>论文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.28052/[2/]">https://arxiv.org/abs/2603.28052\[2\]</a><br><strong>GitHub 代码：</strong> <a target="_blank" rel="noopener" href="https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact/[3/]">https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact\[3\]</a></p>
+<p><strong>论文链接：</strong> <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.28052[2]">https://arxiv.org/abs/2603.28052[2]</a><br><strong>GitHub 代码：</strong> <a target="_blank" rel="noopener" href="https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact[3]">https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact[3]</a></p>
 <hr>
 <p><em>关注「环境猫er」，我们一起探索AI前沿技术交叉创新。</em></p>
 <h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact">https://github.com/stanford-iris-lab/meta-harness-tbench2-artifact</a></em></p>

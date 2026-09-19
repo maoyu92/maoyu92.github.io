@@ -340,7 +340,7 @@
 <p>所以我把它们固化成了一条链路：<strong>写稿 → 自检 → 封面 → 配图 → 排版 → 发布 → 核实</strong>。七个步骤，每一步都有明确产物，能提前失败的，都在进微信之前先失败。</p>
 <p>一句实话放在前面：<strong>它不替你写稿</strong>。选题、观点、事实核实仍然是人做的事；这个技能负责的，是写完之后到进草稿箱这一段。</p>
 <h2 id="二、一条链路"><a href="#二、一条链路" class="headerlink" title="二、一条链路"></a>二、一条链路</h2><p>先看全景。</p>
-<p><img src="/uploads/ai-notes/a006/87e52a1f403086b1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a006/87e52a1f403086b1.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>七个步骤各自的产物我列一遍，方便你判断它到底交出了什么。</p>
 <ol>
 <li><p><strong>写稿</strong>：frontmatter 四个字段加正文，产物是一篇 markdown。规范在这一步生效：全角标点、章节标题四到五字、句读不放加粗内。</p>
@@ -360,7 +360,7 @@
 </ol>
 <p>第六步是整条链路的重点。<strong>直接拿 wenyan 的输出喂微信接口，图片一定裂</strong>——它输出的是 assets 目录下的本地相对路径，微信服务器读不到。技能的做法是先把每张图上传换链接，再把重写过的 HTML 递进去。</p>
 <h2 id="三、先过自检"><a href="#三、先过自检" class="headerlink" title="三、先过自检"></a>三、先过自检</h2><p><code>preflight.py</code> 是这条链路里的守门人，管的全是「错了就没救」的硬约束，逐项检查。</p>
-<p><img src="/uploads/ai-notes/a006/a0b0c9a97e19dbf1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a006/a0b0c9a97e19dbf1.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <ul>
 <li><p><strong>title 不超过 64 字节</strong>：中文按 3 字节算，实际约 21 个中文字封顶，超了微信直接拒。</p>
 </li>
@@ -380,10 +380,10 @@
 <p>另一类是<strong>封面没走素材上传</strong>。草稿的封面字段要的是永久素材 ID，不是文件路径；手动拼 ID，基本等于自找 40007。</p>
 <p>配图转换还有个很常见的报错：输出目录不存在，转换库直接甩一个写入失败。这类问题的修法笨且有效——先建目录，再跑转换。发布前的清单里，绝大多数报错都对应着一个具体的、可复现的动作缺失，而不是玄学。</p>
 <p>自检过了，先跑一次 dry-run 看渲染结果：</p>
-<p><code>python scripts/preflight.py article.md   python scripts/publish_wenyan.py article.md --theme blue --dry-run   </code></p>
+<p><code>python scripts/preflight.py article.md   python scripts/publish_wenyan.py article.md --theme blue --dry-run   </code></p>
 <p>dry-run 只渲染不发布，会输出一个本地 HTML 文件路径。你不接微信也能用：把它手动粘进公众号后台，同样是一篇排好版的稿子。</p>
 <h2 id="四、四个主题"><a href="#四、四个主题" class="headerlink" title="四、四个主题"></a>四、四个主题</h2><p>排版这部分，技能内置了四套自定义主题，本质是四份 wenyan 的 CSS 主题文件。</p>
-<p><img src="/uploads/ai-notes/a006/7b748516c6601183.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a006/7b748516c6601183.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <ul>
 <li><p><strong>redwhite</strong>：红白，主色 #DC2626，默认的一套。</p>
 </li>
@@ -399,7 +399,7 @@
 <p>主题不生效，八成是没重新注册。wenyan 的主题是注册制的，改了 CSS 必须重新 add 覆盖一遍，再用 <code>-t</code> 指定名字渲染，否则用的还是旧版。</p>
 <p>还有一条容易被忽略的细节：<strong>字号只挂在段落上，不要给加粗单独设字号</strong>。微信会按自己的规则「纠正」字号混用，结果是排版漂移。技能里把字号统一放段落，加粗只负责一条下划线，两边互不干扰，这也是它在微信端比较稳的原因。</p>
 <p>想加自己的配色也不难，复制任意一套主题，换掉那四个色值即可：</p>
-<p><code>wenyan theme --add --name mytheme --path themes/mytheme.css   </code></p>
+<p><code>wenyan theme --add --name mytheme --path themes/mytheme.css   </code></p>
 <h2 id="五、怎么调用"><a href="#五、怎么调用" class="headerlink" title="五、怎么调用"></a>五、怎么调用</h2><p>在 WorkBuddy 的技能市场（左侧菜单【专家 · 技能 · 连接器】→【技能】）找到它，点技能右上角的加号安装，之后在对话里直接用自然语言调用：</p>
 <ul>
 <li><p>「帮我把这篇 markdown 发到公众号草稿箱，用蓝主题」</p>
@@ -411,7 +411,7 @@
 </ul>
 <p>技能的描述里写清了用途和触发场景（公众号发文、写公众号、排版发布、发草稿），AI 会据此判断要不要触发它，不需要你记命令。</p>
 <p>如果你想在本地自己跑完整链路，命令是这样：</p>
-<p><code>pip install Pillow cairosvg   npm i -g @wenyan-md/cli   export WECHAT_APP_ID=wx你的AppID   export WECHAT_APP_SECRET=你的AppSecret      python scripts/preflight.py article.md   python scripts/gen_cover.py --out cover.png \       --eyebrow &quot;栏目 · 日期&quot; --title &quot;主标题&quot; \       --subtitle &quot;副标题&quot; --pills &quot;卖点1,卖点2,卖点3&quot;   python scripts/gen_diagrams.py assets/fig1.svg assets/fig2.svg   python scripts/publish_wenyan.py article.md --theme blue --dry-run   python scripts/publish_wenyan.py article.md --theme blue --verify   </code></p>
+<p><code>pip install Pillow cairosvg   npm i -g @wenyan-md/cli   export WECHAT_APP_ID=wx你的AppID   export WECHAT_APP_SECRET=你的AppSecret      python scripts/preflight.py article.md   python scripts/gen_cover.py --out cover.png \       --eyebrow &quot;栏目 · 日期&quot; --title &quot;主标题&quot; \       --subtitle &quot;副标题&quot; --pills &quot;卖点1,卖点2,卖点3&quot;   python scripts/gen_diagrams.py assets/fig1.svg assets/fig2.svg   python scripts/publish_wenyan.py article.md --theme blue --dry-run   python scripts/publish_wenyan.py article.md --theme blue --verify   </code></p>
 <p>把最后一条的 <code>--dry-run</code> 去掉就是正式发布，<code>--verify</code> 会在建完草稿之后调 <code>draft/get</code> 回读核实：图数、中文字数、标题摘要字节，对不上会直接显示出来。</p>
 <h2 id="六、边界与注意"><a href="#六、边界与注意" class="headerlink" title="六、边界与注意"></a>六、边界与注意</h2><p>这一节认真写，因为这个技能的边界比一般工具更硬。</p>
 <p><strong>凭证必须你自备</strong>。技能不内置、也不落盘任何 AppID 和 AppSecret，全靠环境变量传入。没有凭证时，它只会执行到自检、封面、配图、渲染为止，然后如实告诉你发不了，不会假装成功。</p>
@@ -507,9 +507,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a005_%E5%85%AC%E4%BC%97%E5%8F%B7%E5%B0%81%E9%9D%A2%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9A%E6%88%91%E5%8F%97%E5%A4%9F%E4%BA%86%E6%AF%8F%E6%AC%A1%E9%83%BD%E5%9C%A8%E8%B0%83%E5%AD%97%E5%8F%B7/" title="公众号封面生成器：我受够了每次都在调字号">
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/WorkBuddy%E6%8A%80%E8%83%BD/a008_DEM%20%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%EF%BC%9A%E8%B7%91%E5%AE%8C%E4%B8%8D%E7%9F%A5%E9%81%93%E5%AF%B9%E4%B8%8D%E5%AF%B9%EF%BC%8C%E6%89%8D%E6%98%AF%E7%9C%9F%E9%BA%BB%E7%83%A6/" title="DEM 水文分析：跑完不知道对不对，才是真麻烦">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">公众号封面生成器：我受够了每次都在调字号</span>
+                        <span class="hidden-mobile">DEM 水文分析：跑完不知道对不对，才是真麻烦</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -517,8 +517,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/WorkBuddy%E6%8A%80%E8%83%BD/a007_PRD%20%E4%BD%8E%E4%BF%9D%E7%9C%9F%E7%BA%BF%E6%A1%86%E5%9B%BE%EF%BC%9A%E6%96%87%E5%AD%97%E5%AF%B9%E4%B8%8D%E4%B8%8A%E5%9B%BE%EF%BC%8C%E5%85%88%E5%B9%B3%E9%93%BA%E4%B8%80%E9%81%8D/" title="PRD 低保真线框图：文字对不上图，先平铺一遍">
-                        <span class="hidden-mobile">PRD 低保真线框图：文字对不上图，先平铺一遍</span>
+                      <a href="/2026/09/13/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a010_%E4%BA%BA%E7%94%9F%20Harness%EF%BC%9A%E6%88%91%E6%8A%8A%E4%BA%BA%E7%94%9F%E5%BD%93%E6%88%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9D%A5%E7%BB%B4%E6%8A%A4/" title="人生 Harness：我把人生当成操作系统来维护">
+                        <span class="hidden-mobile">人生 Harness：我把人生当成操作系统来维护</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -340,11 +340,11 @@
 </li>
 </ul>
 <p>就像给每个 Agent 一个独立的”人格”和”工作空间”。</p>
-<h3 id="创建和管理-Profile"><a href="#创建和管理-Profile" class="headerlink" title="创建和管理 Profile"></a>创建和管理 Profile</h3><p><code># 创建新 Profile   hermes profile create research      # 创建时不带内置技能   hermes profile create research --no-skills      # 切换到指定 Profile   hermes profile use research      # 查看当前 Profile   hermes profile current      # 列出所有 Profile   hermes profile list      # 删除 Profile   hermes profile delete old-profile   </code></p>
+<h3 id="创建和管理-Profile"><a href="#创建和管理-Profile" class="headerlink" title="创建和管理 Profile"></a>创建和管理 Profile</h3><p><code># 创建新 Profile   hermes profile create research      # 创建时不带内置技能   hermes profile create research --no-skills      # 切换到指定 Profile   hermes profile use research      # 查看当前 Profile   hermes profile current      # 列出所有 Profile   hermes profile list      # 删除 Profile   hermes profile delete old-profile   </code></p>
 <h3 id="实际使用场景"><a href="#实际使用场景" class="headerlink" title="实际使用场景"></a>实际使用场景</h3><p><strong>场景 1：工作分离</strong></p>
-<p><code># 创建工作 Profile（编码专用）   hermes profile create work   hermes profile use work   hermes model  # 配置编码模型（如 Claude Sonnet）      # 创建研究 Profile（调研专用）   hermes profile create research   hermes profile use research   hermes model  # 配置研究模型（如 Gemini）   </code></p>
+<p><code># 创建工作 Profile（编码专用）   hermes profile create work   hermes profile use work   hermes model  # 配置编码模型（如 Claude Sonnet）      # 创建研究 Profile（调研专用）   hermes profile create research   hermes profile use research   hermes model  # 配置研究模型（如 Gemini）   </code></p>
 <p><strong>场景 2：主 Agent 编排子 Agent</strong></p>
-<p><code># 主 Profile 可以编排其他 Profile 的 Agent   # 在 ~/.hermes/config.yaml 中配置      agents:     work_agent:       profile: work     research_agent:       profile: research     deploy_agent:       profile: deploy   </code></p>
+<p><code># 主 Profile 可以编排其他 Profile 的 Agent   # 在 ~/.hermes/config.yaml 中配置      agents:     work_agent:       profile: work     research_agent:       profile: research     deploy_agent:       profile: deploy   </code></p>
 <p>主 Agent 通过 <code>delegate_task</code> 工具向子 Profile 的 Agent 分配任务。</p>
 <h3 id="Profile-隔离的好处"><a href="#Profile-隔离的好处" class="headerlink" title="Profile 隔离的好处"></a>Profile 隔离的好处</h3><table>
 <thead>
@@ -394,9 +394,9 @@
 <li><p>完全隔离的执行环境</p>
 </li>
 </ul>
-<p><code>主 Agent（编排者）   ├── 子 Agent 1（调研任务）   │   └── 独立对话 + 工具   ├── 子 Agent 2（代码任务）   │   └── 独立对话 + 工具   └── 子 Agent 3（测试任务）       └── 独立对话 + 工具   </code></p>
+<p><code>主 Agent（编排者）   ├── 子 Agent 1（调研任务）   │   └── 独立对话 + 工具   ├── 子 Agent 2（代码任务）   │   └── 独立对话 + 工具   └── 子 Agent 3（测试任务）       └── 独立对话 + 工具   </code></p>
 <h3 id="委托模式"><a href="#委托模式" class="headerlink" title="委托模式"></a>委托模式</h3><p><strong>顺序委托</strong>：主 Agent → 研究 Agent → 验证 Agent</p>
-<p><code># 主 Agent 在聊天中发起   请调研一下 Next.js 15 的新特性，然后验证关键功能是否可用   </code></p>
+<p><code># 主 Agent 在聊天中发起   请调研一下 Next.js 15 的新特性，然后验证关键功能是否可用   </code></p>
 <p>Hermes 会自动：</p>
 <ol>
 <li><p>启动研究子 Agent 进行调研</p>
@@ -407,10 +407,10 @@
 </li>
 </ol>
 <p><strong>并行委托</strong>：同时调研 3 个主题</p>
-<p><code># 主 Agent 同时启动多个子 Agent   同时调研 A、B、C 三个方案的优劣   </code></p>
+<p><code># 主 Agent 同时启动多个子 Agent   同时调研 A、B、C 三个方案的优劣   </code></p>
 <p>每个子 Agent 独立执行，结果汇总后由主 Agent 评分筛选。</p>
 <h3 id="安全审查模式"><a href="#安全审查模式" class="headerlink" title="安全审查模式"></a>安全审查模式</h3><p><strong>全新上下文审查</strong>：子 Agent 在完全隔离的上下文中审查代码，不受主 Agent 偏见影响。</p>
-<p><code># 主 Agent 生成代码后，委托子 Agent 审查   我刚写完了认证模块，请帮我审查代码质量   # Hermes 自动启动审查子 Agent   </code></p>
+<p><code># 主 Agent 生成代码后，委托子 Agent 审查   我刚写完了认证模块，请帮我审查代码质量   # Hermes 自动启动审查子 Agent   </code></p>
 <h2 id="Kanban-看板：可视化任务调度"><a href="#Kanban-看板：可视化任务调度" class="headerlink" title="Kanban 看板：可视化任务调度"></a>Kanban 看板：可视化任务调度</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Hermes 内置了一个 <strong>SQLite 单文件驱动的 Kanban 看板系统</strong>，实现多 Agent 协作的任务调度。</p>
 <p><strong>核心设计</strong>：</p>
 <ul>
@@ -423,7 +423,7 @@
 <li><p>自动依赖管理 + 自愈能力</p>
 </li>
 </ul>
-<h3 id="看板结构"><a href="#看板结构" class="headerlink" title="看板结构"></a>看板结构</h3><p><code>┌─────────┬──────────┬──────────┬─────────┐   │  Backlog │  Ready   │ Running  │  Done   │   ├─────────┼──────────┼──────────┼─────────┤   │  任务 A  │  任务 B  │  任务 C  │  任务 D  │   │  任务 E  │  任务 F  │          │  任务 G  │   └─────────┴──────────┴──────────┴─────────┘   </code></p>
+<h3 id="看板结构"><a href="#看板结构" class="headerlink" title="看板结构"></a>看板结构</h3><p><code>┌─────────┬──────────┬──────────┬─────────┐   │  Backlog │  Ready   │ Running  │  Done   │   ├─────────┼──────────┼──────────┼─────────┤   │  任务 A  │  任务 B  │  任务 C  │  任务 D  │   │  任务 E  │  任务 F  │          │  任务 G  │   └─────────┴──────────┴──────────┴─────────┘   </code></p>
 <h3 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h3><ol>
 <li><p><strong>创建卡片</strong>：用户或 Agent 创建任务卡片</p>
 </li>
@@ -451,9 +451,9 @@
 </li>
 </ol>
 <h3 id="实际案例"><a href="#实际案例" class="headerlink" title="实际案例"></a>实际案例</h3><p>社区用户分享的生产级工作流：</p>
-<p><code>Scout Agent（X + Reddit 数据采集）       ↓   Orchestrator（评分筛选）       ↓   Researcher × 3（并行验证：技术可行性 / 商业模式 / 竞品分析）       ↓   Builder + Tester（代码实现 + 测试）       ↓   人类审批（最后环节）   </code></p>
+<p><code>Scout Agent（X + Reddit 数据采集）       ↓   Orchestrator（评分筛选）       ↓   Researcher × 3（并行验证：技术可行性 / 商业模式 / 竞品分析）       ↓   Builder + Tester（代码实现 + 测试）       ↓   人类审批（最后环节）   </code></p>
 <p><strong>结果</strong>：18 个 Agent 并行运行，97 个任务完成，人类只在最后审批环节介入。</p>
-<h3 id="CLI-命令"><a href="#CLI-命令" class="headerlink" title="CLI 命令"></a>CLI 命令</h3><p><code># 查看看板   kanban list      # 创建任务   kanban add &quot;实现用户认证&quot; --profile work --priority high      # 任务状态流转   kanban move &lt;task-id&gt; running   kanban move &lt;task-id&gt; done      # 查看 Agent 状态   kanban agents   </code></p>
+<h3 id="CLI-命令"><a href="#CLI-命令" class="headerlink" title="CLI 命令"></a>CLI 命令</h3><p><code># 查看看板   kanban list      # 创建任务   kanban add &quot;实现用户认证&quot; --profile work --priority high      # 任务状态流转   kanban move &lt;task-id&gt; running   kanban move &lt;task-id&gt; done      # 查看 Agent 状态   kanban agents   </code></p>
 <h2 id="消息平台集成"><a href="#消息平台集成" class="headerlink" title="消息平台集成"></a>消息平台集成</h2><p>Hermes 通过 Gateway 支持 19+ 消息平台，全部从同一个 Gateway 进程运行：</p>
 <table>
 <thead>
@@ -514,7 +514,7 @@
 <td>Token</td>
 </tr>
 </tbody></table>
-<h3 id="配置-Gateway"><a href="#配置-Gateway" class="headerlink" title="配置 Gateway"></a>配置 Gateway</h3><p><code># 交互式配置   hermes gateway setup      # 启动 Gateway   hermes gateway   </code></p>
+<h3 id="配置-Gateway"><a href="#配置-Gateway" class="headerlink" title="配置 Gateway"></a>配置 Gateway</h3><p><code># 交互式配置   hermes gateway setup      # 启动 Gateway   hermes gateway   </code></p>
 <h3 id="语音消息支持"><a href="#语音消息支持" class="headerlink" title="语音消息支持"></a>语音消息支持</h3><ul>
 <li><p>语音转文字：本地 faster-whisper（免费）&#x2F; Groq &#x2F; OpenAI Whisper</p>
 </li>
@@ -576,8 +576,8 @@
 <li><p>不需要逐个配置 API Key</p>
 </li>
 </ul>
-<p><code>hermes setup --portal   </code></p>
-<h3 id="更新和维护"><a href="#更新和维护" class="headerlink" title="更新和维护"></a>更新和维护</h3><p><code># 一键更新   hermes update      # 手动更新   cd ~/.hermes/hermes-agent   git pull   git submodule update --init --recursive   uv pip install -e .   </code></p>
+<p><code>hermes setup --portal   </code></p>
+<h3 id="更新和维护"><a href="#更新和维护" class="headerlink" title="更新和维护"></a>更新和维护</h3><p><code># 一键更新   hermes update      # 手动更新   cd ~/.hermes/hermes-agent   git pull   git submodule update --init --recursive   uv pip install -e .   </code></p>
 <h3 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h3><p><code>~/.hermes/hermes-agent/scripts/uninstall.sh   </code></p>
 <h2 id="与-OpenClaw-的生态对比"><a href="#与-OpenClaw-的生态对比" class="headerlink" title="与 OpenClaw 的生态对比"></a>与 OpenClaw 的生态对比</h2><table>
 <thead>

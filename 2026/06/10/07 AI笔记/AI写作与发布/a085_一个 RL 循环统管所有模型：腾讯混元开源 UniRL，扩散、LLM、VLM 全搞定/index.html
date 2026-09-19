@@ -363,7 +363,7 @@
 <p>这 5 个步骤对所有模型类型都适用——无论是扩散模型还是自回归模型。区别只在于每个步骤的具体实现。</p>
 <p><img src="/images/257f39dc1ed386a8.png" srcset="/img/loading.gif" lazyload alt="UniRL 统一架构：模型与算法正交可组合" title="UniRL 统一架构：模型与算法正交可组合"></p>
 <h3 id="分层架构"><a href="#分层架构" class="headerlink" title="分层架构"></a>分层架构</h3><p>UniRL 是一个<strong>分层、可组合的系统</strong>：</p>
-<p><code>┌─────────────────────────────────────────────┐   │              Entrypoint 层                    │   │  train_diffusion / train_ar / train_pe / ... │   ├─────────────────────────────────────────────┤   │              Trainer 层                       │   │  DiffusionTrainer / ARTrainer / PETrainer    │   ├────────────────────────────────藏─────────────┤   │              模块层（可插拔）                   │   │  Rollout 引擎 │ 算法 │ 模型 │ 奖励 │ 同步    │   ├─────────────────────────────────────────────┤   │              运行时层                          │   │  Ray DevicePool / FSDP / Transfer Queue      │   └─────────────────────────────────────────────┘   </code></p>
+<p><code>┌─────────────────────────────────────────────┐   │              Entrypoint 层                    │   │  train_diffusion / train_ar / train_pe / ... │   ├─────────────────────────────────────────────┤   │              Trainer 层                       │   │  DiffusionTrainer / ARTrainer / PETrainer    │   ├────────────────────────────────藏─────────────┤   │              模块层（可插拔）                   │   │  Rollout 引擎 │ 算法 │ 模型 │ 奖励 │ 同步    │   ├─────────────────────────────────────────────┤   │              运行时层                          │   │  Ray DevicePool / FSDP / Transfer Queue      │   └─────────────────────────────────────────────┘   </code></p>
 <p>每一层都是可替换的。想换算法？只改算法模块。想换模型？只改模型模块。<strong>不需要重写整个训练流程</strong>。</p>
 <h2 id="三、四种训练模式"><a href="#三、四种训练模式" class="headerlink" title="三、四种训练模式"></a>三、四种训练模式</h2><p>UniRL 支持四种训练模式，覆盖几乎所有主流多模态模型：</p>
 <h3 id="1-扩散模式（Diffusion）"><a href="#1-扩散模式（Diffusion）" class="headerlink" title="1. 扩散模式（Diffusion）"></a>1. 扩散模式（Diffusion）</h3><p>训练图像和视频扩散模型。</p>
@@ -537,8 +537,8 @@
 <li><p>权重同步（Transfer Queue）</p>
 </li>
 </ul>
-<h2 id="七、怎么用？"><a href="#七、怎么用？" class="headerlink" title="七、怎么用？"></a>七、怎么用？</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code># 克隆仓库   git clone https://github.com/Tencent-Hunyuan/UniRL.git   cd UniRL      # 安装依赖   pip install -e .   </code></p>
-<h3 id="跑一个示例"><a href="#跑一个示例" class="headerlink" title="跑一个示例"></a>跑一个示例</h3><p><code># 扩散模型训练（Stable Diffusion 3）   python -m unirl.train_diffusion \     --config-name=diffusion/sd3_trainside \     --cfg job --resolve      # LLM 训练（Qwen3 + DRPO）   python -m unirl.train_ar \     --config-name=ar/qwen3_drpo_4b_base_dapo_sglang \     --cfg job --resolve   </code></p>
+<h2 id="七、怎么用？"><a href="#七、怎么用？" class="headerlink" title="七、怎么用？"></a>七、怎么用？</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code># 克隆仓库   git clone https://github.com/Tencent-Hunyuan/UniRL.git   cd UniRL      # 安装依赖   pip install -e .   </code></p>
+<h3 id="跑一个示例"><a href="#跑一个示例" class="headerlink" title="跑一个示例"></a>跑一个示例</h3><p><code># 扩散模型训练（Stable Diffusion 3）   python -m unirl.train_diffusion \     --config-name=diffusion/sd3_trainside \     --cfg job --resolve      # LLM 训练（Qwen3 + DRPO）   python -m unirl.train_ar \     --config-name=ar/qwen3_drpo_4b_base_dapo_sglang \     --cfg job --resolve   </code></p>
 <h3 id="添加自己的模型"><a href="#添加自己的模型" class="headerlink" title="添加自己的模型"></a>添加自己的模型</h3><p>UniRL 的架构设计使得添加新模型变得简单：</p>
 <ol>
 <li><p>在对应 domain 下添加模型配置</p>

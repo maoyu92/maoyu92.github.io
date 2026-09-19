@@ -336,14 +336,14 @@
 <p>你用 HTML 写视频内容，用 CSS 控制样式，用 GSAP 等动画库控制时间轴。最后一行命令，渲染出 MP4。改内容？改代码。改样式？改 CSS。改时间轴？改 <code>data-*</code> 属性。每次都是确定性输出，可以 diff，可以版本化，可以放进 CI&#x2F;CD。</p>
 <hr>
 <h2 id="二、核心机制：HTML-即时间轴"><a href="#二、核心机制：HTML-即时间轴" class="headerlink" title="二、核心机制：HTML 即时间轴"></a>二、核心机制：HTML 即时间轴</h2><p>HyperFrames 的设计非常直觉——你的 HTML 结构就是视频结构。</p>
-<p><code>&lt;div id=&quot;stage&quot;        data-composition-id=&quot;launch&quot;        data-start=&quot;0&quot;        data-width=&quot;1920&quot;        data-height=&quot;1080&quot;&gt;        &lt;!-- 背景视频 clip --&gt;     &lt;video class=&quot;clip&quot;            data-start=&quot;0&quot;            data-duration=&quot;6&quot;            data-track-index=&quot;0&quot;            src=&quot;intro.mp4&quot;            muted playsinline&gt;&lt;/video&gt;        &lt;!-- 标题 clip --&gt;     &lt;h1 id=&quot;title&quot;         class=&quot;clip&quot;         data-start=&quot;1&quot;         data-duration=&quot;4&quot;         data-track-index=&quot;1&quot;&gt;Launch day&lt;/h1&gt;        &lt;!-- 背景音乐 clip --&gt;     &lt;audio data-start=&quot;0&quot;            data-duration=&quot;6&quot;            data-track-index=&quot;2&quot;            data-volume=&quot;0.5&quot;            src=&quot;music.wav&quot;&gt;&lt;/audio&gt;        &lt;script src=&quot;https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js&quot;&gt;&lt;/script&gt;     &lt;script&gt;    const tl = gsap.timeline(&#123; paused: true &#125;);       tl.from(&quot;#title&quot;, &#123; opacity: 0, y: 40, duration: 0.8 &#125;, 1);       window.__timelines = window.__timelines || &#123;&#125;;       window.__timelines.launch = tl;  &lt;/script&gt;   &lt;/div&gt;   </code></p>
+<p><code>&lt;div id=&quot;stage&quot;        data-composition-id=&quot;launch&quot;        data-start=&quot;0&quot;        data-width=&quot;1920&quot;        data-height=&quot;1080&quot;&gt;        &lt;!-- 背景视频 clip --&gt;     &lt;video class=&quot;clip&quot;            data-start=&quot;0&quot;            data-duration=&quot;6&quot;            data-track-index=&quot;0&quot;            src=&quot;intro.mp4&quot;            muted playsinline&gt;&lt;/video&gt;        &lt;!-- 标题 clip --&gt;     &lt;h1 id=&quot;title&quot;         class=&quot;clip&quot;         data-start=&quot;1&quot;         data-duration=&quot;4&quot;         data-track-index=&quot;1&quot;&gt;Launch day&lt;/h1&gt;        &lt;!-- 背景音乐 clip --&gt;     &lt;audio data-start=&quot;0&quot;            data-duration=&quot;6&quot;            data-track-index=&quot;2&quot;            data-volume=&quot;0.5&quot;            src=&quot;music.wav&quot;&gt;&lt;/audio&gt;        &lt;script src=&quot;https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js&quot;&gt;&lt;/script&gt;     &lt;script&gt;    const tl = gsap.timeline(&#123; paused: true &#125;);       tl.from(&quot;#title&quot;, &#123; opacity: 0, y: 40, duration: 0.8 &#125;, 1);       window.__timelines = window.__timelines || &#123;&#125;;       window.__timelines.launch = tl;  &lt;/script&gt;   &lt;/div&gt;   </code></p>
 <p>每个有 <code>class=&quot;clip&quot;</code> 的元素，就是一个轨道上的 clip。 <code>data-start</code> 和 <code>data-duration</code> 定义它在时间轴上的位置。 <code>data-track-index</code> 定义它在哪条轨道上。</p>
 <p>用 GSAP 写的动画，通过 <code>window.__timelines</code> 注册给渲染引擎，引擎会在渲染时 seek 到每一帧，捕捉画面，编码成 MP4。</p>
 <p>整个过程：headless Chrome 逐帧渲染 → FFmpeg 编码 → MP4 输出。同样的输入，每次输出完全一致。</p>
 <hr>
 <h2 id="三、AI-Agent-原生支持"><a href="#三、AI-Agent-原生支持" class="headerlink" title="三、AI Agent 原生支持"></a>三、AI Agent 原生支持</h2><p>HyperFrames 最特别的地方，是它的 Agent-first 设计。</p>
 <p>它发布之初就自带 Claude Code skill：</p>
-<p><code>npx skills add heygen-com/hyperframes   </code></p>
+<p><code>npx skills add heygen-com/hyperframes   </code></p>
 <p>安装后，Claude Code 自动注册一组 slash commands：</p>
 <table>
 <thead>
@@ -436,7 +436,7 @@
 <p><strong>社交媒体短视频</strong> 9:16 TikTok 风格，带字幕动画和 TTS 配音。Prompt 驱动 AI 全自动生成。</p>
 <hr>
 <h2 id="六、入手路径"><a href="#六、入手路径" class="headerlink" title="六、入手路径"></a>六、入手路径</h2><p>最简单的方式：</p>
-<p><code># 安装 skill   npx skills add heygen-com/hyperframes      # 初始化项目   npx hyperframes init my-video   cd my-video      # 浏览器预览（热重载）   npx hyperframes preview      # 渲染 MP4   npx hyperframes render --output demo.mp4   </code></p>
+<p><code># 安装 skill   npx skills add heygen-com/hyperframes      # 初始化项目   npx hyperframes init my-video   cd my-video      # 浏览器预览（热重载）   npx hyperframes preview      # 渲染 MP4   npx hyperframes render --output demo.mp4   </code></p>
 <p>依赖：Node.js 22+ 和 FFmpeg。</p>
 <p>更懒人的方式：直接让 AI agent（Claude Code &#x2F; Cursor 等）帮你做所有事。你说”帮我做一个 20 秒的产品介绍视频”，AI 帮你从 0 搭建到 render 完。</p>
 <hr>
@@ -447,7 +447,7 @@
 <p>AI agent + 代码化内容 + 确定性渲染，这三个东西组合在一起，就是一个可持续运转的内容工厂。</p>
 <p>视频只是起点。</p>
 <hr>
-<p><em>HyperFrames GitHub → <a target="_blank" rel="noopener" href="https://github.com/heygen-com/hyperframes/[1/]">https://github.com/heygen-com/hyperframes\[1\]</a></em> <em>官网 → <a target="_blank" rel="noopener" href="https://hyperframes.heygen.com/[2/]">https://hyperframes.heygen.com\[2\]</a></em></p>
+<p><em>HyperFrames GitHub → <a target="_blank" rel="noopener" href="https://github.com/heygen-com/hyperframes[1]">https://github.com/heygen-com/hyperframes[1]</a></em> <em>官网 → <a href="https://hyperframes.heygen.com[2]">https://hyperframes.heygen.com[2]</a></em></p>
 <h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/heygen-com/hyperframes">https://github.com/heygen-com/hyperframes</a></em></p>
 <p>[2]<em><a target="_blank" rel="noopener" href="https://hyperframes.heygen.com/">https://hyperframes.heygen.com</a></em></p>
 

@@ -343,8 +343,8 @@
 </ul>
 <p><strong>Spec-Driven Development 的核心逻辑</strong>：在动手之前，先签一份”规格合同”——AI 和开发者都签字确认，双方按合同执行。这份合同是持久化的，不随对话结束而消失。</p>
 <hr>
-<h2 id="OpenSpec-怎么运作？"><a href="#OpenSpec-怎么运作？" class="headerlink" title="OpenSpec 怎么运作？"></a>OpenSpec 怎么运作？</h2><h3 id="核心三步：提案-→-执行-→-归档"><a href="#核心三步：提案-→-执行-→-归档" class="headerlink" title="核心三步：提案 → 执行 → 归档"></a>核心三步：提案 → 执行 → 归档</h3><p><code>/opsx:propose  添加深色模式支持        ↓   创建变更目录（包含 proposal.md、design.md、tasks.md）        ↓   /opsx:apply add-dark-mode   ← 执行实现        ↓   /opsx:archive add-dark-mode  ← 归档，规范合并入 specs/   </code></p>
-<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><code>openspec/   ├── changes/          # 活跃变更   │   └── add-dark-mode/   │       ├── proposal.md   # 变更提案（what &amp; why）   │       ├── design.md     # 技术设计   │       ├── tasks.md      # 任务列表   │       └── specs/        # 规范增量（对原有规范的修改）   ├── specs/            # 持久规范（被所有变更参照）   └── archive/          # 已完成变更（历史存档）   </code></p>
+<h2 id="OpenSpec-怎么运作？"><a href="#OpenSpec-怎么运作？" class="headerlink" title="OpenSpec 怎么运作？"></a>OpenSpec 怎么运作？</h2><h3 id="核心三步：提案-→-执行-→-归档"><a href="#核心三步：提案-→-执行-→-归档" class="headerlink" title="核心三步：提案 → 执行 → 归档"></a>核心三步：提案 → 执行 → 归档</h3><p><code>/opsx:propose  添加深色模式支持        ↓   创建变更目录（包含 proposal.md、design.md、tasks.md）        ↓   /opsx:apply add-dark-mode   ← 执行实现        ↓   /opsx:archive add-dark-mode  ← 归档，规范合并入 specs/   </code></p>
+<h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><code>openspec/   ├── changes/          # 活跃变更   │   └── add-dark-mode/   │       ├── proposal.md   # 变更提案（what &amp; why）   │       ├── design.md     # 技术设计   │       ├── tasks.md      # 任务列表   │       └── specs/        # 规范增量（对原有规范的修改）   ├── specs/            # 持久规范（被所有变更参照）   └── archive/          # 已完成变更（历史存档）   </code></p>
 <p><strong>关键设计</strong>：每个变更都是独立目录，所有相关文档（提案、设计、任务、规范增量）打包在一起，方便 AI 一次性理解全部上下文。</p>
 <hr>
 <h2 id="OpenSpec-的四个核心特点"><a href="#OpenSpec-的四个核心特点" class="headerlink" title="OpenSpec 的四个核心特点"></a>OpenSpec 的四个核心特点</h2><h3 id="1-轻量——不需要-API-Key，不需要-MCP"><a href="#1-轻量——不需要-API-Key，不需要-MCP" class="headerlink" title="1. 轻量——不需要 API Key，不需要 MCP"></a>1. 轻量——不需要 API Key，不需要 MCP</h3><p>OpenSpec 本身只是规范管理层，不依赖任何 AI 供应商的 API。这意味着：</p>
@@ -489,7 +489,7 @@
 <h2 id="实操：用-OpenSpec-驱动一个功能变更"><a href="#实操：用-OpenSpec-驱动一个功能变更" class="headerlink" title="实操：用 OpenSpec 驱动一个功能变更"></a>实操：用 OpenSpec 驱动一个功能变更</h2><p><strong>场景</strong>：给项目添加”记住我”登录功能</p>
 <p><strong>Step 1：发起提案</strong></p>
 <p>在 AI 编码助手中输入：</p>
-<p><code>/opsx:propose 为登录功能添加&quot;记住我&quot;选项   </code></p>
+<p><code>/opsx:propose 为登录功能添加&quot;记住我&quot;选项   </code></p>
 <p>OpenSpec 会在 <code>openspec/changes/</code> 下创建对应目录，内含：</p>
 <ul>
 <li><p><code>proposal.md</code>：功能描述和动机</p>
@@ -504,9 +504,9 @@
 <p><strong>Step 2：AI 阅读规格，开始实现</strong></p>
 <p>新对话中，AI 可以通过 <code>/opsx:read add-dark-mode</code> 读取完整规格，理解需求背景和技术方案后开始实现。</p>
 <p><strong>Step 3：执行变更</strong></p>
-<p><code>/opsx:apply add-remember-me   </code></p>
+<p><code>/opsx:apply add-remember-me   </code></p>
 <p><strong>Step 4：归档，规范沉淀</strong></p>
-<p><code>/opsx:archive add-remember-me   </code></p>
+<p><code>/opsx:archive add-remember-me   </code></p>
 <p>变更目录归档至 <code>archive/</code>，规范增量合并到 <code>specs/</code>，成为项目的持久组成部分。</p>
 <hr>
 <h2 id="为什么这个方向值得关注？"><a href="#为什么这个方向值得关注？" class="headerlink" title="为什么这个方向值得关注？"></a>为什么这个方向值得关注？</h2><p>2026 年，AI 编程正在经历一个范式转移：</p>
@@ -526,7 +526,7 @@
 <p>OpenSpec 站在这个趋势上，定位清晰：<strong>轻量、通用、不绑定平台</strong>。它的核心价值不是替代 AI 写代码，而是让 AI 的行为有据可查、有规可循。</p>
 <hr>
 <h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
-<li><p><strong>GitHub</strong>：<a target="_blank" rel="noopener" href="https://github.com/Fission-AI/OpenSpec/[1/]">https://github.com/Fission-AI/OpenSpec\[1\]</a></p>
+<li><p><strong>GitHub</strong>：<a target="_blank" rel="noopener" href="https://github.com/Fission-AI/OpenSpec[1]">https://github.com/Fission-AI/OpenSpec[1]</a></p>
 </li>
 <li><p><strong>官方文档</strong>：&#x2F;opsx:propose（在支持的 AI 助手中直接调用）</p>
 </li>

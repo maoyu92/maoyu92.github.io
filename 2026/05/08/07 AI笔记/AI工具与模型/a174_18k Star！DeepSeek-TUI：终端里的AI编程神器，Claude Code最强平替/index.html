@@ -390,7 +390,7 @@
 </tr>
 </tbody></table>
 <hr>
-<h2 id="Auto-模式：让-AI-自己选模型"><a href="#Auto-模式：让-AI-自己选模型" class="headerlink" title="Auto 模式：让 AI 自己选模型"></a>Auto 模式：让 AI 自己选模型</h2><p><code>deepseek --model auto   </code></p>
+<h2 id="Auto-模式：让-AI-自己选模型"><a href="#Auto-模式：让-AI-自己选模型" class="headerlink" title="Auto 模式：让 AI 自己选模型"></a>Auto 模式：让 AI 自己选模型</h2><p><code>deepseek --model auto   </code></p>
 <p>Auto 模式会根据你的请求自动选择：</p>
 <ul>
 <li><p><strong>模型</strong>：简单任务用 <code>deepseek-v4-flash</code>（快+便宜），复杂任务用 <code>deepseek-v4-pro</code>（强+贵）</p>
@@ -401,15 +401,15 @@
 <p>它先用一个轻量级的 Flash 路由调用来分析你的请求，然后选择最合适的模型和推理等级。短对话保持 Flash + 关闭推理，编程&#x2F;调试&#x2F;架构审查则升级到 Pro + 高推理。</p>
 <hr>
 <h2 id="安装超简单"><a href="#安装超简单" class="headerlink" title="安装超简单"></a>安装超简单</h2><h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><p>方式一：npm 一键安装（推荐）</p>
-<p><code>npm install -g deepseek-tui   deepseek --version   </code></p>
+<p><code>npm install -g deepseek-tui   deepseek --version   </code></p>
 <p>国内加速：</p>
-<p><code>npm install -g deepseek-tui --registry=https://registry.npmmirror.com   </code></p>
+<p><code>npm install -g deepseek-tui --registry=https://registry.npmmirror.com   </code></p>
 <h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><p>方式二：Rust Cargo 安装</p>
-<p><code>cargo install deepseek-tui-cli --locked   cargo install deepseek-tui --locked   </code></p>
+<p><code>cargo install deepseek-tui-cli --locked   cargo install deepseek-tui --locked   </code></p>
 <h3 id="-7"><a href="#-7" class="headerlink" title=""></a></h3><p>方式三：Homebrew（macOS）</p>
-<p><code>brew tap Hmbown/deepseek-tui   brew install deepseek-tui   </code></p>
+<p><code>brew tap Hmbown/deepseek-tui   brew install deepseek-tui   </code></p>
 <h3 id="-8"><a href="#-8" class="headerlink" title=""></a></h3><p>方式四：Docker</p>
-<p><code>docker run --rm -it \     -e DEEPSEEK_API_KEY \     -v &quot;$PWD:/workspace&quot; \     ghcr.io/hmbown/deepseek-tui:latest   </code></p>
+<p><code>docker run --rm -it \     -e DEEPSEEK_API_KEY \     -v &quot;$PWD:/workspace&quot; \     ghcr.io/hmbown/deepseek-tui:latest   </code></p>
 <h3 id="-9"><a href="#-9" class="headerlink" title=""></a></h3><p>方式五：直接下载</p>
 <p>从 GitHub Releases[1] 下载预编译包，支持：</p>
 <ul>
@@ -422,7 +422,7 @@
 </ul>
 <p>国内可走阿里云&#x2F;腾讯云 OSS 镜像加速。</p>
 <hr>
-<h2 id="首次使用"><a href="#首次使用" class="headerlink" title="首次使用"></a>首次使用</h2><p><code># 1. 设置 API Key   deepseek auth set --provider deepseek      # 2. 检查环境   deepseek doctor      # 3. 启动！   deepseek --model auto   </code></p>
+<h2 id="首次使用"><a href="#首次使用" class="headerlink" title="首次使用"></a>首次使用</h2><p><code># 1. 设置 API Key   deepseek auth set --provider deepseek      # 2. 检查环境   deepseek doctor      # 3. 启动！   deepseek --model auto   </code></p>
 <p>API Key 从 DeepSeek 平台[2] 获取，保存在 <code>~/.deepseek/config.toml</code>。</p>
 <hr>
 <h2 id="更多亮点"><a href="#更多亮点" class="headerlink" title="更多亮点"></a>更多亮点</h2><ul>
@@ -512,12 +512,12 @@
 <hr>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>DeepSeek-TUI 不是又一个 AI 编程玩具。它是一个<strong>真正可用的终端编程 Agent</strong>，Rust 编写，性能优秀，功能完整，而且完全免费开源。</p>
 <p>如果你用 DeepSeek，或者想找一个 Claude Code 的平替，强烈推荐试试。</p>
-<p><strong>项目地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/Hmbown/DeepSeek-TUI/[3/]">https://github.com/Hmbown/DeepSeek-TUI\[3\]</a></p>
-<p><code>npm install -g deepseek-tui   deepseek --model auto   </code></p>
+<p><strong>项目地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/Hmbown/DeepSeek-TUI[3]">https://github.com/Hmbown/DeepSeek-TUI[3]</a></p>
+<p><code>npm install -g deepseek-tui   deepseek --model auto   </code></p>
 <p>两行命令，开始体验。</p>
 <h3 id="-10"><a href="#-10" class="headerlink" title=""></a></h3><p>引用链接</p>
 <p>[1]GitHub Releases: <em><a target="_blank" rel="noopener" href="https://github.com/Hmbown/DeepSeek-TUI/releases">https://github.com/Hmbown/DeepSeek-TUI/releases</a></em></p>
-<p>[2]DeepSeek 平台: <em><a target="_blank" rel="noopener" href="https://platform.deepseek.com/api/_keys">https://platform.deepseek.com/api\_keys</a></em></p>
+<p>[2]DeepSeek 平台: <em><a target="_blank" rel="noopener" href="https://platform.deepseek.com/api_keys">https://platform.deepseek.com/api_keys</a></em></p>
 <p>[3]<em><a target="_blank" rel="noopener" href="https://github.com/Hmbown/DeepSeek-TUI">https://github.com/Hmbown/DeepSeek-TUI</a></em></p>
 
                 

@@ -349,7 +349,7 @@
 <li><p><strong>皮肤与创意工坊</strong>：Blue Fantasy 默认皮肤，其他皮肤、桌宠统一走创意工坊（dsh-market.com）一键装。</p>
 </li>
 </ul>
-<p><img src="/uploads/ai-notes/a018/5af80c4d8eb6cb5e.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a018/5af80c4d8eb6cb5e.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="再聊飞书频道"><a href="#再聊飞书频道" class="headerlink" title="再聊飞书频道"></a>再聊飞书频道</h2><p>如果说 Web UI 是”主动去操作”，那飞书频道就是”被动等你呼叫”——它把我正在用的 DSH 直接接进了飞书（Lark），手机上一句话就能干活。项目叫 <code>dsh-lark-bridge</code>，走 WebSocket 长连接，<strong>不需要公网回调地址，也不需要公网 IP</strong>，这一点对没有固定公网 IP 的家庭&#x2F;公司服务器特别友好。</p>
 <p>它打动我的几个点：</p>
 <ul>
@@ -366,7 +366,7 @@
 <li><p><strong>定时提醒</strong>：<code>schedule_create/list/delete</code> + <code>/schedules</code>，把”每天 9 点看下磁盘”这种交给机器人。</p>
 </li>
 </ul>
-<p><img src="/uploads/ai-notes/a018/d2bfe6a7161a2459.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/uploads/ai-notes/a018/d2bfe6a7161a2459.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="命令行控制"><a href="#命令行控制" class="headerlink" title="命令行控制"></a>命令行控制</h2><p>除了上面两条，DSH 的命令行控制也很完整，正好补齐”重度运维”的场景：</p>
 <ul>
 <li><p><strong><code>dsh</code> CLI</strong>：<code>dsh web</code> 起服务；<code>dsh --profile headless &quot;任务&quot;</code> 跑一次性持久会话；<code>dsh plugin --profile web add &lt;包名&gt;</code> 装插件。</p>
@@ -378,12 +378,12 @@
 </ul>
 <p>所以我的用法是：<strong>Web UI 管看板和大屏操作，飞书管随手呼叫，SSH&#x2F;终端管深度运维</strong>——三层各司其职，手机一台就够。</p>
 <h2 id="安装上手"><a href="#安装上手" class="headerlink" title="安装上手"></a>安装上手</h2><p>两个插件的安装都是同一套命令（以 web profile 为例）：</p>
-<p><code># Web UI 全家桶   dsh plugin --profile web add @linxin666/dsh-web-all@latest      # 飞书频道   dsh plugin --profile web add github:moyu-good/dsh-lark-bridge      # 重启生效   dsh web   </code></p>
+<p><code># Web UI 全家桶   dsh plugin --profile web add @linxin666/dsh-web-all@latest      # 飞书频道   dsh plugin --profile web add github:moyu-good/dsh-lark-bridge      # 重启生效   dsh web   </code></p>
 <p>飞书装完后，控制台打印二维码，用飞书扫码创建应用即可；Web UI 装完重启 <code>dsh web</code>，侧边栏就会出现全部插件入口。想单独装某一项（比如只要任务看板或只要皮肤），把包名换成对应的独立包就行。</p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>从 Hermes 时代养成的”手机控服”，在 DSH 上算是无缝接上了：<strong>Web UI 全家桶</strong>把桌面开发工作台搬上手机，<strong>飞书频道</strong>把 agent 变成随时待命的助手，命令行工具兜底重度场景。没有公网 IP、没有公网回调，照样能躺着控服。</p>
 <p>如果你也习惯手机搞定服务器，这俩插件值得一试。装好之后，欢迎来评论区聊聊你的 DSH 使用姿势。</p>
 <p><strong>附：安装命令（可直接复制）</strong></p>
-<p><code># 安装 Web UI 全家桶   dsh plugin --profile web add @linxin666/dsh-web-all@latest      # 安装飞书频道   dsh plugin --profile web add github:moyu-good/dsh-lark-bridge      # 重启生效   dsh web   </code></p>
+<p><code># 安装 Web UI 全家桶   dsh plugin --profile web add @linxin666/dsh-web-all@latest      # 安装飞书频道   dsh plugin --profile web add github:moyu-good/dsh-lark-bridge      # 重启生效   dsh web   </code></p>
 <blockquote>
 <p>本文基于 2026 年 8 月的 DSH 与插件版本实测；生态更新很快，功能细节以官方仓库为准。</p>
 </blockquote>

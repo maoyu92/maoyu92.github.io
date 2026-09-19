@@ -351,7 +351,7 @@
 <td>负责最终编码，把浏览器截图序列合成视频文件</td>
 </tr>
 </tbody></table>
-<h3 id="2-2-简单示例"><a href="#2-2-简单示例" class="headerlink" title="2.2 简单示例"></a>2.2 简单示例</h3><p><code>&lt;div     data-composition-id=&quot;root&quot;     data-start=&quot;0&quot;     data-duration=&quot;10&quot;     data-width=&quot;1920&quot;     data-height=&quot;1080&quot;   &gt;     &lt;!-- 视频（静音）、图片、音频各占一个 track --&gt;     &lt;video id=&quot;clip-1&quot; data-start=&quot;0&quot; data-duration=&quot;5&quot; data-track-index=&quot;0&quot;            src=&quot;intro.mp4&quot; muted playsinline&gt;&lt;/video&gt;     &lt;img id=&quot;logo&quot; data-start=&quot;2&quot; data-duration=&quot;3&quot; data-track-index=&quot;1&quot; src=&quot;logo.png&quot; /&gt;     &lt;audio id=&quot;music&quot; data-start=&quot;0&quot; data-duration=&quot;10&quot; data-track-index=&quot;2&quot;            data-volume=&quot;0.5&quot; src=&quot;music.wav&quot;&gt;&lt;/audio&gt;   &lt;/div&gt;      &lt;script&gt;  window.__timelines = window.__timelines || &#123;&#125;;     const tl = gsap.timeline(&#123; paused: true &#125;);     tl.from(&quot;#logo&quot;, &#123; opacity: 0, y: 40, duration: 0.6 &#125;, 2);     window.__timelines[&quot;root&quot;] = tl;&lt;/script&gt;   </code></p>
+<h3 id="2-2-简单示例"><a href="#2-2-简单示例" class="headerlink" title="2.2 简单示例"></a>2.2 简单示例</h3><p><code>&lt;div     data-composition-id=&quot;root&quot;     data-start=&quot;0&quot;     data-duration=&quot;10&quot;     data-width=&quot;1920&quot;     data-height=&quot;1080&quot;   &gt;     &lt;!-- 视频（静音）、图片、音频各占一个 track --&gt;     &lt;video id=&quot;clip-1&quot; data-start=&quot;0&quot; data-duration=&quot;5&quot; data-track-index=&quot;0&quot;            src=&quot;intro.mp4&quot; muted playsinline&gt;&lt;/video&gt;     &lt;img id=&quot;logo&quot; data-start=&quot;2&quot; data-duration=&quot;3&quot; data-track-index=&quot;1&quot; src=&quot;logo.png&quot; /&gt;     &lt;audio id=&quot;music&quot; data-start=&quot;0&quot; data-duration=&quot;10&quot; data-track-index=&quot;2&quot;            data-volume=&quot;0.5&quot; src=&quot;music.wav&quot;&gt;&lt;/audio&gt;   &lt;/div&gt;      &lt;script&gt;  window.__timelines = window.__timelines || &#123;&#125;;     const tl = gsap.timeline(&#123; paused: true &#125;);     tl.from(&quot;#logo&quot;, &#123; opacity: 0, y: 40, duration: 0.6 &#125;, 2);     window.__timelines[&quot;root&quot;] = tl;&lt;/script&gt;   </code></p>
 <h3 id="2-3-技术栈"><a href="#2-3-技术栈" class="headerlink" title="2.3 技术栈"></a>2.3 技术栈</h3><ul>
 <li><p><strong>渲染引擎</strong>：Puppeteer（无头 Chrome，通过 BeginFrame 或截图模式抓帧）</p>
 </li>
@@ -405,9 +405,9 @@
 </tbody></table>
 <p><strong>禁止</strong>：不能 <code>repeat: -1</code>（破坏 capture engine）、不能 <code>Math.random()</code>、不能 async timeline 构建。</p>
 <h3 id="3-3-字幕（TTS-Captions）"><a href="#3-3-字幕（TTS-Captions）" class="headerlink" title="3.3 字幕（TTS + Captions）"></a>3.3 字幕（TTS + Captions）</h3><p><strong>TTS 命令</strong>：</p>
-<p><code>npx hyperframes tts &quot;Hello world&quot; --voice af_nova --output narration.wav   npx hyperframes tts --list   # 查看全部 54 种音色   </code></p>
+<p><code>npx hyperframes tts &quot;Hello world&quot; --voice af_nova --output narration.wav   npx hyperframes tts --list   # 查看全部 54 种音色   </code></p>
 <p><strong>语音转字幕</strong>：</p>
-<p><code>npx hyperframes transcribe narration.wav   </code></p>
+<p><code>npx hyperframes transcribe narration.wav   </code></p>
 <p>语言规则：<strong>不要对非英语音频使用 <code>.en</code> 模型</strong>（Whisper <code>.en</code> 是翻译器，不是转录器）。</p>
 <p>字幕风格自动检测：</p>
 <table>
@@ -451,7 +451,7 @@
 </tr>
 </tbody></table>
 <h3 id="3-4-音频驱动视觉效果"><a href="#3-4-音频驱动视觉效果" class="headerlink" title="3.4 音频驱动视觉效果"></a>3.4 音频驱动视觉效果</h3><p>预提取音频频段（bass &#x2F; mid &#x2F; treble），在 GSAP timeline 内用 <code>for</code> 循环采样：</p>
-<p><code>for (let f = 0; f &lt; fps * duration; f++) &#123;     tl.call(draw, [], f / fps);  // 每帧调用，bass→scale，treble→glow   &#125;   </code></p>
+<p><code>for (let f = 0; f &lt; fps * duration; f++) &#123;     tl.call(draw, [], f / fps);  // 每帧调用，bass→scale，treble→glow   &#125;   </code></p>
 <h3 id="3-5-场景转场（Transitions）"><a href="#3-5-场景转场（Transitions）" class="headerlink" title="3.5 场景转场（Transitions）"></a>3.5 场景转场（Transitions）</h3><p>必须使用，不能跳切。可选：</p>
 <p><strong>CSS 转场</strong>：push slide、blur crossfade、zoom through、staggered blocks</p>
 <p><strong>Shader 转场</strong>（<code>npx hyperframes add flash-through-white</code> 安装）：</p>
@@ -513,7 +513,7 @@
 </tr>
 </tbody></table>
 <hr>
-<h2 id="四、制作流程详解"><a href="#四、制作流程详解" class="headerlink" title="四、制作流程详解"></a>四、制作流程详解</h2><h3 id="Step-1：环境安装（一劳永逸）"><a href="#Step-1：环境安装（一劳永逸）" class="headerlink" title="Step 1：环境安装（一劳永逸）"></a>Step 1：环境安装（一劳永逸）</h3><p><code># 运行官方安装脚本   bash &quot;~/.hermes/skills/hyperframes/scripts/setup.sh&quot;      # 验证环境   npx hyperframes doctor   </code></p>
+<h2 id="四、制作流程详解"><a href="#四、制作流程详解" class="headerlink" title="四、制作流程详解"></a>四、制作流程详解</h2><h3 id="Step-1：环境安装（一劳永逸）"><a href="#Step-1：环境安装（一劳永逸）" class="headerlink" title="Step 1：环境安装（一劳永逸）"></a>Step 1：环境安装（一劳永逸）</h3><p><code># 运行官方安装脚本   bash &quot;~/.hermes/skills/hyperframes/scripts/setup.sh&quot;      # 验证环境   npx hyperframes doctor   </code></p>
 <p>安装脚本自动完成：</p>
 <ul>
 <li><p>检查 Node.js ≥ 22</p>
@@ -525,14 +525,14 @@
 <li><p>预缓存 <code>chrome-headless-shell</code>（BeginFrame 快速路径）</p>
 </li>
 </ul>
-<h3 id="Step-2：初始化项目"><a href="#Step-2：初始化项目" class="headerlink" title="Step 2：初始化项目"></a>Step 2：初始化项目</h3><p><code>npx hyperframes init my-video --non-interactive      # 或者从示例模板开始   npx hyperframes init my-video --example kinetic-type   </code></p>
+<h3 id="Step-2：初始化项目"><a href="#Step-2：初始化项目" class="headerlink" title="Step 2：初始化项目"></a>Step 2：初始化项目</h3><p><code>npx hyperframes init my-video --non-interactive      # 或者从示例模板开始   npx hyperframes init my-video --example kinetic-type   </code></p>
 <p>内置模板：<code>blank</code>、<code>warm-grain</code>、<code>play-mode</code>、<code>swiss-grid</code>、<code>vignelli</code>、<code>decision-tree</code>、<code>kinetic-type</code>、<code>product-promo</code>、<code>nyt-graph</code></p>
 <h3 id="Step-3：布局-before-动画"><a href="#Step-3：布局-before-动画" class="headerlink" title="Step 3：布局 before 动画"></a>Step 3：布局 before 动画</h3><p><strong>先写静态 hero frame</strong>——用 Flexbox 布局，内容撑满场景容器。动画是之后才加的。</p>
-<p><code>.scene-content &#123;     width: 100%;     height: 100%;     padding: 60px;     display: flex;     flex-direction: column;     gap: 20px;     box-sizing: border-box;   &#125;   </code></p>
-<h3 id="Step-4：GSAP-动画"><a href="#Step-4：GSAP-动画" class="headerlink" title="Step 4：GSAP 动画"></a>Step 4：GSAP 动画</h3><p><code>const tl = gsap.timeline(&#123; paused: true, defaults: &#123; duration: 0.6, ease: &quot;power2.out&quot; &#125; &#125;);   tl.from(&quot;.title&quot;,    &#123; y: 50, opacity: 0 &#125;, 0.3);   tl.from(&quot;.subtitle&quot;,  &#123; y: 30, opacity: 0 &#125;, 0.5);   tl.from(&quot;.cta&quot;,       &#123; scale: 0.8, opacity: 0, ease: &quot;back.out(1.7)&quot; &#125;, 0.8);   window.__timelines[&quot;root&quot;] = tl;   </code></p>
-<h3 id="Step-5：音频与字幕"><a href="#Step-5：音频与字幕" class="headerlink" title="Step 5：音频与字幕"></a>Step 5：音频与字幕</h3><p><code># 生成配音   npx hyperframes tts &quot;脚本内容&quot; --voice af_nova --output narration.wav      # 语音转字幕   npx hyperframes transcribe narration.wav --model small   </code></p>
-<h3 id="Step-6：质量验证"><a href="#Step-6：质量验证" class="headerlink" title="Step 6：质量验证"></a>Step 6：质量验证</h3><p><code>npx hyperframes lint --strict        # 必须通过才能继续   npx hyperframes validate             # 对比度检查   npx hyperframes inspect              # 视觉审查   </code></p>
-<h3 id="Step-7：渲染输出"><a href="#Step-7：渲染输出" class="headerlink" title="Step 7：渲染输出"></a>Step 7：渲染输出</h3><p><code># 快速迭代   npx hyperframes render --quality draft --output draft.mp4      # 最终交付   npx hyperframes render --quality high --fps 60 --output final.mp4      # 使用 Docker（字节级可复现）   npx hyperframes render --docker --quality high --output final.mp4   </code></p>
+<p><code>.scene-content &#123;     width: 100%;     height: 100%;     padding: 60px;     display: flex;     flex-direction: column;     gap: 20px;     box-sizing: border-box;   &#125;   </code></p>
+<h3 id="Step-4：GSAP-动画"><a href="#Step-4：GSAP-动画" class="headerlink" title="Step 4：GSAP 动画"></a>Step 4：GSAP 动画</h3><p><code>const tl = gsap.timeline(&#123; paused: true, defaults: &#123; duration: 0.6, ease: &quot;power2.out&quot; &#125; &#125;);   tl.from(&quot;.title&quot;,    &#123; y: 50, opacity: 0 &#125;, 0.3);   tl.from(&quot;.subtitle&quot;,  &#123; y: 30, opacity: 0 &#125;, 0.5);   tl.from(&quot;.cta&quot;,       &#123; scale: 0.8, opacity: 0, ease: &quot;back.out(1.7)&quot; &#125;, 0.8);   window.__timelines[&quot;root&quot;] = tl;   </code></p>
+<h3 id="Step-5：音频与字幕"><a href="#Step-5：音频与字幕" class="headerlink" title="Step 5：音频与字幕"></a>Step 5：音频与字幕</h3><p><code># 生成配音   npx hyperframes tts &quot;脚本内容&quot; --voice af_nova --output narration.wav      # 语音转字幕   npx hyperframes transcribe narration.wav --model small   </code></p>
+<h3 id="Step-6：质量验证"><a href="#Step-6：质量验证" class="headerlink" title="Step 6：质量验证"></a>Step 6：质量验证</h3><p><code>npx hyperframes lint --strict        # 必须通过才能继续   npx hyperframes validate             # 对比度检查   npx hyperframes inspect              # 视觉审查   </code></p>
+<h3 id="Step-7：渲染输出"><a href="#Step-7：渲染输出" class="headerlink" title="Step 7：渲染输出"></a>Step 7：渲染输出</h3><p><code># 快速迭代   npx hyperframes render --quality draft --output draft.mp4      # 最终交付   npx hyperframes render --quality high --fps 60 --output final.mp4      # 使用 Docker（字节级可复现）   npx hyperframes render --docker --quality high --output final.mp4   </code></p>
 <hr>
 <h2 id="五、输出格式规格"><a href="#五、输出格式规格" class="headerlink" title="五、输出格式规格"></a>五、输出格式规格</h2><table>
 <thead>
