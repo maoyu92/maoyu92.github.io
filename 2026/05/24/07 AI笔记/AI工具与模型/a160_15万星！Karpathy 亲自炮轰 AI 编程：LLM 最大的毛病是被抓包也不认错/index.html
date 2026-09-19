@@ -336,26 +336,22 @@
 <p><strong>现在：15万颗星，15300个 Fork。</strong></p>
 <hr>
 <h2 id="一、Karpathy-炮轰的-4-大-LLM-编程顽疾"><a href="#一、Karpathy-炮轰的-4-大-LLM-编程顽疾" class="headerlink" title="一、Karpathy 炮轰的 4 大 LLM 编程顽疾"></a>一、Karpathy 炮轰的 4 大 LLM 编程顽疾</h2><p>Karpathy 原话翻译如下，每一条都扎在程序员的痛点上：</p>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>毛病1：暗中假设，从不确认</p>
-<blockquote>
+<h3 id="毛病1：暗中假设，从不确认"><a href="#毛病1：暗中假设，从不确认" class="headerlink" title="毛病1：暗中假设，从不确认"></a>毛病1：暗中假设，从不确认</h3><blockquote>
 <p>“</p>
 <p>“它们悄咪咪地做出错误假设，然后一路狂奔，从来不检查、不提问、不质疑。”</p>
 </blockquote>
 <p>典型场景：你要导出用户数据，它直接假设了文件路径、字段名、格式，连问都不问你。</p>
-<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>毛病2：代码膨胀，抽象泛滥</p>
-<blockquote>
+<h3 id="毛病2：代码膨胀，抽象泛滥"><a href="#毛病2：代码膨胀，抽象泛滥" class="headerlink" title="毛病2：代码膨胀，抽象泛滥"></a>毛病2：代码膨胀，抽象泛滥</h3><blockquote>
 <p>“</p>
 <p>“它们真的超爱把代码和 API 搞得很复杂，堆砌抽象层级，不清理死代码……实现一个 1000 行的大结构，明明 100 行就能搞定。”</p>
 </blockquote>
 <p>典型场景：加一个校验，它给你造一套「可扩展的」校验框架。</p>
-<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>毛病3：顺手改代码，边角料一堆</p>
-<blockquote>
+<h3 id="毛病3：顺手改代码，边角料一堆"><a href="#毛病3：顺手改代码，边角料一堆" class="headerlink" title="毛病3：顺手改代码，边角料一堆"></a>毛病3：顺手改代码，边角料一堆</h3><blockquote>
 <p>“</p>
 <p>“它们有时候会顺手改掉&#x2F;删掉那些自己没充分理解的注释和代码——即便这些改动和任务正交，完全没必要动。”</p>
 </blockquote>
 <p>典型场景：你让它修一个 bug，它「顺便」把相邻的模块也重构了，然后测出问题。</p>
-<h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><p>毛病4：给指令，不给目标</p>
-<blockquote>
+<h3 id="毛病4：给指令，不给目标"><a href="#毛病4：给指令，不给目标" class="headerlink" title="毛病4：给指令，不给目标"></a>毛病4：给指令，不给目标</h3><blockquote>
 <p>“</p>
 <p>“它们喜欢用模糊的指令，而不是定义清晰的成功标准，导致需要反复确认。”</p>
 </blockquote>
@@ -386,9 +382,7 @@
 <td>给指令不给目标、反复确认</td>
 </tr>
 </tbody></table>
-<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><p>原则1：Think Before Coding（编码前先思考）</p>
-<p><strong>核心：别假设，有疑问就问。</strong></p>
-<ul>
+<h3 id="原则1：Think-Before-Coding（编码前先思考）"><a href="#原则1：Think-Before-Coding（编码前先思考）" class="headerlink" title="原则1：Think Before Coding（编码前先思考）"></a>原则1：Think Before Coding（编码前先思考）</h3><h4 id="核心：别假设，有疑问就问。"><a href="#核心：别假设，有疑问就问。" class="headerlink" title="核心：别假设，有疑问就问。"></a>核心：别假设，有疑问就问。</h4><ul>
 <li><p>不确定的时候 → <strong>问用户，而不是猜</strong></p>
 </li>
 <li><p>存在多种解释 → <strong>不要默默选一个，要呈现出来</strong></p>
@@ -398,9 +392,7 @@
 <li><p>遇到困惑 → <strong>停下来，明确说出哪里不清楚，请求指示</strong></p>
 </li>
 </ul>
-<h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><p>原则2：Simplicity First（简单优先）</p>
-<p><strong>核心：最小代码解决问题，不做任何多余的事。</strong></p>
-<ul>
+<h3 id="原则2：Simplicity-First（简单优先）"><a href="#原则2：Simplicity-First（简单优先）" class="headerlink" title="原则2：Simplicity First（简单优先）"></a>原则2：Simplicity First（简单优先）</h3><h4 id="核心：最小代码解决问题，不做任何多余的事。"><a href="#核心：最小代码解决问题，不做任何多余的事。" class="headerlink" title="核心：最小代码解决问题，不做任何多余的事。"></a>核心：最小代码解决问题，不做任何多余的事。</h4><ul>
 <li><p>不做没人要求的功能</p>
 </li>
 <li><p>不给单次使用的代码写抽象</p>
@@ -416,9 +408,7 @@
 <p>“</p>
 <p>检验标准：一个高级工程师会说「这太复杂了吗？」——如果是的，简化。</p>
 </blockquote>
-<h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><p>原则3：Surgical Changes（手术刀式修改）</p>
-<p><strong>核心：只动你必须动的，清理自己留下的烂摊子。</strong></p>
-<ul>
+<h3 id="原则3：Surgical-Changes（手术刀式修改）"><a href="#原则3：Surgical-Changes（手术刀式修改）" class="headerlink" title="原则3：Surgical Changes（手术刀式修改）"></a>原则3：Surgical Changes（手术刀式修改）</h3><h4 id="核心：只动你必须动的，清理自己留下的烂摊子。"><a href="#核心：只动你必须动的，清理自己留下的烂摊子。" class="headerlink" title="核心：只动你必须动的，清理自己留下的烂摊子。"></a>核心：只动你必须动的，清理自己留下的烂摊子。</h4><ul>
 <li><p>编辑现有代码时：</p>
 <ul>
 <li><p>不「优化」相邻代码、注释、格式</p>
@@ -446,9 +436,7 @@
 <p>“</p>
 <p>检验标准：每一行改动都应该能直接追溯到用户的请求。</p>
 </blockquote>
-<h3 id="-7"><a href="#-7" class="headerlink" title=""></a></h3><p>原则4：Goal-Driven Execution（目标驱动执行）</p>
-<p><strong>核心：给成功标准，而不是给命令，让 LLM 自主循环。</strong></p>
-<table>
+<h3 id="原则4：Goal-Driven-Execution（目标驱动执行）"><a href="#原则4：Goal-Driven-Execution（目标驱动执行）" class="headerlink" title="原则4：Goal-Driven Execution（目标驱动执行）"></a>原则4：Goal-Driven Execution（目标驱动执行）</h3><h4 id="核心：给成功标准，而不是给命令，让-LLM-自主循环。"><a href="#核心：给成功标准，而不是给命令，让-LLM-自主循环。" class="headerlink" title="核心：给成功标准，而不是给命令，让 LLM 自主循环。"></a>核心：给成功标准，而不是给命令，让 LLM 自主循环。</h4><table>
 <thead>
 <tr>
 <th>不要</th>
@@ -475,15 +463,12 @@
 <p>Karpathy 原话：「LLM 超擅长在遇到特定目标时循环……别告诉它要做什么，给它成功标准，然后看它跑。」</p>
 </blockquote>
 <hr>
-<h2 id="三、安装使用：30秒见效"><a href="#三、安装使用：30秒见效" class="headerlink" title="三、安装使用：30秒见效"></a>三、安装使用：30秒见效</h2><h3 id="-8"><a href="#-8" class="headerlink" title=""></a></h3><p>方式1：Claude Code 插件（推荐）</p>
-<p><code># 第一步：添加市场   /plugin marketplace add forrestchang/andrej-karpathy-skills      # 第二步：安装插件   /plugin install andrej-karpathy-skills@karpathy-skills   </code></p>
-<h3 id="-9"><a href="#-9" class="headerlink" title=""></a></h3><p>方式2：CLAUDE.md（按项目）</p>
-<p>新项目：</p>
+<h2 id="三、安装使用：30秒见效"><a href="#三、安装使用：30秒见效" class="headerlink" title="三、安装使用：30秒见效"></a>三、安装使用：30秒见效</h2><h3 id="方式1：Claude-Code-插件（推荐）"><a href="#方式1：Claude-Code-插件（推荐）" class="headerlink" title="方式1：Claude Code 插件（推荐）"></a>方式1：Claude Code 插件（推荐）</h3><p><code># 第一步：添加市场   /plugin marketplace add forrestchang/andrej-karpathy-skills      # 第二步：安装插件   /plugin install andrej-karpathy-skills@karpathy-skills   </code></p>
+<h3 id="方式2：CLAUDE-md（按项目）"><a href="#方式2：CLAUDE-md（按项目）" class="headerlink" title="方式2：CLAUDE.md（按项目）"></a>方式2：CLAUDE.md（按项目）</h3><p>新项目：</p>
 <p><code>curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md   </code></p>
 <p>已有 CLAUDE.md 的项目（追加）：</p>
 <p><code>echo &quot;&quot; &gt;&gt; CLAUDE.md   curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md &gt;&gt; CLAUDE.md   </code></p>
-<h3 id="-10"><a href="#-10" class="headerlink" title=""></a></h3><p>方式3：Cursor 用户</p>
-<p>仓库自带 <code>.cursor/rules/karpathy-guidelines.mdc</code>，打开项目自动生效。</p>
+<h3 id="方式3：Cursor-用户"><a href="#方式3：Cursor-用户" class="headerlink" title="方式3：Cursor 用户"></a>方式3：Cursor 用户</h3><p>仓库自带 <code>.cursor/rules/karpathy-guidelines.mdc</code>，打开项目自动生效。</p>
 <hr>
 <h2 id="四、怎么衡量它有没有起作用？"><a href="#四、怎么衡量它有没有起作用？" class="headerlink" title="四、怎么衡量它有没有起作用？"></a>四、怎么衡量它有没有起作用？</h2><p>仓库给出了 4 个信号，说明指南在生效：</p>
 <ul>
@@ -523,8 +508,7 @@
 <li><p>💾 GitHub：<a target="_blank" rel="noopener" href="https://github.com/multica-ai/andrej-karpathy-skills[2]">https://github.com/multica-ai/andrej-karpathy-skills[2]</a></p>
 </li>
 </ul>
-<h3 id="-11"><a href="#-11" class="headerlink" title=""></a></h3><p>引用链接</p>
-<p>[1]<em><a target="_blank" rel="noopener" href="https://x.com/karpathy/status/2015883857489522876">https://x.com/karpathy/status/2015883857489522876</a></em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://x.com/karpathy/status/2015883857489522876">https://x.com/karpathy/status/2015883857489522876</a></em></p>
 <p>[2]<em><a target="_blank" rel="noopener" href="https://github.com/multica-ai/andrej-karpathy-skills">https://github.com/multica-ai/andrej-karpathy-skills</a></em></p>
 
                 

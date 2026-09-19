@@ -329,8 +329,7 @@
 <p>2026年5月18日，字节跳动（ByteDance Research）正式开源了一款名为 <strong>Lance</strong> 的原生统一多模态大模型。激活参数仅有 <strong>3B</strong>，却同时支持<strong>图像与视频的理解、生成和编辑</strong>三大能力，而且全部在一个框架内完成。</p>
 <p>这就是最近在开源社区刷屏的 Lance。</p>
 <h2 id="🎯-一、一个模型，三种模态"><a href="#🎯-一、一个模型，三种模态" class="headerlink" title="🎯 一、一个模型，三种模态"></a>🎯 一、一个模型，三种模态</h2><p>Lance 的核心定位是 <strong>Native Unified Multimodal Model</strong>——原生统一多模态模型。与其堆砌多个专用模型，它选择从零开始训练，让理解与生成能力在同一个模型里土生土长。</p>
-<p><strong>支持的六大核心任务：</strong></p>
-<table>
+<h3 id="支持的六大核心任务："><a href="#支持的六大核心任务：" class="headerlink" title="支持的六大核心任务："></a>支持的六大核心任务：</h3><table>
 <thead>
 <tr>
 <th>任务</th>
@@ -369,8 +368,7 @@
 <h3 id="2-模态感知的旋转位置编码（Modality-aware-RoPE）"><a href="#2-模态感知的旋转位置编码（Modality-aware-RoPE）" class="headerlink" title="2. 模态感知的旋转位置编码（Modality-aware RoPE）"></a>2. 模态感知的旋转位置编码（Modality-aware RoPE）</h3><p>图像 tokens 和视频 tokens 天然异构，信号干扰严重。Lance 引入模态感知的 RoPE，削弱不同视觉 token 之间的噪声，让每个模态都能”听清”自己的信号。</p>
 <h3 id="3-从零开始，分阶段训练"><a href="#3-从零开始，分阶段训练" class="headerlink" title="3. 从零开始，分阶段训练"></a>3. 从零开始，分阶段训练</h3><p>整个训练过程只用 <strong>128 张 A100 GPU</strong>，预算压缩到了极致，但图像生成最高支持 <strong>768×768</strong>，视频生成支持 <strong>480p、12 FPS</strong>，完全不虚。</p>
 <h2 id="📊-性能表现：3B-参数，硬刚大模型"><a href="#📊-性能表现：3B-参数，硬刚大模型" class="headerlink" title="📊 性能表现：3B 参数，硬刚大模型"></a>📊 性能表现：3B 参数，硬刚大模型</h2><p>光看参数不够直观，来跑跑 benchmark。</p>
-<p><strong>VBench 视频生成评测（越高越好）：</strong></p>
-<table>
+<h3 id="VBench-视频生成评测（越高越好）："><a href="#VBench-视频生成评测（越高越好）：" class="headerlink" title="VBench 视频生成评测（越高越好）："></a>VBench 视频生成评测（越高越好）：</h3><table>
 <thead>
 <tr>
 <th>模型</th>
@@ -399,8 +397,7 @@
 <td><strong>85.11</strong></td>
 </tr>
 </tbody></table>
-<p><strong>GenEval 图像生成评测（越高越好）：</strong></p>
-<table>
+<h3 id="GenEval-图像生成评测（越高越好）："><a href="#GenEval-图像生成评测（越高越好）：" class="headerlink" title="GenEval 图像生成评测（越高越好）："></a>GenEval 图像生成评测（越高越好）：</h3><table>
 <thead>
 <tr>
 <th>模型</th>
@@ -457,8 +454,7 @@
 </li>
 </ul>
 <hr>
-<p><strong>引用方式：</strong></p>
-<p><code>@misc&#123;fu2026lanceunifiedmultimodalmodeling,     title=&#123;Lance: Unified Multimodal Modeling by Multi-Task Synergy&#125;,     author=&#123;Fengyi Fu and Mengqi Huang and Shaojin Wu and Yunsheng Jiang et al.&#125;,     year=&#123;2026&#125;,     eprint=&#123;2605.18678&#125;,     archivePrefix=&#123;arXiv&#125;,     primaryClass=&#123;cs.CV&#125;,     url=&#123;https://arxiv.org/abs/2605.18678&#125;,   &#125;   </code></p>
+<h3 id="引用方式："><a href="#引用方式：" class="headerlink" title="引用方式："></a>引用方式：</h3><p><code>@misc&#123;fu2026lanceunifiedmultimodalmodeling,     title=&#123;Lance: Unified Multimodal Modeling by Multi-Task Synergy&#125;,     author=&#123;Fengyi Fu and Mengqi Huang and Shaojin Wu and Yunsheng Jiang et al.&#125;,     year=&#123;2026&#125;,     eprint=&#123;2605.18678&#125;,     archivePrefix=&#123;arXiv&#125;,     primaryClass=&#123;cs.CV&#125;,     url=&#123;https://arxiv.org/abs/2605.18678&#125;,   &#125;   </code></p>
 <hr>
 <p>当”统一多模态”还在被大多数团队当作三年计划的时候，字节已经用 3B 参数 + 128 张 A100 把它跑出来了。而且开源了。</p>
 <p>这件事本身，比 Lance 模型本身更值得思考。</p>
@@ -562,8 +558,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2026/05/30/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a135_%E3%80%90pie%E3%80%91%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" title="【pie】中文测试文章">
-                        <span class="hidden-mobile">【pie】中文测试文章</span>
+                      <a href="/2026/05/30/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a134_%E3%80%90maize%E3%80%91%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" title="【maize】中文测试文章">
+                        <span class="hidden-mobile">【maize】中文测试文章</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

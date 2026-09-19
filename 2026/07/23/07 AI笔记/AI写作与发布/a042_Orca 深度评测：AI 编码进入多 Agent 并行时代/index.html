@@ -340,8 +340,7 @@
 <p>2026 年更有效的工作方式，不是给某一个 Agent 无限加码，而是把任务拆开，让多个 Agent 在互不干扰的环境里并行尝试，再由人来比较、审核和合并。</p>
 <p>我真正喜欢 Orca 的地方，不是它又塞进了一个聊天框，而是它把这套原本散落在终端、Git、浏览器、任务看板和手机通知里的流程，第一次收进了一个统一工作台。</p>
 <p>一个新类别</p>
-<p>ADE：Agent Development Environment</p>
-<p>不是只帮助人写代码，而是帮助人监督一组 Agent。</p>
+<h2 id="ADE：Agent-Development-Environment"><a href="#ADE：Agent-Development-Environment" class="headerlink" title="ADE：Agent Development Environment"></a>ADE：Agent Development Environment</h2><p>不是只帮助人写代码，而是帮助人监督一组 Agent。</p>
 <p><img src="/uploads/ai-notes/a042/824a03990407b484.jpg" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>Orca 桌面端：并行 Agent、工作区状态与移动端控制集中在同一界面</p>
 <p>PROJECT SNAPSHOT · 2026.07.23</p>
@@ -349,16 +348,14 @@
 <p>1,915 Forks · 863 GitHub Releases · MIT License</p>
 <p>仓库创建于 2026 年 3 月 17 日；支持 macOS、Windows、Linux，可接入 Claude Code、Codex、OpenCode、Cursor CLI、Gemini、Pi、Hermes Agent 等 CLI Agent。</p>
 <p>01 THE SHIFT</p>
-<p>不是“再做一个 IDE”，而是解决编排税</p>
-<p>单 Agent 工作流很简单：打开项目，发一个任务，等它完成。</p>
+<h2 id="不是“再做一个-IDE”，而是解决编排税"><a href="#不是“再做一个-IDE”，而是解决编排税" class="headerlink" title="不是“再做一个 IDE”，而是解决编排税"></a>不是“再做一个 IDE”，而是解决编排税</h2><p>单 Agent 工作流很简单：打开项目，发一个任务，等它完成。</p>
 <p>多 Agent 工作流复杂得多。你要创建分支和 worktree、分配上下文、盯不同终端、确认谁在工作、谁在等输入、对比几份 Diff、跑测试、处理冲突，最后再挑选可合并的结果。</p>
 <p>真正拖慢人的是什么？</p>
 <p>不再是 Agent 写代码的速度，<br>而是管理 Agent 的“编排税”。</p>
 <p>Orca 的定位很清楚：它不是模型，也不替代 Git，更不向你转售 Token。你继续使用已有的 Agent 和订阅，Orca 负责把工作区、终端、浏览器、任务、Diff 和交付流程组织起来。</p>
 <p>这也是 ADE 与传统 IDE 的核心区别：<strong>IDE 默认一个人在编辑代码，ADE 默认一个人在监督一组能够自主执行的 Agent。</strong></p>
 <p>02 THE FOUNDATION</p>
-<p>Worktree-native，才是 Orca 的地基</p>
-<p>Orca 最重要的能力不是分屏，而是 <strong>worktree-native</strong>。</p>
+<h2 id="Worktree-native，才是-Orca-的地基"><a href="#Worktree-native，才是-Orca-的地基" class="headerlink" title="Worktree-native，才是 Orca 的地基"></a>Worktree-native，才是 Orca 的地基</h2><p>Orca 最重要的能力不是分屏，而是 <strong>worktree-native</strong>。</p>
 <p>每个任务都有独立的 Git worktree、分支、文件目录、Agent 终端和浏览器状态。三个 Agent 可以从同一个基线出发，分别探索三种方案，不需要反复 stash，也不会因为同时改文件而互相覆盖。</p>
 <p><img src="/uploads/ai-notes/a042/3baf0596df699e40.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>同一任务在独立 worktree 中并行求解，再统一对比、批注与合并</p>
@@ -370,8 +367,7 @@
 <p>每个 Agent 只看到自己的任务现场，减少跨任务信息互相干扰。</p>
 <p>终端并行解决的是显示问题，worktree 并行解决的是状态隔离问题。</p>
 <p>03 WHY IT WORKS</p>
-<p>五个让我觉得真正好用的点</p>
-<ol>
+<h2 id="五个让我觉得真正好用的点"><a href="#五个让我觉得真正好用的点" class="headerlink" title="五个让我觉得真正好用的点"></a>五个让我觉得真正好用的点</h2><ol>
 <li>并行从技巧变成默认工作流</li>
 </ol>
 <p>Orca 可以把同一个 prompt 发给多个 worktree 中的 Agent。最适合的不是机械小改动，而是存在多条合理路径的任务：架构重构、性能优化、棘手 Bug、测试策略或陌生代码库的探索。</p>
@@ -406,8 +402,7 @@
 <p>对本地推理用户尤其有吸引力：GPU 工作站负责模型和构建，固定 IP 服务器负责长期任务，本地电脑和手机只负责观察与控制。<strong>机器在哪里，不再决定人必须坐在哪里。</strong></p>
 <p><img src="/uploads/ai-notes/a042/90d1b3728664de08.jpg" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>04 THE PLAYBOOK</p>
-<p>我推荐的 Orca 工作流</p>
-<p>STEP 01 · 先定义赛道</p>
+<h2 id="我推荐的-Orca-工作流"><a href="#我推荐的-Orca-工作流" class="headerlink" title="我推荐的 Orca 工作流"></a>我推荐的 Orca 工作流</h2><p>STEP 01 · 先定义赛道</p>
 <p>不要一上来就开五个 Agent。先写清楚任务、边界、验收标准和测试命令。</p>
 <p>STEP 02 · 只并行不确定性</p>
 <p>为真正存在多条路径的任务创建 2—3 个 worktree：最小改动、结构修复、测试与反例。</p>
@@ -419,8 +414,7 @@
 <p>选择最优方案做主线，其他分支里有价值的测试或局部实现，再 cherry-pick 进来。</p>
 <p>重点不是“让五个 Agent 同时写代码”，<br>而是建立一场有验收标准、能淘汰错误方案的可控竞赛。</p>
 <p>05 REALITY CHECK</p>
-<p>Orca 的边界，比优点更值得讲清楚</p>
-<p>边界一：并行不是越多越好</p>
+<h2 id="Orca-的边界，比优点更值得讲清楚"><a href="#Orca-的边界，比优点更值得讲清楚" class="headerlink" title="Orca 的边界，比优点更值得讲清楚"></a>Orca 的边界，比优点更值得讲清楚</h2><p>边界一：并行不是越多越好</p>
 <p>改一个文案、修一个确定性很高的空指针，没有必要让五个 Agent 重复劳动。并行适合高不确定、高价值、可比较的任务，否则只是放大 Token、算力与审核负担。</p>
 <p>边界二：Worktree 不是安全沙箱</p>
 <p>Worktree 能隔离 Git 文件状态，但不能阻止 Agent 访问仓库外文件、环境变量、网络、云凭据或执行危险命令。</p>
@@ -432,20 +426,17 @@
 <p>边界五：环境复制仍有成本</p>
 <p>Worktree 会复用 Git 对象，但依赖目录、构建缓存、数据库与端口仍需要规划。大型 monorepo 同时跑多个任务时，磁盘、内存和端口冲突不会自动消失。</p>
 <p>06 WHO SHOULD USE IT</p>
-<p>谁最适合用 Orca</p>
-<p>非常适合</p>
+<h2 id="谁最适合用-Orca"><a href="#谁最适合用-Orca" class="headerlink" title="谁最适合用 Orca"></a>谁最适合用 Orca</h2><p>非常适合</p>
 <p>已经稳定使用两个以上 CLI Agent，经常开 worktree，认真看 Diff，并且手上有本地工作站或远程开发机的人。Orca 很可能会立刻降低管理成本。</p>
 <p>可能过重</p>
 <p>只是偶尔让 AI 补一段代码、不熟悉 Git、也不想承担代码审核责任的人。Orca 面向的不是“完全不写代码的人”，而是希望把 AI 变成工程杠杆的开发者。</p>
-<p>写在最后</p>
-<p>我认为 Orca 真正重要的地方，不是把 Claude Code、Codex 和 OpenCode 装进同一个窗口，而是提前定义了 AI 编码的下一层基础设施。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>我认为 Orca 真正重要的地方，不是把 Claude Code、Codex 和 OpenCode 装进同一个窗口，而是提前定义了 AI 编码的下一层基础设施。</p>
 <p>当 Agent 从一个变成一组，开发环境就必须开始管理隔离、状态、调度、监督、反馈和交付。传统 IDE 擅长帮助人编辑代码，ADE 则要帮助人管理一支数字工程团队。</p>
 <p>MY VERDICT</p>
 <p>Docker 解决服务如何被一致地运行与编排；Orca 想解决的，是 Agent 如何在真实项目里并行工作又不彼此踩踏。</p>
 <p>它现在还很年轻，也远未消除并行 Agent 的安全和治理问题。但方向是对的，而且已经足够好用。</p>
 <p>如果你已经进入多 Agent 工作流，与其继续堆终端、脚本和浏览器标签，不妨认真试一次 Orca。</p>
-<p>项目与资料</p>
-<p>官网：onOrca.dev</p>
+<h2 id="项目与资料"><a href="#项目与资料" class="headerlink" title="项目与资料"></a>项目与资料</h2><p>官网：onOrca.dev</p>
 <p>GitHub：github.com&#x2F;stablyai&#x2F;orca</p>
 <p>文档：onOrca.dev&#x2F;docs</p>
 <p>我是陈文茂</p>

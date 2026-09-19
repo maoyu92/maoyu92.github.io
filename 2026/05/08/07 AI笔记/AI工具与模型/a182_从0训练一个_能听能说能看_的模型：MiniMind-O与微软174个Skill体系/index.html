@@ -353,15 +353,13 @@
 </tr>
 </tbody></table>
 <p>也就是说：<strong>能听、能看、能思考、能说</strong>。</p>
-<h3 id="技术亮点"><a href="#技术亮点" class="headerlink" title="技术亮点"></a>技术亮点</h3><p><strong>Thinker-Talker双路径架构：</strong></p>
-<ul>
+<h3 id="技术亮点"><a href="#技术亮点" class="headerlink" title="技术亮点"></a>技术亮点</h3><h4 id="Thinker-Talker双路径架构："><a href="#Thinker-Talker双路径架构：" class="headerlink" title="Thinker-Talker双路径架构："></a>Thinker-Talker双路径架构：</h4><ul>
 <li><p><strong>Thinker（思考者）</strong>：接收文本&#x2F;语音&#x2F;图像输入，理解并生成文本内容</p>
 </li>
 <li><p><strong>Talker（说话者）</strong>：将文本转换为流式语音输出</p>
 </li>
 </ul>
-<p><strong>关键技术选择：</strong></p>
-<ul>
+<h4 id="关键技术选择："><a href="#关键技术选择：" class="headerlink" title="关键技术选择："></a>关键技术选择：</h4><ul>
 <li><p>语音编解码器：Mimi（8层codebook，12.5 Hz，24 kHz）</p>
 </li>
 <li><p>语音编码器：SenseVoice-Small（冻结）</p>
@@ -371,8 +369,7 @@
 <li><p>语音&#x2F;视觉特征通过两层MLP projector注入MiniMind隐空间</p>
 </li>
 </ul>
-<p><strong>MTP（Multi-Token Prediction）：</strong></p>
-<p>Talker采用MTP一次预测多层Mimi codes，支持24 kHz流式语音生成与barge-in打断，实现实时近似双工交互。</p>
+<h4 id="MTP（Multi-Token-Prediction）："><a href="#MTP（Multi-Token-Prediction）：" class="headerlink" title="MTP（Multi-Token Prediction）："></a>MTP（Multi-Token Prediction）：</h4><p>Talker采用MTP一次预测多层Mimi codes，支持24 kHz流式语音生成与barge-in打断，实现实时近似双工交互。</p>
 <h3 id="训练与推理"><a href="#训练与推理" class="headerlink" title="训练与推理"></a>训练与推理</h3><table>
 <thead>
 <tr>
@@ -392,8 +389,7 @@
 <td>与发布权重对应</td>
 </tr>
 </tbody></table>
-<p><strong>全部开源：</strong></p>
-<ul>
+<h4 id="全部开源："><a href="#全部开源：" class="headerlink" title="全部开源："></a>全部开源：</h4><ul>
 <li><p>模型权重</p>
 </li>
 <li><p>训练数据</p>
@@ -464,8 +460,7 @@
 <hr>
 <h2 id="3-Oh-My-codeX（OMX）：Codex-CLI的多智能体编排层"><a href="#3-Oh-My-codeX（OMX）：Codex-CLI的多智能体编排层" class="headerlink" title="3. Oh My codeX（OMX）：Codex CLI的多智能体编排层"></a>3. Oh My codeX（OMX）：Codex CLI的多智能体编排层</h2><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/Yeachan-Heo/oh-my-codex[5]">https://github.com/Yeachan-Heo/oh-my-codex[5]</a> <strong>文档</strong>: <a target="_blank" rel="noopener" href="https://yeachan-heo.github.io/oh-my-codex-website/[6]">https://yeachan-heo.github.io/oh-my-codex-website/[6]</a> <strong>标签</strong>: Codex · 多智能体 · 工作流编排 · Hooks</p>
 <h3 id="它是什么-2"><a href="#它是什么-2" class="headerlink" title="它是什么"></a>它是什么</h3><p>OMX 是<strong>OpenAI Codex CLI的工作流增强层</strong>，在Codex之上加了hooks、团队协作、工作流自动化。</p>
-<h3 id="核心能力"><a href="#核心能力" class="headerlink" title="核心能力"></a>核心能力</h3><p><strong>标准化工作流：</strong></p>
-<ul>
+<h3 id="核心能力"><a href="#核心能力" class="headerlink" title="核心能力"></a>核心能力</h3><h4 id="标准化工作流："><a href="#标准化工作流：" class="headerlink" title="标准化工作流："></a>标准化工作流：</h4><ul>
 <li><p><code>$deep-interview</code>：澄清需求</p>
 </li>
 <li><p><code>$ralplan</code>：制定并评审计划</p>
@@ -475,10 +470,8 @@
 <li><p><code>$team</code>：多Agent并行执行</p>
 </li>
 </ul>
-<p><strong>工作流程：</strong></p>
-<p><code>启动Codex → 需求澄清 → 计划评审 → 执行或团队并行 → 完成   </code></p>
-<p><strong>保持项目状态：</strong></p>
-<ul>
+<h4 id="工作流程："><a href="#工作流程：" class="headerlink" title="工作流程："></a>工作流程：</h4><p><code>启动Codex → 需求澄清 → 计划评审 → 执行或团队并行 → 完成   </code></p>
+<h4 id="保持项目状态："><a href="#保持项目状态：" class="headerlink" title="保持项目状态："></a>保持项目状态：</h4><ul>
 <li><p>.omx&#x2F;目录保存项目指导、计划、日志、状态</p>
 </li>
 <li><p>跨会话保持上下文</p>

@@ -515,12 +515,8 @@
  
 
    
-
-     2026 年，开发者面临的新问题        
-
-   
-
-     WHY ADE · 单一 agent 的瓶颈        
+</code></pre>
+<h2 id="2026-年，开发者面临的新问题"><a href="#2026-年，开发者面临的新问题" class="headerlink" title="2026 年，开发者面临的新问题"></a>2026 年，开发者面临的新问题</h2><pre><code class="hljs">     WHY ADE · 单一 agent 的瓶颈        
 
  
 
@@ -564,12 +560,8 @@
  
 
    
-
-     什么是 Orca        
-
-   
-
-     ADE · 25K STARS · 857 RELEASES        
+</code></pre>
+<h2 id="什么是-Orca"><a href="#什么是-Orca" class="headerlink" title="什么是 Orca"></a>什么是 Orca</h2><pre><code class="hljs">     ADE · 25K STARS · 857 RELEASES        
 
  
 
@@ -617,56 +609,20 @@
  
 
    
-
-     核心功能深度拆解        
-
-   
-
-     7 大亮点 · 每一个都值得单独说        
+</code></pre>
+<h2 id="核心功能深度拆解"><a href="#核心功能深度拆解" class="headerlink" title="核心功能深度拆解"></a>核心功能深度拆解</h2><pre><code class="hljs">     7 大亮点 · 每一个都值得单独说        
 
  
-
-
-
-
-
- Parallel Worktrees——并行编排的核心    
-
-
-
- 这是 Orca 最核心的设计。**每个 agent 任务跑在独立的 git worktree 里**，而不是同一个工作目录下的分支切换。传统方式下，你 checkout 一个分支、跑 agent、代码冲突、切换到另一个分支、又冲突。Orca 的方式是：同一个 prompt 同时发给 5 个 agent，每个用不同的模型、不同的策略，互不干扰，然后对比谁的输出最好。    
-
-
-
- Mobile Companion——手机上的 agent 监控室    
-
-
-
- 把 agent 跑在桌面端，人在外面时通过手机查看进度、发后续指令。iOS App Store 和 Android APK 都已上架。推送通知告诉你哪个 agent 跑完了，你可以在手机上批注、发 follow-up，agent 在桌面端继续执行。    
-
-
-
- Design Mode——点哪里改哪里    
-
-
-
- 内嵌一个真实的 Chromium 浏览器窗口。你点击任意 UI 元素，Orca 自动把它的 HTML、CSS 和一张裁剪后的截图发到 agent 的 prompt 里。从&quot;描述问题&quot;到&quot;看到修复&quot;的链路被压缩到极致。    
-
-
-
- SSH Worktrees——远程服务器跑 agent    
-
-
-
- 在远程服务器上跑 agent，本地桌面端完成所有操作，自动重连 + 端口转发。这对你的场景特别有价值：**本地双卡做推理，云服务器做 agent 编排，Orca 作为统一操作界面**。    
-
-
-
- 更多能力    
-
-
-
- 原生 GitHub + Linear 集成，在应用内浏览 PR、Issue、看板，直接从任务开 worktree；Annotate AI Diffs 让你在 diff 上直接批注打回给 agent 修改；Account Switcher 实现多账号热切换，实时看用量和配额重置；Orca CLI 让 agent 也能控制 Orca——orca worktree create、snapshot、click、fill，形成 agent 编排 agent 的闭环。    
+</code></pre>
+<h3 id="Parallel-Worktrees——并行编排的核心"><a href="#Parallel-Worktrees——并行编排的核心" class="headerlink" title="Parallel Worktrees——并行编排的核心"></a>Parallel Worktrees——并行编排的核心</h3><pre><code class="hljs"> 这是 Orca 最核心的设计。**每个 agent 任务跑在独立的 git worktree 里**，而不是同一个工作目录下的分支切换。传统方式下，你 checkout 一个分支、跑 agent、代码冲突、切换到另一个分支、又冲突。Orca 的方式是：同一个 prompt 同时发给 5 个 agent，每个用不同的模型、不同的策略，互不干扰，然后对比谁的输出最好。    
+</code></pre>
+<h3 id="Mobile-Companion——手机上的-agent-监控室"><a href="#Mobile-Companion——手机上的-agent-监控室" class="headerlink" title="Mobile Companion——手机上的 agent 监控室"></a>Mobile Companion——手机上的 agent 监控室</h3><pre><code class="hljs"> 把 agent 跑在桌面端，人在外面时通过手机查看进度、发后续指令。iOS App Store 和 Android APK 都已上架。推送通知告诉你哪个 agent 跑完了，你可以在手机上批注、发 follow-up，agent 在桌面端继续执行。    
+</code></pre>
+<h3 id="Design-Mode——点哪里改哪里"><a href="#Design-Mode——点哪里改哪里" class="headerlink" title="Design Mode——点哪里改哪里"></a>Design Mode——点哪里改哪里</h3><pre><code class="hljs"> 内嵌一个真实的 Chromium 浏览器窗口。你点击任意 UI 元素，Orca 自动把它的 HTML、CSS 和一张裁剪后的截图发到 agent 的 prompt 里。从&quot;描述问题&quot;到&quot;看到修复&quot;的链路被压缩到极致。    
+</code></pre>
+<h3 id="SSH-Worktrees——远程服务器跑-agent"><a href="#SSH-Worktrees——远程服务器跑-agent" class="headerlink" title="SSH Worktrees——远程服务器跑 agent"></a>SSH Worktrees——远程服务器跑 agent</h3><pre><code class="hljs"> 在远程服务器上跑 agent，本地桌面端完成所有操作，自动重连 + 端口转发。这对你的场景特别有价值：**本地双卡做推理，云服务器做 agent 编排，Orca 作为统一操作界面**。    
+</code></pre>
+<h3 id="更多能力"><a href="#更多能力" class="headerlink" title="更多能力"></a>更多能力</h3><pre><code class="hljs"> 原生 GitHub + Linear 集成，在应用内浏览 PR、Issue、看板，直接从任务开 worktree；Annotate AI Diffs 让你在 diff 上直接批注打回给 agent 修改；Account Switcher 实现多账号热切换，实时看用量和配额重置；Orca CLI 让 agent 也能控制 Orca——orca worktree create、snapshot、click、fill，形成 agent 编排 agent 的闭环。    
 
 
 
@@ -690,40 +646,16 @@
  
 
    
-
-     为什么它值得你关注        
-
-   
-
-     新范式 · 架构匹配 · 免费开源        
+</code></pre>
+<h2 id="为什么它值得你关注"><a href="#为什么它值得你关注" class="headerlink" title="为什么它值得你关注"></a>为什么它值得你关注</h2><pre><code class="hljs">     新范式 · 架构匹配 · 免费开源        
 
  
-
-
-
-
-
- 并行编排是 2026 年的新范式    
-
-
-
- 2025 年，大家还在争论&quot;哪个 AI 编码助手最好&quot;。2026 年，答案已经变了——**不是&quot;哪个&quot;，而是&quot;哪几个&quot;**。并行 agent 编排正在成为标准化工作流。Orca 是这个领域第一个真正意义上的产品级工具。    
-
-
-
- 与你的架构完美匹配    
-
-
-
- 你的基础设施：本地双 5070 Ti（推理中心）通过 frp 隧道连接阿里云固定 IP 服务器。Orca 可以在这个架构上叠加一层编排层——SSH Worktrees 在阿里云上起 agent 任务，Parallel Worktrees 同时跑多个 agent 比对结果，Design Mode 点哪里改哪里。    
-
-
-
- 免费 + MIT 开源    
-
-
-
- Orca 本身是免费的。你只花 agent 订阅费，**没有中间商差价**。MIT 许可证，可以自己 fork 定制。    
+</code></pre>
+<h3 id="并行编排是-2026-年的新范式"><a href="#并行编排是-2026-年的新范式" class="headerlink" title="并行编排是 2026 年的新范式"></a>并行编排是 2026 年的新范式</h3><pre><code class="hljs"> 2025 年，大家还在争论&quot;哪个 AI 编码助手最好&quot;。2026 年，答案已经变了——**不是&quot;哪个&quot;，而是&quot;哪几个&quot;**。并行 agent 编排正在成为标准化工作流。Orca 是这个领域第一个真正意义上的产品级工具。    
+</code></pre>
+<h3 id="与你的架构完美匹配"><a href="#与你的架构完美匹配" class="headerlink" title="与你的架构完美匹配"></a>与你的架构完美匹配</h3><pre><code class="hljs"> 你的基础设施：本地双 5070 Ti（推理中心）通过 frp 隧道连接阿里云固定 IP 服务器。Orca 可以在这个架构上叠加一层编排层——SSH Worktrees 在阿里云上起 agent 任务，Parallel Worktrees 同时跑多个 agent 比对结果，Design Mode 点哪里改哪里。    
+</code></pre>
+<h3 id="免费-MIT-开源"><a href="#免费-MIT-开源" class="headerlink" title="免费 + MIT 开源"></a>免费 + MIT 开源</h3><pre><code class="hljs"> Orca 本身是免费的。你只花 agent 订阅费，**没有中间商差价**。MIT 许可证，可以自己 fork 定制。    
 
 
 
@@ -747,12 +679,8 @@
  
 
    
-
-     写在最后        
-
-   
-
-     AGENT&#39;S DOCKER MOMENT        
+</code></pre>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><pre><code class="hljs">     AGENT&#39;S DOCKER MOMENT        
 
  
 

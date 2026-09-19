@@ -331,8 +331,7 @@
 <h2 id="1-Graphify：代码-文档-图片一键建成知识图谱-·-36K-Stars"><a href="#1-Graphify：代码-文档-图片一键建成知识图谱-·-36K-Stars" class="headerlink" title="1. Graphify：代码&#x2F;文档&#x2F;图片一键建成知识图谱 · 36K+ Stars"></a>1. Graphify：代码&#x2F;文档&#x2F;图片一键建成知识图谱 · 36K+ Stars</h2><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/safishamsi/graphify[1]">https://github.com/safishamsi/graphify[1]</a> <strong>官网</strong>: <a href="https://graphifylabs.ai[2]">https://graphifylabs.ai[2]</a> <strong>标签</strong>: 知识图谱 · AI编程 · RAG · Claude · 36K Stars</p>
 <h3 id="它是什么"><a href="#它是什么" class="headerlink" title="它是什么"></a>它是什么</h3><p>Graphify 是一个AI编程助手技能，核心能力：<strong>把你的代码、SQL schemas、Shell脚本、文档、PDF、图片、视频全部变成可查询的知识图谱</strong>。</p>
 <p>在GitHub上有36K+ stars，支持几乎所有主流AI编程工具：Claude Code、Codex、OpenCode、Cursor、Gemini CLI、GitHub Copilot CLI、VS Code Copilot Chat、Aider、OpenClaw、Trae等。</p>
-<h3 id="有什么用"><a href="#有什么用" class="headerlink" title="有什么用"></a>有什么用</h3><p><strong>传统RAG的问题：</strong></p>
-<ul>
+<h3 id="有什么用"><a href="#有什么用" class="headerlink" title="有什么用"></a>有什么用</h3><h4 id="传统RAG的问题："><a href="#传统RAG的问题：" class="headerlink" title="传统RAG的问题："></a>传统RAG的问题：</h4><ul>
 <li><p>只能找到”相似的内容块”</p>
 </li>
 <li><p>不理解代码之间的调用关系、依赖关系</p>
@@ -340,8 +339,7 @@
 <li><p>项目大了之后，向量检索准确率急剧下降</p>
 </li>
 </ul>
-<p><strong>Graphify的解决方案：</strong></p>
-<p><code>/graphify .   </code></p>
+<h4 id="Graphify的解决方案："><a href="#Graphify的解决方案：" class="headerlink" title="Graphify的解决方案："></a>Graphify的解决方案：</h4><p><code>/graphify .   </code></p>
 <p>一条命令，Graphify会：</p>
 <ol>
 <li><p>分析整个项目结构</p>
@@ -354,8 +352,7 @@
 </li>
 </ol>
 <p><code>graphify-out/   ├── graph.html        # 可视化知识图谱，浏览器打开，点击节点、过滤、搜索   ├── GRAPH_REPORT.md   # 亮点报告：关键概念、意外关联、建议问题   └── graph.json        # 完整图谱，随时查询，无需重新读取文件   </code></p>
-<p><strong>核心特点：</strong></p>
-<ul>
+<h4 id="核心特点："><a href="#核心特点：" class="headerlink" title="核心特点："></a>核心特点：</h4><ul>
 <li><p><strong>无需预处理</strong>：不需要复杂的向量数据库、图数据库、文档解析器</p>
 </li>
 <li><p><strong>零信息损失</strong>：不走向量近似，保留所有原始上下文</p>
@@ -431,10 +428,8 @@
 <hr>
 <h2 id="3-mutil-rag-agent：多Agent协同的本地电脑诊断系统"><a href="#3-mutil-rag-agent：多Agent协同的本地电脑诊断系统" class="headerlink" title="3. mutil-rag-agent：多Agent协同的本地电脑诊断系统"></a>3. mutil-rag-agent：多Agent协同的本地电脑诊断系统</h2><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/Kkkirito-123/mutil-rag-agent[5]">https://github.com/Kkkirito-123/mutil-rag-agent[5]</a> <strong>标签</strong>: 多Agent · MCP · 本地诊断 · RAG · Skills路由 · Token优化</p>
 <h3 id="它是什么-2"><a href="#它是什么-2" class="headerlink" title="它是什么"></a>它是什么</h3><p>mutil-rag-agent 是一个<strong>面向OnCall&#x2F;SRE场景的多智能体智能运维诊断平台</strong>，核心能力：通过MCP接口对本地电脑进行诊断，结合RAG知识库给出建议，通过Skills路由方式减少Token损耗。</p>
-<h3 id="有什么用-2"><a href="#有什么用-2" class="headerlink" title="有什么用"></a>有什么用</h3><p><strong>Skill-first多智能体诊断流程：</strong></p>
-<p><code>用户告警/故障描述        ↓   Skill Router（先判断故障类型）        ↓   Skill Playbook（加载对应SOP、工具白名单、诊断策略）        ↓   Planner（基于Skill生成诊断计划）        ↓   Executor（调用允许的MCP工具/RAG检索/系统查询）        ↓   Replanner（根据结果判断继续/调整/收敛）        ↓   Report（生成结构化诊断报告）   </code></p>
-<p><strong>核心特点：</strong></p>
-<table>
+<h3 id="有什么用-2"><a href="#有什么用-2" class="headerlink" title="有什么用"></a>有什么用</h3><h4 id="Skill-first多智能体诊断流程："><a href="#Skill-first多智能体诊断流程：" class="headerlink" title="Skill-first多智能体诊断流程："></a>Skill-first多智能体诊断流程：</h4><p><code>用户告警/故障描述        ↓   Skill Router（先判断故障类型）        ↓   Skill Playbook（加载对应SOP、工具白名单、诊断策略）        ↓   Planner（基于Skill生成诊断计划）        ↓   Executor（调用允许的MCP工具/RAG检索/系统查询）        ↓   Replanner（根据结果判断继续/调整/收敛）        ↓   Report（生成结构化诊断报告）   </code></p>
+<h4 id="核心特点：-1"><a href="#核心特点：-1" class="headerlink" title="核心特点："></a>核心特点：</h4><table>
 <thead>
 <tr>
 <th>特点</th>

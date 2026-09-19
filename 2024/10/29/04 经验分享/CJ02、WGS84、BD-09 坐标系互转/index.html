@@ -333,14 +333,11 @@
 
 
 <p>随着互联网技术的发展，地理信息系统（GIS）的应用越来越广泛，尤其是在地图服务领域。不同的应用和服务可能使用不同的地理坐标系，这导致了数据互操作性的问题。因此，了解并掌握不同坐标系之间的转换方法对于GIS开发者来说至关重要。本文将介绍几种常见的地理坐标系，并通过QGIS软件中的GeoHey Toolbox插件来演示如何进行坐标系之间的转换。</p>
-<h2 id="常用地理坐标系介绍"><a href="#常用地理坐标系介绍" class="headerlink" title="常用地理坐标系介绍"></a>常用地理坐标系介绍</h2><p><strong>1. WGS 84 (World Geodetic System 1984)</strong></p>
-<p>WGS 84是全球定位系统（GPS）所使用的标准坐标系，也是目前最常用的地理坐标系之一。它是一个基于地球椭球模型的坐标系，用于描述地球上的位置。广泛应用于全球导航卫星系统（GNSS）、互联网地图服务等。</p>
+<h2 id="常用地理坐标系介绍"><a href="#常用地理坐标系介绍" class="headerlink" title="常用地理坐标系介绍"></a>常用地理坐标系介绍</h2><h3 id="1-WGS-84-World-Geodetic-System-1984"><a href="#1-WGS-84-World-Geodetic-System-1984" class="headerlink" title="1. WGS 84 (World Geodetic System 1984)"></a>1. WGS 84 (World Geodetic System 1984)</h3><p>WGS 84是全球定位系统（GPS）所使用的标准坐标系，也是目前最常用的地理坐标系之一。它是一个基于地球椭球模型的坐标系，用于描述地球上的位置。广泛应用于全球导航卫星系统（GNSS）、互联网地图服务等。</p>
 <p><strong>2. CGCS 2000 (China Geodetic Coordinate System 2000)</strong></p>
 <p> CGCS 2000是中国最新的大地坐标系，它基于一个更精确的地球模型——GRS80椭球体。该坐标系旨在提高中国领土上地理信息的精度。主要在中国国内的地图制作、国土测绘等领域使用。</p>
-<p><strong>3. 火星坐标系 (GCJ-02)</strong></p>
-<p>火星坐标系并非真正意义上的“火星”坐标系，而是中国政府为了保护国家地理信息安全而设计的一种加密坐标系。它基于WGS 84坐标系，但对坐标值进行了偏移处理。 主要应用于国内的地图服务商如<strong>高德地图</strong>等提供的在线地图服务中。</p>
-<p><strong>4. BD-09</strong></p>
-<p> BD-09是百度地图使用的坐标系，它同样是对WGS 84进行了加密处理后的坐标系，但其加密算法与火星坐标系略有不同，专为百度地图设计，确保用户数据的安全性和准确性。</p>
+<h3 id="3-火星坐标系-GCJ-02"><a href="#3-火星坐标系-GCJ-02" class="headerlink" title="3. 火星坐标系 (GCJ-02)"></a>3. 火星坐标系 (GCJ-02)</h3><p>火星坐标系并非真正意义上的“火星”坐标系，而是中国政府为了保护国家地理信息安全而设计的一种加密坐标系。它基于WGS 84坐标系，但对坐标值进行了偏移处理。 主要应用于国内的地图服务商如<strong>高德地图</strong>等提供的在线地图服务中。</p>
+<h3 id="4-BD-09"><a href="#4-BD-09" class="headerlink" title="4. BD-09"></a>4. BD-09</h3><p> BD-09是百度地图使用的坐标系，它同样是对WGS 84进行了加密处理后的坐标系，但其加密算法与火星坐标系略有不同，专为百度地图设计，确保用户数据的安全性和准确性。</p>
 <h2 id="使用QGIS进行坐标系转换"><a href="#使用QGIS进行坐标系转换" class="headerlink" title="使用QGIS进行坐标系转换"></a>使用QGIS进行坐标系转换</h2><h3 id="GeoHey-Toolbox-转换"><a href="#GeoHey-Toolbox-转换" class="headerlink" title="GeoHey Toolbox 转换"></a>GeoHey Toolbox 转换</h3><p>GeoHey Toolbox 是一款由国人开发的QGIS开源插件，专门用于解决中国特有的坐标系转换问题。它支持多种常见的坐标系转换，具体包括：</p>
 <ul>
 <li>BD-09 to GCJ-02</li>
@@ -350,8 +347,7 @@
 <li>WGS-84 to BD-09</li>
 <li>WGS-84 to GCJ-02</li>
 </ul>
-<p><strong>安装与使用</strong></p>
-<p><strong>安装</strong>: 在QGIS中打开插件管理器，搜索“GeoHey Toolbox”，找到后点击安装。</p>
+<h4 id="安装与使用"><a href="#安装与使用" class="headerlink" title="安装与使用"></a>安装与使用</h4><p><strong>安装</strong>: 在QGIS中打开插件管理器，搜索“GeoHey Toolbox”，找到后点击安装。</p>
 <p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410290923918.png" srcset="/img/loading.gif" lazyload alt="安装插件"></p>
 <p><strong>使用</strong>: 安装完成后，在QGIS主界面找到GeoHey Toolbox工具栏或菜单项，选择你需要执行的坐标转换任务。以从WGS-84转到GCJ-02为例，选择相应的转换选项，然后指定输入图层。为了便于后续使用，建议点击输出选项中的三个小点，选择将结果保存为JSON格式文件或其他适合前端使用的格式。</p>
 <p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202410290925405.png" srcset="/img/loading.gif" lazyload alt="插件使用"></p>

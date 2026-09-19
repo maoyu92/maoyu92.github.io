@@ -407,15 +407,12 @@
 </tbody></table>
 <p>base 版 28 步，生成质量和 FLUX 差距已经很小了；mobile 版 4 步，速度快到可以实时交互。</p>
 <h2 id="实际体验：我本地的测试结果"><a href="#实际体验：我本地的测试结果" class="headerlink" title="实际体验：我本地的测试结果"></a>实际体验：我本地的测试结果</h2><p>我在 Windows + RTX 3060 上跑了 mobile 版，以下是真实测试截图：</p>
-<p><strong>PyTorch + CUDA 验证：</strong></p>
-<p><img src="/images/89a33daa566c017f.png" srcset="/img/loading.gif" lazyload alt="PyTorch CUDA 验证截图" title="PyTorch CUDA 验证截图"></p>
+<h3 id="PyTorch-CUDA-验证："><a href="#PyTorch-CUDA-验证：" class="headerlink" title="PyTorch + CUDA 验证："></a>PyTorch + CUDA 验证：</h3><p><img src="/images/89a33daa566c017f.png" srcset="/img/loading.gif" lazyload alt="PyTorch CUDA 验证截图" title="PyTorch CUDA 验证截图"></p>
 <p>首次加载 pipeline 十几秒，之后 4 步推理只要几秒。RTX 3060 12GB 完全跑得动。</p>
-<p><strong>文生图测试（电子电路板）：</strong></p>
-<p><img src="/images/167eb9fd011e86b2.png" srcset="/img/loading.gif" lazyload alt="电路板生图结果" title="电路板生图结果"></p>
+<h3 id="文生图测试（电子电路板）："><a href="#文生图测试（电子电路板）：" class="headerlink" title="文生图测试（电子电路板）："></a>文生图测试（电子电路板）：</h3><p><img src="/images/167eb9fd011e86b2.png" srcset="/img/loading.gif" lazyload alt="电路板生图结果" title="电路板生图结果"></p>
 <p>Prompt: <code>a realistic photo of a small electronic circuit board on a workbench, sharp details</code></p>
 <p>生成结果质量已经相当可用。</p>
-<p><strong>图生图编辑测试：</strong></p>
-<p>输入图：</p>
+<h3 id="图生图编辑测试："><a href="#图生图编辑测试：" class="headerlink" title="图生图编辑测试："></a>图生图编辑测试：</h3><p>输入图：</p>
 <p><img src="/images/f2c77c6a317effc3.png" srcset="/img/loading.gif" lazyload alt="输入图" title="输入图"></p>
 <p>编辑 Prompt: <code>用红线圈出图中的漂浮物</code></p>
 <p>编辑结果：</p>
@@ -449,8 +446,7 @@
 </ul>
 <p>DreamLite 值得放进技术选型列表里。</p>
 <hr>
-<p><strong>相关链接：</strong></p>
-<ul>
+<h3 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h3><ul>
 <li><p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/ByteVisionLab/DreamLite[1]">https://github.com/ByteVisionLab/DreamLite[1]</a></p>
 </li>
 <li><p>论文：<a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.28713[2]">https://arxiv.org/abs/2603.28713[2]</a></p>
@@ -460,8 +456,7 @@
 <li><p>项目主页：<a target="_blank" rel="noopener" href="https://carlofkl.github.io/dreamlite/[4]">https://carlofkl.github.io/dreamlite/[4]</a></p>
 </li>
 </ul>
-<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>引用链接</p>
-<p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/ByteVisionLab/DreamLite">https://github.com/ByteVisionLab/DreamLite</a></em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/ByteVisionLab/DreamLite">https://github.com/ByteVisionLab/DreamLite</a></em></p>
 <p>[2]<em><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.28713">https://arxiv.org/abs/2603.28713</a></em></p>
 <p>[3]<em><a target="_blank" rel="noopener" href="https://huggingface.co/spaces/carlofkl/DreamLite">https://huggingface.co/spaces/carlofkl/DreamLite</a></em></p>
 <p>[4]<em><a target="_blank" rel="noopener" href="https://carlofkl.github.io/dreamlite/">https://carlofkl.github.io/dreamlite/</a></em></p>

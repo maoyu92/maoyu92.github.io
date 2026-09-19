@@ -337,47 +337,15 @@
  OpenMDW-1.1    
 </code></pre>
 <p>   这篇文章带你拆解这个模型到底强在哪、能不能在你的机器上跑、以及它还有哪些坑。  </p>
-<pre><code class="hljs"> 架构：256 个专家的 MoE 是怎么设计的    
-
-
-
- Laguna S 2.1 的核心架构参数：总参数 118B，每 token 激活约 8B。48 层（12 层全局注意力 + 36 层滑动窗口注意力）。256 个路由专家（top-10）+ 1 个共享专家。分组查询注意力，8 个 KV 头。滑动窗口 512 tokens。上下文窗口 1,048,576 tokens（1M）。词表 100,352 tokens。许可证 OpenMDW-1.1（商用可）。    
-
-
-
- 256 专家意味着什么    
-
-
-
- MoE 不是新鲜事，但 256 专家 + 48 层的组合在开源模型中不多见。每个 token 只激活 top-10 专家（约 6.8%），配合一个共享专家，实现 118B 驻留、8B 激活的稀疏计算。这意味着推理时的计算量接近 8B 密集模型，但模型的知识容量接近 118B 密集模型。    
-
-
-
- 混合注意力机制    
-
-
-
- 48 层中 12 层用全局注意力（保持长程依赖），36 层用滑动窗口注意力（window=512，降低 KV cache 开销）。每层还有 per-head 的 softplus 输出门控和 per-layer-type 的 rotary 缩放——这是 Poolside 从 Laguna M.1 延续下来的技术积累。    
-
-
-
- 原生推理支持    
-
-
-
- 模型支持思考模式（thinking mode），可以在工具调用之间穿插思考过程。通过      enable_thinking       参数控制，这是 agentic coding 的关键能力——模型不是一次性输出答案，而是在执行过程中边思考边调整。    
-
-
-
-
-
-
-
- 跑分：越级打怪，开源最强编程模型    
-
-
-
- Poolside 官方公布的基准测试结果，Laguna S 2.1 在核心编程基准上表现亮眼。    
+<h2 id="架构：256-个专家的-MoE-是怎么设计的"><a href="#架构：256-个专家的-MoE-是怎么设计的" class="headerlink" title="架构：256 个专家的 MoE 是怎么设计的"></a>架构：256 个专家的 MoE 是怎么设计的</h2><pre><code class="hljs"> Laguna S 2.1 的核心架构参数：总参数 118B，每 token 激活约 8B。48 层（12 层全局注意力 + 36 层滑动窗口注意力）。256 个路由专家（top-10）+ 1 个共享专家。分组查询注意力，8 个 KV 头。滑动窗口 512 tokens。上下文窗口 1,048,576 tokens（1M）。词表 100,352 tokens。许可证 OpenMDW-1.1（商用可）。    
+</code></pre>
+<h3 id="256-专家意味着什么"><a href="#256-专家意味着什么" class="headerlink" title="256 专家意味着什么"></a>256 专家意味着什么</h3><pre><code class="hljs"> MoE 不是新鲜事，但 256 专家 + 48 层的组合在开源模型中不多见。每个 token 只激活 top-10 专家（约 6.8%），配合一个共享专家，实现 118B 驻留、8B 激活的稀疏计算。这意味着推理时的计算量接近 8B 密集模型，但模型的知识容量接近 118B 密集模型。    
+</code></pre>
+<h3 id="混合注意力机制"><a href="#混合注意力机制" class="headerlink" title="混合注意力机制"></a>混合注意力机制</h3><pre><code class="hljs"> 48 层中 12 层用全局注意力（保持长程依赖），36 层用滑动窗口注意力（window=512，降低 KV cache 开销）。每层还有 per-head 的 softplus 输出门控和 per-layer-type 的 rotary 缩放——这是 Poolside 从 Laguna M.1 延续下来的技术积累。    
+</code></pre>
+<h3 id="原生推理支持"><a href="#原生推理支持" class="headerlink" title="原生推理支持"></a>原生推理支持</h3><pre><code class="hljs"> 模型支持思考模式（thinking mode），可以在工具调用之间穿插思考过程。通过      enable_thinking       参数控制，这是 agentic coding 的关键能力——模型不是一次性输出答案，而是在执行过程中边思考边调整。    
+</code></pre>
+<h2 id="跑分：越级打怪，开源最强编程模型"><a href="#跑分：越级打怪，开源最强编程模型" class="headerlink" title="跑分：越级打怪，开源最强编程模型"></a>跑分：越级打怪，开源最强编程模型</h2><pre><code class="hljs"> Poolside 官方公布的基准测试结果，Laguna S 2.1 在核心编程基准上表现亮眼。    
 
 
 
@@ -418,60 +386,16 @@
 </tr>
 </tbody></table>
 <pre><code class="hljs"> DeepSWE 上 40.4% vs DeepSeek-V4-Pro-Max 的 9.0%，差距超过 4 倍。注意 DeepSeek-V4-Pro-Max 是 1.6T 总参数、49B 激活的模型，比 Laguna S 2.1 大 13 倍。Laguna S 2.1 以六分之一的激活参数打出了 4 倍以上的优势。    
-
-
-
- 思考模式对跑分的影响    
-
-
-
- Poolside 公开了 thinking off vs max 的对比数据：Terminal-Bench 从 60.4% 提升到 70.2%（+9.8pp），DeepSWE 从 16.5% 提升到 40.4%（+23.9pp）。平均 completion tokens 从 ~99k 增加到 ~249k。思考模式大幅提升了 long-horizon 任务的解决率，但 token 消耗也显著增加。对于复杂编程任务，max thinking 是质变级的能力。    
-
-
-
-
-
-
-
- 真实案例：181 步自主构建浏览器渲染引擎    
-
-
-
- Poolside 在博客中披露了两个令人印象深刻的实际案例。    
-
-
-
- 案例一：从空文件夹到浏览器渲染引擎    
-
-
-
- Laguna S 2.1 在无人工干预的情况下，连续执行 181 个步骤，耗时约 50 分钟，从空文件夹开始构建出一个可运行的 HTML/CSS 浏览器渲染引擎。这包括编写 HTML 解析器、CSS 样式计算、布局引擎、绘制逻辑，以及最终的测试和调试。    
-
-
-
- 案例二：自主优化自己的 Agent Harness    
-
-
-
- 模型还自主优化了 Poolside 自己的 Agent Harness，让运行速度提升约 5.2%，内存分配降低约 70%。这已经接近&quot;自我改进&quot;的范畴了——模型不仅能写代码，还能优化运行它的工具链本身。    
-
-
-
-
-
-
-
- 部署：你的机器能跑吗    
-
-
-
- 量化版本一览    
-
-
-
-                                                                                                                                                                                                                                                                                                                                                                                       
 </code></pre>
-<table>
+<h3 id="思考模式对跑分的影响"><a href="#思考模式对跑分的影响" class="headerlink" title="思考模式对跑分的影响"></a>思考模式对跑分的影响</h3><pre><code class="hljs"> Poolside 公开了 thinking off vs max 的对比数据：Terminal-Bench 从 60.4% 提升到 70.2%（+9.8pp），DeepSWE 从 16.5% 提升到 40.4%（+23.9pp）。平均 completion tokens 从 ~99k 增加到 ~249k。思考模式大幅提升了 long-horizon 任务的解决率，但 token 消耗也显著增加。对于复杂编程任务，max thinking 是质变级的能力。    
+</code></pre>
+<h2 id="真实案例：181-步自主构建浏览器渲染引擎"><a href="#真实案例：181-步自主构建浏览器渲染引擎" class="headerlink" title="真实案例：181 步自主构建浏览器渲染引擎"></a>真实案例：181 步自主构建浏览器渲染引擎</h2><pre><code class="hljs"> Poolside 在博客中披露了两个令人印象深刻的实际案例。    
+</code></pre>
+<h3 id="案例一：从空文件夹到浏览器渲染引擎"><a href="#案例一：从空文件夹到浏览器渲染引擎" class="headerlink" title="案例一：从空文件夹到浏览器渲染引擎"></a>案例一：从空文件夹到浏览器渲染引擎</h3><pre><code class="hljs"> Laguna S 2.1 在无人工干预的情况下，连续执行 181 个步骤，耗时约 50 分钟，从空文件夹开始构建出一个可运行的 HTML/CSS 浏览器渲染引擎。这包括编写 HTML 解析器、CSS 样式计算、布局引擎、绘制逻辑，以及最终的测试和调试。    
+</code></pre>
+<h3 id="案例二：自主优化自己的-Agent-Harness"><a href="#案例二：自主优化自己的-Agent-Harness" class="headerlink" title="案例二：自主优化自己的 Agent Harness"></a>案例二：自主优化自己的 Agent Harness</h3><pre><code class="hljs"> 模型还自主优化了 Poolside 自己的 Agent Harness，让运行速度提升约 5.2%，内存分配降低约 70%。这已经接近&quot;自我改进&quot;的范畴了——模型不仅能写代码，还能优化运行它的工具链本身。    
+</code></pre>
+<h2 id="部署：你的机器能跑吗"><a href="#部署：你的机器能跑吗" class="headerlink" title="部署：你的机器能跑吗"></a>部署：你的机器能跑吗</h2><h3 id="量化版本一览"><a href="#量化版本一览" class="headerlink" title="量化版本一览"></a>量化版本一览</h3><table>
 <thead>
 <tr>
 <th>量化格式</th>
@@ -505,59 +429,19 @@
 <td>48GB+ 单卡</td>
 </tr>
 </tbody></table>
-<pre><code class="hljs"> 在双 5070 Ti（32GB）上    
-
-
-
- 纯 GPU 部署不可行。即使最激进的 Unsloth 量化也需要 40GB，而 32GB 差得远。但有一个可行的方案：CPU + GPU 混合卸载。你的机器有 125GB 系统内存，加载 75GB 的 Q4_K_M GGUF 没问题，再配合 GPU 卸载部分层。推理速度会慢（1-3 tok/s），但至少能跑起来验证效果。    
+<h3 id="在双-5070-Ti（32GB）上"><a href="#在双-5070-Ti（32GB）上" class="headerlink" title="在双 5070 Ti（32GB）上"></a>在双 5070 Ti（32GB）上</h3><pre><code class="hljs"> 纯 GPU 部署不可行。即使最激进的 Unsloth 量化也需要 40GB，而 32GB 差得远。但有一个可行的方案：CPU + GPU 混合卸载。你的机器有 125GB 系统内存，加载 75GB 的 Q4_K_M GGUF 没问题，再配合 GPU 卸载部分层。推理速度会慢（1-3 tok/s），但至少能跑起来验证效果。    
 
 
 
  最实际的方案是先用 OpenRouter 的免费接口（256K 上下文，免登录）体验模型能力，再决定是否值得折腾本地部署。如果预算允许，可以考虑 Laguna XS 2.1（33B-A3B），Q4_K_M 约 20GB，32GB VRAM 完全能装下。    
-
-
-
-
-
-
-
- 已知问题与局限    
-
-
-
- 过度思考    
-
-
-
- Thinking max 模式下，模型有时会过度分析简单问题。一个简单的函数可能引发数百 token 的思考过程。对于简单任务，建议关闭 thinking 模式。    
-
-
-
- 工具调用适配    
-
-
-
- 模型使用 Poolside 自家的 tool-call-parser（poolside_v1），迁移到其他框架（如 Hermes、Claude Code）时可能需要适配。目前 OpenRouter 和 vLLM 已原生支持，但自定义 agent 框架需要额外工作。    
-
-
-
- 1M 上下文的质量问题    
-
-
-
- 虽然模型原生支持 1M 上下文，但官方推荐使用 256K 配置。超过 256K 后可能出现质量退化，需要小心调参。    
-
-
-
-
-
-
-
- 小结    
-
-
-
- Laguna S 2.1 是 2026 年开源编程模型的一个重要里程碑。它以 118B 驻留、8B 激活的 MoE 架构，在多个编程基准上实现了越级表现，甚至在 DeepSWE 上以 4 倍优势碾压 13 倍大的对手。    
+</code></pre>
+<h2 id="已知问题与局限"><a href="#已知问题与局限" class="headerlink" title="已知问题与局限"></a>已知问题与局限</h2><h3 id="过度思考"><a href="#过度思考" class="headerlink" title="过度思考"></a>过度思考</h3><pre><code class="hljs"> Thinking max 模式下，模型有时会过度分析简单问题。一个简单的函数可能引发数百 token 的思考过程。对于简单任务，建议关闭 thinking 模式。    
+</code></pre>
+<h3 id="工具调用适配"><a href="#工具调用适配" class="headerlink" title="工具调用适配"></a>工具调用适配</h3><pre><code class="hljs"> 模型使用 Poolside 自家的 tool-call-parser（poolside_v1），迁移到其他框架（如 Hermes、Claude Code）时可能需要适配。目前 OpenRouter 和 vLLM 已原生支持，但自定义 agent 框架需要额外工作。    
+</code></pre>
+<h3 id="1M-上下文的质量问题"><a href="#1M-上下文的质量问题" class="headerlink" title="1M 上下文的质量问题"></a>1M 上下文的质量问题</h3><pre><code class="hljs"> 虽然模型原生支持 1M 上下文，但官方推荐使用 256K 配置。超过 256K 后可能出现质量退化，需要小心调参。    
+</code></pre>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><pre><code class="hljs"> Laguna S 2.1 是 2026 年开源编程模型的一个重要里程碑。它以 118B 驻留、8B 激活的 MoE 架构，在多个编程基准上实现了越级表现，甚至在 DeepSWE 上以 4 倍优势碾压 13 倍大的对手。    
 
 
 

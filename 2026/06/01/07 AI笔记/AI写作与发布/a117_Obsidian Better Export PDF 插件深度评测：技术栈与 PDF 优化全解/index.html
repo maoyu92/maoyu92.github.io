@@ -362,13 +362,11 @@
 <p>⚠️ 注意：网上曾有 <code>mProjectXYZ/better-export-pdf</code> 仓库，但该项目已停更或转移，实际活跃项目为 <code>l1xnan/obsidian-better-export-pdf</code>。</p>
 </blockquote>
 <hr>
-<h2 id="2-技术栈：如何实现-PDF-导出？"><a href="#2-技术栈：如何实现-PDF-导出？" class="headerlink" title="2. 技术栈：如何实现 PDF 导出？"></a>2. 技术栈：如何实现 PDF 导出？</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>2.1 核心方案：Electron 内置 API</p>
-<p>该插件<strong>完全不依赖 Pandoc、Puppeteer 或 Playwright</strong>，而是直接调用 Electron 的 <code>webview.printToPDF</code> API：</p>
+<h2 id="2-技术栈：如何实现-PDF-导出？"><a href="#2-技术栈：如何实现-PDF-导出？" class="headerlink" title="2. 技术栈：如何实现 PDF 导出？"></a>2. 技术栈：如何实现 PDF 导出？</h2><h3 id="2-1-核心方案：Electron-内置-API"><a href="#2-1-核心方案：Electron-内置-API" class="headerlink" title="2.1 核心方案：Electron 内置 API"></a>2.1 核心方案：Electron 内置 API</h3><p>该插件<strong>完全不依赖 Pandoc、Puppeteer 或 Playwright</strong>，而是直接调用 Electron 的 <code>webview.printToPDF</code> API：</p>
 <figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">Markdown</span> 文件 → <span class="hljs-variable">Obsidian</span> 渲染 <span class="hljs-variable">DOM</span> → <span class="hljs-variable">webview</span><span class="hljs-operator">.</span><span class="hljs-variable">printToPDF</span><span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> → <span class="hljs-built_in">PDF</span><br></code></pre></td></tr></table></figure>
 
 <p>这是该插件与另一款知名插件 <code>obsidian-enhancing-export</code>（基于 Pandoc）的根本区别。</p>
-<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>2.2 技术依赖</p>
-<ul>
+<h3 id="2-2-技术依赖"><a href="#2-2-技术依赖" class="headerlink" title="2.2 技术依赖"></a>2.2 技术依赖</h3><ul>
 <li><p>**pdf-lib (^1.17.1)**：注入 PDF 书签、元数据</p>
 </li>
 <li><p><strong>deepmerge</strong>：多文件合并时配置合并</p>
@@ -378,8 +376,7 @@
 <li><p><strong>Svelte 5</strong>：v2.0 版本重构了前端 UI</p>
 </li>
 </ul>
-<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>2.3 v2.0 渲染引擎升级</p>
-<p>2026年4月发布的 v2.0 是一个重大架构升级：</p>
+<h3 id="2-3-v2-0-渲染引擎升级"><a href="#2-3-v2-0-渲染引擎升级" class="headerlink" title="2.3 v2.0 渲染引擎升级"></a>2.3 v2.0 渲染引擎升级</h3><p>2026年4月发布的 v2.0 是一个重大架构升级：</p>
 <ul>
 <li><p><strong>v1.x</strong>：基于 WebView 模拟打印，常出现样式冲突和渲染异常</p>
 </li>
@@ -387,8 +384,7 @@
 </li>
 </ul>
 <hr>
-<h2 id="3-核心功能拆解"><a href="#3-核心功能拆解" class="headerlink" title="3. 核心功能拆解"></a>3. 核心功能拆解</h2><h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><p>3.1 vs 官方 PDF 导出</p>
-<table>
+<h2 id="3-核心功能拆解"><a href="#3-核心功能拆解" class="headerlink" title="3. 核心功能拆解"></a>3. 核心功能拆解</h2><h3 id="3-1-vs-官方-PDF-导出"><a href="#3-1-vs-官方-PDF-导出" class="headerlink" title="3.1 vs 官方 PDF 导出"></a>3.1 vs 官方 PDF 导出</h3><table>
 <thead>
 <tr>
 <th>功能</th>
@@ -437,8 +433,7 @@
 <td>✅</td>
 </tr>
 </tbody></table>
-<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><p>3.2 特色功能</p>
-<p><strong>📌 书签&#x2F;大纲</strong>：自动从 h1-h6 标题生成 PDF bookmarks，点击可跳转导航</p>
+<h3 id="3-2-特色功能"><a href="#3-2-特色功能" class="headerlink" title="3.2 特色功能"></a>3.2 特色功能</h3><p><strong>📌 书签&#x2F;大纲</strong>：自动从 h1-h6 标题生成 PDF bookmarks，点击可跳转导航</p>
 <p><strong>📌 页码</strong>：通过 header&#x2F;footer 模板插入页码：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:100vw;font-size:10px;text-align:center;&quot;</span>&gt;</span>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;pageNumber&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> / <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;totalPages&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
@@ -449,13 +444,11 @@
 <p><strong>📌 单页导出</strong>：可将所有内容导出到一个自定义尺寸的单页 PDF</p>
 <hr>
 <h2 id="4-主题-样式系统"><a href="#4-主题-样式系统" class="headerlink" title="4. 主题&#x2F;样式系统"></a>4. 主题&#x2F;样式系统</h2><p>Better Export PDF 完全复用 Obsidian 的主题系统，导出效果与阅读模式一致。</p>
-<p><strong>自定义样式示例：</strong></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@media</span> print &#123;  <span class="hljs-selector-tag">body</span> &#123;    <span class="hljs-attr">--font-text-override</span>: <span class="hljs-string">&quot;Times New Roman&quot;</span> <span class="hljs-meta">!important</span>;    <span class="hljs-attr">--font-text-size</span>: <span class="hljs-number">18px</span> <span class="hljs-meta">!important</span>;    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Times New Roman&quot;</span> <span class="hljs-meta">!important</span>;  &#125;&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="自定义样式示例："><a href="#自定义样式示例：" class="headerlink" title="自定义样式示例："></a>自定义样式示例：</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@media</span> print &#123;  <span class="hljs-selector-tag">body</span> &#123;    <span class="hljs-attr">--font-text-override</span>: <span class="hljs-string">&quot;Times New Roman&quot;</span> <span class="hljs-meta">!important</span>;    <span class="hljs-attr">--font-text-size</span>: <span class="hljs-number">18px</span> <span class="hljs-meta">!important</span>;    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Times New Roman&quot;</span> <span class="hljs-meta">!important</span>;  &#125;&#125;<br></code></pre></td></tr></table></figure>
 
 <p>该插件支持在导出对话框中选择已编写好的 CSS snippet，无需全局启用即可临时应用，非常灵活。</p>
 <hr>
-<h2 id="5-适用场景与局限"><a href="#5-适用场景与局限" class="headerlink" title="5. 适用场景与局限"></a>5. 适用场景与局限</h2><h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><p>✅ 适合的场景</p>
-<ul>
+<h2 id="5-适用场景与局限"><a href="#5-适用场景与局限" class="headerlink" title="5. 适用场景与局限"></a>5. 适用场景与局限</h2><h3 id="✅-适合的场景"><a href="#✅-适合的场景" class="headerlink" title="✅ 适合的场景"></a>✅ 适合的场景</h3><ul>
 <li><p>技术文档、教程导出为带书签导航的 PDF</p>
 </li>
 <li><p>需要显示页码的正式文档输出</p>
@@ -467,8 +460,7 @@
 <li><p>导出前预览最终 PDF 效果</p>
 </li>
 </ul>
-<h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><p>❌ 局限</p>
-<ul>
+<h3 id="❌-局限"><a href="#❌-局限" class="headerlink" title="❌ 局限"></a>❌ 局限</h3><ul>
 <li><p>仅限桌面端（移动端无法使用）</p>
 </li>
 <li><p>不支持 HTML&#x2F;EPUB&#x2F;DOCX 等格式（仅 PDF）</p>
@@ -481,8 +473,7 @@
 <p><strong>方式二：手动安装</strong> 从 GitHub Releases 下载 .zip，解压到 <code>&#123;Vault&#125;/.obsidian/plugins/</code></p>
 <p><strong>方式三：BRAT</strong> 安装 BRAT 插件后添加仓库地址</p>
 <hr>
-<h2 id="7-对公众号和飞书场景的价值"><a href="#7-对公众号和飞书场景的价值" class="headerlink" title="7. 对公众号和飞书场景的价值"></a>7. 对公众号和飞书场景的价值</h2><h3 id="-7"><a href="#-7" class="headerlink" title=""></a></h3><p>知识库导出</p>
-<table>
+<h2 id="7-对公众号和飞书场景的价值"><a href="#7-对公众号和飞书场景的价值" class="headerlink" title="7. 对公众号和飞书场景的价值"></a>7. 对公众号和飞书场景的价值</h2><h3 id="知识库导出"><a href="#知识库导出" class="headerlink" title="知识库导出"></a>知识库导出</h3><table>
 <thead>
 <tr>
 <th>需求</th>
@@ -506,14 +497,12 @@
 <td>❌ 建议搭配 obsidian-enhancing-export</td>
 </tr>
 </tbody></table>
-<h3 id="-8"><a href="#-8" class="headerlink" title=""></a></h3><p>工作流建议</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">Obsidian 笔记    ↓Better <span class="hljs-built_in">Export</span> PDF → 高质量 PDF → 飞书/公众号上传    ↓（如需多格式）obsidian-enhancing-<span class="hljs-built_in">export</span> → docx/html → 飞书文档<br></code></pre></td></tr></table></figure>
+<h3 id="工作流建议"><a href="#工作流建议" class="headerlink" title="工作流建议"></a>工作流建议</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">Obsidian 笔记    ↓Better <span class="hljs-built_in">Export</span> PDF → 高质量 PDF → 飞书/公众号上传    ↓（如需多格式）obsidian-enhancing-<span class="hljs-built_in">export</span> → docx/html → 飞书文档<br></code></pre></td></tr></table></figure>
 
 <hr>
 <h2 id="8-总结"><a href="#8-总结" class="headerlink" title="8. 总结"></a>8. 总结</h2><p>Better Export PDF 是 Obsidian 生态中<strong>最成熟的 PDF 导出增强插件</strong>，v2.0 版本的架构升级解决了长期以来的样式兼容问题。对于需要将笔记输出为专业 PDF 的用户，这是几乎必装的工具。唯一需要注意的是它专注于 PDF 单一格式，如需 docx&#x2F;html 等多格式输出，建议搭配 <code>obsidian-enhancing-export</code>（基于 Pandoc）组合使用。</p>
 <hr>
-<p><strong>参考链接</strong></p>
-<ul>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><ul>
 <li><p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/l1xnan/obsidian-better-export-pdf[1]">https://github.com/l1xnan/obsidian-better-export-pdf[1]</a></p>
 </li>
 <li><p>插件市场：Obsidian 社区插件搜索 “Better Export PDF”</p>
@@ -521,8 +510,7 @@
 </ul>
 <hr>
 <p><em>本文由小欧整理，调研时间 2026年6月</em></p>
-<h3 id="-9"><a href="#-9" class="headerlink" title=""></a></h3><p>引用链接</p>
-<p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/l1xnan/obsidian-better-export-pdf">https://github.com/l1xnan/obsidian-better-export-pdf</a></em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/l1xnan/obsidian-better-export-pdf">https://github.com/l1xnan/obsidian-better-export-pdf</a></em></p>
 
                 
               </div>

@@ -373,10 +373,7 @@
 <p>iPhone 17 Pro、小米 14 等主流机型</p>
 <p> |</p>
 <hr>
-<h2 id="🏗️-技术亮点：怎么做到的"><a href="#🏗️-技术亮点：怎么做到的" class="headerlink" title="🏗️ 技术亮点：怎么做到的"></a>🏗️ 技术亮点：怎么做到的</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><ol>
-<li>统一架构：一个模型做两件事</li>
-</ol>
-<p>DreamLite 基于<strong>剪枝版 Mobile U-Net</strong> 主干网络，通过 <strong>In-Context Spatial Concatenation（上下文空间拼接）</strong> 在潜空间融合多模态条件。</p>
+<h2 id="🏗️-技术亮点：怎么做到的"><a href="#🏗️-技术亮点：怎么做到的" class="headerlink" title="🏗️ 技术亮点：怎么做到的"></a>🏗️ 技术亮点：怎么做到的</h2><h3 id="1-统一架构：一个模型做两件事"><a href="#1-统一架构：一个模型做两件事" class="headerlink" title="1. 统一架构：一个模型做两件事"></a>1. 统一架构：一个模型做两件事</h3><p>DreamLite 基于<strong>剪枝版 Mobile U-Net</strong> 主干网络，通过 <strong>In-Context Spatial Concatenation（上下文空间拼接）</strong> 在潜空间融合多模态条件。</p>
 <p>关键思路很巧妙：</p>
 <ul>
 <li><p><strong>生成任务</strong>：输入 <code>(target | blank)</code> → 右边空白的潜空间向量告诉模型”我要生成”</p>
@@ -385,10 +382,7 @@
 </li>
 </ul>
 <p>这样同一个 U-Net，用不同的输入配置，自动适配生成或编辑两种任务。</p>
-<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><ol start="2">
-<li>任务渐进式联合预训练</li>
-</ol>
-<p>DreamLite 的训练分三步走：</p>
+<h3 id="2-任务渐进式联合预训练"><a href="#2-任务渐进式联合预训练" class="headerlink" title="2. 任务渐进式联合预训练"></a>2. 任务渐进式联合预训练</h3><p>DreamLite 的训练分三步走：</p>
 <ol>
 <li><p><strong>T2I 阶段</strong>：先训练文生图能力</p>
 </li>
@@ -398,10 +392,7 @@
 </li>
 </ol>
 <p>之后经过高质量 SFT（监督微调）和强化学习，进一步提升效果。</p>
-<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><ol start="3">
-<li>步数蒸馏：28 步 → 4 步</li>
-</ol>
-<p>扩散模型天然需要多步去噪，DreamLite 采用<strong>渐进式步数蒸馏</strong>，将去噪步数从 28 步压缩到<strong>仅 4 步</strong>，推理速度大幅提升。</p>
+<h3 id="3-步数蒸馏：28-步-→-4-步"><a href="#3-步数蒸馏：28-步-→-4-步" class="headerlink" title="3. 步数蒸馏：28 步 → 4 步"></a>3. 步数蒸馏：28 步 → 4 步</h3><p>扩散模型天然需要多步去噪，DreamLite 采用<strong>渐进式步数蒸馏</strong>，将去噪步数从 28 步压缩到<strong>仅 4 步</strong>，推理速度大幅提升。</p>
 <hr>
 <h2 id="📊-性能表现"><a href="#📊-性能表现" class="headerlink" title="📊 性能表现"></a>📊 性能表现</h2><p>我们直接测试生图能力。</p>
 <p>提示词：</p>
@@ -413,34 +404,19 @@
 <p><img src="/uploads/ai-notes/a192/dec7ab2805e24658.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>感觉DreamLite已经很不错了，毕竟只有0.39B。</p>
 <hr>
-<h2 id="💡-能用在哪"><a href="#💡-能用在哪" class="headerlink" title="💡 能用在哪"></a>💡 能用在哪</h2><h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><ol>
-<li>人像 &amp; 风格迁移</li>
-</ol>
-<p>拍一张照片，一键转油画风&#x2F;动漫风&#x2F;赛博朋克风……完全本地处理，隐私安全。</p>
-<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><ol start="2">
-<li>背景替换</li>
-</ol>
-<p>电商卖家不用再苦练 PS，输入”换成纯白背景”或”换成户外风景”，5 秒出图。</p>
-<h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><ol start="3">
-<li>产品换色&#x2F;物体替换</li>
-</ol>
-<p>给产品图换个颜色、加个装饰，电商主图快速生成。</p>
-<h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><ol start="4">
-<li>隐私敏感场景</li>
-</ol>
-<p>医疗、法律等行业图片处理，数据不离本地，合规无忧。</p>
+<h2 id="💡-能用在哪"><a href="#💡-能用在哪" class="headerlink" title="💡 能用在哪"></a>💡 能用在哪</h2><h3 id="1-人像-风格迁移"><a href="#1-人像-风格迁移" class="headerlink" title="1. 人像 &amp; 风格迁移"></a>1. 人像 &amp; 风格迁移</h3><p>拍一张照片，一键转油画风&#x2F;动漫风&#x2F;赛博朋克风……完全本地处理，隐私安全。</p>
+<h3 id="2-背景替换"><a href="#2-背景替换" class="headerlink" title="2. 背景替换"></a>2. 背景替换</h3><p>电商卖家不用再苦练 PS，输入”换成纯白背景”或”换成户外风景”，5 秒出图。</p>
+<h3 id="3-产品换色-物体替换"><a href="#3-产品换色-物体替换" class="headerlink" title="3. 产品换色&#x2F;物体替换"></a>3. 产品换色&#x2F;物体替换</h3><p>给产品图换个颜色、加个装饰，电商主图快速生成。</p>
+<h3 id="4-隐私敏感场景"><a href="#4-隐私敏感场景" class="headerlink" title="4. 隐私敏感场景"></a>4. 隐私敏感场景</h3><p>医疗、法律等行业图片处理，数据不离本地，合规无忧。</p>
 <hr>
-<h2 id="🚀-怎么用"><a href="#🚀-怎么用" class="headerlink" title="🚀 怎么用"></a>🚀 怎么用</h2><p><strong>本地部署（GitHub 开源）：</strong></p>
-<p><code># 克隆仓库   git clone https://github.com/ByteVisionLab/DreamLite.git   cd DreamLite      # 创建 conda 环境   conda create -n dreamlite python=3.10 -y   conda activate dreamlite      # 安装依赖   pip install -r requirements.txt      # 文生图（mobile 版，4步超快）   python infer_mobile.py --prompt &quot;A portrait of a young woman with flowers.&quot;      # 图文编辑（mobile 版，4步）   python infer_mobile.py --prompt &quot;Change the background to a dense forest.&quot; --image_path ./inputs/source.png   </code></p>
-<p><strong>在线体验（HuggingFace Demo）：</strong></p>
-<p>👉 <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/carlofkl/DreamLite[1]">https://huggingface.co/spaces/carlofkl/DreamLite[1]</a></p>
+<h2 id="🚀-怎么用"><a href="#🚀-怎么用" class="headerlink" title="🚀 怎么用"></a>🚀 怎么用</h2><h3 id="本地部署（GitHub-开源）："><a href="#本地部署（GitHub-开源）：" class="headerlink" title="本地部署（GitHub 开源）："></a>本地部署（GitHub 开源）：</h3><p><code># 克隆仓库   git clone https://github.com/ByteVisionLab/DreamLite.git   cd DreamLite      # 创建 conda 环境   conda create -n dreamlite python=3.10 -y   conda activate dreamlite      # 安装依赖   pip install -r requirements.txt      # 文生图（mobile 版，4步超快）   python infer_mobile.py --prompt &quot;A portrait of a young woman with flowers.&quot;      # 图文编辑（mobile 版，4步）   python infer_mobile.py --prompt &quot;Change the background to a dense forest.&quot; --image_path ./inputs/source.png   </code></p>
+<h3 id="在线体验（HuggingFace-Demo）："><a href="#在线体验（HuggingFace-Demo）：" class="headerlink" title="在线体验（HuggingFace Demo）："></a>在线体验（HuggingFace Demo）：</h3><p>👉 <a target="_blank" rel="noopener" href="https://huggingface.co/spaces/carlofkl/DreamLite[1]">https://huggingface.co/spaces/carlofkl/DreamLite[1]</a></p>
 <hr>
 <h2 id="🔮-总结"><a href="#🔮-总结" class="headerlink" title="🔮 总结"></a>🔮 总结</h2><p>DreamLite 的出现，证明了<strong>端侧 AI 的可能性边界还在快速拓展</strong>——从 0.39B 参数里挤出 SOTA 级别的生图和编辑能力，这在两年前是不可想象的。</p>
 <p>更值得关注的是<strong>统一架构</strong>这个思路：一个模型做多件事，比训多个专用小模型更优雅，也更接近真正的”多模态理解”。</p>
 <p>可以预见，随着手机芯片 NPU 能力的持续提升，未来在手机上跑越来越强的 AI 模型会成为常态。DreamLite 只是开始。</p>
 <hr>
-<p><strong>相关链接：</strong></p>
-<ul>
+<h3 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h3><ul>
 <li><p>🔗 官网：<a target="_blank" rel="noopener" href="https://carlofkl.github.io/dreamlite/[2]">https://carlofkl.github.io/dreamlite/[2]</a></p>
 </li>
 <li><p>🔗 GitHub：<a target="_blank" rel="noopener" href="https://github.com/ByteVisionLab/DreamLite[3]">https://github.com/ByteVisionLab/DreamLite[3]</a></p>
@@ -452,8 +428,7 @@
 </ul>
 <hr>
 <p><em>你对端侧 AI 生图有什么期待？欢迎留言交流～</em></p>
-<h3 id="-7"><a href="#-7" class="headerlink" title=""></a></h3><p>引用链接</p>
-<p>[1]<em><a target="_blank" rel="noopener" href="https://huggingface.co/spaces/carlofkl/DreamLite">https://huggingface.co/spaces/carlofkl/DreamLite</a></em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://huggingface.co/spaces/carlofkl/DreamLite">https://huggingface.co/spaces/carlofkl/DreamLite</a></em></p>
 <p>[2]<em><a target="_blank" rel="noopener" href="https://carlofkl.github.io/dreamlite/">https://carlofkl.github.io/dreamlite/</a></em></p>
 <p>[3]<em><a target="_blank" rel="noopener" href="https://github.com/ByteVisionLab/DreamLite">https://github.com/ByteVisionLab/DreamLite</a></em></p>
 <p>[4]<em><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.28713">https://arxiv.org/abs/2603.28713</a></em></p>

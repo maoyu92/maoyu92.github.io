@@ -393,26 +393,17 @@
 <p>架构示意：</p>
 <p><code>手机（Hi Term App）       ↓ Tailscale P2P 加密隧道   PC（hiterm CLI + tmux）       ↓   AI Coding Agent（Claude Code / Codex / Gemini CLI...）   </code></p>
 <p>所有数据不过中继服务器，只经过 Tailscale 的 P2P 隧道直连。</p>
-<h2 id="五、三分钟快速上手"><a href="#五、三分钟快速上手" class="headerlink" title="五、三分钟快速上手"></a>五、三分钟快速上手</h2><p><strong>第一步：安装 Tailscale（两台设备都要装）</strong></p>
-<p>下载：<a target="_blank" rel="noopener" href="https://tailscale.com/download[1]">https://tailscale.com/download[1]</a></p>
+<h2 id="五、三分钟快速上手"><a href="#五、三分钟快速上手" class="headerlink" title="五、三分钟快速上手"></a>五、三分钟快速上手</h2><h3 id="第一步：安装-Tailscale（两台设备都要装）"><a href="#第一步：安装-Tailscale（两台设备都要装）" class="headerlink" title="第一步：安装 Tailscale（两台设备都要装）"></a>第一步：安装 Tailscale（两台设备都要装）</h3><p>下载：<a target="_blank" rel="noopener" href="https://tailscale.com/download[1]">https://tailscale.com/download[1]</a></p>
 <p>两台设备登录同一个账号，自动建立加密隧道。</p>
-<p><strong>第二步：安装 hiterm CLI（PC 端）</strong></p>
-<p><code>curl -fsSL https://hiterm.yinbin.ink/install.sh | bash   </code></p>
-<p><strong>第三步：安装 Hi Term App（Android）</strong></p>
-<p>下载地址：<a target="_blank" rel="noopener" href="https://hiterm.yinbin.ink/download/[2]">https://hiterm.yinbin.ink/download/[2]</a></p>
-<p><strong>第四步：配对设备</strong></p>
-<p><code>hiterm pair   </code></p>
+<h3 id="第二步：安装-hiterm-CLI（PC-端）"><a href="#第二步：安装-hiterm-CLI（PC-端）" class="headerlink" title="第二步：安装 hiterm CLI（PC 端）"></a>第二步：安装 hiterm CLI（PC 端）</h3><p><code>curl -fsSL https://hiterm.yinbin.ink/install.sh | bash   </code></p>
+<h3 id="第三步：安装-Hi-Term-App（Android）"><a href="#第三步：安装-Hi-Term-App（Android）" class="headerlink" title="第三步：安装 Hi Term App（Android）"></a>第三步：安装 Hi Term App（Android）</h3><p>下载地址：<a target="_blank" rel="noopener" href="https://hiterm.yinbin.ink/download/[2]">https://hiterm.yinbin.ink/download/[2]</a></p>
+<h3 id="第四步：配对设备"><a href="#第四步：配对设备" class="headerlink" title="第四步：配对设备"></a>第四步：配对设备</h3><p><code>hiterm pair   </code></p>
 <p>手机 Hi Term App 扫描 PC 上显示的二维码，完成配对。</p>
-<p><strong>第五步：开始使用</strong></p>
-<p>手机打开 Hi Term，选择要连接的 PC 和 tmux 会话，即可开始操作。</p>
-<h2 id="六、典型使用场景"><a href="#六、典型使用场景" class="headerlink" title="六、典型使用场景"></a>六、典型使用场景</h2><p><strong>场景 1：监控 AI 编程</strong></p>
-<p>早上到公司，启动 Claude Code 跑一个复杂的重构任务。中间去开会、去茶水间，手机上实时看到任务进度。Code 完成时手机收到通知，不用专门跑回工位盯着。</p>
-<p><strong>场景 2：外出时远程调试</strong></p>
-<p>出差路上收到告警，登录手机上的 Hi Term，SSH 跳板机，查看日志、重启服务、定位问题——全程手机操作，不需要开电脑。</p>
-<p><strong>场景 3：多机器统一管理</strong></p>
-<p>公司服务器、个人开发机、测试机……多台机器的 tmux 会话全部汇聚到手机，一个 App 切换管理，不再需要记一堆 SSH 配置。</p>
-<p><strong>场景 4：语音输入写代码片段</strong></p>
-<p>手机自带的语音输入比打字快，语音说一段命令或脚本，比在手机键盘上一点点敲要高效得多。对于简单的指令修改和查看，语音输入完全够用。</p>
+<h3 id="第五步：开始使用"><a href="#第五步：开始使用" class="headerlink" title="第五步：开始使用"></a>第五步：开始使用</h3><p>手机打开 Hi Term，选择要连接的 PC 和 tmux 会话，即可开始操作。</p>
+<h2 id="六、典型使用场景"><a href="#六、典型使用场景" class="headerlink" title="六、典型使用场景"></a>六、典型使用场景</h2><h3 id="场景-1：监控-AI-编程"><a href="#场景-1：监控-AI-编程" class="headerlink" title="场景 1：监控 AI 编程"></a>场景 1：监控 AI 编程</h3><p>早上到公司，启动 Claude Code 跑一个复杂的重构任务。中间去开会、去茶水间，手机上实时看到任务进度。Code 完成时手机收到通知，不用专门跑回工位盯着。</p>
+<h3 id="场景-2：外出时远程调试"><a href="#场景-2：外出时远程调试" class="headerlink" title="场景 2：外出时远程调试"></a>场景 2：外出时远程调试</h3><p>出差路上收到告警，登录手机上的 Hi Term，SSH 跳板机，查看日志、重启服务、定位问题——全程手机操作，不需要开电脑。</p>
+<h3 id="场景-3：多机器统一管理"><a href="#场景-3：多机器统一管理" class="headerlink" title="场景 3：多机器统一管理"></a>场景 3：多机器统一管理</h3><p>公司服务器、个人开发机、测试机……多台机器的 tmux 会话全部汇聚到手机，一个 App 切换管理，不再需要记一堆 SSH 配置。</p>
+<h3 id="场景-4：语音输入写代码片段"><a href="#场景-4：语音输入写代码片段" class="headerlink" title="场景 4：语音输入写代码片段"></a>场景 4：语音输入写代码片段</h3><p>手机自带的语音输入比打字快，语音说一段命令或脚本，比在手机键盘上一点点敲要高效得多。对于简单的指令修改和查看，语音输入完全够用。</p>
 <h2 id="七、和同类方案对比"><a href="#七、和同类方案对比" class="headerlink" title="七、和同类方案对比"></a>七、和同类方案对比</h2><table>
 <thead>
 <tr>

@@ -36,8 +36,8 @@
 <meta property="article:modified_time" content="2025-02-24T12:53:00.000Z">
 <meta property="article:author" content="wenmao">
 <meta property="article:tag" content="deepseek">
-<meta property="article:tag" content="流程图">
 <meta property="article:tag" content="AIGC">
+<meta property="article:tag" content="流程图">
 <meta property="article:tag" content="办公技巧">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202502131543142.png">
@@ -350,13 +350,10 @@
 <hr>
 <h2 id="使用-DeepSeek-生成-Mermaid-语法"><a href="#使用-DeepSeek-生成-Mermaid-语法" class="headerlink" title="使用 DeepSeek 生成 Mermaid 语法"></a>使用 DeepSeek 生成 Mermaid 语法</h2><p>DeepSeek 是一款强大的开源大语言模型，能够根据自然语言描述自动生成代码。我们可以利用它来快速生成 Mermaid 语法，从而减少手动编写的工作量。</p>
 <p>例如，如果我们需要绘制一个简单的审批流程图，可以向 DeepSeek 提供以下输入：</p>
-<p><strong>输入：</strong></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">请生成一个 Mermaid 流程图语法，描述以下场景：<br>用户提交申请；<br>管理员审核申请；<br>如果审核通过，则进入下一步；<br>如果审核不通过，则返回用户修改。<br></code></pre></td></tr></table></figure>
+<h3 id="输入："><a href="#输入：" class="headerlink" title="输入："></a>输入：</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs">请生成一个 Mermaid 流程图语法，描述以下场景：<br>用户提交申请；<br>管理员审核申请；<br>如果审核通过，则进入下一步；<br>如果审核不通过，则返回用户修改。<br></code></pre></td></tr></table></figure>
 
-<p><strong>输出：</strong></p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css">graph <span class="hljs-selector-tag">TD</span>;<br>    <span class="hljs-selector-tag">A</span><span class="hljs-selector-attr">[用户提交申请]</span> --&gt; <span class="hljs-selector-tag">B</span><span class="hljs-selector-attr">[管理员审核]</span>;<br>    <span class="hljs-selector-tag">B</span> --通过--&gt; C<span class="hljs-selector-attr">[进入下一步]</span>;<br>    <span class="hljs-selector-tag">B</span> --不通过--&gt; D<span class="hljs-selector-attr">[返回用户修改]</span>;<br></code></pre></td></tr></table></figure>
-<p><strong>效果：</strong></p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502131545512.png" srcset="/img/loading.gif" lazyload alt="图"></p>
+<h3 id="输出："><a href="#输出：" class="headerlink" title="输出："></a>输出：</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css">graph <span class="hljs-selector-tag">TD</span>;<br>    <span class="hljs-selector-tag">A</span><span class="hljs-selector-attr">[用户提交申请]</span> --&gt; <span class="hljs-selector-tag">B</span><span class="hljs-selector-attr">[管理员审核]</span>;<br>    <span class="hljs-selector-tag">B</span> --通过--&gt; C<span class="hljs-selector-attr">[进入下一步]</span>;<br>    <span class="hljs-selector-tag">B</span> --不通过--&gt; D<span class="hljs-selector-attr">[返回用户修改]</span>;<br></code></pre></td></tr></table></figure>
+<h3 id="效果："><a href="#效果：" class="headerlink" title="效果："></a>效果：</h3><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502131545512.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <p>通过这种方式，我们可以轻松地将复杂的需求转化为结构化的 Mermaid 语法。</p>
 <hr>
 <h2 id="工具推荐：快速渲染-Mermaid-图表"><a href="#工具推荐：快速渲染-Mermaid-图表" class="headerlink" title="工具推荐：快速渲染 Mermaid 图表"></a>工具推荐：快速渲染 Mermaid 图表</h2><p>生成 Mermaid 语法后，可以选择合适的工具将其渲染为可视化的流程图。以下是几款常用的工具推荐：</p>
@@ -389,8 +386,7 @@
 <p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502131549781.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h3 id="Obsidian-笔记"><a href="#Obsidian-笔记" class="headerlink" title="Obsidian 笔记"></a>Obsidian 笔记</h3><p>在 obsidian 中可以直接渲染 mermaid 语法。在代码块中输入如下内容，就可以直接渲染。</p>
 <p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502131554714.png" srcset="/img/loading.gif" lazyload alt="图"></p>
-<p><strong>效果：</strong></p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502131555020.png" srcset="/img/loading.gif" lazyload alt="图"></p>
+<h4 id="效果：-1"><a href="#效果：-1" class="headerlink" title="效果："></a>效果：</h4><p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202502131555020.png" srcset="/img/loading.gif" lazyload alt="图"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过 DeepSeek 和 Mermaid 的配合使用，我们可以快速生成结构化流程图，并借助工具如 draw. Io 或 Obsidian Excalidraw 将其渲染为高质量的可视化图表。这种方法不仅提高了效率，还降低了手动绘制流程图的复杂性。</p>
 <h3 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a><strong>参考资料：</strong></h3><ul>
 <li><a target="_blank" rel="noopener" href="https://mermaid-js.github.io/">Mermaid 官方文档</a></li>
@@ -434,9 +430,9 @@
       
         <a href="/tags/deepseek/" class="print-no-link">#deepseek</a>
       
-        <a href="/tags/%E6%B5%81%E7%A8%8B%E5%9B%BE/" class="print-no-link">#流程图</a>
-      
         <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
+      
+        <a href="/tags/%E6%B5%81%E7%A8%8B%E5%9B%BE/" class="print-no-link">#流程图</a>
       
         <a href="/tags/%E5%8A%9E%E5%85%AC%E6%8A%80%E5%B7%A7/" class="print-no-link">#办公技巧</a>
       

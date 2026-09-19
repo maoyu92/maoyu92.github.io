@@ -442,12 +442,8 @@
  
 
    
-
-     Bonsai 27B 是什么        
-
-   
-
-     INTRO · 极端量化        
+</code></pre>
+<h2 id="Bonsai-27B-是什么"><a href="#Bonsai-27B-是什么" class="headerlink" title="Bonsai 27B 是什么"></a>Bonsai 27B 是什么</h2><pre><code class="hljs">     INTRO · 极端量化        
 
  
 
@@ -510,11 +506,7 @@
 <td>笔记本&#x2F;台式机</td>
 </tr>
 </tbody></table>
-<pre><code class="hljs"> 1-bit 版本的真正意义    
-
-
-
- 27B 模型装在 3.9 GB 里跑在手机上——这是最令人震惊的数字。对比一下各精度体积：    
+<h3 id="1-bit-版本的真正意义"><a href="#1-bit-版本的真正意义" class="headerlink" title="1-bit 版本的真正意义"></a>1-bit 版本的真正意义</h3><pre><code class="hljs"> 27B 模型装在 3.9 GB 里跑在手机上——这是最令人震惊的数字。对比一下各精度体积：    
 
    
 
@@ -535,12 +527,8 @@
 <pre><code class="hljs"> PrismML 特意指出了行业潜规则：很多模型标称的 「2-bit」实际平均位宽是 2.8 bpw（因为使用了高精度逃逸口）。Bonsai 的 1-bit 没有这种后门。1-bit 版本在 iPhone 17 Pro Max 上实测约 11 tok/s，足以做交互式对话。    
 
    
-
- Ternary 版本的质量    
-
-
-
- Ternary 版本是 质量导向的选择，7.2 GB 部署体积，94.6% 的 FP16 基准性能。关键能力保留率极高：数学（GSM8K 96.06，超过 FP16 的 95.30）、编码（HumanEval+ 93.90 vs 95.12）、工具调用（BFCL v3 74.41 vs 77.10，保留率 96.5%）。    
+</code></pre>
+<h3 id="Ternary-版本的质量"><a href="#Ternary-版本的质量" class="headerlink" title="Ternary 版本的质量"></a>Ternary 版本的质量</h3><pre><code class="hljs"> Ternary 版本是 质量导向的选择，7.2 GB 部署体积，94.6% 的 FP16 基准性能。关键能力保留率极高：数学（GSM8K 96.06，超过 FP16 的 95.30）、编码（HumanEval+ 93.90 vs 95.12）、工具调用（BFCL v3 74.41 vs 77.10，保留率 96.5%）。    
 
    
 
@@ -620,12 +608,8 @@
  
 
    
-
-     部署实录        
-
-   
-
-     DEPLOYMENT · 编译+运行        
+</code></pre>
+<h2 id="部署实录"><a href="#部署实录" class="headerlink" title="部署实录"></a>部署实录</h2><pre><code class="hljs">     DEPLOYMENT · 编译+运行        
 
  
 
@@ -693,12 +677,8 @@
  
 
    
-
-     性能测评        
-
-   
-
-     BENCHMARK · 速度+视觉+工具        
+</code></pre>
+<h2 id="性能测评"><a href="#性能测评" class="headerlink" title="性能测评"></a>性能测评</h2><pre><code class="hljs">     BENCHMARK · 速度+视觉+工具        
 
  
 
@@ -774,30 +754,16 @@
 <pre><code class="hljs"> Bonsai 27B 的生成速度稳定在 **76–77 tok/s**，作为 27B 模型居然比 8B 的 gemma4 e4b 还快。原因清晰：Bonsai 走 GPU1 独占 + llama-server 直接 CUDA 推理，而 e4b 走 Ollama，后者有 Go 语言桥接和模型调度开销。    
 
    
-
- 视觉识别    
-
-   
-
- 
-
-   
-
-     
 </code></pre>
-<p>905.3</p>
+<h3 id="视觉识别"><a href="#视觉识别" class="headerlink" title="视觉识别"></a>视觉识别</h3><p>905.3</p>
 <p>Prefill tok&#x2F;s（含视觉）</p>
 <p>0.46B</p>
 <p>视觉塔参数量（27 blocks）</p>
 <pre><code class="hljs"> Bonsai 的视觉是 「能用」级别——通过 4-bit HQQ 量化的 0.46B 参数视觉塔实现。能正确识别景物、文字等基本要素，更适合辅助性任务（识图理解文档/截图），而非专业图像分析。    
 
    
-
- 工具调用    
-
-
-
- Bonsai 27B 的官方基准在 BFCL v3 上达到 74.41（FP16 为 77.10），保留率达 96.5%——是所有能力中保留率最高的。    
+</code></pre>
+<h3 id="工具调用"><a href="#工具调用" class="headerlink" title="工具调用"></a>工具调用</h3><pre><code class="hljs"> Bonsai 27B 的官方基准在 BFCL v3 上达到 74.41（FP16 为 77.10），保留率达 96.5%——是所有能力中保留率最高的。    
 
    
 
@@ -808,12 +774,8 @@
 
 
    
-
- 与 gemma4 e4b 的定位对比    
-
-
-
- 需要明确：**Bonsai 27B（27B 参数）和 gemma4 e4b（8B 参数）不是同一定位**。直接比「谁强」不公平，以下是对比维度：    
+</code></pre>
+<h3 id="与-gemma4-e4b-的定位对比"><a href="#与-gemma4-e4b-的定位对比" class="headerlink" title="与 gemma4 e4b 的定位对比"></a>与 gemma4 e4b 的定位对比</h3><pre><code class="hljs"> 需要明确：**Bonsai 27B（27B 参数）和 gemma4 e4b（8B 参数）不是同一定位**。直接比「谁强」不公平，以下是对比维度：    
 
 
 
@@ -887,24 +849,16 @@
  
 
    
-
-     使用体验        
-
-   
-
-     EXPERIENCE · 长上下文+DSpark        
+</code></pre>
+<h2 id="使用体验"><a href="#使用体验" class="headerlink" title="使用体验"></a>使用体验</h2><pre><code class="hljs">     EXPERIENCE · 长上下文+DSpark        
 
  
 
 
 
    
-
- 长上下文实测    
-
-
-
- 262K 上下文的具体含义：可以一次性输入整本小说、整个代码仓库，或者一小时会议的完整转写稿——模型从头到尾都能看到。    
+</code></pre>
+<h3 id="长上下文实测"><a href="#长上下文实测" class="headerlink" title="长上下文实测"></a>长上下文实测</h3><pre><code class="hljs"> 262K 上下文的具体含义：可以一次性输入整本小说、整个代码仓库，或者一小时会议的完整转写稿——模型从头到尾都能看到。    
 
 
 
@@ -942,12 +896,8 @@
 <pre><code class="hljs"> 在 262K 上下文下仅需约 12.8 GB 峰值显存——我的双 5070 Ti 单卡 16 GB 都够用。这是 Hybrid Attention + 4-bit KV cache 压缩 共同作用的结果。    
 
    
-
- DSpark 推测解码    
-
-
-
- Bonsai 27B 内置了一个 DSpark 推测解码 drafter，六层 block-parallel transformer，在 CUDA 路径上可实现约 1.34x–1.37x 的端到端加速。Drafter 使用 Q4_1 量化（1.95 GB 可选加载），与目标模型共享嵌入层和输出头，验证过程保持输出分布不变——drafter 精度只影响速度，不影响输出质量。目前只在 CUDA 批量推理路径上生效。    
+</code></pre>
+<h3 id="DSpark-推测解码"><a href="#DSpark-推测解码" class="headerlink" title="DSpark 推测解码"></a>DSpark 推测解码</h3><pre><code class="hljs"> Bonsai 27B 内置了一个 DSpark 推测解码 drafter，六层 block-parallel transformer，在 CUDA 路径上可实现约 1.34x–1.37x 的端到端加速。Drafter 使用 Q4_1 量化（1.95 GB 可选加载），与目标模型共享嵌入层和输出头，验证过程保持输出分布不变——drafter 精度只影响速度，不影响输出质量。目前只在 CUDA 批量推理路径上生效。    
 
 
 
@@ -971,12 +921,8 @@
  
 
    
-
-     总结与建议        
-
-   
-
-     THE END · 该不该部署        
+</code></pre>
+<h2 id="总结与建议"><a href="#总结与建议" class="headerlink" title="总结与建议"></a>总结与建议</h2><pre><code class="hljs">     THE END · 该不该部署        
 
  
 

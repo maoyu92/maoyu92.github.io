@@ -343,16 +343,12 @@
 </ul>
 <p>简单说：Codex 不是聊天框，是指挥台。你下达任务、划定边界，代理给你可审查的产出。</p>
 <h2 id="Automations：才是真正的效率杠杆"><a href="#Automations：才是真正的效率杠杆" class="headerlink" title="Automations：才是真正的效率杠杆"></a>Automations：才是真正的效率杠杆</h2><p>如果说多 Agent 并行是给团队用的，那 Automations 就是给个人开发者用的，而且是用得越频繁越香。</p>
-<p><strong>Automations 能做什么？</strong></p>
-<p>本质上，它是一个可调度的自动化任务系统。你可以设置”定时任务”，让 Codex 在后台 24&#x2F;7 自主运行，把重复性工作变成自动化流程。</p>
+<h3 id="Automations-能做什么？"><a href="#Automations-能做什么？" class="headerlink" title="Automations 能做什么？"></a>Automations 能做什么？</h3><p>本质上，它是一个可调度的自动化任务系统。你可以设置”定时任务”，让 Codex 在后台 24&#x2F;7 自主运行，把重复性工作变成自动化流程。</p>
 <p>举几个真实场景：</p>
-<p><strong>场景一：每天自动采集数据</strong></p>
-<p>有开发者用 Codex 实现了 YouTube 频道数据的每日定时采集。他只需要告诉 Codex 要采集哪些数据，设置好定时执行（Windows 任务计划程序），之后每天 Codex 都会自动跑一遍，把数据存到本地 Excel，再同步到飞书表格。整个流程零人工干预。</p>
+<h3 id="场景一：每天自动采集数据"><a href="#场景一：每天自动采集数据" class="headerlink" title="场景一：每天自动采集数据"></a>场景一：每天自动采集数据</h3><p>有开发者用 Codex 实现了 YouTube 频道数据的每日定时采集。他只需要告诉 Codex 要采集哪些数据，设置好定时执行（Windows 任务计划程序），之后每天 Codex 都会自动跑一遍，把数据存到本地 Excel，再同步到飞书表格。整个流程零人工干预。</p>
 <p>关键实现逻辑：用 Chrome DevTools Protocol 启动独立 Chrome 实例，带着专属用户目录和调试端口，绕过 Google API 的三天数据延迟，直接拿到最新数据。凭据全部存在 Cloudflare Worker 里，本地 exe 只持有 Worker URL，敏感信息零落地。</p>
-<p><strong>场景二：每周自动生成技术周报</strong></p>
-<p>你可以设置一个定期任务：每周五下午，Codex 自动汇总这一周的所有代码变更、PR 情况、测试结果，生成一份结构化的技术周报。你只需要打开看一下，补充判断。</p>
-<p><strong>场景三：每天定时仓库健康检查</strong></p>
-<p>设置每天早上检查：依赖风险、测试漂移、待清理 TODO、CI&#x2F;CD 失败分析。Codex 跑完，把结果整理成报告发给你。你一键审核即可，不用每次手动去翻。</p>
+<h3 id="场景二：每周自动生成技术周报"><a href="#场景二：每周自动生成技术周报" class="headerlink" title="场景二：每周自动生成技术周报"></a>场景二：每周自动生成技术周报</h3><p>你可以设置一个定期任务：每周五下午，Codex 自动汇总这一周的所有代码变更、PR 情况、测试结果，生成一份结构化的技术周报。你只需要打开看一下，补充判断。</p>
+<h3 id="场景三：每天定时仓库健康检查"><a href="#场景三：每天定时仓库健康检查" class="headerlink" title="场景三：每天定时仓库健康检查"></a>场景三：每天定时仓库健康检查</h3><p>设置每天早上检查：依赖风险、测试漂移、待清理 TODO、CI&#x2F;CD 失败分析。Codex 跑完，把结果整理成报告发给你。你一键审核即可，不用每次手动去翻。</p>
 <p><strong>Automations 的价值不在于省几分钟点击，而是把”你本来懒得做、但其实应该一直做”的事情稳定执行下去。</strong></p>
 <h2 id="为什么说-Automations-是最被低估的功能？"><a href="#为什么说-Automations-是最被低估的功能？" class="headerlink" title="为什么说 Automations 是最被低估的功能？"></a>为什么说 Automations 是最被低估的功能？</h2><p>很多人用 AI 编程工具，关注点都在”能不能写代码”。但真正进入日常开发后，你会发现更大的分水岭不是”一次写出多少代码”，而是：</p>
 <ul>
@@ -366,12 +362,9 @@
 <p>Automations 解决的就是第三个问题。</p>
 <p>它的本质是：**把周期性任务从”你手动触发”变成”Codex 定时执行”**。这意味着你可以在 Codex 里建立一个”工作流库”，把团队里反复出现的检查、统计、报告任务都沉淀下来，让 AI 替你稳定执行。</p>
 <p>你设置一次，Codex 执行 N 次。这就是杠杆效应。</p>
-<h2 id="怎么上手？"><a href="#怎么上手？" class="headerlink" title="怎么上手？"></a>怎么上手？</h2><p><strong>第一步：确保项目是 Git 仓库</strong></p>
-<p>Codex 的 review 功能依赖 Git 展示改动，没有 Git 很多核心体验起不来。</p>
-<p><strong>第二步：给仓库写 AGENTS.md</strong></p>
-<p>把团队的编码规范、验证命令、禁止操作写进仓库级约束文件，Codex 会反复读取，不需要每次对话都重复。</p>
-<p><strong>第三步：先定义验证命令</strong></p>
-<p>至少明确这几类：</p>
+<h2 id="怎么上手？"><a href="#怎么上手？" class="headerlink" title="怎么上手？"></a>怎么上手？</h2><h3 id="第一步：确保项目是-Git-仓库"><a href="#第一步：确保项目是-Git-仓库" class="headerlink" title="第一步：确保项目是 Git 仓库"></a>第一步：确保项目是 Git 仓库</h3><p>Codex 的 review 功能依赖 Git 展示改动，没有 Git 很多核心体验起不来。</p>
+<h3 id="第二步：给仓库写-AGENTS-md"><a href="#第二步：给仓库写-AGENTS-md" class="headerlink" title="第二步：给仓库写 AGENTS.md"></a>第二步：给仓库写 AGENTS.md</h3><p>把团队的编码规范、验证命令、禁止操作写进仓库级约束文件，Codex 会反复读取，不需要每次对话都重复。</p>
+<h3 id="第三步：先定义验证命令"><a href="#第三步：先定义验证命令" class="headerlink" title="第三步：先定义验证命令"></a>第三步：先定义验证命令</h3><p>至少明确这几类：</p>
 <ul>
 <li><p><code>git status</code> — 看当前状态</p>
 </li>
@@ -381,8 +374,7 @@
 </li>
 </ul>
 <p>没有验证闭环，AI 编程只是在制造更多待确认的 diff。</p>
-<p><strong>第四步：把第一个重复任务自动化</strong></p>
-<p>从你团队里找一个”每周至少做三次以上”的任务，试着把它做成 Automation。你不需要一开始就想清楚所有细节，先跑起来，再迭代。</p>
+<h3 id="第四步：把第一个重复任务自动化"><a href="#第四步：把第一个重复任务自动化" class="headerlink" title="第四步：把第一个重复任务自动化"></a>第四步：把第一个重复任务自动化</h3><p>从你团队里找一个”每周至少做三次以上”的任务，试着把它做成 Automation。你不需要一开始就想清楚所有细节，先跑起来，再迭代。</p>
 <h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>Codex Windows 版的上线，对 Windows 开发者来说是一个真正的里程碑——原生的安全沙箱、多 Agent 并行、Worktree 隔离，这些都是实打实的技术突破。</p>
 <p>但如果你问我哪个功能最值得深入用，我会说：<strong>Automations</strong>。</p>
 <p>它才是让 AI 从”码农”变成”全能同事”的那个拐点。</p>

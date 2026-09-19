@@ -330,8 +330,7 @@
 <p>Whisper 虽然识别精度高，但本地推理动辄 1<del>10 秒，说完一句话要等半天才能上屏；Vosk 速度快一些（200</del>500ms），但中英文混合识别需要额外模型，且生态支持有限。</p>
 <p>最近，一个名为 <strong>ibus-libpinyin-voice</strong> 的项目给出了一个令人惊喜的解决方案：基于阿里达摩院的 Paraformer 模型，通过 ONNX Runtime 量化推理，实现了 <strong>20~80ms</strong> 的极速上屏——比 Whisper 快 10<del>50 倍，比 Vosk 快 3</del>10 倍。</p>
 <h2 id="二、项目概览：ibus-libpinyin-的”语音进化”"><a href="#二、项目概览：ibus-libpinyin-的”语音进化”" class="headerlink" title="二、项目概览：ibus-libpinyin 的”语音进化”"></a>二、项目概览：ibus-libpinyin 的”语音进化”</h2><p>这个项目基于经典的 ibus-libpinyin 输入法引擎，在其基础上集成了离线语音输入功能。</p>
-<p><strong>核心参数：</strong></p>
-<table>
+<h3 id="核心参数："><a href="#核心参数：" class="headerlink" title="核心参数："></a>核心参数：</h3><table>
 <thead>
 <tr>
 <th>项目</th>
@@ -367,8 +366,7 @@
 <td>无，纯 CPU 运行</td>
 </tr>
 </tbody></table>
-<p><strong>与主流方案对比：</strong></p>
-<table>
+<h3 id="与主流方案对比："><a href="#与主流方案对比：" class="headerlink" title="与主流方案对比："></a>与主流方案对比：</h3><table>
 <thead>
 <tr>
 <th>特性</th>
@@ -418,8 +416,7 @@
 </ul>
 <p>这正是 Paraformer 能在纯 CPU 上实现 20~80ms 推理的根本原因。</p>
 <h3 id="3-2-模型矩阵：三个模型各司其职"><a href="#3-2-模型矩阵：三个模型各司其职" class="headerlink" title="3.2 模型矩阵：三个模型各司其职"></a>3.2 模型矩阵：三个模型各司其职</h3><p>项目支持三个 ONNX 量化模型，按需加载：</p>
-<p><strong>① Paraformer（必需）—— 基础语音识别</strong></p>
-<ul>
+<h4 id="①-Paraformer（必需）——-基础语音识别"><a href="#①-Paraformer（必需）——-基础语音识别" class="headerlink" title="① Paraformer（必需）—— 基础语音识别"></a>① Paraformer（必需）—— 基础语音识别</h4><ul>
 <li><p>来源：阿里达摩院 &#x2F; ModelScope</p>
 </li>
 <li><p>大小：~228MB</p>
@@ -431,8 +428,7 @@
 <li><p>路径：<code>~/.cache/modelscope/hub/models/iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-onnx/</code></p>
 </li>
 </ul>
-<p><strong>② SenseVoice（可选）—— 增强中英混合</strong></p>
-<ul>
+<h4 id="②-SenseVoice（可选）——-增强中英混合"><a href="#②-SenseVoice（可选）——-增强中英混合" class="headerlink" title="② SenseVoice（可选）—— 增强中英混合"></a>② SenseVoice（可选）—— 增强中英混合</h4><ul>
 <li><p>来源：阿里达摩院 &#x2F; ModelScope</p>
 </li>
 <li><p>大小：~231MB</p>
@@ -444,8 +440,7 @@
 <li><p>路径：<code>~/.cache/modelscope/hub/models/iic/SenseVoiceSmall-onnx/</code></p>
 </li>
 </ul>
-<p><strong>③ 标点模型（可选）—— 自动加标点</strong></p>
-<ul>
+<h4 id="③-标点模型（可选）——-自动加标点"><a href="#③-标点模型（可选）——-自动加标点" class="headerlink" title="③ 标点模型（可选）—— 自动加标点"></a>③ 标点模型（可选）—— 自动加标点</h4><ul>
 <li><p>来源：阿里达摩院 &#x2F; ModelScope</p>
 </li>
 <li><p>大小：~270MB</p>
@@ -495,10 +490,8 @@
 </tr>
 </tbody></table>
 <p><strong>关键点：不需要 GPU。</strong> 这是项目最大的卖点之一。使用量化 ONNX 模型后，普通笔记本的 CPU 就能跑。</p>
-<h3 id="4-2-软件依赖"><a href="#4-2-软件依赖" class="headerlink" title="4.2 软件依赖"></a>4.2 软件依赖</h3><p><strong>基础编译依赖（必须）：</strong></p>
-<p><code>sudo apt install ibus libpinyin-dev libpinyin-utils libsqlite3-dev \     libglib2.0-dev libgtk-3-dev libibus-1.0-dev \     python3 lua5.1 liblua5.1-dev gettext   </code></p>
-<p><strong>语音功能依赖（可选但必要）：</strong></p>
-<p><code>sudo apt install libonnxruntime-dev libpulse-dev   </code></p>
+<h3 id="4-2-软件依赖"><a href="#4-2-软件依赖" class="headerlink" title="4.2 软件依赖"></a>4.2 软件依赖</h3><h4 id="基础编译依赖（必须）："><a href="#基础编译依赖（必须）：" class="headerlink" title="基础编译依赖（必须）："></a>基础编译依赖（必须）：</h4><p><code>sudo apt install ibus libpinyin-dev libpinyin-utils libsqlite3-dev \     libglib2.0-dev libgtk-3-dev libibus-1.0-dev \     python3 lua5.1 liblua5.1-dev gettext   </code></p>
+<h4 id="语音功能依赖（可选但必要）："><a href="#语音功能依赖（可选但必要）：" class="headerlink" title="语音功能依赖（可选但必要）："></a>语音功能依赖（可选但必要）：</h4><p><code>sudo apt install libonnxruntime-dev libpulse-dev   </code></p>
 <h3 id="4-3-编译安装"><a href="#4-3-编译安装" class="headerlink" title="4.3 编译安装"></a>4.3 编译安装</h3><p><code>git clone https://github.com/wsyb/ibus-libpinyin-voice.git   cd ibus-libpinyin-voice      # 基础编译（不含语音）   ./autogen.sh   ./configure --prefix=/usr      # 启用语音功能   ./autogen.sh   ./configure --prefix=/usr --enable-onnxruntime      make -j$(nproc)   sudo make install   ibus restart   </code></p>
 <h3 id="4-4-模型下载"><a href="#4-4-模型下载" class="headerlink" title="4.4 模型下载"></a>4.4 模型下载</h3><p>模型通过 install.sh 自动从 ModelScope 下载，也可以手动放置：</p>
 <p><code># Paraformer（必需，~228MB）   # install.sh 会自动下载到：   # ~/.cache/modelscope/hub/models/iic/speech_paraformer-large_asr_nat-zh-cn-16k-common-vocab8404-onnx/      # SenseVoice（可选，~231MB）   # ~/.cache/modelscope/hub/models/iic/SenseVoiceSmall-onnx/      # 标点模型（可选，~270MB）   # ~/.cache/modelscope/hub/models/iic/punc_ct-transformer_zh-cn-common-vocab272727-onnx/   </code></p>

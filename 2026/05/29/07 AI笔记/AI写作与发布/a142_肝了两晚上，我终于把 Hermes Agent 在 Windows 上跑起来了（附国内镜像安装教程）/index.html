@@ -360,10 +360,8 @@
 </ul>
 <hr>
 <h2 id="二、国内镜像一键安装（Windows-PowerShell）"><a href="#二、国内镜像一键安装（Windows-PowerShell）" class="headerlink" title="二、国内镜像一键安装（Windows PowerShell）"></a>二、国内镜像一键安装（Windows PowerShell）</h2><p>这是最关键的一步。<strong>不要用官网给的命令，直接用国内镜像</strong>，否则大概率卡在某个依赖下载上。</p>
-<p><strong>第一步：打开 PowerShell</strong></p>
-<p>按下 <code>Win</code> 键，搜索「Windows PowerShell」，直接打开，不需要管理员权限。</p>
-<p><strong>第二步：执行镜像安装命令</strong></p>
-<p>复制下面这条命令，粘贴到 PowerShell 里，按回车：</p>
+<h3 id="第一步：打开-PowerShell"><a href="#第一步：打开-PowerShell" class="headerlink" title="第一步：打开 PowerShell"></a>第一步：打开 PowerShell</h3><p>按下 <code>Win</code> 键，搜索「Windows PowerShell」，直接打开，不需要管理员权限。</p>
+<h3 id="第二步：执行镜像安装命令"><a href="#第二步：执行镜像安装命令" class="headerlink" title="第二步：执行镜像安装命令"></a>第二步：执行镜像安装命令</h3><p>复制下面这条命令，粘贴到 PowerShell 里，按回车：</p>
 <p><code>irm https://res1.hermesagent.org.cn/install.ps1 | iex   </code></p>
 <p>然后就是等。全程自动执行，大约 5-10 分钟，看网速。</p>
 <p>安装脚本会自动检测并补装：Python 3.11、Node.js、Git 等运行环境，以及配置环境变量。</p>
@@ -420,14 +418,11 @@
 <h3 id="第二件：验证装好了"><a href="#第二件：验证装好了" class="headerlink" title="第二件：验证装好了"></a>第二件：验证装好了</h3><p><code>hermes --version        # 看版本号   hermes gateway           # 启动飞书网关（机器人核心服务）   hermes doctor            # 检查运行状态&amp;故障诊断   </code></p>
 <p>如果 <code>hermes gateway</code> 能正常启动，说明机器人已经在后台跑着了。</p>
 <hr>
-<h2 id="五、常见问题"><a href="#五、常见问题" class="headerlink" title="五、常见问题"></a>五、常见问题</h2><p><strong>Q：PowerShell 提示脚本被阻止运行</strong></p>
-<p>以管理员身份打开 PowerShell，执行：</p>
+<h2 id="五、常见问题"><a href="#五、常见问题" class="headerlink" title="五、常见问题"></a>五、常见问题</h2><h3 id="Q：PowerShell-提示脚本被阻止运行"><a href="#Q：PowerShell-提示脚本被阻止运行" class="headerlink" title="Q：PowerShell 提示脚本被阻止运行"></a>Q：PowerShell 提示脚本被阻止运行</h3><p>以管理员身份打开 PowerShell，执行：</p>
 <p><code>Set-ExecutionPolicy RemoteSigned -Scope CurrentUser   </code></p>
 <p>输入 <code>Y</code> 确认即可。</p>
-<p><strong>Q：<code>hermes</code> 命令找不到</strong></p>
-<p>环境变量没生效。彻底关闭所有终端，重新打开 PowerShell 即可。</p>
-<p><strong>Q：飞书机器人收不到消息</strong></p>
-<p>手动启动网关服务：</p>
+<h3 id="Q：hermes-命令找不到"><a href="#Q：hermes-命令找不到" class="headerlink" title="Q：hermes 命令找不到"></a>Q：<code>hermes</code> 命令找不到</h3><p>环境变量没生效。彻底关闭所有终端，重新打开 PowerShell 即可。</p>
+<h3 id="Q：飞书机器人收不到消息"><a href="#Q：飞书机器人收不到消息" class="headerlink" title="Q：飞书机器人收不到消息"></a>Q：飞书机器人收不到消息</h3><p>手动启动网关服务：</p>
 <p><code>hermes gateway   </code></p>
 <p>检查飞书授权是否正常，必要时重新执行 <code>hermes setup gateway</code> 配置。</p>
 <hr>

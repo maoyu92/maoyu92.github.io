@@ -335,20 +335,16 @@
 </blockquote>
 <p>有人把 Karpathy 的观察总结成了四条可执行的规则，做成了这个 CLAUDE.md 文件。结果一发不可收拾。</p>
 <h2 id="二、LLM-编程的四大”原罪”"><a href="#二、LLM-编程的四大”原罪”" class="headerlink" title="二、LLM 编程的四大”原罪”"></a>二、LLM 编程的四大”原罪”</h2><p>在理解四条原则之前，先看看 LLM 编程到底有哪些问题。Karpathy 原文总结得精准：</p>
-<p><strong>① 假设狂魔</strong></p>
-<blockquote>
+<h3 id="①-假设狂魔"><a href="#①-假设狂魔" class="headerlink" title="① 假设狂魔"></a>① 假设狂魔</h3><blockquote>
 <p>“模型会替你做错误的假设，然后一路狂奔不回头。它们不管理自己的困惑，不寻求澄清，不暴露矛盾，不展示权衡，不在该推回的时候推回。”</p>
 </blockquote>
-<p><strong>② 过度工程</strong></p>
-<blockquote>
+<h3 id="②-过度工程"><a href="#②-过度工程" class="headerlink" title="② 过度工程"></a>② 过度工程</h3><blockquote>
 <p>“它们真的很喜欢过度复杂化代码和 API，膨胀抽象层，不清理死代码……用 1000 行实现一个 100 行就能搞定的东西。”</p>
 </blockquote>
-<p><strong>③ 顺手牵羊</strong></p>
-<blockquote>
+<h3 id="③-顺手牵羊"><a href="#③-顺手牵羊" class="headerlink" title="③ 顺手牵羊"></a>③ 顺手牵羊</h3><blockquote>
 <p>“它们有时会改变&#x2F;删除自己不充分理解的注释和代码作为副作用，即使这些与任务正交。”</p>
 </blockquote>
-<p><strong>④ 目标模糊</strong></p>
-<blockquote>
+<h3 id="④-目标模糊"><a href="#④-目标模糊" class="headerlink" title="④ 目标模糊"></a>④ 目标模糊</h3><blockquote>
 <p>“不要告诉它做什么，给它成功标准，然后看着它跑。”</p>
 </blockquote>
 <p>这四个问题，几乎每个用过 AI 编程的人都遇到过。而四条原则，每条都精准对治一个问题。</p>

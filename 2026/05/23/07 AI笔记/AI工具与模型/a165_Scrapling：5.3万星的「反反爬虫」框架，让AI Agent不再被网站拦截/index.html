@@ -367,14 +367,11 @@
 <td>优化的数据结构，JSON 序列化比标准库快 10 倍</td>
 </tr>
 </tbody></table>
-<h2 id="三、核心能力拆解"><a href="#三、核心能力拆解" class="headerlink" title="三、核心能力拆解"></a>三、核心能力拆解</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>3.1 自适应元素追踪：网站改版也不怕</p>
-<p>这是 Scrapling 最「黑科技」的功能。传统爬虫的选择器是「死」的——<code>div.product-title</code> 一旦网站改名为 <code>div.item-name</code>，就废了。</p>
+<h2 id="三、核心能力拆解"><a href="#三、核心能力拆解" class="headerlink" title="三、核心能力拆解"></a>三、核心能力拆解</h2><h3 id="3-1-自适应元素追踪：网站改版也不怕"><a href="#3-1-自适应元素追踪：网站改版也不怕" class="headerlink" title="3.1 自适应元素追踪：网站改版也不怕"></a>3.1 自适应元素追踪：网站改版也不怕</h3><p>这是 Scrapling 最「黑科技」的功能。传统爬虫的选择器是「死」的——<code>div.product-title</code> 一旦网站改名为 <code>div.item-name</code>，就废了。</p>
 <p>Scrapling 的做法完全不同：它用<strong>智能相似度算法</strong>追踪元素。即使页面结构变了，它也能根据元素的上下文、文本内容、DOM 位置等特征，自动「找到」原来那个元素。</p>
 <p><code>from scrapling.fetchers import StealthyFetcher      StealthyFetcher.adaptive = True   page = StealthyFetcher.fetch(&#39;https://example.com&#39;, headless=True)      # 第一次抓取，标记 auto_save   products = page.css(&#39;.product&#39;, auto_save=True)      # 网站改版后，用 adaptive=True 自动追踪   products = page.css(&#39;.product&#39;, adaptive=True)  # 还是能找到！   </code></p>
-<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>3.2 三种获取模式，覆盖所有场景</p>
-<p>Scrapling 提供三种获取器，从轻到重：</p>
-<p><strong>Fetcher（轻量 HTTP）</strong></p>
-<ul>
+<h3 id="3-2-三种获取模式，覆盖所有场景"><a href="#3-2-三种获取模式，覆盖所有场景" class="headerlink" title="3.2 三种获取模式，覆盖所有场景"></a>3.2 三种获取模式，覆盖所有场景</h3><p>Scrapling 提供三种获取器，从轻到重：</p>
+<h4 id="Fetcher（轻量-HTTP）"><a href="#Fetcher（轻量-HTTP）" class="headerlink" title="Fetcher（轻量 HTTP）"></a>Fetcher（轻量 HTTP）</h4><ul>
 <li><p>纯 HTTP 请求，支持浏览器 TLS 指纹模拟</p>
 </li>
 <li><p>可以伪装成 Chrome 的 TLS 签名，绕过简单的反爬</p>
@@ -382,8 +379,7 @@
 <li><p>支持 HTTP&#x2F;3</p>
 </li>
 </ul>
-<p><strong>StealthyFetcher（隐身浏览器）</strong></p>
-<ul>
+<h4 id="StealthyFetcher（隐身浏览器）"><a href="#StealthyFetcher（隐身浏览器）" class="headerlink" title="StealthyFetcher（隐身浏览器）"></a>StealthyFetcher（隐身浏览器）</h4><ul>
 <li><p>基于 Playwright 的 Chromium，但加了隐身补丁</p>
 </li>
 <li><p>自动绕过 Cloudflare Turnstile</p>
@@ -391,8 +387,7 @@
 <li><p>支持指纹伪装、自动解验证码</p>
 </li>
 </ul>
-<p><strong>DynamicFetcher（完整浏览器）</strong></p>
-<ul>
+<h4 id="DynamicFetcher（完整浏览器）"><a href="#DynamicFetcher（完整浏览器）" class="headerlink" title="DynamicFetcher（完整浏览器）"></a>DynamicFetcher（完整浏览器）</h4><ul>
 <li><p>完整的浏览器自动化</p>
 </li>
 <li><p>支持 JS 渲染、网络空闲检测</p>
@@ -401,8 +396,7 @@
 </li>
 </ul>
 <p><code>from scrapling.fetchers import Fetcher, StealthyFetcher, DynamicFetcher      # 轻量级：不被拦截的普通页面   page = Fetcher.get(&#39;https://example.com&#39;)      # 隐身级：被 Cloudflare 挡住的页面   page = StealthyFetcher.fetch(&#39;https://protected-site.com&#39;, headless=True)      # 完整级：需要 JS 渲染的 SPA   page = DynamicFetcher.fetch(&#39;https://spa-app.com&#39;, headless=True, network_idle=True)   </code></p>
-<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>3.3 全站爬虫：Scrapy 风格 API</p>
-<p>需要爬几千几万个页面？Scrapling 内置了 Scrapy 风格的 Spider API：</p>
+<h3 id="3-3-全站爬虫：Scrapy-风格-API"><a href="#3-3-全站爬虫：Scrapy-风格-API" class="headerlink" title="3.3 全站爬虫：Scrapy 风格 API"></a>3.3 全站爬虫：Scrapy 风格 API</h3><p>需要爬几千几万个页面？Scrapling 内置了 Scrapy 风格的 Spider API：</p>
 <p><code>from scrapling.spiders import Spider, Response      class MySpider(Spider):       name = &quot;demo&quot;       start_urls = [&quot;https://example.com/&quot;]          async def parse(self, response: Response):           for item in response.css(&#39;.product&#39;):               yield &#123;&quot;title&quot;: item.css(&#39;h2::text&#39;).get()&#125;      MySpider().start()   </code></p>
 <p>支持：</p>
 <ul>
@@ -417,8 +411,7 @@
 <li><p><strong>流式输出</strong>：<code>async for item in spider.stream()</code> 实时拿结果</p>
 </li>
 </ul>
-<h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><p>3.4 MCP Server：AI Agent 直接用</p>
-<p>Scrapling 内置了 MCP（Model Context Protocol）Server，AI 编程助手可以直接调用爬虫工具，不需要写代码：</p>
+<h3 id="3-4-MCP-Server：AI-Agent-直接用"><a href="#3-4-MCP-Server：AI-Agent-直接用" class="headerlink" title="3.4 MCP Server：AI Agent 直接用"></a>3.4 MCP Server：AI Agent 直接用</h3><p>Scrapling 内置了 MCP（Model Context Protocol）Server，AI 编程助手可以直接调用爬虫工具，不需要写代码：</p>
 <ul>
 <li><p>AI 助手调用 MCP 工具抓取页面</p>
 </li>
@@ -524,8 +517,7 @@
 </li>
 </ul>
 <p>社区非常活跃，Issues 仅 5 个开放，PR 63 个，维护响应速度快。</p>
-<h2 id="七、适用场景"><a href="#七、适用场景" class="headerlink" title="七、适用场景"></a>七、适用场景</h2><p><strong>✅ 特别适合：</strong></p>
-<ul>
+<h2 id="七、适用场景"><a href="#七、适用场景" class="headerlink" title="七、适用场景"></a>七、适用场景</h2><h3 id="✅-特别适合："><a href="#✅-特别适合：" class="headerlink" title="✅ 特别适合："></a>✅ 特别适合：</h3><ul>
 <li><p>需要绕过 Cloudflare 等反爬系统的场景</p>
 </li>
 <li><p>网站结构频繁变化、选择器经常失效的项目</p>
@@ -537,8 +529,7 @@
 <li><p>需要 JS 渲染的 SPA 应用</p>
 </li>
 </ul>
-<p><strong>⚠️ 不适合：</strong></p>
-<ul>
+<h3 id="⚠️-不适合："><a href="#⚠️-不适合：" class="headerlink" title="⚠️ 不适合："></a>⚠️ 不适合：</h3><ul>
 <li><p>有官方 API 且 API 够用的场景（优先用 API）</p>
 </li>
 <li><p>简单的静态页面抓取（requests + BeautifulSoup 足够）</p>
@@ -558,8 +549,7 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Scrapling 解决了 Python 爬虫领域的三大痛点：反爬绕过、结构自适应、JS 渲染。5.3 万 Stars 不是白来的——它确实好用。</p>
 <p>对于 AI Agent 用户来说，装上 scrapling-scraper 技能后，Agent 就有了「穿透网页防护」的能力。不管是抓竞品数据、监控价格变化、还是自动采集资讯，都能轻松搞定。</p>
 <hr>
-<p><strong>🔗 相关链接</strong></p>
-<ul>
+<h3 id="🔗-相关链接"><a href="#🔗-相关链接" class="headerlink" title="🔗 相关链接"></a>🔗 相关链接</h3><ul>
 <li><p>Scrapling GitHub：<a target="_blank" rel="noopener" href="https://github.com/D4Vinci/Scrapling[1]">https://github.com/D4Vinci/Scrapling[1]</a></p>
 </li>
 <li><p>官方文档：<a href="https://scrapling.readthedocs.io[2]">https://scrapling.readthedocs.io[2]</a></p>
@@ -573,8 +563,7 @@
 <li><p>Docker 镜像：<a target="_blank" rel="noopener" href="https://github.com/D4Vinci/Scrapling/pkgs/container/scrapling[6]">https://github.com/D4Vinci/Scrapling/pkgs/container/scrapling[6]</a></p>
 </li>
 </ul>
-<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><p>引用链接</p>
-<p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/D4Vinci/Scrapling">https://github.com/D4Vinci/Scrapling</a></em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/D4Vinci/Scrapling">https://github.com/D4Vinci/Scrapling</a></em></p>
 <p>[2]<em><a target="_blank" rel="noopener" href="https://scrapling.readthedocs.io/">https://scrapling.readthedocs.io</a></em></p>
 <p>[3]<em><a target="_blank" rel="noopener" href="https://github.com/hczs/openclaw-skills">https://github.com/hczs/openclaw-skills</a></em></p>
 <p>[4]<em><a target="_blank" rel="noopener" href="https://pypi.org/project/Scrapling/">https://pypi.org/project/Scrapling/</a></em></p>
