@@ -1,0 +1,962 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="强化学习（RL）正在成为大模型后训练的核心引擎。但问题是——每个模型类型（扩散、自回归、视觉语言）都需要一套独立的 RL 训练流程。腾讯混元团队开源的 UniRL 框架，用一个统一的 RL 循环解决了这个”碎片化”难题。  一、为什么需要 UniRL？强化学习已经证明了它在大模型后训练中的价值——从 ChatGPT 的 RLHF 到 DeepSeek 的 GRPO，RL 驱动的对齐和推理增强已经">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个 RL 循环统管所有模型：腾讯混元开源 UniRL，扩散、LLM、VLM 全搞定">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/10/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a085_%E4%B8%80%E4%B8%AA%20RL%20%E5%BE%AA%E7%8E%AF%E7%BB%9F%E7%AE%A1%E6%89%80%E6%9C%89%E6%A8%A1%E5%9E%8B%EF%BC%9A%E8%85%BE%E8%AE%AF%E6%B7%B7%E5%85%83%E5%BC%80%E6%BA%90%20UniRL%EF%BC%8C%E6%89%A9%E6%95%A3%E3%80%81LLM%E3%80%81VLM%20%E5%85%A8%E6%90%9E%E5%AE%9A/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="强化学习（RL）正在成为大模型后训练的核心引擎。但问题是——每个模型类型（扩散、自回归、视觉语言）都需要一套独立的 RL 训练流程。腾讯混元团队开源的 UniRL 框架，用一个统一的 RL 循环解决了这个”碎片化”难题。  一、为什么需要 UniRL？强化学习已经证明了它在大模型后训练中的价值——从 ChatGPT 的 RLHF 到 DeepSeek 的 GRPO，RL 驱动的对齐和推理增强已经">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/images/176720581c093be4.png">
+<meta property="og:image" content="https://maoyu92.github.io/images/257f39dc1ed386a8.png">
+<meta property="article:published_time" content="2026-06-10T15:07:00.000Z">
+<meta property="article:modified_time" content="2026-06-10T15:07:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/images/176720581c093be4.png">
+  
+  
+  <title>一个 RL 循环统管所有模型：腾讯混元开源 UniRL，扩散、LLM、VLM 全搞定 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="一个 RL 循环统管所有模型：腾讯混元开源 UniRL，扩散、LLM、VLM 全搞定"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-10 23:07" pubdate>
+          2026年6月10日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">一个 RL 循环统管所有模型：腾讯混元开源 UniRL，扩散、LLM、VLM 全搞定</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>强化学习（RL）正在成为大模型后训练的核心引擎。但问题是——每个模型类型（扩散、自回归、视觉语言）都需要一套独立的 RL 训练流程。腾讯混元团队开源的 UniRL 框架，用一个统一的 RL 循环解决了这个”碎片化”难题。</p>
+</blockquote>
+<h2 id="一、为什么需要-UniRL？"><a href="#一、为什么需要-UniRL？" class="headerlink" title="一、为什么需要 UniRL？"></a>一、为什么需要 UniRL？</h2><p>强化学习已经证明了它在大模型后训练中的价值——从 ChatGPT 的 RLHF 到 DeepSeek 的 GRPO，RL 驱动的对齐和推理增强已经成为标配。</p>
+<p>但问题在于：<strong>不同类型的模型需要不同的 RL 训练流程</strong>。</p>
+<ul>
+<li><p>图像扩散模型（如 Stable Diffusion）需要 DiffusionNFT 或 DanceGRPO</p>
+</li>
+<li><p>视频扩散模型（如 WAN 2.1）需要 Flow-DPPO</p>
+</li>
+<li><p>自回归 LLM（如 Qwen3）需要 GRPO 或 PPO</p>
+</li>
+<li><p>视觉语言模型（如 Qwen-VL）需要多模态奖励模型</p>
+</li>
+<li><p>统一模型（如 HunyuanImage3）需要同时处理 AR 和扩散</p>
+</li>
+</ul>
+<p>这意味着每个模型家族都要维护一套独立的训练基础设施，<strong>代码重复、算法不可复用、新模型上手成本高</strong>。</p>
+<p><img src="/images/176720581c093be4.png" srcset="/img/loading.gif" lazyload alt="传统模式：每个模型家族需要独立的 RL 训练流程" title="传统模式：每个模型家族需要独立的 RL 训练流程"></p>
+<p>UniRL 的核心洞察是：<strong>模型和算法是两个独立的可组合维度</strong>。就像 GPU 和 CUDA 的关系——硬件是硬件，软件是软件，两者可以自由组合。</p>
+<h2 id="二、UniRL-的统一架构"><a href="#二、UniRL-的统一架构" class="headerlink" title="二、UniRL 的统一架构"></a>二、UniRL 的统一架构</h2><p>UniRL 的设计哲学是：<strong>一个 RL 循环统管所有模型</strong>。</p>
+<p>这个循环的 5 个步骤：</p>
+<ol>
+<li><p><strong>生成样本</strong>（Generate）：从当前策略采样输出</p>
+</li>
+<li><p><strong>评分</strong>（Score）：用奖励模型或规则打分</p>
+</li>
+<li><p><strong>计算优势</strong>（Advantage）：计算每个 token&#x2F;步骤的优势值</p>
+</li>
+<li><p><strong>更新策略</strong>（Update）：用 RL 算法更新模型参数</p>
+</li>
+<li><p><strong>同步权重</strong>（Sync）：将更新后的权重同步到推理引擎</p>
+</li>
+</ol>
+<p>这 5 个步骤对所有模型类型都适用——无论是扩散模型还是自回归模型。区别只在于每个步骤的具体实现。</p>
+<p><img src="/images/257f39dc1ed386a8.png" srcset="/img/loading.gif" lazyload alt="UniRL 统一架构：模型与算法正交可组合" title="UniRL 统一架构：模型与算法正交可组合"></p>
+<h3 id="分层架构"><a href="#分层架构" class="headerlink" title="分层架构"></a>分层架构</h3><p>UniRL 是一个<strong>分层、可组合的系统</strong>：</p>
+<p><code>┌─────────────────────────────────────────────┐   │              Entrypoint 层                    │   │  train_diffusion / train_ar / train_pe / ... │   ├─────────────────────────────────────────────┤   │              Trainer 层                       │   │  DiffusionTrainer / ARTrainer / PETrainer    │   ├────────────────────────────────藏─────────────┤   │              模块层（可插拔）                   │   │  Rollout 引擎 │ 算法 │ 模型 │ 奖励 │ 同步    │   ├─────────────────────────────────────────────┤   │              运行时层                          │   │  Ray DevicePool / FSDP / Transfer Queue      │   └─────────────────────────────────────────────┘   </code></p>
+<p>每一层都是可替换的。想换算法？只改算法模块。想换模型？只改模型模块。<strong>不需要重写整个训练流程</strong>。</p>
+<h2 id="三、四种训练模式"><a href="#三、四种训练模式" class="headerlink" title="三、四种训练模式"></a>三、四种训练模式</h2><p>UniRL 支持四种训练模式，覆盖几乎所有主流多模态模型：</p>
+<h3 id="1-扩散模式（Diffusion）"><a href="#1-扩散模式（Diffusion）" class="headerlink" title="1. 扩散模式（Diffusion）"></a>1. 扩散模式（Diffusion）</h3><p>训练图像和视频扩散模型。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>模态</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Stable Diffusion 3 &#x2F; 3.5</td>
+<td>文生图</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>FLUX.2-Klein</td>
+<td>文生图</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Qwen-Image</td>
+<td>文生图</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>WAN 2.1 &#x2F; 2.2</td>
+<td>文&#x2F;图生视频</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>HunyuanVideo 1.0 &#x2F; 1.5</td>
+<td>文生视频</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<h3 id="2-自回归模式（AR）"><a href="#2-自回归模式（AR）" class="headerlink" title="2. 自回归模式（AR）"></a>2. 自回归模式（AR）</h3><p>训练 LLM 和 VLM。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>模态</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Qwen3</td>
+<td>文本 LLM</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Qwen-VL</td>
+<td>视觉语言</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<h3 id="3-Prompt-Enhancer-模式（PE）"><a href="#3-Prompt-Enhancer-模式（PE）" class="headerlink" title="3. Prompt-Enhancer 模式（PE）"></a>3. Prompt-Enhancer 模式（PE）</h3><p>训练”提示词增强器”——先用 LLM 优化提示词，再用扩散模型生成图像。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>模态</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Prompt-Enhancer</td>
+<td>文→文→图</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<h3 id="4-统一模型模式（Unified）"><a href="#4-统一模型模式（Unified）" class="headerlink" title="4. 统一模型模式（Unified）"></a>4. 统一模型模式（Unified）</h3><p>训练同时包含 AR 和扩散组件的统一模型。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>模态</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HunyuanImage3</td>
+<td>文生图</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>Bagel</td>
+<td>文生图</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<h2 id="四、自研算法：DRPO-和-Flow-DPPO"><a href="#四、自研算法：DRPO-和-Flow-DPPO" class="headerlink" title="四、自研算法：DRPO 和 Flow-DPPO"></a>四、自研算法：DRPO 和 Flow-DPPO</h2><p>UniRL 的最大亮点是两个自研算法，这也是腾讯混元团队的核心贡献。</p>
+<h3 id="DRPO：LLM-RL-的”软约束”"><a href="#DRPO：LLM-RL-的”软约束”" class="headerlink" title="DRPO：LLM RL 的”软约束”"></a>DRPO：LLM RL 的”软约束”</h3><p><strong>论文</strong>：Rethinking the Divergence Regularization in LLM RL[1]</p>
+<p>传统 LLM RL（如 PPO、GRPO）用<strong>比率裁剪</strong>（ratio clipping）来控制策略偏移。但这种方法在长尾词汇分布下容易失效——因为重要性比率（importance ratio）对分布偏移的估计不够准确。</p>
+<p>DPPO 改进了这一点，用<strong>基于散度的掩码</strong>替代比率裁剪。但它仍然用<strong>硬掩码</strong>——一旦 token 超出信任域边界，梯度直接丢弃，而不是修正。</p>
+<p>DRPO 的创新在于：<strong>用平滑的优势加权二次正则器替代硬掩码</strong>。</p>
+<ul>
+<li><p>同样的信任域几何</p>
+</li>
+<li><p>有界的、连续的梯度权重</p>
+</li>
+<li><p>对偏离的更新进行衰减</p>
+</li>
+<li><p>在边界之外仍提供修正信号</p>
+</li>
+</ul>
+<p><strong>效果</strong>：在不同模型规模、架构和精度设置下，DRPO 都提升了 LLM RL 训练的稳定性和效率。</p>
+<h3 id="Flow-DPPO：扩散模型的”精确信任域”"><a href="#Flow-DPPO：扩散模型的”精确信任域”" class="headerlink" title="Flow-DPPO：扩散模型的”精确信任域”"></a>Flow-DPPO：扩散模型的”精确信任域”</h3><p><strong>论文</strong>：Flow-DPPO: Divergence Proximal Policy Optimization for Flow Matching Models[2]</p>
+<p>扩散模型的 RL 训练和 LLM 不同——它不是逐 token 的，而是连续流匹配（flow matching）的。传统方法用启发式的方式近似信任域，不够精确。</p>
+<p>Flow-DPPO 为流匹配模型提供了<strong>精确的基于散度的信任域掩码</strong>：</p>
+<ul>
+<li><p>直接在流空间中定义信任域</p>
+</li>
+<li><p>不需要启发式近似</p>
+</li>
+<li><p>与扩散模型的训练范式天然兼容</p>
+</li>
+</ul>
+<p><strong>效果</strong>：在图像和视频生成任务上，Flow-DPPO 比现有方法更稳定、更高效。</p>
+<h2 id="五、标准算法集成"><a href="#五、标准算法集成" class="headerlink" title="五、标准算法集成"></a>五、标准算法集成</h2><p>除了自研算法，UniRL 还集成了业界主流的标准算法：</p>
+<table>
+<thead>
+<tr>
+<th>算法</th>
+<th>适用模型</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GRPO</td>
+<td>LLM</td>
+<td>DeepSeek</td>
+</tr>
+<tr>
+<td>DiffusionNFT</td>
+<td>扩散模型</td>
+<td>业界标准</td>
+</tr>
+<tr>
+<td>DanceGRPO</td>
+<td>扩散模型</td>
+<td>业界标准</td>
+</tr>
+<tr>
+<td>MixGRPO</td>
+<td>扩散模型</td>
+<td>业界标准</td>
+</tr>
+</tbody></table>
+<p><strong>关键点</strong>：算法和模型是正交的。任何扩散算法都可以跑在任何扩散模型上，任何 AR 算法都可以跑在任何 AR 模型上。这意味着 UniRL 覆盖的”模型 × 算法”组合远超示例数量。</p>
+<h2 id="六、技术依赖与生态"><a href="#六、技术依赖与生态" class="headerlink" title="六、技术依赖与生态"></a>六、技术依赖与生态</h2><p>UniRL 建立在开源推理和 RL 生态之上：</p>
+<ul>
+<li><p><strong>推理引擎</strong>：vLLM、SGLang</p>
+</li>
+<li><p><strong>分布式训练</strong>：FSDP、Ray DevicePool</p>
+</li>
+<li><p><strong>RL 框架</strong>：verl、slime</p>
+</li>
+<li><p><strong>配置管理</strong>：Hydra</p>
+</li>
+</ul>
+<p><strong>运行时</strong>支持：</p>
+<ul>
+<li><p>单节点训练</p>
+</li>
+<li><p>多节点分布式训练</p>
+</li>
+<li><p>LoRA 微调和全权重训练</p>
+</li>
+<li><p>权重同步（Transfer Queue）</p>
+</li>
+</ul>
+<h2 id="七、怎么用？"><a href="#七、怎么用？" class="headerlink" title="七、怎么用？"></a>七、怎么用？</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code># 克隆仓库   git clone https://github.com/Tencent-Hunyuan/UniRL.git   cd UniRL      # 安装依赖   pip install -e .   </code></p>
+<h3 id="跑一个示例"><a href="#跑一个示例" class="headerlink" title="跑一个示例"></a>跑一个示例</h3><p><code># 扩散模型训练（Stable Diffusion 3）   python -m unirl.train_diffusion \     --config-name=diffusion/sd3_trainside \     --cfg job --resolve      # LLM 训练（Qwen3 + DRPO）   python -m unirl.train_ar \     --config-name=ar/qwen3_drpo_4b_base_dapo_sglang \     --cfg job --resolve   </code></p>
+<h3 id="添加自己的模型"><a href="#添加自己的模型" class="headerlink" title="添加自己的模型"></a>添加自己的模型</h3><p>UniRL 的架构设计使得添加新模型变得简单：</p>
+<ol>
+<li><p>在对应 domain 下添加模型配置</p>
+</li>
+<li><p>实现模型的 rollout 接口</p>
+</li>
+<li><p>选择一个已有的算法即可</p>
+</li>
+</ol>
+<h2 id="八、这意味着什么？"><a href="#八、这意味着什么？" class="headerlink" title="八、这意味着什么？"></a>八、这意味着什么？</h2><h3 id="对研究者"><a href="#对研究者" class="headerlink" title="对研究者"></a>对研究者</h3><p>UniRL 提供了一个统一的实验平台，可以在相同框架下比较不同算法在不同模型上的表现。<strong>模型和算法的正交性</strong>使得消融实验变得简单。</p>
+<h3 id="对开发者"><a href="#对开发者" class="headerlink" title="对开发者"></a>对开发者</h3><p>不用再为每个模型维护独立的 RL 训练流程。UniRL 的<strong>可组合架构</strong>意味着你可以用最小的代码改动尝试新算法或新模型。</p>
+<h3 id="对行业"><a href="#对行业" class="headerlink" title="对行业"></a>对行业</h3><p>RL 正在从”后训练的可选步骤”变成”模型进化的必经之路”。UniRL 的出现，降低了多模态 RL 的门槛，让更多团队能够参与到这个方向中来。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>UniRL 的核心价值不在于它做了多少个模型或算法，而在于它证明了一件事：<strong>RL 的训练循环可以是模型无关的</strong>。</p>
+<p>当模型和算法成为两个独立的可组合维度时，创新的速率会显著提升——因为你可以用最小的代价尝试新的组合。</p>
+<p>这就像乐高积木：积木块是标准化的，但你可以拼出无限种形状。</p>
+<hr>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>UniRL GitHub 仓库[3]</p>
+</li>
+<li><p>UniRL 项目主页[4]</p>
+</li>
+<li><p>DRPO 论文[5]</p>
+</li>
+<li><p>Flow-DPPO 论文[6]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]Rethinking the Divergence Regularization in LLM RL: <em><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.09821">https://arxiv.org/abs/2606.09821</a></em></p>
+<p>[2]Flow-DPPO: Divergence Proximal Policy Optimization for Flow Matching Models: <em><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.11025">https://arxiv.org/abs/2606.11025</a></em></p>
+<p>[3]UniRL GitHub 仓库: <em><a target="_blank" rel="noopener" href="https://github.com/Tencent-Hunyuan/UniRL">https://github.com/Tencent-Hunyuan/UniRL</a></em></p>
+<p>[4]UniRL 项目主页: <em><a target="_blank" rel="noopener" href="https://unirl-project.github.io/unirl/">https://unirl-project.github.io/unirl/</a></em></p>
+<p>[5]DRPO 论文: <em><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.09821">https://arxiv.org/abs/2606.09821</a></em></p>
+<p>[6]Flow-DPPO 论文: <em><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.11025">https://arxiv.org/abs/2606.11025</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>一个 RL 循环统管所有模型：腾讯混元开源 UniRL，扩散、LLM、VLM 全搞定</div>
+      <div>https://maoyu92.github.io/2026/06/10/07 AI笔记/AI写作与发布/a085_一个 RL 循环统管所有模型：腾讯混元开源 UniRL，扩散、LLM、VLM 全搞定/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/11/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a084_%E4%B8%80%E8%AF%81%E7%AE%A1%E5%85%A8%E3%80%81%E4%B8%80%E7%9B%AE%E4%BA%86%E7%84%B6%EF%BC%9A%E6%8E%92%E6%B1%A1%E8%AE%B8%E5%8F%AF%E8%AF%81%E6%A0%BC%E5%BC%8F%E4%BC%98%E5%8C%96%E4%B8%89%E5%A4%A7%E5%8F%98%E9%9D%A9%E8%A7%A3%E8%AF%BB/" title="一证管全、一目了然：排污许可证格式优化三大变革解读">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一证管全、一目了然：排污许可证格式优化三大变革解读</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/10/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a086_AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E4%BC%81%E4%B8%9A%E8%BD%AC%E5%9E%8B%EF%BC%9A%E5%9F%BA%E4%BA%8E%E6%88%90%E7%86%9F%E5%BA%A6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E7%BA%A7%E6%BC%94%E8%BF%9B%E8%B7%AF%E5%BE%84/" title="AI 时代的企业转型：基于成熟度模型的分级演进路径">
+                        <span class="hidden-mobile">AI 时代的企业转型：基于成熟度模型的分级演进路径</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

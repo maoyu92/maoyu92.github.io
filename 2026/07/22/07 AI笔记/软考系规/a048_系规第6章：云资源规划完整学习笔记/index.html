@@ -1,0 +1,1544 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="EXAM NOTES · 系规学习  ·  2026.07 上云就是买几台云服务器？ 先算需求与容量， 再选架构和资源 第6章 · 云资源规划 · 计算存储与数据中心 系规24期学习整理 · 第03期  ·  综合  案例  论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 一条总流程，三个资源 PART 02 6.1 云资源规划概述 先把总账算清 PART 0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系规第6章：云资源规划完整学习笔记">
+<meta property="og:url" content="https://maoyu92.github.io/2026/07/22/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a048_%E7%B3%BB%E8%A7%84%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E4%BA%91%E8%B5%84%E6%BA%90%E8%A7%84%E5%88%92%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="EXAM NOTES · 系规学习  ·  2026.07 上云就是买几台云服务器？ 先算需求与容量， 再选架构和资源 第6章 · 云资源规划 · 计算存储与数据中心 系规24期学习整理 · 第03期  ·  综合  案例  论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 一条总流程，三个资源 PART 02 6.1 云资源规划概述 先把总账算清 PART 0">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a048/17a27007b195598a.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a048/79a787193bddb098.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a048/9afa1636f7c6cf47.png">
+<meta property="article:published_time" content="2026-07-22T03:52:00.000Z">
+<meta property="article:modified_time" content="2026-07-22T03:52:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/uploads/ai-notes/a048/17a27007b195598a.png">
+  
+  
+  <title>系规第6章：云资源规划完整学习笔记 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="系规第6章：云资源规划完整学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-22 11:52" pubdate>
+          2026年7月22日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          58 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">系规第6章：云资源规划完整学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>EXAM NOTES · 系规学习  ·  2026.07</p>
+<p>上云就是买几台云服务器？</p>
+<p>先算需求与容量，</p>
+<p>再选架构和资源</p>
+<p>第6章 · 云资源规划 · 计算存储与数据中心</p>
+<p>系规24期学习整理 · 第03期  ·  综合  案例  论文</p>
+<p>6 PARTS + CONCLUSION</p>
+<p>👉 滑动</p>
+<p>PART 01</p>
+<p>本章地图</p>
+<p>一条总流程，三个资源</p>
+<p>PART 02</p>
+<p>6.1 云资源规划概述</p>
+<p>先把总账算清</p>
+<p>PART 03</p>
+<p>6.2 云计算架构</p>
+<p>部署类型与服务模式不</p>
+<p>PART 04</p>
+<p>6.3 计算资源规划</p>
+<p>容量、性能与弹性</p>
+<p>PART 05</p>
+<p>6.4 存储资源规划</p>
+<p>先看数据，再选存储</p>
+<p>PART 06</p>
+<p>6.5 云数据中心、必背清单与考试</p>
+<p>完整学习</p>
+<p>PART &#x2F;&#x2F;&#x2F;</p>
+<p>写在最后</p>
+<p>复习建议</p>
+<p>学习目标</p>
+<p>云资源规划不是把原来的服务器换成云主机，而是围绕业务需求，把云的部署类型、服务模式、计算、存储、网络、安全、成本和持续优化放进一个闭环。本文按教材6.1—6.5逐节展开，完成本章第一轮系统学习。</p>
+<p>这是“系规学习”的第3期。第6章既有大量选择题清单，也适合出案例题和PUE计算题。学习时要同时抓住两条线：一条是“云资源规划总体怎么做”，另一条是“计算、存储和数据中心分别怎么规划”。</p>
+<p> </p>
+<p>01PART</p>
+<p>本章地图：一条总流程，三个资源层次</p>
+<p>LEARNING · KEY POINTS</p>
+<p>第6章由五部分组成：</p>
+<p>1</p>
+<p>6.1 云资源规划概述：为什么规划、规划什么、按什么流程规划。</p>
+<p>2</p>
+<p>6.2 云计算架构：选择部署类型和服务模式，理解内部、外部特征。</p>
+<p>3</p>
+<p>6.3 计算资源规划：围绕CPU、内存、负载和弹性选择计算形态与技术。</p>
+<p>4</p>
+<p>6.4 存储资源规划：围绕数据类型、容量、性能、可用性和安全选择存储。</p>
+<p>5</p>
+<p>6.5 云数据中心规划：把网络、虚拟化、安全、能源和工程建设组合成物理载体。</p>
+<p><img src="/uploads/ai-notes/a048/17a27007b195598a.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 第6章云资源规划学习地图</p>
+<p>先记住三个层次</p>
+<p>●</p>
+<p>云资源总体规划决定需求、预算、安全和持续优化机制。</p>
+<p>●</p>
+<p>计算与存储规划决定具体资源形态、容量、性能和管理策略。</p>
+<p>●</p>
+<p>云数据中心规划决定承载这些资源的基础设施、核心技术与建设要求。</p>
+<p>考情与学习顺序</p>
+<p>●</p>
+<p>综合题：重点考七个关键要素、五步流程、三种部署类型、四种服务模式、计算和存储技术、虚拟化及数据中心等级。</p>
+<p>●</p>
+<p>案例题：常考需求遗漏、容量不足、弹性缺失、存储选型错误、监控不全、安全与成本控制不足。</p>
+<p>●</p>
+<p>计算题：重点掌握PUE，另外理解容量、带宽、IOPS、吞吐量等指标含义。</p>
+<p>●</p>
+<p>论文：云资源规划、云迁移、云数据中心建设可作为论文主题或技术支撑章节。</p>
+<p> </p>
+<p>02PART</p>
+<p>6.1 云资源规划概述：先把总账算清</p>
+<p>LEARNING · KEY POINTS</p>
+<p>云资源是云服务提供商或组织云平台提供的计算、存储、网络、操作系统、软件和应用等资源。云计算的关键不是“远程机房”，而是通过网络把可伸缩、弹性的共享物理与虚拟资源池按需供应和管理。</p>
+<p>6.1.1 五项目标与价值</p>
+<p>1</p>
+<p>提高效率：统一管理和自动化调度，提高资源利用率。</p>
+<p>2</p>
+<p>降低成本：减少闲置和重复建设，按实际需求控制投入。</p>
+<p>3</p>
+<p>确保可扩展性：业务增长时可以及时增加资源。</p>
+<p>4</p>
+<p>提高可靠性和弹性：故障或负载变化时仍能维持服务。</p>
+<p>5</p>
+<p>支持业务需求：所有资源选择最终都要回到业务目标。</p>
+<p>云资源规划的核心不是追求资源越多越好，而是在性能、可靠性、安全、成本和未来增长之间建立平衡。</p>
+<p>6.1.2 七个关键要素</p>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>需要回答的问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>业务需求分析</td>
+<td>业务目标、用户量、交易量、增长、性能和合规要求是什么</td>
+</tr>
+<tr>
+<td>资源评估和规划</td>
+<td>需要多少计算、存储和网络资源，采用什么类型和配置</td>
+</tr>
+<tr>
+<td>预算管理</td>
+<td>采购、运营、维护和云服务费用是否在预算内</td>
+</tr>
+<tr>
+<td>安全和合规性</td>
+<td>数据保护、身份认证、访问控制和行业标准是否满足</td>
+</tr>
+<tr>
+<td>弹性和可扩展性</td>
+<td>负载突增和业务增长时能否快速扩展并回收</td>
+</tr>
+<tr>
+<td>性能优化</td>
+<td>响应时间、吞吐量、IOPS和资源配置能否满足业务</td>
+</tr>
+<tr>
+<td>监控和管理</td>
+<td>是否可观测、可告警、可干预并持续优化</td>
+</tr>
+</tbody></table>
+<p>记忆骨架：业、资、预、安、弹、性、监。</p>
+<p>案例映射非常直接：</p>
+<p>●</p>
+<p>促销流量估计不足 → 业务需求分析、弹性和容量规划不足。</p>
+<p>●</p>
+<p>云账单严重超支 → 预算管理不足。</p>
+<p>●</p>
+<p>权限配置导致泄露 → 安全和合规不足。</p>
+<p>●</p>
+<p>虚拟机长期低负载 → 监控管理和资源优化不足。</p>
+<p>●</p>
+<p>新业务上线必须重构 → 可扩展性不足。</p>
+<p>6.1.3 五步基本流程</p>
+<p>1</p>
+<p>需求收集：理解业务目标，收集系统架构、用户量、交易量、数据量以及干系人期望。</p>
+<p>2</p>
+<p>资源评估和规划：评估现状，预测未来需求，选择服务模型、提供商、资源类型和配置。</p>
+<p>3</p>
+<p>预算管理：制定预算，分析定价结构，设置费用控制和监控策略。</p>
+<p>4</p>
+<p>设计与实施：设计计算、存储、网络和安全架构，部署资源并迁移应用和数据。</p>
+<p>5</p>
+<p>持续优化：监测性能、可用性和成本，根据实际负载持续调整。</p>
+<p><img src="/uploads/ai-notes/a048/79a787193bddb098.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 云资源规划五步闭环</p>
+<p>关键理解</p>
+<p>易错点：云资源规划不是一次性工作。业务、价格和技术都会变化，五步流程必须循环执行。</p>
+<p> </p>
+<p>03PART</p>
+<p>6.2 云计算架构：部署类型与服务模式不要混</p>
+<p>LEARNING · KEY POINTS</p>
+<p>云计算架构把资源和服务组织起来，保障弹性、可靠性和效率。考试最容易混淆的是“服务类型”和“服务模式”：</p>
+<p>●</p>
+<p>服务类型／部署类型：公有云、私有云、混合云，回答“云部署在哪里、由谁使用”。</p>
+<p>●</p>
+<p>服务模式：IaaS、PaaS、SaaS、FaaS，回答“服务提供到哪一层”。</p>
+<p><img src="/uploads/ai-notes/a048/9afa1636f7c6cf47.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 云计算部署类型与服务模式</p>
+<p>6.2.1 三种部署类型</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>核心属性</th>
+<th>优势</th>
+<th>主要代价或风险</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>公有云</td>
+<td>云服务商拥有基础设施，资源向社会用户开放</td>
+<td>成本较低、扩展性好、开通快</td>
+<td>控制力和定制程度较低，需重视数据与合规</td>
+</tr>
+<tr>
+<td>私有云</td>
+<td>为单一组织建设专有资源池</td>
+<td>控制强、安全和服务质量易定制</td>
+<td>初始投资、建设和运维要求较高</td>
+</tr>
+<tr>
+<td>混合云</td>
+<td>公有云与私有云协同</td>
+<td>兼顾稳态与敏态、安全与弹性</td>
+<td>需要统一门户、账户权限、监控和治理</td>
+</tr>
+</tbody></table>
+<p>混合云不是“同时买了公有云和私有云”就结束，而是必须形成统一服务体验和跨云治理。</p>
+<p>场景选择：</p>
+<p>●</p>
+<p>面向社会、负载波动大、希望快速扩容 → 公有云更有优势。</p>
+<p>●</p>
+<p>核心数据敏感、控制和合规要求高 → 私有云更合适。</p>
+<p>●</p>
+<p>核心稳态业务留在私有环境，创新或峰值业务使用公有云 → 混合云。</p>
+<p>6.2.2 五项内部特征</p>
+<p>1</p>
+<p>虚拟化：把物理资源抽象为虚拟资源，提高利用率和灵活性。</p>
+<p>2</p>
+<p>弹性扩展：按负载自动增加或减少资源。</p>
+<p>3</p>
+<p>自动化管理：自动编排、配置、监控和修复。</p>
+<p>4</p>
+<p>多租户支持：多组织共享资源，同时保证隔离和安全。</p>
+<p>5</p>
+<p>资源编排和管理：统一定义、部署、监控、调度和优化资源。</p>
+<p>内部特征关注“云里面怎样实现资源池和自动化”。</p>
+<p>6.2.3 四项外部特征</p>
+<p>1</p>
+<p>可靠性和可用性：多数据中心、冗余、备份和故障转移。</p>
+<p>2</p>
+<p>安全性：加密、认证、访问控制、漏洞管理和监控。</p>
+<p>3</p>
+<p>网络连接性：高带宽、低时延、负载均衡和CDN等。</p>
+<p>4</p>
+<p>成本效益：按需使用和付费，降低一次性硬件投入。</p>
+<p>外部特征关注“用户实际获得怎样的服务质量”。</p>
+<p>6.2.4 四种服务模式</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>提供内容</th>
+<th>主要用户</th>
+<th>典型场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>IaaS</td>
+<td>虚拟机、存储、网络等基础设施</td>
+<td>系统管理员、基础设施团队</td>
+<td>Web部署、大数据处理、备份容灾</td>
+</tr>
+<tr>
+<td>PaaS</td>
+<td>开发、测试、部署和运行应用的平台</td>
+<td>开发人员</td>
+<td>Web、移动、物联网、大数据和AI开发</td>
+</tr>
+<tr>
+<td>SaaS</td>
+<td>可直接使用的应用软件</td>
+<td>普通业务用户</td>
+<td>办公、CRM、HR、SCM</td>
+</tr>
+<tr>
+<td>FaaS</td>
+<td>按事件运行的独立函数</td>
+<td>云原生开发人员</td>
+<td>微服务、事件驱动和无服务器应用</td>
+</tr>
+</tbody></table>
+<p>从“谁负责什么”理解会更牢：</p>
+<p>●</p>
+<p>IaaS：服务商负责机房、服务器、存储、网络和虚拟化，用户通常从操作系统开始向上管理。</p>
+<p>●</p>
+<p>PaaS：服务商继续负责操作系统、运行环境和中间件，用户主要管理应用与数据。</p>
+<p>●</p>
+<p>SaaS：服务商交付完整应用，用户主要做业务配置并直接使用。</p>
+<p>●</p>
+<p>FaaS：用户提交函数和触发规则，运行环境、弹性伸缩和按次执行由平台负责。</p>
+<p>因此，从IaaS到SaaS，用户需要管理的技术层次越来越少，服务商承担的责任越来越多；但用户对数据、账号和业务使用方式仍负有相应责任。</p>
+<p>判断技巧：</p>
+<p>●</p>
+<p>用户需要自己管理操作系统和应用 → 更接近IaaS。</p>
+<p>●</p>
+<p>用户只关心代码和应用，不管理底层运行环境 → PaaS。</p>
+<p>●</p>
+<p>打开浏览器直接使用成品软件 → SaaS。</p>
+<p>●</p>
+<p>每次事件触发一段函数，按执行计费 → FaaS。</p>
+<p> </p>
+<p>04PART</p>
+<p>6.3 计算资源规划：容量、性能与弹性</p>
+<p>LEARNING · KEY POINTS</p>
+<p>计算资源规划是对云环境中的计算能力进行管理和分配，目标是用合适的CPU、内存、加速器和调度策略满足工作负载。</p>
+<p>6.3.1 基本概念：五种形态与六项范围</p>
+<p>五种计算形态</p>
+<p>1</p>
+<p>虚拟机：在物理服务器上创建独立虚拟实例，每个实例可运行自己的操作系统。</p>
+<p>2</p>
+<p>容器：把应用及依赖打包为轻量级运行单元，启动快、可移植性好。</p>
+<p>3</p>
+<p>裸金属：直接提供物理服务器，适合数据库、大数据、AI等高性能场景。</p>
+<p>4</p>
+<p>GPU实例：适合图形渲染、深度学习和科学计算等并行任务。</p>
+<p>5</p>
+<p>弹性计算资源：根据压力动态扩展和回收。</p>
+<p>选择时不能只看CPU和内存，还要考虑存储、网络、加速器、操作系统、许可证、部署方式和可观测性。</p>
+<p>六项规划范围</p>
+<p>1</p>
+<p>硬件资源规划：根据工作负载确定CPU、内存、GPU、服务器规格和数量。</p>
+<p>2</p>
+<p>虚拟化：把物理资源抽象为可分配的虚拟机，提高资源利用率和隔离能力。</p>
+<p>3</p>
+<p>容器化：以轻量级方式封装应用及依赖，提高部署速度、可移植性和弹性。</p>
+<p>4</p>
+<p>弹性扩展和负载均衡：根据业务压力扩缩容，并把请求合理分配到多个节点。</p>
+<p>5</p>
+<p>容量规划和预测：结合历史数据、业务增长和峰值场景预测未来需求。</p>
+<p>6</p>
+<p>资源管理和调度：统一编排、分配、回收、监控和优化计算资源。</p>
+<p>这六项回答“计算资源究竟规划什么”。后面的七种方法回答“用什么手段做好规划”，七个过程回答“按什么步骤推进”，三组清单不要混在一起。</p>
+<p>6.3.2 七种常用方法和技术</p>
+<table>
+<thead>
+<tr>
+<th>方法或技术</th>
+<th>核心作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>容量规划</td>
+<td>基于历史、趋势和业务预测确定未来资源规模</td>
+</tr>
+<tr>
+<td>性能优化</td>
+<td>调整资源配置、算法、网络和存储，提高响应和吞吐</td>
+</tr>
+<tr>
+<td>负载均衡</td>
+<td>把请求分配到多个节点，避免单点过载</td>
+</tr>
+<tr>
+<td>弹性伸缩</td>
+<td>根据规则和阈值自动增加或减少实例</td>
+</tr>
+<tr>
+<td>虚拟化和容器化</td>
+<td>提高共享利用率、部署速度和可移植性</td>
+</tr>
+<tr>
+<td>自动化管理</td>
+<td>自动部署、配置、监控、告警和修复</td>
+</tr>
+<tr>
+<td>云资源管理</td>
+<td>统一可视化、调度、成本分析和多云管理</td>
+</tr>
+</tbody></table>
+<p>辨析：</p>
+<p>●</p>
+<p>“基于历史数据预测未来需求”是容量规划。</p>
+<p>●</p>
+<p>“把请求分散到多个实例”是负载均衡。</p>
+<p>●</p>
+<p>“根据峰谷自动增减实例”是弹性伸缩。</p>
+<p>●</p>
+<p>“把物理服务器划分为多个隔离环境”是虚拟化。</p>
+<p>6.3.3 七个关键过程</p>
+<p>1</p>
+<p>需求分析：评估CPU、内存、存储、带宽和工作负载。</p>
+<p>2</p>
+<p>容量规划：确定能处理多少负载和需要多少资源。</p>
+<p>3</p>
+<p>云服务选择：选择合适的服务模式、规格和提供商。</p>
+<p>4</p>
+<p>虚拟化策略：决定虚拟机、容器或裸金属的使用方式。</p>
+<p>5</p>
+<p>安全性考虑：数据加密、访问控制和安全审计。</p>
+<p>6</p>
+<p>成本效益分析：比较方案成本、性能和收益。</p>
+<p>7</p>
+<p>持续监控和维护：监测利用率和瓶颈，定期调整更新。</p>
+<p>关键理解</p>
+<p>案例答题不要只写“增加服务器”。先识别需求，再做容量预测，选择合适计算形态，引入负载均衡与弹性伸缩，同时补充安全、成本和监控。</p>
+<p> </p>
+<p>05PART</p>
+<p>6.4 存储资源规划：先看数据，再选存储</p>
+<p>LEARNING · KEY POINTS</p>
+<p>存储规划不是只计算“需要多少TB”，还要分析数据类型、访问模式、增长、时延、IOPS、吞吐量、保留期限、可用性、安全和成本。</p>
+<p>6.4.1 六个规划范围</p>
+<p>1</p>
+<p>存储类型选择。</p>
+<p>2</p>
+<p>存储容量规划。</p>
+<p>3</p>
+<p>数据备份和冗余。</p>
+<p>4</p>
+<p>存储性能优化。</p>
+<p>5</p>
+<p>数据安全和隔离。</p>
+<p>6</p>
+<p>存储管理和调度。</p>
+<p>6.4.2 七类存储资源和技术</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>访问方式与特点</th>
+<th>典型场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DAS直接附加存储</td>
+<td>直接连接主机，本地访问、时延低</td>
+<td>小型环境、本地高性能访问</td>
+</tr>
+<tr>
+<td>NAS网络附加存储</td>
+<td>通过网络提供文件级访问</td>
+<td>文件共享、备份、归档</td>
+</tr>
+<tr>
+<td>SAN存储区域网络</td>
+<td>专用网络提供块级访问</td>
+<td>高性能、高可用企业应用</td>
+</tr>
+<tr>
+<td>对象存储</td>
+<td>以对象和元数据管理，水平扩展强</td>
+<td>图片、视频、备份和海量非结构化数据</td>
+</tr>
+<tr>
+<td>云存储</td>
+<td>由云服务商提供弹性存储</td>
+<td>跨地域访问、备份、共享和协作</td>
+</tr>
+<tr>
+<td>分布式文件系统</td>
+<td>文件跨多个节点分布</td>
+<td>大规模存储、分布式计算</td>
+</tr>
+<tr>
+<td>虚拟化存储</td>
+<td>把物理设备抽象为逻辑存储池</td>
+<td>统一分配、迁移、快照和复制</td>
+</tr>
+</tbody></table>
+<p>高频判断：</p>
+<p>●</p>
+<p>电商图片、视频等海量非结构化数据 → 对象存储。</p>
+<p>●</p>
+<p>多客户端共享目录 → NAS。</p>
+<p>●</p>
+<p>数据库需要高性能块访问 → SAN或高性能块存储。</p>
+<p>●</p>
+<p>“DAS适合高可用和大规模扩展的企业级共享存储”通常错误。</p>
+<p>6.4.3 九步关键过程</p>
+<p>1</p>
+<p>收集需求。</p>
+<p>2</p>
+<p>分析和评估存储需求。</p>
+<p>3</p>
+<p>技术选择。</p>
+<p>4</p>
+<p>架构设计。</p>
+<p>5</p>
+<p>安全规划。</p>
+<p>6</p>
+<p>容量规划。</p>
+<p>7</p>
+<p>性能优化。</p>
+<p>8</p>
+<p>管理和监控。</p>
+<p>9</p>
+<p>定期评估和调整。</p>
+<p>存储案例的完整答案通常应覆盖：</p>
+<p>●</p>
+<p>按数据类型选择存储，不使用单一方案承载全部数据。</p>
+<p>●</p>
+<p>建立冷热分层、生命周期和归档策略。</p>
+<p>●</p>
+<p>预测数据增长并预留容量。</p>
+<p>●</p>
+<p>设计备份、冗余和灾难恢复。</p>
+<p>●</p>
+<p>根据IOPS、吞吐量和时延优化性能。</p>
+<p>●</p>
+<p>加密、认证、授权和审计。</p>
+<p>●</p>
+<p>持续监控容量、性能、故障和成本。</p>
+<p> </p>
+<p>06PART</p>
+<p>6.5 云数据中心、必背清单与考试</p>
+<p>LEARNING · KEY POINTS</p>
+<p>云数据中心是承载云服务的物理基础，通过资源池、调度和虚拟化，把IT系统与数据中心基础设施结合起来，持续提供计算、存储和网络服务。</p>
+<p>6.5.1 四项目标、设计原则与五大要素</p>
+<p>四项目标：</p>
+<p>1</p>
+<p>可靠性和可用性。</p>
+<p>2</p>
+<p>可扩展性。</p>
+<p>3</p>
+<p>性能和效率。</p>
+<p>4</p>
+<p>安全和合规性。</p>
+<p>七项设计原则：</p>
+<p>1</p>
+<p>可用性和冗余性：关键设备、链路、电源和数据应避免单点故障。</p>
+<p>2</p>
+<p>弹性和可扩展性：业务增长时可平滑扩容，负载下降时可合理回收。</p>
+<p>3</p>
+<p>性能优化：统筹计算、存储、网络和应用，减少瓶颈与时延。</p>
+<p>4</p>
+<p>安全和隐私：落实身份、权限、隔离、加密、审计和合规要求。</p>
+<p>5</p>
+<p>灵活性和可管理性：支持自动化部署、统一监控和便捷运维。</p>
+<p>6</p>
+<p>节能和环保：优化供配电、制冷、设备利用率和能源管理。</p>
+<p>7</p>
+<p>高度可扩展的存储和网络架构：为数据增长、业务扩展和多路径容错预留能力。</p>
+<p>记忆骨架：可、弹、性、安、灵、节、扩。 前三个保证“能稳定高效地跑”，中间两个保证“能安全灵活地管”，后两个保证“能绿色长久地扩”。</p>
+<p>五大要素：</p>
+<p>1</p>
+<p>面向服务：用户从服务目录选择资源，底层实现透明。</p>
+<p>2</p>
+<p>资源池化：物理资源被抽象为统一逻辑资源池。</p>
+<p>3</p>
+<p>高效智能：通过调度实现负载均衡和智能部署。</p>
+<p>4</p>
+<p>按需供给：根据实际需求动态供应资源。</p>
+<p>5</p>
+<p>低碳环保：利用虚拟化和能源管理降低能耗。</p>
+<p>记忆：服、池、智、需、绿。</p>
+<p>6.5.2 核心技术</p>
+<p>1. 数据中心网络</p>
+<p>核心网络要求：可扩展、多路径容错、低时延、高带宽、模块化、网络扁平化和绿色节能。网络融合把以太网、存储网络和高性能计算网络协同起来，降低成本和复杂度。</p>
+<p>教材列出的三类网络融合关键技术是：</p>
+<p>1</p>
+<p>光纤以太网通道技术：让存储流量能够在增强型以太网上传输。</p>
+<p>2</p>
+<p>数据中心桥接技术：增强以太网的无损传输、流量控制和服务质量能力。</p>
+<p>3</p>
+<p>多链接透明互连技术：利用多条链路转发并减少传统生成树造成的链路闲置。</p>
+<p>记忆：光纤通道、数据桥接、多链互连。 考试遇到“融合以太网、消除链路浪费、增强无损传输”等描述，要能对应到这三类技术。</p>
+<p>网络测试指标：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>主要指标</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>网络层</td>
+<td>连通性、带宽、时延、丢包率</td>
+</tr>
+<tr>
+<td>传输层</td>
+<td>丢包率、吞吐量、连接数</td>
+</tr>
+<tr>
+<td>应用层</td>
+<td>页面丢失率、应答延迟、吞吐量</td>
+</tr>
+</tbody></table>
+<p>●</p>
+<p>主动测试：测试端主动发探测流，适合端到端时延、丢包和时延变化。</p>
+<p>●</p>
+<p>被动测试：采集网络中已有流量，适合路径吞吐量等流量参数。</p>
+<p>2. 虚拟化</p>
+<p>计算机系统可看作硬件抽象层、指令集架构层、操作系统层、库函数层和应用层，虚拟化可在不同层实现。常见技术：</p>
+<p>1</p>
+<p>硬件仿真。</p>
+<p>2</p>
+<p>全虚拟化。</p>
+<p>3</p>
+<p>半虚拟化。</p>
+<p>4</p>
+<p>硬件辅助虚拟化。</p>
+<p>“虚拟化只能在硬件层实现”是错误的。</p>
+<p>3. 安全与节能</p>
+<p>安全体系包括安全策略、标准规范、防范技术、管理保障和安全服务支持，并贯穿数据中心全生命周期。</p>
+<p>节能不仅是选低功耗设备，还包括选址、供配电、制冷、资源利用率、热管理和负载调度。</p>
+<p>PUE计算</p>
+<p>PUE＝数据中心总用电量 ÷ IT设备用电量。</p>
+<p>例如，数据中心总功率为1500kW，其中IT设备功率为1000kW：</p>
+<p>PUE＝1500÷1000＝1.5。</p>
+<p>PUE越接近1，说明用于制冷、供电损耗等非IT设施的能耗占比越低，能源效率越高。但PUE只反映能源利用效率，不能单独代表系统性能、安全或总体绿色水平。</p>
+<p>6.5.3 规划与建设</p>
+<p>数据中心规划要综合性质、商业需求、规模、业务定位、扩展计划、可用性等级和能源效率。</p>
+<p>常见分类角度：</p>
+<p>●</p>
+<p>按建设与服务对象，可分为自用型数据中心和商业化数据中心。</p>
+<p>●</p>
+<p>按主要用途，可分为IT生产中心、IT开发测试中心和灾难备份中心。</p>
+<p>●</p>
+<p>按服务与行业属性，还可见互联网数据中心、云数据中心、政务数据中心等形态。</p>
+<p>分级：</p>
+<p>●</p>
+<p>我国GB 50174按影响程度从高到低分为A、B、C三级。</p>
+<p>●</p>
+<p>TIA-942按可用性从高到低分为T4、T3、T2、T1四级。</p>
+<p>四项功能定位是本节容易被精简资料漏掉的清单：</p>
+<p>1</p>
+<p>城市数据中心向实时性和弹性化发展。</p>
+<p>2</p>
+<p>边缘数据中心实现计算能力下沉。</p>
+<p>3</p>
+<p>数据中心和网络建设协同布局。</p>
+<p>4</p>
+<p>试点探索建设国际化数据中心。</p>
+<p>记忆：城市弹性、边缘下沉、网数协同、国际探索。</p>
+<p>主要建设项目包括：</p>
+<p>1</p>
+<p>建筑工程。</p>
+<p>2</p>
+<p>机房空调与配电工程。</p>
+<p>3</p>
+<p>供电系统工程。</p>
+<p>4</p>
+<p>机房工艺工程。</p>
+<p>6.5.4 发展趋势与挑战</p>
+<p>先记“新型基础设施”常见的七个重点领域：5G、特高压、城际高速铁路和城市轨道交通、新能源汽车充电桩、大数据中心、人工智能、工业互联网。其中，大数据中心、人工智能、工业互联网与本章云资源规划联系最紧密。</p>
+<p>重点关注八个方向：</p>
+<p>1</p>
+<p>多云和混合云环境。</p>
+<p>2</p>
+<p>自动化和智能化。</p>
+<p>3</p>
+<p>弹性和可扩展性。</p>
+<p>4</p>
+<p>绿色和可持续发展。</p>
+<p>5</p>
+<p>安全和合规。</p>
+<p>6</p>
+<p>数据治理和隐私保护。</p>
+<p>7</p>
+<p>边缘计算。</p>
+<p>8</p>
+<p>AI和机器学习应用。</p>
+<p>第一轮必背总表</p>
+<table>
+<thead>
+<tr>
+<th>主题</th>
+<th>数量</th>
+<th>记忆骨架</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>云资源规划目标</td>
+<td>5</td>
+<td>效、成、扩、可、业</td>
+</tr>
+<tr>
+<td>关键要素</td>
+<td>7</td>
+<td>业、资、预、安、弹、性、监</td>
+</tr>
+<tr>
+<td>基本流程</td>
+<td>5</td>
+<td>需、评、预、设、优</td>
+</tr>
+<tr>
+<td>部署类型</td>
+<td>3</td>
+<td>公、私、混</td>
+</tr>
+<tr>
+<td>内部特征</td>
+<td>5</td>
+<td>虚、弹、自、多、编</td>
+</tr>
+<tr>
+<td>外部特征</td>
+<td>4</td>
+<td>可、安、网、成</td>
+</tr>
+<tr>
+<td>服务模式</td>
+<td>4</td>
+<td>I、P、S、F</td>
+</tr>
+<tr>
+<td>计算形态</td>
+<td>5</td>
+<td>虚机、容器、裸金属、GPU、弹性</td>
+</tr>
+<tr>
+<td>计算规划范围</td>
+<td>6</td>
+<td>硬、虚、容、弹、容、调</td>
+</tr>
+<tr>
+<td>计算方法</td>
+<td>7</td>
+<td>容、性、均、伸、虚、自、管</td>
+</tr>
+<tr>
+<td>计算过程</td>
+<td>7</td>
+<td>需、容、选、虚、安、成、监</td>
+</tr>
+<tr>
+<td>存储规划范围</td>
+<td>6</td>
+<td>类、容、备、性、安、管</td>
+</tr>
+<tr>
+<td>存储技术</td>
+<td>7</td>
+<td>DAS、NAS、SAN、对象、云、分布式、虚拟化</td>
+</tr>
+<tr>
+<td>存储过程</td>
+<td>9</td>
+<td>收、析、选、架、安、容、性、管、调</td>
+</tr>
+<tr>
+<td>数据中心设计原则</td>
+<td>7</td>
+<td>可、弹、性、安、灵、节、扩</td>
+</tr>
+<tr>
+<td>数据中心要素</td>
+<td>5</td>
+<td>服、池、智、需、绿</td>
+</tr>
+<tr>
+<td>数据中心功能定位</td>
+<td>4</td>
+<td>城市、边缘、网数、国际</td>
+</tr>
+<tr>
+<td>新型基础设施领域</td>
+<td>7</td>
+<td>5G、特高压、轨交、充电、大数据、AI、工业互联网</td>
+</tr>
+</tbody></table>
+<p>综合题高频易错判断</p>
+<p>1</p>
+<p>云资源规划完成部署后即可结束。错误，需要持续优化。</p>
+<p>2</p>
+<p>公有云的基础设施归使用组织所有。错误，通常归云服务商所有。</p>
+<p>3</p>
+<p>混合云是公有云与私有云的简单叠加。错误，还需统一服务和治理。</p>
+<p>4</p>
+<p>PaaS主要面向普通最终用户。错误，主要面向开发人员。</p>
+<p>5</p>
+<p>容量规划是把工作负载平均分到多个节点。错误，那是负载均衡。</p>
+<p>6</p>
+<p>对象存储适合图片和视频。正确。</p>
+<p>7</p>
+<p>SAN提供文件级共享访问。错误，主要提供块级访问。</p>
+<p>8</p>
+<p>被动测试适合主动测量端到端时延。错误。</p>
+<p>9</p>
+<p>虚拟化可以在多个抽象层实现。正确。</p>
+<p>10</p>
+<p>PUE越大，绿色化程度越高。错误，越接近1越好。</p>
+<p>案例题答题框架</p>
+<p>当题目要求指出云资源规划问题时，按七要素逐项扫描：</p>
+<p>关键理解</p>
+<p>首先核对业务需求和峰值预测是否充分；其次检查计算、存储和网络容量及类型是否合理；再检查预算与长期成本控制；然后检查安全、隐私和合规；检查架构是否支持弹性扩展；检查性能优化和瓶颈分析；最后检查资源监控、告警、调整和持续优化机制。</p>
+<p>计算资源问题用“需求—容量—服务选择—虚拟化—安全—成本—监控”回答；存储问题用“收集—分析—技术—架构—安全—容量—性能—管理—调整”回答。</p>
+<p>论文怎样使用本章</p>
+<p>论文可围绕以下主线：</p>
+<p>1</p>
+<p>业务背景和上云目标。</p>
+<p>2</p>
+<p>需求、峰值和资源现状评估。</p>
+<p>3</p>
+<p>公有云、私有云或混合云的选择依据。</p>
+<p>4</p>
+<p>计算、存储、网络和安全规划。</p>
+<p>5</p>
+<p>迁移与实施过程。</p>
+<p>6</p>
+<p>成本、性能、可靠性和PUE结果。</p>
+<p>7</p>
+<p>监控与持续优化。</p>
+<p>不要只写“采用云计算提高效率”，要写清工作负载特征、容量数据、选择依据、问题处理和量化结果。</p>
+<p>文末闭卷自测</p>
+<p>1</p>
+<p>云资源规划七个关键要素和五步流程是什么？</p>
+<p>2</p>
+<p>公有云、私有云、混合云如何选择？</p>
+<p>3</p>
+<p>云架构五项内部特征和四项外部特征是什么？</p>
+<p>4</p>
+<p>IaaS、PaaS、SaaS、FaaS分别提供什么，主要面向谁？</p>
+<p>5</p>
+<p>五种计算形态分别适合什么场景？</p>
+<p>6</p>
+<p>计算资源规划的六项范围是什么？</p>
+<p>7</p>
+<p>容量规划、负载均衡和弹性伸缩如何区分？</p>
+<p>8</p>
+<p>计算资源规划七个关键过程是什么？</p>
+<p>9</p>
+<p>存储规划六个范围是什么？</p>
+<p>10</p>
+<p>DAS、NAS、SAN、对象存储如何区分？</p>
+<p>11</p>
+<p>存储资源规划九步是什么？</p>
+<p>12</p>
+<p>云数据中心七项设计原则和五大要素是什么？</p>
+<p>13</p>
+<p>三类网络融合技术分别是什么？</p>
+<p>14</p>
+<p>网络层、传输层和应用层测试指标分别有哪些？</p>
+<p>15</p>
+<p>主动测试和被动测试有什么区别？</p>
+<p>16</p>
+<p>四类常用虚拟化技术是什么？</p>
+<p>17</p>
+<p>PUE怎样计算，结果怎样解释？</p>
+<p>18</p>
+<p>GB 50174和TIA-942的数据中心等级如何排列？</p>
+<p>19</p>
+<p>数据中心四项功能定位是什么？</p>
+<p>20</p>
+<p>看到促销过载、资源闲置、成本超支、数据泄露时，分别对应哪些规划缺陷？</p>
+<p> </p>
+<p>   </p>
+<p>     </p>
+<p>&#x2F;&#x2F;&#x2F;</p>
+<p>     </p>
+<p>LAST</p>
+<p>   </p>
+<p>       </p>
+<p>     </p>
+<p>写在最后</p>
+<p>     </p>
+<p>SUMMARY · REVIEW SMARTER</p>
+<p>   </p>
+<p> </p>
+<p>第6章的最小骨架是：</p>
+<p>先用“业资预安弹性监”做总体规划，再选“公私混”和“I、P、S、F”，随后分别规划计算、存储，最后落到云数据中心的网络、虚拟化、安全、能源和建设。</p>
+<p>如果你能闭卷默写七要素五流程，正确选择部署类型、服务模式和存储技术，并用PUE完成一道计算题，就完成了本章第一轮学习。</p>
+<p>我是陈文茂，正在用自己的方式重新整理系统规划与管理师学习资料。</p>
+<p>既然看到这里了，如果觉得有用，随手点个赞、在看、转发三连吧。</p>
+<p>👍 点赞　　👀 在看　　↗ 转发</p>
+<p>THANKS FOR READING</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>系规第6章：云资源规划完整学习笔记</div>
+      <div>https://maoyu92.github.io/2026/07/22/07 AI笔记/软考系规/a048_系规第6章：云资源规划完整学习笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/22/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a047_Orca%EF%BC%9A%E5%B9%B6%E8%A1%8C%20AI%20Agent%20%E7%BC%96%E6%8E%92%E7%9A%84%E7%BB%88%E6%9E%81%E5%B7%A5%E4%BD%9C%E5%8F%B0/" title="Orca：并行 AI Agent 编排的终极工作台">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Orca：并行 AI Agent 编排的终极工作台</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/21/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a049_%E5%A4%9A%20Agent%20%E5%B9%B6%E8%A1%8C%E7%AE%A1%E7%90%86%E6%96%B0%E6%80%9D%E8%B7%AF%EF%BC%9AOrca%20%E6%83%B3%E7%BB%9F%E4%B8%80%E4%BD%A0%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%99%BA%E8%83%BD%E4%BD%93/" title="多 Agent 并行管理新思路：Orca 想统一你的命令行智能体">
+                        <span class="hidden-mobile">多 Agent 并行管理新思路：Orca 想统一你的命令行智能体</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

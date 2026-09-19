@@ -1,0 +1,864 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="423页，9章，162张图表——斯坦福HAI发布的《2026年AI指数报告》，像一份全球AI的体检单。能力在狂飙，信任在塌方，而我们正站在一个”技术跑得比制度快”的转折点上。  一、423页报告，到底在说什么？2026年4月13日，斯坦福大学以人为本人工智能研究所（HAI）发布了第九版《AI指数报告》。这份报告自2017年启动以来，已成为全球AI领域最权威的年度追踪文献，被美国、欧盟、英国等多国">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI成绩单发烫：斯坦福423页报告撕开5个残酷真相">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/03/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a108_AI%E6%88%90%E7%BB%A9%E5%8D%95%E5%8F%91%E7%83%AB%EF%BC%9A%E6%96%AF%E5%9D%A6%E7%A6%8F423%E9%A1%B5%E6%8A%A5%E5%91%8A%E6%92%95%E5%BC%805%E4%B8%AA%E6%AE%8B%E9%85%B7%E7%9C%9F%E7%9B%B8/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="423页，9章，162张图表——斯坦福HAI发布的《2026年AI指数报告》，像一份全球AI的体检单。能力在狂飙，信任在塌方，而我们正站在一个”技术跑得比制度快”的转折点上。  一、423页报告，到底在说什么？2026年4月13日，斯坦福大学以人为本人工智能研究所（HAI）发布了第九版《AI指数报告》。这份报告自2017年启动以来，已成为全球AI领域最权威的年度追踪文献，被美国、欧盟、英国等多国">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/images/c2a7905dccc84566.jpg">
+<meta property="article:published_time" content="2026-06-02T23:06:00.000Z">
+<meta property="article:modified_time" content="2026-06-02T23:06:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/images/c2a7905dccc84566.jpg">
+  
+  
+  <title>AI成绩单发烫：斯坦福423页报告撕开5个残酷真相 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AI成绩单发烫：斯坦福423页报告撕开5个残酷真相"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-03 07:06" pubdate>
+          2026年6月3日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AI成绩单发烫：斯坦福423页报告撕开5个残酷真相</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>423页，9章，162张图表——斯坦福HAI发布的《2026年AI指数报告》，像一份全球AI的体检单。能力在狂飙，信任在塌方，而我们正站在一个”技术跑得比制度快”的转折点上。</p>
+</blockquote>
+<h2 id="一、423页报告，到底在说什么？"><a href="#一、423页报告，到底在说什么？" class="headerlink" title="一、423页报告，到底在说什么？"></a>一、423页报告，到底在说什么？</h2><p>2026年4月13日，斯坦福大学以人为本人工智能研究所（HAI）发布了第九版《AI指数报告》。这份报告自2017年启动以来，已成为全球AI领域最权威的年度追踪文献，被美国、欧盟、英国等多国政府和智库引用。</p>
+<p>与往年不同，2026版做了三个重大调整：</p>
+<ul>
+<li><p><strong>拆分科学与医学</strong>：首次将”AI在科学中”和”AI在医疗中”分为两个独立章节，说明这两个领域的AI应用已经深到需要单独讨论</p>
+</li>
+<li><p><strong>引入AI主权框架</strong>：新增”基础设施主权、数据主权、模型主权、应用主权、人才主权”五个维度，将AI讨论从技术层面拉到地缘政治层面</p>
+</li>
+<li><p><strong>前置环境议题</strong>：数据中心的能源消耗和水资源消耗从技术章移至第一章，AI的可持续性正式成为核心议题</p>
+</li>
+</ul>
+<p>报告的核心矛盾可以用一句话概括：<strong>AI的能力没有平台期，社会的适应能力却出现了平台期。</strong></p>
+<h2 id="二、5个残酷真相"><a href="#二、5个残酷真相" class="headerlink" title="二、5个残酷真相"></a>二、5个残酷真相</h2><h3 id="真相一：中美差距只剩2-7"><a href="#真相一：中美差距只剩2-7" class="headerlink" title="真相一：中美差距只剩2.7%"></a>真相一：中美差距只剩2.7%</h3><p>这可能是整份报告最炸裂的数据。</p>
+<p>截至2026年3月，美国最强模型（Anthropic Claude Opus 4.6）在Arena评分上仅领先中国最优模型（Dola-Seed-2.0 Preview）**2.7%**。而在过去一年内，中美模型在排行榜上多次交替领先——2025年2月，DeepSeek-R1一度追平美国前沿模型。</p>
+<p>更深层的对比：</p>
+<ul>
+<li><p><strong>美国</strong>：50个重要模型（notable models），高影响力专利领先</p>
+</li>
+<li><p><strong>中国</strong>：Top 100高被引AI论文41篇（美国46篇），论文总量、引用量、工业机器人安装量全球第一</p>
+</li>
+<li><p><strong>韩国</strong>：人均AI专利全球第一，成为创新密度标杆</p>
+</li>
+</ul>
+<p>但”差距抹平”不等于”同质化”。两国走的是完全不同的路——美国靠风险投资和前沿实验室的资本集中，中国靠产业政策和引导基金的广泛配置。前者擅长数字虚拟层面的AI，后者在物理具身层面的AI部署规模上逐渐建立壁垒。</p>
+<h3 id="真相二：SWE-bench一年从60-飙到近100"><a href="#真相二：SWE-bench一年从60-飙到近100" class="headerlink" title="真相二：SWE-bench一年从60%飙到近100%"></a>真相二：SWE-bench一年从60%飙到近100%</h3><p>AI能力的进步速度令人窒息：</p>
+<ul>
+<li><p><strong>编程</strong>：SWE-bench Verified基准得分从2025年的约60%跃升至接近100%</p>
+</li>
+<li><p><strong>数学</strong>：Gemini Deep Think在国际数学奥林匹克竞赛中以自然语言端到端方式取得金牌（35分&#x2F;42分满分）</p>
+</li>
+<li><p><strong>网络安全</strong>：AI Agent解决问题的成功率从2024年的15%飙升至93%</p>
+</li>
+<li><p><strong>Agent任务</strong>：OSWorld基准表现从12%跃升至66.3%，与人类仅差6个百分点</p>
+</li>
+</ul>
+<p>但报告同时指出一个关键概念——**”锯齿前沿”（Jagged Frontier）**：</p>
+<ul>
+<li><p>AI能在4.5小时内解出奥数金牌题，但读模拟时钟的准确率只有50.1%（人类90.1%）</p>
+</li>
+<li><p>机器人在软件模拟中任务成功率89.4%，面对真实世界家务任务时仅12%</p>
+</li>
+<li><p>GPT-4o处理真实陈述准确率98.2%，但面对误导性提问时暴跌至64.4%</p>
+</li>
+</ul>
+<p><strong>结论：AI不是全面超越人类，而是在某些维度极强、某些维度极弱。用单一基准跑分来评判AI能力，已经过时了。</strong></p>
+<h3 id="真相三：53-人口渗透率，3年走完互联网20年的路"><a href="#真相三：53-人口渗透率，3年走完互联网20年的路" class="headerlink" title="真相三：53%人口渗透率，3年走完互联网20年的路"></a>真相三：53%人口渗透率，3年走完互联网20年的路</h3><p>生成式AI的普及速度打破了所有历史纪录：</p>
+<ul>
+<li><p>**53%**全球人口渗透率，仅用3年（对比：互联网和个人电脑都花了更长时间）</p>
+</li>
+<li><p>生成式AI为美国消费者创造的年度价值估计约<strong>1720亿美元</strong></p>
+</li>
+<li><p>每用户中位数价值在2025-2026年间增长了<strong>两倍</strong></p>
+</li>
+<li><p>78%的受访组织已在至少一个业务环节中使用AI</p>
+</li>
+</ul>
+<p>但普及并不均匀：</p>
+<ul>
+<li><p>新加坡（61%）、阿联酋（54%）遥遥领先</p>
+</li>
+<li><p>美国仅28.3%，排名第24位</p>
+</li>
+<li><p>普及率与人均GDP高度正相关</p>
+</li>
+</ul>
+<p>投资端同样疯狂：</p>
+<ul>
+<li><p>2025年全球企业AI投资达<strong>5817亿美元</strong>，同比增长130%</p>
+</li>
+<li><p>私人投资<strong>3447亿美元</strong>，增长127.5%</p>
+</li>
+<li><p>生成式AI相关投资增幅超200%</p>
+</li>
+<li><p>十亿美元级融资事件数量近乎翻倍</p>
+</li>
+</ul>
+<h3 id="真相四：模型越强越不透明，安全事故暴增55"><a href="#真相四：模型越强越不透明，安全事故暴增55" class="headerlink" title="真相四：模型越强越不透明，安全事故暴增55%"></a>真相四：模型越强越不透明，安全事故暴增55%</h3><p>这是报告中最令人不安的部分。</p>
+<p><strong>透明度倒退</strong>：基础模型透明度指数从2024年的58分骤降至2025年的40分。超过90%的重要工业模型在发布时未公布训练代码。OpenAI、Anthropic、Google等头部企业已全面停止披露参数规模、数据集大小和训练时长。</p>
+<p><strong>安全事故暴增</strong>：2025年AI事件数据库记录了<strong>362起</strong>负面事件，较2024年的233起增幅超55%。</p>
+<p><strong>能力评估vs责任评估的割裂</strong>：几乎所有模型都公布了能力基准得分（MMLU、SWE-bench等），但在责任AI基准方面大面积留白。仅有Claude Opus 4.5公布了两个以上的责任基准得分。</p>
+<p><strong>安全与性能的权衡陷阱</strong>：实证研究发现，提升隐私保护会降低模型公平性，强化安全防护会牺牲模型准确性。这些维度之间存在内在冲突，现有框架无法有效协调。</p>
+<p>报告的结论很直白：<strong>我们正在失去对前沿AI系统进行外部监督的技术条件。</strong> 欧盟AI法案、美国NIST AI RMF等治理框架，都建立在”AI系统的能力与风险可测量、可披露、可比较”这一前提上——但这个前提正在失效。</p>
+<h3 id="真相五：22-25岁程序员就业下降近20"><a href="#真相五：22-25岁程序员就业下降近20" class="headerlink" title="真相五：22-25岁程序员就业下降近20%"></a>真相五：22-25岁程序员就业下降近20%</h3><p>AI对劳动力市场的冲击已经开始显现：</p>
+<ul>
+<li><p>22-25岁软件开发人员就业人数下降近<strong>20%</strong></p>
+</li>
+<li><p>同一职业中经验更丰富的从业者人数反而增长</p>
+</li>
+<li><p>客服行业等被AI渗透更深的领域也出现类似模式</p>
+</li>
+<li><p>AI带来的生产力提升正集中在初级岗位就业下降的行业中</p>
+</li>
+</ul>
+<p>教育端的矛盾更加尖锐：</p>
+<ul>
+<li><p>超过80%的美国高中生和大学生使用AI完成作业</p>
+</li>
+<li><p>但仅有一半的美国中学制定了AI使用政策</p>
+</li>
+<li><p>仅**6%**的教师表示所在学校的AI政策清晰明确</p>
+</li>
+<li><p>计算机科学专业入学人数下降11%，但AI相关硕士毕业生增长17%</p>
+</li>
+</ul>
+<p>一个有趣的逆转：2022-2024年，美国与加拿大的AI博士毕业生增量<strong>全部流向学术界</strong>，彻底逆转了过去十年新晋AI博士主要进入产业界的趋势。</p>
+<h2 id="三、AI主权：五层蛋糕的博弈"><a href="#三、AI主权：五层蛋糕的博弈" class="headerlink" title="三、AI主权：五层蛋糕的博弈"></a>三、AI主权：五层蛋糕的博弈</h2><p>2026版报告首次将”AI主权”制度化为一套分析框架，分为五个维度：</p>
+<ul>
+<li><p><strong>基础设施层</strong>：美国拥有5427个数据中心，超过其他任何国家10倍以上。但台积电是全球AI芯片的”单一依赖点”</p>
+</li>
+<li><p><strong>数据层</strong>：全球南方国家表现出强烈的”防御性主权”倾向，数据本地化政策激增</p>
+</li>
+<li><p><strong>模型层</strong>：美国累计发布1618个模型，中国849个，拉美仅2个</p>
+</li>
+<li><p><strong>人才层</strong>：流入美国的AI研究人员自2017年骤降89%，仅过去一年下降80%</p>
+</li>
+<li><p><strong>应用层</strong>：数据最薄弱的一环，各国在主权导向的AI采购方面缺乏透明统计</p>
+</li>
+</ul>
+<p>报告直言不讳地指出：虽然各国强调主权，但英伟达的”AI Factory”和OpenAI的Stargate项目正通过与各国电信运营商合作，深度嵌入他国基础设施。<strong>当主权算力由跨国私人资本主导运营时，”主权”的核心究竟是资产所有权、数据控制权，还是关键时刻的审计与切断能力？</strong></p>
+<h2 id="四、对中国AI从业者的启示"><a href="#四、对中国AI从业者的启示" class="headerlink" title="四、对中国AI从业者的启示"></a>四、对中国AI从业者的启示</h2><p>这份报告对中国AI从业者有几个直接信号：</p>
+<p><strong>1. 开源模型的战略价值远超排名</strong></p>
+<p>DeepSeek、Qwen等中国开源前沿模型，其战略价值不在于基准跑分名次，而在于它们是中国技术生态嵌入全球网络的关键媒介。报告明确指出，当性能趋同时，市场将选择”可用性、可靠性、低成本”的模型。</p>
+<p><strong>2. 制造业+AI是差异化壁垒</strong></p>
+<p>中国在全球工业机器人新增装机量份额攀升至54.4%。美国在数字虚拟层面主导，中国在物理具身层面建立壁垒——这是两种截然不同的能力体系。</p>
+<p><strong>3. AI治理的”测量危机”是共同挑战</strong></p>
+<p>模型透明度倒退、评估体系失效、安全与公平的内在冲突——这些问题不分国界。报告认为，”如何客观、可靠地评估前沿大模型”是中美欧能产生实质共识的少数领域之一。</p>
+<p><strong>4. 初级岗位被替代已成现实</strong></p>
+<p>22-25岁程序员就业下降20%的数据值得警惕。AI不会替代所有人，但它正在系统性地替代初级岗位。对个人而言，”学会用AI”比”学会写AI”更重要。</p>
+<h2 id="五、一张图看懂报告核心数据"><a href="#五、一张图看懂报告核心数据" class="headerlink" title="五、一张图看懂报告核心数据"></a>五、一张图看懂报告核心数据</h2><p><img src="/images/c2a7905dccc84566.jpg" srcset="/img/loading.gif" lazyload alt="斯坦福2026 AI指数报告核心数据" title="斯坦福2026 AI指数报告核心数据"></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>斯坦福HAI 2026 AI Index Report 官方页面[1]</p>
+</li>
+<li><p>12个核心要点速览[2]</p>
+</li>
+<li><p>完整报告PDF下载[3]</p>
+</li>
+<li><p>智源社区中文解读[4]</p>
+</li>
+<li><p>复旦发展研究院深度分析[5]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]斯坦福HAI 2026 AI Index Report 官方页面: <em><a target="_blank" rel="noopener" href="https://hai.stanford.edu/ai-index/2026-ai-index-report">https://hai.stanford.edu/ai-index/2026-ai-index-report</a></em></p>
+<p>[2]12个核心要点速览: <em><a target="_blank" rel="noopener" href="https://hai.stanford.edu/news/inside-the-ai-index-12-takeaways-from-the-2026-report">https://hai.stanford.edu/news/inside-the-ai-index-12-takeaways-from-the-2026-report</a></em></p>
+<p>[3]完整报告PDF下载: <em><a target="_blank" rel="noopener" href="https://hai.stanford.edu/assets/files/ai/_index/_report/_2026.pdf">https://hai.stanford.edu/assets/files/ai\_index\_report\_2026.pdf</a></em></p>
+<p>[4]智源社区中文解读: <em><a target="_blank" rel="noopener" href="https://hub.baai.ac.cn/view/53960">https://hub.baai.ac.cn/view/53960</a></em></p>
+<p>[5]复旦发展研究院深度分析: <em><a target="_blank" rel="noopener" href="https://fddi.fudan.edu.cn/d9/1b/c18965a776475/page.htm">https://fddi.fudan.edu.cn/d9/1b/c18965a776475/page.htm</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AI成绩单发烫：斯坦福423页报告撕开5个残酷真相</div>
+      <div>https://maoyu92.github.io/2026/06/03/07 AI笔记/AI工具与模型/a108_AI成绩单发烫：斯坦福423页报告撕开5个残酷真相/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/04/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a107_%E7%BB%BF%E8%89%B2%E7%94%B0%E9%87%8E%E7%9A%84%E6%96%B0%E8%93%9D%E5%9B%BE%EF%BC%9A%E5%86%9C%E4%B8%9A%E5%86%9C%E6%9D%91%E7%8E%B0%E4%BB%A3%E5%8C%96%E3%80%8C%E5%8D%81%E4%BA%94%E4%BA%94%E3%80%8D%E8%A7%84%E5%88%92%E6%B7%B1%E5%BA%A6%E8%A7%A3%E8%AF%BB/" title="绿色田野的新蓝图：农业农村现代化「十五五」规划深度解读">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">绿色田野的新蓝图：农业农村现代化「十五五」规划深度解读</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/03/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a109_73%E5%AE%B6%E5%9B%AD%E5%8C%BA%E7%9A%84_%E7%BB%BF%E8%89%B2%E5%8D%87%E7%BA%A7%E8%B5%9B_%EF%BC%9A2026%E5%B9%B4%E7%94%9F%E6%80%81%E5%B7%A5%E4%B8%9A%E5%9B%AD%E5%8C%BA%E5%88%9B%E5%BB%BA%E5%90%AF%E5%8A%A8/" title="73家园区的&#34;绿色升级赛&#34;：2026年生态工业园区创建启动">
+                        <span class="hidden-mobile">73家园区的&#34;绿色升级赛&#34;：2026年生态工业园区创建启动</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

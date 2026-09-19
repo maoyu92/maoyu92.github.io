@@ -1,0 +1,789 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="填洼、D8 流向、汇流累积到子流域划分一次跑完，还留一份可逐项核对的质检报告。  做流域分析的人大概都经历过这个场面：脚本跑完了，目录里躺着一堆 flow_accumulation.tif 和 streams.shp，图也画出来了，可盯着那张河网，心里没底——密度是不是太高了？阈值凭什么是这个数？上游是不是被 DEM 边界切掉了一截？ 比「跑不完」更麻烦的，是「跑完了不知道对不对」。我把这半年攒">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DEM 水文分析：跑完不知道对不对，才是真麻烦">
+<meta property="og:url" content="https://maoyu92.github.io/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/WorkBuddy%E6%8A%80%E8%83%BD/a008_DEM%20%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%EF%BC%9A%E8%B7%91%E5%AE%8C%E4%B8%8D%E7%9F%A5%E9%81%93%E5%AF%B9%E4%B8%8D%E5%AF%B9%EF%BC%8C%E6%89%8D%E6%98%AF%E7%9C%9F%E9%BA%BB%E7%83%A6/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="填洼、D8 流向、汇流累积到子流域划分一次跑完，还留一份可逐项核对的质检报告。  做流域分析的人大概都经历过这个场面：脚本跑完了，目录里躺着一堆 flow_accumulation.tif 和 streams.shp，图也画出来了，可盯着那张河网，心里没底——密度是不是太高了？阈值凭什么是这个数？上游是不是被 DEM 边界切掉了一截？ 比「跑不完」更麻烦的，是「跑完了不知道对不对」。我把这半年攒">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a008/a1b1310382ce2c39.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a008/f0c78d31eb7fc0b5.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a008/da4e7636cd4f73c5.png">
+<meta property="article:published_time" content="2026-09-16T07:34:00.000Z">
+<meta property="article:modified_time" content="2026-09-16T07:34:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/uploads/ai-notes/a008/a1b1310382ce2c39.png">
+  
+  
+  <title>DEM 水文分析：跑完不知道对不对，才是真麻烦 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DEM 水文分析：跑完不知道对不对，才是真麻烦"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-09-16 15:34" pubdate>
+          2026年9月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">DEM 水文分析：跑完不知道对不对，才是真麻烦</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>填洼、D8 流向、汇流累积到子流域划分一次跑完，还留一份可逐项核对的质检报告。</p>
+</blockquote>
+<p>做流域分析的人大概都经历过这个场面：脚本跑完了，目录里躺着一堆 <code>flow_accumulation.tif</code> 和 <code>streams.shp</code>，图也画出来了，可盯着那张河网，心里没底——密度是不是太高了？阈值凭什么是这个数？上游是不是被 DEM 边界切掉了一截？</p>
+<p>比「跑不完」更麻烦的，是「跑完了不知道对不对」。我把这半年攒下来的技能陆续上架到了 WorkBuddy，一共 11 个，这是第 2 篇。今天讲的 DEM 水文分析，就是冲着这个问题写的：它不只把流程跑完，还会留下一份可以逐项核对的质检报告。</p>
+<h2 id="一、为什么要做"><a href="#一、为什么要做" class="headerlink" title="一、为什么要做"></a>一、为什么要做</h2><p>水文分析的步骤教科书上都有：填洼、D8 流向、汇流累积、河网提取、子流域划分。真上手才发现，麻烦不在算法，而在三件事。</p>
+<p>一是<strong>中间步骤像黑箱</strong>。以前我用零散脚本串流程，换个 DEM、换台机器，参数就飘了；出了问题只能一层层翻中间文件，很难分清是数据问题还是参数问题。</p>
+<p>二是<strong>阈值容易拍脑袋</strong>。河网密不密，全看汇水面积阈值。小一点，河网像毛细血管；大一点，只剩几条主干。很多人（包括我）习惯性填个数就跑，跑完也解释不清为什么是它。</p>
+<p>三是<strong>没人替你写检查清单</strong>。文件生成不等于结果可用。出口点有没有落在边界上？流域是不是被裁掉一半？跟参考河网差多少？这些问题以前都靠人盯着图猜。</p>
+<p>所以这个技能的目标很直接：<strong>把每一步都变成有记录、可核对的一步</strong>。我踩过的坑，反过来就成了它的默认行为。</p>
+<h2 id="二、八步流水线"><a href="#二、八步流水线" class="headerlink" title="二、八步流水线"></a>二、八步流水线</h2><p>整条链路被固定成八个阶段，全部由 <code>scripts/hydrology.py</code> 调用 WhiteboxTools 完成，源 DEM 全程只读。</p>
+<ol>
+<li><p><strong>DEM 体检与坐标系处理</strong>：读取尺寸、分辨率、波段、NoData、坐标系，并做诊断——像元是否正方形、有效栅格占比是否过低；坐标系缺失时直接停下要人声明，绝不按坐标数值猜。</p>
+</li>
+<li><p><strong>填洼、D8 流向、汇流累积</strong>：技能文档写明默认策略是 fill 填洼，汇流累积按栅格数统计。</p>
+</li>
+<li><p><strong>河网提取与阈值标定</strong>：对 0.25、0.5、1、2、5 平方公里五个候选阈值分别提取河网，每个候选都算出栅格数、河网长度与密度。</p>
+</li>
+<li><p><strong>阈值选择</strong>：有参考河网时按 F1 得分选最优；否则用你指定的数值；两者都没有，就取候选中位数，并明确写下「该选择不具水文标定意义」。</p>
+</li>
+<li><p><strong>Strahler 分级与子流域</strong>：同时计算坡度、坡向、山体阴影。</p>
+</li>
+<li><p><strong>出口点与流域划分</strong>：自动识别水流离开 DEM 边界的域出口，或使用你提供的出口点，吸附到河网后划分流域。</p>
+</li>
+<li><p><strong>矢量导出</strong>：河网、子流域、流域、出口点统一写入一个 GeoPackage。</p>
+</li>
+<li><p><strong>出图与报告</strong>：生成三张中文专题图与 <code>manifest.json</code>。</p>
+</li>
+</ol>
+<p><img src="/uploads/ai-notes/a008/a1b1310382ce2c39.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="三、产物长啥样"><a href="#三、产物长啥样" class="headerlink" title="三、产物长啥样"></a>三、产物长啥样</h2><p>一次成功运行后的输出目录：</p>
+<p><code>output/hydro/   ├── manifest.json       质检报告   ├── rasters/            11 个 GeoTIFF   ├── vectors/hydrology.gpkg   ├── figures/            3 张 PNG 专题图   └── work/               中间产物，加 --keep-work 才保留   </code></p>
+<p>栅格目录里是一整套：填洼前后的 DEM、D8 流向、汇流累积、选定河网、Strahler 分级、子流域、流域，加上坡度、坡向、山体阴影，共 11 个文件。</p>
+<p>矢量只有一个 <code>hydrology.gpkg</code>，四个图层：<code>streams</code>（河网线）、<code>subbasins</code>（子流域面）、<code>watershed</code>（流域面）、<code>outlets</code>（吸附后的出口点）。技能文档特别说明，中间的 Shapefile 只算实现产物，对外交付推荐 GeoPackage——一个文件带走全部图层，坐标系不会丢，交付时省心不少。中间转换出来的 Shapefile 有时不带坐标系文件，脚本会按分析 CRS 补上再写入，避免图层在别的软件里变成「未知坐标系」。</p>
+<p>专题图三张：水文分析总览（山体阴影叠子流域、河网与出口点）、D8 汇流累积、坡度图。环境里有 CJK 字体时，图内标注是中文。脚本还会顺手检查三张图的文件体积，偏小就写进警告，提示可能渲染异常。</p>
+<p><img src="/uploads/ai-notes/a008/f0c78d31eb7fc0b5.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="四、质检报告"><a href="#四、质检报告" class="headerlink" title="四、质检报告"></a>四、质检报告</h2><p><code>manifest.json</code> 是这个技能我最喜欢的设计，它把「跑完不知道对不对」拆成了逐项核对。</p>
+<p><strong>数据与坐标系</strong>：源 CRS、是否用了覆盖声明、实际分析 CRS、有没有发生重投影，以及栅格尺寸、分辨率、有效栅格数与有效面积。</p>
+<p><strong>地形与汇流</strong>：高程范围、最大汇流累积栅格数及其对应的上游面积。</p>
+<p><strong>边界覆盖度</strong>：研究区边界落在 DEM 有效范围内的比例。</p>
+<p><strong>阈值标定</strong>：选中的方法（参考河网 F1 最优／用户指定／候选中位数）、选中值，以及每个候选阈值的栅格数、长度、密度与 F1 明细。匹配容差默认 2 个栅格，先把提取结果按容差膨胀，再算 precision、recall 与 F1。</p>
+<p><strong>河网指标</strong>：河网长度、河网密度、Strahler 最高级、子流域数量。</p>
+<p><strong>流域信息</strong>：出口点来源、主出口与第二候选的汇流比、划分出的流域面积。</p>
+<p>最后是<strong>警告清单</strong>。从脚本逻辑看，它至少会在这几种情况下出声：没有参考河网也没指定阈值；最优阈值正好落在候选区间端点上；主出口与第二候选差距不够大，没形成明显主导出口；主出口贴着 DEM 边界，上游来水可能被截断；研究边界没完全落在 DEM 里，或者超出 DEM 范围又没有缓冲；再就是 GeoPackage 里哪个图层是空的，警告会直接点名，并提示回头检查阈值与出口点设置。这些警告不是报错，但每一条都在提醒结果该怎么用。</p>
+<p>技能文档还写了成功标准，不是「文件存在」就算完：退出码为 0、<code>manifest.json</code> 里 <code>status</code> 为 <code>success</code>、核心栅格齐全、GeoPackage 四个图层非空、三张图非空，最后还要人自己看一眼总览图。</p>
+<p>报告开头记着生成时间、耗时、引擎信息（WhiteboxTools 经 pywbt 调用，MIT 许可）和二进制缓存目录；结尾的 <code>outputs</code> 段列出 manifest、栅格目录、GeoPackage 的各图层数量和三张图的文件名。要复现一次结果，看这几段就够了。</p>
+<p><img src="/uploads/ai-notes/a008/da4e7636cd4f73c5.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="五、怎么调用"><a href="#五、怎么调用" class="headerlink" title="五、怎么调用"></a>五、怎么调用</h2><p>在 WorkBuddy 技能市场装好之后，直接对话调用就行，比如：</p>
+<ul>
+<li><p>「帮我跑一遍这份 DEM 的河网提取和子流域划分，结果输出到 hydro 目录」</p>
+</li>
+<li><p>「这是研究区边界和参考河网，帮我标定一下汇水面积阈值」</p>
+</li>
+<li><p>「先给这份 DEM 做个体检，看看坐标系和 NoData 有没有问题」</p>
+</li>
+</ul>
+<p>命令行用法就两种。先体检：</p>
+<p><code>python scripts/hydrology.py inspect --dem &quot;./data/dem.tif&quot;   </code></p>
+<p>再跑完整分析：</p>
+<p><code>python scripts/hydrology.py run \     --dem &quot;./data/dem.tif&quot; \     --boundary &quot;./data/boundary.geojson&quot; \     --reference-streams &quot;./data/streams.geojson&quot; \     --dem-crs-override EPSG:4326 \     --output-dir &quot;./output/hydro&quot;   </code></p>
+<p><code>--boundary</code>、<code>--reference-streams</code>、<code>--pour-points</code> 都是可选的；阈值可以用 <code>--thresholds-km2</code> 改（默认 <code>0.25,0.5,1,2,5</code>），也可以用 <code>--default-threshold-km2</code> 指定一个数或写 <code>auto</code>。<code>--dem-crs-override</code> 只在 DEM 确实没有坐标系、而且有可靠依据时使用，覆盖声明会写进报告。想留着中间文件排查，加 <code>--keep-work</code>。</p>
+<p>自动识别出口点时会保留 5 个候选，主出口要领先第二名 1.5 倍才算明显主导，这两个数分别由 <code>--max-outlets</code> 和 <code>--main-outlet-ratio</code> 控制；出口点吸附距离默认取 3 倍分辨率，也可以用 <code>--snap-distance-m</code> 指定。</p>
+<h2 id="六、边界与注意"><a href="#六、边界与注意" class="headerlink" title="六、边界与注意"></a>六、边界与注意</h2><p>先说依赖。Python 3.9 以上；首次运行脚本会尝试自动安装 numpy、rasterio、pyproj、shapely、geopandas、matplotlib、pywbt，离线环境请提前执行 <code>pip install -r scripts/requirements.txt</code>。WhiteboxTools 二进制约 90 MB，由 pywbt 在首次调用时下载，默认缓存在用户主目录下的 <code>.cache/wbt</code>，可用 <code>--wbt-root</code> 换位置，所以第一次跑必须联网。</p>
+<p>遇到问题时也不用靠猜：脚本用退出码区分情况，0 是成功，1 是运行时错误，2 是输入或参数错误，3 是依赖缺失。</p>
+<p>再说耗时。下载是一次性开销，真正跑起来的时间随 DEM 尺寸增长；候选阈值每多一个，就多一遍河网提取，大范围数据可以把 <code>--thresholds-km2</code> 收窄到两三个候选。</p>
+<p>分辨率这件事必须说清。技能文档里的结论是：30 米量级的分辨率，只适合表达区域尺度的地形控制排水格局；窄城市河道、地下管道、涵洞、路侧排水、堤防、闸门、精细岸线，它解析不了，这类用途需要更高分辨率、做过水文修正的地形数据，外加排水设施数据。</p>
+<p>还有几条硬边界：行政区划边界不是天然分水岭；贴着 DEM 边界的流域，在 DEM 外没有地形数据时会被截断，面积只代表 DEM 范围内的汇水范围；参考河网仅用于阈值评分，绝不当结果输出，因为它可能包含人工渠道或概化几何。另外，不要给下游工具传 <code>--esri_pntr</code>，WhiteboxTools 原生的 D8 编码不是 ESRI 约定，脚本内部已经处理好了。</p>
+<p>最后是不承诺的部分：这个技能不提供实测流量、洪水水深、淹没范围、法定河流边界、城市暗管，也不承诺被裁剪 DEM 的完整上游面积。这些需要额外的水文观测、水动力模型或权威管线数据，不是一份 DEM 能算出来的。</p>
+<p>一句话总结：<strong>它负责把可复现的部分做到可复现，把不可靠的部分明确标出来</strong>。</p>
+<hr>
+<p>我是文茂，热衷于分享 AI 工具与开发者生态观察。觉得有用欢迎点赞、在看、转发三连。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DEM 水文分析：跑完不知道对不对，才是真麻烦</div>
+      <div>https://maoyu92.github.io/2026/09/16/07 AI笔记/WorkBuddy技能/a008_DEM 水文分析：跑完不知道对不对，才是真麻烦/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年9月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/WorkBuddy%E6%8A%80%E8%83%BD/a007_PRD%20%E4%BD%8E%E4%BF%9D%E7%9C%9F%E7%BA%BF%E6%A1%86%E5%9B%BE%EF%BC%9A%E6%96%87%E5%AD%97%E5%AF%B9%E4%B8%8D%E4%B8%8A%E5%9B%BE%EF%BC%8C%E5%85%88%E5%B9%B3%E9%93%BA%E4%B8%80%E9%81%8D/" title="PRD 低保真线框图：文字对不上图，先平铺一遍">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PRD 低保真线框图：文字对不上图，先平铺一遍</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/09/13/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a010_%E4%BA%BA%E7%94%9F%20Harness%EF%BC%9A%E6%88%91%E6%8A%8A%E4%BA%BA%E7%94%9F%E5%BD%93%E6%88%90%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%9D%A5%E7%BB%B4%E6%8A%A4/" title="人生 Harness：我把人生当成操作系统来维护">
+                        <span class="hidden-mobile">人生 Harness：我把人生当成操作系统来维护</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

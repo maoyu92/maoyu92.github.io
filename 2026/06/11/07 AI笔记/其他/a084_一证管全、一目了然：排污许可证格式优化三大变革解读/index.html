@@ -1,0 +1,872 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="2026年6月9日，生态环境部印发《关于优化排污许可证（副本）格式的通知》，对排污许可证内容和格式进行全面优化。这是落实《生态环境法典》、推动”一证式”管理的关键一步。  一、为什么需要优化排污许可证格式？排污许可证是固定污染源监管的核心制度，被称为企业的”环保身份证”。但从实际应用来看，现行排污许可证存在三个突出问题：  **基层和企业”看不懂”**：前后信息逻辑性不强，同一环境要素的管理要求">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一证管全、一目了然：排污许可证格式优化三大变革解读">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/11/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a084_%E4%B8%80%E8%AF%81%E7%AE%A1%E5%85%A8%E3%80%81%E4%B8%80%E7%9B%AE%E4%BA%86%E7%84%B6%EF%BC%9A%E6%8E%92%E6%B1%A1%E8%AE%B8%E5%8F%AF%E8%AF%81%E6%A0%BC%E5%BC%8F%E4%BC%98%E5%8C%96%E4%B8%89%E5%A4%A7%E5%8F%98%E9%9D%A9%E8%A7%A3%E8%AF%BB/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="2026年6月9日，生态环境部印发《关于优化排污许可证（副本）格式的通知》，对排污许可证内容和格式进行全面优化。这是落实《生态环境法典》、推动”一证式”管理的关键一步。  一、为什么需要优化排污许可证格式？排污许可证是固定污染源监管的核心制度，被称为企业的”环保身份证”。但从实际应用来看，现行排污许可证存在三个突出问题：  **基层和企业”看不懂”**：前后信息逻辑性不强，同一环境要素的管理要求">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/images/0a0c32db7f00c100.png">
+<meta property="og:image" content="https://maoyu92.github.io/images/debd33a2ad1f3684.png">
+<meta property="article:published_time" content="2026-06-10T18:03:00.000Z">
+<meta property="article:modified_time" content="2026-06-10T18:03:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/images/0a0c32db7f00c100.png">
+  
+  
+  <title>一证管全、一目了然：排污许可证格式优化三大变革解读 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="一证管全、一目了然：排污许可证格式优化三大变革解读"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-11 02:03" pubdate>
+          2026年6月11日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">一证管全、一目了然：排污许可证格式优化三大变革解读</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>2026年6月9日，生态环境部印发《关于优化排污许可证（副本）格式的通知》，对排污许可证内容和格式进行全面优化。这是落实《生态环境法典》、推动”一证式”管理的关键一步。</p>
+</blockquote>
+<h2 id="一、为什么需要优化排污许可证格式？"><a href="#一、为什么需要优化排污许可证格式？" class="headerlink" title="一、为什么需要优化排污许可证格式？"></a>一、为什么需要优化排污许可证格式？</h2><p>排污许可证是固定污染源监管的核心制度，被称为企业的”环保身份证”。但从实际应用来看，现行排污许可证存在三个突出问题：</p>
+<ul>
+<li><p>**基层和企业”看不懂”**：前后信息逻辑性不强，同一环境要素的管理要求分散在不同章节，不便于掌握</p>
+</li>
+<li><p>**执法监管”不好用”**：与排放不直接相关的冗余内容过多，关键指标不突出</p>
+</li>
+<li><p>**环境要素”没管全”**：大气、水、固废、噪声、土壤等要素未全部纳入，”一证式”管理基础不牢</p>
+</li>
+</ul>
+<p>这三个问题，直接制约了排污许可制度效能的发挥。</p>
+<p><img src="/images/0a0c32db7f00c100.png" srcset="/img/loading.gif" lazyload alt="排污许可证格式优化：从" title="排污许可证格式优化：从"></p>
+<h2 id="二、三大改革：破解”三不”难题"><a href="#二、三大改革：破解”三不”难题" class="headerlink" title="二、三大改革：破解”三不”难题"></a>二、三大改革：破解”三不”难题</h2><h3 id="改革一：破解”看不懂”——分要素、分排口，一目了然"><a href="#改革一：破解”看不懂”——分要素、分排口，一目了然" class="headerlink" title="改革一：破解”看不懂”——分要素、分排口，一目了然"></a>改革一：破解”看不懂”——分要素、分排口，一目了然</h3><p><strong>核心变化</strong>：每个环境要素独立成章，一个排放口对应一张表。</p>
+<p>以前的排污许可证，信息组织方式是”按流程”——先写企业基本信息，再写排放口，再写管理要求。同一环境要素的信息分散在不同章节，基层执法人员和企业需要”翻来翻去”才能找到相关内容。</p>
+<p>优化后，改为”按要素”组织：</p>
+<ul>
+<li><p><strong>大气污染物</strong>独立成章</p>
+</li>
+<li><p><strong>水污染物</strong>独立成章</p>
+</li>
+<li><p><strong>工业固废</strong>独立成章</p>
+</li>
+<li><p><strong>工业噪声</strong>独立成章</p>
+</li>
+<li><p><strong>土壤污染</strong>独立成章</p>
+</li>
+</ul>
+<p>每个要素下，排放口信息、排放标准、许可排放量、管理要求等”一张表”呈现。<strong>拿到许可证，翻到对应章节，所有信息一目了然</strong>。</p>
+<h3 id="改革二：攻克”不好用”——删冗余、突关键，执法更高效"><a href="#改革二：攻克”不好用”——删冗余、突关键，执法更高效" class="headerlink" title="改革二：攻克”不好用”——删冗余、突关键，执法更高效"></a>改革二：攻克”不好用”——删冗余、突关键，执法更高效</h3><p><strong>核心变化</strong>：删除与排放不直接相关的冗余内容，突出排放标准和许可排放量等关键指标。</p>
+<p>以前的排污许可证，包含大量”背景信息”——企业生产工艺描述、原辅材料清单、环评批复全文等。这些信息对了解企业有帮助，但对执法监管来说是”噪音”。</p>
+<p>优化后：</p>
+<ul>
+<li><p><strong>删除</strong>与排放不直接相关的冗余内容</p>
+</li>
+<li><p><strong>突出</strong>排放标准、许可排放量、排放浓度限值等关键指标</p>
+</li>
+<li><p><strong>加强</strong>二维码标识技术应用，扫码即可查看完整信息</p>
+</li>
+</ul>
+<p>执法现场，扫码即知”这个排放口允许排什么、排多少、怎么监测”。</p>
+<h3 id="改革三：解决”没管全”——全要素纳入，夯实”一证式”基础"><a href="#改革三：解决”没管全”——全要素纳入，夯实”一证式”基础" class="headerlink" title="改革三：解决”没管全”——全要素纳入，夯实”一证式”基础"></a>改革三：解决”没管全”——全要素纳入，夯实”一证式”基础</h3><p><strong>核心变化</strong>：大气、水、工业固废、工业噪声、土壤等环境要素全部纳入排污许可证。</p>
+<p>以前的排污许可证，主要管控大气和水污染物。工业固废、噪声、土壤等要素的管理要求，要么缺失，要么以附件形式存在，缺乏统一管理。</p>
+<p>优化后：</p>
+<ul>
+<li><p><strong>大气</strong>：有组织排放 + 无组织排放</p>
+</li>
+<li><p><strong>水</strong>：废水排放口 + 雨水排放口</p>
+</li>
+<li><p><strong>工业固废</strong>：一般工业固废 + 危险废物</p>
+</li>
+<li><p><strong>工业噪声</strong>：厂界噪声 + 设备噪声</p>
+</li>
+<li><p><strong>土壤</strong>：土壤污染重点监管单位</p>
+</li>
+</ul>
+<p><strong>一个许可证，管全所有环境要素</strong>。这是”一证式”管理的基础性工程。</p>
+<p><img src="/images/debd33a2ad1f3684.png" srcset="/img/loading.gif" lazyload alt="全要素管理：大气、水、固废、噪声、土壤" title="全要素管理：大气、水、固废、噪声、土壤"></p>
+<h2 id="三、关键时间节点"><a href="#三、关键时间节点" class="headerlink" title="三、关键时间节点"></a>三、关键时间节点</h2><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>事项</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>2026年6月9日</strong></td>
+<td>生态环境部印发通知</td>
+</tr>
+<tr>
+<td><strong>2026年8月15日起</strong></td>
+<td>分行业分批次在全国排污许可证管理信息平台更新</td>
+</tr>
+<tr>
+<td><strong>届时</strong></td>
+<td>排污单位可自行下载新版排污许可证，<strong>无需换发纸质证件</strong></td>
+</tr>
+</tbody></table>
+<p>⚠️ <strong>重要提醒</strong>：新版许可证是<strong>自动更新</strong>的，企业不需要重新申报。但企业需要：</p>
+<ol>
+<li><p>关注本行业的更新批次</p>
+</li>
+<li><p>及时下载新版许可证</p>
+</li>
+<li><p>核对信息是否准确</p>
+</li>
+<li><p>按新版格式开展日常管理</p>
+</li>
+</ol>
+<h2 id="四、对各方的影响"><a href="#四、对各方的影响" class="headerlink" title="四、对各方的影响"></a>四、对各方的影响</h2><h3 id="对排污单位"><a href="#对排污单位" class="headerlink" title="对排污单位"></a>对排污单位</h3><ul>
+<li><p><strong>利好</strong>：许可证更易读、更好用，管理要求更清晰</p>
+</li>
+<li><p><strong>挑战</strong>：需要适应新的格式和管理逻辑，特别是固废、噪声、土壤等新增要素的管理要求</p>
+</li>
+<li><p><strong>建议</strong>：提前熟悉新版格式，做好内部培训</p>
+</li>
+</ul>
+<h3 id="对执法部门"><a href="#对执法部门" class="headerlink" title="对执法部门"></a>对执法部门</h3><ul>
+<li><p><strong>利好</strong>：关键指标突出，扫码即查，执法效率大幅提升</p>
+</li>
+<li><p><strong>挑战</strong>：需要更新执法检查清单，适应新的许可证结构</p>
+</li>
+<li><p><strong>建议</strong>：利用过渡期开展培训，熟悉新版许可证的检查要点</p>
+</li>
+</ul>
+<h3 id="对环保行业"><a href="#对环保行业" class="headerlink" title="对环保行业"></a>对环保行业</h3><ul>
+<li><p><strong>利好</strong>：咨询服务市场有新需求（许可证格式转换、合规咨询等）</p>
+</li>
+<li><p><strong>挑战</strong>：技术机构需要更新服务能力</p>
+</li>
+<li><p><strong>建议</strong>：关注各行业的技术规范更新</p>
+</li>
+</ul>
+<h2 id="五、政策背景与制度逻辑"><a href="#五、政策背景与制度逻辑" class="headerlink" title="五、政策背景与制度逻辑"></a>五、政策背景与制度逻辑</h2><p>这次优化不是孤立的，而是排污许可制度改革的延续：</p>
+<ul>
+<li><p><strong>2024年5月</strong>：《全面实行排污许可制实施方案》发布，提出”到2027年，排污许可’一证式’管理全面落实”</p>
+</li>
+<li><p><strong>2026年6月</strong>：《生态环境法典》实施，排污许可制度有了更坚实的法律基础</p>
+</li>
+<li><p><strong>2026年6月9日</strong>：优化排污许可证格式，是落实上述方案和法典的具体举措</p>
+</li>
+</ul>
+<p><strong>制度逻辑</strong>：排污许可制正在从”有没有”（全覆盖）走向”好不好”（高质量）。格式优化是”提质增效”的关键一步。</p>
+<h2 id="六、企业应对建议"><a href="#六、企业应对建议" class="headerlink" title="六、企业应对建议"></a>六、企业应对建议</h2><ol>
+<li><p><strong>关注更新批次</strong>：2026年8月15日起分行业更新，关注本行业的具体时间</p>
+</li>
+<li><p><strong>下载新版许可证</strong>：登录全国排污许可证管理信息平台自行下载</p>
+</li>
+<li><p><strong>核对信息</strong>：检查排放口、排放标准、许可排放量等信息是否准确</p>
+</li>
+<li><p><strong>内部培训</strong>：组织环保管理人员学习新版格式</p>
+</li>
+<li><p><strong>更新台账</strong>：按照新版许可证的要素结构，更新环境管理台账</p>
+</li>
+<li><p><strong>调整监测计划</strong>：按照新版许可证的自行监测要求，调整监测方案</p>
+</li>
+</ol>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>排污许可证格式优化，看似是”技术性调整”，实则是”管理理念升级”——从”以管理部门为中心”转向”以使用者为中心”。</p>
+<p>当许可证变得”看得懂、用得上、管得全”，排污许可制度才能真正发挥”一证式”管理的制度效能。</p>
+<hr>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>生态环境部：关于优化排污许可证（副本）格式的通知[1]</p>
+</li>
+<li><p>环评司有关负责人就《通知》答记者问[2]</p>
+</li>
+<li><p>全国排污许可证管理信息平台[3]</p>
+</li>
+<li><p>《全面实行排污许可制实施方案》[4]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]生态环境部：关于优化排污许可证（副本）格式的通知: <em><a target="_blank" rel="noopener" href="https://www.mee.gov.cn/ywgz/pwxkgl/ygzc/202606/t20260609/_1158984.shtml">https://www.mee.gov.cn/ywgz/pwxkgl/ygzc/202606/t20260609\_1158984.shtml</a></em></p>
+<p>[2]环评司有关负责人就《通知》答记者问: <em><a target="_blank" rel="noopener" href="http://finance.sina.com.cn/wm/2026-06-08/doc-iniatatk5381208.shtml">http://finance.sina.com.cn/wm/2026-06-08/doc-iniatatk5381208.shtml</a></em></p>
+<p>[3]全国排污许可证管理信息平台: <em><a target="_blank" rel="noopener" href="http://permit.mee.gov.cn/">http://permit.mee.gov.cn</a></em></p>
+<p>[4]《全面实行排污许可制实施方案》: <em><a target="_blank" rel="noopener" href="https://www.mee.gov.cn/xxgk2018/xxgk/xxgk06/202405/W020240516346655288329.pdf">https://www.mee.gov.cn/xxgk2018/xxgk/xxgk06/202405/W020240516346655288329.pdf</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>一证管全、一目了然：排污许可证格式优化三大变革解读</div>
+      <div>https://maoyu92.github.io/2026/06/11/07 AI笔记/其他/a084_一证管全、一目了然：排污许可证格式优化三大变革解读/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/11/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a083_%E7%BB%99%20AI%20Agent%20%E8%A3%85%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86%EF%BC%9A%E6%88%91%E5%9C%A8%E7%94%A8%E8%85%BE%E8%AE%AF%E5%9B%9B%E5%B1%82%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9C%9F%E5%AE%9E%E4%BD%93%E9%AA%8C/" title="给 AI Agent 装长期记忆：我在用腾讯四层记忆系统的真实体验">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">给 AI Agent 装长期记忆：我在用腾讯四层记忆系统的真实体验</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/10/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a085_%E4%B8%80%E4%B8%AA%20RL%20%E5%BE%AA%E7%8E%AF%E7%BB%9F%E7%AE%A1%E6%89%80%E6%9C%89%E6%A8%A1%E5%9E%8B%EF%BC%9A%E8%85%BE%E8%AE%AF%E6%B7%B7%E5%85%83%E5%BC%80%E6%BA%90%20UniRL%EF%BC%8C%E6%89%A9%E6%95%A3%E3%80%81LLM%E3%80%81VLM%20%E5%85%A8%E6%90%9E%E5%AE%9A/" title="一个 RL 循环统管所有模型：腾讯混元开源 UniRL，扩散、LLM、VLM 全搞定">
+                        <span class="hidden-mobile">一个 RL 循环统管所有模型：腾讯混元开源 UniRL，扩散、LLM、VLM 全搞定</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

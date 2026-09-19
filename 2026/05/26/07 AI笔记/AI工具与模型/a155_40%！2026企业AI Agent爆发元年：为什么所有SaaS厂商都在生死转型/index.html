@@ -1,0 +1,813 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="40%！2026企业AI Agent爆发元年：为什么所有SaaS厂商都在生死转型2026年，AI Agent不再是科技媒体的热门词汇，而是企业IT架构的底层现实。 Gartner最新预测：2026年将有40%的企业应用嵌入任务型AI Agent，而2025年这个数字还不到5%。全球活跃自主AI Agent数量已突破1.4亿。从金蝶的”灵基”到腾讯的ClawPro，从阿里的千问到华为的AI DC，企">
+<meta property="og:type" content="article">
+<meta property="og:title" content="40%！2026企业AI Agent爆发元年：为什么所有SaaS厂商都在生死转型">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/26/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a155_40%%EF%BC%812026%E4%BC%81%E4%B8%9AAI%20Agent%E7%88%86%E5%8F%91%E5%85%83%E5%B9%B4%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E6%89%80%E6%9C%89SaaS%E5%8E%82%E5%95%86%E9%83%BD%E5%9C%A8%E7%94%9F%E6%AD%BB%E8%BD%AC%E5%9E%8B/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="40%！2026企业AI Agent爆发元年：为什么所有SaaS厂商都在生死转型2026年，AI Agent不再是科技媒体的热门词汇，而是企业IT架构的底层现实。 Gartner最新预测：2026年将有40%的企业应用嵌入任务型AI Agent，而2025年这个数字还不到5%。全球活跃自主AI Agent数量已突破1.4亿。从金蝶的”灵基”到腾讯的ClawPro，从阿里的千问到华为的AI DC，企">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-26T00:06:00.000Z">
+<meta property="article:modified_time" content="2026-05-26T00:06:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>40%！2026企业AI Agent爆发元年：为什么所有SaaS厂商都在生死转型 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="40%！2026企业AI Agent爆发元年：为什么所有SaaS厂商都在生死转型"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-26 08:06" pubdate>
+          2026年5月26日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">40%！2026企业AI Agent爆发元年：为什么所有SaaS厂商都在生死转型</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="40-！2026企业AI-Agent爆发元年：为什么所有SaaS厂商都在生死转型"><a href="#40-！2026企业AI-Agent爆发元年：为什么所有SaaS厂商都在生死转型" class="headerlink" title="40%！2026企业AI Agent爆发元年：为什么所有SaaS厂商都在生死转型"></a>40%！2026企业AI Agent爆发元年：为什么所有SaaS厂商都在生死转型</h1><p>2026年，AI Agent不再是科技媒体的热门词汇，而是企业IT架构的底层现实。</p>
+<p>Gartner最新预测：2026年将有<strong>40%<strong>的企业应用嵌入任务型AI Agent，而2025年这个数字还不到5%。全球活跃自主AI Agent数量已突破</strong>1.4亿</strong>。从金蝶的”灵基”到腾讯的ClawPro，从阿里的千问到华为的AI DC，企业级AI Agent战场已全面开火。</p>
+<p>但硬币的另一面是：一场深刻颠覆正在发生——SaaS厂商正在经历生死大逃杀。</p>
+<hr>
+<h2 id="一、惊人数据：企业AI-Agent正在爆发"><a href="#一、惊人数据：企业AI-Agent正在爆发" class="headerlink" title="一、惊人数据：企业AI Agent正在爆发"></a>一、惊人数据：企业AI Agent正在爆发</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>这些数字值得记住</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>2025年</th>
+<th>2026年预测</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>企业AI Agent部署率</td>
+<td>&lt;5%</td>
+<td><strong>40%</strong></td>
+</tr>
+<tr>
+<td>全球Agent市场规模</td>
+<td>51亿美元</td>
+<td><strong>471亿美元</strong>（2030年）</td>
+</tr>
+<tr>
+<td>Gartner全球AI总支出</td>
+<td>1.8万亿美元</td>
+<td><strong>2.6万亿美元</strong>（+47%）</td>
+</tr>
+<tr>
+<td>全球活跃自主Agent数</td>
+<td>—</td>
+<td><strong>1.4亿</strong>（已突破）</td>
+</tr>
+</tbody></table>
+<p><strong>关键结论</strong>：2026年不是AI Agent的”试点年”，而是”规模落地年”。企业不再讨论”要不要用”，而是”怎么用得更好”。</p>
+<hr>
+<h2 id="二、群雄混战：企业Agent市场三大势力"><a href="#二、群雄混战：企业Agent市场三大势力" class="headerlink" title="二、群雄混战：企业Agent市场三大势力"></a>二、群雄混战：企业Agent市场三大势力</h2><p>当前企业AI Agent市场形成了三股势力的激烈碰撞：</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>1. 科技巨头：全栈生态碾压</p>
+<p><strong>阿里云</strong>在2026云峰会上连发32个新品，完成”芯片-云-模型-推理”全栈Agent化升级。千问3.7-Max在Arena榜单登顶国产第一，Qwen3.7甚至实现了<strong>35小时超长程Agent任务</strong>：在一个全新芯片平台上自主编程、超1000次工具调用，完成关键内核的自我进化。</p>
+<p><strong>腾讯云</strong>推出ClawPro专有云版、ADP智能工作台、Agent Memory、Agent Storage等产品，并在近期宣布Hy3 preview、DeepSeek-V4-Pro模型将于5月27日结束免费公测，转为正式商用——这是企业级Agent服务商业化的重要信号。</p>
+<p><strong>百度</strong>在Create 2026大会上，李彦宏发布AI时代新度量衡”DAA（日活智能体数）”，将AI时代的竞争标准从DAU切换到了Agent活跃度。</p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>2. 传统软件巨头：被迫的自我颠覆</p>
+<p>最典型的案例是<strong>金蝶</strong>。</p>
+<p>5月20日，金蝶发布企业AI操作系统”灵基”，高调宣布引领企业进入AI原生时代。但市场反应冷淡——股价年内跌幅已超40%。</p>
+<p>原因很残酷：金蝶的商业模式正在被AI Agent从底层”降维打击”。</p>
+<ul>
+<li><p>传统SaaS：用户适应软件制定的固化流程</p>
+</li>
+<li><p>AI Agent：软件理解用户意图，自动调用最适合的技能</p>
+</li>
+</ul>
+<p>当Claude Code这类Agent能像真人一样自主操作电脑完成工作时，”我们还需要SaaS吗？”这个问题不再只是假设。金蝶比任何人都清楚——如果自己不定义AI Agent时代的入口，就只能被别人取代。</p>
+<h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><p>3. 算力与模型厂商：底层话语权</p>
+<p><strong>英伟达</strong>的Q1财报给出了最直接的答案：营收816亿美元，同比+85%，数据中心业务同比增长92%至752亿美元。黄仁勋在电话会上描绘”数十亿AI Agent”的未来图景，并宣布新增股票回购授权至<strong>1000亿美元</strong>——刷新公司历史纪录。</p>
+<p><strong>阶跃星辰</strong>成为资本市场的宠儿：5月19日工商变更显示注册资本从5727万增至6052万，知情人士透露金蝶参与了其25亿美元新一轮融资。</p>
+<hr>
+<h2 id="三、核心趋势：从”卖软件”到”卖Agent”"><a href="#三、核心趋势：从”卖软件”到”卖Agent”" class="headerlink" title="三、核心趋势：从”卖软件”到”卖Agent”"></a>三、核心趋势：从”卖软件”到”卖Agent”</h2><h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><p>商业模式根本性转变</p>
+<p>传统SaaS：订阅制，按用户数&#x2F;功能模块收费，即使不用也要付费 MaaS（Model as a Service）：按Token计费，看得见消耗，算得清ROI</p>
+<p>这种转变对企业的吸引力是巨大的：企业可以通过Token看清实际付费情况，不再为”用不上的功能”买单。但对SaaS厂商而言，这是”左手打右手”的痛苦——AI的的本质是”提效减人”，减少的人力成本恰好是SaaS厂商的收入来源。</p>
+<h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><p>Gartner的三阶段论</p>
+<p><code>阶段1：基础能力建设（单点任务赋能）       ↓   阶段2：智能化升级（多Agent协作）       ↓   阶段3：价值优化与自适应进化（真正成为&quot;数字员工&quot;）   </code></p>
+<p>大多数企业目前仍处于阶段1，但阶段2和3的竞争已经开打。</p>
+<hr>
+<h2 id="四、谁在真正赢得这场战争？"><a href="#四、谁在真正赢得这场战争？" class="headerlink" title="四、谁在真正赢得这场战争？"></a>四、谁在真正赢得这场战争？</h2><p>一个值得深思的观察：<strong>真正被市场信任的AI，不是来自传统软件厂商，而是来自”AI原生企业”。</strong></p>
+<p>在金蝶5月20日的发布会上，真正站台的不是金蝶自己，而是阶跃星辰、月之暗面、硅基流动等大模型厂商。在同一天的阿里云峰会上，月之暗面、Minimax、智谱、阶跃星辰等AI企业受邀共同打造”最开放的云”。</p>
+<p>当底层大模型和算力被少数巨头牢牢掌控时，传统软件厂商的角色更像是”集成商和应用层大脑”——智能化上限一开始就受限于模型的天花板。</p>
+<hr>
+<h2 id="五、对中小企业意味着什么？"><a href="#五、对中小企业意味着什么？" class="headerlink" title="五、对中小企业意味着什么？"></a>五、对中小企业意味着什么？</h2><p>好消息是：AI Agent正在大幅降低企业使用AI的门槛。</p>
+<ul>
+<li><p><strong>腾讯轻量应用服务器Lighthouse</strong>上线Hermes Agent专属应用模板，支持云端一键快速部署</p>
+</li>
+<li><p><strong>浪潮信息</strong>发布首款AI原生工作站——元脑智能体工作站Z3，填补”中小企业OPC规模化落地智能体应用”的市场空白</p>
+</li>
+<li><p>全球企业级Agent大规模部署率仍不足25%，市场空间广阔</p>
+</li>
+</ul>
+<p>坏消息是：<strong>选型依然需要理性</strong>。腾讯云企业版4月28日从78元&#x2F;人&#x2F;月上调至198元&#x2F;人&#x2F;月，腾讯云AI算力相关产品也在5月9日上调5%——成本正在上升。</p>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>2026年，AI Agent从”技术热点”变成了”企业标配”。但这场革命的真实剧本，比大多数媒体描述的更残酷：</p>
+<blockquote>
+<p>“</p>
+<p>不是所有玩家都能登上AI时代的船。传统SaaS厂商正在经历”SaaS版本的诺基亚时刻”——不是不努力，而是在另一个维度的颠覆者面前，曾经的优势反而成了转型的包袱。</p>
+</blockquote>
+<p>对于企业而言，问题的核心不再是”要不要用AI Agent”，而是”谁来定义我们企业的AI Agent入口”。</p>
+<p>那个入口，正在变得越来越珍贵，也越来越危险。</p>
+<hr>
+<p><strong>相关阅读</strong>：</p>
+<ul>
+<li><p>Gartner 2026十大战略趋势[1]</p>
+</li>
+<li><p>阿里云2026峰会全文[2]</p>
+</li>
+<li><p>金蝶灵基系统深度解析[3]</p>
+</li>
+</ul>
+<h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><p>引用链接</p>
+<p>[1]Gartner 2026十大战略趋势: <em><a target="_blank" rel="noopener" href="https://www.gartner.com/cn/information-technology/articles/ai-agents">https://www.gartner.com/cn/information-technology/articles/ai-agents</a></em></p>
+<p>[2]阿里云2026峰会全文: <em><a target="_blank" rel="noopener" href="https://summit.aliyun.com/2026/keynote">https://summit.aliyun.com/2026/keynote</a></em></p>
+<p>[3]金蝶灵基系统深度解析: <em><a target="_blank" rel="noopener" href="https://www.donews.com/article/detail/8234/101644.html">https://www.donews.com/article/detail/8234/101644.html</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>40%！2026企业AI Agent爆发元年：为什么所有SaaS厂商都在生死转型</div>
+      <div>https://maoyu92.github.io/2026/05/26/07 AI笔记/AI工具与模型/a155_40%！2026企业AI Agent爆发元年：为什么所有SaaS厂商都在生死转型/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/27/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a154_%E4%B8%87%E8%83%BD%E6%8E%A5%E5%8F%A3%EF%BC%9AMCP%E5%8D%8F%E8%AE%AE%E6%AD%A3%E5%9C%A8%E6%88%90%E4%B8%BAAI%20Agent%E7%9A%84%E3%80%8CUSB-C%E3%80%8D/" title="万能接口：MCP协议正在成为AI Agent的「USB-C」">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">万能接口：MCP协议正在成为AI Agent的「USB-C」</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/25/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a156_Kimi%20WebBridge%EF%BC%9A%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%E7%BB%99AI%E8%A3%85%E4%B8%8A%E4%BA%86%E4%B8%80%E5%8F%8C_%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%8B%E6%89%8B_/" title="Kimi WebBridge：月之暗面给AI装上了一双&#34;浏览器之手&#34;">
+                        <span class="hidden-mobile">Kimi WebBridge：月之暗面给AI装上了一双&#34;浏览器之手&#34;</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

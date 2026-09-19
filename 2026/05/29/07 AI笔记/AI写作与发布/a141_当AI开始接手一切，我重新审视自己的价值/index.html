@@ -1,0 +1,757 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="“ 一个环保算法工程师，入职一个多月，80%以上的工作已交由AI完成，写下了这些真实的感悟。  01入职公司一个多月，我几乎全程依托AI辅助开展工作。 日常80%以上的工作内容，都是通过AI工具、Web Coding、智能部署等方式高效完成的——公司内部”小龙虾”效率工具部署、业务流程提效、算法优化、工程化落地……在这种高强度、全方位的AI辅助工作模式下，我对当下技术变革、行业迭代和职场生存逻辑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="当AI开始接手一切，我重新审视自己的价值">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/29/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a141_%E5%BD%93AI%E5%BC%80%E5%A7%8B%E6%8E%A5%E6%89%8B%E4%B8%80%E5%88%87%EF%BC%8C%E6%88%91%E9%87%8D%E6%96%B0%E5%AE%A1%E8%A7%86%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BB%B7%E5%80%BC/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="“ 一个环保算法工程师，入职一个多月，80%以上的工作已交由AI完成，写下了这些真实的感悟。  01入职公司一个多月，我几乎全程依托AI辅助开展工作。 日常80%以上的工作内容，都是通过AI工具、Web Coding、智能部署等方式高效完成的——公司内部”小龙虾”效率工具部署、业务流程提效、算法优化、工程化落地……在这种高强度、全方位的AI辅助工作模式下，我对当下技术变革、行业迭代和职场生存逻辑">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-29T14:05:00.000Z">
+<meta property="article:modified_time" content="2026-05-29T14:05:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>当AI开始接手一切，我重新审视自己的价值 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="当AI开始接手一切，我重新审视自己的价值"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-29 22:05" pubdate>
+          2026年5月29日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">当AI开始接手一切，我重新审视自己的价值</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>“</p>
+<p>一个环保算法工程师，入职一个多月，80%以上的工作已交由AI完成，写下了这些真实的感悟。</p>
+</blockquote>
+<h2 id="01"><a href="#01" class="headerlink" title="01"></a>01</h2><p>入职公司一个多月，我几乎全程依托AI辅助开展工作。</p>
+<p>日常80%以上的工作内容，都是通过AI工具、Web Coding、智能部署等方式高效完成的——公司内部”小龙虾”效率工具部署、业务流程提效、算法优化、工程化落地……在这种高强度、全方位的AI辅助工作模式下，我对当下技术变革、行业迭代和职场生存逻辑，有了非常深刻的全新认知。</p>
+<p><strong>当下AI的发展速度远超想象。</strong> 这是一种全球顶尖人才、资金、资源集中涌入形成的碾压式创新力量。各行各业最聪明的人都在持续为AI生态做迭代、做改造、做突破，技术更新的频率、能力下放的速度极其惊人，行业的技术壁垒正在被快速重构。</p>
+<h2 id="02"><a href="#02" class="headerlink" title="02"></a>02</h2><p>回望我们环保算法、视觉算法的迭代历程，这种降维打击式的变革感受尤为深刻。</p>
+<p>早前做水质时间序列预测，我们还在深耕机理模型、梳理传导逻辑、手动调试参数，依靠传统经验一点点打磨模型。而技术迭代转瞬即至——从LSTM，到Facebook Prophet，再到谷歌TensFM等新一代模型接连问世，直接实现无需复杂训练、开箱即用，对传统时序算法形成彻底的降维打击。</p>
+<p>视觉识别领域更是如此。</p>
+<p>行业早已从传统YOLO单模型迭代，快速迈入多模态、语义级通用检测时代。如今Local-Anything、Grounding-DINO等通用语义模型，能够实现”万物可识别、场景自适应”，彻底颠覆了传统目标检测的开发逻辑。</p>
+<p>过去需要算法工程师深耕许久、逐场景调优的技术工作，现在通用大模型依靠海量世界知识可以快速实现、灵活改造、迭代落地。</p>
+<h2 id="03"><a href="#03" class="headerlink" title="03"></a>03</h2><p>这也让我清晰意识到一个核心问题：</p>
+<p><strong>传统开发和算法岗位的技术壁垒正在快速变薄。</strong></p>
+<p>过去我们引以为傲的代码积累、流程经验、工程沉淀，在AI Native的开发模式下，优势正在快速弱化。无论边缘计算、嵌入式开发、业务系统搭建，还是复杂算法落地，曾经难度极高、门槛极高的工作，依托AI辅助都能快速落地实现。</p>
+<p>传统企业和老工程师沉淀的老旧框架、自研平台、固有流程，曾经是核心资产，如今反而可能成为迭代负担和创新枷锁。很多职场人被固有工作模式、固化业务流程束缚，疲于应付日常工作，没有精力跟进新技术、新模型，不知不觉就形成了巨大的信息差和能力差。</p>
+<h2 id="04"><a href="#04" class="headerlink" title="04"></a>04</h2><p>AI的颠覆并不只是停留在算法和开发层面，而是渗透到学习、记录、输出、办公的方方面面。</p>
+<p>最早我们靠手写、纸质日记记录知识，后来迎来数字化时代，依次用过OneNote、印象笔记、为知笔记，实现了资料线上化存储。再后来接触Obsidian + Markdown体系，依靠插件生态、双链笔记、格式自由转换，能够自主将笔记导出、整理、封装，甚至转为HTML、搭建个人博客——当时已经觉得是极致高效、迈入了全新的知识管理时代。</p>
+<p>而现在，AI直接完成了全链路降维颠覆：</p>
+<p>AI自动整理笔记、自动归纳总结、自动梳理逻辑，还能直接写文档、写博客、写HTML、做排版、生成PPT、制作动画，实现从知识输入、整理、创作、可视化输出一条龙全自动完成。</p>
+<p>短短数年，知识管理和办公生产力的迭代速度堪称颠覆式。<strong>曾经需要个人长期积累、刻意练习、花费大量时间打磨的技能，如今AI可以一键、批量、高质量完成。</strong></p>
+<h2 id="05"><a href="#05" class="headerlink" title="05"></a>05</h2><p>时代的趋势不会因为个人停滞而放缓。</p>
+<p>你不去拥抱AI、优化效率、升级认知，总会有人用更高效、更先进的方式替代传统工作模式。公司全员的AI提效是必然趋势，所有人都会潜移默化地适配新的工作方式。</p>
+<p><strong>淘汰的从来不是岗位，而是固守旧模式、拒绝迭代的思维。</strong></p>
+<p>结合这段时间的工作与探索，我深刻明白，未来职场的核心竞争力，早已不是”会不会写代码、会不会跑流程”，而是能否持续对接前沿AI能力、能否打通新技术与业务的结合点、能否用AI重构工作效率。</p>
+<p>未来我会持续保持技术敏感，主动跟进最新模型、最新算法与开发范式，持续打磨”AI + 业务”的落地能力，消除信息差、打破能力瓶颈，始终跟上技术迭代节奏，不被行业快速发展的浪潮落下，持续为团队和业务创造更高的效率价值与技术价值。</p>
+<hr>
+<p><em>相关链接：</em></p>
+<ul>
+<li><p>Grounding-DINO：<a target="_blank" rel="noopener" href="https://github.com/IDEA-Research/GroundingDINO/[1/]">https://github.com/IDEA-Research/GroundingDINO\[1\]</a></p>
+</li>
+<li><p>Local-Anything：<a target="_blank" rel="noopener" href="https://github.com/id/[2/]">https://github.com/id\[2\]</a> stadium&#x2F;Local-Anything</p>
+</li>
+<li><p>TensFM（谷歌时序模型）：<a target="_blank" rel="noopener" href="https://github.com/google/tensfm/[3/]">https://github.com/google/tensfm\[3\]</a></p>
+</li>
+<li><p>Prophet（Facebook时序预测）：<a target="_blank" rel="noopener" href="https://facebook.github.io/prophet//[4/]">https://facebook.github.io/prophet/\[4\]</a></p>
+</li>
+</ul>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>引用链接</p>
+<p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/IDEA-Research/GroundingDINO">https://github.com/IDEA-Research/GroundingDINO</a></em></p>
+<p>[2]<em><a target="_blank" rel="noopener" href="https://github.com/id">https://github.com/id</a></em></p>
+<p>[3]<em><a target="_blank" rel="noopener" href="https://github.com/google/tensfm">https://github.com/google/tensfm</a></em></p>
+<p>[4]<em><a target="_blank" rel="noopener" href="https://facebook.github.io/prophet/">https://facebook.github.io/prophet/</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>当AI开始接手一切，我重新审视自己的价值</div>
+      <div>https://maoyu92.github.io/2026/05/29/07 AI笔记/AI写作与发布/a141_当AI开始接手一切，我重新审视自己的价值/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/30/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a140_%5Blapis%5D%20%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%20Lance%203B%20%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B%E5%85%A8%E8%A7%A3%E6%9E%90/" title="[lapis] 字节跳动 Lance 3B 多模态模型全解析">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">[lapis] 字节跳动 Lance 3B 多模态模型全解析</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/29/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a142_%E8%82%9D%E4%BA%86%E4%B8%A4%E6%99%9A%E4%B8%8A%EF%BC%8C%E6%88%91%E7%BB%88%E4%BA%8E%E6%8A%8A%20Hermes%20Agent%20%E5%9C%A8%20Windows%20%E4%B8%8A%E8%B7%91%E8%B5%B7%E6%9D%A5%E4%BA%86%EF%BC%88%E9%99%84%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B%EF%BC%89/" title="肝了两晚上，我终于把 Hermes Agent 在 Windows 上跑起来了（附国内镜像安装教程）">
+                        <span class="hidden-mobile">肝了两晚上，我终于把 Hermes Agent 在 Windows 上跑起来了（附国内镜像安装教程）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

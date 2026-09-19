@@ -1,0 +1,785 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="当 LiteLLM 在 500 RPS 下延迟飙到 4 分钟，Bifrost 用 Go 写了一个更轻、更快、更省内存的答案。  为什么大模型网关突然又成了瓶颈把 LLM 接入生产系统，很多人第一反应是“先接一个网关”。LiteLLM 长期是默认答案：兼容 OpenAI、Anthropic、Gemini，一个接口管多家供应商。但随着调用量上涨，问题也出来了：  高并发下 P99 延迟迅速恶化  内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="轻量网关逆袭：Bifrost 如何把 LLM 代理延迟压到 LiteLLM 的 1&#x2F;54">
+<meta property="og:url" content="https://maoyu92.github.io/2026/08/03/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a025_%E8%BD%BB%E9%87%8F%E7%BD%91%E5%85%B3%E9%80%86%E8%A2%AD%EF%BC%9ABifrost%20%E5%A6%82%E4%BD%95%E6%8A%8A%20LLM%20%E4%BB%A3%E7%90%86%E5%BB%B6%E8%BF%9F%E5%8E%8B%E5%88%B0%20LiteLLM%20%E7%9A%84%201_54/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="当 LiteLLM 在 500 RPS 下延迟飙到 4 分钟，Bifrost 用 Go 写了一个更轻、更快、更省内存的答案。  为什么大模型网关突然又成了瓶颈把 LLM 接入生产系统，很多人第一反应是“先接一个网关”。LiteLLM 长期是默认答案：兼容 OpenAI、Anthropic、Gemini，一个接口管多家供应商。但随着调用量上涨，问题也出来了：  高并发下 P99 延迟迅速恶化  内">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-03T02:10:00.000Z">
+<meta property="article:modified_time" content="2026-08-03T02:10:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>轻量网关逆袭：Bifrost 如何把 LLM 代理延迟压到 LiteLLM 的 1/54 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="轻量网关逆袭：Bifrost 如何把 LLM 代理延迟压到 LiteLLM 的 1/54"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-08-03 10:10" pubdate>
+          2026年8月3日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">轻量网关逆袭：Bifrost 如何把 LLM 代理延迟压到 LiteLLM 的 1/54</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>当 LiteLLM 在 500 RPS 下延迟飙到 4 分钟，Bifrost 用 Go 写了一个更轻、更快、更省内存的答案。</p>
+</blockquote>
+<h2 id="为什么大模型网关突然又成了瓶颈"><a href="#为什么大模型网关突然又成了瓶颈" class="headerlink" title="为什么大模型网关突然又成了瓶颈"></a>为什么大模型网关突然又成了瓶颈</h2><p>把 LLM 接入生产系统，很多人第一反应是“先接一个网关”。LiteLLM 长期是默认答案：兼容 OpenAI、Anthropic、Gemini，一个接口管多家供应商。但随着调用量上涨，问题也出来了：</p>
+<ul>
+<li><p>高并发下 P99 延迟迅速恶化</p>
+</li>
+<li><p>内存占用持续走高</p>
+</li>
+<li><p>供应商故障时缺少优雅降级</p>
+</li>
+<li><p>多租户预算、鉴权、审计全靠自己拼</p>
+</li>
+</ul>
+<p>更现实的问题是：你的应用可能并不需要 LiteLLM 的“全家桶”，只想要一个轻量、稳定、可观测的转发层。</p>
+<p>这时候，Bifrost 开始进入视野。</p>
+<h2 id="Bifrost-是谁做的"><a href="#Bifrost-是谁做的" class="headerlink" title="Bifrost 是谁做的"></a>Bifrost 是谁做的</h2><p>Bifrost 由 Maxim AI 团队开发，定位是“企业级 AI Gateway”。项目开源，采用 Apache 2.0 协议，官网域名已迁移到 <code>getmaxim.ai/bifrost</code>，GitHub 仓库为 <code>maximhq/bifrost</code>。</p>
+<p>从官方公开 benchmark 看，Bifrost 把自己和 LiteLLM 放在同一硬件、500 RPS 压力下直接对比，核心结论非常鲜明：</p>
+<ul>
+<li><p>P99 延迟比 LiteLLM 快约 54 倍</p>
+</li>
+<li><p>内存占用少约 68%</p>
+</li>
+<li><p>吞吐量高出约 9.5 倍</p>
+</li>
+<li><p>请求成功率高出约 11.22%</p>
+</li>
+</ul>
+<p>这些数字不一定能原样套进你的环境，但至少说明一件事：这条轻量网关路线，在工程上已经跑通了。</p>
+<h2 id="不是又一个代理层：Bifrost-真正在解决什么"><a href="#不是又一个代理层：Bifrost-真正在解决什么" class="headerlink" title="不是又一个代理层：Bifrost 真正在解决什么"></a>不是又一个代理层：Bifrost 真正在解决什么</h2><p>很多人会把 Bifrost 理解成“又一个 API 转发工具”，这低估了它的设计目标。它本质上是在解决四类问题：</p>
+<h3 id="1-多供应商统一接入"><a href="#1-多供应商统一接入" class="headerlink" title="1. 多供应商统一接入"></a>1. 多供应商统一接入</h3><p>OpenAI、Anthropic、Gemini、DeepSeek 等模型供应商，接口风格并不一致。Bifrost 提供统一接入层，上层代码只需换 <code>model</code> 参数，不用改客户端 SDK。</p>
+<h3 id="2-供应商故障时的自动降级"><a href="#2-供应商故障时的自动降级" class="headerlink" title="2. 供应商故障时的自动降级"></a>2. 供应商故障时的自动降级</h3><p>生产环境最怕某个供应商突然抽风。Bifrost 支持 Provider Fallback，当主供应商失败时自动切换备用供应商，把“单点故障”变成“优雅降级”。</p>
+<h3 id="3-预算、配额与多租户治理"><a href="#3-预算、配额与多租户治理" class="headerlink" title="3. 预算、配额与多租户治理"></a>3. 预算、配额与多租户治理</h3><p>团队大了之后，不能所有人都共享一套 API Key。Bifrost 支持按团队、按项目、按虚拟密钥做预算控制，还能追踪审计日志。</p>
+<h3 id="4-Agent-时代的-MCP-与安全护栏"><a href="#4-Agent-时代的-MCP-与安全护栏" class="headerlink" title="4. Agent 时代的 MCP 与安全护栏"></a>4. Agent 时代的 MCP 与安全护栏</h3><p>Bifrost 原生内置 MCP Gateway，可以把 MCP 工具的连接、鉴权、策略统一管理。同时提供实时 Guardrails，对输出做安全拦截和合规校验。</p>
+<h2 id="核心特性拆解"><a href="#核心特性拆解" class="headerlink" title="核心特性拆解"></a>核心特性拆解</h2><h3 id="极简替换现有代码"><a href="#极简替换现有代码" class="headerlink" title="极简替换现有代码"></a>极简替换现有代码</h3><p>官方宣传的一个卖点是：接入 Bifrost 通常只需改一行代码。对 OpenAI SDK 来说，基本就是把 <code>api_key</code> 指向 Bifrost 地址；Anthropic、Google GenAI、LiteLLM、LangChain 也都有兼容层。</p>
+<h3 id="模型目录与虚拟密钥"><a href="#模型目录与虚拟密钥" class="headerlink" title="模型目录与虚拟密钥"></a>模型目录与虚拟密钥</h3><p>Bifrost 维护一个统一 Model Catalog，可以从一个界面查看和管理多个供应商的可用模型。Virtual Key 机制则允许为不同场景生成独立密钥，各自绑定预算和权限。</p>
+<h3 id="可观测性"><a href="#可观测性" class="headerlink" title="可观测性"></a>可观测性</h3><p>Bifrost 原生支持 OpenTelemetry，还自带 Dashboard，不需要额外搭一套监控就能看调用量、延迟、错误率。</p>
+<h3 id="MCP-Gateway"><a href="#MCP-Gateway" class="headerlink" title="MCP Gateway"></a>MCP Gateway</h3><p>这是它和传统 LLM 网关最大的区别之一。传统网关只管模型调用，Bifrost 还试图管 Agent 工具层，把 MCP Server 的连接和权限也纳入统一治理。</p>
+<h2 id="一分钟部署：Docker-Compose-跑起来"><a href="#一分钟部署：Docker-Compose-跑起来" class="headerlink" title="一分钟部署：Docker Compose 跑起来"></a>一分钟部署：Docker Compose 跑起来</h2><p>官方给出的 Docker 部署非常直接：</p>
+<p><code>services:     bifrost:       image: maximhq/bifrost:v1.6.2       container_name: bifrost       ports:         - &quot;8080:8080&quot;       environment:         BIFROST_ADMIN_USERNAME: $&#123;BIFROST_ADMIN_USERNAME&#125;         BIFROST_ADMIN_PASSWORD: $&#123;BIFROST_ADMIN_PASSWORD&#125;       volumes:         - ./data:/app/data       restart: unless-stopped   </code></p>
+<p>启动后，访问 <code>http://&lt;服务器地址&gt;:8080</code>，先在 Web UI 里配置供应商和 API Key，再把应用指向 Bifrost 地址即可。</p>
+<p>官方文档里还单独给了 DeepSeek 接入示例，说明国产模型兼容已经是重点场景。</p>
+<h2 id="和-LiteLLM-比，该怎么选"><a href="#和-LiteLLM-比，该怎么选" class="headerlink" title="和 LiteLLM 比，该怎么选"></a>和 LiteLLM 比，该怎么选</h2><p>并不是说 LiteLLM 不好，而是两者的设计重心不同：</p>
+<ul>
+<li><p>LiteLLM 更偏向“兼容协议多、生态插件丰富”</p>
+</li>
+<li><p>Bifrost 更偏向“企业治理、性能、稳定性和可观测性”</p>
+</li>
+</ul>
+<p>如果你的场景是个人项目、快速验证原型，LiteLLM 仍然足够好用。但如果你的系统已经有多个团队、多供应商、预算限制和合规要求，Bifrost 的治理能力会更对口。</p>
+<p>另一个值得注意的点是：Bifrost 明确宣传自己是 LiteLLM 的 drop-in alternative，并提供迁移文档。这说明两者在接口层面已经尽量对齐，切换成本被有意降低了。</p>
+<h2 id="项目值得关注的三个信号"><a href="#项目值得关注的三个信号" class="headerlink" title="项目值得关注的三个信号"></a>项目值得关注的三个信号</h2><h3 id="信号一：性能不再是玄学"><a href="#信号一：性能不再是玄学" class="headerlink" title="信号一：性能不再是玄学"></a>信号一：性能不再是玄学</h3><p>Bifrost 把延迟、内存、吞吐量都量化为 benchmark，而不是只说“更快”。对基础设施项目来说，可复现性能数据很重要，也说明团队在朝工程化方向走。</p>
+<h3 id="信号二：从“模型网关”走向“Agent-网关”"><a href="#信号二：从“模型网关”走向“Agent-网关”" class="headerlink" title="信号二：从“模型网关”走向“Agent 网关”"></a>信号二：从“模型网关”走向“Agent 网关”</h3><p>MCP Gateway、Guardrails、审计、预算控制，这些都不是传统 LLM 网关的标配，而是 Agent 基础设施才需要的治理能力。Bifrost 的方向不是单纯转发，而是试图成为 AI 应用的管控平面。</p>
+<h3 id="信号三：商业化已经启动"><a href="#信号三：商业化已经启动" class="headerlink" title="信号三：商业化已经启动"></a>信号三：商业化已经启动</h3><p>官网已经出现 Enterprise 试用、Demo 预约和按行业划分的页面，说明这不是一个纯 hobby 项目，而是有商业化意图的 infrastructure 产品。对开源使用者来说，通常意味着维护持续性会更强，但也需要留意后续 license 或功能分层变化。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>Bifrost 代表的是一种新趋势：AI 应用不再只关心“能不能调通模型”，而开始关心“怎么稳定、安全、可观测地管理模型调用”。</p>
+<p>如果你的团队正被 LiteLLM 的性能上限、多租户治理或 MCP 统一管控问题困扰，Bifrost 值得列入下一轮技术调研。它不一定适合所有人，但在“轻量 + 企业治理”这个交叉点上，目前选并不多。</p>
+<hr>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>Bifrost 官网[1]</p>
+</li>
+<li><p>Bifrost GitHub（maximhq&#x2F;bifrost）[2]</p>
+</li>
+<li><p>Bifrost 官方文档[3]</p>
+</li>
+<li><p>Bifrost 部署文档[4]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]Bifrost 官网: <em><a target="_blank" rel="noopener" href="https://www.getmaxim.ai/bifrost">https://www.getmaxim.ai/bifrost</a></em></p>
+<p>[2]Bifrost GitHub（maximhq&#x2F;bifrost）: <em><a target="_blank" rel="noopener" href="https://github.com/maximhq/bifrost">https://github.com/maximhq/bifrost</a></em></p>
+<p>[3]Bifrost 官方文档: <em><a target="_blank" rel="noopener" href="https://docs.getbifrost.ai/overview">https://docs.getbifrost.ai/overview</a></em></p>
+<p>[4]Bifrost 部署文档: <em><a target="_blank" rel="noopener" href="https://github.com/Mo-Morris/bibi-share/blob/main/bifrost/deployment.md">https://github.com/Mo-Morris/bibi-share/blob/main/bifrost/deployment.md</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>轻量网关逆袭：Bifrost 如何把 LLM 代理延迟压到 LiteLLM 的 1/54</div>
+      <div>https://maoyu92.github.io/2026/08/03/07 AI笔记/AI工具与模型/a025_轻量网关逆袭：Bifrost 如何把 LLM 代理延迟压到 LiteLLM 的 1_54/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年8月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/08/03/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a227_ChatGPT%20Plus%20%E5%85%8D%E8%B4%B9%E4%BD%BF%E7%94%A8%E4%B8%80%E4%B8%AA%E6%9C%88%E7%AE%80%E8%A6%81%E6%95%99%E7%A8%8B/" title="ChatGPT Plus 免费使用一个月简要教程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">ChatGPT Plus 免费使用一个月简要教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/27/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a026_AI%20%E8%B6%8A%E6%9D%A5%E8%B6%8A%E8%81%AA%E6%98%8E%EF%BC%8C%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%A6%82%E4%BD%95%E5%81%9A_OpenAI%20%E4%B8%8E%20Anthropic%20%E5%85%B1%E8%AF%86/" title="AI 越来越聪明，提示词如何做|OpenAI 与 Anthropic 共识">
+                        <span class="hidden-mobile">AI 越来越聪明，提示词如何做|OpenAI 与 Anthropic 共识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

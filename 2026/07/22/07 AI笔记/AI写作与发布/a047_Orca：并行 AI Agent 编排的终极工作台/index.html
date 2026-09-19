@@ -1,0 +1,960 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="DEEP DIVE · 深度评测                2026.07                              还在纠结哪个 AI 编码助手最好用？                          并行 AI Agent 编排的          终极工作台                          Orca 深度评测">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Orca：并行 AI Agent 编排的终极工作台">
+<meta property="og:url" content="https://maoyu92.github.io/2026/07/22/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a047_Orca%EF%BC%9A%E5%B9%B6%E8%A1%8C%20AI%20Agent%20%E7%BC%96%E6%8E%92%E7%9A%84%E7%BB%88%E6%9E%81%E5%B7%A5%E4%BD%9C%E5%8F%B0/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="DEEP DIVE · 深度评测                2026.07                              还在纠结哪个 AI 编码助手最好用？                          并行 AI Agent 编排的          终极工作台                          Orca 深度评测">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-22T09:14:00.000Z">
+<meta property="article:modified_time" content="2026-07-22T09:14:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>Orca：并行 AI Agent 编排的终极工作台 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Orca：并行 AI Agent 编排的终极工作台"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-22 17:14" pubdate>
+          2026年7月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Orca：并行 AI Agent 编排的终极工作台</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>DEEP DIVE · 深度评测        </p>
+<p>       2026.07      </p>
+<p>     </p>
+<p>       </p>
+<p>         还在纠结哪个 AI 编码助手最好用？        </p>
+<p>       </p>
+<p>         并行 AI Agent 编排的          终极工作台        </p>
+<p>       </p>
+<p>         Orca 深度评测        </p>
+<p>       </p>
+<p>           
+       </p>
+<p>       </p>
+<p>         25,000+ Stars · MIT 开源 · 30+ Agent 支持 · 4 个月 857 次发布        </p>
+<p>     </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       Stably AI · YC W22      </p>
+<p>     </p>
+<p>       ADE        Agent      </p>
+<p>   </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       📦 4 Parts + Conclusion      </p>
+<p>     </p>
+<p>       👉 滑动      </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       </p>
+<p>         PART 01        </p>
+<p>       </p>
+<p>         2026 年的新问题        </p>
+<p>       </p>
+<p>         为什么需要 ADE        </p>
+<p>     </p>
+<p>     </p>
+<p>       </p>
+<p>         PART 02        </p>
+<p>       </p>
+<p>         什么是 Orca        </p>
+<p>       </p>
+<p>         定位与数据        </p>
+<p>     </p>
+<p>     </p>
+<p>       </p>
+<p>         PART 03        </p>
+<p>       </p>
+<p>         核心功能拆解        </p>
+<p>       </p>
+<p>         7 大亮点        </p>
+<p>     </p>
+<p>     </p>
+<p>       </p>
+<p>         PART 04        </p>
+<p>       </p>
+<p>         为什么值得关注        </p>
+<p>       </p>
+<p>         与你的场景匹配        </p>
+<p>     </p>
+<p>     </p>
+<p>       </p>
+<p>         PART &#x2F;&#x2F;&#x2F;        </p>
+<p>       </p>
+<p>         写在最后        </p>
+<p>       </p>
+<p>         Agent 的 Docker 时刻        </p>
+<p>     </p>
+<p>   </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     2026 年，真正的 10x 开发者不再只用一个 AI 编码助手。    </p>
+<p>   </p>
+<p>     他们同时跑着 Claude Code、Codex、OpenCode，每个在独立 worktree 里并行工作，然后对比结果、合并最优。    </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     如果你还在纠结”哪个 AI 编码助手最好用”，说明你还在单一 agent 时代。2026 年的现实是：<strong>真正的 10x 开发者同时跑 3–5 个编码 agent</strong>。工作流已经稳定下来：拆一个任务，开一个 worktree，把 Claude Code 扔进去；再开一个 worktree，把 Codex 扔进去；再开一个，把 OpenCode 或 Cursor 扔进去。然后对比三个 agent 的输出，cherry-pick 最优部分，合并。    </p>
+<p>   </p>
+<p>     问题是，这个工作流的工具链简直是一团糟。你需要在 tmux pane 之间跳跃、手动执行 git worktree add、在浏览器标签页里看 PR 审核、再开一个 Linear 看板，还要在 Discord 里等通知——你永远不知道哪个 agent 已经跑完了。    </p>
+<p>   </p>
+<p>     Orca 不是又一个”AI IDE”，而是一个全新的品类：<strong>ADE（Agent Development Environment）</strong>——一个专门为并行 agent 编排设计的操作系统级工作台。    </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       </p>
+<p>         01        </p>
+<p>       </p>
+<p>         PART        </p>
+<p>     </p>
+<p>       
+     </p>
+<p>       </p>
+<p>         2026 年，开发者面临的新问题        </p>
+<p>       </p>
+<p>         WHY ADE · 单一 agent 的瓶颈        </p>
+<p>     </p>
+<p>   </p>
+<p>   </p>
+<p>     如果你的工作流还停留在”开一个终端、跑一个 agent、等它做完”的阶段，你可能还没有意识到自己已经落后了。2026 年的前沿开发者已经进入多 agent 并行编排的新范式——不是”哪个 agent 最好”，而是”哪几个 agent 一起跑最优”。    </p>
+<p>   </p>
+<p>     </p>
+<p>       核心矛盾：<strong>单一 agent 的瓶颈不在模型能力，而在编排效率</strong>。你花在等一个 agent 跑完的时间，足够让另一个 agent 跑完另一条路线的方案。      </p>
+<p>   </p>
+<p>   </p>
+<p>     这个问题的本质是：agent 是并行计算的，但开发者工具还是串行的。每个 agent 独立工作很好，但要把它们组织成一个高效的工作流，你需要的不是一个更好的终端，而是一个编排层。    </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       </p>
+<p>         02        </p>
+<p>       </p>
+<p>         PART        </p>
+<p>     </p>
+<p>       
+     </p>
+<p>       </p>
+<p>         什么是 Orca        </p>
+<p>       </p>
+<p>         ADE · 25K STARS · 857 RELEASES        </p>
+<p>     </p>
+<p>   </p>
+<p>   </p>
+<p>     Orca 由 <strong>Stably AI</strong>（YC W22，前 Uber&#x2F;Google 工程师创立）开发，2026 年 3 月开源，<strong>4 个月狂揽 25,000+ GitHub Stars</strong>，MIT 许可证，每日发布——已累计 857 个 release。    </p>
+<p>   </p>
+<p>     </p>
+<p>       传统 IDE 是给人用的，ADE 是给人 + agent 一起用的。      </p>
+<p>   </p>
+<p>   </p>
+<p>     Orca 不捆绑任何 AI 模型，不收取中间商费用。你带着自己已有的订阅进来——Claude Code、Codex、OpenCode、Grok、Cursor、Hermes Agent……Orca 只负责编排：让一堆 agent 在各自的独立 worktree 里并行工作，你在一个统一的界面里观察、对比、审核、合并。    </p>
+<p>   </p>
+<p>     支持 30+ 种 CLI agent，包括我们熟悉的 <strong>Hermes Agent</strong>——这意味着 Orca 可以直接编排你正在用的本地 agent 集群。    </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       </p>
+<p>         03        </p>
+<p>       </p>
+<p>         PART        </p>
+<p>     </p>
+<p>       
+     </p>
+<p>       </p>
+<p>         核心功能深度拆解        </p>
+<p>       </p>
+<p>         7 大亮点 · 每一个都值得单独说        </p>
+<p>     </p>
+<p>   </p>
+<p>   </p>
+<p>     Parallel Worktrees——并行编排的核心    </p>
+<p>   </p>
+<p>     这是 Orca 最核心的设计。<strong>每个 agent 任务跑在独立的 git worktree 里</strong>，而不是同一个工作目录下的分支切换。传统方式下，你 checkout 一个分支、跑 agent、代码冲突、切换到另一个分支、又冲突。Orca 的方式是：同一个 prompt 同时发给 5 个 agent，每个用不同的模型、不同的策略，互不干扰，然后对比谁的输出最好。    </p>
+<p>   </p>
+<p>     Mobile Companion——手机上的 agent 监控室    </p>
+<p>   </p>
+<p>     把 agent 跑在桌面端，人在外面时通过手机查看进度、发后续指令。iOS App Store 和 Android APK 都已上架。推送通知告诉你哪个 agent 跑完了，你可以在手机上批注、发 follow-up，agent 在桌面端继续执行。    </p>
+<p>   </p>
+<p>     Design Mode——点哪里改哪里    </p>
+<p>   </p>
+<p>     内嵌一个真实的 Chromium 浏览器窗口。你点击任意 UI 元素，Orca 自动把它的 HTML、CSS 和一张裁剪后的截图发到 agent 的 prompt 里。从”描述问题”到”看到修复”的链路被压缩到极致。    </p>
+<p>   </p>
+<p>     SSH Worktrees——远程服务器跑 agent    </p>
+<p>   </p>
+<p>     在远程服务器上跑 agent，本地桌面端完成所有操作，自动重连 + 端口转发。这对你的场景特别有价值：<strong>本地双卡做推理，云服务器做 agent 编排，Orca 作为统一操作界面</strong>。    </p>
+<p>   </p>
+<p>     更多能力    </p>
+<p>   </p>
+<p>     原生 GitHub + Linear 集成，在应用内浏览 PR、Issue、看板，直接从任务开 worktree；Annotate AI Diffs 让你在 diff 上直接批注打回给 agent 修改；Account Switcher 实现多账号热切换，实时看用量和配额重置；Orca CLI 让 agent 也能控制 Orca——orca worktree create、snapshot、click、fill，形成 agent 编排 agent 的闭环。    </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       </p>
+<p>         04        </p>
+<p>       </p>
+<p>         PART        </p>
+<p>     </p>
+<p>       
+     </p>
+<p>       </p>
+<p>         为什么它值得你关注        </p>
+<p>       </p>
+<p>         新范式 · 架构匹配 · 免费开源        </p>
+<p>     </p>
+<p>   </p>
+<p>   </p>
+<p>     并行编排是 2026 年的新范式    </p>
+<p>   </p>
+<p>     2025 年，大家还在争论”哪个 AI 编码助手最好”。2026 年，答案已经变了——**不是”哪个”，而是”哪几个”**。并行 agent 编排正在成为标准化工作流。Orca 是这个领域第一个真正意义上的产品级工具。    </p>
+<p>   </p>
+<p>     与你的架构完美匹配    </p>
+<p>   </p>
+<p>     你的基础设施：本地双 5070 Ti（推理中心）通过 frp 隧道连接阿里云固定 IP 服务器。Orca 可以在这个架构上叠加一层编排层——SSH Worktrees 在阿里云上起 agent 任务，Parallel Worktrees 同时跑多个 agent 比对结果，Design Mode 点哪里改哪里。    </p>
+<p>   </p>
+<p>     免费 + MIT 开源    </p>
+<p>   </p>
+<p>     Orca 本身是免费的。你只花 agent 订阅费，<strong>没有中间商差价</strong>。MIT 许可证，可以自己 fork 定制。    </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       </p>
+<p>         &#x2F;&#x2F;&#x2F;        </p>
+<p>       </p>
+<p>         LAST        </p>
+<p>     </p>
+<p>       
+     </p>
+<p>       </p>
+<p>         写在最后        </p>
+<p>       </p>
+<p>         AGENT’S DOCKER MOMENT        </p>
+<p>     </p>
+<p>   </p>
+<p>   </p>
+<p>     Orca 让我想起 Docker 对微服务的意义——在 Docker 出现之前，微服务的编排是一团乱麻；在 Docker 出现之后，编排变成了 docker-compose up。    </p>
+<p>   </p>
+<p>     Orca 对于 AI agent 编排的意义，可能也是如此。它不是又一个 agent 框架，而是<strong>让 agent 能真正协同工作的基础设施层</strong>。    </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     我是 ，热衷于分享 AI 工具与开发实践。    </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     既然看到这里了，如果觉得有用，随手点个赞、在看、转发三连吧。    </p>
+<p>   </p>
+<p>     </p>
+<p>       </p>
+<p>       点赞      </p>
+<p>     </p>
+<p>       </p>
+<p>       在看      </p>
+<p>     </p>
+<p>       </p>
+<p>       转发      </p>
+<p>   </p>
+<p>   </p>
+<p>     THANKS FOR READING</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Orca：并行 AI Agent 编排的终极工作台</div>
+      <div>https://maoyu92.github.io/2026/07/22/07 AI笔记/AI写作与发布/a047_Orca：并行 AI Agent 编排的终极工作台/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/23/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a043_Laguna%20S%202.1%20%E6%B7%B1%E5%BA%A6%E8%AF%84%E6%B5%8B%EF%BC%9A118B%20MoE%EF%BC%8C8B%20%E6%BF%80%E6%B4%BB%E6%89%93%E7%88%86%E5%8D%83%E4%BA%BF%E7%BA%A7/" title="Laguna S 2.1 深度评测：118B MoE，8B 激活打爆千亿级">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Laguna S 2.1 深度评测：118B MoE，8B 激活打爆千亿级</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/22/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a048_%E7%B3%BB%E8%A7%84%E7%AC%AC6%E7%AB%A0%EF%BC%9A%E4%BA%91%E8%B5%84%E6%BA%90%E8%A7%84%E5%88%92%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="系规第6章：云资源规划完整学习笔记">
+                        <span class="hidden-mobile">系规第6章：云资源规划完整学习笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

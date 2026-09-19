@@ -1,0 +1,837 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="“2B 参数，单张消费级显卡跑，密集字幕打平大模型，时间定位超越7B——这不是魔法，这是 NemoStation 的 Marlin-2B。”  一、它解决什么问题视频理解，是大模型的天下。 GPT、Gemini、Claude——这些模型在视频任务上确实强，但强是有代价的：参数量巨大，推理成本高，部署门槛高，普通开发者根本用不起。 更关键的是，大多数通用大模型做视频理解，是”通用”的——你让它分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视频理解不需要大模型！2B参数的Marlin-2B就能胜任">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/30/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a146_%E8%A7%86%E9%A2%91%E7%90%86%E8%A7%A3%E4%B8%8D%E9%9C%80%E8%A6%81%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%812B%E5%8F%82%E6%95%B0%E7%9A%84Marlin-2B%E5%B0%B1%E8%83%BD%E8%83%9C%E4%BB%BB/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="“2B 参数，单张消费级显卡跑，密集字幕打平大模型，时间定位超越7B——这不是魔法，这是 NemoStation 的 Marlin-2B。”  一、它解决什么问题视频理解，是大模型的天下。 GPT、Gemini、Claude——这些模型在视频任务上确实强，但强是有代价的：参数量巨大，推理成本高，部署门槛高，普通开发者根本用不起。 更关键的是，大多数通用大模型做视频理解，是”通用”的——你让它分析">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a146/97573ebd4a7065b4.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a146/621bb5b62b6f6135.png">
+<meta property="article:published_time" content="2026-05-30T14:55:00.000Z">
+<meta property="article:modified_time" content="2026-05-30T14:55:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/uploads/ai-notes/a146/97573ebd4a7065b4.png">
+  
+  
+  <title>视频理解不需要大模型！2B参数的Marlin-2B就能胜任 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="视频理解不需要大模型！2B参数的Marlin-2B就能胜任"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-30 22:55" pubdate>
+          2026年5月30日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">视频理解不需要大模型！2B参数的Marlin-2B就能胜任</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>“2B 参数，单张消费级显卡跑，密集字幕打平大模型，时间定位超越7B——这不是魔法，这是 NemoStation 的 Marlin-2B。”</p>
+</blockquote>
+<h2 id="一、它解决什么问题"><a href="#一、它解决什么问题" class="headerlink" title="一、它解决什么问题"></a>一、它解决什么问题</h2><p>视频理解，是大模型的天下。</p>
+<p>GPT、Gemini、Claude——这些模型在视频任务上确实强，但强是有代价的：参数量巨大，推理成本高，部署门槛高，普通开发者根本用不起。</p>
+<p>更关键的是，大多数通用大模型做视频理解，是”通用”的——你让它分析一段视频，它给你一段综述，但你想问的是”第几秒发生了什么”，它往往给不出精确答案。</p>
+<p>Marlin-2B 的出发点很直接：<strong>不要通用，只要精确。</strong></p>
+<p>它只回答两个问题：</p>
+<ol>
+<li><p><strong>What</strong> — 视频里正在发生什么？（结构化的场景 + 事件描述）</p>
+</li>
+<li><p><strong>When</strong> — 这件事发生在第几秒？（秒级精确的时间定位）</p>
+</li>
+</ol>
+<p>围绕这两个核心问题，Marlin-2B 把每一项能力都调到了 2B 参数级别的极致。</p>
+<hr>
+<h2 id="二、核心能力：两种模式"><a href="#二、核心能力：两种模式" class="headerlink" title="二、核心能力：两种模式"></a>二、核心能力：两种模式</h2><p>Marlin-2B 暴露两个接口，对应两种核心能力：</p>
+<h3 id="caption-模式：密集字幕"><a href="#caption-模式：密集字幕" class="headerlink" title="caption 模式：密集字幕"></a>caption 模式：密集字幕</h3><p>输入一段视频，输出结构化的场景描述 + 带秒级时间戳的事件列表。</p>
+<p><code>from marlin import MarlinRunner      runner = MarlinRunner.from_pretrained(&quot;NemoStation/Marlin-2B&quot;)   result = runner.caption(       video_path=&quot;input.mp4&quot;,       prompt=&quot;详细描述这个视频里发生的事情&quot;   )   # 输出: &#123;scenes: [...], events: [&#123;start: 1.0, end: 3.5, description: &quot;...&quot;&#125;]&#125;   </code></p>
+<p>不是给一段话，而是给你一个带时间戳的事件清单。你可以把它理解为——视频的结构化索引。</p>
+<p><img src="/uploads/ai-notes/a146/97573ebd4a7065b4.png" srcset="/img/loading.gif" lazyload></p>
+<p>find 模式：时间定位</p>
+<p>用自然语言问一个问题，模型返回事件发生的时间段。</p>
+<p><code>result = runner.find(       video_path=&quot;input.mp4&quot;,       query=&quot;这个人什么时候开始跑步的？&quot;   )   # 输出: &#123;spans: [&#123;start: 12.0, end: 18.5, reason: &quot;...&quot;&#125;]&#125;   </code></p>
+<p>问”什么时候”，它给你精确的起止时间戳。这就是”时间 grounding”——把自然语言 query 映射到视频里的时间区间。</p>
+<p><img src="/uploads/ai-notes/a146/621bb5b62b6f6135.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="三、硬核数据：打平还是超越"><a href="#三、硬核数据：打平还是超越" class="headerlink" title="三、硬核数据：打平还是超越"></a>三、硬核数据：打平还是超越</h2><p>光吹不行，看数据。</p>
+<p>Marlin-2B 官方在三个主流基准上做了评测：</p>
+<p>|<br>基准</p>
+<p> | </p>
+<p>任务</p>
+<p> | </p>
+<p>Marlin-2B 成绩</p>
+<p> | </p>
+<p>对比</p>
+<p> |<br>| — | — | — | — |<br>| <strong>CaReBench</strong> | </p>
+<p>密集字幕</p>
+<p> | </p>
+<p>开源第一</p>
+<p> | </p>
+<p>首个开源且效果领先</p>
+<p> |<br>| <strong>DREAM-1K</strong> | </p>
+<p>密集字幕</p>
+<p> | </p>
+<p>同量级最强</p>
+<p> | </p>
+<p>2B 级别最强</p>
+<p> |<br>| <strong>TimeLens-Bench</strong> | </p>
+<p>时间定位</p>
+<p> | </p>
+<p>超越 7B 模型</p>
+<p> | </p>
+<p>打平 Gemini-2.5 Flash</p>
+<p> |</p>
+<p>关键结论：<strong>同参数级别最强，开源社区同量级无对手</strong>，时间定位甚至超越了参数量更大的模型。</p>
+<p>成本呢？单张消费级显卡（建议 8GB+ VRAM）直接跑。</p>
+<hr>
+<h2 id="四、技术架构：为什么2B能打这么狠"><a href="#四、技术架构：为什么2B能打这么狠" class="headerlink" title="四、技术架构：为什么2B能打这么狠"></a>四、技术架构：为什么2B能打这么狠</h2><p>Marlin-2B 之所以能在 2B 量级打出这种效果，背后的设计思路值得关注：</p>
+<p><strong>基座：Qwen3.5-2B</strong> 基于 Qwen3.5-2B 基座模型，Qwen 家族在多模态上的早熟积累直接受益。</p>
+<p><strong>训练范式：两阶段 SFT + SimPO</strong></p>
+<ul>
+<li><p>SFT（监督微调）：先让模型学会正确的输出格式和结构</p>
+</li>
+<li><p>SimPO（Simple Preference Optimization）：在高质量视频数据上做偏好优化，强化”答对问题”的能力</p>
+</li>
+</ul>
+<p><strong>输入处理：2 FPS 采样</strong> 视频以每秒 2 帧的频率采样，最多处理 240 帧（约 2 分钟）。这个采样率在保证信息密度的同时控制了计算量，让 2B 模型也能处理长视频。</p>
+<p><strong>输出设计：结构化而非文本</strong> 通过 <code>modeling_marlin.py</code> 里的自定义建模代码，强制模型输出 <code>&#123;scenes, events&#125;</code> 或 <code>&#123;spans&#125;</code> 这样的结构化字典，不是自由的文本描述——这直接提升了时间定位的准确性。</p>
+<hr>
+<h2 id="五、局限性"><a href="#五、局限性" class="headerlink" title="五、局限性"></a>五、局限性</h2><p>说完了好，也要说清楚它的局限：</p>
+<ul>
+<li><p><strong>视频时长</strong>：最多 240 帧（约 2 分钟），长视频需要先切分再拼接</p>
+</li>
+<li><p><strong>帧率固定</strong>：2 FPS，不适合需要亚秒级精度的场景</p>
+</li>
+<li><p><strong>VRAM 要求</strong>：推理需要约 8GB+ 显存</p>
+</li>
+<li><p><strong>多模态理解</strong>：侧重时间定位和结构化输出，开放式视频问答不是它的强项</p>
+</li>
+</ul>
+<p>它的定位从一开始就不是”通用视频理解”，而是”精准的结构化输出”。在这个定位下，它的性价比极高。</p>
+<hr>
+<h2 id="六、安装和使用：两行代码跑起来"><a href="#六、安装和使用：两行代码跑起来" class="headerlink" title="六、安装和使用：两行代码跑起来"></a>六、安装和使用：两行代码跑起来</h2><p><strong>环境依赖</strong></p>
+<p><code>pip install torch transformers accelerate   </code></p>
+<p><strong>模型加载（HuggingFace）</strong></p>
+<p><code>from transformers import AutoModelForCausalLM, AutoProcessor   from marlin.marlin_runner import MarlinRunner      runner = MarlinRunner.from_pretrained(&quot;NemoStation/Marlin-2B&quot;)   </code></p>
+<p><strong>密集字幕任务</strong></p>
+<p><code>result = runner.caption(       video_path=&quot;your_video.mp4&quot;,       prompt=&quot;详细描述这个视频的所有事件&quot;   )   for event in result[&quot;events&quot;]:       print(f&quot;&#123;event[&#39;start&#39;]:.1f&#125;s - &#123;event[&#39;end&#39;]:.1f&#125;s: &#123;event[&#39;description&#39;]&#125;&quot;)   </code></p>
+<p><strong>时间定位任务</strong></p>
+<p><code>result = runner.find(       video_path=&quot;your_video.mp4&quot;,       query=&quot;目标人物出现在画面的时间段是？&quot;   )   for span in result[&quot;spans&quot;]:       print(f&quot;&#123;span[&#39;start&#39;]:.1f&#125;s - &#123;span[&#39;end&#39;]:.1f&#125;s: &#123;span[&#39;reason&#39;]&#125;&quot;)   </code></p>
+<p><strong>国内镜像（ModelScope）</strong></p>
+<p><code>runner = MarlinRunner.from_pretrained(&quot;NemoStation/Marlin-2B&quot;, hub=&quot;modelscope&quot;)   </code></p>
+<hr>
+<h2 id="七、适合谁用"><a href="#七、适合谁用" class="headerlink" title="七、适合谁用"></a>七、适合谁用</h2><p>Marlin-2B 不是一个”全能选手”，但它在特定场景下极其好用：</p>
+<ul>
+<li><p><strong>视频内容分析平台</strong>：需要提取视频结构化标签，而不是自由文本描述</p>
+</li>
+<li><p><strong>安防&#x2F;工业检测</strong>：需要知道”第几秒发生了什么”，精确时间戳是刚需</p>
+</li>
+<li><p><strong>视频数据标注工具</strong>：用 find 模式做时间定位标注，效率远超人工</p>
+</li>
+<li><p><strong>长视频检索</strong>：用 caption 建立索引，自然语言直接搜视频内容</p>
+</li>
+<li><p><strong>端侧视频理解</strong>：2B 够小，消费级显卡跑得动，适合私有化部署</p>
+</li>
+</ul>
+<hr>
+<h2 id="八、为什么它值得关注"><a href="#八、为什么它值得关注" class="headerlink" title="八、为什么它值得关注"></a>八、为什么它值得关注</h2><p>大模型时代有一个趋势：”越大越好”。参数越大、能力越强——这个逻辑在通用任务上成立，但在垂直任务上未必。</p>
+<p>Marlin-2B 证明了一件事：<strong>当你把问题收窄到”精确的结构化输出”，2B 参数可以做得比百亿模型更准、更快、更便宜。</strong></p>
+<p>它不是大模型的替代者。它是大模型在特定场景下的高效替代方案。</p>
+<p>当你的需求是”告诉我第几秒发生了什么”，而不是”给这段视频写一段解说词”——Marlin-2B 可能是你见过最高性价比的选择。</p>
+<hr>
+<p><strong>项目地址</strong></p>
+<ul>
+<li><p>HuggingFace：<a target="_blank" rel="noopener" href="https://huggingface.co/NemoStation/Marlin-2B">https://huggingface.co/NemoStation/Marlin-2B</a></p>
+</li>
+<li><p>demo：<a target="_blank" rel="noopener" href="https://vlm.nemostation.com/">https://vlm.nemostation.com/</a></p>
+</li>
+</ul>
+<p><strong>许可</strong>：Apache 2.0，商用无门槛</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>视频理解不需要大模型！2B参数的Marlin-2B就能胜任</div>
+      <div>https://maoyu92.github.io/2026/05/30/07 AI笔记/AI写作与发布/a146_视频理解不需要大模型！2B参数的Marlin-2B就能胜任/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/30/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a125_Windows%E7%89%88Codex%E6%9D%A5%E4%BA%86%EF%BC%81%E8%BF%99%E6%AC%A1%E6%9B%B4%E6%96%B0%E8%AE%A9AI%E7%9C%9F%E6%AD%A3%E5%8F%98%E6%88%90%E4%BA%86%E4%BD%A0%E7%9A%84_%E5%85%A8%E8%83%BD%E5%90%8C%E4%BA%8B_/" title="Windows版Codex来了！这次更新让AI真正变成了你的&#34;全能同事&#34;">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Windows版Codex来了！这次更新让AI真正变成了你的&#34;全能同事&#34;</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/30/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a127_%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E5%BC%80%E6%BA%903B%E5%85%A8%E8%83%BD%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8BLance%EF%BC%9A%E4%B8%80%E4%B8%AA%E6%A8%A1%E5%9E%8B%E6%90%9E%E5%AE%9A%E5%9B%BE%E5%83%8F%E5%92%8C%E8%A7%86%E9%A2%91%E7%9A%84%E7%90%86%E8%A7%A3%E3%80%81%E7%94%9F%E6%88%90%E4%B8%8E%E7%BC%96%E8%BE%91/" title="字节跳动开源3B全能多模态模型Lance：一个模型搞定图像和视频的理解、生成与编辑">
+                        <span class="hidden-mobile">字节跳动开源3B全能多模态模型Lance：一个模型搞定图像和视频的理解、生成与编辑</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

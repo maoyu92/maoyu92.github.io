@@ -1,0 +1,899 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="小米发布MiMo Code：免费AI编程助手，百万上下文+终端全屏，开发者冲小米MiMo团队在6月10日悄悄上线了一个大杀器——MiMo Code V0.1，一款终端AI编程助手，基于OpenCode构建，MIT协议开源，最关键的是：大模型限时免费用。 这不是又一个套壳CLI。它配备MiMo V2.5多模态模型，拥有百万token上下文窗口，支持TUI全屏交互、Web UI浏览器界面、非交互脚本三">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小米发布MiMo Code：免费AI编程助手，百万上下文+终端全屏，开发者冲">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/11/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a081_%E5%B0%8F%E7%B1%B3%E5%8F%91%E5%B8%83MiMo%20Code%EF%BC%9A%E5%85%8D%E8%B4%B9AI%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%EF%BC%8C%E7%99%BE%E4%B8%87%E4%B8%8A%E4%B8%8B%E6%96%87+%E7%BB%88%E7%AB%AF%E5%85%A8%E5%B1%8F%EF%BC%8C%E5%BC%80%E5%8F%91%E8%80%85%E5%86%B2/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="小米发布MiMo Code：免费AI编程助手，百万上下文+终端全屏，开发者冲小米MiMo团队在6月10日悄悄上线了一个大杀器——MiMo Code V0.1，一款终端AI编程助手，基于OpenCode构建，MIT协议开源，最关键的是：大模型限时免费用。 这不是又一个套壳CLI。它配备MiMo V2.5多模态模型，拥有百万token上下文窗口，支持TUI全屏交互、Web UI浏览器界面、非交互脚本三">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-11T09:49:00.000Z">
+<meta property="article:modified_time" content="2026-06-11T09:49:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>小米发布MiMo Code：免费AI编程助手，百万上下文+终端全屏，开发者冲 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="小米发布MiMo Code：免费AI编程助手，百万上下文+终端全屏，开发者冲"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-11 17:49" pubdate>
+          2026年6月11日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">小米发布MiMo Code：免费AI编程助手，百万上下文+终端全屏，开发者冲</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="小米发布MiMo-Code：免费AI编程助手，百万上下文-终端全屏，开发者冲"><a href="#小米发布MiMo-Code：免费AI编程助手，百万上下文-终端全屏，开发者冲" class="headerlink" title="小米发布MiMo Code：免费AI编程助手，百万上下文+终端全屏，开发者冲"></a>小米发布MiMo Code：免费AI编程助手，百万上下文+终端全屏，开发者冲</h1><p>小米MiMo团队在6月10日悄悄上线了一个大杀器——<strong>MiMo Code V0.1</strong>，一款终端AI编程助手，基于OpenCode构建，MIT协议开源，最关键的是：<strong>大模型限时免费用</strong>。</p>
+<p>这不是又一个套壳CLI。它配备MiMo V2.5多模态模型，拥有<strong>百万token上下文窗口</strong>，支持TUI全屏交互、Web UI浏览器界面、非交互脚本三种模式，开箱即用。</p>
+<h2 id="它能干什么？"><a href="#它能干什么？" class="headerlink" title="它能干什么？"></a>它能干什么？</h2><p>一句话：在终端里给你一个AI编程搭档。</p>
+<p>你可以像跟ChatGPT对话一样，在终端里跟它说”帮我写个FastAPI接口”、”重构这个模块”、”跑一下测试看看哪里挂了”，它会直接读你的代码、搜索项目、编辑文件、执行命令，全自动完成。</p>
+<h2 id="三种模式，总有一个适合你"><a href="#三种模式，总有一个适合你" class="headerlink" title="三种模式，总有一个适合你"></a>三种模式，总有一个适合你</h2><h3 id="TUI交互模式：终端里的全屏IDE"><a href="#TUI交互模式：终端里的全屏IDE" class="headerlink" title="TUI交互模式：终端里的全屏IDE"></a>TUI交互模式：终端里的全屏IDE</h3><p><code>mimo-code   </code></p>
+<p>启动后是一个现代化的全屏终端界面，顶部显示当前模型、模式、Git分支和上下文用量，中间是对话流，底部是输入框。</p>
+<p>支持<code>Tab</code>键自动补全命令、<code>Ctrl+R</code>搜索历史、<code>Shift+Tab</code>切换Plan&#x2F;Agent&#x2F;YOLO三种模式：</p>
+<ul>
+<li><p><strong>Plan模式</strong>（蓝色边框）：只读分析，不动代码</p>
+</li>
+<li><p><strong>Agent模式</strong>（青色边框）：正常开发，需要确认</p>
+</li>
+<li><p><strong>YOLO模式</strong>（红色边框）：全自动，不问直接干</p>
+</li>
+</ul>
+<h3 id="Web-UI模式：浏览器里的编程助手"><a href="#Web-UI模式：浏览器里的编程助手" class="headerlink" title="Web UI模式：浏览器里的编程助手"></a>Web UI模式：浏览器里的编程助手</h3><p><code>mimo-code webui   </code></p>
+<p>打开<code>http://localhost:4280</code>，三栏布局——左侧会话列表、中间消息流、右侧编辑器。支持流式输出、工具调用可视化、审批流程，体验类似Cursor但完全在浏览器里。</p>
+<h3 id="非交互模式：脚本自动化利器"><a href="#非交互模式：脚本自动化利器" class="headerlink" title="非交互模式：脚本自动化利器"></a>非交互模式：脚本自动化利器</h3><p><code>mimo-code run &quot;给所有API接口加上单元测试&quot; --no-tui   </code></p>
+<p>直接传入任务，适合CI&#x2F;CD集成和批量处理。</p>
+<h2 id="核心能力：不只是聊天"><a href="#核心能力：不只是聊天" class="headerlink" title="核心能力：不只是聊天"></a>核心能力：不只是聊天</h2><p>MiMo Code内置6个核心工具：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>list_files</code></td>
+<td>列出目录结构</td>
+</tr>
+<tr>
+<td><code>read_file</code></td>
+<td>读取代码文件</td>
+</tr>
+<tr>
+<td><code>write_file</code></td>
+<td>创建&#x2F;写入文件</td>
+</tr>
+<tr>
+<td><code>edit_file</code></td>
+<td>精确文本替换（自动生成diff）</td>
+</tr>
+<tr>
+<td><code>search_text</code></td>
+<td>正则搜索整个项目</td>
+</tr>
+<tr>
+<td><code>run_shell</code></td>
+<td>执行Shell命令</td>
+</tr>
+</tbody></table>
+<p>此外还支持<strong>MCP工具集成</strong>、<strong>Skills自定义技能</strong>和<strong>Hooks钩子</strong>，可以扩展任意外部能力。</p>
+<h2 id="技术亮点：计算、记忆、进化"><a href="#技术亮点：计算、记忆、进化" class="headerlink" title="技术亮点：计算、记忆、进化"></a>技术亮点：计算、记忆、进化</h2><p>MiMo Code围绕三个核心主题设计：</p>
+<p><strong>无限上下文</strong>：通过无损压缩技术，即使是百万行项目也能保持每个关键细节完好无损。Token Plan用户默认支持1M上下文，按量付费用户256K。</p>
+<p><strong>代理-模型协同</strong>：专为MiMo深度优化的代理框架，包含完整的测试、审查和验证闭环。不是简单套一层壳，而是从底层对齐了Agent的工作流。</p>
+<p><strong>组合模式</strong>：规范→计划→构建→报告，先设计后编码，符合工程实践。</p>
+<h2 id="支持哪些模型？"><a href="#支持哪些模型？" class="headerlink" title="支持哪些模型？"></a>支持哪些模型？</h2><table>
+<thead>
+<tr>
+<th>模型</th>
+<th>多模态</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mimo-v2.5-pro</td>
+<td>❌</td>
+<td>最强编码能力</td>
+</tr>
+<tr>
+<td>mimo-v2.5</td>
+<td>✅</td>
+<td>编码+图片&#x2F;视频&#x2F;音频理解</td>
+</tr>
+<tr>
+<td>mimo-v2-pro</td>
+<td>❌</td>
+<td>通用任务</td>
+</tr>
+<tr>
+<td>mimo-v2-omni</td>
+<td>✅</td>
+<td>多模态全能</td>
+</tr>
+<tr>
+<td>mimo-v2-flash</td>
+<td>❌</td>
+<td>轻量快速</td>
+</tr>
+</tbody></table>
+<p>在TUI里直接用<code>@path</code>引用图片、视频或音频文件，多模态模型会自动识别。</p>
+<h2 id="价格：真的免费？"><a href="#价格：真的免费？" class="headerlink" title="价格：真的免费？"></a>价格：真的免费？</h2><p><strong>限时免费</strong>——这是MiMo Code最大的杀手锏。</p>
+<p>按量付费价格（不免费时）：</p>
+<ul>
+<li><p><strong>Pro系列</strong>（mimo-v2.5-pro）：输入¥7&#x2F;百万token，输出¥21&#x2F;百万token</p>
+</li>
+<li><p><strong>标准版</strong>（mimo-v2.5）：输入¥2.8&#x2F;百万token，输出¥14&#x2F;百万token</p>
+</li>
+<li><p><strong>缓存写入免费</strong>，重复查询自动加速省钱</p>
+</li>
+</ul>
+<p>Token Plan模式下，Pro模型消耗2倍token额度，标准版1倍。</p>
+<p>对比Claude Code（Sonnet 4输入百万，输出15&#x2F;百万token）和Cursor（$20&#x2F;月），MiMo Code在免费期间几乎没有成本门槛。</p>
+<h2 id="和竞品比怎么样？"><a href="#和竞品比怎么样？" class="headerlink" title="和竞品比怎么样？"></a>和竞品比怎么样？</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>MiMo Code</th>
+<th>Claude Code</th>
+<th>Cursor</th>
+<th>GitHub Copilot</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>终端TUI</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Web UI</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>百万上下文</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>多模态输入</td>
+<td>✅</td>
+<td>❌</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>MCP集成</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>开源</td>
+<td>✅ GPL-2.0</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>限时免费</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+</tbody></table>
+<p>MiMo Code的差异化在于：<strong>终端原生+百万上下文+多模态+免费</strong>。对于习惯终端工作流的开发者来说，这是一个不需要切换IDE就能用的AI助手。</p>
+<h2 id="怎么装？"><a href="#怎么装？" class="headerlink" title="怎么装？"></a>怎么装？</h2><p>一行命令：</p>
+<p><code>npm i -g @xiaomi-mimo/cli   </code></p>
+<p>然后配置API Key：</p>
+<p><code>mimo-code settings   </code></p>
+<p>或者直接编辑<code>~/.mimo-code/config.json</code>：</p>
+<p><code>&#123;     &quot;apiKey&quot;: &quot;你的API Key&quot;,     &quot;baseUrl&quot;: &quot;https://token-plan-cn.xiaomimimo.com&quot;,     &quot;model&quot;: &quot;mimo-v2.5&quot;,     &quot;temperature&quot;: 0   &#125;   </code></p>
+<p>API Key在platform.xiaomimimo.com[1]注册获取。</p>
+<h2 id="实际体验如何？"><a href="#实际体验如何？" class="headerlink" title="实际体验如何？"></a>实际体验如何？</h2><p>基于OpenCode构建，MiMo Code的TUI体验相当流畅。流式输出、工具调用可视化、diff着色、审批流程这些该有的都有。</p>
+<p>百万上下文是真正的杀手级特性——处理大型项目时不需要手动截断上下文，Agent能”看到”整个代码库，这对于跨文件重构、理解复杂依赖关系非常有用。</p>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>小米这次入场AI编程赛道，打法很清晰：<strong>免费+开源+终端原生</strong>。</p>
+<p>不跟你卷IDE插件，直接在终端里给你一个完整的AI编程Agent。对于每天泡在终端里的开发者来说，这是一个”装了不亏、试试不要钱”的工具。</p>
+<p>限时免费期间，建议所有开发者都去试试。毕竟，<strong>免费的才是最贵的</strong>——但这次，免费可能真的就是免费的。</p>
+<hr>
+<p><em>本文基于MiMo Code V0.1（@xiaomi-mimo&#x2F;<a href="mailto:&#x63;&#x6c;&#x69;&#x40;&#x30;&#x2e;&#x33;&#x2e;&#x30;&#x2d;&#97;&#x6c;&#112;&#x68;&#x61;&#x2e;&#48;">&#x63;&#x6c;&#x69;&#x40;&#x30;&#x2e;&#x33;&#x2e;&#x30;&#x2d;&#97;&#x6c;&#112;&#x68;&#x61;&#x2e;&#48;</a>[2]）撰写，功能和价格可能随版本更新变化。</em></p>
+<p><em>项目地址：<a target="_blank" rel="noopener" href="https://github.com/KoinaAI/MiMo-CLI/[3/]">https://github.com/KoinaAI/MiMo-CLI\[3\]</a></em></p>
+<p><em>官方平台：<a target="_blank" rel="noopener" href="https://platform.xiaomimimo.com/[4/]">https://platform.xiaomimimo.com\[4\]</a></em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]platform.xiaomimimo.com: <em><a target="_blank" rel="noopener" href="https://platform.xiaomimimo.com/">https://platform.xiaomimimo.com</a></em></p>
+<p>[2]<a href="mailto:&#x63;&#108;&#105;&#x40;&#48;&#46;&#51;&#x2e;&#x30;&#45;&#x61;&#x6c;&#x70;&#104;&#x61;&#46;&#48;">&#x63;&#108;&#105;&#x40;&#48;&#46;&#51;&#x2e;&#x30;&#45;&#x61;&#x6c;&#x70;&#104;&#x61;&#46;&#48;</a>: <em>mailto:<a href="mailto:&#99;&#x6c;&#105;&#x40;&#x30;&#46;&#x33;&#x2e;&#x30;&#x2d;&#x61;&#x6c;&#112;&#104;&#x61;&#x2e;&#x30;">&#99;&#x6c;&#105;&#x40;&#x30;&#46;&#x33;&#x2e;&#x30;&#x2d;&#x61;&#x6c;&#112;&#104;&#x61;&#x2e;&#x30;</a></em></p>
+<p>[3]<em><a target="_blank" rel="noopener" href="https://github.com/KoinaAI/MiMo-CLI">https://github.com/KoinaAI/MiMo-CLI</a></em></p>
+<p>[4]<em><a target="_blank" rel="noopener" href="https://platform.xiaomimimo.com/">https://platform.xiaomimimo.com</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>小米发布MiMo Code：免费AI编程助手，百万上下文+终端全屏，开发者冲</div>
+      <div>https://maoyu92.github.io/2026/06/11/07 AI笔记/AI工具与模型/a081_小米发布MiMo Code：免费AI编程助手，百万上下文+终端全屏，开发者冲/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/12/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a079_%E4%B8%83%E5%A4%A7%E4%BB%BB%E5%8A%A1%E3%80%81%E5%8D%81%E5%9B%9B%E9%A1%B9%E5%B7%A5%E7%A8%8B%EF%BC%9A%E5%86%9C%E4%B8%9A%E5%86%9C%E6%9D%91%E7%8E%B0%E4%BB%A3%E5%8C%96_%E5%8D%81%E4%BA%94%E4%BA%94_%E8%A7%84%E5%88%92%E6%B7%B1%E5%BA%A6%E8%A7%A3%E8%AF%BB/" title="七大任务、十四项工程：农业农村现代化&#34;十五五&#34;规划深度解读">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">七大任务、十四项工程：农业农村现代化&#34;十五五&#34;规划深度解读</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/11/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a083_%E7%BB%99%20AI%20Agent%20%E8%A3%85%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86%EF%BC%9A%E6%88%91%E5%9C%A8%E7%94%A8%E8%85%BE%E8%AE%AF%E5%9B%9B%E5%B1%82%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9C%9F%E5%AE%9E%E4%BD%93%E9%AA%8C/" title="给 AI Agent 装长期记忆：我在用腾讯四层记忆系统的真实体验">
+                        <span class="hidden-mobile">给 AI Agent 装长期记忆：我在用腾讯四层记忆系统的真实体验</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

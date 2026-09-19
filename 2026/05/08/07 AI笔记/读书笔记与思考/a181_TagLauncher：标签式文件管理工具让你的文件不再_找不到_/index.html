@@ -1,0 +1,841 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="TagLauncher：标签式文件管理工具让你的文件不再”找不到”你的文件是怎么组织的？ 大多数人的答案是：按文件夹。一个项目一个文件夹，文件夹套子文件夹，子文件夹再套子子文件夹…… 结果呢？  想找”上个月那个PPT”——在3个文件夹里翻了半天  一个文件属于多个项目——复制粘贴，版本混乱  同一个内容多个标签——文件夹根本解决不了   标签式文件管理才是更符合人类思维的方式：一个文件可以同时有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TagLauncher：标签式文件管理工具让你的文件不再&quot;找不到&quot;">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/08/07%20AI%E7%AC%94%E8%AE%B0/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E4%B8%8E%E6%80%9D%E8%80%83/a181_TagLauncher%EF%BC%9A%E6%A0%87%E7%AD%BE%E5%BC%8F%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E8%AE%A9%E4%BD%A0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8D%E5%86%8D_%E6%89%BE%E4%B8%8D%E5%88%B0_/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="TagLauncher：标签式文件管理工具让你的文件不再”找不到”你的文件是怎么组织的？ 大多数人的答案是：按文件夹。一个项目一个文件夹，文件夹套子文件夹，子文件夹再套子子文件夹…… 结果呢？  想找”上个月那个PPT”——在3个文件夹里翻了半天  一个文件属于多个项目——复制粘贴，版本混乱  同一个内容多个标签——文件夹根本解决不了   标签式文件管理才是更符合人类思维的方式：一个文件可以同时有">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-07T16:27:00.000Z">
+<meta property="article:modified_time" content="2026-05-07T16:27:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>TagLauncher：标签式文件管理工具让你的文件不再&#34;找不到&#34; - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="TagLauncher：标签式文件管理工具让你的文件不再&#34;找不到&#34;"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-08 00:27" pubdate>
+          2026年5月8日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          715 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">TagLauncher：标签式文件管理工具让你的文件不再&#34;找不到&#34;</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="TagLauncher：标签式文件管理工具让你的文件不再”找不到”"><a href="#TagLauncher：标签式文件管理工具让你的文件不再”找不到”" class="headerlink" title="TagLauncher：标签式文件管理工具让你的文件不再”找不到”"></a>TagLauncher：标签式文件管理工具让你的文件不再”找不到”</h1><p>你的文件是怎么组织的？</p>
+<p>大多数人的答案是：<strong>按文件夹</strong>。一个项目一个文件夹，文件夹套子文件夹，子文件夹再套子子文件夹……</p>
+<p>结果呢？</p>
+<ul>
+<li><p>想找”上个月那个PPT”——在3个文件夹里翻了半天</p>
+</li>
+<li><p>一个文件属于多个项目——复制粘贴，版本混乱</p>
+</li>
+<li><p>同一个内容多个标签——文件夹根本解决不了</p>
+</li>
+</ul>
+<p><strong>标签式文件管理</strong>才是更符合人类思维的方式：<strong>一个文件可以同时有多个标签</strong>，不再被文件夹的单一层级限制。</p>
+<p>今天介绍的 TagLauncher 就是这样一款工具。</p>
+<hr>
+<h2 id="TagLauncher：Tauri-React-TypeScript-Rust-SQLite"><a href="#TagLauncher：Tauri-React-TypeScript-Rust-SQLite" class="headerlink" title="TagLauncher：Tauri + React + TypeScript + Rust + SQLite"></a>TagLauncher：Tauri + React + TypeScript + Rust + SQLite</h2><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/KatouRyuuji/TagLauncher/[1/]">https://github.com/KatouRyuuji/TagLauncher\[1\]</a> <strong>标签</strong>: 文件管理 · Tauri · React · 桌面应用</p>
+<h3 id="它是什么"><a href="#它是什么" class="headerlink" title="它是什么"></a>它是什么</h3><p>TagLauncher 是一款基于 <strong>Tauri 2 + React + TypeScript + Rust + SQLite</strong> 的 Windows 桌面标签式启动器与本地对象管理工具。</p>
+<p>它的核心理念：<strong>用「标签 + 文件柜 + 收藏」来组织本地文件，不再被文件夹的单一条理限制</strong>。</p>
+<h3 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h3><p><strong>对象管理：</strong></p>
+<ul>
+<li><p>添加文件、文件夹、脚本、程序、图片</p>
+</li>
+<li><p>支持批量导入</p>
+</li>
+<li><p>一键启动对象</p>
+</li>
+<li><p>一键打开所在文件夹</p>
+</li>
+</ul>
+<p><strong>标签系统：</strong></p>
+<ul>
+<li><p>支持标签的增删改查</p>
+</li>
+<li><p><strong>多标签交集筛选</strong>：只想看同时有”工作”和”重要”标签的文件？没问题</p>
+</li>
+<li><p>拖拽打标</p>
+</li>
+<li><p>对象内标签重排</p>
+</li>
+</ul>
+<p><strong>文件柜归类：</strong></p>
+<ul>
+<li><p>类似”项目”的分类概念</p>
+</li>
+<li><p>一个对象可加入多个文件柜</p>
+</li>
+<li><p>拖拽归档和移出</p>
+</li>
+</ul>
+<p><strong>收藏夹：</strong></p>
+<ul>
+<li><p>收藏的对象置顶展示</p>
+</li>
+<li><p>作为内置快捷集合</p>
+</li>
+</ul>
+<p><strong>搜索增强：</strong></p>
+<ul>
+<li><p>三种模式：全部&#x2F;名称&#x2F;标签</p>
+</li>
+<li><p>支持拼音匹配</p>
+</li>
+<li><p>支持同义词扩展</p>
+</li>
+<li><p>支持表达式语法</p>
+</li>
+<li><p>150ms防抖</p>
+</li>
+</ul>
+<p><strong>主题系统：</strong></p>
+<ul>
+<li><p>内置多套主题</p>
+</li>
+<li><p>支持自定义JSON主题</p>
+</li>
+<li><p>支持Mod主题</p>
+</li>
+<li><p>主题导入&#x2F;导出</p>
+</li>
+</ul>
+<p><strong>扩展系统：</strong></p>
+<ul>
+<li><p>支持CSS、CSS+JS、Theme Mod</p>
+</li>
+<li><p>提供完整的插件API</p>
+</li>
+</ul>
+<h3 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h3><table>
+<thead>
+<tr>
+<th>层级</th>
+<th>技术</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>前端</td>
+<td>React 19, TypeScript, Zustand, pinyin-pro, Tailwind CSS</td>
+</tr>
+<tr>
+<td>桌面容器</td>
+<td>Tauri 2</td>
+</tr>
+<tr>
+<td>后端</td>
+<td>Rust, rusqlite (bundled SQLite)</td>
+</tr>
+<tr>
+<td>构建工具</td>
+<td>Vite, TypeScript, Tauri CLI</td>
+</tr>
+</tbody></table>
+<h3 id="适合谁"><a href="#适合谁" class="headerlink" title="适合谁"></a>适合谁</h3><ul>
+<li><p>Windows用户需要更高效的文件管理</p>
+</li>
+<li><p>讨厌文件夹层级限制的人</p>
+</li>
+<li><p>需要多标签组织文件的场景</p>
+</li>
+<li><p>程序员需要一个好用的本地文件启动器</p>
+</li>
+</ul>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>TagLauncher 代表了一种<strong>更现代的文件管理思路</strong>——从”文件夹”升级到”标签”。</p>
+<p>当一个文件可以同时属于多个标签，文件管理就不再是”放哪里”的问题，而是”它是什么”的问题。</p>
+<p>如果你经常遇到”这个文件到底放哪个文件夹”的困扰，标签式管理值得一试。</p>
+<hr>
+<p><em>本文来源：稍后阅读清单深度调研 · 小欧整理</em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/KatouRyuuji/TagLauncher">https://github.com/KatouRyuuji/TagLauncher</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="category-chain-item">读书笔记</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>TagLauncher：标签式文件管理工具让你的文件不再&#34;找不到&#34;</div>
+      <div>https://maoyu92.github.io/2026/05/08/07 AI笔记/读书笔记与思考/a181_TagLauncher：标签式文件管理工具让你的文件不再_找不到_/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/08/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a174_18k%20Star%EF%BC%81DeepSeek-TUI%EF%BC%9A%E7%BB%88%E7%AB%AF%E9%87%8C%E7%9A%84AI%E7%BC%96%E7%A8%8B%E7%A5%9E%E5%99%A8%EF%BC%8CClaude%20Code%E6%9C%80%E5%BC%BA%E5%B9%B3%E6%9B%BF/" title="18k Star！DeepSeek-TUI：终端里的AI编程神器，Claude Code最强平替">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">18k Star！DeepSeek-TUI：终端里的AI编程神器，Claude Code最强平替</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/08/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a182_%E4%BB%8E0%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA_%E8%83%BD%E5%90%AC%E8%83%BD%E8%AF%B4%E8%83%BD%E7%9C%8B_%E7%9A%84%E6%A8%A1%E5%9E%8B%EF%BC%9AMiniMind-O%E4%B8%8E%E5%BE%AE%E8%BD%AF174%E4%B8%AASkill%E4%BD%93%E7%B3%BB/" title="从0训练一个&#34;能听能说能看&#34;的模型：MiniMind-O与微软174个Skill体系">
+                        <span class="hidden-mobile">从0训练一个&#34;能听能说能看&#34;的模型：MiniMind-O与微软174个Skill体系</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

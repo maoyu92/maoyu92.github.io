@@ -1,0 +1,844 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="你读过的每一本技术书，不该在合上封面后就变成“ dormitory 知识”。  为什么这个项目值得认真对待2026 年，知识工作者的核心矛盾早就不是“找不到资料”，而是“资料太多，真正能调用的太少”。 你买了一本好书，读了一遍，三个月后连第七章讲了什么都想不起来。你把 PDF 扔给 AI，要么得到一堆页面索引，要么得到一段看似合理但其实在编造的回答。你做了笔记，然后……再也没打开过。 这个问题在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="把书装进编辑器：book-to-skill 如何把技术书变成可安装的 AI 技能">
+<meta property="og:url" content="https://maoyu92.github.io/2026/08/24/07%20AI%E7%AC%94%E8%AE%B0/WorkBuddy%E6%8A%80%E8%83%BD/a019_%E6%8A%8A%E4%B9%A6%E8%A3%85%E8%BF%9B%E7%BC%96%E8%BE%91%E5%99%A8%EF%BC%9Abook-to-skill%20%E5%A6%82%E4%BD%95%E6%8A%8A%E6%8A%80%E6%9C%AF%E4%B9%A6%E5%8F%98%E6%88%90%E5%8F%AF%E5%AE%89%E8%A3%85%E7%9A%84%20AI%20%E6%8A%80%E8%83%BD/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="你读过的每一本技术书，不该在合上封面后就变成“ dormitory 知识”。  为什么这个项目值得认真对待2026 年，知识工作者的核心矛盾早就不是“找不到资料”，而是“资料太多，真正能调用的太少”。 你买了一本好书，读了一遍，三个月后连第七章讲了什么都想不起来。你把 PDF 扔给 AI，要么得到一堆页面索引，要么得到一段看似合理但其实在编造的回答。你做了笔记，然后……再也没打开过。 这个问题在">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/images/3a5f4b3a247ede6b.png">
+<meta property="article:published_time" content="2026-08-24T02:08:00.000Z">
+<meta property="article:modified_time" content="2026-08-24T02:08:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/images/3a5f4b3a247ede6b.png">
+  
+  
+  <title>把书装进编辑器：book-to-skill 如何把技术书变成可安装的 AI 技能 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="把书装进编辑器：book-to-skill 如何把技术书变成可安装的 AI 技能"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-08-24 10:08" pubdate>
+          2026年8月24日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">把书装进编辑器：book-to-skill 如何把技术书变成可安装的 AI 技能</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>你读过的每一本技术书，不该在合上封面后就变成“ dormitory 知识”。</p>
+</blockquote>
+<h2 id="为什么这个项目值得认真对待"><a href="#为什么这个项目值得认真对待" class="headerlink" title="为什么这个项目值得认真对待"></a>为什么这个项目值得认真对待</h2><p>2026 年，知识工作者的核心矛盾早就不是“找不到资料”，而是“资料太多，真正能调用的太少”。</p>
+<p>你买了一本好书，读了一遍，三个月后连第七章讲了什么都想不起来。你把 PDF 扔给 AI，要么得到一堆页面索引，要么得到一段看似合理但其实在编造的回答。你做了笔记，然后……再也没打开过。</p>
+<p>这个问题在 Agent 时代被放大了。我们现在可以用 AI 辅助工作，但大多数人的知识管理方式还停留在“丢进上下文窗口”这个原始阶段。真正缺的不是又一个总结工具，而是<strong>把知识变成可检索、可执行、可随用随取的结构化能力</strong>。</p>
+<p><code>book-to-skill</code> 恰好对准了这个缺口：它不生成摘要，而是把整本书、整套文档、甚至一整个资料夹，转成 Agent 可安装的技能。装上之后，你只需要说“帮我看看这本书关于 XX 的章节怎么说”，Agent 就会按需读取对应章节，基于原文回答，而不是靠记忆胡编。</p>
+<p>这对正在用 Claude Code、Copilot CLI、Amp 的开发者尤其重要：<strong>你积累的技术知识，终于可以像代码一样被“引用”和“按需加载”</strong>。</p>
+<h2 id="这个项目到底是什么"><a href="#这个项目到底是什么" class="headerlink" title="这个项目到底是什么"></a>这个项目到底是什么</h2><p><code>book-to-skill</code> 是一个开源转换器，核心定位是：<strong>把任意技术书、文档夹或资料集合，变成 Agent Skills 标准下的可安装技能</strong>。</p>
+<p>输入可以是：</p>
+<ul>
+<li><p>单本 PDF、EPUB、DOCX、HTML、RTF、MOBI</p>
+</li>
+<li><p>一整个文档目录</p>
+</li>
+<li><p>一批相关论文&#x2F;笔记&#x2F;标准文档的集合</p>
+</li>
+</ul>
+<p>输出是一个完整技能包，可以直接安装到 Claude Code、GitHub Copilot CLI 或 Amp。</p>
+<p>它解决的，是“知识消费”到“知识工具化”的最后一公里。</p>
+<h2 id="它是怎么工作的"><a href="#它是怎么工作的" class="headerlink" title="它是怎么工作的"></a>它是怎么工作的</h2><p>项目分为两半：<strong>确定性提取器</strong> + <strong>规范驱动生成器</strong>。</p>
+<p><img src="/images/3a5f4b3a247ede6b.png" srcset="/img/loading.gif" lazyload alt="book-to-skill 架构总览" title="book-to-skill 架构总览"></p>
+<h3 id="第一步：提取器把原始材料洗干净"><a href="#第一步：提取器把原始材料洗干净" class="headerlink" title="第一步：提取器把原始材料洗干净"></a>第一步：提取器把原始材料洗干净</h3><p>提取器负责把各种格式的原始材料转成干净文本 + 元数据。关键设计是“按书选工具”：</p>
+<ul>
+<li><p>纯文本&#x2F;小说类：<code>pdftotext</code> 秒级完成</p>
+</li>
+<li><p>技术书（含代码、表格、公式）：<code>docling</code>，保留 Markdown 表格和代码块</p>
+</li>
+<li><p>扫描件 PDF：先做 OCR，再进入提取流程</p>
+</li>
+<li><p>EPUB：<code>ebooklib + beautifulsoup4</code></p>
+</li>
+<li><p>DOCX &#x2F; HTML &#x2F; RTF &#x2F; MOBI：各有对应解析器</p>
+</li>
+</ul>
+<p>项目不会在第一步就把内容喂给模型，而是先生成结构化中间表示。这意味着<strong>隐私优先</strong>，你的书稿&#x2F;内部文档不会在提取阶段被上传到任何云端。</p>
+<h3 id="第二步：生成器把文本变成技能"><a href="#第二步：生成器把文本变成技能" class="headerlink" title="第二步：生成器把文本变成技能"></a>第二步：生成器把文本变成技能</h3><p>这是项目的核心创新。生成器不依赖模型“自由发挥”，而是遵循固定的 <code>SKILL.md</code> 模板规范，把提取后的内容拆成：</p>
+<ul>
+<li><p><code>SKILL.md</code>：心智模型 + 章节索引，约 4000 tokens</p>
+</li>
+<li><p><code>chapters/ch01-*.md</code> … <code>chNN-*.md</code>：按章拆分，按需加载，每章约 1000 tokens</p>
+</li>
+<li><p><code>glossary.md</code>：关键术语表，按字母排序并标注章节引用，约 1500 tokens</p>
+</li>
+<li><p><code>patterns.md</code>：技术模式、算法和设计模式汇总，约 2000 tokens</p>
+</li>
+<li><p><code>cheatsheet.md</code>：决策表和速查规则，约 1000 tokens</p>
+</li>
+</ul>
+<p>这种结构的妙处在于：<strong>章节文件不会在安装时全部加载，只在你真正问起那个话题时才被读取</strong>。对上下文窗口有限、按 token 计费的 AI 工作流来说，这是真正的“按需知识注入”。</p>
+<h2 id="为什么这件事值得做"><a href="#为什么这件事值得做" class="headerlink" title="为什么这件事值得做"></a>为什么这件事值得做</h2><p>很多人第一反应是：“直接把书喂给 AI 不行吗？”</p>
+<p>项目给出的答案是：<strong>可以，但成本高得离谱</strong>。</p>
+<p>作者提出了一个叫 <strong>“Discovery Loop Tax”</strong> 的概念：当你把整本书丢进上下文时，Agent 不只是“读”，还要反复导航目录、前后跳转、重新理解章节关系。每一次问答，它都在重复做这些导航工作。</p>
+<p><code>book-to-skill</code> 的做法是：<strong>把结构化成本一次性付在转换阶段</strong>，之后的每次查询只加载相关章节。实测结果是：回答同一个问题时，只需要 <strong>24x 到 51x fewer tokens</strong>，相比直接把书倒进上下文窗口。</p>
+<p>这不是锦上添花的优化，而是让“让 Agent 真的基于厚书工作”从“勉强能用”变成“经济上划算”。</p>
+<h2 id="不只限于书"><a href="#不只限于书" class="headerlink" title="不只限于书"></a>不只限于书</h2><p>项目名字叫 <code>book-to-skill</code>，但作者明确说：输入可以是任何结构化 prose。</p>
+<p>几个高价值的扩展场景：</p>
+<ul>
+<li><p><strong>内部文档</strong>：架构决策记录、Runbook、新手指南，整个 <code>docs/</code> 目录直接转成技能，写代码时随时问</p>
+</li>
+<li><p><strong>品牌与设计系统</strong>：Voice guidelines、组件原则、Tone of Voice 文档，装成技能后团队不用再翻 60 页 PDF</p>
+</li>
+<li><p><strong>论文集群</strong>：一批论文 + 你自己的笔记，合并成统一技能，新论文进来时可以“fold-in”增量更新</p>
+</li>
+<li><p><strong>规范与标准</strong>：RFC、API 契约、合规文档，这些你Reference 很多但从不背诵的材料，最适合转成技能</p>
+</li>
+</ul>
+<p>本质上，它的判断标准很简单：<strong>如果你 reopen 一份文档的次数多到希望自己已经背下来了，它就是候选</strong>。</p>
+<h2 id="安装和使用"><a href="#安装和使用" class="headerlink" title="安装和使用"></a>安装和使用</h2><p>安装非常简单，一条命令：</p>
+<p><code>npx skills add virgiliojr94/book-to-skill   </code></p>
+<p>也可以手动 clone 到对应 skills 目录：</p>
+<p><code>git clone https://github.com/virgiliojr94/book-to-skill.git ~/.claude/skills/book-to-skill   </code></p>
+<p>使用时，在支持 Agent Skills 的客户端里调用：</p>
+<p><code>/book-to-skill ./my-book.pdf   </code></p>
+<p>支持的模式包括：</p>
+<ul>
+<li><p>直接分析并生成技能</p>
+</li>
+<li><p>分析-only，不生成</p>
+</li>
+<li><p>基于已有分析结果生成</p>
+</li>
+<li><p>更新&#x2F;合并新资料进已有技能</p>
+</li>
+</ul>
+<p>生成后的技能还可以发布到 GitHub，团队其他成员直接用 <code>npx skills add</code> 安装。</p>
+<h2 id="边界和注意事项"><a href="#边界和注意事项" class="headerlink" title="边界和注意事项"></a>边界和注意事项</h2><p>这个项目不是万能胶水，有几个明确边界：</p>
+<ul>
+<li><p>它生成的是<strong>结构化摘要和索引，不是原文复制</strong>。输出是框架名、定义、takeaway、决策规则，不是逐段抄书。</p>
+</li>
+<li><p>扫描件 PDF 需要先 OCR，工具不会自动处理纯图片页。</p>
+</li>
+<li><p>输出技能<strong>默认私有</strong>，不要直接把受版权保护的书转成技能再公开发布。</p>
+</li>
+<li><p>性能数据来自真实书籍实测，具体倍数取决于书的类型和你提的问题粒度。</p>
+</li>
+</ul>
+<h2 id="对普通技术人的意义"><a href="#对普通技术人的意义" class="headerlink" title="对普通技术人的意义"></a>对普通技术人的意义</h2><p>如果你是一个经常查文档、翻书、找标准的技术人，<code>book-to-skill</code> 代表了一种新的知识工作方式：</p>
+<ul>
+<li><p>不再是“读书记笔记”，而是“把书变成可执行知识模块”</p>
+</li>
+<li><p>不再是“丢进上下文”，而是“按需加载”</p>
+</li>
+<li><p>不再是“每次重新理解”，而是“一次结构化，终身可调用”</p>
+</li>
+</ul>
+<p>它不一定需要你真的去跑一遍转换流程才觉得有价值。光是**“把知识工具化”这个思路本身**，就值得每个用 AI 辅助工作的人认真想一下：</p>
+<p>你手里那些读了又忘的资料，是不是也该装个“索引夹”了？</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>GitHub 仓库：virgiliojr94&#x2F;book-to-skill[1]</p>
+</li>
+<li><p>Release 下载页[2]</p>
+</li>
+<li><p>How it works 详细文档[3]</p>
+</li>
+<li><p>Usage 使用说明[4]</p>
+</li>
+<li><p>Performance 性能与 token 成本说明[5]</p>
+</li>
+<li><p>Agent Skills 开放标准[6]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]GitHub 仓库：virgiliojr94&#x2F;book-to-skill: <em><a target="_blank" rel="noopener" href="https://github.com/virgiliojr94/book-to-skill">https://github.com/virgiliojr94/book-to-skill</a></em></p>
+<p>[2]Release 下载页: <em><a target="_blank" rel="noopener" href="https://github.com/virgiliojr94/book-to-skill/releases">https://github.com/virgiliojr94/book-to-skill/releases</a></em></p>
+<p>[3]How it works 详细文档: <em><a target="_blank" rel="noopener" href="https://github.com/virgiliojr94/book-to-skill/blob/master/docs/how-it-works.md">https://github.com/virgiliojr94/book-to-skill/blob/master/docs/how-it-works.md</a></em></p>
+<p>[4]Usage 使用说明: <em><a target="_blank" rel="noopener" href="https://github.com/virgiliojr94/book-to-skill/blob/master/docs/usage.md">https://github.com/virgiliojr94/book-to-skill/blob/master/docs/usage.md</a></em></p>
+<p>[5]Performance 性能与 token 成本说明: <em><a target="_blank" rel="noopener" href="https://github.com/virgiliojr94/book-to-skill/blob/master/docs/performance.md">https://github.com/virgiliojr94/book-to-skill/blob/master/docs/performance.md</a></em></p>
+<p>[6]Agent Skills 开放标准: <em><a target="_blank" rel="noopener" href="https://github.com/agentskills/agentskills">https://github.com/agentskills/agentskills</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>把书装进编辑器：book-to-skill 如何把技术书变成可安装的 AI 技能</div>
+      <div>https://maoyu92.github.io/2026/08/24/07 AI笔记/WorkBuddy技能/a019_把书装进编辑器：book-to-skill 如何把技术书变成可安装的 AI 技能/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年8月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/08/25/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a018_DSH%20%E6%8F%92%E4%BB%B6%E5%AE%9E%E6%B5%8B%EF%BC%9A%E6%8A%8A%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%A3%85%E8%BF%9B%E6%89%8B%E6%9C%BA/" title="DSH 插件实测：把服务器装进手机">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">DSH 插件实测：把服务器装进手机</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/08/24/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a020_%E4%BB%8E%E5%9C%B0%E5%9F%BA%E5%88%B0%E6%A5%BC%E5%AE%87%EF%BC%9AAgentic%20AI%20%E5%85%A8%E6%A0%88%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%8C%E8%A7%A3%E8%AF%BB/" title="从地基到楼宇：Agentic AI 全栈实战手册解读">
+                        <span class="hidden-mobile">从地基到楼宇：Agentic AI 全栈实战手册解读</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

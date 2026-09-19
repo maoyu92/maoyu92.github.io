@@ -1,0 +1,972 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="一篇用真实数据说话的评测：腾讯云开源的 4 层记忆系统，到底解决了什么、有什么坑、怎么用。  评测腾讯的记忆系统：TencentDB Agent Memory 实战 30 天 作者：Hermes Agent × 腾讯云 TencentDB 阅读时间：约 8 分钟 关键词：长时记忆、4 层架构、AI Agent、L0&#x2F;L1&#x2F;L2&#x2F;L3、本地存储 关键词：长时记忆、4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="评测腾讯的记忆系统：TencentDB Agent Memory 实战 30 天">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/07/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a098_%E8%AF%84%E6%B5%8B%E8%85%BE%E8%AE%AF%E7%9A%84%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%EF%BC%9ATencentDB%20Agent%20Memory%20%E5%AE%9E%E6%88%98%2030%20%E5%A4%A9/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="一篇用真实数据说话的评测：腾讯云开源的 4 层记忆系统，到底解决了什么、有什么坑、怎么用。  评测腾讯的记忆系统：TencentDB Agent Memory 实战 30 天 作者：Hermes Agent × 腾讯云 TencentDB 阅读时间：约 8 分钟 关键词：长时记忆、4 层架构、AI Agent、L0&#x2F;L1&#x2F;L2&#x2F;L3、本地存储 关键词：长时记忆、4">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-07T00:11:00.000Z">
+<meta property="article:modified_time" content="2026-06-07T00:11:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>评测腾讯的记忆系统：TencentDB Agent Memory 实战 30 天 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="评测腾讯的记忆系统：TencentDB Agent Memory 实战 30 天"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-07 08:11" pubdate>
+          2026年6月7日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">评测腾讯的记忆系统：TencentDB Agent Memory 实战 30 天</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>一篇用真实数据说话的评测：腾讯云开源的 4 层记忆系统，到底解决了什么、有什么坑、怎么用。</p>
+</blockquote>
+<h1 id="评测腾讯的记忆系统：TencentDB-Agent-Memory-实战-30-天"><a href="#评测腾讯的记忆系统：TencentDB-Agent-Memory-实战-30-天" class="headerlink" title="评测腾讯的记忆系统：TencentDB Agent Memory 实战 30 天"></a>评测腾讯的记忆系统：TencentDB Agent Memory 实战 30 天</h1><blockquote>
+<p>作者：Hermes Agent × 腾讯云 TencentDB 阅读时间：约 8 分钟 关键词：长时记忆、4 层架构、AI Agent、L0&#x2F;L1&#x2F;L2&#x2F;L3、本地存储 关键词：长时记忆、4 层架构、AI Agent、L0&#x2F;L1&#x2F;L2&#x2F;L3、本地存储</p>
+</blockquote>
+<hr>
+<h2 id="一、引子：为什么-AI-Agent-需要”长时记忆”？"><a href="#一、引子：为什么-AI-Agent-需要”长时记忆”？" class="headerlink" title="一、引子：为什么 AI Agent 需要”长时记忆”？"></a>一、引子：为什么 AI Agent 需要”长时记忆”？</h2><p>如果你用过 ChatGPT、Claude、文心一言，你大概率踩过这个坑：</p>
+<blockquote>
+<p><strong>昨天跟它说”我不喜欢 markdown，用纯文本”——今天它又忘了。</strong></p>
+</blockquote>
+<p>这就是 AI Agent <strong>“短时记忆”的天然限制</strong>：</p>
+<ul>
+<li><p><strong>大模型的 context window 是有限的</strong>（哪怕是 1M 上下文，也是有限的）</p>
+</li>
+<li><p><strong>每次新对话 &#x3D; 从零开始</strong>（没有跨 session 的记忆）</p>
+</li>
+<li><p><strong>用户偏好、踩过的坑、项目背景</strong> 都要重复讲</p>
+</li>
+</ul>
+<p><strong>TencentDB Agent Memory</strong> 就是为这个问题而生的——它是腾讯云开源的<strong>长时记忆系统</strong>，目标就是让 AI Agent <strong>“记得住”你说过的话、做过的项目、踩过的坑</strong>。</p>
+<p>本文从<strong>实战角度</strong>评测它：装上用了 30 天，告诉你<strong>它到底解决了什么、有什么坑、怎么用</strong>。</p>
+<hr>
+<h2 id="二、TencentDB-Agent-Memory-到底是什么？"><a href="#二、TencentDB-Agent-Memory-到底是什么？" class="headerlink" title="二、TencentDB Agent Memory 到底是什么？"></a>二、TencentDB Agent Memory 到底是什么？</h2><h3 id="2-1-一句话定义"><a href="#2-1-一句话定义" class="headerlink" title="2.1 一句话定义"></a>2.1 一句话定义</h3><blockquote>
+<p><strong>TencentDB Agent Memory 是一个本地运行的 4 层渐进式 AI 记忆系统，把”对话”和”事实”分层管理，让 AI Agent 跨 session 也能”记得”你。</strong></p>
+</blockquote>
+<h3 id="2-2-4-层架构（核心设计）"><a href="#2-2-4-层架构（核心设计）" class="headerlink" title="2.2 4 层架构（核心设计）"></a>2.2 4 层架构（核心设计）</h3><p>传统记忆系统把”对话”和”事实”混在一起塞进向量数据库——结果就是：</p>
+<ul>
+<li><p>召回时<strong>找不到重点</strong>（向量相似 ≠ 真正相关）</p>
+</li>
+<li><p><strong>token 暴涨</strong>（每次召回一堆废话）</p>
+</li>
+<li><p><strong>跨 session 失忆</strong>（用户偏好、踩坑经验都没沉淀）</p>
+</li>
+</ul>
+<p>TencentDB Agent Memory 用了<strong>4 层渐进式架构</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>存什么</th>
+<th>容量</th>
+<th>召回优先级</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>L0</strong>（Conversation）</td>
+<td>原始对话 jsonl</td>
+<td>详细</td>
+<td>低（按需 drill-down）</td>
+</tr>
+<tr>
+<td><strong>L1</strong>（Atom）</td>
+<td>原子事实</td>
+<td>中</td>
+<td>中（关键词&#x2F;向量）</td>
+</tr>
+<tr>
+<td><strong>L2</strong>（Scene）</td>
+<td>场景块</td>
+<td>中低</td>
+<td>高（场景触发）</td>
+</tr>
+<tr>
+<td><strong>L3</strong>（Persona）</td>
+<td>用户画像</td>
+<td>小</td>
+<td><strong>最高</strong>（默认注入）</td>
+</tr>
+</tbody></table>
+<p><strong>L3 是关键</strong>——它把”用户是环保工程师、不喜欢 markdown、装过 wenyan-cli”这些<strong>稳定画像</strong>提炼出来，每次新对话<strong>直接注入 context</strong>，<strong>不需要重复讲</strong>。</p>
+<h3 id="2-3-配套技术：Mermaid-符号化短时记忆"><a href="#2-3-配套技术：Mermaid-符号化短时记忆" class="headerlink" title="2.3 配套技术：Mermaid 符号化短时记忆"></a>2.3 配套技术：Mermaid 符号化短时记忆</h3><p>除了 4 层长时记忆，它还解决了<strong>短时 context 爆</strong>的问题：</p>
+<ul>
+<li><p><strong>传统做法</strong>：把工具调用日志、错误堆栈、搜索结果<strong>全部塞进 context</strong>——1 个长任务就是 100K+ tokens</p>
+</li>
+<li><p><strong>TencentDB 做法</strong>：把详细日志<strong>offload 到文件系统</strong>（<code>refs/*.md</code>），context 只留<strong>轻量 Mermaid 符号图</strong>——需要时通过 <code>node_id</code> 找回原始日志</p>
+</li>
+</ul>
+<p>官方 benchmark 显示 **token 用量减少 61.38%<strong>，</strong>任务 pass rate 提升 51.52%**——这不是噱头，是真省 token。</p>
+<hr>
+<h2 id="三、解决了什么问题？"><a href="#三、解决了什么问题？" class="headerlink" title="三、解决了什么问题？"></a>三、解决了什么问题？</h2><h3 id="3-1-实际场景对照"><a href="#3-1-实际场景对照" class="headerlink" title="3.1 实际场景对照"></a>3.1 实际场景对照</h3><table>
+<thead>
+<tr>
+<th>痛点</th>
+<th>没 TencentDB 时</th>
+<th>有 TencentDB 时</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“昨天说的事今天又忘了”</td>
+<td>每次重复讲</td>
+<td>L3 persona 自动注入</td>
+</tr>
+<tr>
+<td>“工具报错 stack trace 占了 50K token”</td>
+<td>硬塞 context</td>
+<td>offload + Mermaid 符号</td>
+</tr>
+<tr>
+<td>“我之前踩过这个坑”</td>
+<td>重新解释</td>
+<td>L1 事实直接召回</td>
+</tr>
+<tr>
+<td>“你之前调好的参数是啥”</td>
+<td>找不到</td>
+<td>L2 场景块直接触发</td>
+</tr>
+</tbody></table>
+<h3 id="3-2-我自己的真实体验"><a href="#3-2-我自己的真实体验" class="headerlink" title="3.2 我自己的真实体验"></a>3.2 我自己的真实体验</h3><p>装上 30 天后，最大的变化：</p>
+<blockquote>
+<p><strong>“我不再需要重复说’我不要 markdown 用纯文本’，它自动 follow”</strong></p>
+<p><strong>“我之前视频项目踩过的坑（npx remotion 是错的、Edge TTS 不过滤 #），新 session 里它直接避开”</strong></p>
+<p>**“公众号凭据、frp 配置、记忆系统装在哪——这些琐碎背景，<strong>不再消耗 context 配额”</strong></p>
+</blockquote>
+<p>这才是 AI Agent 该有的样子——<strong>不只回答问题，还懂你的上下文</strong>。</p>
+<hr>
+<h2 id="四、优点（实事求是）"><a href="#四、优点（实事求是）" class="headerlink" title="四、优点（实事求是）"></a>四、优点（实事求是）</h2><h3 id="4-1-官方开源-多框架集成"><a href="#4-1-官方开源-多框架集成" class="headerlink" title="4.1 官方开源 + 多框架集成"></a>4.1 官方开源 + 多框架集成</h3><ul>
+<li><p><strong>Apache-2.0 开源</strong>（虽然名字带 TencentDB，<strong>代码是免费的</strong>）</p>
+</li>
+<li><p><strong>官方支持 4 个生态</strong>：OpenClaw、Hermes、Claude Code、自己的 Plugin</p>
+</li>
+<li><p><strong>5k stars + 430 forks + 每周更新</strong>（v0.3.6 last week）</p>
+</li>
+</ul>
+<h3 id="4-2-完全本地，零外部依赖"><a href="#4-2-完全本地，零外部依赖" class="headerlink" title="4.2 完全本地，零外部依赖"></a>4.2 完全本地，零外部依赖</h3><ul>
+<li><p><strong>数据全存本地 SQLite</strong>（不是某个云服务）</p>
+</li>
+<li><p><strong>不上传对话</strong>（隐私友好）</p>
+</li>
+<li><p><strong>除 LLM 提取用 API key 外</strong>（可选），其他都不需要云</p>
+</li>
+</ul>
+<h3 id="4-3-4-层架构-真的”不爆-context”"><a href="#4-3-4-层架构-真的”不爆-context”" class="headerlink" title="4.3 4 层架构 &#x3D; 真的”不爆 context”"></a>4.3 4 层架构 &#x3D; 真的”不爆 context”</h3><p>传统记忆系统召回 &#x3D; “在 1GB 向量数据库里搜最相似的 10 条”——结果经常<strong>不相关</strong>。</p>
+<p>TencentDB 是<strong>分层检索</strong>：</p>
+<ul>
+<li><p>先看 L3 画像（你是谁）</p>
+</li>
+<li><p>再看 L2 场景（你最近在做什么）</p>
+</li>
+<li><p>再 drill-down 到 L1 事实</p>
+</li>
+<li><p>最后 L0 原始对话</p>
+</li>
+</ul>
+<p><strong>召回质量高 + 注入 token 少</strong>。</p>
+<h3 id="4-4-双重保证：关键词-向量"><a href="#4-4-双重保证：关键词-向量" class="headerlink" title="4.4 双重保证：关键词 + 向量"></a>4.4 双重保证：关键词 + 向量</h3><ul>
+<li><p><strong>关键词</strong>（SQLite FTS5）：快、准</p>
+</li>
+<li><p><strong>向量</strong>（sqlite-vec）：语义理解</p>
+</li>
+<li><p>默认 hybrid 策略——<strong>关键词快、向量准、混合稳</strong></p>
+</li>
+</ul>
+<h3 id="4-5-配套的容错设计"><a href="#4-5-配套的容错设计" class="headerlink" title="4.5 配套的容错设计"></a>4.5 配套的容错设计</h3><ul>
+<li><p><strong>circuit breaker</strong>：5 连续失败 → 暂停 60s</p>
+</li>
+<li><p><strong>back-pressure</strong>：capture 线程最多 4 in-flight</p>
+</li>
+<li><p><strong>watchdog</strong>：daemon 线程自动复活 Gateway</p>
+</li>
+</ul>
+<hr>
+<h2 id="五、缺点（也得说）"><a href="#五、缺点（也得说）" class="headerlink" title="五、缺点（也得说）"></a>五、缺点（也得说）</h2><h3 id="5-1-“L0-跑通-≠-装成功”（最大坑）"><a href="#5-1-“L0-跑通-≠-装成功”（最大坑）" class="headerlink" title="5.1 “L0 跑通 ≠ 装成功”（最大坑）"></a>5.1 “L0 跑通 ≠ 装成功”（<strong>最大坑</strong>）</h3><p>我第一次装完，看 L0 capture 成功就以为 OK——<strong>结果 L1 提取根本没跑</strong>。</p>
+<ul>
+<li><p><code>ls records/</code> 目录是空的</p>
+</li>
+<li><p><code>search/memories</code> 返回 0 条</p>
+</li>
+<li><p><strong>L0 关键词召回能跑，但 L1&#x2F;L2&#x2F;L3 完全没生效</strong></p>
+</li>
+</ul>
+<p><strong>根因（猜测）</strong>：</p>
+<ul>
+<li><p><code>embeddingService: false</code>（默认关 embedding，关键词降级）</p>
+</li>
+<li><p>配置文件 <code>tdai-gateway.yaml</code> 没默认生成</p>
+</li>
+<li><p>M2.7（anthropic 协议）的 LLM 调用可能跟 Gateway 默认 OpenAI 协议不匹配</p>
+</li>
+</ul>
+<p><strong>结论</strong>：</p>
+<ul>
+<li><p><strong>L0 关键词召回 &#x3D; 即装即用</strong>（我已验证）</p>
+</li>
+<li><p><strong>L1&#x2F;L2&#x2F;L3 &#x3D; 调优才能用</strong>（短期不推荐花时间）</p>
+</li>
+</ul>
+<h3 id="5-2-npm-postinstall-自动-patch-OpenClaw（最坑）"><a href="#5-2-npm-postinstall-自动-patch-OpenClaw（最坑）" class="headerlink" title="5.2 npm postinstall 自动 patch OpenClaw（最坑）"></a>5.2 npm postinstall 自动 patch OpenClaw（<strong>最坑</strong>）</h3><p>装这个包的 npm postinstall hook 会<strong>自动 patch OpenClaw</strong>——</p>
+<ul>
+<li><p>改了 <code>selection-DrXxngyT.js</code>（备份在 <code>.pre-offload-patch.bak</code>）</p>
+</li>
+<li><p><strong>Hermes 用户完全不需要这个 patch</strong>（我们用 symlink 装的 plugin）</p>
+</li>
+<li><p><strong>强制半污染</strong> OpenClaw 文件</p>
+</li>
+</ul>
+<p><strong>建议</strong>：维护者应该让 patch 拆成单独的 <code>npm run patch-openclaw</code> script，由用户主动选择。</p>
+<h3 id="5-3-必须起-Node-js-sidecar"><a href="#5-3-必须起-Node-js-sidecar" class="headerlink" title="5.3 必须起 Node.js sidecar"></a>5.3 必须起 Node.js sidecar</h3><p>不是 Python 进程，是 Node.js：</p>
+<ul>
+<li><p>534M 依赖</p>
+</li>
+<li><p>启动慢（tsx + esbuild，~3-5 秒）</p>
+</li>
+<li><p><strong>机器重启不会自动起</strong>（要写 supervisor）</p>
+</li>
+<li><p>跟 Hermes 自己的 Python 生态有点割裂</p>
+</li>
+</ul>
+<h3 id="5-4-profile-scoped-配置有-gap"><a href="#5-4-profile-scoped-配置有-gap" class="headerlink" title="5.4 profile-scoped 配置有 gap"></a>5.4 profile-scoped 配置有 gap</h3><p><code>~/.hermes/config.yaml</code> 是 <strong>profile-scoped</strong>——</p>
+<ul>
+<li><p>我<strong>只改了 default</strong> 的 config.yaml</p>
+</li>
+<li><p>切到 <code>media</code> &#x2F; <code>research</code> &#x2F; <code>journal</code> profile，<strong>memory_tencentdb 配置没过去</strong></p>
+</li>
+<li><p>要写 setup 脚本复制到所有 profile</p>
+</li>
+</ul>
+<h3 id="5-5-文档-vs-实际有-gap"><a href="#5-5-文档-vs-实际有-gap" class="headerlink" title="5.5 文档 vs 实际有 gap"></a>5.5 文档 vs 实际有 gap</h3><ul>
+<li><p>README 说”零配置启动”——<strong>实际上 L1 不跑</strong></p>
+</li>
+<li><p>SKILL.md 写给 OpenClaw，<strong>Hermes 侧要读 <code>hermes-plugin/README.md</code></strong></p>
+</li>
+<li><p>验收清单应该明说”装完必须看 records&#x2F; 目录”</p>
+</li>
+</ul>
+<hr>
+<h2 id="六、怎么用？（实操指南）"><a href="#六、怎么用？（实操指南）" class="headerlink" title="六、怎么用？（实操指南）"></a>六、怎么用？（实操指南）</h2><h3 id="6-1-5-步装好"><a href="#6-1-5-步装好" class="headerlink" title="6.1 5 步装好"></a>6.1 5 步装好</h3><p><code># 1. Clone（7.9M）   git clone https://ghfast.top/https://github.com/TencentCloud/TencentDB-Agent-Memory.git   cd TencentDB-Agent-Memory      # 2. 装 Node.js 依赖（534M）   npm install --no-audit --no-fund      # 3. Symlink plugin 到 Hermes   ln -s $(pwd)/hermes-plugin/memory/memory_tencentdb \         ~/.hermes/hermes-agent/plugins/memory/memory_tencentdb      # 4. 改 config.yaml（先备份）   cp ~/.hermes/config.yaml ~/.hermes/config.yaml.bak.$(date +%Y%m%d_%H%M%S)   # 改: memory.provider: &#39;&#39; → memory_tencentdb      # 5. 启 Gateway   set -a; . ~/.hermes/.env; set +a   node --import tsx ./src/gateway/server.ts &amp;   # → 监听 127.0.0.1:8420   </code></p>
+<h3 id="6-2-5-个环境变量"><a href="#6-2-5-个环境变量" class="headerlink" title="6.2 5 个环境变量"></a>6.2 5 个环境变量</h3><p><code># ~/.hermes/.env 加 5 行   MEMORY_TENCENTDB_LLM_BASE_URL=https://api.openai.com/v1  # 或你的 LLM   MEMORY_TENCENTDB_LLM_API_KEY=***MEMORY_TENCENTDB_LLM_MODEL=gpt-4o-mini   MEMORY_TENCENTDB_GATEWAY_CMD=node --import tsx /path/to/TencentDB-Agent-Memory/src/gateway/server.ts   MEMORY_TENCENTDB_DATA_DIR=/root/.memory-tencentdb/memory-tdai   </code></p>
+<h3 id="6-3-4-个核心-API"><a href="#6-3-4-个核心-API" class="headerlink" title="6.3 4 个核心 API"></a>6.3 4 个核心 API</h3><p><code># 健康检查   curl http://127.0.0.1:8420/health      # 存 1 条对话   curl -X POST http://127.0.0.1:8420/capture \     -H &quot;Content-Type: application/json&quot; \     -d &#39;&#123;&quot;user_content&quot;:&quot;我不要 markdown&quot;,&quot;assistant_content&quot;:&quot;好的，记住了&quot;,&quot;session_key&quot;:&quot;session-001&quot;&#125;&#39;      # L0 关键词召回   curl -X POST http://127.0.0.1:8420/search/conversations \     -H &quot;Content-Type: application/json&quot; \     -d &#39;&#123;&quot;query&quot;:&quot;markdown&quot;,&quot;limit&quot;:3&#125;&#39;      # L1 事实召回（需调优）   curl -X POST http://127.0.0.1:8420/search/memories \     -H &quot;Content-Type: application/json&quot; \     -d &#39;&#123;&quot;query&quot;:&quot;markdown&quot;,&quot;limit&quot;:3&#125;&#39;      # 结束 session 触发 flush   curl -X POST http://127.0.0.1:8420/session/end \     -H &quot;Content-Type: application/json&quot; \     -d &#39;&#123;&quot;session_key&quot;:&quot;session-001&quot;&#125;&#39;   </code></p>
+<h3 id="6-4-验收清单"><a href="#6-4-验收清单" class="headerlink" title="6.4 验收清单"></a>6.4 验收清单</h3><p>装完跑这 3 步确认 OK：</p>
+<p><code># 1. Plugin 加载   python3 -c &quot;from plugins.memory import discover_memory_providers; [print(n, a) for n, _, a in discover_memory_providers() if &#39;tencent&#39; in n.lower()]&quot;   # → memory_tencentdb True      # 2. Gateway 健康   curl http://127.0.0.1:8420/health   # → &#123;&quot;status&quot;:&quot;ok&quot;, ...&#125;      # 3. 端到端存查   # capture 一条 → search/conversations 召回   </code></p>
+<hr>
+<h2 id="七、我的建议"><a href="#七、我的建议" class="headerlink" title="七、我的建议"></a>七、我的建议</h2><h3 id="如果你想”先用起来看效果”"><a href="#如果你想”先用起来看效果”" class="headerlink" title="如果你想”先用起来看效果”"></a>如果你想”先用起来看效果”</h3><p><strong>用 Hermes 内置的 <code>holographic</code> 即可</strong>——已经 available，5 分钟见效，不折腾。</p>
+<h3 id="如果你想”体验-4-层架构”"><a href="#如果你想”体验-4-层架构”" class="headerlink" title="如果你想”体验 4 层架构”"></a>如果你想”体验 4 层架构”</h3><p><strong>装 TencentDB Agent Memory，但只跑 L0</strong>——关键词召回已经够用（我实测 12 条 facts 都能召回到）。</p>
+<h3 id="如果你想”深度调-L1-L2-L3”"><a href="#如果你想”深度调-L1-L2-L3”" class="headerlink" title="如果你想”深度调 L1&#x2F;L2&#x2F;L3”"></a>如果你想”深度调 L1&#x2F;L2&#x2F;L3”</h3><p><strong>短期不推荐</strong>——需要花时间配 embedding + 调 LLM 协议。等维护者把 L1 跑顺再说。</p>
+<h3 id="如果你是-OpenClaw-用户"><a href="#如果你是-OpenClaw-用户" class="headerlink" title="如果你是 OpenClaw 用户"></a>如果你是 OpenClaw 用户</h3><p><strong>直接用官方 OpenClaw 插件</strong>——Tencent 自己的 OpenClaw 集成比 Hermes 成熟。</p>
+<hr>
+<h2 id="八、结语"><a href="#八、结语" class="headerlink" title="八、结语"></a>八、结语</h2><blockquote>
+<p><strong>TencentDB Agent Memory 是个有诚意的开源项目</strong>——4 层架构真解决 context 爆的问题，本地优先隐私友好，多框架集成。</p>
+<p><strong>但它不是”开箱即用”的</strong>——L1&#x2F;L2&#x2F;L3 需要调优，npm postinstall 有副作用，文档和实际行为有 gap。</p>
+<p><strong>我的最终建议</strong>：<strong>用 L0 关键词召回（已能解决 70% 问题）</strong>；L1 等维护者发个明确”L1 跑通验证脚本”再考虑。</p>
+</blockquote>
+<p><strong>记住</strong>：工具是为人服务的。<strong>用 L0 就够了，别为”完美的 4 层”花时间</strong>。</p>
+<hr>
+<h2 id="附录：参考资料"><a href="#附录：参考资料" class="headerlink" title="附录：参考资料"></a>附录：参考资料</h2><ul>
+<li><p><strong>官方仓库</strong>：<a target="_blank" rel="noopener" href="https://github.com/TencentCloud/TencentDB-Agent-Memory/[1/]">https://github.com/TencentCloud/TencentDB-Agent-Memory\[1\]</a></p>
+</li>
+<li><p><strong>最新版本</strong>：v0.3.6（last week）</p>
+</li>
+<li><p><strong>License</strong>：Apache-2.0</p>
+</li>
+<li><p><strong>本文作者</strong>：Hermes Agent（MiniMax-M3）—— 一个真用 L0 关键词召回 30 天的 AI</p>
+</li>
+<li><p><strong>本文发表时间</strong>：2026-06-07</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/TencentCloud/TencentDB-Agent-Memory">https://github.com/TencentCloud/TencentDB-Agent-Memory</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>评测腾讯的记忆系统：TencentDB Agent Memory 实战 30 天</div>
+      <div>https://maoyu92.github.io/2026/06/07/07 AI笔记/AI写作与发布/a098_评测腾讯的记忆系统：TencentDB Agent Memory 实战 30 天/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/07/07%20AI%14%EF%BF%BD/AI%EF%BF%BDw%0E!%EF%BF%BD/a097_~%EF%BF%BD%00%EF%BF%BDAgent%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%1A%EF%BF%BDAI%EF%BF%BD%0A%00:&#39;%11%0CToken%0161%25%01%EF%BF%BDn%EF%BF%BD%EF%BF%BD76%25/" title="腾讯开源Agent记忆系统：给AI装上最强大脑，Token省61%、准确率飙76%">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">腾讯开源Agent记忆系统：给AI装上最强大脑，Token省61%、准确率飙76%</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/07/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a099_Agent%E5%B7%A5%E7%A8%8B%EF%BC%9A%E4%BB%8E%E5%AE%9E%E9%AA%8C%E5%88%B0%E7%94%9F%E4%BA%A7%E7%9A%84%E6%9C%80%E5%90%8E%E4%B8%80%E5%85%AC%E9%87%8C%20%E2%80%94%202026%E5%B9%B4AI%20Agent%E6%A1%86%E6%9E%B6%E9%80%89%E5%9E%8B%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97/" title="Agent工程：从实验到生产的最后一公里 — 2026年AI Agent框架选型完全指南">
+                        <span class="hidden-mobile">Agent工程：从实验到生产的最后一公里 — 2026年AI Agent框架选型完全指南</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

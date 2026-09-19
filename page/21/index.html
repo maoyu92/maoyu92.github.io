@@ -1,0 +1,1038 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="wenmao">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="wallflowers">
+<meta property="og:url" content="https://maoyu92.github.io/page/21/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E6%A0%87%E7%AD%BE.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="To see, to think, to record"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/07/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E5%9F%BA%E4%BA%8E%E8%BF%9E%E7%BB%AD%E5%9C%B0%E8%A1%A8%E6%B0%B4%E6%B0%B4%E8%B4%A8%E8%87%AA%E5%8A%A8%E7%AB%99%E7%9A%84%E6%B5%81%E9%80%9F%E4%B8%8E%E9%99%8D%E8%A7%A3%E7%B3%BB%E6%95%B0%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95/" target="_self">
+          基于连续地表水水质自动站的流速与降解系数自动识别算法
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/07/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E5%9F%BA%E4%BA%8E%E8%BF%9E%E7%BB%AD%E5%9C%B0%E8%A1%A8%E6%B0%B4%E6%B0%B4%E8%B4%A8%E8%87%AA%E5%8A%A8%E7%AB%99%E7%9A%84%E6%B5%81%E9%80%9F%E4%B8%8E%E9%99%8D%E8%A7%A3%E7%B3%BB%E6%95%B0%E8%87%AA%E5%8A%A8%E8%AF%86%E5%88%AB%E7%AE%97%E6%B3%95/" target="_self">
+        <div>
+          摘要本文提出了一种基于自动站数据的多波峰自动配对与参数反演算法，旨在解决流域水质模型中流速与降解系数难以自动识别的问题。该算法兼顾学术理论与工程应用，能够在复杂水文条件下，自动、批量、稳健地反推出河流区间的流速与降解系数。在重庆 XX 流域的应用中，该算法相比传统方法，模型精度有明显提升。实验结果表明，该方法能够为水环境管理和污染溯源提供有力支撑，并为流域污染物排放控制和应急响应提供决策支
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-07 16:40" pubdate>
+              2025-07-07
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="category-chain-item">生态环境</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/python/">#python</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/06/29/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%20%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E7%8E%AF%E8%AF%84%E5%8F%97%E7%90%86%E5%85%AC%E7%A4%BA/" target="_self">
+          爬虫实战 批量下载环评受理公示
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/06/29/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E7%88%AC%E8%99%AB%E5%AE%9E%E6%88%98%20%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD%E7%8E%AF%E8%AF%84%E5%8F%97%E7%90%86%E5%85%AC%E7%A4%BA/" target="_self">
+        <div>
+          项目背景作为环境工程从业者，我经常需要查阅各类环评报告作为学习参考资料。这些报告虽然都是全文公开的，但每次都要手动一个个查找下载非常耗时。最近我终于下定决心要解决这个问题，利用Python开发了一个自动化采集系统，能够批量下载环评公示报告。 技术实现系统架构这个爬虫系统主要包含以下几个功能模块：  分页检测模块：自动识别公告总页数     链接提取模块：从每页获取所有公告链接     内容解析
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-06-29 21:39" pubdate>
+              2025-06-29
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/" class="category-chain-item">生态环境</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Python/">#Python</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/06/20/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/WPS%E6%BC%94%E7%A4%BA%E5%82%AC%E5%8C%96%E5%89%82%EF%BC%9A%E8%AE%A9PPT%E6%BC%94%E7%A4%BA%E6%94%AF%E6%8C%81HTML%E7%BD%91%E9%A1%B5%E7%9A%84%E7%A5%9E%E5%99%A8%E6%8F%92%E4%BB%B6/" target="_self">
+           WPS演示催化剂：让PPT演示支持HTML网页的神器插件
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/06/20/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/WPS%E6%BC%94%E7%A4%BA%E5%82%AC%E5%8C%96%E5%89%82%EF%BC%9A%E8%AE%A9PPT%E6%BC%94%E7%A4%BA%E6%94%AF%E6%8C%81HTML%E7%BD%91%E9%A1%B5%E7%9A%84%E7%A5%9E%E5%99%A8%E6%8F%92%E4%BB%B6/" target="_self">
+        <div>
+          WPS演示催化剂：让PPT演示支持HTML网页的神器插件作为一名经常需要制作演示文稿的工作者，我一直有个痛点：如何在PPT中优雅地展示HTML内容？传统的方法要么是截图贴图，要么是跳转浏览器，都会打断演示的连贯性。直到我发现了WPS演示催化剂这个神器插件，这个问题终于得到了完美解决。 什么是WPS演示催化剂？WPS演示催化剂是一款专为WPS演示（WPS版PowerPoint）开发的免费插件，它
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-06-20 17:57" pubdate>
+              2025-06-20
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="category-chain-item">工具推荐</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/">#工具推荐</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/06/11/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%89%E4%BA%86%E5%AE%83%E4%BB%AC%EF%BC%8C%E6%96%87%E7%A8%BF%E5%AE%A1%E6%A0%B8%E5%8F%98%E5%BE%97%E9%9D%9E%E5%B8%B8%E8%BD%BB%E6%9D%BE/" target="_self">
+          有了它们，文稿审核变得非常轻松
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/06/11/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%9C%89%E4%BA%86%E5%AE%83%E4%BB%AC%EF%BC%8C%E6%96%87%E7%A8%BF%E5%AE%A1%E6%A0%B8%E5%8F%98%E5%BE%97%E9%9D%9E%E5%B8%B8%E8%BD%BB%E6%9D%BE/" target="_self">
+        <div>
+          大家好，今天想和大家聊聊一个在内容创作和编辑工作中老大难的问题——文稿审核。无论是工作报告、学术论文，还是新媒体稿件，细致的审核都是非常重要的，我自己属于那种比较粗心大意的人，往往喜欢尽快完成稿件，但是稿子的质量却难以保证，所以我对如何提高升高能力做了很多尝试。 今天就介绍我自己实践很久的文件审稿工作流。 省流版本就是 wps 文本校对+AI 大模型。 wps 文本校对其中 wps 文本校对负
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-06-11 17:10" pubdate>
+              2025-06-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/AIGC/">#AIGC</a>
+            
+              <a href="/tags/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/">#经验分享</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/05/23/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Google%20NotebookLM%EF%BC%9A%E4%B8%BB%E9%A2%98%E9%98%85%E8%AF%BB%E7%9A%84%E7%A5%9E/" target="_self">
+          Google NotebookLM：主题阅读的神
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/05/23/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/Google%20NotebookLM%EF%BC%9A%E4%B8%BB%E9%A2%98%E9%98%85%E8%AF%BB%E7%9A%84%E7%A5%9E/" target="_self">
+        <div>
+          在信息爆炸的数字时代，我们每天都被海量的内容所淹没——学术论文、行业报告、新闻资讯、播客视频……如何高效地吸收、整合这些信息成为现代人面临的核心挑战。作为谷歌实验室推出的革命性 AI 笔记工具，NotebookLM 正以其独特的多模态处理能力和智能知识整合功能，重新定义主题阅读与知识管理的方式。本文将深入剖析 NotebookLM 的核心优势、功能特性以及实用技巧，展示它如何成为数字时代学习者
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-05-23 18:56" pubdate>
+              2025-05-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="category-chain-item">工具推荐</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/AIGC/">#AIGC</a>
+            
+              <a href="/tags/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/">#工具推荐</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/05/22/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/AI%E7%94%9F%E6%88%90%E6%8A%80%E6%9C%AF%E8%B7%AF%E7%BA%BF%E5%9B%BE%EF%BC%9A%E5%91%8A%E5%88%AB%E6%89%8B%E7%BB%98%E6%97%B6%E4%BB%A3%E7%9A%84%E6%95%88%E7%8E%87%E9%9D%A9%E5%91%BD/" target="_self">
+          AI生成技术路线图：告别手绘时代的效率革命
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/05/22/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/AI%E7%94%9F%E6%88%90%E6%8A%80%E6%9C%AF%E8%B7%AF%E7%BA%BF%E5%9B%BE%EF%BC%9A%E5%91%8A%E5%88%AB%E6%89%8B%E7%BB%98%E6%97%B6%E4%BB%A3%E7%9A%84%E6%95%88%E7%8E%87%E9%9D%A9%E5%91%BD/" target="_self">
+        <div>
+          🚀 写在前面还在为制作复杂的技术路线图而苦恼吗？传统的手工绘制流程图不仅耗时耗力，而且往往难以达到专业水准。今天就来分享一个颠覆性的解决方案——AI + Visio 组合拳，让你在几分钟内就能创建出可二次编辑的专业级技术路线图！ 🎯 为什么选择AI生成？传统绘制技术路线图的痛点相信大家都深有体会：  ⏰ 时间成本高：复杂图表往往需要数小时甚至数天 🎨 美观度不足：缺乏设计经验很难做出专业
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-05-22 06:53" pubdate>
+              2025-05-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/AIGC/">#AIGC</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/05/14/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/AI%E6%89%93%E9%80%A0%E4%B8%AA%E6%80%A7%E5%8C%96%E5%AE%A1%E7%A8%BF%E4%B8%93%E5%AE%B6/" target="_self">
+          AI打造个性化审稿专家
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/05/14/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/AI%E6%89%93%E9%80%A0%E4%B8%AA%E6%80%A7%E5%8C%96%E5%AE%A1%E7%A8%BF%E4%B8%93%E5%AE%B6/" target="_self">
+        <div>
+          我的文稿审核工作流，AI打造个性化审稿专家大家好，今天想和大家聊聊一个在内容创作和编辑工作中老大难的问题——文稿审核。无论是工作报告、学术论文，还是新媒体稿件，细致的审核都不可或缺。传统的AI审稿工具，要么只能给个大概的建议，要么受限于输入长度（Token限制），面对长篇大论就束手无策，更别提满足我们五花八门的个性化审核需求了。 最近，我捣鼓出了一套全新的AI文稿审核工作流，可以说是给自己
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-05-14 21:46" pubdate>
+              2025-05-14
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/AIGC/">#AIGC</a>
+            
+              <a href="/tags/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/">#经验分享</a>
+            
+              <a href="/tags/Python/">#Python</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/05/02/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%89%8B%E6%90%93%E4%B8%80%E4%B8%AA%20MCP%20Server%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%B0%B4%E8%B4%A8%E5%9C%A8%E7%BA%BF%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" target="_self">
+          手搓第一个 MCP Server：实现水质在线数据查询
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/05/02/06%20%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/%E6%89%8B%E6%90%93%E4%B8%80%E4%B8%AA%20MCP%20Server%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%B0%B4%E8%B4%A8%E5%9C%A8%E7%BA%BF%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2/" target="_self">
+        <div>
+          随着人工智能技术的快速发展，如何将大语言模型（LLM）与实际业务场景结合，提供精准、可控的服务成为一个热门话题。MCP（Model Context Protocol）作为一种开放协议，为应用程序向 LLM 提供标准化的上下文接口，极大地简化了这一过程。本文将以构建一个水质在线查询 MCP 服务为例，手把手带你从零开始实现一个功能强大且实用的 MCP Server。通过这个过程，你将深入理解 M
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-05-02 17:46" pubdate>
+              2025-05-02
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/python/">#python</a>
+            
+              <a href="/tags/AIGC/">#AIGC</a>
+            
+              <a href="/tags/mcp/">#mcp</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/04/25/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/UV%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E6%9B%B4%E5%BF%AB%E7%9A%84Python%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" target="_self">
+          UV入门指南：更快的Python包管理工具实践
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/04/25/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/UV%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E6%9B%B4%E5%BF%AB%E7%9A%84Python%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/" target="_self">
+        <div>
+          什么是 UV？UV 是一款由 Rust 编写的现代化 Python 包管理工具，凭借其惊人的性能和直观的用户体验迅速崭露头角。作为传统 pip 的强力替代品，UV 不仅提供了极速的依赖解析能力，还带来了更智能的包管理体验和全方位的项目环境控制。还有他是学习 python 构建 mcp 的基础。 UV 的核心优势 ✨ 极速安装：相比传统工具，依赖解析和包安装速度提升 10-100 倍 一站式解
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-04-25 16:11" pubdate>
+              2025-04-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="category-chain-item">工具推荐</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/python/">#python</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/04/25/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/UV%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E6%9B%B4%E5%BF%AB%E7%9A%84Python%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7_%E5%86%B2%E7%AA%81%E6%96%87%E4%BB%B6_chenw_20251113195504/" target="_self">
+          UV入门指南：更快的Python包管理工具实践
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/04/25/03%20%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/UV%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E6%9B%B4%E5%BF%AB%E7%9A%84Python%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7_%E5%86%B2%E7%AA%81%E6%96%87%E4%BB%B6_chenw_20251113195504/" target="_self">
+        <div>
+          什么是 UV？UV 是一款由 Rust 编写的现代化 Python 包管理工具，凭借其惊人的性能和直观的用户体验迅速崭露头角。作为传统 pip 的强力替代品，UV 不仅提供了极速的依赖解析能力，还带来了更智能的包管理体验和全方位的项目环境控制。还有他是学习 python 构建 mcp 的基础。 UV 的核心优势 ✨ 极速安装：相比传统工具，依赖解析和包安装速度提升 10-100 倍 一站式解
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-04-25 16:11" pubdate>
+              2025-04-25
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90/" class="category-chain-item">工具推荐</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/python/">#python</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/20/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/#board">19</a><a class="page-number" href="/page/20/#board">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/#board">22</a><a class="page-number" href="/page/23/#board">23</a><span class="space">&hellip;</span><a class="page-number" href="/page/33/#board">33</a><a class="extend next" rel="next" href="/page/22/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

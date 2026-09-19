@@ -1,0 +1,765 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="很多人跟 AI 对话时，只会甩一句模糊需求；但高手 prompt 的底层逻辑，其实是把“人怎么指挥人”换成“你怎么指挥 AI”。  从一篇文章，看懂高手在教什么最近看到 OpenAI 官方写的一篇 Prompt 指南，核心意思其实是：Prompt 不是你“怎么写”，而是你怎么“提要求”。 这篇指南把 prompt 拆成了四块：  Goal：你到底想让它干什么  Context：哪些资料能帮它做对">
+<meta property="og:type" content="article">
+<meta property="og:title" content="别再把 AI 当搜索引擎用了：高手的 Prompt 思路其实是“项目管理”">
+<meta property="og:url" content="https://maoyu92.github.io/2026/07/12/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a055_%E5%88%AB%E5%86%8D%E6%8A%8A%20AI%20%E5%BD%93%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E7%94%A8%E4%BA%86%EF%BC%9A%E9%AB%98%E6%89%8B%E7%9A%84%20Prompt%20%E6%80%9D%E8%B7%AF%E5%85%B6%E5%AE%9E%E6%98%AF%E2%80%9C%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86%E2%80%9D/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="很多人跟 AI 对话时，只会甩一句模糊需求；但高手 prompt 的底层逻辑，其实是把“人怎么指挥人”换成“你怎么指挥 AI”。  从一篇文章，看懂高手在教什么最近看到 OpenAI 官方写的一篇 Prompt 指南，核心意思其实是：Prompt 不是你“怎么写”，而是你怎么“提要求”。 这篇指南把 prompt 拆成了四块：  Goal：你到底想让它干什么  Context：哪些资料能帮它做对">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-12T01:45:00.000Z">
+<meta property="article:modified_time" content="2026-07-12T01:45:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>别再把 AI 当搜索引擎用了：高手的 Prompt 思路其实是“项目管理” - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="别再把 AI 当搜索引擎用了：高手的 Prompt 思路其实是“项目管理”"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-12 09:45" pubdate>
+          2026年7月12日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          871 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">别再把 AI 当搜索引擎用了：高手的 Prompt 思路其实是“项目管理”</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>很多人跟 AI 对话时，只会甩一句模糊需求；但高手 prompt 的底层逻辑，其实是把“人怎么指挥人”换成“你怎么指挥 AI”。</p>
+</blockquote>
+<h2 id="从一篇文章，看懂高手在教什么"><a href="#从一篇文章，看懂高手在教什么" class="headerlink" title="从一篇文章，看懂高手在教什么"></a>从一篇文章，看懂高手在教什么</h2><p>最近看到 OpenAI 官方写的一篇 Prompt 指南，核心意思其实是：<strong>Prompt 不是你“怎么写”，而是你怎么“提要求”。</strong></p>
+<p>这篇指南把 prompt 拆成了四块：</p>
+<ul>
+<li><p><strong>Goal</strong>：你到底想让它干什么</p>
+</li>
+<li><p><strong>Context</strong>：哪些资料能帮它做对</p>
+</li>
+<li><p><strong>Output</strong>：要什么格式、多长、给谁看</p>
+</li>
+<li><p><strong>Boundaries</strong>：什么不能改、什么必须先问你</p>
+</li>
+</ul>
+<p>听起来简单，但大部分人第一句就说错了。<br>很多人一上来就直接列步骤：“先搜这个，再总结那个，最后写成表格。”<br>但真正高手的写法是：<strong>先说结果，再说背景，再说边界。</strong></p>
+<h2 id="我自己的用法，其实已经接近这个思路"><a href="#我自己的用法，其实已经接近这个思路" class="headerlink" title="我自己的用法，其实已经接近这个思路"></a>我自己的用法，其实已经接近这个思路</h2><p>我看完这篇文章时其实挺有共鸣的。<br>我自己在用 Codex 做 Web coding 时，写 prompt 大致也是这个方向：</p>
+<ol>
+<li><p>先告诉它我要什么结果</p>
+</li>
+<li><p>告诉它我会提供哪些资料</p>
+</li>
+<li><p>给它一个可交付的标准</p>
+</li>
+<li><p>过程中有问题再继续改</p>
+</li>
+</ol>
+<p>比如我通常会先描述目标页面长什么样，告诉它我要基于哪个仓库、哪些文件，最后说清楚要的是一个能运行的页面，还是一个可复用的组件。</p>
+<p>遇到不符合预期的结果，我也不是一次写对，而是像改稿一样不断追问：<br>“这个布局太挤了”“把表单校验加回来”“不要这个版本的样式”。</p>
+<p>这种**“先给结果，再迭代优化”**的用法，其实和那篇指南讲的是同一套方法。</p>
+<h2 id="真正拉开差距的，不是会不会调参数"><a href="#真正拉开差距的，不是会不会调参数" class="headerlink" title="真正拉开差距的，不是会不会调参数"></a>真正拉开差距的，不是会不会调参数</h2><p>所以我读完最大的感受是：<strong>差距不在 Prompt 模板，而在结构化表达能力。</strong></p>
+<p>这篇文章厉害的地方，不是教了一个“公式”，而是把一件本来只靠感觉做的事，拆成了可复制的方法：</p>
+<ul>
+<li><p>先说你要什么，而不是你要它怎么做</p>
+</li>
+<li><p>只给真正相关的上下文，不要塞无关文件</p>
+</li>
+<li><p>明确边界，减少它“想太多”</p>
+</li>
+<li><p>结果出来后，用具体反馈继续修正</p>
+</li>
+</ul>
+<p>我平时做项目时也是这个感受：<strong>给 AI 的信息越像“给同事 brief”，产出越稳定。</strong></p>
+<h2 id="另一个启示：找到优质信源，本身就是能力"><a href="#另一个启示：找到优质信源，本身就是能力" class="headerlink" title="另一个启示：找到优质信源，本身就是能力"></a>另一个启示：找到优质信源，本身就是能力</h2><p>这篇文章里还有一点我特别认同：<br><strong>能快速找到优质内容，并把它翻译成可行动的方法，本身就是核心竞争力。</strong></p>
+<p>现在信息太多，真正有价值的内容往往是英文一手资料。<br>如果我们能主动看英文原文、整理成自己的理解，而不是只等二手中文解读，速度和质量都会不一样。</p>
+<p>所以我接下来的一个明确方向是：<strong>更多去读英文原文，多关注一手信息源。</strong></p>
+<h2 id="总结成一句话"><a href="#总结成一句话" class="headerlink" title="总结成一句话"></a>总结成一句话</h2><blockquote>
+<p>跟 AI 协作的最高级 prompt，其实不是“话术”，而是你会不会把一个任务像项目一样拆清楚：目标、资料、交付标准、边界，然后接受“第一版不完美，继续优化”这个事实。</p>
+</blockquote>
+<p>这篇文章最值得学的，不是某一个 prompt 模板，<br>而是这种<strong>把模糊需求结构化、把沟通成本降下来</strong>的能力。</p>
+<hr>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>别再把 AI 当搜索引擎用了：高手的 Prompt 思路其实是“项目管理”</div>
+      <div>https://maoyu92.github.io/2026/07/12/07 AI笔记/AI写作与发布/a055_别再把 AI 当搜索引擎用了：高手的 Prompt 思路其实是“项目管理”/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/12/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a054_%E4%BB%8E%E7%9B%B4%E8%A7%89%E5%88%B0%E6%96%B9%E6%B3%95%E8%AE%BA%E2%80%94%E2%80%94%E8%AF%BB%20OpenAI%20%E5%AE%98%E6%96%B9%20Prompting%20%E6%8C%87%E5%8D%97/" title="从直觉到方法论——读 OpenAI 官方 Prompting 指南">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">从直觉到方法论——读 OpenAI 官方 Prompting 指南</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/08/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a060_%E8%85%BE%E8%AE%AF%E4%BA%91%E5%BC%80%E5%8F%91%E6%94%BE%E7%A6%8F%E5%88%A9%EF%BC%9A%E7%99%BD%E5%AB%96%2010%20%E4%BA%BF%20Token%20+%2010%20%E4%B8%87%E5%BC%A0%20AI%20%E7%94%9F%E5%9B%BE%EF%BC%88%E6%91%B8%E9%B1%BC%E7%BB%BF%E6%8E%92%E7%89%88%EF%BC%89/" title="腾讯云开发放福利：白嫖 10 亿 Token + 10 万张 AI 生图（摸鱼绿排版）">
+                        <span class="hidden-mobile">腾讯云开发放福利：白嫖 10 亿 Token + 10 万张 AI 生图（摸鱼绿排版）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

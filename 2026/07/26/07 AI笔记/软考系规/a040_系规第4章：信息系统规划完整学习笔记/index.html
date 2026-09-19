@@ -1,0 +1,1521 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="EXAM NOTES · 系规学习 · 2026.07 厚书只能从头硬啃？ 先抓四个问题， 再逐节学透 第4章 · 信息系统规划 · 完整学习与记忆 系规24期学习整理 · 第01期 · 综合 案例 论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 四个问题 PART 02 4.1 概述 为什么规划 PART 03 4.2 主要内容 规划什么 PART 04 4">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系规第4章：信息系统规划完整学习笔记">
+<meta property="og:url" content="https://maoyu92.github.io/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a040_%E7%B3%BB%E8%A7%84%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="EXAM NOTES · 系规学习 · 2026.07 厚书只能从头硬啃？ 先抓四个问题， 再逐节学透 第4章 · 信息系统规划 · 完整学习与记忆 系规24期学习整理 · 第01期 · 综合 案例 论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 四个问题 PART 02 4.1 概述 为什么规划 PART 03 4.2 主要内容 规划什么 PART 04 4">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a040/f5ffb66453eeb155.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a040/a3d97c3c351c8cb7.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a040/7138eabd720a5eac.png">
+<meta property="article:published_time" content="2026-07-26T02:25:00.000Z">
+<meta property="article:modified_time" content="2026-07-26T02:25:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/uploads/ai-notes/a040/f5ffb66453eeb155.png">
+  
+  
+  <title>系规第4章：信息系统规划完整学习笔记 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="系规第4章：信息系统规划完整学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-26 10:25" pubdate>
+          2026年7月26日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          79 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">系规第4章：信息系统规划完整学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>EXAM NOTES · 系规学习 · 2026.07</p>
+<p>厚书只能从头硬啃？</p>
+<p>先抓四个问题，</p>
+<p>再逐节学透</p>
+<p>第4章 · 信息系统规划 · 完整学习与记忆</p>
+<p>系规24期学习整理 · 第01期 · 综合 案例 论文</p>
+<p>6 PARTS + CONCLUSION</p>
+<p>👉 滑动</p>
+<p>PART 01</p>
+<p>本章地图</p>
+<p>四个问题</p>
+<p>PART 02</p>
+<p>4.1 概述</p>
+<p>为什么规划</p>
+<p>PART 03</p>
+<p>4.2 主要内容</p>
+<p>规划什么</p>
+<p>PART 04</p>
+<p>4.3 工作要点</p>
+<p>怎样规划</p>
+<p>PART 05</p>
+<p>4.4 常用方法</p>
+<p>五种方法</p>
+<p>PART 06</p>
+<p>必背与考试</p>
+<p>记忆·案例</p>
+<p>PART &#x2F;&#x2F;&#x2F;</p>
+<p>写在最后</p>
+<p>复习建议</p>
+<p>学习目标</p>
+<p>信息系统规划这一章概念多、清单多，但教材结构其实很稳定：为什么规划、规划什么、怎样规划、用什么方法规划。本文按教材4.1—4.4逐节展开，读完并完成文末自测，即可完成本章第一轮完整学习。</p>
+<p>这是“系规学习”的第1期。先从方法篇第4章开始，不把教材压缩成另一部厚书，也不只留一张背诵提纲，而是把理解、记忆、综合题、案例题和论文素材放在同一篇文章里。</p>
+<p>01PART</p>
+<p>本章地图：先建立四个问题</p>
+<p>OVERVIEW · LEARNING MAP</p>
+<p>第4章按下面四个问题展开：</p>
+<p>14.1 为什么规划：信息系统规划是什么、有什么价值、遵循什么原则。</p>
+<p>24.2 规划什么：发展战略、系统框架、组织、技术、任务、资源和保障。</p>
+<p>34.3 怎样规划：需求挖掘、场景分析、诊断评估、形成规划、持续改进。</p>
+<p>44.4 用什么方法规划：SST、BSP、CSF、VCA和Zachman框架。</p>
+<p><img src="/uploads/ai-notes/a040/f5ffb66453eeb155.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 第4章的四个问题</p>
+<p>考情与学习顺序</p>
+<p>●综合题：重点考概念、数量、对应关系和方法区别，预计可覆盖3—4分左右。</p>
+<p>●案例题：重点考技术体系、任务资源保障、需求挖掘、诊断评估、一致性检查和方法识别。</p>
+<p>●论文：可作为信息系统规划实践类论文的总框架，考查可能性为中等。</p>
+<p>建议按三轮学习：</p>
+<p>1第一轮先理解四个问题和每节逻辑。</p>
+<p>2第二轮集中背诵“几项、几步、几种”。</p>
+<p>3第三轮用案例找茬和闭卷自测检验输出能力。</p>
+<p>02PART</p>
+<p>4.1 概述：为什么要做信息系统规划</p>
+<p>CONCEPT · VALUE · PRINCIPLES</p>
+<p>4.1.1 什么是信息系统规划</p>
+<p>信息系统规划不是简单地列一份系统采购清单，而是：在充分考虑组织内外部发展条件的基础上，以组织发展战略为出发点，明确组织信息系统的愿景与目标、总体框架、系统及其组成部分的逻辑关系、建设模式和实施策略，从而促进并保障组织目标达成。</p>
+<p>可以把它理解为组织数字能力建设的“总导航”：</p>
+<p>●组织将来要形成什么数字能力；</p>
+<p>●信息系统总体上长什么样；</p>
+<p>●先做什么、后做什么；</p>
+<p>●由谁负责、投入什么资源；</p>
+<p>●如何根据环境变化持续调整。</p>
+<p>4.1.2 规划的六项价值</p>
+<p>1确立关键数字能力目标：明确组织需要建设哪些关键能力。</p>
+<p>2明确数字能力建设路径：把远景转化为可分阶段推进的路线。</p>
+<p>3形成认识上的一致性：让决策层、管理层、业务和技术团队使用同一张蓝图。</p>
+<p>4具象关键建设任务：把战略意图落到任务、项目和活动。</p>
+<p>5明确能力标准与控制措施：知道做到什么程度、如何检查偏差。</p>
+<p>6统筹部署和管理建设资源：避免重复投资、资源错配和局部最优。</p>
+<p>记忆顺序：目标 → 路径 → 共识 → 任务 → 标准与控制 → 资源。</p>
+<p>4.1.3 规划活动的三个特点</p>
+<p>第一，规划面对的是组织全局和长远问题，因此具有较强的不确定性、概括性和结构化程度低等特点。</p>
+<p>第二，规划需要组织全员参与：决策层承担主要责任，管理层是工作主体，业务和技术人员共同提供信息并参与论证。</p>
+<p>第三，规划通常综合使用自顶向下分解和自底向上聚合。前者保证战略方向一致，后者保证规划建立在真实业务和能力现状之上。</p>
+<p>关键理解</p>
+<p>易错点：规划依据现状，但还要能够应对未来变化，因此不能写得过细。规划给出方向、框架和约束，不替代后续详细设计与实施计划。</p>
+<p>4.1.4 六项规划原则</p>
+<table>
+<thead>
+<tr>
+<th>原则</th>
+<th>含义</th>
+<th>常见误区</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>战略性</td>
+<td>从战略视角定义信息系统目标与价值，与组织战略一致</td>
+<td>只解决当前局部需求</td>
+</tr>
+<tr>
+<td>整体性</td>
+<td>统筹业务赋能、系统框架、建设实施和集成融合</td>
+<td>各部门各建一套、局部最优</td>
+</tr>
+<tr>
+<td>先进性</td>
+<td>选择合适技术路线并借鉴成熟经验</td>
+<td>把先进性理解为盲目追新</td>
+</tr>
+<tr>
+<td>指导性</td>
+<td>给设计、建设和实施提供框架性依据</td>
+<td>把规划写成详细设计</td>
+</tr>
+<tr>
+<td>柔性</td>
+<td>能够监测、调整和优化，适应内外部变化</td>
+<td>技术架构固化、难以扩展</td>
+</tr>
+<tr>
+<td>遵从性</td>
+<td>遵守法律法规、标准规范以及组织战略要求</td>
+<td>忽略政策来源和标准约束</td>
+</tr>
+</tbody></table>
+<p>口诀：战、整、先、指、柔、从。</p>
+<p>03PART</p>
+<p>4.2 主要内容：到底规划什么</p>
+<p>SEVEN AREAS · FULL DETAILS</p>
+<p>信息系统规划是组织数字能力建设的总体纲领，主要包括七项内容：</p>
+<p>1信息系统发展战略</p>
+<p>2主要系统及框架</p>
+<p>3组织体系优化</p>
+<p>4技术体系定义</p>
+<p>5任务体系部署</p>
+<p>6资源体系调度</p>
+<p>7保障体系设定</p>
+<p>记忆骨架：战、框、组、技、任、资、保。</p>
+<p>关键理解</p>
+<p>易错点：“主要系统及框架”是独立的一项，不能漏掉。部分精简资料只列6项，本笔记按第2版教材采用7项。</p>
+<p>4.2.1 信息系统发展战略</p>
+<p>发展战略解决三个问题：往哪里去、达到什么目标、分几步走。</p>
+<p>1. 发展战略与建设目标</p>
+<p>信息系统发展战略是组织信息系统建设和优化的全局性策略，包含数字能力建设的方向、纲领、方针、政策和技术取向，需要形成全员一致认识。</p>
+<p>建设目标是对发展战略的阶段化表达。目标通常构成“总体目标—分目标—多层子目标”的目标树，并以时间为轴、以阶段为区隔，进行定性与定量描述。</p>
+<p>2. 发展路径的四项原则</p>
+<p>1业务一致：路径必须服务业务发展，不能让技术路线脱离业务。</p>
+<p>2能力主线：围绕组织需要形成的能力安排建设顺序。</p>
+<p>3基础优先：数据、平台、标准等基础没有稳定前，不急于堆叠上层应用。</p>
+<p>4稳态先行：先稳住相对成熟、变化较少的部分，再推进敏捷创新。</p>
+<p>记忆：业务、能力、基础、稳态。</p>
+<p>3. 为什么要划分发展阶段</p>
+<p>划分阶段有四个作用：便于成员理解总体路线、响应不同阶段目标、定义每个阶段主旨、根据结果调整优化。</p>
+<p>4. 五个发展等级</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>主要关注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>打基础</td>
+<td>业务规范化、数字意识和局部系统建设</td>
+</tr>
+<tr>
+<td>提效率</td>
+<td>以团队或部门职能为基础，全面建设系统以提高效率</td>
+</tr>
+<tr>
+<td>做协同</td>
+<td>数据共治共享，以数据流优化业务流，推动跨部门协同</td>
+</tr>
+<tr>
+<td>强决策</td>
+<td>开发利用数据和模型，提高决策效率并推动治理变革</td>
+</tr>
+<tr>
+<td>构生态</td>
+<td>跨组织融合应用，依托云和互联网形成广域协同和自组织能力</td>
+</tr>
+</tbody></table>
+<p>记忆：打、提、做、强、构。</p>
+<p>4.2.2 主要系统及框架</p>
+<p>1. 总体框架</p>
+<p>在新一代信息技术环境下，组织常采用“感、传、智、用、安”的总体框架：感知、传输、智能处理、业务应用和安全保障相互支撑。</p>
+<p>2. 三种框架演进模式</p>
+<table>
+<thead>
+<tr>
+<th>框架</th>
+<th>核心关注</th>
+<th>适用理解</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>以应用功能为主线</td>
+<td>软件功能和职能分工</td>
+<td>缺什么功能就部署什么系统，统一规划、分步实施</td>
+</tr>
+<tr>
+<td>以平台能力为主线</td>
+<td>共性能力沉淀和复用</td>
+<td>从“竖井式系统”走向“平层化能力平台”</td>
+</tr>
+<tr>
+<td>以互联网为主线</td>
+<td>功能细分、封装、组合和动态编排</td>
+<td>借助云边端融合，实现能力敏捷组合和弹性变革</td>
+</tr>
+</tbody></table>
+<p>框架选择本质上取决于组织业务发展程度和数字化转型成熟度。成熟、少变化的应用可以继续使用成套软件；新型、多变的应用更适合平台化和服务化。</p>
+<p>3. 分系统划分的四项原则</p>
+<p>1技术一致性：按云计算、物联网等技术类别划分，保证架构和选型一致。</p>
+<p>2工程一致性：把持续建设、相对独立的场景划成独立工程。</p>
+<p>3职能一致性：按组织职能或业务边界划分，形成清晰系统边界。</p>
+<p>4数据一致性：把数据活动视为独立、完整的能力，保障数据要素开发利用。</p>
+<p>口诀：技、工、职、数。</p>
+<p>4.2.3 组织体系优化</p>
+<p>中小型单位的信息组织体系通常由两部分构成：</p>
+<p>●信息化管理委员会：负责规划、统筹、评估、指导和监督，是数字能力治理机构。</p>
+<p>●信息化团队：负责设计、建设、集成和运维，是建设与管理机构。</p>
+<p>大型单位常见三种模式：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>优点</th>
+<th>风险或前提</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>集中式</td>
+<td>统一标准、统筹资源、利于集成</td>
+<td>可能离业务较远、响应速度较慢</td>
+</tr>
+<tr>
+<td>分权式</td>
+<td>贴近业务、响应较快</td>
+<td>容易重复建设、标准不一、集成困难</td>
+</tr>
+<tr>
+<td>平衡矩阵式</td>
+<td>基础环境集中，业务应用适度分权，兼顾稳态与敏态</td>
+<td>建设难度高，要求较成熟的治理能力</td>
+</tr>
+</tbody></table>
+<p>关键理解</p>
+<p>关键理解：数字能力建设成功不只是拥有一支专职IT团队，更需要业务人员深度参与数据治理、能力建设和创新应用。</p>
+<p>4.2.4 技术体系定义</p>
+<p>技术体系决定组织的信息技术环境，是信息系统落地运行的基础。选择技术时要回答：能不能用、安不安全、稳不稳定、能否适应变化、能否扩展、组织是否驾驭得了。</p>
+<p>1. 六项技术原则</p>
+<p>1可用性：在给定条件下满足功能和性能要求，关注“可用程度”而非简单的行或不行。</p>
+<p>2安全性：识别技术漏洞，降低故障对业务的影响，并与安全管理体系匹配。</p>
+<p>3可靠性：从成熟性、理论与应用完整性、技术风险等方面判断。</p>
+<p>4灵活性：需求变化时，技术体系只需少量变化或保持不变即可满足要求。</p>
+<p>5可扩展性：优先利用既有技术，通过扩展组件或应用范围满足新需求。</p>
+<p>6可驾驭性：组织具备开发利用、维护和演进该技术的能力。</p>
+<p>口诀：用、安、可、灵、扩、驾。</p>
+<p>关键理解</p>
+<p>案例识别：盲目采用缺少成熟案例的新技术，常违反可靠性或可驾驭性；架构固化、变化时必须大规模重建，常违反灵活性或可扩展性。</p>
+<p>2. 技术关注领域</p>
+<p>●应用与开发：SOA、微服务等。</p>
+<p>●网络：SDN、5G、自组网等。</p>
+<p>●计算与存储：云计算、虚拟化等。</p>
+<p>●数据资源：大数据、平台化技术等。</p>
+<p>●客户端访问：移动App、小程序等。</p>
+<p>●信息安全：自动化、智能化安全技术等。</p>
+<p>3. 两种技术蓝图</p>
+<p>●逻辑结构图：按系统或技术组件的结构逻辑绘制，突出技术如何支撑系统，以及组件之间的关系。</p>
+<p>●技术应用图：展示一组强关联技术如何全面应用于组织信息系统。</p>
+<p>复杂技术体系可将两种方式融合。若题目强调“针对每个框架层描述技术路线和技术组件”，一般属于逻辑结构图。</p>
+<p>4.2.5 任务体系部署</p>
+<p>任务体系把战略和规划转化为可执行工作，关系到建设、优化和运营的职责分工。主要过程有六步：</p>
+<p>1任务拆解：把宏观任务层次化、精细化，并明确任务之间的先后和依赖关系。</p>
+<p>2明确目标：为各层任务定义具体、可测量、可实现且与总体目标一致的目标。</p>
+<p>3匹配组织：根据职能和业务分工，为每个任务配置承担团队与责任人。</p>
+<p>4制定策略：识别约束和风险，为重点任务制定实现策略与应对措施。</p>
+<p>5定义计划：明确任务内容、干系团队、责任人、时间表和评估指标。</p>
+<p>6监控实施：规定监测内容、方法和频率，及时发现偏差并调整。</p>
+<p>记忆：拆、标、配、策、划、控。</p>
+<p>关键理解</p>
+<p>案例常见错误：任务拆了但没有阶段目标；忽略前后依赖；责任人不清；只做月度汇报而没有及时监控。</p>
+<p>4.2.6 资源体系调度</p>
+<p>资源包括人力、财务、技术、业务以及软硬件等。资源体系调度有四类活动：</p>
+<p>1资源识别与评估：可以按能力要素识别，也可按“人、机、料、法、环、测”识别；评估技能、性能、容量、时间和财务属性。</p>
+<p>2资源关系与控制：减少无效利用、采用节约资源技术、优化资源开发利用管理。</p>
+<p>3资源分配与调度：既要处理资源异常时的再分配和替代，也要为重大风险场景准备应急调度。</p>
+<p>4资源风险与优化：关注容量不足、供应中断、质量和能力不达标等风险，并持续优化。</p>
+<p>关键理解</p>
+<p>案例常见错误：硬件投入过高而数据治理、人员培训不足；没有预留容量；没有备用资源和应急调度机制。</p>
+<p>4.2.7 保障体系设定</p>
+<p>保障体系保证规划能够落地，重点关注不容易直接量化但会决定执行成败的条件。包括六个方面：</p>
+<p>1组织保障：决策层和管理层作出承诺，既关注投资，也推动组织变革。</p>
+<p>2人员保障：培养全员数字能力，做好人才储备、变革意识和关键人员新技能建设。</p>
+<p>3技术保障：加强技术储备与预研，优化创新考核，营造创新文化，推动技术标准化。</p>
+<p>4资源保障：重视软实力，提高数字能力资源优先级，培养资源管理人员。</p>
+<p>5数据保障：完善数据治理和标准体系，抓数据质量，培养数据开发利用能力。</p>
+<p>6安全保障：提高全员安全意识、知识和技能，完善信息安全管理体系。</p>
+<p>记忆：组、人、技、资、数、安。</p>
+<p>关键理解</p>
+<p>区分：可以量化并直接配置的内容通常放在任务体系或资源体系；保障体系更强调承诺、能力、机制、文化和长期条件。</p>
+<p>04PART</p>
+<p>4.3 工作要点：信息系统规划怎样开展</p>
+<p>FIVE STEPS · CLOSED LOOP</p>
+<p>信息系统规划的五个工作要点是：</p>
+<p>1内外部需求挖掘</p>
+<p>2场景化模型分析</p>
+<p>3深度诊断与评估</p>
+<p>4整体与专项规划</p>
+<p>5持续改进</p>
+<p>口诀：内、场、深、整、改。</p>
+<p><img src="/uploads/ai-notes/a040/a3d97c3c351c8cb7.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 信息系统规划五步闭环</p>
+<p>前四步使需求逐渐收敛并形成规划，持续改进则把实施效果和环境变化反馈到下一轮规划。</p>
+<p>4.3.1 内外部需求挖掘</p>
+<p>1. 内部需求挖掘</p>
+<p>内部需求挖掘是规划活动的第一个实质性工作。常用方法包括资料收集、访谈交流、现有系统查勘、业务现场查勘和案头研究。</p>
+<p>五项主要任务：</p>
+<p>1理解组织战略：通过战略文件和高层访谈理解发展方向和数字能力定位。</p>
+<p>2熟悉业务流程：了解业务活动、数据流动、痛点和改进空间。</p>
+<p>3收集用户需求：通过访谈、问卷等收集功能、数据、操作和价值需求。</p>
+<p>4评估现有系统：分析已有系统优缺点和升级改进需求。</p>
+<p>5感知数字环境：盘点数据资产、数字人才、创新情况、数字素养和数字意识。</p>
+<p>五项注意事项：</p>
+<p>1以获取原始信息为主。</p>
+<p>2避免过早给出解决方案。</p>
+<p>3及时开展必要的引导性培训。</p>
+<p>4谨慎进行信息交叉传递。</p>
+<p>5关注隐性需求的推演。</p>
+<p>关键理解</p>
+<p>关键理解：这一阶段追求真实状态和直接需求，不追求需求已经完全有效、精确，更不应过早陷入具体技术路线和系统功能争论。</p>
+<p>2. 外部需求挖掘</p>
+<p>外部需求来自国家战略、行业趋势、技术发展、竞争环境、客户期望和标准规范。</p>
+<p>六项主要任务：</p>
+<p>1国家战略导入</p>
+<p>2行业趋势分析</p>
+<p>3技术趋势研究</p>
+<p>4竞争环境分析</p>
+<p>5客户期望调研</p>
+<p>6标准与规范引用</p>
+<p>三项注意事项：</p>
+<p>1政策和国家战略引用必须来源明确。</p>
+<p>2定性信息尽量转化为可比较、可跟踪的量化内容。</p>
+<p>3调研和信息传递过程中避免引发信息安全事件。</p>
+<p>3. 需求整合后的输出</p>
+<p>完成内外部调研后，需要形成：</p>
+<p>●主要矛盾及矛盾之间的关系；</p>
+<p>●分领域需求、冲突、联系和优先级；</p>
+<p>●关键干系人与群体的内在需求；</p>
+<p>●外部约束和引导性要求；</p>
+<p>●组织创新环境和数字环境状态；</p>
+<p>●当前数字化水平和目标水平；</p>
+<p>●治理与文化模式；</p>
+<p>●规划面临的重大风险；</p>
+<p>●后续工作的主要策略。</p>
+<p>需求挖掘不是一次性的阶段工作，而是贯穿规划全生命周期的过程，需要持续迭代，逐渐接近精准需求。</p>
+<p>4.3.2 场景化模型分析</p>
+<p>场景化模型分析把信息系统应用场景与真实业务活动、角色和需求结合起来，目的是确认系统真正需要解决的问题、需要达到的性能和能够创造的价值。</p>
+<p>1. 场景选择的六步</p>
+<p>1从信息系统目标价值链进行结构化拆解。</p>
+<p>2从业务发展能力链进行结构化拆解。</p>
+<p>3将价值链与能力链交叉，找到融合点。</p>
+<p>4从融合点中识别组织特定价值和关键价值。</p>
+<p>5聚合关键价值点，形成场景分析需求。</p>
+<p>6判断是否具备场景分析条件，形成场景清单。</p>
+<p>2. 场景模型的八个组成部分</p>
+<table>
+<thead>
+<tr>
+<th>组成</th>
+<th>核心问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>场景定义</td>
+<td>背景、范围、目标和利益相关者是什么</td>
+</tr>
+<tr>
+<td>角色分析</td>
+<td>谁参与、职责和行为是什么</td>
+</tr>
+<tr>
+<td>业务分析</td>
+<td>流程、模式、需求和业务价值是什么</td>
+</tr>
+<tr>
+<td>数据分析</td>
+<td>数据从哪里来、如何流动和利用</td>
+</tr>
+<tr>
+<td>技术分析</td>
+<td>现状、需求、架构和融合创新点是什么</td>
+</tr>
+<tr>
+<td>组织分析</td>
+<td>组织结构、文化、人员技能和流程如何影响系统</td>
+</tr>
+<tr>
+<td>风险分析</td>
+<td>技术、安全和管理风险有哪些</td>
+</tr>
+<tr>
+<td>政策与法律分析</td>
+<td>有哪些合规要求和政策约束</td>
+</tr>
+</tbody></table>
+<p>3. 三个应用阶段</p>
+<p>●规划前：识别关键需求、明确目标、分析环境和资源。</p>
+<p>●规划中：比较方案可行性与风险，为决策提供支持。</p>
+<p>●规划后：监测实施效果，并根据结果调整优化。</p>
+<p>4. 关键价值、优点和局限</p>
+<p>关键价值：</p>
+<p>1提高规划决策的科学性和实践性。</p>
+<p>2保证规划与组织发展衔接。</p>
+<p>3降低规划风险和成本。</p>
+<p>4促进规划共识与沟通。</p>
+<p>优点是贴近实际、能够提供清晰指导、提高系统适应性；局限是数据采集与分析难，部分场景受条件限制。</p>
+<p>4.3.3 深度诊断与评估</p>
+<p>需求挖掘和场景分析仍不足以锁定全部需求，还要进一步诊断组织能力、明确目标、细化需求并确认依存关系。</p>
+<p>诊断评估包括三部分：</p>
+<p>1成熟度与需求控制</p>
+<p>2诊断与评估模型确立</p>
+<p>3诊断与评估实施</p>
+<p>1. 五级成熟度</p>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>主要特征</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>一级</td>
+<td>明确基本工作和数字化转型策划，推进规范化</td>
+</tr>
+<tr>
+<td>二级</td>
+<td>管理精细化、流程化，以提高运行效率为重点</td>
+</tr>
+<tr>
+<td>三级</td>
+<td>跨职能协同，数据流逐步替代单纯流程管理，推进平台化</td>
+</tr>
+<tr>
+<td>四级</td>
+<td>建设敏捷能力，利用数据模型、预测和快速决策改革治理</td>
+</tr>
+<tr>
+<td>五级</td>
+<td>形成生态一体化和自组织能力，提高未知风险应对能力</td>
+</tr>
+</tbody></table>
+<p>2. 诊断模型的两个维度</p>
+<p>●业务能力维度：能力域 → 能力子域 → 能力项 → 能力分项 → 能力子项 → 能力点。</p>
+<p>●成熟度等级维度：通常划分为五个等级，用来描述每项能力所处状态和目标状态。</p>
+<p>3. 实施诊断的三项工作</p>
+<p>1计划与打分：为各能力、各等级设置量化标准，由低到高逐项评估。</p>
+<p>2权重与计算：对重要能力设置权重，计算整体和局部结果。</p>
+<p>3记录与确认：保留评估底稿，记录不满足项，并由主要干系人确认。</p>
+<p>关键理解</p>
+<p>易错点：诊断评估的对象不是“某套信息系统好不好”，而是组织业务和能力发展到了什么程度、与目标差距在哪里。</p>
+<p>4.3.4 整体与专项规划</p>
+<p>这一阶段进入策划与设计，主要完成需求整合与确认、整体规划、专项规划和一致性检查。</p>
+<p>1. 需求整合的三个维度</p>
+<p>1业务领域维：按部门、团队和业务领域形成多层级需求集合。</p>
+<p>2能力建设维：从诊断差距提取人员、技术、流程、资源、数据和知识等能力需求。</p>
+<p>3技术发展维：在技术可获取的条件下，定义技术需求并反向优化业务和能力需求。</p>
+<p>2. 两种推演模式</p>
+<p>●自底向上：更适合以解决业务效率为主的组织，从真实问题和局部需求逐步聚合。</p>
+<p>●自顶向下：更适合强调协同、敏捷和战略变革的组织，从目标和总体架构逐层分解。</p>
+<p>实际规划通常组合使用两种模式。</p>
+<p>3. 整体规划与专项规划</p>
+<table>
+<thead>
+<tr>
+<th>比较项</th>
+<th>整体规划</th>
+<th>专项规划</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>解决层次</td>
+<td>宏观、全局问题</td>
+<td>特定领域和具体问题</td>
+</tr>
+<tr>
+<td>主要内容</td>
+<td>总体架构、发展方向、布局、框架和原则</td>
+<td>具体技术路线、建设要求、实施路径和计划</td>
+</tr>
+<tr>
+<td>主要目标</td>
+<td>战略一致、协同一体、优化资源与回报</td>
+<td>指导单项建设、规范设计和控制目标</td>
+</tr>
+<tr>
+<td>常见成果</td>
+<td>总体规划、总体架构</td>
+<td>应用、网络、云服务、数据中心、安全、云原生等专项规划</td>
+</tr>
+</tbody></table>
+<p>4. 一致性检查的四个方面</p>
+<p>1规划成果与需求、组织战略是否一致。</p>
+<p>2组织、框架、人员、技术、资源和任务之间是否协调。</p>
+<p>3规划内容是否科学、可行。</p>
+<p>4规划内容与主要干系人的理解是否一致。</p>
+<p>关键理解</p>
+<p>案例高频：整体规划和专项规划采用不同技术路线，却没有检查和解释，是典型的一致性问题。</p>
+<p>4.3.5 持续改进</p>
+<p>规划不是形成文档后结束，而是持续改进的闭环。需要：</p>
+<p>1持续跟踪组织战略。</p>
+<p>2感知技术发展和创新。</p>
+<p>3关注数据管理与信息安全。</p>
+<p>4注重用户体验和用户参与。</p>
+<p>5建立监测和评估机制。</p>
+<p>05PART</p>
+<p>4.4 常用方法：五种方法如何区分</p>
+<p>METHODS · COMPARE AND CHOOSE</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>核心思想</th>
+<th>必记结构</th>
+<th>适合解决</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SST</td>
+<td>把组织战略集转化为信息系统战略集</td>
+<td>识别解释 → 进一步解释验证</td>
+<td>战略一致</td>
+</tr>
+<tr>
+<td>BSP</td>
+<td>从目标、管理功能和数据定义信息结构</td>
+<td>目标 → 功能 → 数据 → 结构</td>
+<td>企业总体信息结构</td>
+</tr>
+<tr>
+<td>CSF</td>
+<td>少数关键因素决定成功和信息需求</td>
+<td>目标 → 因素 → 关键 → 指标与数据</td>
+<td>抓主要矛盾</td>
+</tr>
+<tr>
+<td>VCA</td>
+<td>分析价值活动并寻找技术支持点</td>
+<td>价值链 → 增值 → 减值 → 技术支持</td>
+<td>价值与竞争优势</td>
+</tr>
+<tr>
+<td>Zachman</td>
+<td>用6个问题和6个层次描述企业架构</td>
+<td>6W × 6层模型</td>
+<td>系统化描述架构</td>
+</tr>
+</tbody></table>
+<p>4.4.1 战略目标集转移法（SST）</p>
+<p>SST把组织战略和信息系统战略都看作信息集合，规划过程就是把组织战略集转换为与之匹配的信息系统战略集。</p>
+<p>组织战略集包括：</p>
+<p>●使命：组织是什么、为什么存在、能贡献什么；</p>
+<p>●目标：组织希望达到的结果；</p>
+<p>●战略：实现目标的总方针；</p>
+<p>●其他组织属性：管理水平、管理者对技术的认知与态度等。</p>
+<p>信息系统战略集包括：</p>
+<p>●系统目标；</p>
+<p>●系统约束，包括内部约束和外部约束；</p>
+<p>●系统建设战略，即建设应遵循的原则。</p>
+<p>实施时先识别并解释组织战略集：画出利益相关者结构、明确其要求、定义组织面向各方的任务与战略；再提交最高管理者审查，验证内容并确定优先级。</p>
+<p>4.4.2 企业信息系统规划法（BSP）</p>
+<p>BSP由IBM提出，通过全面调查企业目标、管理功能和数据需求，形成信息系统总体结构。</p>
+<p>四个基本步骤：</p>
+<p>1定义管理目标：访谈各级管理部门，形成互不矛盾的目标树。</p>
+<p>2定义管理功能：识别企业主要管理活动并分组，这是BSP的核心。</p>
+<p>3定义数据类：识别数据现状、共享关系和需求，建立功能／数据类矩阵。</p>
+<p>4定义信息结构：确定子系统及其数据交换关系，形成最高层次的信息系统结构。</p>
+<p>识别管理功能时，可以从资源生命周期入手。资源通常经历产生、获得、服务、归宿四个阶段，但并非所有资源都完整经历四阶段。</p>
+<p>定义数据类有两种基本方法：实体法和功能法。功能和数据类定义完成后，可以形成组织／功能矩阵、功能／数据类表和功能／数据类矩阵。</p>
+<p>关键理解</p>
+<p>方法局限：BSP产生于信息系统发展早期，其总体思想仍有价值，但面对平台化、生态化和快速变化的新问题，需要结合新的规划方法。</p>
+<p>4.4.3 关键成功因素法（CSF）</p>
+<p>CSF认为组织的信息需求由少数关键成功因素决定。关键成功因素是组织达到目标所不可缺少的业务、技术、资金和人员因素。</p>
+<p>四个来源：</p>
+<p>1产业结构</p>
+<p>2竞争策略、产业地位和地理位置</p>
+<p>3环境因素</p>
+<p>4暂时因素</p>
+<p>四种特征：</p>
+<p>●内部型：组织内部活动，例如缩短内部处理时间。</p>
+<p>●外部型：对外联系和外部约束，例如政策改革影响收入结构。</p>
+<p>●监控型：考察现实状态，例如监控异常率。</p>
+<p>●建立型：面向未来变化，例如建设新的AI能力。</p>
+<p>实施四步：</p>
+<p>1确定组织战略目标。</p>
+<p>2识别所有成功因素。</p>
+<p>3从中确定关键成功因素。</p>
+<p>4为关键因素定义绩效指标、标准和测量数据。</p>
+<p>优点是抓主要矛盾、重点突出、简便可行，适合高层管理者参与；局限是更擅长目标分解，对“如何用信息技术实现目标”涉及较少。</p>
+<p>4.4.4 价值链分析法（VCA）</p>
+<p>价值链分析法由迈克尔·波特提出，核心观点是：</p>
+<p>1价值是组织活动的核心。</p>
+<p>2价值活动可以分为基本活动和支持活动。</p>
+<p>3各项活动不是孤立存在，而是相互联系。</p>
+<p>4效率和竞争优势来自价值活动的有效组合与价值链优化。</p>
+<p>应用四步：</p>
+<p>1识别组织价值链。</p>
+<p>2确定关键价值增加环节。</p>
+<p>3确定关键价值减少环节。</p>
+<p>4明确信息技术对关键价值环节的支持。</p>
+<p>看到题目强调“增值活动、支持活动、竞争优势、技术支持点”，优先联想到VCA。</p>
+<p>4.4.5 Zachman框架</p>
+<p>Zachman框架是一种企业架构逻辑结构，用统一分类方法从不同角度描述企业信息。</p>
+<p><img src="/uploads/ai-notes/a040/7138eabd720a5eac.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 扩展的Zachman模型</p>
+<p>读图只抓一句话：横向看问题，纵向看角色和抽象层次。</p>
+<p>横向6W：</p>
+<p>1What：什么，对应数据。</p>
+<p>2How：如何做，对应功能或过程。</p>
+<p>3Where：什么地点，对应网络或位置。</p>
+<p>4Who：谁，对应人员或组织。</p>
+<p>5When：什么时间，对应时间和事件。</p>
+<p>6Why：为什么，对应动机、目标和规则。</p>
+<p>纵向6层：</p>
+<p>1范围模型</p>
+<p>2企业模型</p>
+<p>3系统模型</p>
+<p>4技术模型</p>
+<p>5详细模型</p>
+<p>6功能模型</p>
+<p>用于规划的一般六步：</p>
+<p>1确定组织愿景和原则。</p>
+<p>2描述和分析现状。</p>
+<p>3定义目标架构。</p>
+<p>4分析差距和改进点。</p>
+<p>5制订实施计划。</p>
+<p>6持续改进优化。</p>
+<p>06PART</p>
+<p>必背清单与三门考试</p>
+<p>MEMORY · EXAM · PRACTICE</p>
+<p>第一轮必背总表</p>
+<table>
+<thead>
+<tr>
+<th>主题</th>
+<th>数量</th>
+<th>记忆骨架</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>规划主要内容</td>
+<td>7</td>
+<td>战、框、组、技、任、资、保</td>
+</tr>
+<tr>
+<td>规划原则</td>
+<td>6</td>
+<td>战、整、先、指、柔、从</td>
+</tr>
+<tr>
+<td>发展路径原则</td>
+<td>4</td>
+<td>业务、能力、基础、稳态</td>
+</tr>
+<tr>
+<td>发展阶段</td>
+<td>5</td>
+<td>打、提、做、强、构</td>
+</tr>
+<tr>
+<td>总体框架</td>
+<td>3</td>
+<td>应用、平台、互联网</td>
+</tr>
+<tr>
+<td>分系统划分原则</td>
+<td>4</td>
+<td>技、工、职、数</td>
+</tr>
+<tr>
+<td>大型单位组织体系</td>
+<td>3</td>
+<td>集中、分权、平衡矩阵</td>
+</tr>
+<tr>
+<td>技术体系原则</td>
+<td>6</td>
+<td>用、安、可、灵、扩、驾</td>
+</tr>
+<tr>
+<td>任务部署过程</td>
+<td>6</td>
+<td>拆、标、配、策、划、控</td>
+</tr>
+<tr>
+<td>资源调度活动</td>
+<td>4</td>
+<td>识评、关系控制、分配调度、风险优化</td>
+</tr>
+<tr>
+<td>保障体系</td>
+<td>6</td>
+<td>组、人、技、资、数、安</td>
+</tr>
+<tr>
+<td>规划工作要点</td>
+<td>5</td>
+<td>内、场、深、整、改</td>
+</tr>
+<tr>
+<td>场景模型组成</td>
+<td>8</td>
+<td>场、角、业、数、技、组、风、政</td>
+</tr>
+<tr>
+<td>诊断评估</td>
+<td>3</td>
+<td>成熟度、模型、实施</td>
+</tr>
+<tr>
+<td>常用方法</td>
+<td>5</td>
+<td>SST、BSP、CSF、VCA、Zachman</td>
+</tr>
+</tbody></table>
+<p>综合题高频易错判断</p>
+<p>1规划应尽可能详细，直接替代后续设计。错误，规划提供方向和框架，不宜过细。</p>
+<p>2内部需求挖掘是第一个实质性工作。正确。</p>
+<p>3内部需求挖掘阶段应尽快给出系统解决方案。错误，应先获得原始信息和真实需求。</p>
+<p>4需求挖掘完成后不再重复。错误，它贯穿规划全生命周期。</p>
+<p>5场景模型只能在规划前使用。错误，可用于规划前、规划中和规划后。</p>
+<p>6诊断评估主要评价现有信息系统。错误，本质上评价组织业务与能力发展。</p>
+<p>7定义管理功能并分组是BSP的核心。正确。</p>
+<p>8CSF适合所有层级且能详细说明技术实现。错误，它更适合高层目标分析，技术实现涉及较少。</p>
+<p>9Zachman是一种逻辑结构而不是数据结构。正确。</p>
+<p>10规划没有建立监测评估机制，属于持续改进缺失。正确。</p>
+<p>案例题怎么找问题</p>
+<p>采用“现象 → 对应知识点 → 问题判断 → 改进措施”四步答题。</p>
+<p>1. 技术体系</p>
+<p>●盲目追新、缺少成熟案例：可靠性、可驾驭性不足。</p>
+<p>●技术无法适应需求变化：灵活性不足。</p>
+<p>●新需求必须整体重建：可扩展性不足。</p>
+<p>●忽视漏洞和安全体系：安全性不足。</p>
+<p>2. 任务体系</p>
+<p>●任务之间依赖不清：任务拆解有问题。</p>
+<p>●没有阶段目标：明确目标有问题。</p>
+<p>●没有责任人：匹配组织有问题。</p>
+<p>●没有风险应对：制定策略有问题。</p>
+<p>●时间表、指标缺失：定义计划有问题。</p>
+<p>●只依赖低频汇报：监控实施有问题。</p>
+<p>3. 资源体系</p>
+<p>●硬件投入过多、软资源不足：资源分配失衡。</p>
+<p>●容量到上线后才发现不足：资源识别与评估不足。</p>
+<p>●没有备用资源：资源风险识别不足。</p>
+<p>●故障时不能及时切换：应急调度机制缺失。</p>
+<p>4. 需求与场景</p>
+<p>●访谈时直接抛出方案：内部需求挖掘过早技术化。</p>
+<p>●政策引用没有来源：外部信息甄选不规范。</p>
+<p>●场景数据缺失：应提前积累数据或调整分析范围。</p>
+<p>●场景只画流程，不分析角色、数据、风险和合规：模型组成不完整。</p>
+<p>5. 诊断与规划</p>
+<p>●只评价系统，不评价业务能力：诊断对象错误。</p>
+<p>●没有量化打分、权重和记录：诊断实施不完整。</p>
+<p>●结果未与业务确认：缺少记录与确认。</p>
+<p>●整体与专项技术路线冲突：一致性检查不足。</p>
+<p>●规划发布后不跟踪战略与技术：持续改进机制缺失。</p>
+<p>案例题答题模板</p>
+<p>当题目要求说明规划过程时，可以使用：</p>
+<p>关键理解</p>
+<p>首先开展内外部需求挖掘，获取组织真实状态、内部需求和外部约束；其次选择关键业务场景建立场景模型，分析角色、业务、数据、技术、组织、风险与合规要求；随后通过成熟度和能力模型实施诊断评估，锁定目标、细化需求并确认差距；在此基础上整合需求，形成整体规划和专项规划，并开展战略、需求、技术路线和干系人理解的一致性检查；最后建立监测评估机制，根据战略、技术、数据安全和用户反馈持续改进。</p>
+<p>题目追问“规划什么”时，再展开七项内容：战、框、组、技、任、资、保。</p>
+<p>论文怎么使用本章</p>
+<p>本章可以作为信息系统规划实践类论文的总框架，建议积累六类素材：</p>
+<p>1项目背景和规划必要性。</p>
+<p>2内外部需求挖掘方法。</p>
+<p>3场景建模和诊断评估过程。</p>
+<p>4整体规划与专项规划形成过程。</p>
+<p>5组织、人员、技术、资源、数据和安全保障。</p>
+<p>6监测评估与持续改进。</p>
+<p>本章论文考查可能性为中等。准备时重点积累真实项目矛盾、选择依据、实施过程、问题与改进，不要只堆砌七项清单。</p>
+<p>文末闭卷自测</p>
+<p>1用一句话解释什么是信息系统规划。</p>
+<p>2规划的六项价值是什么？</p>
+<p>3六项规划原则是什么？“先进性”为什么不等于追新？</p>
+<p>4信息系统规划的七项主要内容是什么？</p>
+<p>5发展路径的四项原则和五个发展等级是什么？</p>
+<p>6三种总体框架如何区分？</p>
+<p>7分系统划分的四项原则是什么？</p>
+<p>8集中式、分权式和平衡矩阵式各有什么特点？</p>
+<p>9技术体系定义的六项原则是什么？</p>
+<p>10逻辑结构图与技术应用图有什么区别？</p>
+<p>11任务体系部署的六步是什么？</p>
+<p>12资源体系调度的四类活动是什么？</p>
+<p>13保障体系包括哪六方面？</p>
+<p>14内部需求挖掘五项任务和五项注意事项是什么？</p>
+<p>15外部需求挖掘六项任务和三项注意事项是什么？</p>
+<p>16场景模型包括哪八部分？可在哪三个阶段使用？</p>
+<p>17深度诊断与评估包括哪三部分？模型有哪两个维度？</p>
+<p>18整体规划和专项规划有什么区别？一致性检查查什么？</p>
+<p>19SST、BSP、CSF、VCA和Zachman分别抓什么？</p>
+<p>20Zachman横向6W、纵向6层和规划六步分别是什么？</p>
+<p>&#x2F;&#x2F;&#x2F;</p>
+<p>LAST</p>
+<p>写在最后</p>
+<p>SUMMARY · REVIEW SMARTER</p>
+<p>这一章不是只背“7、5、5”三个数字。完整学习顺序应该是：</p>
+<p>先用四个问题建立地图，再逐节理解7项内容和5步工作，最后集中背清单、做案例映射和闭卷输出。</p>
+<p>如果你能够不看文章讲清四个问题，默写第一轮必背总表，并用“现象—知识点—问题—措施”分析一个案例，就已经完成了第4章的第一轮完整学习。</p>
+<p>我是陈文茂，正在用自己的方式重新整理系统规划与管理师学习资料。</p>
+<p>既然看到这里了，如果觉得有用，随手点个赞、在看、转发三连吧。</p>
+<p>👍 点赞 👀 在看 ↗ 转发</p>
+<p>THANKS FOR READING</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>系规第4章：信息系统规划完整学习笔记</div>
+      <div>https://maoyu92.github.io/2026/07/26/07 AI笔记/软考系规/a040_系规第4章：信息系统规划完整学习笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a039_%E7%B3%BB%E8%A7%84%E7%AC%AC7%E7%AB%A0%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83%E8%A7%84%E5%88%92%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="系规第7章：网络环境规划完整学习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">系规第7章：网络环境规划完整学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/23/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a042_Orca%20%E6%B7%B1%E5%BA%A6%E8%AF%84%E6%B5%8B%EF%BC%9AAI%20%E7%BC%96%E7%A0%81%E8%BF%9B%E5%85%A5%E5%A4%9A%20Agent%20%E5%B9%B6%E8%A1%8C%E6%97%B6%E4%BB%A3/" title="Orca 深度评测：AI 编码进入多 Agent 并行时代">
+                        <span class="hidden-mobile">Orca 深度评测：AI 编码进入多 Agent 并行时代</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

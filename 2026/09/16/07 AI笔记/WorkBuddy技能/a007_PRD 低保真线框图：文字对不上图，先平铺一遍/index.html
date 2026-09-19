@@ -1,0 +1,767 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="文字对不上图？把 PRD 平铺成一页黑白灰线框图：流程、状态、待确认，全标出来。  产品评审上最费时间的场面，不是大家意见不合，而是同一份 PRD，每个人脑子里都长出了一版自己的图。写的人想的是三步走完的核心链路，看的人盯着的是「登录之后到底进哪个页面」；等设计稿出来才发现，权限弹窗没人提过、加载失败没定义过，而那句话在 PRD 里本来就有两种读法。 文字是线性的，产品是多线的。一份 PRD 把">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PRD 低保真线框图：文字对不上图，先平铺一遍">
+<meta property="og:url" content="https://maoyu92.github.io/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/WorkBuddy%E6%8A%80%E8%83%BD/a007_PRD%20%E4%BD%8E%E4%BF%9D%E7%9C%9F%E7%BA%BF%E6%A1%86%E5%9B%BE%EF%BC%9A%E6%96%87%E5%AD%97%E5%AF%B9%E4%B8%8D%E4%B8%8A%E5%9B%BE%EF%BC%8C%E5%85%88%E5%B9%B3%E9%93%BA%E4%B8%80%E9%81%8D/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="文字对不上图？把 PRD 平铺成一页黑白灰线框图：流程、状态、待确认，全标出来。  产品评审上最费时间的场面，不是大家意见不合，而是同一份 PRD，每个人脑子里都长出了一版自己的图。写的人想的是三步走完的核心链路，看的人盯着的是「登录之后到底进哪个页面」；等设计稿出来才发现，权限弹窗没人提过、加载失败没定义过，而那句话在 PRD 里本来就有两种读法。 文字是线性的，产品是多线的。一份 PRD 把">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a007/91ce2779fcb7239b.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a007/f3b2931ac29f8674.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a007/de8cb41948492e9b.png">
+<meta property="article:published_time" content="2026-09-16T07:34:00.000Z">
+<meta property="article:modified_time" content="2026-09-16T07:34:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/uploads/ai-notes/a007/91ce2779fcb7239b.png">
+  
+  
+  <title>PRD 低保真线框图：文字对不上图，先平铺一遍 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PRD 低保真线框图：文字对不上图，先平铺一遍"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-09-16 15:34" pubdate>
+          2026年9月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">PRD 低保真线框图：文字对不上图，先平铺一遍</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>文字对不上图？把 PRD 平铺成一页黑白灰线框图：流程、状态、待确认，全标出来。</p>
+</blockquote>
+<p>产品评审上最费时间的场面，不是大家意见不合，而是同一份 PRD，每个人脑子里都长出了一版自己的图。写的人想的是三步走完的核心链路，看的人盯着的是「登录之后到底进哪个页面」；等设计稿出来才发现，权限弹窗没人提过、加载失败没定义过，而那句话在 PRD 里本来就有两种读法。</p>
+<p>文字是线性的，产品是多线的。一份 PRD 把所有信息都写全了，跳转关系却散在不同章节里，状态描述夹在段落中间，光靠读，很难拼出完整的流程。</p>
+<p>我把这半年攒下来的技能陆续上架到了 WorkBuddy，一共 11 个，这是第 3 篇。今天讲 PRD 低保真线框图（v1.0.0）：给它一份成文的 PRD，还你一页能从第一屏读到最后一屏的黑白灰线框图，说不清楚的地方，它不替你猜。</p>
+<h2 id="一、为什么要做"><a href="#一、为什么要做" class="headerlink" title="一、为什么要做"></a>一、为什么要做</h2><p>写需求和看需求这两种角色我都做过，最常出现的分歧不是对错，是「我以为你也这么理解」。</p>
+<p><strong>页面散落在文字里</strong>。PRD 会写「用户提交表单后进入结果页，结果页展示审核状态」，可结果页长什么样、有几种状态、空的时候显示什么，往往在另一章才提一句。顺着读不觉得，真要复盘完整链路，只能来回翻。</p>
+<p><strong>状态最容易被漏</strong>。正常流程谁都会写，异常分支没人愿意写。加载中、无数据、请求失败、权限被拒之后去哪，恰恰是开发和测试最先撞上的地方，也最容易在评审时被一句「这个后面再说」带过。</p>
+<p><strong>含糊的地方没人标记</strong>。跳转去向没写、字段来源不明、前后说法矛盾，这些在文档里常被一句模糊的话糊过去。评审时如果没人拎出来，就会一路带到代码里，代价翻好几倍。</p>
+<p>所以我想要的不是一张好看的图，而是一份<strong>便宜的中间物</strong>：在 PRD 和视觉稿之间，能一眼看完、能指着说「这里没写」、改起来不心疼。线框图正好干这个活。</p>
+<h2 id="二、产物长啥样"><a href="#二、产物长啥样" class="headerlink" title="二、产物长啥样"></a>二、产物长啥样</h2><p>输入是一份成文的 PRD，Markdown、Word、需求文档都行。输出是一个单文件 HTML，默认落在项目根目录 <code>wireframes.html</code>，也可以按产品命名成 <code>wireframes-&lt;产品名&gt;.html</code>，你指定路径就从你的。</p>
+<p>打开之后，从上到下的阅读顺序就是用户真实的使用顺序，页面分四块。</p>
+<p><strong>页头</strong>。产品名、PRD 版本或路径、生成日期，再加三个统计：屏幕数、状态数、待确认数。评审开始前先看一眼量级，心里有数。</p>
+<p><strong>流程总览导航</strong>。按流程分组的锚点列表，点一下就跳到对应分组，最后一项直达文末的待确认清单。</p>
+<p><strong>流程分组与屏幕卡片</strong>。一个分组就是一条核心流程，组头写着流程名和它的入口、出口。组里的每张卡片是一屏，卡片头是屏幕编号、页面名称和状态标签，下面依次排着流程位置（第几屏、上一步、下一步）、黑白灰的线框主体，还有一张操作表：每一步操作会进入哪个页面或状态，都能对上 PRD 的依据章节。</p>
+<p><strong>待确认清单</strong>。文末汇总成一张表，编号、所在屏幕、问题描述、建议确认方，一列不少。</p>
+<p>整个文件零外部依赖，不引外部 CSS、JS、字体和图片，全部内联，双击离线就能打开。这一点在评审场景里很实用：不用装环境，丢进群里谁都能看。</p>
+<p><img src="/uploads/ai-notes/a007/91ce2779fcb7239b.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="三、六条铁律"><a href="#三、六条铁律" class="headerlink" title="三、六条铁律"></a>三、六条铁律</h2><p>技能文档把行为约束写成了六条铁律，其中几条直接决定了产出能不能用。</p>
+<p><strong>只做低保真，不做正式 UI</strong>。黑白灰、基础框线、图片占位块，只表达信息层级、核心文案、按钮位置和页面状态，层级靠字号和深浅区分，不靠颜色。这是刻意的：图上一旦有了颜色，讨论就会滑向「这个蓝是不是太深」，结构问题反而没人提。主按钮是深灰底白字，次按钮是白底细边框，图片占位是浅灰块加对角交叉线，翻来覆去就这几样。</p>
+<p><strong>按用户真实使用的顺序平铺</strong>。分组顺序不跟着 PRD 的章节走，而是按用户实际会走的路径：典型是首次启动或引导、注册登录、核心任务、次要功能、设置。被多个流程共用的页面只画一次，放在首次出现的流程里，别的地方写一句「→ 见 2-1」。</p>
+<p><strong>每一屏标清四要素</strong>：页面名称、它在流程里的位置、用户可以执行的操作、操作之后会进入哪个页面或状态。四样缺一个，评审就会退回到猜。</p>
+<p><strong>状态要补，但补得有依据</strong>。PRD 明确提到的状态必须全部画出来，漏一个算缺陷；PRD 没提、但明显适用的通用状态，比如异步页面的加载中，技能会补画，并在卡片角上标「通用状态」，保留还是删掉交给你评审决定。状态变体屏单独成卡，编号加后缀，2-1a 就是 2-1 的加载态。</p>
+<p><strong>不擅自加功能，说不清就标「待确认」</strong>。这是我觉得最难得的一条：宁可图上有空缺，也不替你把 PRD 没写的功能补上。含糊、矛盾、缺失的地方统一登记为待确认项，页内是琥珀色虚线标注块，卡片角上是编号 WD-01、WD-02，文末还要有汇总表，写清问题所在屏幕、问题描述，以及建议找产品、后端还是设计确认。</p>
+<p><img src="/uploads/ai-notes/a007/f3b2931ac29f8674.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="四、怎么调用"><a href="#四、怎么调用" class="headerlink" title="四、怎么调用"></a>四、怎么调用</h2><p>技能装好之后，在对话里用自然语言说就行。技能的 description 里写明了用途和触发词，提到画线框图、低保真原型、wireframe、把流程平铺出来检查，都能触发。我真实会用到的说法大概是这几种：</p>
+<ul>
+<li><p>「这是我们的 PRD，帮我把核心流程平铺成低保真线框图，重点看看哪些状态没定义」</p>
+</li>
+<li><p>「画线框图，把整个流程检查一遍，没说清楚的地方标出来」</p>
+</li>
+<li><p>「把所有页面按用户使用顺序平铺出来，顺手找一下跳转断点」</p>
+</li>
+</ul>
+<p>它内部走的流程大致是六步：通读 PRD 建流程清单、划分流程分组、逐屏生成线框卡片、补状态和标待确认、组装单页 HTML、自检后交付。</p>
+<p>第一步会先产出一张「流程 → 屏幕编号」矩阵，比如 1-1、1-2、2-1 这样的编号，这张矩阵就是最终 HTML 的骨架；每一屏同时记下 PRD 依据，也就是章节号或原文要点。所以你在卡片上看到「点击重试 → 回到 1-1a」时，旁边一定跟着 § 章节号，能回查。</p>
+<p>产物打开就是几条系统命令的事：</p>
+<p><code># 默认输出在项目根目录，可以按产品命名，也可以指定路径   start wireframes.html        # Windows   open  wireframes.html        # macOS   xdg-open wireframes.html     # Linux   </code></p>
+<p>交付时技能会给出三样东西：文件路径、屏数与状态数与待确认数的统计，以及待确认清单全文。这份清单不只写在文件里，回复里也会列一遍，这是文档里写明的交付约定，评审时照着推进就行。</p>
+<p><img src="/uploads/ai-notes/a007/de8cb41948492e9b.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="五、边界与注意"><a href="#五、边界与注意" class="headerlink" title="五、边界与注意"></a>五、边界与注意</h2><p>先说最容易误解的一点：<strong>它不是设计稿</strong>。技能文档写得很直白，不适用高保真视觉稿、带真实交互的可点击原型和正式 UI 设计。线框图上没有配色、字号、间距和动效，按钮位置与文案只代表 PRD 里的描述，拿它做视觉验收一定跑偏。</p>
+<p><strong>它也替代不了交互设计</strong>。产出是一个静态 HTML，除了流程总览里的锚点跳转，页面本身点不动。要验证交互手感，还得靠可点击原型。</p>
+<p><strong>它是个后置工具，不是需求生成器</strong>。前提是项目里已经有成文的 PRD，PRD 写得空，出来的图就空。它做的是把已经写下的东西可视化，再把没写下的地方标出来，不会凭空替你想功能。</p>
+<p><strong>待确认多，不是坏事</strong>。如果一页图上标了十几条待确认，说明这份 PRD 正到了该补的时候，而这些正是评审要解决的问题。技能文档里也写，这份清单是最重要的评审产出之一。反过来说，如果它自作主张猜一个答案填进去，你连「这里有坑」都不会知道。</p>
+<p><strong>通用状态是补画的，需要你拍板</strong>。PRD 没提的加载中这类状态，卡片角上会注明「通用状态」，留或删由评审决定。</p>
+<p><strong>它承诺不新增功能</strong>。文档里的自检清单要求：PRD 提及的核心页面全部出现、一一对应，同时没有新增任何 PRD 没有的功能。我这次测下来，这条约束是它和「让 AI 自由发挥画原型」最大的区别：宁可留下一句待确认，也不替你脑补一个页面。</p>
+<hr>
+<p>我是文茂，热衷于分享 AI 工具与开发者生态观察。觉得有用欢迎点赞、在看、转发三连。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PRD 低保真线框图：文字对不上图，先平铺一遍</div>
+      <div>https://maoyu92.github.io/2026/09/16/07 AI笔记/WorkBuddy技能/a007_PRD 低保真线框图：文字对不上图，先平铺一遍/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年9月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a006_%E5%85%AC%E4%BC%97%E5%8F%B7%E5%85%A8%E6%B5%81%E7%A8%8B%E5%8F%91%E5%B8%83%EF%BC%9A%E8%B6%85%E4%B8%80%E5%AD%97%E8%8A%82%EF%BC%8C%E5%BE%AE%E4%BF%A1%E7%9B%B4%E6%8E%A5%E6%8B%92/" title="公众号全流程发布：超一字节，微信直接拒">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">公众号全流程发布：超一字节，微信直接拒</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/WorkBuddy%E6%8A%80%E8%83%BD/a008_DEM%20%E6%B0%B4%E6%96%87%E5%88%86%E6%9E%90%EF%BC%9A%E8%B7%91%E5%AE%8C%E4%B8%8D%E7%9F%A5%E9%81%93%E5%AF%B9%E4%B8%8D%E5%AF%B9%EF%BC%8C%E6%89%8D%E6%98%AF%E7%9C%9F%E9%BA%BB%E7%83%A6/" title="DEM 水文分析：跑完不知道对不对，才是真麻烦">
+                        <span class="hidden-mobile">DEM 水文分析：跑完不知道对不对，才是真麻烦</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,894 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="“模型会替你做错误的假设，然后一路狂奔不回头。它们不管理自己的困惑，不寻求澄清，不暴露矛盾。”——Andrej Karpathy  一、165k Star 背后：一个 2KB 文件的威力在 GitHub 上，有一个项目只有 2KB 大小，却拿到了 165,000+ Star——它就是 andrej-karpathy-skills。 这个项目的核心，就是一个 CLAUDE.md 文件。 没有复杂的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个CLAUDE.md让AI编程少犯错：Karpathy亲授的四条铁律">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/02/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a111_%E4%B8%80%E4%B8%AACLAUDE.md%E8%AE%A9AI%E7%BC%96%E7%A8%8B%E5%B0%91%E7%8A%AF%E9%94%99%EF%BC%9AKarpathy%E4%BA%B2%E6%8E%88%E7%9A%84%E5%9B%9B%E6%9D%A1%E9%93%81%E5%BE%8B/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="“模型会替你做错误的假设，然后一路狂奔不回头。它们不管理自己的困惑，不寻求澄清，不暴露矛盾。”——Andrej Karpathy  一、165k Star 背后：一个 2KB 文件的威力在 GitHub 上，有一个项目只有 2KB 大小，却拿到了 165,000+ Star——它就是 andrej-karpathy-skills。 这个项目的核心，就是一个 CLAUDE.md 文件。 没有复杂的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-02T14:39:00.000Z">
+<meta property="article:modified_time" content="2026-06-02T14:39:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>一个CLAUDE.md让AI编程少犯错：Karpathy亲授的四条铁律 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="一个CLAUDE.md让AI编程少犯错：Karpathy亲授的四条铁律"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-02 22:39" pubdate>
+          2026年6月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">一个CLAUDE.md让AI编程少犯错：Karpathy亲授的四条铁律</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>“模型会替你做错误的假设，然后一路狂奔不回头。它们不管理自己的困惑，不寻求澄清，不暴露矛盾。”——Andrej Karpathy</p>
+</blockquote>
+<h2 id="一、165k-Star-背后：一个-2KB-文件的威力"><a href="#一、165k-Star-背后：一个-2KB-文件的威力" class="headerlink" title="一、165k Star 背后：一个 2KB 文件的威力"></a>一、165k Star 背后：一个 2KB 文件的威力</h2><p>在 GitHub 上，有一个项目只有 2KB 大小，却拿到了 <strong>165,000+ Star</strong>——它就是 <code>andrej-karpathy-skills</code>。</p>
+<p>这个项目的核心，就是一个 <code>CLAUDE.md</code> 文件。</p>
+<p>没有复杂的代码，没有花哨的框架，只有四条原则。但这四条原则直接命中了 LLM 编程的四大痛点，让 Claude Code、Cursor 等 AI 编程工具的”犯错率”大幅下降。</p>
+<p>它的来源是 Andrej Karpathy（前 Tesla AI 总监、OpenAI 联合创始人）在 X 上的一条帖子：</p>
+<blockquote>
+<p>“LLMs 非常擅长循环直到它们达到特定目标……不要告诉它做什么，给它成功标准，然后看着它跑。”</p>
+</blockquote>
+<p>有人把 Karpathy 的观察总结成了四条可执行的规则，做成了这个 CLAUDE.md 文件。结果一发不可收拾。</p>
+<h2 id="二、LLM-编程的四大”原罪”"><a href="#二、LLM-编程的四大”原罪”" class="headerlink" title="二、LLM 编程的四大”原罪”"></a>二、LLM 编程的四大”原罪”</h2><p>在理解四条原则之前，先看看 LLM 编程到底有哪些问题。Karpathy 原文总结得精准：</p>
+<p><strong>① 假设狂魔</strong></p>
+<blockquote>
+<p>“模型会替你做错误的假设，然后一路狂奔不回头。它们不管理自己的困惑，不寻求澄清，不暴露矛盾，不展示权衡，不在该推回的时候推回。”</p>
+</blockquote>
+<p><strong>② 过度工程</strong></p>
+<blockquote>
+<p>“它们真的很喜欢过度复杂化代码和 API，膨胀抽象层，不清理死代码……用 1000 行实现一个 100 行就能搞定的东西。”</p>
+</blockquote>
+<p><strong>③ 顺手牵羊</strong></p>
+<blockquote>
+<p>“它们有时会改变&#x2F;删除自己不充分理解的注释和代码作为副作用，即使这些与任务正交。”</p>
+</blockquote>
+<p><strong>④ 目标模糊</strong></p>
+<blockquote>
+<p>“不要告诉它做什么，给它成功标准，然后看着它跑。”</p>
+</blockquote>
+<p>这四个问题，几乎每个用过 AI 编程的人都遇到过。而四条原则，每条都精准对治一个问题。</p>
+<h2 id="三、四条铁律：逐条拆解"><a href="#三、四条铁律：逐条拆解" class="headerlink" title="三、四条铁律：逐条拆解"></a>三、四条铁律：逐条拆解</h2><h3 id="铁律一：Think-Before-Coding（先想后做）"><a href="#铁律一：Think-Before-Coding（先想后做）" class="headerlink" title="铁律一：Think Before Coding（先想后做）"></a>铁律一：Think Before Coding（先想后做）</h3><p><strong>对治问题</strong>：错误假设、隐藏困惑、缺失权衡</p>
+<p>核心要求：</p>
+<ul>
+<li><p><strong>显式声明假设</strong>——如果不确定，问而不是猜</p>
+</li>
+<li><p><strong>展示多种解读</strong>——不要在有歧义时默默选一个</p>
+</li>
+<li><p><strong>该推回就推回</strong>——如果存在更简单的方案，说出来</p>
+</li>
+<li><p><strong>困惑时停下来</strong>——说出哪里不清楚，请求澄清</p>
+</li>
+</ul>
+<p><strong>实战示例</strong>：</p>
+<p>用户说：”给这个 API 加个缓存。”</p>
+<p>LLM 的错误做法：直接写一套 Redis 缓存方案，加序列化、加过期策略、加集群支持。</p>
+<p>正确做法：</p>
+<blockquote>
+<p>“我理解你想加缓存。在动手之前，有几个问题：</p>
+<ol>
+<li><p>缓存粒度是什么？整个响应还是特定字段？</p>
+</li>
+<li><p>过期策略？TTL 多长？</p>
+</li>
+<li><p>是否需要考虑缓存穿透&#x2F;雪崩？</p>
+</li>
+<li><p>是否有现成的缓存基础设施？</p>
+</li>
+</ol>
+<p>如果只是简单的本地缓存，10 行代码就够了。”</p>
+</blockquote>
+<h3 id="铁律二：Simplicity-First（简单至上）"><a href="#铁律二：Simplicity-First（简单至上）" class="headerlink" title="铁律二：Simplicity First（简单至上）"></a>铁律二：Simplicity First（简单至上）</h3><p><strong>对治问题</strong>：过度复杂化、抽象膨胀</p>
+<p>核心要求：</p>
+<ul>
+<li><p><strong>不要做超出要求的功能</strong></p>
+</li>
+<li><p><strong>不要为一次性代码做抽象</strong></p>
+</li>
+<li><p><strong>不要加没被要求的”灵活性”或”可配置性”</strong></p>
+</li>
+<li><p><strong>不要为不可能的场景做错误处理</strong></p>
+</li>
+<li><p><strong>如果 200 行能写成 50 行，重写</strong></p>
+</li>
+</ul>
+<p><strong>判断标准</strong>：一个高级工程师会不会觉得这太复杂了？如果是，就简化。</p>
+<p><strong>实战示例</strong>：</p>
+<p>用户说：”写一个函数判断字符串是否回文。”</p>
+<p>LLM 的错误做法：写一个 80 行的类，包含抽象基类、策略模式、配置注入、多种回文算法……</p>
+<p>正确做法：</p>
+<p><code>def is_palindrome(s: str) -&gt; bool:       cleaned = &#39;&#39;.join(c.lower() for c in s if c.isalnum())       return cleaned == cleaned[::-1]   </code></p>
+<p>3 行搞定。</p>
+<h3 id="铁律三：Surgical-Changes（外科手术式修改）"><a href="#铁律三：Surgical-Changes（外科手术式修改）" class="headerlink" title="铁律三：Surgical Changes（外科手术式修改）"></a>铁律三：Surgical Changes（外科手术式修改）</h3><p><strong>对治问题</strong>：顺手改了不该改的代码</p>
+<p>核心要求：</p>
+<ul>
+<li><p><strong>不要”顺便”改进相邻的代码、注释或格式</strong></p>
+</li>
+<li><p><strong>不要重构没坏的东西</strong></p>
+</li>
+<li><p><strong>匹配现有风格，即使你会写得不同</strong></p>
+</li>
+<li><p><strong>如果发现无关的死代码，提一下但别删</strong></p>
+</li>
+</ul>
+<p><strong>判断标准</strong>：每一行改动都应该能直接追溯到用户的请求。</p>
+<p><strong>实战示例</strong>：</p>
+<p>用户说：”修复 login 函数的超时问题。”</p>
+<p>LLM 的错误做法：修了超时，顺便重构了整个 auth 模块，改了变量命名风格，删了”看起来没用”的注释。</p>
+<p>正确做法：只改超时相关的那一行代码，其他一个字不动。</p>
+<h3 id="铁律四：Goal-Driven-Execution（目标驱动执行）"><a href="#铁律四：Goal-Driven-Execution（目标驱动执行）" class="headerlink" title="铁律四：Goal-Driven Execution（目标驱动执行）"></a>铁律四：Goal-Driven Execution（目标驱动执行）</h3><p><strong>对治问题</strong>：目标模糊导致反复修改</p>
+<p>核心要求：把指令性任务转化为可验证的目标。</p>
+<table>
+<thead>
+<tr>
+<th>不要这样说</th>
+<th>应该这样说</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“加个校验”</td>
+<td>“写几个非法输入的测试，然后让它们通过”</td>
+</tr>
+<tr>
+<td>“修那个 bug”</td>
+<td>“写一个能复现 bug 的测试，然后修掉它”</td>
+</tr>
+<tr>
+<td>“重构 X”</td>
+<td>“确保重构前后测试都通过”</td>
+</tr>
+</tbody></table>
+<p><strong>多步任务的计划模板</strong>：</p>
+<p><code>1. [步骤] → 验证：[检查方式]   2. [步骤] → 验证：[检查方式]   3. [步骤] → 验证：[检查方式]   </code></p>
+<p>强成功标准让 LLM 可以独立循环。弱标准（”让它能用”）需要不断澄清。</p>
+<h2 id="四、安装方式：两种姿势"><a href="#四、安装方式：两种姿势" class="headerlink" title="四、安装方式：两种姿势"></a>四、安装方式：两种姿势</h2><h3 id="方式一：Claude-Code-插件（推荐）"><a href="#方式一：Claude-Code-插件（推荐）" class="headerlink" title="方式一：Claude Code 插件（推荐）"></a>方式一：Claude Code 插件（推荐）</h3><p><code># 在 Claude Code 中添加市场   /plugin marketplace add forrestchang/andrej-karpathy-skills      # 安装插件   /plugin install andrej-karpathy-skills@karpathy-skills   </code></p>
+<p>这会把规则安装为 Claude Code 插件，所有项目通用。</p>
+<h3 id="方式二：CLAUDE-md-文件（按项目）"><a href="#方式二：CLAUDE-md-文件（按项目）" class="headerlink" title="方式二：CLAUDE.md 文件（按项目）"></a>方式二：CLAUDE.md 文件（按项目）</h3><p><code># 新项目   curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md      # 已有项目（追加）   echo &quot;&quot; &gt;&gt; CLAUDE.md   curl https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md &gt;&gt; CLAUDE.md   </code></p>
+<p>同时支持 Cursor（项目根目录放 <code>.cursor/rules/karpathy-guidelines.mdc</code>）。</p>
+<h2 id="五、效果验证：怎么判断规则生效了？"><a href="#五、效果验证：怎么判断规则生效了？" class="headerlink" title="五、效果验证：怎么判断规则生效了？"></a>五、效果验证：怎么判断规则生效了？</h2><p>装完之后，观察这几个信号：</p>
+<ul>
+<li><p><strong>diff 更干净了</strong>——只有请求的改动，没有”顺手优化”</p>
+</li>
+<li><p><strong>重写次数减少了</strong>——代码一次就写对，不用反复返工</p>
+</li>
+<li><p><strong>澄清问题出现在实现之前</strong>——不是做错了才问，而是先问再做</p>
+</li>
+<li><p><strong>PR 更精简了</strong>——没有”drive-by refactoring”</p>
+</li>
+</ul>
+<h2 id="六、为什么这四条规则有效？"><a href="#六、为什么这四条规则有效？" class="headerlink" title="六、为什么这四条规则有效？"></a>六、为什么这四条规则有效？</h2><p>这四条规则的本质，是<strong>把 LLM 从”自动驾驶”切换到”人在回路”模式</strong>。</p>
+<p>LLM 的默认行为是：收到指令 → 默默假设 → 一路执行 → 输出结果。这个流程在简单任务上没问题，但在复杂工程中容易翻车。</p>
+<p>四条规则强制 LLM 在每个关键节点停下来：</p>
+<ol>
+<li><p><strong>执行前</strong>：你理解对了吗？（Think Before Coding）</p>
+</li>
+<li><p><strong>设计时</strong>：能更简单吗？（Simplicity First）</p>
+</li>
+<li><p><strong>修改时</strong>：只动该动的？（Surgical Changes）</p>
+</li>
+<li><p><strong>完成时</strong>：怎么验证？（Goal-Driven Execution）</p>
+</li>
+</ol>
+<p>这不是在限制 LLM，而是在<strong>给它装上工程师的直觉</strong>。</p>
+<h2 id="七、适用范围：不是万能药"><a href="#七、适用范围：不是万能药" class="headerlink" title="七、适用范围：不是万能药"></a>七、适用范围：不是万能药</h2><p>作者明确说了：<strong>这些规则偏向谨慎而非速度。</strong></p>
+<ul>
+<li><p>对于<strong>简单任务</strong>（改个错别字、加一行日志），不需要每条都走</p>
+</li>
+<li><p>对于<strong>复杂任务</strong>（新功能开发、架构重构），这些规则能救命</p>
+</li>
+<li><p>可以和<strong>项目特定规则</strong>叠加使用（TypeScript strict mode、测试要求等）</p>
+</li>
+</ul>
+<p>目标是<strong>减少非平凡工作的代价高昂的错误</strong>，而不是拖慢简单任务。</p>
+<h2 id="八、结语：2KB-的智慧"><a href="#八、结语：2KB-的智慧" class="headerlink" title="八、结语：2KB 的智慧"></a>八、结语：2KB 的智慧</h2><p>165k Star，2KB 文件，四条原则。</p>
+<p>这个项目证明了一个道理：<strong>在 AI 编程时代，最重要的不是更聪明的模型，而是更好的使用方式。</strong></p>
+<p>给 LLM 一个清晰的框架，它就能从”聪明但鲁莽的实习生”变成”靠谱的高级工程师”。</p>
+<p>而这，只需要一个 CLAUDE.md。</p>
+<hr>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>GitHub: multica-ai&#x2F;andrej-karpathy-skills[1]</p>
+</li>
+<li><p>Karpathy 原帖（X）[2]</p>
+</li>
+<li><p>CLAUDE.md 原文[3]</p>
+</li>
+<li><p>Claude Code 官方文档[4]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]GitHub: multica-ai&#x2F;andrej-karpathy-skills: <em><a target="_blank" rel="noopener" href="https://github.com/multica-ai/andrej-karpathy-skills">https://github.com/multica-ai/andrej-karpathy-skills</a></em></p>
+<p>[2]Karpathy 原帖（X）: <em><a target="_blank" rel="noopener" href="https://x.com/karpathy/status/2015883857489522876">https://x.com/karpathy/status/2015883857489522876</a></em></p>
+<p>[3]CLAUDE.md 原文: <em><a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/multica-ai/andrej-karpathy-skills/main/CLAUDE.md">https://raw.githubusercontent.com/multica-ai/andrej-karpathy-skills/main/CLAUDE.md</a></em></p>
+<p>[4]Claude Code 官方文档: <em><a target="_blank" rel="noopener" href="https://docs.anthropic.com/en/docs/claude-code">https://docs.anthropic.com/en/docs/claude-code</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>一个CLAUDE.md让AI编程少犯错：Karpathy亲授的四条铁律</div>
+      <div>https://maoyu92.github.io/2026/06/02/07 AI笔记/AI工具与模型/a111_一个CLAUDE.md让AI编程少犯错：Karpathy亲授的四条铁律/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/02/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a110_139%E4%B8%AAAI%E7%A7%91%E7%A0%94%E6%8A%80%E8%83%BD%E5%8C%85%EF%BC%9A%E4%BB%8E%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94%E5%88%B0%E8%AE%BA%E6%96%87%E6%8A%95%E7%A8%BF%E7%9A%84%E5%85%A8%E6%B5%81%E7%A8%8B%E6%AD%A6%E5%99%A8%E5%BA%93/" title="139个AI科研技能包：从文献调研到论文投稿的全流程武器库">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">139个AI科研技能包：从文献调研到论文投稿的全流程武器库</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/02/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a112_20ms%E4%B8%8A%E5%B1%8F%EF%BC%9ALinux%E4%B8%8A%E6%9C%80%E5%BF%AB%E7%9A%84%E7%A6%BB%E7%BA%BF%E8%AF%AD%E9%9F%B3%E8%BE%93%E5%85%A5%E6%B3%95%EF%BC%8C%E6%AF%94Whisper%E5%BF%AB50%E5%80%8D/" title="20ms上屏：Linux上最快的离线语音输入法，比Whisper快50倍">
+                        <span class="hidden-mobile">20ms上屏：Linux上最快的离线语音输入法，比Whisper快50倍</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

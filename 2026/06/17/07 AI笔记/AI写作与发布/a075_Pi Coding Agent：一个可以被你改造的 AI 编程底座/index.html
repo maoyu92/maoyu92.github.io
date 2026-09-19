@@ -1,0 +1,1164 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="Pi Coding Agent：一个可以被你改造的极简编程 Agent这两年，编程 Agent 已经不稀奇了。 从 Claude Code、Codex CLI，到各种 IDE 插件，大多数工具的产品逻辑都差不多：给你一个已经包装好的智能体，你在它允许的范围里使用它。 但 Pi Coding Agent 的思路有点不一样。 它不是一个封闭的“AI 编程产品”，而是一个极简 Agent Harness">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pi Coding Agent：一个可以被你改造的 AI 编程底座">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/17/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a075_Pi%20Coding%20Agent%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%8F%AF%E4%BB%A5%E8%A2%AB%E4%BD%A0%E6%94%B9%E9%80%A0%E7%9A%84%20AI%20%E7%BC%96%E7%A8%8B%E5%BA%95%E5%BA%A7/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="Pi Coding Agent：一个可以被你改造的极简编程 Agent这两年，编程 Agent 已经不稀奇了。 从 Claude Code、Codex CLI，到各种 IDE 插件，大多数工具的产品逻辑都差不多：给你一个已经包装好的智能体，你在它允许的范围里使用它。 但 Pi Coding Agent 的思路有点不一样。 它不是一个封闭的“AI 编程产品”，而是一个极简 Agent Harness">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-17T10:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-17T10:00:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>Pi Coding Agent：一个可以被你改造的 AI 编程底座 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Pi Coding Agent：一个可以被你改造的 AI 编程底座"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-17 18:00" pubdate>
+          2026年6月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          33 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Pi Coding Agent：一个可以被你改造的 AI 编程底座</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Pi-Coding-Agent：一个可以被你改造的极简编程-Agent"><a href="#Pi-Coding-Agent：一个可以被你改造的极简编程-Agent" class="headerlink" title="Pi Coding Agent：一个可以被你改造的极简编程 Agent"></a>Pi Coding Agent：一个可以被你改造的极简编程 Agent</h1><p>这两年，编程 Agent 已经不稀奇了。</p>
+<p>从 Claude Code、Codex CLI，到各种 IDE 插件，大多数工具的产品逻辑都差不多：给你一个已经包装好的智能体，你在它允许的范围里使用它。</p>
+<p>但 Pi Coding Agent 的思路有点不一样。</p>
+<p>它不是一个封闭的“AI 编程产品”，而是一个<strong>极简 Agent Harness</strong>。换句话说，它更像是一个可以运行在终端里的 Agent 操作系统：核心保持很小，把工作流、工具、技能、提示词、扩展、模型供应商都留给用户自己定制。</p>
+<p>官方对它的定位很直接：</p>
+<blockquote>
+<p>Change the harness, not your workflow.<br>改造 Agent 底座，而不是被 Agent 工作流反过来改造。</p>
+</blockquote>
+<p>这正是 Pi 最有意思的地方。</p>
+<h2 id="一、Pi-是什么？"><a href="#一、Pi-是什么？" class="headerlink" title="一、Pi 是什么？"></a>一、Pi 是什么？</h2><p>Pi Coding Agent 是一个运行在终端里的本地编程 Agent。</p>
+<p>它默认提供最基础的能力：</p>
+<ul>
+<li><p>读取文件</p>
+</li>
+<li><p>写入文件</p>
+</li>
+<li><p>编辑文件</p>
+</li>
+<li><p>执行 shell 命令</p>
+</li>
+<li><p>搜索文件</p>
+</li>
+<li><p>维护会话历史</p>
+</li>
+<li><p>切换模型</p>
+</li>
+<li><p>加载项目上下文</p>
+</li>
+<li><p>使用 Skills &#x2F; Extensions &#x2F; Prompt Templates 扩展能力</p>
+</li>
+</ul>
+<p>但它并不追求把所有功能都内置进去。</p>
+<p>官方甚至明确说：Pi 默认不内置 sub-agent、plan mode、MCP、权限弹窗、后台 bash 等功能。</p>
+<p>这听起来像缺点，但其实是 Pi 的设计哲学：</p>
+<p><strong>Pi 提供原语，而不是提供封死的功能。</strong></p>
+<p>如果你需要计划模式，可以自己做一个 plan-mode extension。<br>如果你需要子代理，可以装 sub-agent extension。<br>如果你需要权限控制，可以写 permission gate。<br>如果你需要路径保护，可以加 protected-paths。<br>如果你需要 SSH 执行、沙箱、状态栏、交互式 UI，也都可以通过扩展完成。</p>
+<p>它更像是“给工程师用的 Agent 框架”，不是“给普通用户用的 AI 编程盒子”。</p>
+<h2 id="二、安装-Pi"><a href="#二、安装-Pi" class="headerlink" title="二、安装 Pi"></a>二、安装 Pi</h2><p>Pi 以 npm 包形式发布。</p>
+<p>官方推荐安装方式：</p>
+<p><code>npm install -g --ignore-scripts @earendil-works/pi-coding-agent   </code></p>
+<p>其中 <code>--ignore-scripts</code> 是为了禁用 npm 依赖安装时的 lifecycle scripts。Pi 正常安装不依赖这些脚本，安全性更好。</p>
+<p>Linux &#x2F; macOS 也可以使用官方安装脚本：</p>
+<p><code>curl -fsSL https://pi.dev/install.sh | sh   </code></p>
+<p>安装完成后，进入项目目录：</p>
+<p><code>cd /path/to/project   pi   </code></p>
+<p>第一次启动后，可以通过 <code>/login</code> 登录订阅类模型服务，也可以通过环境变量配置 API Key。</p>
+<p>例如：</p>
+<p><code>export ANTHROPIC_API_KEY=***   pi   </code></p>
+<p>Pi 支持的模型供应商很多，包括 Anthropic、OpenAI、Google、Azure、Bedrock、Mistral、Groq、Cerebras、xAI、Hugging Face、Kimi For Coding、MiniMax、OpenRouter、Ollama、小米 MiMo 等。</p>
+<h2 id="三、Pi-的基本使用方法"><a href="#三、Pi-的基本使用方法" class="headerlink" title="三、Pi 的基本使用方法"></a>三、Pi 的基本使用方法</h2><p>启动 Pi 后，它会进入一个终端 TUI 界面。</p>
+<p>你可以直接输入任务：</p>
+<p><code>Summarize this repository and tell me how to run its checks.   </code></p>
+<p>Pi 会读取项目文件，分析仓库结构，然后给出运行方式、检查命令、可能的改动建议。</p>
+<h3 id="1-引用文件"><a href="#1-引用文件" class="headerlink" title="1. 引用文件"></a>1. 引用文件</h3><p>在输入框里输入 <code>@</code>，可以模糊搜索并引用项目文件。</p>
+<p>也可以在命令行中直接传入文件：</p>
+<p><code>pi @README.md &quot;Summarize this&quot;   pi @src/app.ts @src/app.test.ts &quot;Review these together&quot;   </code></p>
+<p>这对代码审查、重构、测试分析很方便。</p>
+<h3 id="2-执行-shell-命令"><a href="#2-执行-shell-命令" class="headerlink" title="2. 执行 shell 命令"></a>2. 执行 shell 命令</h3><p>交互模式里可以用：</p>
+<p><code>!npm run lint   </code></p>
+<p>命令输出会进入模型上下文，Agent 可以基于结果继续分析。</p>
+<p>如果你想执行命令，但不想把输出喂给模型，可以用：</p>
+<p><code>!!npm run lint   </code></p>
+<p>这适合一些输出很长、但只需要你自己看的命令。</p>
+<h3 id="3-切换模型"><a href="#3-切换模型" class="headerlink" title="3. 切换模型"></a>3. 切换模型</h3><p>Pi 支持运行中切换模型：</p>
+<p><code>/model   </code></p>
+<p>也可以用快捷键：</p>
+<ul>
+<li><p><code>Ctrl + L</code>：选择模型</p>
+</li>
+<li><p><code>Ctrl + P</code>：在常用模型之间循环</p>
+</li>
+<li><p><code>Shift + Tab</code>：切换 thinking level</p>
+</li>
+</ul>
+<p>这点对工程使用很实用：简单任务用便宜模型，复杂重构切高推理模型。</p>
+<h3 id="4-一次性命令模式"><a href="#4-一次性命令模式" class="headerlink" title="4. 一次性命令模式"></a>4. 一次性命令模式</h3><p>Pi 不一定要进入交互界面，也可以当作命令行工具用。</p>
+<p>例如：</p>
+<p><code>pi -p &quot;Summarize this codebase&quot;   </code></p>
+<p>管道输入：</p>
+<p><code>cat README.md | pi -p &quot;Summarize this text&quot;   </code></p>
+<p>指定图片：</p>
+<p><code>pi -p @screenshot.png &quot;What&#39;s in this image?&quot;   </code></p>
+<p>这意味着 Pi 可以被嵌入 shell 脚本、CI 流水线、代码审查流程中，不只是一个 TUI 聊天工具。</p>
+<h2 id="四、项目上下文：AGENTS-md-是-Pi-的工作说明书"><a href="#四、项目上下文：AGENTS-md-是-Pi-的工作说明书" class="headerlink" title="四、项目上下文：AGENTS.md 是 Pi 的工作说明书"></a>四、项目上下文：AGENTS.md 是 Pi 的工作说明书</h2><p>Pi 会自动读取项目里的上下文文件。</p>
+<p>包括：</p>
+<ul>
+<li><p><code>~/.pi/agent/AGENTS.md</code></p>
+</li>
+<li><p>当前项目及父目录里的 <code>AGENTS.md</code></p>
+</li>
+<li><p>当前项目及父目录里的 <code>CLAUDE.md</code></p>
+</li>
+</ul>
+<p>你可以在项目根目录写一个 <code>AGENTS.md</code>：</p>
+<p><code># Project Instructions      - Run `npm run check` after code changes.   - Do not run production migrations locally.   - Keep responses concise.   - Use TypeScript strict mode.   </code></p>
+<p>这样 Pi 每次进入项目都会自动知道项目约定。</p>
+<p>这对长期项目非常重要。否则每次都要重新告诉 Agent：</p>
+<ul>
+<li><p>项目怎么启动</p>
+</li>
+<li><p>哪些目录不能动</p>
+</li>
+<li><p>测试命令是什么</p>
+</li>
+<li><p>数据库迁移能不能跑</p>
+</li>
+<li><p>代码风格是什么</p>
+</li>
+<li><p>交付前必须检查什么</p>
+</li>
+</ul>
+<p>Pi 的思路是：<strong>把项目规则写进文件，而不是写进临时对话。</strong></p>
+<p>这点和 OpenClaw &#x2F; Claude Code &#x2F; Codex 的 AGENTS.md 体系是一致的。</p>
+<h2 id="五、Pi-最值得注意的能力：会话是树，不是线"><a href="#五、Pi-最值得注意的能力：会话是树，不是线" class="headerlink" title="五、Pi 最值得注意的能力：会话是树，不是线"></a>五、Pi 最值得注意的能力：会话是树，不是线</h2><p>很多 Agent 工具的会话是线性的。</p>
+<p>你问一句，它答一句。<br>中间如果走错了，要么撤销，要么新开会话。</p>
+<p>Pi 的会话是树结构。</p>
+<p>它会把 session 保存到：</p>
+<p><code>~/.pi/agent/sessions/   </code></p>
+<p>每个 session 是 JSONL 文件，并且内部是树状结构。</p>
+<p>你可以用：</p>
+<p><code>/tree   </code></p>
+<p>跳回任意一个历史节点，从那里继续走另一条分支。</p>
+<p>这对编程任务特别有用。</p>
+<p>比如你让 Pi 重构一个模块：</p>
+<ul>
+<li><p>分支 A：用最小改动方式修</p>
+</li>
+<li><p>分支 B：顺手重构架构</p>
+</li>
+<li><p>分支 C：先写测试再改代码</p>
+</li>
+<li><p>分支 D：完全换一种实现</p>
+</li>
+</ul>
+<p>传统 Agent 对话里，这些尝试很容易混在一起。</p>
+<p>Pi 的 <code>/tree</code> 可以把这些探索路径留在同一个 session 文件里，而且可以随时切换、打标签、继续分叉。</p>
+<p>这非常适合：</p>
+<ul>
+<li><p>技术方案对比</p>
+</li>
+<li><p>Bug 修复路径探索</p>
+</li>
+<li><p>重构前后对照</p>
+</li>
+<li><p>Prompt 实验</p>
+</li>
+<li><p>模型输出对比</p>
+</li>
+<li><p>复杂任务的决策留痕</p>
+</li>
+</ul>
+<p>我认为这是 Pi 和很多 CLI Agent 相比非常有区分度的功能。</p>
+<h2 id="六、Pi-的真正杀手锏：Extensions"><a href="#六、Pi-的真正杀手锏：Extensions" class="headerlink" title="六、Pi 的真正杀手锏：Extensions"></a>六、Pi 的真正杀手锏：Extensions</h2><p>Pi 的扩展是 TypeScript 模块，可以直接改变 Pi 的行为。</p>
+<p>它可以做很多事：</p>
+<ul>
+<li><p>注册自定义工具</p>
+</li>
+<li><p>注册自定义 slash command</p>
+</li>
+<li><p>拦截工具调用</p>
+</li>
+<li><p>修改模型请求</p>
+</li>
+<li><p>注入动态上下文</p>
+</li>
+<li><p>自定义压缩逻辑</p>
+</li>
+<li><p>加权限确认</p>
+</li>
+<li><p>加路径保护</p>
+</li>
+<li><p>加状态栏</p>
+</li>
+<li><p>加交互式 UI</p>
+</li>
+<li><p>管理长期状态</p>
+</li>
+<li><p>接外部系统，比如 CI、Webhook、数据库、SSH</p>
+</li>
+</ul>
+<p>扩展放置位置：</p>
+<p><code>~/.pi/agent/extensions/   </code></p>
+<p>或者项目本地：</p>
+<p><code>.pi/extensions/   </code></p>
+<p>一个最小扩展示例：</p>
+<p><code>import type &#123; ExtensionAPI &#125; from &quot;@earendil-works/pi-coding-agent&quot;;   import &#123; Type &#125; from &quot;typebox&quot;;      export default function (pi: ExtensionAPI) &#123;     pi.on(&quot;session_start&quot;, async (_event, ctx) =&gt; &#123;       ctx.ui.notify(&quot;Extension loaded!&quot;, &quot;info&quot;);     &#125;);        pi.registerTool(&#123;       name: &quot;greet&quot;,       label: &quot;Greet&quot;,       description: &quot;Greet someone by name&quot;,       parameters: Type.Object(&#123;         name: Type.String(&#123; description: &quot;Name to greet&quot; &#125;),       &#125;),       async execute(toolCallId, params) &#123;         return &#123;           content: [&#123; type: &quot;text&quot;, text: `Hello, $&#123;params.name&#125;!` &#125;],           details: &#123;&#125;,         &#125;;       &#125;,     &#125;);        pi.registerCommand(&quot;hello&quot;, &#123;       description: &quot;Say hello&quot;,       handler: async (args, ctx) =&gt; &#123;         ctx.ui.notify(`Hello $&#123;args || &quot;world&quot;&#125;!`, &quot;info&quot;);       &#125;,     &#125;);   &#125;   </code></p>
+<p>启动时加载：</p>
+<p><code>pi -e ./my-extension.ts   </code></p>
+<p>如果放在自动发现目录中，运行：</p>
+<p><code>/reload   </code></p>
+<p>就可以热重载。</p>
+<p>这就是 Pi 的核心价值：<strong>它不是只让 Agent 写业务代码，它允许 Agent 改造自己。</strong></p>
+<p>你可以对 Pi 说：</p>
+<p><code>帮我写一个 extension：所有 bash 命令里如果出现 rm -rf、sudo、docker prune，就先弹确认框。   </code></p>
+<p>Pi 可以直接给自己加一个 permission gate。</p>
+<p>或者：</p>
+<p><code>帮我写一个 extension：每次改代码前自动 git diff，改完后自动运行 npm test，并把结果放到底部状态栏。   </code></p>
+<p>这就变成了你自己的编程工作流。</p>
+<h2 id="七、Skills：让能力按需加载"><a href="#七、Skills：让能力按需加载" class="headerlink" title="七、Skills：让能力按需加载"></a>七、Skills：让能力按需加载</h2><p>Pi 支持 Agent Skills 标准。</p>
+<p>Skill 是一个自包含能力包，通常结构如下：</p>
+<p><code>my-skill/   ├── SKILL.md   ├── scripts/   │   └── process.sh   ├── references/   │   └── api-reference.md   └── assets/       └── template.json   </code></p>
+<p><code>SKILL.md</code> 里写清楚技能名称、描述、使用场景、操作步骤。</p>
+<p>Pi 启动时只把 skill 的名称和描述放进上下文；当任务匹配时，再读取完整 <code>SKILL.md</code>。</p>
+<p>这叫 progressive disclosure：<strong>能力很多，但上下文不爆炸。</strong></p>
+<p>你也可以手动调用：</p>
+<p><code>/skill:brave-search   /skill:pdf-tools extract   </code></p>
+<p>这套机制很适合把高频流程沉淀下来，例如：</p>
+<ul>
+<li><p>PDF 处理</p>
+</li>
+<li><p>API 文档查询</p>
+</li>
+<li><p>项目发布流程</p>
+</li>
+<li><p>数据库巡检</p>
+</li>
+<li><p>模型部署流程</p>
+</li>
+<li><p>Docker 故障排查</p>
+</li>
+<li><p>周报生成</p>
+</li>
+<li><p>公众号排版</p>
+</li>
+<li><p>视频脚本生成</p>
+</li>
+</ul>
+<p>对工程团队来说，Skills 的意义不是“让 AI 更聪明”，而是把团队里的操作经验变成可复用资产。</p>
+<h2 id="八、Prompt-Templates：把常用提示词变成命令"><a href="#八、Prompt-Templates：把常用提示词变成命令" class="headerlink" title="八、Prompt Templates：把常用提示词变成命令"></a>八、Prompt Templates：把常用提示词变成命令</h2><p>Pi 支持 prompt templates。</p>
+<p>你可以把常用提示词写成 Markdown 文件，然后在 Pi 里通过 slash command 展开。</p>
+<p>例如你可以做一个：</p>
+<p><code>/review   </code></p>
+<p>用于代码审查。</p>
+<p>一个：</p>
+<p><code>/release-check   </code></p>
+<p>用于发布前检查。</p>
+<p>一个：</p>
+<p><code>/refactor-plan   </code></p>
+<p>用于生成重构计划。</p>
+<p>这比每次复制粘贴长 Prompt 更稳定，也更容易团队共享。</p>
+<h2 id="九、Pi-Packages：把扩展、技能、提示词打包分享"><a href="#九、Pi-Packages：把扩展、技能、提示词打包分享" class="headerlink" title="九、Pi Packages：把扩展、技能、提示词打包分享"></a>九、Pi Packages：把扩展、技能、提示词打包分享</h2><p>Pi 还支持 package 机制。</p>
+<p>一个 Pi package 可以包含：</p>
+<ul>
+<li><p>extensions</p>
+</li>
+<li><p>skills</p>
+</li>
+<li><p>prompt templates</p>
+</li>
+<li><p>themes</p>
+</li>
+</ul>
+<p>可以通过 npm 或 git 安装：</p>
+<p><code>pi install npm:@foo/pi-tools   pi install git:github.com/user/repo@v1   </code></p>
+<p>也可以项目级安装：</p>
+<p><code>pi install -l git:github.com/team/project-pi-tools   </code></p>
+<p>项目级 package 会写入 <code>.pi/settings.json</code>，团队成员进入项目后，Pi 可以加载同一套工作流。</p>
+<p>这意味着你可以为一个项目定制完整的 Agent 工作环境：</p>
+<p><code>.pi/   ├── settings.json   ├── extensions/   ├── skills/   ├── prompts/   └── themes/   </code></p>
+<p>这对团队工程化很有价值。</p>
+<p>不是每个人各自调 Prompt，而是把 Agent 能力版本化、仓库化、可审查化。</p>
+<h2 id="十、Pi-的几个妙用场景"><a href="#十、Pi-的几个妙用场景" class="headerlink" title="十、Pi 的几个妙用场景"></a>十、Pi 的几个妙用场景</h2><h3 id="1-把-Pi-当成“可改造的-Claude-Code”"><a href="#1-把-Pi-当成“可改造的-Claude-Code”" class="headerlink" title="1. 把 Pi 当成“可改造的 Claude Code”"></a>1. 把 Pi 当成“可改造的 Claude Code”</h3><p>如果只是日常写代码，可以这样用：</p>
+<p><code>cd your-project   pi   </code></p>
+<p>然后让它：</p>
+<p><code>阅读这个项目，告诉我如何启动、如何测试、主要模块是什么。   </code></p>
+<p>再让它：</p>
+<p><code>帮我修复这个 failing test，改动前先说明原因，改动后运行测试。   </code></p>
+<p>这种用法和其他 coding agent 类似。</p>
+<p>但 Pi 更进一步：当你发现默认行为不顺手时，可以直接让它改自己。</p>
+<p>比如：</p>
+<p><code>以后每次修改代码前，先自动创建 git checkpoint。帮我写一个 extension。   </code></p>
+<p>这就是 Pi 的强项。</p>
+<h3 id="2-做“项目级-AI-工程规范”"><a href="#2-做“项目级-AI-工程规范”" class="headerlink" title="2. 做“项目级 AI 工程规范”"></a>2. 做“项目级 AI 工程规范”</h3><p>在项目根目录写：</p>
+<p><code>AGENTS.md   .pi/settings.json   .pi/prompts/   .pi/skills/   </code></p>
+<p>把项目的启动方式、测试方式、发布规则、安全限制、代码规范都沉淀进去。</p>
+<p>这样任何人进入项目后运行：</p>
+<p><code>pi   </code></p>
+<p>拿到的是同一套 Agent 行为。</p>
+<p>这比口头约定强得多。</p>
+<h3 id="3-做代码审查机器人"><a href="#3-做代码审查机器人" class="headerlink" title="3. 做代码审查机器人"></a>3. 做代码审查机器人</h3><p>用只读工具启动：</p>
+<p><code>pi --tools read,grep,find,ls -p &quot;Review this repository and identify risky code paths.&quot;   </code></p>
+<p>这样 Pi 只能读，不能写，也不能跑命令。</p>
+<p>适合：</p>
+<ul>
+<li><p>PR 审查</p>
+</li>
+<li><p>安全审查</p>
+</li>
+<li><p>依赖风险分析</p>
+</li>
+<li><p>老项目摸底</p>
+</li>
+<li><p>接手新项目</p>
+</li>
+</ul>
+<h3 id="4-做-CI-辅助分析器"><a href="#4-做-CI-辅助分析器" class="headerlink" title="4. 做 CI 辅助分析器"></a>4. 做 CI 辅助分析器</h3><p>Pi 的 print 模式适合脚本化。</p>
+<p>例如：</p>
+<p><code>npm test 2&gt;&amp;1 | pi -p &quot;Analyze this test failure and suggest the likely fix.&quot;   </code></p>
+<p>或者：</p>
+<p><code>cat build.log | pi -p &quot;Summarize this build failure in Chinese.&quot;   </code></p>
+<p>这可以接到 CI 里，自动生成失败原因说明。</p>
+<h3 id="5-做“可分叉的技术方案实验台”"><a href="#5-做“可分叉的技术方案实验台”" class="headerlink" title="5. 做“可分叉的技术方案实验台”"></a>5. 做“可分叉的技术方案实验台”</h3><p>复杂重构时，最怕 Agent 一条路走到黑。</p>
+<p>Pi 的 <code>/tree</code> 很适合探索多个方案。</p>
+<p>例如：</p>
+<p><code>方案 A：最小改动修复。   方案 B：重构 service 层。   方案 C：引入状态机。   </code></p>
+<p>每个方案可以在同一个 session 树里保留。最后你可以比较差异，再决定采用哪条路径。</p>
+<p>这对架构设计、重构试验、Prompt 评估都很有用。</p>
+<h3 id="6-做团队内部-Agent-平台的原型底座"><a href="#6-做团队内部-Agent-平台的原型底座" class="headerlink" title="6. 做团队内部 Agent 平台的原型底座"></a>6. 做团队内部 Agent 平台的原型底座</h3><p>Pi 支持四种模式：</p>
+<ul>
+<li><p>Interactive：终端交互</p>
+</li>
+<li><p>Print &#x2F; JSON：命令行一次性调用或事件流</p>
+</li>
+<li><p>RPC：stdin&#x2F;stdout JSON 协议</p>
+</li>
+<li><p>SDK：嵌入 Node.js 应用</p>
+</li>
+</ul>
+<p>这说明 Pi 不只是一个终端工具，也可以作为上层系统的 Agent runtime。</p>
+<p>例如：</p>
+<ul>
+<li><p>接到内部 DevOps 平台</p>
+</li>
+<li><p>接到代码评审系统</p>
+</li>
+<li><p>接到企业知识库</p>
+</li>
+<li><p>接到自研 UI</p>
+</li>
+<li><p>接到 OpenClaw 这类多 Agent 编排系统</p>
+</li>
+</ul>
+<p>官方首页也提到 OpenClaw 是一个真实集成案例。</p>
+<p>对想做内部 AI 工程平台的人来说，Pi 的 RPC &#x2F; SDK 模式值得重点关注。</p>
+<h2 id="十一、安全边界：Pi-没有内置沙箱"><a href="#十一、安全边界：Pi-没有内置沙箱" class="headerlink" title="十一、安全边界：Pi 没有内置沙箱"></a>十一、安全边界：Pi 没有内置沙箱</h2><p>这一点必须讲清楚。</p>
+<p>Pi 是本地 Agent，它以启动它的用户权限运行。</p>
+<p>它可以：</p>
+<ul>
+<li><p>读文件</p>
+</li>
+<li><p>写文件</p>
+</li>
+<li><p>改文件</p>
+</li>
+<li><p>执行 shell 命令</p>
+</li>
+<li><p>加载 extensions</p>
+</li>
+<li><p>安装 packages</p>
+</li>
+</ul>
+<p>官方明确说：Pi 没有内置 sandbox。</p>
+<p>项目 trust 机制只是控制 Pi 是否加载项目里的 <code>.pi/settings.json</code>、<code>.pi/extensions</code>、<code>.pi/skills</code> 等资源。它不是安全沙箱，也不会限制 Agent 后续工具调用。</p>
+<p>所以不要把 Pi 直接扔到不可信仓库里放开跑。</p>
+<p>建议：</p>
+<ul>
+<li><p>不可信项目用容器或 VM</p>
+</li>
+<li><p>最小化挂载目录</p>
+</li>
+<li><p>不挂载敏感凭据</p>
+</li>
+<li><p>API Key 用短期凭证</p>
+</li>
+<li><p>高风险任务用只读工具</p>
+</li>
+<li><p>重要改动前先 git commit 或 checkpoint</p>
+</li>
+<li><p>安装第三方 package &#x2F; extension 前审代码</p>
+</li>
+</ul>
+<p>Pi 的安全哲学很工程化：它不假装自己有强沙箱，而是把隔离交给操作系统、容器、虚拟机。</p>
+<p>这个判断是对的。</p>
+<h2 id="十二、Pi-适合什么人？"><a href="#十二、Pi-适合什么人？" class="headerlink" title="十二、Pi 适合什么人？"></a>十二、Pi 适合什么人？</h2><p>Pi 不一定适合所有人。</p>
+<p>如果你只想要一个开箱即用、UI 漂亮、什么都不用管的 AI 编程助手，Pi 可能不是第一选择。</p>
+<p>但如果你是下面几类用户，Pi 很值得研究：</p>
+<ul>
+<li><p>喜欢终端工作流的工程师</p>
+</li>
+<li><p>想把 Agent 接入自己工具链的人</p>
+</li>
+<li><p>想沉淀团队 AI 编程规范的人</p>
+</li>
+<li><p>需要自定义模型供应商的人</p>
+</li>
+<li><p>想做内部 Agent 平台的人</p>
+</li>
+<li><p>需要把 Agent 行为版本化、工程化的人</p>
+</li>
+<li><p>对 prompt、context、tools、memory 有控制欲的人</p>
+</li>
+</ul>
+<p>Pi 的价值不是“替你写代码”，而是让你拥有一个可以被改造、被扩展、被集成的 Agent 底座。</p>
+<h2 id="十三、我的判断"><a href="#十三、我的判断" class="headerlink" title="十三、我的判断"></a>十三、我的判断</h2><p>现在很多 AI 编程工具的路线是：产品越做越厚，把用户锁进一套固定工作流。</p>
+<p>Pi 走的是相反方向：核心尽量薄，把可编程接口留出来。</p>
+<p>这类工具早期看起来会“不够完整”，但对工程师很有吸引力。因为真正复杂的开发流程，从来不是一个通用产品能完全覆盖的。</p>
+<p>不同团队有不同的目录结构、发布流程、代码规范、权限边界、模型偏好、安全策略和上下文管理方式。</p>
+<p>Pi 的回答是：</p>
+<blockquote>
+<p>不要等产品经理给你加功能。<br>你可以直接让 Agent 改造 Agent 自己。</p>
+</blockquote>
+<p>这就是 Pi Coding Agent 最妙的地方。</p>
+<p>它不是一个封闭的 AI 编程工具，而是一个可以长成你自己工作流形状的 Agent Harness。</p>
+<h2 id="附：快速操作清单"><a href="#附：快速操作清单" class="headerlink" title="附：快速操作清单"></a>附：快速操作清单</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p><code>npm install -g --ignore-scripts @earendil-works/pi-coding-agent   </code></p>
+<h3 id="进入项目"><a href="#进入项目" class="headerlink" title="进入项目"></a>进入项目</h3><p><code>cd /path/to/project   pi   </code></p>
+<h3 id="登录模型供应商"><a href="#登录模型供应商" class="headerlink" title="登录模型供应商"></a>登录模型供应商</h3><p><code>/login   </code></p>
+<p>或使用环境变量：</p>
+<p><code>export ANTHROPIC_API_KEY=***   pi   </code></p>
+<h3 id="引用文件"><a href="#引用文件" class="headerlink" title="引用文件"></a>引用文件</h3><p><code>pi @README.md &quot;Summarize this&quot;   </code></p>
+<h3 id="一次性任务"><a href="#一次性任务" class="headerlink" title="一次性任务"></a>一次性任务</h3><p><code>pi -p &quot;Summarize this codebase&quot;   </code></p>
+<h3 id="管道输入"><a href="#管道输入" class="headerlink" title="管道输入"></a>管道输入</h3><p><code>cat README.md | pi -p &quot;Summarize this text&quot;   </code></p>
+<h3 id="只读审查"><a href="#只读审查" class="headerlink" title="只读审查"></a>只读审查</h3><p><code>pi --tools read,grep,find,ls -p &quot;Review this repository.&quot;   </code></p>
+<h3 id="切换模型"><a href="#切换模型" class="headerlink" title="切换模型"></a>切换模型</h3><p><code>/model   </code></p>
+<h3 id="继续最近会话"><a href="#继续最近会话" class="headerlink" title="继续最近会话"></a>继续最近会话</h3><p><code>pi -c   </code></p>
+<h3 id="浏览历史会话"><a href="#浏览历史会话" class="headerlink" title="浏览历史会话"></a>浏览历史会话</h3><p><code>pi -r   </code></p>
+<h3 id="查看会话树"><a href="#查看会话树" class="headerlink" title="查看会话树"></a>查看会话树</h3><p><code>/tree   </code></p>
+<h3 id="导出会话"><a href="#导出会话" class="headerlink" title="导出会话"></a>导出会话</h3><p><code>/export output.html   </code></p>
+<h3 id="安装-Pi-package"><a href="#安装-Pi-package" class="headerlink" title="安装 Pi package"></a>安装 Pi package</h3><p><code>pi install npm:@foo/pi-tools   pi install git:github.com/user/repo@v1   </code></p>
+<h2 id="资料来源"><a href="#资料来源" class="headerlink" title="资料来源"></a>资料来源</h2><ul>
+<li><p>Pi 官网：<a target="_blank" rel="noopener" href="https://pi.dev//[1/]">https://pi.dev/\[1\]</a></p>
+</li>
+<li><p>Pi 官方文档：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/[2/]">https://pi.dev/docs/latest\[2\]</a></p>
+</li>
+<li><p>Quickstart：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/quickstart/[3/]">https://pi.dev/docs/latest/quickstart\[3\]</a></p>
+</li>
+<li><p>Using Pi：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/usage/[4/]">https://pi.dev/docs/latest/usage\[4\]</a></p>
+</li>
+<li><p>Providers：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/providers/[5/]">https://pi.dev/docs/latest/providers\[5\]</a></p>
+</li>
+<li><p>Extensions：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/extensions/[6/]">https://pi.dev/docs/latest/extensions\[6\]</a></p>
+</li>
+<li><p>Skills：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/skills/[7/]">https://pi.dev/docs/latest/skills\[7\]</a></p>
+</li>
+<li><p>Sessions：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/sessions/[8/]">https://pi.dev/docs/latest/sessions\[8\]</a></p>
+</li>
+<li><p>Security：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/security/[9/]">https://pi.dev/docs/latest/security\[9\]</a></p>
+</li>
+<li><p>Packages：<a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/packages/[10/]">https://pi.dev/docs/latest/packages\[10\]</a></p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://pi.dev/">https://pi.dev/</a></em></p>
+<p>[2]<em><a target="_blank" rel="noopener" href="https://pi.dev/docs/latest">https://pi.dev/docs/latest</a></em></p>
+<p>[3]<em><a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/quickstart">https://pi.dev/docs/latest/quickstart</a></em></p>
+<p>[4]<em><a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/usage">https://pi.dev/docs/latest/usage</a></em></p>
+<p>[5]<em><a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/providers">https://pi.dev/docs/latest/providers</a></em></p>
+<p>[6]<em><a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/extensions">https://pi.dev/docs/latest/extensions</a></em></p>
+<p>[7]<em><a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/skills">https://pi.dev/docs/latest/skills</a></em></p>
+<p>[8]<em><a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/sessions">https://pi.dev/docs/latest/sessions</a></em></p>
+<p>[9]<em><a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/security">https://pi.dev/docs/latest/security</a></em></p>
+<p>[10]<em><a target="_blank" rel="noopener" href="https://pi.dev/docs/latest/packages">https://pi.dev/docs/latest/packages</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Pi Coding Agent：一个可以被你改造的 AI 编程底座</div>
+      <div>https://maoyu92.github.io/2026/06/17/07 AI笔记/AI写作与发布/a075_Pi Coding Agent：一个可以被你改造的 AI 编程底座/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/18/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a071_13%20%E4%B8%87%E6%98%9F%E7%9A%84%E5%8F%8D%20vibe%20coding%20%E6%8A%80%E8%83%BD%E5%BA%93%EF%BC%9AMatt%20Pocock%20%E7%9A%84%20skills%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%80%BC%E5%BE%97%E5%B7%A5%E7%A8%8B%E5%9B%A2%E9%98%9F%E7%A0%94%E7%A9%B6%EF%BC%9F/" title="13 万星的反 vibe coding 技能库：Matt Pocock 的 skills 为什么值得工程团队研究？">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">13 万星的反 vibe coding 技能库：Matt Pocock 的 skills 为什么值得工程团队研究？</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/17/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a076_Pi%20Coding%20Agent%EF%BC%9A%E4%B8%80%E4%B8%AA%E5%8F%AF%E4%BB%A5%E8%A2%AB%E4%BD%A0%E6%94%B9%E9%80%A0%E7%9A%84%E6%9E%81%E7%AE%80%E7%BC%96%E7%A8%8B%20Agent/" title="Pi Coding Agent：一个可以被你改造的极简编程 Agent">
+                        <span class="hidden-mobile">Pi Coding Agent：一个可以被你改造的极简编程 Agent</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

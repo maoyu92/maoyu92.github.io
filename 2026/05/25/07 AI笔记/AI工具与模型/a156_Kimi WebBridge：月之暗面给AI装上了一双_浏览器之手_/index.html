@@ -1,0 +1,905 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="引言AI 编程助手能帮你写代码、改 bug、读文档，但你是否遇到过这样的困境——  “ “帮我查一下京东上 iPhone 15 的价格” “帮我抓取这个小红书账号最近 10 篇爆文的标题和点赞数” “帮我登录这个量化平台，导出最近一周的资金流向数据”  不好意思，AI 做不到。这些任务必须在浏览器里完成，AI 助手够不着。 直到现在。 Kimi WebBridge，月之暗面 2026 年 5 月中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kimi WebBridge：月之暗面给AI装上了一双&quot;浏览器之手&quot;">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/25/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a156_Kimi%20WebBridge%EF%BC%9A%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%E7%BB%99AI%E8%A3%85%E4%B8%8A%E4%BA%86%E4%B8%80%E5%8F%8C_%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%8B%E6%89%8B_/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="引言AI 编程助手能帮你写代码、改 bug、读文档，但你是否遇到过这样的困境——  “ “帮我查一下京东上 iPhone 15 的价格” “帮我抓取这个小红书账号最近 10 篇爆文的标题和点赞数” “帮我登录这个量化平台，导出最近一周的资金流向数据”  不好意思，AI 做不到。这些任务必须在浏览器里完成，AI 助手够不着。 直到现在。 Kimi WebBridge，月之暗面 2026 年 5 月中">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-25T02:05:00.000Z">
+<meta property="article:modified_time" content="2026-05-25T02:05:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>Kimi WebBridge：月之暗面给AI装上了一双&#34;浏览器之手&#34; - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Kimi WebBridge：月之暗面给AI装上了一双&#34;浏览器之手&#34;"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-25 10:05" pubdate>
+          2026年5月25日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Kimi WebBridge：月之暗面给AI装上了一双&#34;浏览器之手&#34;</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>AI 编程助手能帮你写代码、改 bug、读文档，但你是否遇到过这样的困境——</p>
+<blockquote>
+<p>“</p>
+<p>“帮我查一下京东上 iPhone 15 的价格” “帮我抓取这个小红书账号最近 10 篇爆文的标题和点赞数” “帮我登录这个量化平台，导出最近一周的资金流向数据”</p>
+</blockquote>
+<p>不好意思，AI 做不到。这些任务必须在浏览器里完成，AI 助手够不着。</p>
+<p>直到现在。</p>
+<p><strong>Kimi WebBridge</strong>，月之暗面 2026 年 5 月中旬正式发布的一款浏览器插件，让 AI Agent 能像真人一样操作你的 Chrome 或 Edge——用的是你的登录态、你的 Cookie、你的账号。</p>
+<p>这意味着，<strong>在目标网站看来，AI 就是你本人</strong>。</p>
+<hr>
+<h2 id="一、它究竟是什么"><a href="#一、它究竟是什么" class="headerlink" title="一、它究竟是什么"></a>一、它究竟是什么</h2><p>Kimi WebBridge 是月之暗面（Moonshot AI）推出的一款<strong>浏览器扩展</strong>，扮演 AI Agent 与浏览器之间的”桥梁”角色。</p>
+<p>官方给它的定位是：</p>
+<blockquote>
+<p>“</p>
+<p>“让 AI 帮你打开网页、点击按钮、填写表单、提取信息，为你自动化各种繁琐的网页操作。”</p>
+</blockquote>
+<p>但实际上，它的野心远比”自动化表单”大得多——它的本质是：<strong>给 AI Agent 装上了一双可以操控浏览器的手和眼睛</strong>。</p>
+<hr>
+<h2 id="二、技术原理：本地优先，数据不离开设备"><a href="#二、技术原理：本地优先，数据不离开设备" class="headerlink" title="二、技术原理：本地优先，数据不离开设备"></a>二、技术原理：本地优先，数据不离开设备</h2><p>Kimi WebBridge 的架构分为两个组件：</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>本地桥接服务（Daemon）</strong></td>
+<td>接收 AI Agent 的指令，调度 Chrome DevTools Protocol</td>
+</tr>
+<tr>
+<td><strong>浏览器扩展（Extension）</strong></td>
+<td>基于 Chrome DevTools Protocol 在你的浏览器里完成实际操作</td>
+</tr>
+</tbody></table>
+<p>数据流向是这样的：</p>
+<p><code>AI Agent → 本地桥接服务 → Chrome DevTools Protocol → 你的 Chrome/Edge 浏览器                                       ↓                                 执行结果返回 Agent   </code></p>
+<p><strong>关键特性：所有操作都在本地完成。</strong> 你的登录态、Cookie、页面内容不会离开你的设备。这与 OpenAI Operator 等云端方案形成了本质差异。</p>
+<p>技术后盾是月之暗面自研的 <strong>Kimi K2.6 模型</strong>（2026 年 4 月发布），在 SWE-Bench Pro 基准测试中得分 58.6%，超越了 GPT-5.4（57.7%）和 Claude Opus 4.6（53.4%）。K2.6 支持最多 300 个并行子 Agent，是 WebBridge 处理复杂多步骤浏览器任务的基础。</p>
+<hr>
+<h2 id="三、支持哪些-AI-Agent"><a href="#三、支持哪些-AI-Agent" class="headerlink" title="三、支持哪些 AI Agent"></a>三、支持哪些 AI Agent</h2><p>Kimi WebBridge 并不绑死月之暗面自己的产品，它面向整个 AI Agent 生态：</p>
+<ul>
+<li><p>✅ <strong>Kimi Code</strong>（月之暗面自家）</p>
+</li>
+<li><p>✅ <strong>Claude Code</strong>（Anthropic）</p>
+</li>
+<li><p>✅ <strong>Cursor</strong>（AI 代码编辑器）</p>
+</li>
+<li><p>✅ <strong>Codex</strong>（OpenAI）</p>
+</li>
+<li><p>✅ <strong>Hermes Agent</strong></p>
+</li>
+<li><p>✅ <strong>OpenClaw</strong>（你正在用的这个！）</p>
+</li>
+</ul>
+<p>也就是说，不管你用什么 AI 编程助手，只要它支持 Skill 或命令行调用，理论上都可以连接 WebBridge。</p>
+<hr>
+<h2 id="四、它能做什么？5个真实场景"><a href="#四、它能做什么？5个真实场景" class="headerlink" title="四、它能做什么？5个真实场景"></a>四、它能做什么？5个真实场景</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>场景 1：社媒热点选题</p>
+<p>让 Agent 自动打开微博、知乎、小红书，爬取指定话题下的热门内容，整理成表格：</p>
+<blockquote>
+<p>“</p>
+<p>“帮我采集小红书、抖音和快手在 App Store 的评分和简介”</p>
+</blockquote>
+<p><strong>手动操作约 30 分钟 → AI 自动执行约 3 分钟</strong></p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>场景 2：求职信息收集</p>
+<blockquote>
+<p>“</p>
+<p>“帮我去猎聘上搜索 ‘AI 工程师’，上海，薪资 30K 以上，把前 20 条的职位名、公司名、薪资整理成表格”</p>
+</blockquote>
+<p>Agent 自己翻页、提取、汇总，不用你一条条复制粘贴。</p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>场景 3：金融量化数据抓取</p>
+<blockquote>
+<p>“</p>
+<p>“帮我登录聚宽量化平台，获取最近一周沪深 300 成分股的资金流向数据，导出 CSV，然后写一份简要分析报告”</p>
+</blockquote>
+<p>这是传统 RPA 工具很难优雅完成的任务——需要登录态、需要翻页、需要导出文件。WebBridge 完美解决。</p>
+<h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><p>场景 4：竞品价格监控</p>
+<blockquote>
+<p>“</p>
+<p>“每天早上 9 点，帮我抓取京东和天猫上 iPhone 15 的价格”</p>
+</blockquote>
+<p>可以进一步结合定时任务，实现完全自动化的价格监控。</p>
+<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><p>场景 5：跨平台内容整合</p>
+<p>让 Agent 带着你的账号去各个网站执行任务——发帖、评论、数据采集——而不需要任何第三方 API。</p>
+<hr>
+<h2 id="五、安装配置：3-步搞定"><a href="#五、安装配置：3-步搞定" class="headerlink" title="五、安装配置：3 步搞定"></a>五、安装配置：3 步搞定</h2><h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><p>第一步：安装浏览器扩展</p>
+<p>在 Chrome 应用商店或 Edge 插件商店搜索 **”Kimi WebBridge”**，点击安装。</p>
+<p>「Chrome 应用商店安装界面示意」（可在 Chrome Web Store 搜索 “Kimi WebBridge” 找到）</p>
+<p>（如果网络访问困难，也可以手动下载安装，官方提供了离线包：<a target="_blank" rel="noopener" href="https://cdn.kimi.com/webbridge/latest/releases/%EF%BC%89/[1/]">https://cdn.kimi.com/webbridge/latest/releases/）\[1\]</a></p>
+<h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><p>第二步：安装本地桥接服务</p>
+<p>在终端运行：</p>
+<p><code>curl -fsSL https://kimi-web-img.moonshot.cn/webbridge/install.sh | bash   </code></p>
+<p>安装完成后可通过以下命令检查状态：</p>
+<p><code>kimi-webbridge status   </code></p>
+<h3 id="-7"><a href="#-7" class="headerlink" title=""></a></h3><p>第三步：连接你的 AI Agent</p>
+<p>以 OpenClaw 为例，直接发送：</p>
+<blockquote>
+<p>“</p>
+<p>“使用 kimi-webbridge 帮我打开 kimi.com”</p>
+</blockquote>
+<p>如果浏览器成功打开了 kimi.com 标签页并出现 <code>agent:kimi</code> 提示，说明连接成功 🎉</p>
+<hr>
+<h2 id="六、与传统浏览器自动化工具的对比"><a href="#六、与传统浏览器自动化工具的对比" class="headerlink" title="六、与传统浏览器自动化工具的对比"></a>六、与传统浏览器自动化工具的对比</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Kimi WebBridge</th>
+<th>Selenium</th>
+<th>Puppeteer</th>
+<th>Playwright</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AI 集成</td>
+<td>✅ 深度集成，开箱即用</td>
+<td>❌ 需自行开发</td>
+<td>❌ 需自行开发</td>
+<td>❌ 需自行开发</td>
+</tr>
+<tr>
+<td>登录态继承</td>
+<td>✅ 使用你的真实 Cookie</td>
+<td>❌ 需手动维护</td>
+<td>❌ 需手动维护</td>
+<td>❌ 需手动维护</td>
+</tr>
+<tr>
+<td>数据隐私</td>
+<td>✅ 本地执行，不上云</td>
+<td>✅ 本地</td>
+<td>✅ 本地</td>
+<td>✅ 本地</td>
+</tr>
+<tr>
+<td>多 Agent 并行</td>
+<td>✅ 支持 300 并行</td>
+<td>❌ 不支持</td>
+<td>❌ 不支持</td>
+<td>❌ 不支持</td>
+</tr>
+<tr>
+<td>门槛</td>
+<td>低，非程序员也能用</td>
+<td>高</td>
+<td>高</td>
+<td>高</td>
+</tr>
+<tr>
+<td>配套 AI 生态</td>
+<td>✅ 完整支持主流 Agent</td>
+<td>❌ 需自建</td>
+<td>❌ 需自建</td>
+<td>❌ 需自建</td>
+</tr>
+</tbody></table>
+<p>WebBridge 的核心优势是<strong>跨越了数字身份的鸿沟</strong>——传统工具需要自己维护登录态，而 WebBridge 直接继承了你浏览器里已有的身份，让 AI 能以你的真实身份在网页世界中自主行动。</p>
+<hr>
+<h2 id="七、为什么它值得你关注"><a href="#七、为什么它值得你关注" class="headerlink" title="七、为什么它值得你关注"></a>七、为什么它值得你关注</h2><h3 id="-8"><a href="#-8" class="headerlink" title=""></a></h3><p>1. 数据隐私优先</p>
+<p>在这个 AI Agent 疯狂访问你数据的时代，本地优先是一个重要的信任信号。WebBridge 的设计确保了你的账号、Cookie、页面内容不会流经任何第三方服务器。</p>
+<h3 id="-9"><a href="#-9" class="headerlink" title=""></a></h3><p>2. 真正的”真人级”操作</p>
+<p>与需要手动维护 Session 的传统方案不同，WebBridge 直接使用你当前的浏览器状态。对目标网站来说，这就是你本人在操作。</p>
+<h3 id="-10"><a href="#-10" class="headerlink" title=""></a></h3><p>3. 降低 AI Agent 的能力天花板</p>
+<p>过去 AI Agent 的能力边界止步于”无法触碰浏览器”——这限制了它在办公自动化领域的发挥空间。WebBridge 补上了这关键一环。</p>
+<h3 id="-11"><a href="#-11" class="headerlink" title=""></a></h3><p>4. 生态开放，不锁死</p>
+<p>月之暗面没有把 WebBridge 做成 Kimi 独占，而是选择支持所有主流 AI Agent。这是明智的生态策略，也让更多用户能从中受益。</p>
+<hr>
+<h2 id="八、局限性与注意事项"><a href="#八、局限性与注意事项" class="headerlink" title="八、局限性与注意事项"></a>八、局限性与注意事项</h2><ul>
+<li><p><strong>需要你的浏览器处于运行状态</strong>：WebBridge 操控的是你现有的浏览器，而不是无头浏览器</p>
+</li>
+<li><p><strong>复杂交互任务仍需调教</strong>：AI Agent 操作浏览器需要探索和迭代，固定流程越清晰，执行效率越高</p>
+</li>
+<li><p><strong>部分网站有反爬机制</strong>：登录态并不能规避所有反爬策略，高强度爬取仍需谨慎</p>
+</li>
+<li><p><strong>定时任务需要配合系统级调度</strong>：WebBridge 本身不提供定时执行能力，需结合系统任务或 Agent 的计划功能</p>
+</li>
+</ul>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>Kimi WebBridge 的出现，填补了 AI Agent 在”浏览器操作”这个关键环节的能力空白。</p>
+<p>它不是第一个浏览器自动化工具，但它是<strong>第一个真正面向 AI Agent 生态、本地优先、零配置门槛</strong>的方案。</p>
+<p>当 AI 能像你一样操作浏览器的那一刻，办公自动化的边界正在被重新定义。</p>
+<p><strong>如果你也在用 AI Agent 办公，强烈建议去体验一下 Kimi WebBridge。</strong> 你会发现，AI 辅助办公的体验直接跃升好几个档次。</p>
+<hr>
+<p><strong>官网地址</strong>：<a target="_blank" rel="noopener" href="https://www.kimi.com/features/webbridge/[2/]">https://www.kimi.com/features/webbridge\[2\]</a><br><strong>Chrome 扩展</strong>：<a target="_blank" rel="noopener" href="https://chromewebstore.google.com/detail/kimi-webbridge/fldmhceldgbpfpkbgopacenieobmligc/[3/]">https://chromewebstore.google.com/detail/kimi-webbridge/fldmhceldgbpfpkbgopacenieobmligc\[3\]</a><br><strong>适用 Agent</strong>：Kimi Code &#x2F; Claude Code &#x2F; Cursor &#x2F; Codex &#x2F; Hermes Agent &#x2F; OpenClaw</p>
+<blockquote>
+<p>“</p>
+<p>本文使用 Kimi WebBridge 相关素材编写。如果你也想让 AI 真正”动手”为你工作，欢迎体验这款插件。</p>
+</blockquote>
+<h3 id="-12"><a href="#-12" class="headerlink" title=""></a></h3><p>引用链接</p>
+<p>[1]<a target="_blank" rel="noopener" href="https://cdn.kimi.com/webbridge/latest/releases/%EF%BC%89">https://cdn.kimi.com/webbridge/latest/releases/）</a>: <em><a target="_blank" rel="noopener" href="https://cdn.kimi.com/webbridge/latest/releases/%EF%BC%89">https://cdn.kimi.com/webbridge/latest/releases/%EF%BC%89</a></em></p>
+<p>[2]<em><a target="_blank" rel="noopener" href="https://www.kimi.com/features/webbridge">https://www.kimi.com/features/webbridge</a></em></p>
+<p>[3]<em><a target="_blank" rel="noopener" href="https://chromewebstore.google.com/detail/kimi-webbridge/fldmhceldgbpfpkbgopacenieobmligc">https://chromewebstore.google.com/detail/kimi-webbridge/fldmhceldgbpfpkbgopacenieobmligc</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Kimi WebBridge：月之暗面给AI装上了一双&#34;浏览器之手&#34;</div>
+      <div>https://maoyu92.github.io/2026/05/25/07 AI笔记/AI工具与模型/a156_Kimi WebBridge：月之暗面给AI装上了一双_浏览器之手_/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/26/07%20AI%14%EF%BF%BD/AI%EF%BF%BDw%0E!%EF%BF%BD/a155_40%25%012026%01%1AAI%20Agent%06%EF%BF%BDCt%1A:%EF%BF%BDH@%09SaaS%EF%BF%BDF%EF%BF%BD(%1F%7Bl%EF%BF%BD/" title="40%！2026企业AI Agent爆发元年：为什么所有SaaS厂商都在生死转型">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">40%！2026企业AI Agent爆发元年：为什么所有SaaS厂商都在生死转型</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/25/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a157_MCP%E5%8D%8F%E8%AE%AE%EF%BC%9AAI%E6%97%B6%E4%BB%A3%E7%9A%84_%E4%B8%87%E8%83%BD%E6%8E%A5%E5%8F%A3_%EF%BC%8C%E6%AD%A3%E5%9C%A8%E9%87%8D%E5%86%99%E5%BC%80%E5%8F%91%E8%80%85%E8%A7%84%E5%88%99/" title="MCP协议：AI时代的&#34;万能接口&#34;，正在重写开发者规则">
+                        <span class="hidden-mobile">MCP协议：AI时代的&#34;万能接口&#34;，正在重写开发者规则</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

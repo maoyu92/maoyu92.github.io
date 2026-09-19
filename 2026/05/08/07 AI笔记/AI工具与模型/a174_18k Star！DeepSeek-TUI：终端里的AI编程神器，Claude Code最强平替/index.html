@@ -1,0 +1,910 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="18k Star！DeepSeek-TUI：终端里的AI编程神器，Claude Code最强平替 “ 一个个人开发者用 Rust 打造的终端 AI 编程 Agent，登顶 GitHub Trending，被 DeepSeek 官方收录进生态。   为什么值得关注？2026年5月，一个叫 DeepSeek-TUI 的项目突然爆了。 Star 数突破 18k，登顶 GitHub Trending 热榜">
+<meta property="og:type" content="article">
+<meta property="og:title" content="18k Star！DeepSeek-TUI：终端里的AI编程神器，Claude Code最强平替">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/08/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a174_18k%20Star%EF%BC%81DeepSeek-TUI%EF%BC%9A%E7%BB%88%E7%AB%AF%E9%87%8C%E7%9A%84AI%E7%BC%96%E7%A8%8B%E7%A5%9E%E5%99%A8%EF%BC%8CClaude%20Code%E6%9C%80%E5%BC%BA%E5%B9%B3%E6%9B%BF/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="18k Star！DeepSeek-TUI：终端里的AI编程神器，Claude Code最强平替 “ 一个个人开发者用 Rust 打造的终端 AI 编程 Agent，登顶 GitHub Trending，被 DeepSeek 官方收录进生态。   为什么值得关注？2026年5月，一个叫 DeepSeek-TUI 的项目突然爆了。 Star 数突破 18k，登顶 GitHub Trending 热榜">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-08T12:05:00.000Z">
+<meta property="article:modified_time" content="2026-05-08T12:05:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>18k Star！DeepSeek-TUI：终端里的AI编程神器，Claude Code最强平替 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="18k Star！DeepSeek-TUI：终端里的AI编程神器，Claude Code最强平替"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-08 20:05" pubdate>
+          2026年5月8日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">18k Star！DeepSeek-TUI：终端里的AI编程神器，Claude Code最强平替</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="18k-Star！DeepSeek-TUI：终端里的AI编程神器，Claude-Code最强平替"><a href="#18k-Star！DeepSeek-TUI：终端里的AI编程神器，Claude-Code最强平替" class="headerlink" title="18k Star！DeepSeek-TUI：终端里的AI编程神器，Claude Code最强平替"></a>18k Star！DeepSeek-TUI：终端里的AI编程神器，Claude Code最强平替</h1><blockquote>
+<p>“</p>
+<p>一个个人开发者用 Rust 打造的终端 AI 编程 Agent，登顶 GitHub Trending，被 DeepSeek 官方收录进生态。</p>
+</blockquote>
+<hr>
+<h2 id="为什么值得关注？"><a href="#为什么值得关注？" class="headerlink" title="为什么值得关注？"></a>为什么值得关注？</h2><p>2026年5月，一个叫 <strong>DeepSeek-TUI</strong> 的项目突然爆了。</p>
+<p>Star 数突破 <strong>18k</strong>，登顶 GitHub Trending 热榜，被 DeepSeek 官方收录进 <code>awesome-deepseek-agent</code> 生态。</p>
+<p>它是什么？一句话：<strong>DeepSeek 版的 Claude Code</strong>。</p>
+<p>但跟 Claude Code 不同的是——它完全开源（MIT 协议），用 Rust 写的，跑在终端里，深度适配 DeepSeek V4 模型，而且<strong>成本极低</strong>（实测单次开发不到 10 元）。</p>
+<hr>
+<h2 id="核心功能一览"><a href="#核心功能一览" class="headerlink" title="核心功能一览"></a>核心功能一览</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>🖥️ 终端内全流程编程</p>
+<p>不需要 IDE 插件，不需要浏览器，一个终端搞定一切：</p>
+<ul>
+<li><p>读写文件、执行 Shell 命令</p>
+</li>
+<li><p>Git 管理、代码重构</p>
+</li>
+<li><p>项目整体分析</p>
+</li>
+<li><p>Web 搜索和浏览</p>
+</li>
+</ul>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>🧠 吃满 100 万 Token 上下文</p>
+<p>DeepSeek V4 支持 <strong>100 万 Token 上下文窗口</strong>（约 75 万字），DeepSeek-TUI 直接吃满。</p>
+<p>这意味着你可以<strong>一次性读取中型项目的全量源码</strong>，不用反复切换上下文。</p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>⚡ 实时推理可视化</p>
+<p>这是最酷的功能之一——它会<strong>流式展示模型的 Thinking-mode 思考过程</strong>。</p>
+<p>不是黑盒输出，你能看到 AI 是怎么一步步推理的。这对调试和理解 AI 的决策过程非常有帮助。</p>
+<h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><p>🤖 多 Agent 并行</p>
+<p>支持编排子 Agent 分工协作，可以并行处理多个任务。比如同时重构多个模块，或者一个 Agent 写代码、另一个 Agent 写测试。</p>
+<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><p>🔒 安全可控</p>
+<ul>
+<li><p>API Key 本地存储</p>
+</li>
+<li><p>支持私有化部署</p>
+</li>
+<li><p>可配置代码脱敏</p>
+</li>
+<li><p>三种安全模式：Plan（只读）、Agent（交互审批）、YOLO（自动批准）</p>
+</li>
+</ul>
+<hr>
+<h2 id="三种模式，按需选择"><a href="#三种模式，按需选择" class="headerlink" title="三种模式，按需选择"></a>三种模式，按需选择</h2><table>
+<thead>
+<tr>
+<th>模式</th>
+<th>说明</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Plan</strong></td>
+<td>只读探索</td>
+<td>理解代码库、分析架构</td>
+</tr>
+<tr>
+<td><strong>Agent</strong></td>
+<td>交互式，需要审批</td>
+<td>日常开发，安全可控</td>
+</tr>
+<tr>
+<td><strong>YOLO</strong></td>
+<td>自动批准</td>
+<td>信任度高的任务，效率优先</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="Auto-模式：让-AI-自己选模型"><a href="#Auto-模式：让-AI-自己选模型" class="headerlink" title="Auto 模式：让 AI 自己选模型"></a>Auto 模式：让 AI 自己选模型</h2><p><code>deepseek --model auto   </code></p>
+<p>Auto 模式会根据你的请求自动选择：</p>
+<ul>
+<li><p><strong>模型</strong>：简单任务用 <code>deepseek-v4-flash</code>（快+便宜），复杂任务用 <code>deepseek-v4-pro</code>（强+贵）</p>
+</li>
+<li><p><strong>推理等级</strong>：off &#x2F; high &#x2F; max</p>
+</li>
+</ul>
+<p>它先用一个轻量级的 Flash 路由调用来分析你的请求，然后选择最合适的模型和推理等级。短对话保持 Flash + 关闭推理，编程&#x2F;调试&#x2F;架构审查则升级到 Pro + 高推理。</p>
+<hr>
+<h2 id="安装超简单"><a href="#安装超简单" class="headerlink" title="安装超简单"></a>安装超简单</h2><h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><p>方式一：npm 一键安装（推荐）</p>
+<p><code>npm install -g deepseek-tui   deepseek --version   </code></p>
+<p>国内加速：</p>
+<p><code>npm install -g deepseek-tui --registry=https://registry.npmmirror.com   </code></p>
+<h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><p>方式二：Rust Cargo 安装</p>
+<p><code>cargo install deepseek-tui-cli --locked   cargo install deepseek-tui --locked   </code></p>
+<h3 id="-7"><a href="#-7" class="headerlink" title=""></a></h3><p>方式三：Homebrew（macOS）</p>
+<p><code>brew tap Hmbown/deepseek-tui   brew install deepseek-tui   </code></p>
+<h3 id="-8"><a href="#-8" class="headerlink" title=""></a></h3><p>方式四：Docker</p>
+<p><code>docker run --rm -it \     -e DEEPSEEK_API_KEY \     -v &quot;$PWD:/workspace&quot; \     ghcr.io/hmbown/deepseek-tui:latest   </code></p>
+<h3 id="-9"><a href="#-9" class="headerlink" title=""></a></h3><p>方式五：直接下载</p>
+<p>从 GitHub Releases[1] 下载预编译包，支持：</p>
+<ul>
+<li><p>Linux x64 &#x2F; ARM64</p>
+</li>
+<li><p>macOS x64 &#x2F; ARM64</p>
+</li>
+<li><p>Windows x64</p>
+</li>
+</ul>
+<p>国内可走阿里云&#x2F;腾讯云 OSS 镜像加速。</p>
+<hr>
+<h2 id="首次使用"><a href="#首次使用" class="headerlink" title="首次使用"></a>首次使用</h2><p><code># 1. 设置 API Key   deepseek auth set --provider deepseek      # 2. 检查环境   deepseek doctor      # 3. 启动！   deepseek --model auto   </code></p>
+<p>API Key 从 DeepSeek 平台[2] 获取，保存在 <code>~/.deepseek/config.toml</code>。</p>
+<hr>
+<h2 id="更多亮点"><a href="#更多亮点" class="headerlink" title="更多亮点"></a>更多亮点</h2><ul>
+<li><p><strong>Session 保存&#x2F;恢复</strong>：长时间任务可以断点续传</p>
+</li>
+<li><p><strong>工作区回滚</strong>：side-git 快照，一键恢复到任意回合前的状态</p>
+</li>
+<li><p><strong>持久化任务队列</strong>：后台任务重启后不丢失</p>
+</li>
+<li><p><strong>HTTP&#x2F;SSE API</strong>：<code>deepseek serve --http</code> 支持无头 Agent 工作流</p>
+</li>
+<li><p><strong>MCP 协议</strong>：连接 Model Context Protocol 服务器扩展工具</p>
+</li>
+<li><p><strong>LSP 诊断</strong>：编辑后自动获取 rust-analyzer、pyright、gopls 等语言服务器的诊断信息</p>
+</li>
+<li><p><strong>实时成本追踪</strong>：每轮和每个会话的 Token 用量和费用估算</p>
+</li>
+<li><p><strong>Skills 系统</strong>：可组合、可安装的指令包，从 GitHub 加载，无需后端服务</p>
+</li>
+<li><p><strong>多语言界面</strong>：自动检测，支持中文、英文、日文、葡萄牙文</p>
+</li>
+</ul>
+<hr>
+<h2 id="成本实测"><a href="#成本实测" class="headerlink" title="成本实测"></a>成本实测</h2><p>DeepSeek V4 的 API 价格本身就很低，加上 DeepSeek-TUI 的 prefix-cache 优化，实测<strong>单次完整开发会话不到 10 元</strong>。</p>
+<p>相比 Claude Code 每月 $20 的订阅费，这个成本几乎可以忽略不计。</p>
+<hr>
+<h2 id="作者是谁？"><a href="#作者是谁？" class="headerlink" title="作者是谁？"></a>作者是谁？</h2><p><strong>Hunter Bown（Hmbown）</strong>，独立开发者。</p>
+<p>这不是 DeepSeek 官方出品，而是社区驱动的开源项目。但质量之高，被 DeepSeek 官方主动收录进生态。</p>
+<hr>
+<h2 id="适合谁？"><a href="#适合谁？" class="headerlink" title="适合谁？"></a>适合谁？</h2><ul>
+<li><p><strong>终端党</strong>：习惯在终端里完成一切的开发者</p>
+</li>
+<li><p><strong>远程开发</strong>：SSH 到服务器，不想装 IDE</p>
+</li>
+<li><p><strong>预算敏感</strong>：想要 Claude Code 级别的体验，但不想付订阅费</p>
+</li>
+<li><p><strong>深度 DeepSeek 用户</strong>：想充分利用 DeepSeek V4 的 100 万上下文</p>
+</li>
+<li><p><strong>开源爱好者</strong>：喜欢可定制、可扩展的工具</p>
+</li>
+</ul>
+<hr>
+<h2 id="快速对比"><a href="#快速对比" class="headerlink" title="快速对比"></a>快速对比</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>DeepSeek-TUI</th>
+<th>Claude Code</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开源</td>
+<td>✅ MIT</td>
+<td>❌ 闭源</td>
+</tr>
+<tr>
+<td>价格</td>
+<td>按量付费，极低</td>
+<td>$20&#x2F;月</td>
+</tr>
+<tr>
+<td>上下文</td>
+<td>100 万 Token</td>
+<td>20 万 Token</td>
+</tr>
+<tr>
+<td>终端原生</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>推理可视化</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>多 Agent</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>自托管</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>DeepSeek-TUI 不是又一个 AI 编程玩具。它是一个<strong>真正可用的终端编程 Agent</strong>，Rust 编写，性能优秀，功能完整，而且完全免费开源。</p>
+<p>如果你用 DeepSeek，或者想找一个 Claude Code 的平替，强烈推荐试试。</p>
+<p><strong>项目地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/Hmbown/DeepSeek-TUI/[3/]">https://github.com/Hmbown/DeepSeek-TUI\[3\]</a></p>
+<p><code>npm install -g deepseek-tui   deepseek --model auto   </code></p>
+<p>两行命令，开始体验。</p>
+<h3 id="-10"><a href="#-10" class="headerlink" title=""></a></h3><p>引用链接</p>
+<p>[1]GitHub Releases: <em><a target="_blank" rel="noopener" href="https://github.com/Hmbown/DeepSeek-TUI/releases">https://github.com/Hmbown/DeepSeek-TUI/releases</a></em></p>
+<p>[2]DeepSeek 平台: <em><a target="_blank" rel="noopener" href="https://platform.deepseek.com/api/_keys">https://platform.deepseek.com/api\_keys</a></em></p>
+<p>[3]<em><a target="_blank" rel="noopener" href="https://github.com/Hmbown/DeepSeek-TUI">https://github.com/Hmbown/DeepSeek-TUI</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>18k Star！DeepSeek-TUI：终端里的AI编程神器，Claude Code最强平替</div>
+      <div>https://maoyu92.github.io/2026/05/08/07 AI笔记/AI工具与模型/a174_18k Star！DeepSeek-TUI：终端里的AI编程神器，Claude Code最强平替/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/19/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a173_%E8%85%BE%E8%AE%AF%E5%BC%80%E6%BA%90%20Agent%20%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%EF%BC%9A%E7%BB%99%20AI%20Agent%20%E8%A3%85%E4%B8%8A%E6%9C%80%E6%87%82%E4%BD%A0%E7%9A%84%E8%AE%B0%E5%BF%86%E5%BC%95%E6%93%8E/" title="腾讯开源 Agent 记忆系统：给 AI Agent 装上最懂你的记忆引擎">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">腾讯开源 Agent 记忆系统：给 AI Agent 装上最懂你的记忆引擎</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/08/07%20AI%E7%AC%94%E8%AE%B0/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%E4%B8%8E%E6%80%9D%E8%80%83/a181_TagLauncher%EF%BC%9A%E6%A0%87%E7%AD%BE%E5%BC%8F%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E8%AE%A9%E4%BD%A0%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8D%E5%86%8D_%E6%89%BE%E4%B8%8D%E5%88%B0_/" title="TagLauncher：标签式文件管理工具让你的文件不再&#34;找不到&#34;">
+                        <span class="hidden-mobile">TagLauncher：标签式文件管理工具让你的文件不再&#34;找不到&#34;</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

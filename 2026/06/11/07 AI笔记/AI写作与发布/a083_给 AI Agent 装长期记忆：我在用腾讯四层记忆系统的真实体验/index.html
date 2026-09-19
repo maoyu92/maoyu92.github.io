@@ -1,0 +1,816 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="一个不会“失忆”的 AI，和一个会“遗忘”的 AI，体验差距有多大？这篇文章用两个月真实使用数据说清楚。  为什么 AI Agent 需要记忆？我第一次意识到“记忆”重要，是连续开了十几个 Hermes 会话之后——每次 &#x2F;new 清空上下文，AI 就像失忆一样，连我坚持“结论优先”的风格都要重新声明一遍。后来遇到的数据越多、工作流越复杂，“遗忘”问题就越严重。 解决方案其实很简单：给 Agen">
+<meta property="og:type" content="article">
+<meta property="og:title" content="给 AI Agent 装长期记忆：我在用腾讯四层记忆系统的真实体验">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/11/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a083_%E7%BB%99%20AI%20Agent%20%E8%A3%85%E9%95%BF%E6%9C%9F%E8%AE%B0%E5%BF%86%EF%BC%9A%E6%88%91%E5%9C%A8%E7%94%A8%E8%85%BE%E8%AE%AF%E5%9B%9B%E5%B1%82%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%9C%9F%E5%AE%9E%E4%BD%93%E9%AA%8C/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="一个不会“失忆”的 AI，和一个会“遗忘”的 AI，体验差距有多大？这篇文章用两个月真实使用数据说清楚。  为什么 AI Agent 需要记忆？我第一次意识到“记忆”重要，是连续开了十几个 Hermes 会话之后——每次 &#x2F;new 清空上下文，AI 就像失忆一样，连我坚持“结论优先”的风格都要重新声明一遍。后来遇到的数据越多、工作流越复杂，“遗忘”问题就越严重。 解决方案其实很简单：给 Agen">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-11T08:45:00.000Z">
+<meta property="article:modified_time" content="2026-06-11T08:45:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>给 AI Agent 装长期记忆：我在用腾讯四层记忆系统的真实体验 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="给 AI Agent 装长期记忆：我在用腾讯四层记忆系统的真实体验"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-11 16:45" pubdate>
+          2026年6月11日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">给 AI Agent 装长期记忆：我在用腾讯四层记忆系统的真实体验</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>一个不会“失忆”的 AI，和一个会“遗忘”的 AI，体验差距有多大？这篇文章用两个月真实使用数据说清楚。</p>
+</blockquote>
+<h2 id="为什么-AI-Agent-需要记忆？"><a href="#为什么-AI-Agent-需要记忆？" class="headerlink" title="为什么 AI Agent 需要记忆？"></a>为什么 AI Agent 需要记忆？</h2><p>我第一次意识到“记忆”重要，是连续开了十几个 Hermes 会话之后——每次 <code>/new</code> 清空上下文，AI 就像失忆一样，连我坚持“结论优先”的风格都要重新声明一遍。后来遇到的数据越多、工作流越复杂，“遗忘”问题就越严重。</p>
+<p>解决方案其实很简单：<strong>给 Agent 装一个长期记忆系统</strong>。这篇文章记录了我两个月来在 Hermes 上使用腾讯四层记忆系统（L0→L3）的真实体验。</p>
+<h2 id="四层记忆是什么？一张图看懂"><a href="#四层记忆是什么？一张图看懂" class="headerlink" title="四层记忆是什么？一张图看懂"></a>四层记忆是什么？一张图看懂</h2><p><code>┌─────────────────────────────────────────────┐   │  L1 结构化事实                              │   │  ├─ 用户偏好：&quot;结论优先，简洁直接&quot;           │   │  ├─ 环境事实：&quot;双 5070 Ti，32GB VRAM&quot;        │   │  └─ 决策记录：&quot;26B AWQ 是最务实选择&quot;         │   ├─────────────────────────────────────────────┤   │  L2 场景画像                                │   │  ├─ &quot;AI模型测试与硬件管理&quot;场景               │   │  ├─ &quot;政策池采集&quot; 场景                        │   │  └─ &quot;身体训练&quot; 场景                          │   ├─────────────────────────────────────────────┤   │  L3 人物 Persona 合成                       │   │  └─ &quot;务实系统工程师&quot;：VRAM 约束为锚点        │   │      A/B 严格验证 + 及时止损 + 架构思考者     │   └─────────────────────────────────────────────┘   </code></p>
+<p>每一层解决不同问题，下一层用上一层作为输入。</p>
+<h2 id="L0：原始对话——让系统自己“记笔记”"><a href="#L0：原始对话——让系统自己“记笔记”" class="headerlink" title="L0：原始对话——让系统自己“记笔记”"></a>L0：原始对话——让系统自己“记笔记”</h2><p>L0 是所有未加工的消息原文。它的作用是<strong>事后可查</strong>——几个月前讨论过某个 API 密钥配置？可以直接搜回去。</p>
+<p><strong>真实体验</strong>：被动的“记忆仓库”，占空间但检索价值最高。我在上面查找配置细节时，至少省了三次重复翻文档。</p>
+<h2 id="L1：结构化事实——Agent-的“外置工作记忆”"><a href="#L1：结构化事实——Agent-的“外置工作记忆”" class="headerlink" title="L1：结构化事实——Agent 的“外置工作记忆”"></a>L1：结构化事实——Agent 的“外置工作记忆”</h2><p>L1 是自动从对话中提取的结构化条目。每次对话结束，系统会主动把关键信息提炼出来，比如：</p>
+<ul>
+<li><p>用户偏好：“结论优先”</p>
+</li>
+<li><p>实验结论：“AWQ 比 QAT 快 3×”</p>
+</li>
+<li><p>环境约束：“VRAM 可用 27.2GB”</p>
+</li>
+</ul>
+<p>L1 的全称叫<strong>结构化记忆</strong>（Key-Value 对），每轮对话自动抽取。相当于给 AI 配了一个外置的“便签本”，不占用上下文窗口。</p>
+<p><strong>真实体验</strong>：L1 是最常用的一层。刚装上那周就能感受到差异——不需要每次都重复说明“结论优先，不要画蛇添足”，AI 已经记住了。</p>
+<h2 id="L2：场景画像——按上下文分组记忆"><a href="#L2：场景画像——按上下文分组记忆" class="headerlink" title="L2：场景画像——按上下文分组记忆"></a>L2：场景画像——按上下文分组记忆</h2><p>L2 是 L1 的进一步聚合。系统把同一主题下的多条 L1 条目打包成一个“场景块”。比如：</p>
+<ul>
+<li><p>场景“AI 模型测试与硬件管理”：包含所有模型测试记录、硬件参数、决策节点</p>
+</li>
+<li><p>场景“政策池采集”：包含信源、排重规则、Cron 调度时间</p>
+</li>
+<li><p>场景“身体训练”：包含矫正方案、训练流程、发力要点</p>
+</li>
+</ul>
+<p>每个场景有<strong>热度</strong>和<strong>更新时间</strong>。热度高的场景（比如模型测试，heat&#x3D;20）会被优先检索到。</p>
+<p><strong>真实体验</strong>：L2 的价值在于“话题切换”。讨论完硬件测试，再问云阳数据库同步，不需要用户解释前因后果，记忆系统会自动定位到对应的场景块，带上上下文。</p>
+<h2 id="L3：Persona-合成——让-AI-真正“理解”你"><a href="#L3：Persona-合成——让-AI-真正“理解”你" class="headerlink" title="L3：Persona 合成——让 AI 真正“理解”你"></a>L3：Persona 合成——让 AI 真正“理解”你</h2><p>L3 是最抽象也最有价值的一层。它不是简单的信息汇总，而是<strong>综合所有 L2 场景，生成对用户的深层画像</strong>。</p>
+<p>我的 L3 画像被合成成了几个标签：</p>
+<table>
+<thead>
+<tr>
+<th>标签</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>VRAM Realist</td>
+<td>以 32GB VRAM 为决策锚点</td>
+</tr>
+<tr>
+<td>A&#x2F;B Strict</td>
+<td>严格控制变量的对比验证</td>
+</tr>
+<tr>
+<td>Cut Loss Engineer</td>
+<td>硬约束面前果断撤退</td>
+</tr>
+<tr>
+<td>Architecture Builder</td>
+<td>从单模型测试演进到多组件系统</td>
+</tr>
+</tbody></table>
+<p><strong>真实体验</strong>：L3 的效果是最“隐形”的——用户感知不到系统在工作，但回答的风格、判断的侧重点都会自然对齐。这种对齐不是靠 prompt engineering，而是靠数据驱动的画像。</p>
+<h2 id="三个痛点-腾讯记忆系统的解法"><a href="#三个痛点-腾讯记忆系统的解法" class="headerlink" title="三个痛点 + 腾讯记忆系统的解法"></a>三个痛点 + 腾讯记忆系统的解法</h2><table>
+<thead>
+<tr>
+<th>痛点</th>
+<th>传统做法</th>
+<th>腾讯记忆解法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>会话切换就失忆</td>
+<td>手动记录上下文 + 重建</td>
+<td>L1-L3 自动持久化</td>
+</tr>
+<tr>
+<td>人工记忆维护成本高</td>
+<td>自己写笔记</td>
+<td>对话自动抽取，零维护</td>
+</tr>
+<tr>
+<td>上下文窗口被挤爆</td>
+<td>精简上下文</td>
+<td>分层存储，不占主窗口</td>
+</tr>
+</tbody></table>
+<h2 id="落地建议"><a href="#落地建议" class="headerlink" title="落地建议"></a>落地建议</h2><p>如果你也在用 Hermes 或其他 AI Agent 框架，想装记忆系统，记住这三点：</p>
+<ol>
+<li><p><strong>先跑通 L1 再升级</strong>：L1 最实用，先保证结构化记忆稳定工作</p>
+</li>
+<li><p><strong>定期检查 L2 场景划分是否合理</strong>：话题太粗就拆，太碎就并</p>
+</li>
+<li><p><strong>不要干预 L3 合成</strong>：Persona 画像让系统自然演化，手动编辑反而会引入偏差</p>
+</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>TencentDB Agent Memory 官方文档[1]</p>
+</li>
+<li><p>Hermes Agent 记忆配置指南[2]</p>
+</li>
+<li><p>小米 AI 长上下文项目[3]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]TencentDB Agent Memory 官方文档: <em><a target="_blank" rel="noopener" href="https://github.com/TencentDB/TencentDB-Agent-Memory">https://github.com/TencentDB/TencentDB-Agent-Memory</a></em></p>
+<p>[2]Hermes Agent 记忆配置指南: <em><a target="_blank" rel="noopener" href="https://hermes-agent.nousresearch.com/docs">https://hermes-agent.nousresearch.com/docs</a></em></p>
+<p>[3]小米 AI 长上下文项目: <em><a target="_blank" rel="noopener" href="https://github.com/XiaomiMiMo/MiMo">https://github.com/XiaomiMiMo/MiMo</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>给 AI Agent 装长期记忆：我在用腾讯四层记忆系统的真实体验</div>
+      <div>https://maoyu92.github.io/2026/06/11/07 AI笔记/AI写作与发布/a083_给 AI Agent 装长期记忆：我在用腾讯四层记忆系统的真实体验/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/11/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a081_%E5%B0%8F%E7%B1%B3%E5%8F%91%E5%B8%83MiMo%20Code%EF%BC%9A%E5%85%8D%E8%B4%B9AI%E7%BC%96%E7%A8%8B%E5%8A%A9%E6%89%8B%EF%BC%8C%E7%99%BE%E4%B8%87%E4%B8%8A%E4%B8%8B%E6%96%87+%E7%BB%88%E7%AB%AF%E5%85%A8%E5%B1%8F%EF%BC%8C%E5%BC%80%E5%8F%91%E8%80%85%E5%86%B2/" title="小米发布MiMo Code：免费AI编程助手，百万上下文+终端全屏，开发者冲">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">小米发布MiMo Code：免费AI编程助手，百万上下文+终端全屏，开发者冲</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/11/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a084_%E4%B8%80%E8%AF%81%E7%AE%A1%E5%85%A8%E3%80%81%E4%B8%80%E7%9B%AE%E4%BA%86%E7%84%B6%EF%BC%9A%E6%8E%92%E6%B1%A1%E8%AE%B8%E5%8F%AF%E8%AF%81%E6%A0%BC%E5%BC%8F%E4%BC%98%E5%8C%96%E4%B8%89%E5%A4%A7%E5%8F%98%E9%9D%A9%E8%A7%A3%E8%AF%BB/" title="一证管全、一目了然：排污许可证格式优化三大变革解读">
+                        <span class="hidden-mobile">一证管全、一目了然：排污许可证格式优化三大变革解读</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

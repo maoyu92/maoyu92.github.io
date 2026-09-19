@@ -1,0 +1,754 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="真正的带队底气，从来不是”我亲手做过所有事”，而是”我能定义终点、规避风险、校准方向”。  一、那道绕不过去的思维关卡深耕技术的人，大多带着一份刻入骨髓的严谨与执拗。成长始于一行代码的调试、一次算法的优化、一个项目的落地。长久的实操历练，让我们形成了固有的做事逻辑：凡事亲历，方有底气；亲身验证，才敢定论。 在独自攻坚的岁月里，这套思维是铠甲。我们敬畏专业、深耕细节，因为每一个技术漏洞、每一处逻辑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跳出实操桎梏：技术人管理思维的自我突围">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/09/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a091_%E8%B7%B3%E5%87%BA%E5%AE%9E%E6%93%8D%E6%A1%8E%E6%A2%8F%EF%BC%9A%E6%8A%80%E6%9C%AF%E4%BA%BA%E7%AE%A1%E7%90%86%E6%80%9D%E7%BB%B4%E7%9A%84%E8%87%AA%E6%88%91%E7%AA%81%E5%9B%B4/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="真正的带队底气，从来不是”我亲手做过所有事”，而是”我能定义终点、规避风险、校准方向”。  一、那道绕不过去的思维关卡深耕技术的人，大多带着一份刻入骨髓的严谨与执拗。成长始于一行代码的调试、一次算法的优化、一个项目的落地。长久的实操历练，让我们形成了固有的做事逻辑：凡事亲历，方有底气；亲身验证，才敢定论。 在独自攻坚的岁月里，这套思维是铠甲。我们敬畏专业、深耕细节，因为每一个技术漏洞、每一处逻辑">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/images/bbb2c0a42ba554af.png">
+<meta property="og:image" content="https://maoyu92.github.io/images/e794cdae5fa652d1.png">
+<meta property="article:published_time" content="2026-06-09T15:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-09T15:00:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/images/bbb2c0a42ba554af.png">
+  
+  
+  <title>跳出实操桎梏：技术人管理思维的自我突围 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="跳出实操桎梏：技术人管理思维的自我突围"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-09 23:00" pubdate>
+          2026年6月9日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">跳出实操桎梏：技术人管理思维的自我突围</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>真正的带队底气，从来不是”我亲手做过所有事”，而是”我能定义终点、规避风险、校准方向”。</p>
+</blockquote>
+<h2 id="一、那道绕不过去的思维关卡"><a href="#一、那道绕不过去的思维关卡" class="headerlink" title="一、那道绕不过去的思维关卡"></a>一、那道绕不过去的思维关卡</h2><p>深耕技术的人，大多带着一份刻入骨髓的严谨与执拗。成长始于一行代码的调试、一次算法的优化、一个项目的落地。长久的实操历练，让我们形成了固有的做事逻辑：凡事亲历，方有底气；亲身验证，才敢定论。</p>
+<p>在独自攻坚的岁月里，这套思维是铠甲。我们敬畏专业、深耕细节，因为每一个技术漏洞、每一处逻辑偏差，都会直接影响最终结果。于是习惯性地认为：一件事，我未曾亲手做过、未曾积累实操经验，便没有资格指导他人，更没有底气统筹推进。</p>
+<p>这份对专业的敬畏，慢慢变成了束缚自己的枷锁。也是无数技术人从骨干转向管理者，最艰难的思维关卡。</p>
+<h2 id="二、执行者与管理者：两套底层逻辑"><a href="#二、执行者与管理者：两套底层逻辑" class="headerlink" title="二、执行者与管理者：两套底层逻辑"></a>二、执行者与管理者：两套底层逻辑</h2><p>初带团队、接手新人与实习生时，这份桎梏会被无限放大。面对从未接触过的全新工作、未曾涉猎的新兴任务，纯技术思维总会陷入自我怀疑：<strong>我自己都没有实操经验，凭什么安排别人去做？</strong></p>
+<p>我们羡慕公司里擅长统筹的管理者——他们或许不懂细碎的技术落地，甚至提出的需求尚且模糊零散，却依然能从容布置工作、笃定引领团队。从前始终分不清这是果敢还是鲁莽，直到跳出实操的执念才懂得：</p>
+<p><strong>执行者与管理者，本就是两套完全不同的底层逻辑。</strong></p>
+<p>技术执行者的核心，是「把事做对」。深耕细节、打磨实操，追求每一步流程的精准、每一处落地的完美。底气来源于自身的实操经验、积累的踩坑经历、熟练的落地技巧。</p>
+<p>管理学之父彼得·德鲁克说过一句经典的话：<strong>「效率是把事情做对（do things right），效能是做对的事（do the right things）。」</strong> 管理是领导，领导是做对的事——这个区分，恰好点出了技术执行者与管理者的核心分野。</p>
+<p>技术管理者的核心，是「把事做成」。管理者的价值，从不是替代团队完成所有工作，更不是精通每一项细分技能，而是跳出细碎的实操，站在更高的维度，<strong>掌控目标、划定边界、统筹全局、把控结果</strong>。</p>
+<p><img src="/images/bbb2c0a42ba554af.png" srcset="/img/loading.gif" lazyload alt="执行者与管理者：两套完全不同的底层逻辑" title="执行者与管理者：两套完全不同的底层逻辑"></p>
+<h2 id="三、放下”全知全能”的执念"><a href="#三、放下”全知全能”的执念" class="headerlink" title="三、放下”全知全能”的执念"></a>三、放下”全知全能”的执念</h2><p>技术人做管理，最先需要放下的，是「全知全能」的执念。</p>
+<p>不必精通团队所有的工作细节，不必亲历每一项任务的落地过程。就像优秀的指挥官，不必亲自上阵打磨每一件兵器，只需明确作战目标、划定作战边界、排布作战节奏。</p>
+<p>所谓从容的工作安排与方向指导，从来不是手把手的实操教学，而是四件核心的事。</p>
+<p><strong>第一，锚定清晰的目标。</strong> 抛开细碎的步骤，明确这件工作最终要解决什么问题、达成什么效果、交付什么成果。清晰的终点是所有工作的根基——无论任务是否陌生，只要目标笃定，方向就不会偏移。</p>
+<p><strong>第二，拆解零散的任务。</strong> 把复杂的未知工作拆解成循序渐进的独立模块，梳理清工作的先后逻辑、分工边界、配合关系。无需精通每个模块的落地，只需掌控整体的流程与节奏。</p>
+<p><strong>第三，划定明确的边界。</strong> 告知团队工作的核心要求、合规底线、禁止事项、验收标准。为探索试错划定安全框架，让新人有放手尝试的空间，也避免全盘跑偏、无效内耗。</p>
+<p><strong>第四，做好过程的校准。</strong> 不必全程紧盯细节，只需设置关键节点，跟进进度、排查卡点、纠正偏差。下属陷入迷茫时，不直接灌输答案，而是引导独立思考；团队方向跑偏时，及时止损校准，守住最终成果。</p>
+<p><img src="/images/e794cdae5fa652d1.png" srcset="/img/loading.gif" lazyload alt="四件核心的事：目标、任务、边界、校准" title="四件核心的事：目标、任务、边界、校准"></p>
+<h2 id="四、从”躬身入局”到”带领成事”"><a href="#四、从”躬身入局”到”带领成事”" class="headerlink" title="四、从”躬身入局”到”带领成事”"></a>四、从”躬身入局”到”带领成事”</h2><p>这便是技术人最珍贵的思维蜕变：放下实操的执念，建立统筹的格局。</p>
+<p>不必用自己有限的实操经验，去禁锢团队无限的可能性。曾经的我们，以”亲身经历”为底气；成长后的我们，以<strong>格局、框架、判断力</strong>为支撑。</p>
+<p>技术赋予我们的逻辑思维、严谨态度、风险预判能力，是很多天生的管理者不具备的优势。我们或许不懂所有落地细节，但能看透工作的底层逻辑、排查潜在的风险、把控最终的质量。</p>
+<p>从自己躬身入局做事，到带领团队成事，是每一个技术人的必经之路。</p>
+<p>真正的专业，从来不是事事亲为、样样精通，而是哪怕面对未知的领域、全新的工作，依然能以清晰的框架、笃定的方向，引领团队探索前行——在未知中落地结果，在统筹中成就团队与自己。</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>彼得·德鲁克，《卓有成效的管理者》(The Effective Executive, 1967)[1]</p>
+</li>
+<li><p>William Oncken Jr. &amp; Donald Wass, “Who’s Got the Monkey?” (Harvard Business Review, 1974)[2]</p>
+</li>
+<li><p>技术人的管理之路（第2版）- 知行[3]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]彼得·德鲁克，《卓有成效的管理者》(The Effective Executive, 1967): <em><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/The/_Effective/_Executive">https://en.wikipedia.org/wiki/The\_Effective\_Executive</a></em></p>
+<p>[2]William Oncken Jr. &amp; Donald Wass, “Who’s Got the Monkey?” (Harvard Business Review, 1974): <em><a target="_blank" rel="noopener" href="https://hbr.org/1999/11/management-time-whos-got-the-monkey">https://hbr.org/1999/11/management-time-whos-got-the-monkey</a></em></p>
+<p>[3]技术人的管理之路（第2版）- 知行: <em><a target="_blank" rel="noopener" href="https://m.epubit.com/bookDetails?id=UB8317561142b8b">https://m.epubit.com/bookDetails?id=UB8317561142b8b</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>跳出实操桎梏：技术人管理思维的自我突围</div>
+      <div>https://maoyu92.github.io/2026/06/09/07 AI笔记/其他/a091_跳出实操桎梏：技术人管理思维的自我突围/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/09/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a090_%E6%9C%80%E9%AB%98%E7%BA%A7%E7%9A%84%E7%AE%A1%E7%90%86%EF%BC%8C%E6%9C%AC%E8%B4%A8%E6%98%AF%E5%86%99%E7%BB%99%E4%B8%96%E7%95%8C%E7%9A%84%20Prompt/" title="最高级的管理，本质是写给世界的 Prompt">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">最高级的管理，本质是写给世界的 Prompt</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/09/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a092_%E4%BA%BA%E5%88%B0%E4%B8%AD%E5%B9%B4%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%A6%81%E5%AD%A6%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E5%BC%80%E5%8F%91%E6%96%B9%E6%B3%95/" title="人到中年，为什么还要学信息系统开发方法">
+                        <span class="hidden-mobile">人到中年，为什么还要学信息系统开发方法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,889 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="一个好的研究流程，不是把灵感锁进笔记，而是让灵感持续跑过文献、实验、图表和论文编译。  一个科研者的真实痛点做研究的人经常在几个软件之间来回跳：  想法记在备忘录里，文献散在 Zotero &#x2F; arXiv &#x2F; 浏览器标签页；  实验 metrics 放在 Notion 或 Excel，图表和 PDF 各放一个文件夹；  写论文时切到 Overleaf，查公式时又切回本地 PD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从灵感到发表：开源 AI 科研工作台 Mimir 实操指南">
+<meta property="og:url" content="https://maoyu92.github.io/2026/09/07/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a015_%E4%BB%8E%E7%81%B5%E6%84%9F%E5%88%B0%E5%8F%91%E8%A1%A8%EF%BC%9A%E5%BC%80%E6%BA%90%20AI%20%E7%A7%91%E7%A0%94%E5%B7%A5%E4%BD%9C%E5%8F%B0%20Mimir%20%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="一个好的研究流程，不是把灵感锁进笔记，而是让灵感持续跑过文献、实验、图表和论文编译。  一个科研者的真实痛点做研究的人经常在几个软件之间来回跳：  想法记在备忘录里，文献散在 Zotero &#x2F; arXiv &#x2F; 浏览器标签页；  实验 metrics 放在 Notion 或 Excel，图表和 PDF 各放一个文件夹；  写论文时切到 Overleaf，查公式时又切回本地 PD">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-09-07T02:02:00.000Z">
+<meta property="article:modified_time" content="2026-09-07T02:02:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>从灵感到发表：开源 AI 科研工作台 Mimir 实操指南 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="从灵感到发表：开源 AI 科研工作台 Mimir 实操指南"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-09-07 10:02" pubdate>
+          2026年9月7日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">从灵感到发表：开源 AI 科研工作台 Mimir 实操指南</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>一个好的研究流程，不是把灵感锁进笔记，而是让灵感持续跑过文献、实验、图表和论文编译。</p>
+</blockquote>
+<h2 id="一个科研者的真实痛点"><a href="#一个科研者的真实痛点" class="headerlink" title="一个科研者的真实痛点"></a>一个科研者的真实痛点</h2><p>做研究的人经常在几个软件之间来回跳：</p>
+<ul>
+<li><p>想法记在备忘录里，文献散在 Zotero &#x2F; arXiv &#x2F; 浏览器标签页；</p>
+</li>
+<li><p>实验 metrics 放在 Notion 或 Excel，图表和 PDF 各放一个文件夹；</p>
+</li>
+<li><p>写论文时切到 Overleaf，查公式时又切回本地 PDF；</p>
+</li>
+<li><p>组会前临时拼 PPT，再手动找最新实验图和论文图。</p>
+</li>
+</ul>
+<p>这些碎片化工具最大的问题不是“不好用”，而是<strong>上下文切换成本太高</strong>。一次完整研究往往由灵感、检索、实验、写作、汇报五段组成，但目前很少有一个工具把它们串起来。</p>
+<h2 id="Mimir-是什么"><a href="#Mimir-是什么" class="headerlink" title="Mimir 是什么"></a>Mimir 是什么</h2><p>Mimir 是一个基于 <strong>DeepSeek Harness（dsh）</strong> 的科研工作台插件，目标是<strong>把研究全流程装进一个 Web 工作台</strong>，同时让 AI Agent 可调用、可编排。它的核心不是“另一个文献管理器”，而是“研究生命周期的操作界面”。</p>
+<p>项目地址：<code>https://github.com/1692775560/dsh-Mimir-Academic-research</code></p>
+<p>它不是独立 App，而是以 <code>dsh-mimir</code> 插件形式接入 DeepSeek Harness，这意味着它天然具备 <strong>Agent 可编程</strong> 的能力，而不是只给你一个静态 Dashboard。</p>
+<h2 id="九大视图：把研究流程拆开看"><a href="#九大视图：把研究流程拆开看" class="headerlink" title="九大视图：把研究流程拆开看"></a>九大视图：把研究流程拆开看</h2><p>Mimir 提供九个核心视图，基本覆盖研究从 0 到 1 的主要动作：</p>
+<ul>
+<li><p><strong>Overview</strong>：研究项目总览、流程和统计</p>
+</li>
+<li><p><strong>Paper</strong>：类 Overleaf 的 LaTeX 写作区，支持编辑 → 编译 → PDF 预览</p>
+</li>
+<li><p><strong>Library</strong>：arXiv 与网页检索、AI 相关性打分、全屏 PDF 阅读</p>
+</li>
+<li><p><strong>Experiments</strong>：实验指标图表，可一键导出论文图</p>
+</li>
+<li><p><strong>Figures</strong>：上传、整理、插入论文图表</p>
+</li>
+<li><p><strong>Meetings</strong>：一键生成组会 PPT，自动结合论文图与 AI 插图</p>
+</li>
+<li><p><strong>Servers</strong>：GPU 服务器探测 + 远程任务管理</p>
+</li>
+<li><p><strong>Ledger</strong>：研究日志，自动记录 idea 演化与进展摘要</p>
+</li>
+<li><p><strong>Venues</strong>：CCF 会议截止倒计时 + CCF-A 期刊目录</p>
+</li>
+</ul>
+<p>这九个视图里，<strong>Paper、Experiments、Meetings、Ledger</strong> 是最实用的四个高频区。对大多数研究生或研究工程师来说，写完论文要汇报，汇报前要整理图，实验过程中要追踪指标——Mimir 实际上是在把这些动作标准化。</p>
+<h2 id="它真正在解决什么问题"><a href="#它真正在解决什么问题" class="headerlink" title="它真正在解决什么问题"></a>它真正在解决什么问题</h2><h3 id="1-研究资料散落问题"><a href="#1-研究资料散落问题" class="headerlink" title="1. 研究资料散落问题"></a>1. 研究资料散落问题</h3><p>Mimir 的 Library 不只是 PDF 列表。它把 arXiv 检索、网页搜索、AI 相关性评分放在一起，还内置全屏 PDF 阅读器。你不用再在 Zotero、浏览器、终端之间反复横跳。</p>
+<h3 id="2-写作与编译分离问题"><a href="#2-写作与编译分离问题" class="headerlink" title="2. 写作与编译分离问题"></a>2. 写作与编译分离问题</h3><p>很多团队写 LaTeX 用的是本地环境 + Overleaf 混用，版本控制经常出问题。Mimir 的 Paper 视图是<strong>边写边编译</strong>，还带一键 AI 修正建议，减少“编译错误→找语法→再编译”的循环。</p>
+<h3 id="3-实验到论文图之间的断层"><a href="#3-实验到论文图之间的断层" class="headerlink" title="3. 实验到论文图之间的断层"></a>3. 实验到论文图之间的断层</h3><p>Researchers 经常遇到的问题是：实验脚本产出的指标曲线，和论文里要放的图格式不一致。Mimir 的 Experiments 视图可以追踪指标并生成论文级图表，Figures 视图再统一管理，减少重复排版。</p>
+<h3 id="4-组会汇报成本高"><a href="#4-组会汇报成本高" class="headerlink" title="4. 组会汇报成本高"></a>4. 组会汇报成本高</h3><p>组会 PPT 往往要重新选图、调整结构、核对最新结果。Meetings 视图支持一键生成组会演示文稿，且能自动调用论文图和可选 AI 插图，大幅压缩准备时间。</p>
+<h3 id="5-GPU-服务器与远程实验管理"><a href="#5-GPU-服务器与远程实验管理" class="headerlink" title="5. GPU 服务器与远程实验管理"></a>5. GPU 服务器与远程实验管理</h3><p>Servers 视图提供 GPU 集群探测、远程任务提交和任务列表查看。对需要排队跑实验的团队来说，这是一个轻量级的实验调度面板。</p>
+<h3 id="6-研究过程的可追溯性"><a href="#6-研究过程的可追溯性" class="headerlink" title="6. 研究过程的可追溯性"></a>6. 研究过程的可追溯性</h3><p>Ledger 是一个“人性化研究日志”。它不仅记录做了什么，还把 idea 演化过程自动 capture 到 worktree，并以六个视角生成 digest capsule，还能一键生成进展报告。对导师检查进度、自己写年度总结都很有用。</p>
+<h2 id="Agent-工具与-eleven-bundled-skills"><a href="#Agent-工具与-eleven-bundled-skills" class="headerlink" title="Agent 工具与 eleven bundled skills"></a>Agent 工具与 eleven bundled skills</h2><p>Mimir 不只是 Web 界面。它还提供一组 Agent 可调用的工具和斜杠命令，例如：</p>
+<p><code>/research-idea   /research-plan   /research-review   /paper-write   /paper-compile   </code></p>
+<p>以及具体工具：</p>
+<p><code>arxiv_search   web_search   wiki_note   figure_save   latex_compile   meeting_deck   venue_search   server_list / server_check / server_submit_job / server_list_jobs   </code></p>
+<p>这意味着 Mimir 不只是“给人用的科研台”，也是<strong>给 AI 研究助理设计的可编程工作台</strong>。一个 Agent 可以自动检索文献、整理笔记、编排实验、协助写作和编译，这在传统科研工具里并不常见。</p>
+<p>此外，项目还内置了 <strong>11 个研究技能</strong>，覆盖文献综述、创新点检查、实验规划、引用审计、双语去 AI 味润色、rebuttal 等，相当于把科研方法论提前打包进系统里。</p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><p>Mimir 依赖 DeepSeek Harness CLI（dsh）和 Node.js ≥ 22。基本安装步骤如下：</p>
+<p><code>npm install -g @deepseek-ai/dsh   dsh plugin --profile web add dsh-mimir@latest   dsh web   </code></p>
+<p>打开后会在 <code>http://127.0.0.1:3080</code> 看到工作台界面。数据默认保存在本地：</p>
+<ul>
+<li><p>研究 Wiki：<code>~/.dsh/storages/research_wiki.json</code></p>
+</li>
+<li><p>项目产物：当前项目下的 <code>./.research</code> 目录</p>
+</li>
+</ul>
+<p>可选能力扩展：</p>
+<ul>
+<li><p>LaTeX 编译：安装 Tectonic 或 latexmk</p>
+</li>
+<li><p>网页搜索：运行 <code>bash scripts/setup-web-search.sh</code> 配置本地 SearXNG</p>
+</li>
+<li><p>Zotero：配置 <code>zotero.apiKey</code> 和 <code>zotero.userId</code></p>
+</li>
+</ul>
+<h2 id="谁适合用-Mimir"><a href="#谁适合用-Mimir" class="headerlink" title="谁适合用 Mimir"></a>谁适合用 Mimir</h2><ul>
+<li><p><strong>研究生 &#x2F; 博士生</strong>：需要同时管理文献、实验、论文、组会</p>
+</li>
+<li><p><strong>实验室研究员</strong>：多人协作时需要统一的研究资料与进度追踪</p>
+</li>
+<li><p><strong>AI 工程师 &#x2F; 算法研究员</strong>：研究流程与工程实验并存，希望减少工具切换</p>
+</li>
+<li><p><strong>AI 科研助理团队</strong>：需要把研究流程标准化并让 Agent 接管部分重复工作</p>
+</li>
+</ul>
+<p>如果你已经在用 DeepSeek Harness 作为日常编码&#x2F;研究环境，Mimir 的接入成本会很低，因为它直接以插件形式运行。</p>
+<h2 id="和现有工具相比的差异"><a href="#和现有工具相比的差异" class="headerlink" title="和现有工具相比的差异"></a>和现有工具相比的差异</h2><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Mimir</th>
+<th>Overleaf &#x2F; 本地 LaTeX</th>
+<th>Zotero &#x2F; Mendeley</th>
+<th>自建 Dashboard</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>写作编译</td>
+<td>原生支持</td>
+<td>强</td>
+<td>弱</td>
+<td>弱</td>
+</tr>
+<tr>
+<td>文献检索</td>
+<td>内置 arXiv + web</td>
+<td>弱</td>
+<td>强</td>
+<td>弱</td>
+</tr>
+<tr>
+<td>实验追踪</td>
+<td>内置图表</td>
+<td>弱</td>
+<td>弱</td>
+<td>强</td>
+</tr>
+<tr>
+<td>组会 PPT</td>
+<td>一键生成</td>
+<td>弱</td>
+<td>弱</td>
+<td>弱</td>
+</tr>
+<tr>
+<td>GPU 管理</td>
+<td>内置</td>
+<td>无</td>
+<td>无</td>
+<td>取决于实现</td>
+</tr>
+<tr>
+<td>Agent 可编程</td>
+<td>是</td>
+<td>否</td>
+<td>否</td>
+<td>可能</td>
+</tr>
+<tr>
+<td>部署成本</td>
+<td>dsh 插件</td>
+<td>平台依赖</td>
+<td>桌面软件</td>
+<td>较高</td>
+</tr>
+</tbody></table>
+<p>Mimir 的独特之处不是某一个功能特别强，而是它把<strong>研究生命周期</strong>当作一个完整产品来设计，而不是只优化“写论文”或“管文献”的局部体验。</p>
+<h2 id="局限与注意事项"><a href="#局限与注意事项" class="headerlink" title="局限与注意事项"></a>局限与注意事项</h2><ul>
+<li><p>目前依赖 <strong>DeepSeek Harness CLI</strong>，如果你不使用 dsh，会缺少最重要的运行宿主。</p>
+</li>
+<li><p>需要 <strong>Node.js ≥ 22</strong>，老旧研究环境可能需要先升级。</p>
+</li>
+<li><p>LaTeX 编译依赖本地引擎，首次编译时 Tectonic 会自动下载包，可能较慢。</p>
+</li>
+<li><p>arXiv 搜索在某些网络环境需要配置 <code>HTTPS_PROXY</code>。</p>
+</li>
+<li><p>项目目前 MIT 协议，功能仍在快速迭代，部分细节可能随版本变化。</p>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>Mimir 的价值，不在于它发明了文献管理、LaTeX 编译或实验追踪，而在于它把科研中常见的五六个动作，<strong>第一次较完整地封装进一个可 Agent 驱动的工作台</strong>。</p>
+<p>对公众号读者来说，它至少提供了一种新思路：<strong>研究工具的未来，不是更多软件，而是更少切换；不是更强功能，而是更顺流程。</strong></p>
+<p>如果你的研究过程还停留在“备忘录 + Zotero + Excel + Overleaf + 微信传文件”的组合里，Mimir 值得试一次。</p>
+<hr>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>Mimir GitHub 仓库[1]</p>
+</li>
+<li><p>DeepSeek Harness（dsh）[2]</p>
+</li>
+<li><p>dsh-mimir npm 包[3]</p>
+</li>
+<li><p>Mimir 官网[4]</p>
+</li>
+<li><p>项目中文 README[5]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]Mimir GitHub 仓库: <em><a target="_blank" rel="noopener" href="https://github.com/1692775560/dsh-Mimir-Academic-research">https://github.com/1692775560/dsh-Mimir-Academic-research</a></em></p>
+<p>[2]DeepSeek Harness（dsh）: <em><a target="_blank" rel="noopener" href="https://github.com/deepseek-ai/deepseek-harness">https://github.com/deepseek-ai/deepseek-harness</a></em></p>
+<p>[3]dsh-mimir npm 包: <em><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/dsh-mimir">https://www.npmjs.com/package/dsh-mimir</a></em></p>
+<p>[4]Mimir 官网: <em><a target="_blank" rel="noopener" href="https://mimir.smartlarkai.com/">https://mimir.smartlarkai.com</a></em></p>
+<p>[5]项目中文 README: <em><a target="_blank" rel="noopener" href="https://github.com/1692775560/dsh-Mimir-Academic-research/blob/main/README.zh.md">https://github.com/1692775560/dsh-Mimir-Academic-research/blob/main/README.zh.md</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>从灵感到发表：开源 AI 科研工作台 Mimir 实操指南</div>
+      <div>https://maoyu92.github.io/2026/09/07/07 AI笔记/AI写作与发布/a015_从灵感到发表：开源 AI 科研工作台 Mimir 实操指南/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年9月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/09/09/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a014_4%20%E4%B8%AA%E6%8A%80%E8%83%BD%E8%BF%87%E5%AE%A1%EF%BC%9A%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E8%80%85%E4%B8%8A%E6%9E%B6%20WorkBuddy%20%E5%AE%9E%E5%BD%95/" title="4 个技能过审：个人开发者上架 WorkBuddy 实录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">4 个技能过审：个人开发者上架 WorkBuddy 实录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/09/07/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a016_%E6%B2%A1%E6%9C%89%20Token%20%E5%B0%B1%E9%80%80%E5%AD%A6%EF%BC%9F/" title="没有 Token 就退学？">
+                        <span class="hidden-mobile">没有 Token 就退学？</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

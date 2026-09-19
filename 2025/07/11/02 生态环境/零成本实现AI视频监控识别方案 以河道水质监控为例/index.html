@@ -19,26 +19,18 @@
   <meta name="keywords" content="python,eco">
   <meta name="referrer" content="no-referrer" />
   
-    <meta name="description" content="之前曾写过利用阿里开源视觉模型构建 AI 视频识别的文章，最近发现硅基流动最近发布了免费视觉模型 THUDM&#x2F;GLM-4.1 V-9 B-Thinking，就想把之前的想法进行落地，于是有了今天的这篇。 本方案旨在通过调用硅基流动的免费视觉模型 API，截取监控视频流图片，并结合特定的提示词，实现视频监控的智能化识别功能。 一、背景介绍1. 行业与政策背景近年来，随着国家对生态文明建">
+    <meta name="description" content="![](https: &#x2F;&#x2F;gitee.com&#x2F;chenwenmao&#x2F;picbed&#x2F;raw&#x2F;master&#x2F;上传评估示例.png)https: &#x2F;&#x2F;cloud.siliconflow.cn&#x2F;i&#x2F;p61lgKxB   之前曾写过利用阿里开源视觉模型构建 AI 视频识别的文章，最近发现硅基流动最近">
 <meta property="og:type" content="article">
 <meta property="og:title" content="零成本实现AI视频监控识别方案 以河道水质监控为例">
 <meta property="og:url" content="https://maoyu92.github.io/2025/07/11/02%20%E7%94%9F%E6%80%81%E7%8E%AF%E5%A2%83/%E9%9B%B6%E6%88%90%E6%9C%AC%E5%AE%9E%E7%8E%B0AI%E8%A7%86%E9%A2%91%E7%9B%91%E6%8E%A7%E8%AF%86%E5%88%AB%E6%96%B9%E6%A1%88%20%E4%BB%A5%E6%B2%B3%E9%81%93%E6%B0%B4%E8%B4%A8%E7%9B%91%E6%8E%A7%E4%B8%BA%E4%BE%8B/index.html">
 <meta property="og:site_name" content="wallflowers">
-<meta property="og:description" content="之前曾写过利用阿里开源视觉模型构建 AI 视频识别的文章，最近发现硅基流动最近发布了免费视觉模型 THUDM&#x2F;GLM-4.1 V-9 B-Thinking，就想把之前的想法进行落地，于是有了今天的这篇。 本方案旨在通过调用硅基流动的免费视觉模型 API，截取监控视频流图片，并结合特定的提示词，实现视频监控的智能化识别功能。 一、背景介绍1. 行业与政策背景近年来，随着国家对生态文明建">
+<meta property="og:description" content="![](https: &#x2F;&#x2F;gitee.com&#x2F;chenwenmao&#x2F;picbed&#x2F;raw&#x2F;master&#x2F;上传评估示例.png)https: &#x2F;&#x2F;cloud.siliconflow.cn&#x2F;i&#x2F;p61lgKxB   之前曾写过利用阿里开源视觉模型构建 AI 视频识别的文章，最近发现硅基流动最近">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111636069.png">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111609857.png">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111610867.png">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111611598.png">
-<meta property="og:image" content="https://gitee.com/chenwenmao/picbed/raw/master/%E4%B8%8A%E4%BC%A0%E8%AF%84%E4%BC%B0%E7%A4%BA%E4%BE%8B.png">
 <meta property="article:published_time" content="2025-07-11T08:02:00.000Z">
 <meta property="article:modified_time" content="2025-07-11T08:02:00.000Z">
 <meta property="article:author" content="wenmao">
-<meta property="article:tag" content="python">
-<meta property="article:tag" content="AIGC">
-<meta property="article:tag" content="大模型">
-<meta property="article:tag" content="视觉模型">
-<meta property="article:tag" content="模型应用">
+<meta property="article:tag" content="python,eco">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111636069.png">
   
@@ -272,7 +264,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          1.3k 字
         
       </span>
     
@@ -283,7 +275,7 @@
         
         
         
-          17 分钟
+          11 分钟
         
       </span>
     
@@ -333,7 +325,8 @@
             
               <div class="markdown-body">
                 
-                <meta name="referrer" content="no-referrer" />
+                <p>![](https: &#x2F;&#x2F;gitee.com&#x2F;chenwenmao&#x2F;picbed&#x2F;raw&#x2F;master&#x2F;上传评估示例.png)<br>https: &#x2F;&#x2F;cloud.siliconflow.cn&#x2F;i&#x2F;p61lgKxB</p>
+<meta name="referrer" content="no-referrer" />
 
 <p>之前曾写过利用阿里开源视觉模型构建 AI 视频识别的文章，最近发现硅基流动最近发布了免费视觉模型 THUDM&#x2F;GLM-4.1 V-9 B-Thinking，就想把之前的想法进行落地，于是有了今天的这篇。</p>
 <p>本方案旨在通过调用硅基流动的免费视觉模型 API，截取监控视频流图片，并结合特定的提示词，实现视频监控的智能化识别功能。</p>
@@ -372,27 +365,6 @@
 </ul>
 <h4 id="大模型集成"><a href="#大模型集成" class="headerlink" title="大模型集成"></a>大模型集成</h4><p>接入硅基流动平台提供的免费视觉模型 <strong>THUDM&#x2F;GLM-4.1 V-9 B-Thinking</strong>，结合提示词工程优化，提高识别准确率。</p>
 <h4 id="联调测试"><a href="#联调测试" class="headerlink" title="联调测试"></a>联调测试</h4><p>与多个真实监控点对接，反复测试各类典型场景，确保系统稳定性与识别效果。</p>
-<hr>
-<h2 id="三、应用场景"><a href="#三、应用场景" class="headerlink" title="三、应用场景"></a>三、应用场景</h2><h3 id="1-城市河道智能监管"><a href="#1-城市河道智能监管" class="headerlink" title="1. 城市河道智能监管"></a>1. 城市河道智能监管</h3><ul>
-<li>对城市主要河流断面进行实时视频监控；</li>
-<li>自动识别污水直排、垃圾漂浮、藻类异常等现象；</li>
-<li>与智慧水务平台联动，实现跨部门协同监管。</li>
-</ul>
-<h3 id="2-农村水体与小微水域监测"><a href="#2-农村水体与小微水域监测" class="headerlink" title="2. 农村水体与小微水域监测"></a>2. 农村水体与小微水域监测</h3><ul>
-<li>针对农村沟渠、池塘等分散水体部署低成本摄像头；</li>
-<li>AI 自动识别异常，辅助乡镇环保人员日常巡查；</li>
-<li>提升农村地区水环境治理水平。</li>
-</ul>
-<h3 id="3-工业园区与污水处理厂监管"><a href="#3-工业园区与污水处理厂监管" class="headerlink" title="3. 工业园区与污水处理厂监管"></a>3. 工业园区与污水处理厂监管</h3><ul>
-<li>实时监控工业园区排污口、污水处理厂进出水情况；</li>
-<li>发现异常排放、设备故障等问题，及时告警；</li>
-<li>可与企业自查、第三方运维系统整合，提升监管覆盖面。</li>
-</ul>
-<h3 id="4-应急与专项监测"><a href="#4-应急与专项监测" class="headerlink" title="4. 应急与专项监测"></a>4. 应急与专项监测</h3><ul>
-<li>在汛期、突发污染事件期间临时布控摄像头，AI 辅助应急指挥；</li>
-<li>重大节假日、专项整治行动期间提升监管频次与响应速度。</li>
-</ul>
-<hr>
 <h2 id="四、实施效果与价值"><a href="#四、实施效果与价值" class="headerlink" title="四、实施效果与价值"></a>四、实施效果与价值</h2><h3 id="1-监管效率显著提升"><a href="#1-监管效率显著提升" class="headerlink" title="1. 监管效率显著提升"></a>1. 监管效率显著提升</h3><ul>
 <li>实现 7×24 小时不间断自动监控；</li>
 <li>异常事件可在秒级被识别，大幅减少人工巡查频次；</li>
@@ -409,35 +381,10 @@
 <li>提高应急管理效率，缩短响应时间。</li>
 </ul>
 <hr>
-<h2 id="五、功能演示图示"><a href="#五、功能演示图示" class="headerlink" title="五、功能演示图示"></a>五、功能演示图示</h2><p>下图为系统核心功能截图：</p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111609857.png" srcset="/img/loading.gif" lazyload></p>
-<blockquote>
-<p>上传图片进行模型测试与提示词调试：</p>
-</blockquote>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111610867.png" srcset="/img/loading.gif" lazyload></p>
-<blockquote>
-<p>截取视频流图片进行自动分析，输出识别结果：</p>
-</blockquote>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/img/202507111611598.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://gitee.com/chenwenmao/picbed/raw/master/%E4%B8%8A%E4%BC%A0%E8%AF%84%E4%BC%B0%E7%A4%BA%E4%BE%8B.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="六、未来展望"><a href="#六、未来展望" class="headerlink" title="六、未来展望"></a>六、未来展望</h2><h3 id="1-持续优化-AI-模型"><a href="#1-持续优化-AI-模型" class="headerlink" title="1. 持续优化 AI 模型"></a>1. 持续优化 AI 模型</h3><ul>
-<li>探索更多视觉大模型，提升复杂场景下的识别准确率；</li>
-<li>优化推理速度，适应边缘计算场景。</li>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li>[[_entities&#x2F;Tool_Qwen]]</li>
+<li>[[_concepts&#x2F;Concept_AIVision]]</li>
 </ul>
-<h3 id="2-提升提示词工程能力"><a href="#2-提升提示词工程能力" class="headerlink" title="2. 提升提示词工程能力"></a>2. 提升提示词工程能力</h3><ul>
-<li>细化识别类别，拓展应用场景；</li>
-<li>丰富输出格式，提高报告实用性。</li>
-</ul>
-<h3 id="3-推进硬件集成"><a href="#3-推进硬件集成" class="headerlink" title="3. 推进硬件集成"></a>3. 推进硬件集成</h3><ul>
-<li>与轻量级摄像头、边缘计算设备集成，打造低成本 AI 视频装置；</li>
-<li>实现现场识别与本地处理，降低网络依赖。</li>
-</ul>
-<h3 id="4-拓展识别指标"><a href="#4-拓展识别指标" class="headerlink" title="4. 拓展识别指标"></a>4. 拓展识别指标</h3><ul>
-<li>探索水色、水位、流速等更多水质相关参数的智能识别。</li>
-</ul>
-<h2 id="七、结语"><a href="#七、结语" class="headerlink" title="七、结语"></a>七、结语</h2><p>本项目基于硅基流动平台提供的免费视觉大模型 <strong>THUDM&#x2F;GLM-4.1 V-9 B-Thinking</strong>，实现了对视频监控画面的智能识别与分析，为流域水质监管提供了新的技术支撑。系统具备良好的扩展性与落地性，已在多个实际场景中得到验证，具备向更广泛区域推广的基础条件。</p>
-<p>如果你也在探索 AI + 视频监控在环保领域的应用，欢迎交流探讨，共同推进生态环保的智能化转型！</p>
-<h3 id="硅基流动邀请链接"><a href="#硅基流动邀请链接" class="headerlink" title="硅基流动邀请链接"></a>硅基流动邀请链接</h3><p>最近硅基流动在做推广活动，用下面的链接注册，就可以获得 2000 万 Tokens（14 元平台配额），如果需要，就用下面的链接注册吧。<br>模型邀请链接：<br><a target="_blank" rel="noopener" href="https://cloud.siliconflow.cn/i/p61lgKxB">https://cloud.siliconflow.cn/i/p61lgKxB</a><br>邀请码：p 61 lgKxB</p>
 
                 
               </div>
@@ -467,21 +414,6 @@
 
     </div>
   
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/python/" class="print-no-link">#python</a>
-      
-        <a href="/tags/AIGC/" class="print-no-link">#AIGC</a>
-      
-        <a href="/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/" class="print-no-link">#大模型</a>
-      
-        <a href="/tags/%E8%A7%86%E8%A7%89%E6%A8%A1%E5%9E%8B/" class="print-no-link">#视觉模型</a>
-      
-        <a href="/tags/%E6%A8%A1%E5%9E%8B%E5%BA%94%E7%94%A8/" class="print-no-link">#模型应用</a>
-      
-    </div>
   
 </div>
 

@@ -1,0 +1,959 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="写 HTML，render 视频，built for agents。HeyGen 开源的 HyperFrames 正在重新定义 AI 时代的视频创作方式。  一、HyperFrames 是什么HyperFrames 是由 HeyGen（AI 视频生成独角兽）开源的 HTML 转视频框架。 核心定位一句话：  Write HTML. Render video. Built for agents.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI Agent 视频创作新范式：HyperFrames 深度解读">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/31/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a124_AI%20Agent%20%E8%A7%86%E9%A2%91%E5%88%9B%E4%BD%9C%E6%96%B0%E8%8C%83%E5%BC%8F%EF%BC%9AHyperFrames%20%E6%B7%B1%E5%BA%A6%E8%A7%A3%E8%AF%BB/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="写 HTML，render 视频，built for agents。HeyGen 开源的 HyperFrames 正在重新定义 AI 时代的视频创作方式。  一、HyperFrames 是什么HyperFrames 是由 HeyGen（AI 视频生成独角兽）开源的 HTML 转视频框架。 核心定位一句话：  Write HTML. Render video. Built for agents.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-31T02:02:00.000Z">
+<meta property="article:modified_time" content="2026-05-31T02:02:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>AI Agent 视频创作新范式：HyperFrames 深度解读 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AI Agent 视频创作新范式：HyperFrames 深度解读"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-31 10:02" pubdate>
+          2026年5月31日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AI Agent 视频创作新范式：HyperFrames 深度解读</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>写 HTML，render 视频，built for agents。HeyGen 开源的 HyperFrames 正在重新定义 AI 时代的视频创作方式。</p>
+</blockquote>
+<h2 id="一、HyperFrames-是什么"><a href="#一、HyperFrames-是什么" class="headerlink" title="一、HyperFrames 是什么"></a>一、HyperFrames 是什么</h2><p>HyperFrames 是由 <strong>HeyGen</strong>（AI 视频生成独角兽）开源的 HTML 转视频框架。</p>
+<p>核心定位一句话：</p>
+<blockquote>
+<p>Write HTML. Render video. Built for agents.</p>
+</blockquote>
+<p>它将 HTML + CSS + 可寻址动画（seekable animations）转换为<strong>确定性的 MP4 视频</strong>。可本地通过 CLI 使用，也可通过 AI Agent Skills 集成到自动化工作流中。</p>
+<h3 id="与-HeyGen-的关系"><a href="#与-HeyGen-的关系" class="headerlink" title="与 HeyGen 的关系"></a>与 HeyGen 的关系</h3><p>HyperFrames 是 HeyGen 的<strong>开源渲染引擎</strong>，加上围绕 HTML 原生视频创建的工具生态。它不是 HeyGen 商业产品的简化版，而是一个独立的、通用的、开源的视频创建框架——HeyGen 自身在生产环境中也使用它。</p>
+<hr>
+<h2 id="二、核心功能全景：能做什么"><a href="#二、核心功能全景：能做什么" class="headerlink" title="二、核心功能全景：能做什么"></a>二、核心功能全景：能做什么</h2><p>HyperFrames 不是一个单一工具，而是一套完整的模块化框架：</p>
+<h3 id="CLI-工具（hyperframes）"><a href="#CLI-工具（hyperframes）" class="headerlink" title="CLI 工具（hyperframes）"></a>CLI 工具（hyperframes）</h3><p>非交互式 CLI，直接用 <code>npx hyperframes</code> 调用：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>npx hyperframes init &lt;name&gt;</code></td>
+<td>初始化新项目</td>
+</tr>
+<tr>
+<td><code>npx hyperframes preview</code></td>
+<td>浏览器实时预览（带 live reload）</td>
+</tr>
+<tr>
+<td><code>npx hyperframes lint</code></td>
+<td>静态 HTML 结构检查</td>
+</tr>
+<tr>
+<td><code>npx hyperframes validate</code></td>
+<td>运行时检查（headless Chrome）</td>
+</tr>
+<tr>
+<td><code>npx hyperframes render [file]</code></td>
+<td>渲染为 MP4</td>
+</tr>
+<tr>
+<td><code>npx hyperframes inspect [file]</code></td>
+<td>检查组成结构</td>
+</tr>
+<tr>
+<td><code>npx hyperframes add &lt;block&gt;</code></td>
+<td>从 Catalog 安装 block 或 component</td>
+</tr>
+</tbody></table>
+<h3 id="Core-Engine-Producer"><a href="#Core-Engine-Producer" class="headerlink" title="Core + Engine + Producer"></a>Core + Engine + Producer</h3><ul>
+<li><p><strong>Core</strong>：类型系统、HTML 解析器、代码检查器（linter）、运行时、Frame Adapter 模式</p>
+</li>
+<li><p><strong>Engine</strong>：Seekable 页面捕获引擎（Puppeteer + FFmpeg），seek 到每一帧并截图</p>
+</li>
+<li><p><strong>Producer</strong>：完整渲染管线（capture + encode + audio mix），输出 MP4（H.264&#x2F;H.265）</p>
+</li>
+</ul>
+<h3 id="Catalog（50-Blocks-Components）"><a href="#Catalog（50-Blocks-Components）" class="headerlink" title="Catalog（50+ Blocks &amp; Components）"></a>Catalog（50+ Blocks &amp; Components）</h3><p>开箱即用的可安装单元：</p>
+<p><code>npx hyperframes add flash-through-white  # shader 转场   npx hyperframes add instagram-follow     # 社交关注叠加   npx hyperframes add data-chart           # 动态图表   </code></p>
+<p>涵盖：Transitions（闪白、模糊、缩放）、Overlays（社交关注、动态字幕）、Charts（动态柱状图、折线图、饼图）、Maps（地图动画）、Effects（特效叠加）。</p>
+<h3 id="AI-Agent-Skills"><a href="#AI-Agent-Skills" class="headerlink" title="AI Agent Skills"></a>AI Agent Skills</h3><p><code>npx skills add heygen-com/hyperframes   </code></p>
+<p>Skill 支持 Claude Code、Cursor、Gemini CLI、Codex 等主流 AI 编码 Agent。</p>
+<h3 id="其他模块"><a href="#其他模块" class="headerlink" title="其他模块"></a>其他模块</h3><table>
+<thead>
+<tr>
+<th>模块</th>
+<th>状态</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@hyperframes/player</code></td>
+<td>Available</td>
+<td>可嵌入的 <code>&lt;hyperframes-player&gt;</code> Web Component</td>
+</tr>
+<tr>
+<td><code>@hyperframes/studio</code></td>
+<td>进化中</td>
+<td>浏览器可视化作曲编辑器</td>
+</tr>
+<tr>
+<td><code>@hyperframes/aws-lambda</code></td>
+<td>Available</td>
+<td>AWS Lambda 分布式渲染</td>
+</tr>
+<tr>
+<td><code>hyperframes.dev</code></td>
+<td>Available</td>
+<td>社区 Playground</td>
+</tr>
+<tr>
+<td>Design.HTML</td>
+<td>开发中</td>
+<td>可视化品牌身份→视频级组合</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="三、HyperFrames-vs-Remotion：核心差异"><a href="#三、HyperFrames-vs-Remotion：核心差异" class="headerlink" title="三、HyperFrames vs Remotion：核心差异"></a>三、HyperFrames vs Remotion：核心差异</h2><p>HyperFrames 明确说明灵感来自 Remotion，两者核心差异在于<strong>创作模型</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>HyperFrames</th>
+<th>Remotion</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>创作方式</td>
+<td>HTML + CSS + seekable animation</td>
+<td>React 组件（TSX）</td>
+</tr>
+<tr>
+<td>构建步骤</td>
+<td><strong>无</strong>；index.html 直接可用</td>
+<td>必须（webpack&#x2F;bundler）</td>
+</tr>
+<tr>
+<td>AI Agent 适配</td>
+<td>纯 HTML，Agent 最擅长</td>
+<td>JSX&#x2F;React 项目，门槛较高</td>
+</tr>
+<tr>
+<td>库时钟动画</td>
+<td>帧级寻址，精确可控</td>
+<td>GSAP 按 wall-clock 播放，后期帧动画已完成</td>
+</tr>
+<tr>
+<td>分布式渲染</td>
+<td>AWS Lambda（可用，较新）</td>
+<td>Remotion Lambda（5年+生产验证）</td>
+</tr>
+<tr>
+<td>开源协议</td>
+<td><strong>Apache 2.0</strong>（无商业限制）</td>
+<td>商业许可</td>
+</tr>
+<tr>
+<td>HDR 输出</td>
+<td>支持</td>
+<td>不支持</td>
+</tr>
+</tbody></table>
+<h3 id="一个关键的技术差异"><a href="#一个关键的技术差异" class="headerlink" title="一个关键的技术差异"></a>一个关键的技术差异</h3><p>官方文档指出了一个具体问题：GSAP 等自有时钟的动画库，在 HyperFrames 中可实现<strong>帧级寻址</strong>（seek to frame N 时，timeline 也精确对齐），但在 Remotion 中会按 wall-clock 实时播放。</p>
+<p>这意味着同样一个 4 秒 GSAP 动画：</p>
+<ul>
+<li><p><strong>HyperFrames</strong>：全 4 秒有效（letters enter → hold → fall away）</p>
+</li>
+<li><p><strong>Remotion</strong>：4 秒动画在第 1 秒 wall-clock 时间内播完，后续帧是”空舞台”</p>
+</li>
+</ul>
+<hr>
+<h2 id="四、如何使用：快速入门"><a href="#四、如何使用：快速入门" class="headerlink" title="四、如何使用：快速入门"></a>四、如何使用：快速入门</h2><h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><ul>
+<li><p>Node.js 22+</p>
+</li>
+<li><p>FFmpeg（<code>brew install ffmpeg</code>）</p>
+</li>
+</ul>
+<h3 id="最小可运行示例"><a href="#最小可运行示例" class="headerlink" title="最小可运行示例"></a>最小可运行示例</h3><p><strong>Step 1：初始化项目</strong></p>
+<p><code>npx hyperframes init my-first-video   cd my-first-video   </code></p>
+<p><strong>Step 2：编写 index.html</strong></p>
+<p><code>&lt;div id=&quot;stage&quot;     data-composition-id=&quot;main&quot;     data-start=&quot;0&quot;     data-width=&quot;1920&quot;     data-height=&quot;1080&quot;     data-duration=&quot;6&quot;&gt;        &lt;!-- 视频轨 --&gt;     &lt;video class=&quot;clip&quot;       data-start=&quot;0&quot; data-duration=&quot;6&quot;       data-track-index=&quot;0&quot;       src=&quot;intro.mp4&quot; muted playsinline&gt;     &lt;/video&gt;        &lt;!-- 标题轨 --&gt;     &lt;h1 id=&quot;title&quot; class=&quot;clip&quot;       data-start=&quot;1&quot; data-duration=&quot;4&quot;       data-track-index=&quot;1&quot;&gt;Hello HyperFrames&lt;/h1&gt;        &lt;!-- 音频轨 --&gt;     &lt;audio data-start=&quot;0&quot; data-duration=&quot;6&quot;       data-track-index=&quot;2&quot; data-volume=&quot;0.5&quot;       src=&quot;music.wav&quot;&gt;&lt;/audio&gt;   &lt;/div&gt;      &lt;script src=&quot;https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js&quot;&gt;&lt;/script&gt;   &lt;script&gt;  // timeline 必须 paused: true     const tl = gsap.timeline(&#123; paused: true &#125;);     tl.from(&quot;#title&quot;, &#123; opacity: 0, y: 40, duration: 0.8 &#125;, 1);        // 注册到 window.__timelines     window.__timelines = &#123; main: tl &#125;;&lt;/script&gt;   </code></p>
+<p><strong>Step 3：校验和渲染</strong></p>
+<p><code>npx hyperframes lint       # 静态结构检查   npx hyperframes validate   # 运行时检查   npx hyperframes preview    # 浏览器预览   npx hyperframes render     # 渲染 MP4   </code></p>
+<h3 id="核心规范（必须遵守）"><a href="#核心规范（必须遵守）" class="headerlink" title="核心规范（必须遵守）"></a>核心规范（必须遵守）</h3><ol>
+<li><p>所有可见元素加 <code>class=&quot;clip&quot;</code></p>
+</li>
+<li><p>GSAP timeline 必须 <code>&#123; paused: true &#125;</code></p>
+</li>
+<li><p>timeline 必须注册到 <code>window.__timelines[compositionId]</code></p>
+</li>
+<li><p>禁止 <code>Date.now()</code>、无种子 <code>Math.random()</code>、渲染时网络请求</p>
+</li>
+</ol>
+<hr>
+<h2 id="五、AI-Agent-集成：怎么做"><a href="#五、AI-Agent-集成：怎么做" class="headerlink" title="五、AI Agent 集成：怎么做"></a>五、AI Agent 集成：怎么做</h2><h3 id="安装-Skill"><a href="#安装-Skill" class="headerlink" title="安装 Skill"></a>安装 Skill</h3><p><code>npx skills add heygen-com/hyperframes   </code></p>
+<p>安装后，AI Agent 会收到关于 HyperFrames 项目规范、HTML 编写规范、GSAP timeline 模式、校验流程的指导。</p>
+<h3 id="AI-工作流"><a href="#AI-工作流" class="headerlink" title="AI 工作流"></a>AI 工作流</h3><p>官方推荐的 Agent 分工：</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Claude Design</strong>（或其他设计型 Agent）</td>
+<td>分析品牌身份、生成 HTML 骨架、场景内容、布局、首轮动画</td>
+</tr>
+<tr>
+<td><strong>Claude Code</strong>（或其他编码型 Agent）</td>
+<td>动画精调、时间轴微调、生产 QA、lint&#x2F;validate&#x2F;preview</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>“You create the first cut of the film, Claude Code does the edit bay refinement.”</p>
+</blockquote>
+<h3 id="一个典型的-Agent-提示词"><a href="#一个典型的-Agent-提示词" class="headerlink" title="一个典型的 Agent 提示词"></a>一个典型的 Agent 提示词</h3><p><code>用 /hyperframes 创建一个 10 秒的产品介绍视频，包含：   - 淡入标题   - 背景视频   - 轻微的背景音乐   </code></p>
+<hr>
+<h2 id="六、Skill-推荐：如何配合使用"><a href="#六、Skill-推荐：如何配合使用" class="headerlink" title="六、Skill 推荐：如何配合使用"></a>六、Skill 推荐：如何配合使用</h2><p>HyperFrames 擅长”把内容动画化为视频”，但内容的生产本身需要其他 Skill 配合。以下是推荐搭配：</p>
+<h3 id="⭐⭐⭐-baoyu-diagram（必须配合）"><a href="#⭐⭐⭐-baoyu-diagram（必须配合）" class="headerlink" title="⭐⭐⭐ baoyu-diagram（必须配合）"></a>⭐⭐⭐ baoyu-diagram（必须配合）</h3><p>生成 SVG 流程图、架构图、时序图，直接嵌入 HTML 并用 GSAP 动画化。这是 HyperFrames 视频中<strong>数据可视化</strong>的重要素材来源。</p>
+<h3 id="⭐⭐⭐-sn-infographic（必须配合）"><a href="#⭐⭐⭐-sn-infographic（必须配合）" class="headerlink" title="⭐⭐⭐ sn-infographic（必须配合）"></a>⭐⭐⭐ sn-infographic（必须配合）</h3><p>生成信息图（21 种布局），为 HyperFrames 提供静态&#x2F;动态图表内容。调研报告 + 信息图 + HyperFrames 动画化，是完整的内容生产链路。</p>
+<h3 id="⭐⭐-sn-image-base-baoyu-article-illustrator"><a href="#⭐⭐-sn-image-base-baoyu-article-illustrator" class="headerlink" title="⭐⭐ sn-image-base &#x2F; baoyu-article-illustrator"></a>⭐⭐ sn-image-base &#x2F; baoyu-article-illustrator</h3><p>生成高质量图片，作为视频场景的背景或产品展示素材。</p>
+<h3 id="完整-AI-内容管线"><a href="#完整-AI-内容管线" class="headerlink" title="完整 AI 内容管线"></a>完整 AI 内容管线</h3><p><code>sn-deep-research（深度调研）       ↓   sn-infographic / baoyu-diagram（生成数据图表）       ↓   HyperFrames（将图表动画化为 MP4 视频）       ↓   baoyu-article-illustrator（为文章配图）       ↓   wenyan publish（发布微信公众号）   </code></p>
+<hr>
+<h2 id="七、典型场景与选型建议"><a href="#七、典型场景与选型建议" class="headerlink" title="七、典型场景与选型建议"></a>七、典型场景与选型建议</h2><h3 id="HyperFrames-最适合"><a href="#HyperFrames-最适合" class="headerlink" title="HyperFrames 最适合"></a>HyperFrames 最适合</h3><ul>
+<li><p><strong>AI Agent 全自动视频生成</strong>：AI 直接生成 HTML → 渲染视频，路径最短</p>
+</li>
+<li><p><strong>需要复用现有 HTML&#x2F;CSS 资产</strong>：直接粘贴，无需重写</p>
+</li>
+<li><p><strong>Brand-first 内容创作</strong>：Claude Design 等设计型 Agent 更擅长视觉身份</p>
+</li>
+<li><p><strong>快速原型（小时级）</strong>：无构建步骤，直接浏览器预览，迭代最快</p>
+</li>
+<li><p><strong>需要完全开源、无商业限制</strong>：Apache 2.0，无 per-render 费</p>
+</li>
+</ul>
+<h3 id="仍建议评估-Remotion-的场景"><a href="#仍建议评估-Remotion-的场景" class="headerlink" title="仍建议评估 Remotion 的场景"></a>仍建议评估 Remotion 的场景</h3><ul>
+<li><p>已有大型 React 项目，需要集成视频能力</p>
+</li>
+<li><p>日产千条+的大规模内容工厂（Remotion Lambda 5年+生产验证）</p>
+</li>
+<li><p>团队有深厚 React 技能积累</p>
+</li>
+</ul>
+<hr>
+<h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><p>HyperFrames 用一句话概括：<strong>第一个真正为 AI Agent 原生设计的 HTML 转视频框架</strong>。</p>
+<p>它的核心价值：</p>
+<ul>
+<li><p><strong>零学习曲线</strong>：AI Agent 写 HTML 是最深度适应的领域</p>
+</li>
+<li><p><strong>确定性渲染</strong>：相同输入 → 相同帧 → 相同输出，适合 CI&#x2F;CD</p>
+</li>
+<li><p><strong>帧级动画控制</strong>：GSAP 等库的精确寻址，是与 Remotion 的关键技术差异</p>
+</li>
+<li><p><strong>完全开源</strong>：Apache 2.0，无商业门槛</p>
+</li>
+</ul>
+<p>如果你正在构建 AI Agent 工作流、需要自动化视频生产、或想探索”AI 设计 → AI 动画化”的内容管线，HyperFrames 值得优先测试。</p>
+<p><strong>官网</strong>：[1]<a target="_blank" rel="noopener" href="https://hyperframes.heygen.com/[2/]">https://hyperframes.heygen.com\[2\]</a><br><strong>GitHub</strong>：[3]<a target="_blank" rel="noopener" href="https://github.com/heygen-com/hyperframes/[4/]">https://github.com/heygen-com/hyperframes\[4\]</a><br><strong>社区 Playground</strong>：[5]<a target="_blank" rel="noopener" href="https://www.hyperframes.dev//[6/]">https://www.hyperframes.dev/\[6\]</a></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]undefined: <em><a target="_blank" rel="noopener" href="https://hyperframes.heygen.com/">https://hyperframes.heygen.com</a></em></p>
+<p>[2]<em><a target="_blank" rel="noopener" href="https://hyperframes.heygen.com/">https://hyperframes.heygen.com</a></em></p>
+<p>[3]undefined: <em><a target="_blank" rel="noopener" href="https://github.com/heygen-com/hyperframes">https://github.com/heygen-com/hyperframes</a></em></p>
+<p>[4]<em><a target="_blank" rel="noopener" href="https://github.com/heygen-com/hyperframes">https://github.com/heygen-com/hyperframes</a></em></p>
+<p>[5]undefined: <em><a target="_blank" rel="noopener" href="https://www.hyperframes.dev/">https://www.hyperframes.dev/</a></em></p>
+<p>[6]<em><a target="_blank" rel="noopener" href="https://www.hyperframes.dev/">https://www.hyperframes.dev/</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AI Agent 视频创作新范式：HyperFrames 深度解读</div>
+      <div>https://maoyu92.github.io/2026/05/31/07 AI笔记/AI工具与模型/a124_AI Agent 视频创作新范式：HyperFrames 深度解读/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/31/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a123_HyperFrames%20%E6%B7%B1%E5%BA%A6%E8%B0%83%E7%A0%94%EF%BC%9A%E4%B8%80%E4%B8%AA%E7%94%A8%20HTML%20%E5%81%9A%E8%A7%86%E9%A2%91%E7%9A%84%E6%A1%86%E6%9E%B6/" title="HyperFrames 深度调研：一个用 HTML 做视频的框架">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">HyperFrames 深度调研：一个用 HTML 做视频的框架</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/30/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a125_Windows%E7%89%88Codex%E6%9D%A5%E4%BA%86%EF%BC%81%E8%BF%99%E6%AC%A1%E6%9B%B4%E6%96%B0%E8%AE%A9AI%E7%9C%9F%E6%AD%A3%E5%8F%98%E6%88%90%E4%BA%86%E4%BD%A0%E7%9A%84_%E5%85%A8%E8%83%BD%E5%90%8C%E4%BA%8B_/" title="Windows版Codex来了！这次更新让AI真正变成了你的&#34;全能同事&#34;">
+                        <span class="hidden-mobile">Windows版Codex来了！这次更新让AI真正变成了你的&#34;全能同事&#34;</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

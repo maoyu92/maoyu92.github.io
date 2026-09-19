@@ -1,0 +1,884 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="前言如果你关注 AI 视频生成，最近应该被各种”世界模型”刷屏了。从 Sora 到 Luma，从 HY-WorldPlay 到 LingBot，业界仿佛一夜之间从”生成视频”跨入了”模拟世界”——你可以在生成的场景里推拉摇移、自由导航，甚至触发事件。 6 月刚开源的 DreamX-World，来自高德地图团队（AMAP-ML），直接拿到了 5 秒基准综合评分 84.76 分，超过了 HY-Worl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DreamX-World 深度调研：最强开源交互世界模型，但你的显卡能跑吗？">
+<meta property="og:url" content="https://maoyu92.github.io/2026/07/03/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a063_DreamX-World%20%E6%B7%B1%E5%BA%A6%E8%B0%83%E7%A0%94%EF%BC%9A%E6%9C%80%E5%BC%BA%E5%BC%80%E6%BA%90%E4%BA%A4%E4%BA%92%E4%B8%96%E7%95%8C%E6%A8%A1%E5%9E%8B%EF%BC%8C%E4%BD%86%E4%BD%A0%E7%9A%84%E6%98%BE%E5%8D%A1%E8%83%BD%E8%B7%91%E5%90%97%EF%BC%9F/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="前言如果你关注 AI 视频生成，最近应该被各种”世界模型”刷屏了。从 Sora 到 Luma，从 HY-WorldPlay 到 LingBot，业界仿佛一夜之间从”生成视频”跨入了”模拟世界”——你可以在生成的场景里推拉摇移、自由导航，甚至触发事件。 6 月刚开源的 DreamX-World，来自高德地图团队（AMAP-ML），直接拿到了 5 秒基准综合评分 84.76 分，超过了 HY-Worl">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a063/aa28ca4154357807.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a063/a2e42a0ac084d078.png">
+<meta property="article:published_time" content="2026-07-03T01:06:00.000Z">
+<meta property="article:modified_time" content="2026-07-03T01:06:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/uploads/ai-notes/a063/aa28ca4154357807.png">
+  
+  
+  <title>DreamX-World 深度调研：最强开源交互世界模型，但你的显卡能跑吗？ - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DreamX-World 深度调研：最强开源交互世界模型，但你的显卡能跑吗？"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-03 09:06" pubdate>
+          2026年7月3日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">DreamX-World 深度调研：最强开源交互世界模型，但你的显卡能跑吗？</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>如果你关注 AI 视频生成，最近应该被各种”世界模型”刷屏了。从 Sora 到 Luma，从 HY-WorldPlay 到 LingBot，业界仿佛一夜之间从”生成视频”跨入了”模拟世界”——你可以在生成的场景里推拉摇移、自由导航，甚至触发事件。</p>
+<p>6 月刚开源的 <strong>DreamX-World</strong>，来自高德地图团队（AMAP-ML），直接拿到了 5 秒基准综合评分 84.76 分，超过了 HY-WorldPlay 1.5 的 80.79 和 LingBot-World 的 80.45。它的特色很鲜明：摄像机精准控制、长时序记忆、可组合事件、支持写实&#x2F;游戏&#x2F;科幻多种风格。</p>
+<p>作为一直在玩本地 AI 的人，我第一反应当然是：<strong>能不能装到我的双 5070 Ti 工作站上？</strong></p>
+<p>这篇文章就是深度调研的结果——有点遗憾，但也有启发。</p>
+<h2 id="什么是-DreamX-World？"><a href="#什么是-DreamX-World？" class="headerlink" title="什么是 DreamX-World？"></a>什么是 DreamX-World？</h2><p>DreamX-World 不是简单的”文生视频”模型，而是一个 <strong>交互式世界模拟器</strong>。它的核心能力：</p>
+<ul>
+<li><p><strong>摄像机控制</strong>：WASD 移动、IJKL 旋转、组合操作，生成的画面会像真实摄像机一样响应</p>
+</li>
+<li><p><strong>场景记忆</strong>：绕了一圈回到之前的位置，场景布局和物体不会被忘记</p>
+</li>
+<li><p><strong>事件控制</strong>：同时让多个人物&#x2F;物体按指令行动（”行人过马路+右转车辆+信号灯变红”）</p>
+</li>
+<li><p><strong>长时序生成</strong>：最长支持 60 秒连贯视频</p>
+</li>
+</ul>
+<p>它构建在 Wan2.2-TI2V-5B 的基础上，参数量为 5B（50 亿）。训练过程也很系统：先在合成数据上学精细控制，再学开放式事件响应，然后用强化学习对齐质量，最后用蒸馏降低推理成本。</p>
+<p>两个版本：</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>类型</th>
+<th>时长</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DreamX-World-5B-Cam</td>
+<td>双向扩散</td>
+<td>5 秒</td>
+<td>支持 ExTeRoPe 摄像机控制</td>
+</tr>
+<tr>
+<td>DreamX-World-5B</td>
+<td>自回归</td>
+<td>60 秒</td>
+<td>长时序 + 记忆检索 + 事件</td>
+</tr>
+</tbody></table>
+<h2 id="竞品对比：5B-打-14B-还赢了"><a href="#竞品对比：5B-打-14B-还赢了" class="headerlink" title="竞品对比：5B 打 14B 还赢了"></a>竞品对比：5B 打 14B 还赢了</h2><p>在论文公布的 5 秒基准测试中，DreamX-World 以 84.76 的综合评分碾压了两位更强参数的对手：</p>
+<p><img src="/uploads/ai-notes/a063/aa28ca4154357807.png" srcset="/img/loading.gif" lazyload></p>
+<p>几个有意思的点：</p>
+<ol>
+<li><p><strong>DreamX-5B（5B 参数）</strong> 以 84.76 分胜出，甚至超过了 14B 的 LingBot-World，说明架构设计和训练管线比盲目堆参数量重要得多</p>
+</li>
+<li><p><strong>摄像机控制分 73.75</strong>——这是交互世界模型最关键的维度，直接决定了”操控感”</p>
+</li>
+<li><p>长时序评测中，DreamX 在 PSNR&#x2F;SSIM&#x2F;LPIPS 等记忆一致性指标上也全面领先</p>
+</li>
+</ol>
+<h2 id="硬核数据：显存需求实测"><a href="#硬核数据：显存需求实测" class="headerlink" title="硬核数据：显存需求实测"></a>硬核数据：显存需求实测</h2><p>但接下来就是让人心碎的部分了——显存需求。</p>
+<p>官方在单张 H20（96GB 显存）上测试的峰值显存如下：</p>
+<table>
+<thead>
+<tr>
+<th>配置</th>
+<th>分辨率</th>
+<th>时长</th>
+<th>峰值显存</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DreamX-5B-Cam</td>
+<td>704×1280</td>
+<td>5 秒</td>
+<td><strong>38 GB</strong></td>
+</tr>
+<tr>
+<td>DreamX-5B</td>
+<td>704×1280</td>
+<td>5 秒</td>
+<td><strong>40 GB</strong></td>
+</tr>
+<tr>
+<td>DreamX-5B 长时序</td>
+<td>704×1280</td>
+<td>60 秒</td>
+<td><strong>72 GB</strong></td>
+</tr>
+</tbody></table>
+<p>你没看错，最短的 5 秒生成就需要 <strong>38-40GB 显存</strong>。60 秒长时序更是飙到 <strong>72GB</strong>。</p>
+<p><img src="/uploads/ai-notes/a063/a2e42a0ac084d078.png" srcset="/img/loading.gif" lazyload></p>
+<p>作为对比，目前主流消费级显卡的显存：</p>
+<ul>
+<li><p>RTX 5070 Ti：<strong>16 GB</strong></p>
+</li>
+<li><p>RTX 4090：<strong>24 GB</strong></p>
+</li>
+<li><p>双 5090：<strong>64 GB</strong></p>
+</li>
+<li><p>A6000：<strong>48 GB</strong></p>
+</li>
+<li><p>A100 &#x2F; H20：<strong>80-96 GB</strong></p>
+</li>
+</ul>
+<p>双 5070 Ti 合计 32GB，但模型并不能简单「叠卡」——看下文分析。</p>
+<h2 id="本地部署可行性：逐层分析"><a href="#本地部署可行性：逐层分析" class="headerlink" title="本地部署可行性：逐层分析"></a>本地部署可行性：逐层分析</h2><h3 id="方案一：单卡硬跑"><a href="#方案一：单卡硬跑" class="headerlink" title="方案一：单卡硬跑"></a>方案一：单卡硬跑</h3><p>5B 模型在 bf16 精度下，权重本身占约 10GB。加上注意力机制的中间激活（121 帧 × 704×1280 的序列长度），单卡实际需求 <strong>38-40GB</strong>。</p>
+<p>你的 16GB 5070 Ti——差了 2.4 倍，没任何机会。</p>
+<h3 id="方案二：双卡并行"><a href="#方案二：双卡并行" class="headerlink" title="方案二：双卡并行"></a>方案二：双卡并行</h3><p>DreamX-World 原生支持 xfuser 的 Ulysses 序列并行，理论上可以把注意力激活分散到多卡。</p>
+<p>但问题是：</p>
+<ol>
+<li><p><strong>完美拆分后仍需 ~20GB&#x2F;卡</strong>——16GB 仍然不够</p>
+</li>
+<li><p><strong>权重重复加载</strong>——每卡都要加载完整的 10GB 权重</p>
+</li>
+<li><p><strong>没有 NVLink</strong>——5070 Ti 只能走 PCIe 4.0 通信，50 步 denoising × 密集同步，效率堪忧</p>
+</li>
+</ol>
+<p>即使上双卡，也是「装得下跑不动」的状态。</p>
+<h3 id="方案三：论文中的极致优化"><a href="#方案三：论文中的极致优化" class="headerlink" title="方案三：论文中的极致优化"></a>方案三：论文中的极致优化</h3><p>论文 §4.2 描述了他们实现 <strong>16 FPS 实时推理</strong> 的优化管线：</p>
+<ul>
+<li><p>INT8 SageAttention（注意力层量化）</p>
+</li>
+<li><p>FP8 FFN（前馈层量化）</p>
+</li>
+<li><p>75% 剪枝 VAE</p>
+</li>
+<li><p>TeaCache 残差复用（跳过部分步骤）</p>
+</li>
+<li><p>async pipeline 并行</p>
+</li>
+</ul>
+<p>但这些优化是 <strong>8 张 RTX 5090（256GB 总显存）</strong> 上的豪华配置，不是给消费级用户准备的。</p>
+<h2 id="结论与建议"><a href="#结论与建议" class="headerlink" title="结论与建议"></a>结论与建议</h2><h3 id="一句话总结"><a href="#一句话总结" class="headerlink" title="一句话总结"></a>一句话总结</h3><blockquote>
+<p><strong>DreamX-World 是目前最强的开源交互世界模型，技术含金量很高，但它最低 38GB 的显存需求将 99% 的个人玩家挡在门外。</strong></p>
+</blockquote>
+<h3 id="如果你想玩怎么办？"><a href="#如果你想玩怎么办？" class="headerlink" title="如果你想玩怎么办？"></a>如果你想玩怎么办？</h3><table>
+<thead>
+<tr>
+<th>路径</th>
+<th>条件</th>
+<th>成本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>租云 GPU</strong></td>
+<td>单卡 H20 &#x2F; A100-80GB</td>
+<td>约 ¥10-20&#x2F;小时</td>
+</tr>
+<tr>
+<td><strong>等量化版</strong></td>
+<td>INT8&#x2F;FP8 社区版降至 ~20GB</td>
+<td>待社区贡献</td>
+</tr>
+<tr>
+<td><strong>升级硬件</strong></td>
+<td>单卡 RTX 6000 (48GB) &#x2F; 双 5090</td>
+<td>¥3-8 万</td>
+</tr>
+<tr>
+<td><strong>尝试同门师弟</strong></td>
+<td>HY-WorldPlay 1.5（8B）相对轻量</td>
+<td>已开源</td>
+</tr>
+</tbody></table>
+<h3 id="值得关注的方向"><a href="#值得关注的方向" class="headerlink" title="值得关注的方向"></a>值得关注的方向</h3><p>即使本地跑不动，DreamX-World 的技术路线值得关注：</p>
+<ol>
+<li><p><strong>E-PRoPe 摄像机控制</strong>——比传统 3D 渲染方案轻量得多，为后续消费级产品铺平道路</p>
+</li>
+<li><p><strong>场景记忆检索</strong>——用几何线索找回之前看到的画面，解决了长时序的”失忆症”</p>
+</li>
+<li><p><strong>蒸馏 + RL 对齐</strong>——先用蒸馏降本、再用 RL 恢复质量，这套思路可以迁移到很多落地场景</p>
+</li>
+</ol>
+<p>等量化版出来，或者你手上有 4090&#x2F;5090，DreamX-World 应该是第一个值得装的交互世界模型。</p>
+<hr>
+<p><em>本文为纯技术调研，不构成任何购买建议。数据来源：DreamX-World 技术报告（arXiv 2606.16993）及官方 README。</em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DreamX-World 深度调研：最强开源交互世界模型，但你的显卡能跑吗？</div>
+      <div>https://maoyu92.github.io/2026/07/03/07 AI笔记/AI工具与模型/a063_DreamX-World 深度调研：最强开源交互世界模型，但你的显卡能跑吗？/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/07/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a062_%E8%85%BE%E8%AE%AF%E6%B7%B7%E5%85%83%20Hy3%20%E5%BC%80%E6%BA%90%E5%8F%91%E5%B8%83%EF%BC%9A295B%20MoE%20%E6%A8%A1%E5%9E%8B%E5%85%8D%E8%B4%B9%E4%BD%93%E9%AA%8C%E4%B8%A4%E5%91%A8%EF%BC%8C%E6%80%A7%E8%83%BD%E6%AF%94%E8%82%A9%E5%8D%83%E4%BA%BF%E7%BA%A7%E6%97%97%E8%88%B0/" title="腾讯混元 Hy3 开源发布：295B MoE 模型免费体验两周，性能比肩千亿级旗舰">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">腾讯混元 Hy3 开源发布：295B MoE 模型免费体验两周，性能比肩千亿级旗舰</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/29/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a064_%E5%BC%80%E6%BA%90%E7%BC%96%E7%A0%81%E5%86%8D%E4%B8%8A%E5%8F%B0%E9%98%B6%EF%BC%9AOrnith-1.0%20%E7%94%A8%E2%80%9C%E8%87%AA%E8%84%9A%E6%89%8B%E6%9E%B6+%E8%87%AA%E6%94%B9%E8%BF%9BRL%E2%80%9D%E9%87%8D%E6%96%B0%E5%AE%9A%E4%B9%89%20Agentic%20Coding/" title="开源编码再上台阶：Ornith-1.0 用“自脚手架+自改进RL”重新定义 Agentic Coding">
+                        <span class="hidden-mobile">开源编码再上台阶：Ornith-1.0 用“自脚手架+自改进RL”重新定义 Agentic Coding</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

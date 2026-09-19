@@ -1,0 +1,1025 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="宝玉Skills深度调研：1.9万星的AI Agent技能包，到底值不值得装？ “ 如果你用 Claude Code、Cursor 或 Codex，一定听说过「Skills」——给 AI 编程助手装上特定能力的「技能包」。宝玉（JimLiu）的 baoyu-skills 是目前最受欢迎的技能集之一，1.9 万 Stars。今天我们来深度拆解：这些技能到底能干什么？哪些值得装？  一、宝玉是谁？宝玉">
+<meta property="og:type" content="article">
+<meta property="og:title" content="宝玉Skills深度调研：1.9万星的AI Agent技能包，到底值不值得装？">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/23/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a163_%E5%AE%9D%E7%8E%89Skills%E6%B7%B1%E5%BA%A6%E8%B0%83%E7%A0%94%EF%BC%9A1.9%E4%B8%87%E6%98%9F%E7%9A%84AI%20Agent%E6%8A%80%E8%83%BD%E5%8C%85%EF%BC%8C%E5%88%B0%E5%BA%95%E5%80%BC%E4%B8%8D%E5%80%BC%E5%BE%97%E8%A3%85%EF%BC%9F/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="宝玉Skills深度调研：1.9万星的AI Agent技能包，到底值不值得装？ “ 如果你用 Claude Code、Cursor 或 Codex，一定听说过「Skills」——给 AI 编程助手装上特定能力的「技能包」。宝玉（JimLiu）的 baoyu-skills 是目前最受欢迎的技能集之一，1.9 万 Stars。今天我们来深度拆解：这些技能到底能干什么？哪些值得装？  一、宝玉是谁？宝玉">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-23T08:24:00.000Z">
+<meta property="article:modified_time" content="2026-05-23T08:24:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>宝玉Skills深度调研：1.9万星的AI Agent技能包，到底值不值得装？ - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="宝玉Skills深度调研：1.9万星的AI Agent技能包，到底值不值得装？"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-23 16:24" pubdate>
+          2026年5月23日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">宝玉Skills深度调研：1.9万星的AI Agent技能包，到底值不值得装？</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="宝玉Skills深度调研：1-9万星的AI-Agent技能包，到底值不值得装？"><a href="#宝玉Skills深度调研：1-9万星的AI-Agent技能包，到底值不值得装？" class="headerlink" title="宝玉Skills深度调研：1.9万星的AI Agent技能包，到底值不值得装？"></a>宝玉Skills深度调研：1.9万星的AI Agent技能包，到底值不值得装？</h1><blockquote>
+<p>“</p>
+<p>如果你用 Claude Code、Cursor 或 Codex，一定听说过「Skills」——给 AI 编程助手装上特定能力的「技能包」。宝玉（JimLiu）的 baoyu-skills 是目前最受欢迎的技能集之一，1.9 万 Stars。今天我们来深度拆解：这些技能到底能干什么？哪些值得装？</p>
+</blockquote>
+<h2 id="一、宝玉是谁？"><a href="#一、宝玉是谁？" class="headerlink" title="一、宝玉是谁？"></a>一、宝玉是谁？</h2><p>宝玉（@Jimmy_JimLiu）是 AI 领域知名博主，长期分享 AI Agent 实践经验。他的 baoyu-skills 仓库不是「玩具级 Demo」，而是<strong>他自己每天在用的工作流技能包</strong>——从写公众号、做 PPT、生成封面图到小红书配图，全部由 AI Agent 自动完成。</p>
+<p>GitHub 数据：</p>
+<ul>
+<li><p>⭐ <strong>19,227 Stars</strong></p>
+</li>
+<li><p>🍴 <strong>2,241 Forks</strong></p>
+</li>
+<li><p>📅 <strong>创建时间</strong>：2026 年 1 月</p>
+</li>
+<li><p>🌐 <strong>语言</strong>：TypeScript</p>
+</li>
+<li><p>📦 <strong>安装方式</strong>：<code>npx skills add jimliu/baoyu-skills</code></p>
+</li>
+</ul>
+<h2 id="二、三大类技能全景图"><a href="#二、三大类技能全景图" class="headerlink" title="二、三大类技能全景图"></a>二、三大类技能全景图</h2><p>宝玉的技能分为三大类：<strong>内容生成</strong>、<strong>AI 生成</strong>、<strong>工具技能</strong>。我们逐一拆解。</p>
+<p>MEDIA:.&#x2F;imgs&#x2F;baoyu-skills-overview.png</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>第一类：内容生成技能</p>
+<p>这类技能帮你把内容变成可发布的格式——公众号、小红书、PPT、幻灯片。</p>
+<h4 id="-1"><a href="#-1" class="headerlink" title=""></a></h4><p>baoyu-xhs-images（小红书图片卡片）</p>
+<p>把一篇文章拆解成 1-10 张卡通风格的图片卡片，适合小红书、微博等平台。</p>
+<p><strong>核心能力：</strong></p>
+<ul>
+<li><p><strong>12 种视觉风格</strong>：cute（可爱）、fresh（清新）、warm（暖色）、bold（大胆）、minimal（极简）、retro（复古）、pop（波普）、notion（Notion风）、chalkboard（黑板）、study-notes（学习笔记）、screen-print（丝网印刷）、sketch-notes（手绘笔记）</p>
+</li>
+<li><p><strong>6 种信息布局</strong>：sparse（1-2 点，适合封面）、balanced（3-4 点，常规内容）、dense（5-8 点，知识卡片）、list（4-7 项，清单）、comparison（双栏对比）、flow（3-6 步，流程）</p>
+</li>
+<li><p><strong>3 种配色覆盖</strong>：macaron（马卡龙）、warm（暖色）、neon（霓虹）</p>
+</li>
+</ul>
+<p><strong>使用示例：</strong></p>
+<p><code>/baoyu-xhs-images 文章.md --style notion --layout dense   </code></p>
+<h4 id="-2"><a href="#-2" class="headerlink" title=""></a></h4><p>baoyu-infographic（专业信息图）</p>
+<p>21 种布局 × 21 种视觉风格的专业信息图生成器，是宝玉技能里<strong>最强大的一个</strong>。</p>
+<p><strong>21 种信息布局：</strong></p>
+<p>|<br>布局</p>
+<p> | </p>
+<p>适用场景</p>
+<p> |<br>| — | — |<br>| </p>
+<p>bridge</p>
+<p> | </p>
+<p>问题→解决方案</p>
+<p> |<br>| </p>
+<p>circular-flow</p>
+<p> | </p>
+<p>循环流程</p>
+<p> |<br>| </p>
+<p>comparison-table</p>
+<p> | </p>
+<p>多因素对比</p>
+<p> |<br>| </p>
+<p>do-dont</p>
+<p> | </p>
+<p>正确 vs 错误</p>
+<p> |<br>| </p>
+<p>equation</p>
+<p> | </p>
+<p>公式分解</p>
+<p> |<br>| </p>
+<p>feature-list</p>
+<p> | </p>
+<p>功能列表</p>
+<p> |<br>| </p>
+<p>fishbone</p>
+<p> | </p>
+<p>鱼骨图&#x2F;根因分析</p>
+<p> |<br>| </p>
+<p>funnel</p>
+<p> | </p>
+<p>转化漏斗</p>
+<p> |<br>| </p>
+<p>grid-cards</p>
+<p> | </p>
+<p>多主题概览</p>
+<p> |<br>| </p>
+<p>iceberg</p>
+<p> | </p>
+<p>表面 vs 隐藏</p>
+<p> |<br>| </p>
+<p>journey-path</p>
+<p> | </p>
+<p>用户旅程</p>
+<p> |<br>| </p>
+<p>layers-stack</p>
+<p> | </p>
+<p>技术栈分层</p>
+<p> |<br>| </p>
+<p>mind-map</p>
+<p> | </p>
+<p>思维导图</p>
+<p> |<br>| </p>
+<p>nested-circles</p>
+<p> | </p>
+<p>影响层级</p>
+<p> |<br>| </p>
+<p>priority-quadrants</p>
+<p> | </p>
+<p>四象限矩阵</p>
+<p> |<br>| </p>
+<p>pyramid</p>
+<p> | </p>
+<p>金字塔层级</p>
+<p> |<br>| </p>
+<p>scale-balance</p>
+<p> | </p>
+<p>利弊权衡</p>
+<p> |<br>| </p>
+<p>timeline-horizontal</p>
+<p> | </p>
+<p>时间线</p>
+<p> |<br>| </p>
+<p>tree-hierarchy</p>
+<p> | </p>
+<p>组织架构树</p>
+<p> |<br>| </p>
+<p>venn</p>
+<p> | </p>
+<p>韦恩图</p>
+<p> |</p>
+<p><strong>17 种视觉风格：</strong> craft-handmade（手绘，默认）、claymation（黏土）、kawaii（日系可爱）、storybook-watercolor（水彩绘本）、chalkboard（粉笔黑板）、cyberpunk-neon（赛博朋克）、bold-graphic（漫画网点）、aged-academia（复古科学）、corporate-memphis（扁平矢量）、technical-schematic（蓝图工程图）、origami（折纸）、pixel-art（像素）、ui-wireframe（界面原型）、subway-map（地铁图）、ikea-manual（宜家说明书）、knolling（整齐平铺）、lego-brick（乐高积木）</p>
+<p>MEDIA:.&#x2F;imgs&#x2F;baoyu-infographic-styles.png</p>
+<h4 id="-3"><a href="#-3" class="headerlink" title=""></a></h4><p>baoyu-diagram（SVG 图表）</p>
+<p>从源素材生成可直接发布的 SVG 图表——流程图、时序图、架构图、示意图、类图。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li><p>不是调用图片生成模型，而是 Claude 直接手写 SVG 代码</p>
+</li>
+<li><p>内嵌样式，自动支持深色&#x2F;浅色模式</p>
+</li>
+<li><p>一次确认后批量生成</p>
+</li>
+</ul>
+<p><strong>5 种图表类型：</strong></p>
+<p>|<br>类型</p>
+<p> | </p>
+<p>适用场景</p>
+<p> |<br>| — | — |<br>| </p>
+<p>flowchart</p>
+<p> | </p>
+<p>流程、步骤、工作流</p>
+<p> |<br>| </p>
+<p>sequence</p>
+<p> | </p>
+<p>协议握手、认证流程</p>
+<p> |<br>| </p>
+<p>structural</p>
+<p> | </p>
+<p>架构、组件拓扑</p>
+<p> |<br>| </p>
+<p>illustrative</p>
+<p> | </p>
+<p>直觉图解、机制说明</p>
+<p> |<br>| </p>
+<p>class</p>
+<p> | </p>
+<p>UML 类图、继承关系</p>
+<p> |</p>
+<h4 id="-4"><a href="#-4" class="headerlink" title=""></a></h4><p>baoyu-cover-image（封面图）</p>
+<p>5 维度系统生成文章封面图：Type × Palette × Rendering × Text × Mood。</p>
+<ul>
+<li><p><strong>6 种类型</strong>：hero、conceptual、typography、metaphor、scene、minimal</p>
+</li>
+<li><p><strong>11 种配色</strong>：warm、elegant、cool、dark、earth、vivid、pastel、mono、retro、duotone、macaron</p>
+</li>
+<li><p><strong>7 种渲染</strong>：flat-vector、hand-drawn、painterly、digital、pixel、chalk、screen-print</p>
+</li>
+</ul>
+<h4 id="-5"><a href="#-5" class="headerlink" title=""></a></h4><p>baoyu-slide-deck（幻灯片）</p>
+<p>从内容生成专业幻灯片图片，适合快速出演示文稿。</p>
+<h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><p>第二类：AI 生成技能</p>
+<h4 id="-7"><a href="#-7" class="headerlink" title=""></a></h4><p>baoyu-imagine（AI 生图）</p>
+<p>统一的图片生成接口，支持多个后端模型。</p>
+<h4 id="-8"><a href="#-8" class="headerlink" title=""></a></h4><p>baoyu-markdown-to-html（Markdown 转 HTML）</p>
+<p>将 Markdown 内容转换为精美的 HTML 页面，适合博客、文档发布。</p>
+<h3 id="-9"><a href="#-9" class="headerlink" title=""></a></h3><p>第三类：工具技能</p>
+<h4 id="-10"><a href="#-10" class="headerlink" title=""></a></h4><p>baoyu-post-to-wechat（发布到微信公众号）</p>
+<p>自动将文章发布到微信公众号草稿箱，与内容生成技能配合使用。</p>
+<h4 id="-11"><a href="#-11" class="headerlink" title=""></a></h4><p>baoyu-format-markdown（Markdown 格式化）</p>
+<p>Markdown 内容的格式化和优化工具。</p>
+<p>MEDIA:.&#x2F;imgs&#x2F;baoyu-workflow.png</p>
+<h2 id="三、实际工作流示例"><a href="#三、实际工作流示例" class="headerlink" title="三、实际工作流示例"></a>三、实际工作流示例</h2><p>宝玉的技能设计思路是<strong>链式工作流</strong>——一个技能的输出可以作为另一个技能的输入：</p>
+<p><strong>示例：从选题到发布全自动</strong></p>
+<p><code>1. 深度调研选题 → 生成 Markdown 文章   2. /baoyu-cover-image → 生成封面图   3. /baoyu-infographic → 生成内容信息图   4. /baoyu-diagram → 生成架构图/流程图   5. /baoyu-post-to-wechat → 发布到公众号草稿箱   </code></p>
+<p>整个流程只需要一条命令链，AI Agent 自动完成所有步骤。</p>
+<h2 id="四、与其他技能包的对比"><a href="#四、与其他技能包的对比" class="headerlink" title="四、与其他技能包的对比"></a>四、与其他技能包的对比</h2><p>|<br>对比维度</p>
+<p> | </p>
+<p>宝玉 Skills</p>
+<p> | </p>
+<p>微软 Skills</p>
+<p> | </p>
+<p>garden-skills</p>
+<p> |<br>| — | — | — | — |<br>| </p>
+<p>定位</p>
+<p> | </p>
+<p>内容创作全栈</p>
+<p> | </p>
+<p>企业级开发</p>
+<p> | </p>
+<p>通用工具集</p>
+<p> |<br>| </p>
+<p>技能数量</p>
+<p> | </p>
+<p>10+</p>
+<p> | </p>
+<p>174</p>
+<p> | </p>
+<p>20+</p>
+<p> |<br>| </p>
+<p>信息图</p>
+<p> | </p>
+<p>21 布局 × 17 风格</p>
+<p> | </p>
+<p>❌</p>
+<p> | </p>
+<p>❌</p>
+<p> |<br>| </p>
+<p>小红书</p>
+<p> | </p>
+<p>✅ 12 风格</p>
+<p> | </p>
+<p>❌</p>
+<p> | </p>
+<p>❌</p>
+<p> |<br>| </p>
+<p>SVG 图表</p>
+<p> | </p>
+<p>✅ 5 类型</p>
+<p> | </p>
+<p>❌</p>
+<p> | </p>
+<p>❌</p>
+<p> |<br>| </p>
+<p>公众号发布</p>
+<p> | </p>
+<p>✅</p>
+<p> | </p>
+<p>❌</p>
+<p> | </p>
+<p>❌</p>
+<p> |<br>| </p>
+<p>安装方式</p>
+<p> | </p>
+<p>npx skills</p>
+<p> | </p>
+<p>npm</p>
+<p> | </p>
+<p>手动复制</p>
+<p> |</p>
+<p><strong>宝玉 Skills 的独特优势</strong>：它是目前唯一一个<strong>专门为中文内容创作者设计</strong>的技能包——小红书卡片、公众号发布、中文信息图，这些是其他技能包不具备的。</p>
+<h2 id="五、安装方式"><a href="#五、安装方式" class="headerlink" title="五、安装方式"></a>五、安装方式</h2><h3 id="-12"><a href="#-12" class="headerlink" title=""></a></h3><p>方式一：npx 一行命令（推荐）</p>
+<p><code>npx skills add jimliu/baoyu-skills   </code></p>
+<h3 id="-13"><a href="#-13" class="headerlink" title=""></a></h3><p>方式二：OpenClaw 安装</p>
+<p><code>clawhub install baoyu-imagine   clawhub install baoyu-markdown-to-html   # 或者告诉 Agent   请帮我安装 github.com/JimLiu/baoyu-skills 中的 Skills   </code></p>
+<h3 id="-14"><a href="#-14" class="headerlink" title=""></a></h3><p>方式三：Claude Code 插件市场</p>
+<p><code>/plugin marketplace add JimLiu/baoyu-skills   </code></p>
+<h2 id="六、适用场景"><a href="#六、适用场景" class="headerlink" title="六、适用场景"></a>六、适用场景</h2><p><strong>✅ 特别适合：</strong></p>
+<ul>
+<li><p>微信公众号运营者（封面图+配图+发布一条龙）</p>
+</li>
+<li><p>小红书&#x2F;微博内容创作者</p>
+</li>
+<li><p>需要频繁制作 PPT&#x2F;幻灯片的人</p>
+</li>
+<li><p>技术博客作者（SVG 图表+信息图）</p>
+</li>
+<li><p>中文内容创作者</p>
+</li>
+</ul>
+<p><strong>⚠️ 不太适合：</strong></p>
+<ul>
+<li><p>纯代码开发、不需要内容输出的场景</p>
+</li>
+<li><p>只用英文、不需要中文排版的用户</p>
+</li>
+</ul>
+<h2 id="七、社区评价"><a href="#七、社区评价" class="headerlink" title="七、社区评价"></a>七、社区评价</h2><p>宝玉 Skills 在知乎、Twitter 上获得了广泛好评：</p>
+<blockquote>
+<p>“</p>
+<p>“宝玉老师的 Skills 是我见过的最实用的 AI Agent 技能包，没有之一。” “信息图技能太强了，21 种布局随便选，比手绘快 100 倍。” “小红书卡片技能帮我节省了 80% 的排版时间。”</p>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>宝玉 Skills 不是「技术炫技」的产物，而是一个<strong>真正解决实际工作流问题</strong>的技能包。它的核心价值在于：</p>
+<ol>
+<li><p><strong>中文优先</strong>：专门为中文内容创作者设计</p>
+</li>
+<li><p><strong>全链路覆盖</strong>：从调研到发布，一条命令搞定</p>
+</li>
+<li><p><strong>高度可定制</strong>：风格×布局×配色，组合出无限可能</p>
+</li>
+<li><p><strong>持续更新</strong>：社区活跃，作者每天在用</p>
+</li>
+</ol>
+<p>如果你是中文内容创作者，这可能是目前最值得安装的 AI Agent 技能包。</p>
+<hr>
+<p><strong>🔗 相关链接</strong></p>
+<ul>
+<li><p>GitHub 仓库：<a target="_blank" rel="noopener" href="https://github.com/JimLiu/baoyu-skills/[1/]">https://github.com/JimLiu/baoyu-skills\[1\]</a></p>
+</li>
+<li><p>宝玉博客：<a target="_blank" rel="noopener" href="https://baoyu.io/[2/]">https://baoyu.io\[2\]</a></p>
+</li>
+<li><p>知乎专栏：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/2005281822490268572/[3/]">https://zhuanlan.zhihu.com/p/2005281822490268572\[3\]</a></p>
+</li>
+<li><p>安装命令：<code>npx skills add jimliu/baoyu-skills</code></p>
+</li>
+</ul>
+<h3 id="-15"><a href="#-15" class="headerlink" title=""></a></h3><p>引用链接</p>
+<p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/JimLiu/baoyu-skills">https://github.com/JimLiu/baoyu-skills</a></em></p>
+<p>[2]<em><a target="_blank" rel="noopener" href="https://baoyu.io/">https://baoyu.io</a></em></p>
+<p>[3]<em><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/2005281822490268572">https://zhuanlan.zhihu.com/p/2005281822490268572</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>宝玉Skills深度调研：1.9万星的AI Agent技能包，到底值不值得装？</div>
+      <div>https://maoyu92.github.io/2026/05/23/07 AI笔记/AI写作与发布/a163_宝玉Skills深度调研：1.9万星的AI Agent技能包，到底值不值得装？/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/24/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a161_2026%E5%B9%B4AI%20Agent%E6%A1%86%E6%9E%B6%E5%A4%A7%E6%88%98%EF%BC%9A%E8%B0%81%E6%89%8D%E6%98%AF%E7%9C%9F%E6%AD%A3%E7%9A%84%E3%80%8C%E7%94%9F%E4%BA%A7%E5%8A%9B%E4%B9%8B%E7%8E%8B%E3%80%8D%EF%BC%9F/" title="2026年AI Agent框架大战：谁才是真正的「生产力之王」？">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2026年AI Agent框架大战：谁才是真正的「生产力之王」？</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/23/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a165_Scrapling%EF%BC%9A5.3%E4%B8%87%E6%98%9F%E7%9A%84%E3%80%8C%E5%8F%8D%E5%8F%8D%E7%88%AC%E8%99%AB%E3%80%8D%E6%A1%86%E6%9E%B6%EF%BC%8C%E8%AE%A9AI%20Agent%E4%B8%8D%E5%86%8D%E8%A2%AB%E7%BD%91%E7%AB%99%E6%8B%A6%E6%88%AA/" title="Scrapling：5.3万星的「反反爬虫」框架，让AI Agent不再被网站拦截">
+                        <span class="hidden-mobile">Scrapling：5.3万星的「反反爬虫」框架，让AI Agent不再被网站拦截</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

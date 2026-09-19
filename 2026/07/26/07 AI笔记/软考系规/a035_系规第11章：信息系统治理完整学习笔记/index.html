@@ -1,0 +1,978 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="EXAM NOTES · 系规学习 · 2026.07 IT项目按时上线，就代表治理有效？ 治理决定权责与价值， 审计验证控制与风险 第11章 · 信息系统治理 · IT治理与IT审计 系规24期学习整理 · 第08期 · 综合 案例 论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 治理负责把方向，审计 PART 02 11.1.1 IT治理基础 让IT与业务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系规第11章：信息系统治理完整学习笔记">
+<meta property="og:url" content="https://maoyu92.github.io/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a035_%E7%B3%BB%E8%A7%84%E7%AC%AC11%E7%AB%A0%EF%BC%9A%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E6%B2%BB%E7%90%86%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="EXAM NOTES · 系规学习 · 2026.07 IT项目按时上线，就代表治理有效？ 治理决定权责与价值， 审计验证控制与风险 第11章 · 信息系统治理 · IT治理与IT审计 系规24期学习整理 · 第08期 · 综合 案例 论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 治理负责把方向，审计 PART 02 11.1.1 IT治理基础 让IT与业务">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a035/7ae904d90493ff6e.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a035/30830040225eb050.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a035/32a24915f4c642cd.png">
+<meta property="article:published_time" content="2026-07-26T02:32:00.000Z">
+<meta property="article:modified_time" content="2026-07-26T02:32:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/uploads/ai-notes/a035/7ae904d90493ff6e.png">
+  
+  
+  <title>系规第11章：信息系统治理完整学习笔记 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="系规第11章：信息系统治理完整学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-26 10:32" pubdate>
+          2026年7月26日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">系规第11章：信息系统治理完整学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>EXAM NOTES · 系规学习 · 2026.07</p>
+<p>IT项目按时上线，就代表治理有效？</p>
+<p>治理决定权责与价值，</p>
+<p>审计验证控制与风险</p>
+<p>第11章 · 信息系统治理 · IT治理与IT审计</p>
+<p>系规24期学习整理 · 第08期 · 综合 案例 论文</p>
+<p>6 PARTS + CONCLUSION</p>
+<p>👉 滑动</p>
+<p>PART 01</p>
+<p>本章地图</p>
+<p>治理负责把方向，审计</p>
+<p>PART 02</p>
+<p>11.1.1 IT治理基础</p>
+<p>让IT与业务目标保持</p>
+<p>PART 03</p>
+<p>11.1.2 IT治理体系</p>
+<p>五项决策与六项核心内</p>
+<p>PART 04</p>
+<p>11.1.3—11.1.4 五项任务与治理标准</p>
+<p>完整学习</p>
+<p>PART 05</p>
+<p>11.2.1—11.2.2 IT审计基础、方法与证据</p>
+<p>完整学习</p>
+<p>PART 06</p>
+<p>11.2.3—11.2.4 审计流程与内容</p>
+<p>完整学习</p>
+<p>PART &#x2F;&#x2F;&#x2F;</p>
+<p>写在最后</p>
+<p>复习建议</p>
+<p>学习目标</p>
+<p>IT治理解决“谁对IT决策、价值和风险负责”，IT审计解决“如何用独立证据验证目标与控制是否实现”。本章把二者连在一起，形成决策—执行—监督—改进闭环。</p>
+<p>这是“系规学习”的第8期。第11章管理清单多，但逻辑明确：前半讲治理，后半讲审计。案例题经常让你判断某项工作属于哪类治理任务、审计方法或审计阶段。</p>
+<p>01PART</p>
+<p>本章地图：治理负责把方向，审计负责做验证</p>
+<p>LEARNING · KEY POINTS</p>
+<p>111.1.1 IT治理基础：定义、目标、价值与管理层次。</p>
+<p>211.1.2 IT治理体系：体系构成、关键决策、核心内容与机制。</p>
+<p>311.1.3—11.1.4：五项任务、国内外治理标准。</p>
+<p>411.2 IT审计：风险、方法、技术、证据、流程和审计内容。</p>
+<p><img src="/uploads/ai-notes/a035/7ae904d90493ff6e.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 第11章信息系统治理学习地图</p>
+<p>治理和管理怎么区分</p>
+<p>●治理侧重评估、指导和监督，决定方向、权责、价值与风险边界；</p>
+<p>●管理侧重计划、建设、运行和监控，在治理设定的方向内组织执行。</p>
+<p>治理不是高层替代项目经理做日常管理，而是保证正确的人做正确的决策，并对结果承担责任。</p>
+<p>02PART</p>
+<p>11.1.1 IT治理基础：让IT与业务目标保持一致</p>
+<p>LEARNING · KEY POINTS</p>
+<p>IT治理是组织采用有效机制开发利用信息技术与数据资源、平衡风险并确保实现战略目标的过程，也是明确IT决策权归属与责任担当的框架。</p>
+<p>三项目标</p>
+<p>1与业务目标一致：从组织战略抽取信息、数据和功能需求。</p>
+<p>2有效利用信息与数据资源：统一规划资源，减少信息孤岛和重复建设。</p>
+<p>3风险管理：识别并控制投资、安全、连续性、合规和交付风险。</p>
+<p>记忆：一致、资源、风险。</p>
+<p>IT治理的价值</p>
+<p>●确保IT投资有效，支撑业务竞争力；</p>
+<p>●连接组织战略、业务目标和IT目标；</p>
+<p>●平衡成本、收益、风险和资源；</p>
+<p>●明确决策输入者、决策者和责任承担者；</p>
+<p>●通过绩效衡量促进价值交付和持续改进。</p>
+<p>三个管理层次</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>主要职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>最高管理层</td>
+<td>验证IT与业务战略一致；确定期望和衡量；指导投资和资源分配</td>
+</tr>
+<tr>
+<td>执行管理层</td>
+<td>制定IT目标；分析技术机遇风险；建设关键过程；分配责任并衡量绩效</td>
+</tr>
+<tr>
+<td>业务与服务执行层</td>
+<td>提出响应需求；提供和支持信息服务；建设维护基础设施</td>
+</tr>
+</tbody></table>
+<p>高层不必处理每个技术细节，但不能把IT价值与风险责任全部外包给技术部门。</p>
+<p>03PART</p>
+<p>11.1.2 IT治理体系：五项决策与六项核心内容</p>
+<p>LEARNING · KEY POINTS</p>
+<p>治理体系五项构成</p>
+<p>1IT定位；</p>
+<p>2IT治理架构；</p>
+<p>3IT治理内容；</p>
+<p>4IT治理流程：统筹、评估、指导、监督；</p>
+<p>5IT治理效果：内部与外部评价。</p>
+<p>五项关键决策</p>
+<p>1IT原则：IT在组织中的基本作用和行为准则；</p>
+<p>2IT架构：数据、应用和技术如何标准化与集成；</p>
+<p>3IT基础设施：共享基础能力如何建设和使用；</p>
+<p>4业务应用需求：哪些业务需求优先转化为应用能力；</p>
+<p>5IT投资和优先顺序：钱投向哪里、先做什么。</p>
+<p>逻辑关系是：原则驱动架构，架构约束基础设施，基础能力支撑业务应用，投资组合为所有决策配置资源。治理还要明确每项决策“谁提供输入、谁最终决定”。</p>
+<p>治理体系框架六部分</p>
+<p>●IT战略目标；</p>
+<p>●IT治理组织；</p>
+<p>●IT治理机制；</p>
+<p>●IT治理域；</p>
+<p>●IT治理标准；</p>
+<p>●IT绩效目标。</p>
+<p>六项核心内容</p>
+<p>1组织职责：明确治理、决策、执行、监督和问责角色。</p>
+<p>2战略匹配：确保IT建设与业务战略和数字战略一致。</p>
+<p>3资源管理：统筹人员、应用、数据、基础设施和供方。</p>
+<p>4价值交付：保证投资产生预期收益和业务价值。</p>
+<p>5风险管理：保护业务价值，覆盖安全、连续性、隐私和合规。</p>
+<p>6绩效管理：跟踪战略、项目、资源、服务和业务流程绩效。</p>
+<p><img src="/uploads/ai-notes/a035/30830040225eb050.png" srcset="/img/loading.gif" lazyload></p>
+<p>— IT治理六项核心内容</p>
+<p>记忆骨架：责、战、资、价、险、绩。其中战略匹配与价值交付回答“做对事、获得价值”，风险和资源提供保障，职责与绩效形成问责闭环。</p>
+<p>机制三原则</p>
+<p>●简单：责任和目标清楚；</p>
+<p>●透明：程序和决策方式可理解、可质疑；</p>
+<p>●适合：让最适合掌握信息和承担结果的人决策。</p>
+<p>04PART</p>
+<p>11.1.3—11.1.4 五项任务与治理标准</p>
+<p>LEARNING · KEY POINTS</p>
+<p>五项治理任务</p>
+<p>1全局统筹：规划目标、范围、环境、趋势和责权，建立IT蓝图与持续改进机制。</p>
+<p>2价值导向：建立投资价值框架，识别投资组合，监督指标，平衡成本、效益和风险。</p>
+<p>3机制保障：建立过程与痕迹管理，评审管理体系，开展审计并监督整改。</p>
+<p>4创新发展：利用IT开拓业务、改善质量绩效，协调技术、管理与模式创新。</p>
+<p>5文化助推：沟通目标、策略和职责，形成开放、合规、协作和持续学习文化。</p>
+<p>记忆：统、价、机、创、文。</p>
+<p>GB&#x2F;T 34960治理框架</p>
+<p>GB&#x2F;T 34960.1规定IT治理模型、框架与通用要求，治理框架包含三大域：</p>
+<table>
+<thead>
+<tr>
+<th>治理域</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>顶层设计</td>
+<td>战略、组织、架构</td>
+</tr>
+<tr>
+<td>管理体系</td>
+<td>质量、项目、投资、服务、连续性、安全、风险、供方、资产等管理</td>
+</tr>
+<tr>
+<td>资源</td>
+<td>基础设施、应用系统、数据</td>
+</tr>
+</tbody></table>
+<p>GB&#x2F;T 34960.2给出实施指南，其实施框架包括实施环境、实施过程、治理域；实施过程包括统筹和规划、构建和运行、监督和评估、改进和优化。</p>
+<p>COBIT</p>
+<p>COBIT面向信息和技术治理与管理。治理系统组件包括：</p>
+<p>●流程；</p>
+<p>●组织结构；</p>
+<p>●原则、政策和程序；</p>
+<p>●信息；</p>
+<p>●文化、道德和行为；</p>
+<p>●人员、技能和胜任能力；</p>
+<p>●服务、基础设施和应用。</p>
+<p>设计治理系统时要考虑战略、目标、风险、IT问题、威胁、合规、IT角色、采购模式、实施方法、技术战略、规模和未来因素。流程是了解环境战略、确定初步范围、优化范围、最终确定设计。</p>
+<p>ISO&#x2F;IEC 38500</p>
+<p>六项良好治理原则：</p>
+<p>1责任；</p>
+<p>2战略；</p>
+<p>3收购；</p>
+<p>4性能；</p>
+<p>5一致性；</p>
+<p>6人的行为。</p>
+<p>治理机构通过评估、指导、监督模型履行职责。</p>
+<p>05PART</p>
+<p>11.2.1—11.2.2 IT审计基础、方法与证据</p>
+<p>LEARNING · KEY POINTS</p>
+<p>IT审计目的和目标</p>
+<p>IT审计通过了解IT系统与活动总体状况，审查和评价IT目标实现情况，识别风险，提出意见和改进建议。它关注：</p>
+<p>●IT战略与业务战略一致；</p>
+<p>●信息资产安全及数据完整、可靠、有效；</p>
+<p>●系统安全、可靠和有效；</p>
+<p>●IT使用符合法律、法规和标准。</p>
+<p>四类审计风险</p>
+<p>●固有风险：不考虑控制时，事项本身发生重大问题的可能性；</p>
+<p>●控制风险：问题未被内部控制及时预防或发现；</p>
+<p>●检查风险：审计程序未发现已经存在的问题；</p>
+<p>●总体审计风险：针对控制目标的各类风险综合。</p>
+<p>审计人员通过调整范围、样本、程序和工具，把总体风险降到可接受水平。</p>
+<p>六种常用方法</p>
+<p>1访谈法；</p>
+<p>2调查法；</p>
+<p>3检查法；</p>
+<p>4观察法；</p>
+<p>5测试法，包括黑盒和白盒；</p>
+<p>6程序代码检查法。</p>
+<p>四类技术</p>
+<p>1风险评估技术；</p>
+<p>2审计抽样技术；</p>
+<p>3计算机辅助审计技术CAAT；</p>
+<p>4大数据审计技术。</p>
+<p>统计抽样用概率方法确定样本并可量化推断；非统计抽样依赖审计人员专业判断。属性抽样回答某特征发生比例，变量抽样估计金额或其他数量。</p>
+<p>审计证据五项特性</p>
+<p>●充分性：数量足以支持结论；</p>
+<p>●客观性：基于客观事实；</p>
+<p>●相关性：与审计事项有实质联系；</p>
+<p>●可靠性：能够真实反映活动；</p>
+<p>●合法性：种类和取得程序合法。</p>
+<p>证据评价还要考虑提供者独立性、人员资质、时效、说服力和成本效益。审计工作底稿记录计划、程序、证据与结论，是质量控制、复核和责任证明的基础。</p>
+<p>06PART</p>
+<p>11.2.3—11.2.4 审计流程与内容</p>
+<p>LEARNING · KEY POINTS</p>
+<p>四个审计阶段</p>
+<p>1准备阶段：明确目的任务、组建项目组、收集信息、编制计划并发出通知。</p>
+<p>2实施阶段：深入调查和调整计划，了解评估内部控制，执行符合性测试和实质性测试。</p>
+<p>3终结阶段：复核底稿、整理证据、评价控制、报告发现、沟通结果、出具报告并归档。</p>
+<p>4后续审计：检查整改措施是否落实并达到预期效果。</p>
+<p><img src="/uploads/ai-notes/a035/32a24915f4c642cd.png" srcset="/img/loading.gif" lazyload></p>
+<p>— IT审计四阶段闭环</p>
+<p>后续审计不是全新审计，而是前次审计的延伸。</p>
+<p>两大类审计</p>
+<p>IT内部控制审计</p>
+<p>●组织层面IT控制审计；</p>
+<p>●IT一般控制审计；</p>
+<p>●应用控制审计：输入、处理、输出控制。</p>
+<p>IT专项审计</p>
+<p>●信息系统生命周期审计；</p>
+<p>●信息系统开发过程审计；</p>
+<p>●信息系统运行维护审计；</p>
+<p>●网络与信息安全审计；</p>
+<p>●信息系统项目审计；</p>
+<p>●数据审计。</p>
+<p>三门考试怎么用</p>
+<p>综合题</p>
+<p>重点掌握三目标、五决策、六核心、五任务、三治理域、COBIT组件、ISO六原则；审计部分重点是四类风险、六种方法、四类技术、证据五特性和四阶段。</p>
+<p>案例题</p>
+<p>治理问题按“战略—权责—投资—资源—风险—绩效”扫描；审计问题按“独立性—范围—风险—方法—证据—底稿—报告—整改”扫描。</p>
+<p>示例：同一部门既审批投资又评价收益，职责不分，影响治理独立性和客观性；应明确治理与执行权责，引入独立评估，建立投资绩效指标和问责机制。</p>
+<p>论文</p>
+<p>可按“治理背景—战略匹配—治理架构—决策机制—价值与风险—绩效体系—审计验证—整改改进”展开。治理论文要突出高层责任和决策机制，不能写成日常运维总结。</p>
+<p>闭卷自测</p>
+<p>1IT治理三项目标是什么？</p>
+<p>2三个管理层次的主要职责是什么？</p>
+<p>3五项关键决策和六项核心内容是什么？</p>
+<p>4IT治理五项任务是什么？</p>
+<p>5GB&#x2F;T 34960三大治理域是什么？</p>
+<p>6COBIT治理系统组件和ISO&#x2F;IEC 38500六原则是什么？</p>
+<p>7四类IT审计风险如何区分？</p>
+<p>8六种审计方法、四类审计技术是什么？</p>
+<p>9审计证据五项特性是什么？</p>
+<p>10四个审计阶段和两大审计类别是什么？</p>
+<p>&#x2F;&#x2F;&#x2F;</p>
+<p>LAST</p>
+<p>写在最后</p>
+<p>SUMMARY · REVIEW SMARTER</p>
+<p>第11章的主线是：</p>
+<p>治理以战略为起点，明确权责、投资、资源、价值、风险和绩效；审计以证据为基础，验证控制并推动整改。</p>
+<p>第一轮先背“三目标、五决策、六核心、五任务”和审计“四风险、四阶段”；第二轮再补标准、方法、证据和审计分类。</p>
+<p>我是陈文茂，正在用自己的方式重新整理系统规划与管理师学习资料。</p>
+<p>如果这篇对你有帮助，欢迎点赞、在看、转发。</p>
+<p>既然看到这里了，如果觉得有用，随手点个赞、在看、转发三连吧。</p>
+<p>👍 点赞 👀 在看 ↗ 转发</p>
+<p>THANKS FOR READING</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>系规第11章：信息系统治理完整学习笔记</div>
+      <div>https://maoyu92.github.io/2026/07/26/07 AI笔记/软考系规/a035_系规第11章：信息系统治理完整学习笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a034_%E7%B3%BB%E8%A7%84%E7%AC%AC12%E7%AB%A0%EF%BC%9A%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="系规第12章：信息系统服务管理完整学习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">系规第12章：信息系统服务管理完整学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a036_%E7%B3%BB%E8%A7%84%E7%AC%AC10%E7%AB%A0%EF%BC%9A%E4%BA%91%E5%8E%9F%E7%94%9F%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="系规第10章：云原生系统规划完整学习笔记">
+                        <span class="hidden-mobile">系规第10章：云原生系统规划完整学习笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,814 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="AI首次推翻80年数学猜想！OpenAI模型让菲尔兹奖得主直呼”发顶刊”2026年5月20日，OpenAI 官方宣布：其一款未公开发布的通用推理模型，独立推翻了由匈牙利数学家保罗·Erdős（厄多斯）于1946年提出的**「平面单位距离猜想」**。 这道困扰数学界近80年的经典难题，首次被AI自主攻克。 菲尔兹奖得主Tim Gowers评价道：  “ “如果这是一篇人类署名的论文并投稿到《数学年鉴">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI首次推翻80年数学猜想！OpenAI模型让菲尔兹奖得主直呼&#39;发顶刊&#39;">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/02/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a114_AI%E9%A6%96%E6%AC%A1%E6%8E%A8%E7%BF%BB80%E5%B9%B4%E6%95%B0%E5%AD%A6%E7%8C%9C%E6%83%B3%EF%BC%81OpenAI%E6%A8%A1%E5%9E%8B%E8%AE%A9%E8%8F%B2%E5%B0%94%E5%85%B9%E5%A5%96%E5%BE%97%E4%B8%BB%E7%9B%B4%E5%91%BC'%E5%8F%91%E9%A1%B6%E5%88%8A'/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="AI首次推翻80年数学猜想！OpenAI模型让菲尔兹奖得主直呼”发顶刊”2026年5月20日，OpenAI 官方宣布：其一款未公开发布的通用推理模型，独立推翻了由匈牙利数学家保罗·Erdős（厄多斯）于1946年提出的**「平面单位距离猜想」**。 这道困扰数学界近80年的经典难题，首次被AI自主攻克。 菲尔兹奖得主Tim Gowers评价道：  “ “如果这是一篇人类署名的论文并投稿到《数学年鉴">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-01T18:02:00.000Z">
+<meta property="article:modified_time" content="2026-06-01T18:02:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>AI首次推翻80年数学猜想！OpenAI模型让菲尔兹奖得主直呼&#39;发顶刊&#39; - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AI首次推翻80年数学猜想！OpenAI模型让菲尔兹奖得主直呼&#39;发顶刊&#39;"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-02 02:02" pubdate>
+          2026年6月2日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AI首次推翻80年数学猜想！OpenAI模型让菲尔兹奖得主直呼&#39;发顶刊&#39;</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="AI首次推翻80年数学猜想！OpenAI模型让菲尔兹奖得主直呼”发顶刊”"><a href="#AI首次推翻80年数学猜想！OpenAI模型让菲尔兹奖得主直呼”发顶刊”" class="headerlink" title="AI首次推翻80年数学猜想！OpenAI模型让菲尔兹奖得主直呼”发顶刊”"></a>AI首次推翻80年数学猜想！OpenAI模型让菲尔兹奖得主直呼”发顶刊”</h1><p>2026年5月20日，OpenAI 官方宣布：其一款未公开发布的<strong>通用推理模型</strong>，独立推翻了由匈牙利数学家保罗·Erdős（厄多斯）于1946年提出的**「平面单位距离猜想」**。</p>
+<p>这道困扰数学界近80年的经典难题，首次被AI自主攻克。</p>
+<p>菲尔兹奖得主Tim Gowers评价道：</p>
+<blockquote>
+<p>“</p>
+<p>“如果这是一篇人类署名的论文并投稿到《数学年鉴》（Annals of Mathematics），我会毫不犹豫地推荐接收。”</p>
+</blockquote>
+<p>更戏剧性的是，曾在7个月前公开打脸OpenAI的数学家Thomas Bloom，这次<strong>亲自签字背书</strong>了新的证明。</p>
+<hr>
+<h2 id="一、80年未解的”简单问题”"><a href="#一、80年未解的”简单问题”" class="headerlink" title="一、80年未解的”简单问题”"></a>一、80年未解的”简单问题”</h2><p>这道题的问题陈述简单到令人发指：</p>
+<p><strong>在平面上放置n个点，有多少对点之间的距离恰好等于1？</strong></p>
+<p>就这么简单。</p>
+<p>1946年，Erdős证明了一个结论：把点排成方形网格，可以得到相当多的单位距离对。然后他猜想——<strong>没有任何排列方式能比网格好太多</strong>。</p>
+<p>这个猜想的数学表达是：单位距离对数U(n)的上界约为n^(1+o(1))，即”差不多就是线性增长”。</p>
+<p>近80年来，数学家们一直试图证明这个猜想是正确的。方形网格就是最优解——至少大家都是这么认为的。</p>
+<p>直到一个AI模型说：<strong>你们都错了。</strong></p>
+<hr>
+<h2 id="二、AI怎么做到的？一个”反直觉”的跨领域连接"><a href="#二、AI怎么做到的？一个”反直觉”的跨领域连接" class="headerlink" title="二、AI怎么做到的？一个”反直觉”的跨领域连接"></a>二、AI怎么做到的？一个”反直觉”的跨领域连接</h2><p>AI的证明过程长达7.5万词，差不多等于《哈利·波特与魔法石》整本书的长度。但核心思想可以用一句话概括：</p>
+<p><strong>AI用了代数数论的工具，解决了离散几何的问题。</strong></p>
+<p>这两个领域的距离有多远？研究者形容：”大概像马拉松和撑杆跳一样遥远。”</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>AI的三步操作</p>
+<p><strong>第一步：从高斯整数出发</strong></p>
+<p>AI先用了一个经典工具——高斯整数（Gaussian integers），构造了一些点集，确实能得到比简单网格更多的单位距离对。但AI敏锐地察觉到，高斯整数提供的对称性还不够”压榨”出极限。</p>
+<p><strong>第二步：跨界到代数数论</strong></p>
+<p>AI做了一个数学家几乎不会做的选择——跳到代数数论领域，引入了<strong>代数数域扩张</strong>（algebraic number field extensions），构筑了一类拥有更高级、更丰富对称性的数域结构。</p>
+<p><strong>第三步：用重武器收尾</strong></p>
+<p>为了证明这种复杂数域确实有效，AI直接搬出了代数数论的底层重武器：<strong>无限类域塔（infinite class field towers）</strong>和<strong>Golod-Shafarevich理论</strong>。</p>
+<p>最终结论：存在一系列点集，其单位距离对数<strong>显著超过</strong>n^(1+o(1))的上界——Erdős的猜想，被推翻了。</p>
+<hr>
+<h2 id="三、为什么AI能做到人类做不到的事？"><a href="#三、为什么AI能做到人类做不到的事？" class="headerlink" title="三、为什么AI能做到人类做不到的事？"></a>三、为什么AI能做到人类做不到的事？</h2><p>这个问题背后藏着AI做研究的三个核心优势：</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>1. 没有”心理包袱”</p>
+<p>过去80年，绝大多数数学家默认Erdős的猜想是正确的，所以他们一直在寻找”证明”——而不是”反例”。</p>
+<p>AI没有这种先入为主的偏见。它不知道这个问题”应该”怎么解，所以它会尝试各种看似荒谬的方向，最终正是在这些尝试中发现了突破口。</p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>2. 跨领域的知识宽度</p>
+<p>数学家通常专注于自己的研究领域——数论学家可能一辈子不碰离散几何，反之亦然。</p>
+<p>但AI同时掌握了大量不同学科的知识。这次的核心突破，正是把代数数论和离散几何这两个”八竿子打不着”的领域连接了起来。</p>
+<h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><p>3. 愿意”磨”无聊的策略</p>
+<p>Thomas Bloom在评论中指出了一个关键点：AI之所以能得出结果，是因为<strong>它能坚持探索那些人类研究者往往认为”不值得继续投入时间”的研究方向</strong>。</p>
+<p>人类会计算机会成本——花三年时间赌一个可能没结果的方向，对职业发展不利。AI不会。</p>
+<hr>
+<h2 id="四、从”检索答案”到”原创证明”：7个月的救赎"><a href="#四、从”检索答案”到”原创证明”：7个月的救赎" class="headerlink" title="四、从”检索答案”到”原创证明”：7个月的救赎"></a>四、从”检索答案”到”原创证明”：7个月的救赎</h2><p>这个故事还有一个耐人寻味的前传。</p>
+<p><strong>2025年10月</strong>，OpenAI时任副总裁Kevin Weil在X上高调宣布：”GPT-5找到了10个此前未解的Erdős问题的解！”</p>
+<p>结果被数学家Thomas Bloom迅速打脸——GPT-5只是检索到了已有文献中的解答，根本没有”解决”任何新问题。</p>
+<p>谷歌DeepMind CEO Demis Hassabis称此事”令人尴尬”，Meta首席AI科学家Yann LeCun讽刺这是”被自己的GPT傻瓜们坑了”。</p>
+<p><strong>2026年5月</strong>，OpenAI卷土重来。这次，Bloom——就是7个月前那位打脸者——<strong>亲自为新证明撰写了评论并签字背书</strong>。</p>
+<p>他在评论中写道：</p>
+<blockquote>
+<p>“</p>
+<p>“AI在这种水平的问题上给出解答，既令人惊讶也令人印象深刻。AI正在帮助人类更充分地探索几个世纪以来构建的数学殿堂，还有哪些尚未被看见的奇迹正等候登场。”</p>
+</blockquote>
+<hr>
+<h2 id="五、这意味着什么？"><a href="#五、这意味着什么？" class="headerlink" title="五、这意味着什么？"></a>五、这意味着什么？</h2><p>菲尔兹奖得主Gowers说了一段意味深长的话：</p>
+<blockquote>
+<p>“</p>
+<p>“即便AI从此不再变得更聪明，我们也已经进入了一个新时代。人类将越来越难与AI竞争数学问题的求解能力。”</p>
+</blockquote>
+<p>这不是危言耸听。回看AI在数学领域的进化速度：</p>
+<ul>
+<li><p><strong>2023年</strong>：连基本算术都做不好</p>
+</li>
+<li><p><strong>2025年</strong>：IMO国际数学奥林匹克金牌水平</p>
+</li>
+<li><p><strong>2026年5月</strong>：推翻80年数学猜想</p>
+</li>
+</ul>
+<p>但更值得关注的是这次突破的方法论意义——<strong>AI不是用蛮力搜索出了答案，而是用创造性的方式连接了不同数学领域的工具</strong>。</p>
+<p>这预示着一个新范式：在生物学、物理学、材料科学、工程学等领域，AI同样可以扮演”跨界连接者”的角色，发现人类因为知识边界而看不到的路径。</p>
+<hr>
+<h2 id="六、冷静看待：它还不是”数学家”"><a href="#六、冷静看待：它还不是”数学家”" class="headerlink" title="六、冷静看待：它还不是”数学家”"></a>六、冷静看待：它还不是”数学家”</h2><p>最后需要泼一点冷水。</p>
+<p>**OpenAI至今未公开发布这款模型。**完整证明也仍需接受更广泛的同行评审。</p>
+<p>正如Understanding AI的分析所指出的：AI这次的贡献是<strong>巧妙地应用了已有的数学思想</strong>，而非开创了全新的技术。证明后来被人类数学家显著改进和扩展。</p>
+<p>更诚实的定位可能是：<strong>AI是强大的研究伙伴，但还不是独立的研究者。</strong></p>
+<p>它能检索、能连接、能验证、能坚持探索人类放弃的方向。但选择什么问题、判断什么值得研究、解释结果的意义——这些仍然需要人类。</p>
+<p>OpenAI研究员Sebastian Bubeck说得很好：</p>
+<blockquote>
+<p>“</p>
+<p>“我们还没有看到那种足以与人类历史上最伟大的证明相提并论的天才火花。但有一点越来越清晰：AI已经完全有能力推动真正的科学发现。”</p>
+</blockquote>
+<hr>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>80年前，Erdős在一张纸上画了几个点，问了一个看似简单的问题。</p>
+<p>80年后，一个AI模型给出了一个让所有专家都意想不到的答案——不是证明了猜想，而是推翻了猜想，并且用了一种没有人想到过的方式。</p>
+<p>这可能是AI从”工具”走向”伙伴”的标志性时刻。</p>
+<p>不是替代，而是互补。不是终结，而是新的开始。</p>
+<hr>
+<p><em>参考资料：</em></p>
+<ul>
+<li><p><em>OpenAI官方博客：An OpenAI model has disproved a central conjecture in discrete geometry[1]</em></p>
+</li>
+<li><p><em>arXiv论文：Remarks on the disproof of the unit distance conjecture[2]</em></p>
+</li>
+<li><p><em>36氪报道：历史性突破，OpenAI模型搞定人类科学家80年未破难题[3]</em></p>
+</li>
+<li><p><em>新浪财经报道：OpenAI模型推翻80年的数学经典猜想，引发学界震动[4]</em></p>
+</li>
+</ul>
+<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><p>引用链接</p>
+<p>[1]An OpenAI model has disproved a central conjecture in discrete geometry: <em><a target="_blank" rel="noopener" href="https://openai.com/index/model-disproves-discrete-geometry-conjecture/">https://openai.com/index/model-disproves-discrete-geometry-conjecture/</a></em></p>
+<p>[2]Remarks on the disproof of the unit distance conjecture: <em><a target="_blank" rel="noopener" href="https://arxiv.org/html/2605.20695v1">https://arxiv.org/html/2605.20695v1</a></em></p>
+<p>[3]历史性突破，OpenAI模型搞定人类科学家80年未破难题: <em><a target="_blank" rel="noopener" href="https://m.36kr.com/p/3818803831538817">https://m.36kr.com/p/3818803831538817</a></em></p>
+<p>[4]OpenAI模型推翻80年的数学经典猜想，引发学界震动: <em><a target="_blank" rel="noopener" href="https://finance.sina.com.cn/jjxw/2026-05-31/doc-inhzukzn6281540.shtml">https://finance.sina.com.cn/jjxw/2026-05-31/doc-inhzukzn6281540.shtml</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AI首次推翻80年数学猜想！OpenAI模型让菲尔兹奖得主直呼&#39;发顶刊&#39;</div>
+      <div>https://maoyu92.github.io/2026/06/02/07 AI笔记/AI工具与模型/a114_AI首次推翻80年数学猜想！OpenAI模型让菲尔兹奖得主直呼&#39;发顶刊&#39;/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/02/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a113_%E5%8D%81%E4%B8%87%E4%BA%BF%E7%BA%A7%E7%BA%A2%E5%88%A9%E9%87%8A%E6%94%BE%EF%BC%9A%E5%9F%8E%E5%B8%82%E6%9B%B4%E6%96%B0_%E5%8D%81%E4%BA%94%E4%BA%94_%E8%A7%84%E5%88%92%E6%B7%B1%E5%BA%A6%E8%A7%A3%E8%AF%BB/" title="十万亿级红利释放：城市更新&#34;十五五&#34;规划深度解读">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">十万亿级红利释放：城市更新&#34;十五五&#34;规划深度解读</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/01/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a118_%E9%9C%B8%E6%A6%9C%20GitHub%20%E7%9A%84%E5%85%8D%E8%B4%B9%E7%A5%9E%E5%99%A8%EF%BC%81%E4%B8%80%E9%94%AE%E7%94%9F%E6%88%90%E7%9F%AD%E8%A7%86%E9%A2%91%EF%BC%8C%E6%88%90%E6%9C%AC%E4%B8%8D%E5%88%B0%205%20%E6%AF%9B%E9%92%B1/" title="霸榜 GitHub 的免费神器！一键生成短视频，成本不到 5 毛钱">
+                        <span class="hidden-mobile">霸榜 GitHub 的免费神器！一键生成短视频，成本不到 5 毛钱</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

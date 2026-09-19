@@ -1,0 +1,808 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="不是只学会用 Agent，而是真正理解 Agentic AI 的每一层。  为什么现在特别值得看这本「手册」2026 年，AI Agent 已经从概念变成了产品：OpenAI、Anthropic、Google 都在推 Agent 平台；MCP、A2A 等协议开始出现；但很多开发者仍然停留在「调 API 写提示词」的层面。 真正的问题是：构建可靠的 Agentic AI 系统，需要同时理解模型层、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从地基到楼宇：Agentic AI 全栈实战手册解读">
+<meta property="og:url" content="https://maoyu92.github.io/2026/08/24/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a020_%E4%BB%8E%E5%9C%B0%E5%9F%BA%E5%88%B0%E6%A5%BC%E5%AE%87%EF%BC%9AAgentic%20AI%20%E5%85%A8%E6%A0%88%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%8C%E8%A7%A3%E8%AF%BB/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="不是只学会用 Agent，而是真正理解 Agentic AI 的每一层。  为什么现在特别值得看这本「手册」2026 年，AI Agent 已经从概念变成了产品：OpenAI、Anthropic、Google 都在推 Agent 平台；MCP、A2A 等协议开始出现；但很多开发者仍然停留在「调 API 写提示词」的层面。 真正的问题是：构建可靠的 Agentic AI 系统，需要同时理解模型层、">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-24T02:03:00.000Z">
+<meta property="article:modified_time" content="2026-08-24T02:03:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>从地基到楼宇：Agentic AI 全栈实战手册解读 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="从地基到楼宇：Agentic AI 全栈实战手册解读"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-08-24 10:03" pubdate>
+          2026年8月24日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">从地基到楼宇：Agentic AI 全栈实战手册解读</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>不是只学会用 Agent，而是真正理解 Agentic AI 的每一层。</p>
+</blockquote>
+<h2 id="为什么现在特别值得看这本「手册」"><a href="#为什么现在特别值得看这本「手册」" class="headerlink" title="为什么现在特别值得看这本「手册」"></a>为什么现在特别值得看这本「手册」</h2><p>2026 年，AI Agent 已经从概念变成了产品：OpenAI、Anthropic、Google 都在推 Agent 平台；MCP、A2A 等协议开始出现；但很多开发者仍然停留在「调 API 写提示词」的层面。</p>
+<p>真正的问题是：<strong>构建可靠的 Agentic AI 系统，需要同时理解模型层、对齐层、检索层、记忆层、协作层和工程层</strong>。缺任何一层，系统都会在真实场景里出问题。</p>
+<p>The Hitchhiker’s Guide to Agentic AI 恰好补上了这个系统性空白。它不是在教你某个框架的用法，而是在帮你建立一张完整的地图：从 Transformer 架构、RLHF&#x2F;DPO 对齐、RAG 和记忆系统，到 MCP 协议、多 Agent 架构、生产部署——全部覆盖。</p>
+<p>对正在做 Agent 项目的团队和个人开发者来说，这本书的价值在于：<strong>帮你把零散的知识点串成体系</strong>，知道每个组件为什么存在、在什么场景下该用什么。</p>
+<h2 id="这本书讲了什么"><a href="#这本书讲了什么" class="headerlink" title="这本书讲了什么"></a>这本书讲了什么</h2><p>全书可以分成三大块：<strong>基础层</strong>、<strong>Agent 层</strong>、<strong>工程层</strong>。</p>
+<h3 id="基础层：先把地基打牢"><a href="#基础层：先把地基打牢" class="headerlink" title="基础层：先把地基打牢"></a>基础层：先把地基打牢</h3><p>作者没有假设你已经精通 LLM，而是从最基础讲起：</p>
+<ul>
+<li><p>Transformer 架构：Attention、FFN、LayerNorm、位置编码、Decoder-only vs Encoder-Decoder</p>
+</li>
+<li><p>训练与优化：SFT、LoRA、MoE、混合精度、学习率调度、Flash Attention</p>
+</li>
+<li><p>推理优化：推测解码、KV Cache、量化、蒸馏</p>
+</li>
+<li><p>对齐方法：RLHF、PPO、DPO 及其变体、GRPO、Reward Modeling</p>
+</li>
+<li><p>推理增强：Chain-of-Thought、Test-Time Scaling、Self-Consistency</p>
+</li>
+</ul>
+<p>这部分的特殊价值在于：它不是简单罗列概念，而是建立了「模型层能力如何影响上层 Agent 设计」的因果链。例如，理解 Attention Sink 和 KV Cache 机制，才能真正设计出长上下文 Agent；理解 DPO 和 RLHF 的差异，才能判断你的 Agent 应该走「对齐微调」还是「强化训练」路线。</p>
+<h3 id="Agent-层：RAG、记忆、协议与多-Agent-协作"><a href="#Agent-层：RAG、记忆、协议与多-Agent-协作" class="headerlink" title="Agent 层：RAG、记忆、协议与多 Agent 协作"></a>Agent 层：RAG、记忆、协议与多 Agent 协作</h3><p>这是全书最实用的部分，直接对应现在开发者最关心的主题：</p>
+<ul>
+<li><p>Agentic RAG：比普通 RAG 多了什么</p>
+</li>
+<li><p>记忆系统：In-context、外部记忆、情景记忆、语义记忆，各自适合什么场景</p>
+</li>
+<li><p>Agent Harness 设计：上下文管理、循环工程、自适应预算控制</p>
+</li>
+<li><p>MCP 协议：标准化工具调用接口</p>
+</li>
+<li><p>A2A 通信协议：Agent 之间的互操作</p>
+</li>
+<li><p>多 Agent 架构：集中式、去中心化、分层式拓扑，以及各自的适用场景</p>
+</li>
+</ul>
+<p>这里最值得关注的是 <strong>MCP 和 A2A</strong> 的解读。随着越来越多工具和平台开始支持 MCP，理解协议设计比学习某个具体 SDK 更重要。这本书把 MCP 放在「工具层协议」的框架下讲解，帮你理解它为什么这样设计，以及未来可能的演化方向。</p>
+<h3 id="工程层：从原型到生产"><a href="#工程层：从原型到生产" class="headerlink" title="工程层：从原型到生产"></a>工程层：从原型到生产</h3><p>很多技术书止步于算法，这本书则覆盖了生产落地的关键议题：</p>
+<ul>
+<li><p>Agent 评估方法论：怎么衡量 Agent 任务完成质量</p>
+</li>
+<li><p>Agentic UI 设计：人机交互的新范式</p>
+</li>
+<li><p>生产部署：从实验环境到线上系统的完整路径</p>
+</li>
+<li><p>成本控制、监控、可观测性</p>
+</li>
+</ul>
+<p>对正在推进 Agent 项目的团队来说，这部分提供了「从 0 到 1 再到 N」的完整路径参考。</p>
+<h2 id="三个最值得关注的核心主题"><a href="#三个最值得关注的核心主题" class="headerlink" title="三个最值得关注的核心主题"></a>三个最值得关注的核心主题</h2><h3 id="主题一：Agentic-RAG-不是普通-RAG-的简单升级"><a href="#主题一：Agentic-RAG-不是普通-RAG-的简单升级" class="headerlink" title="主题一：Agentic RAG 不是普通 RAG 的简单升级"></a>主题一：Agentic RAG 不是普通 RAG 的简单升级</h3><p>普通 RAG 解决的是「知识检索 + 生成」问题；Agentic RAG 解决的是「动态查询规划、工具选择、迭代检索」问题。</p>
+<p>书中把两者的差异讲得很清楚：Agentic RAG 的 Agent 可以根据中间结果调整检索策略，调用不同工具，甚至把检索结果再喂给另一个 Agent。这意味着<strong>评估指标也要升级</strong>——不能只看检索准确率，还要看任务完成率、工具调用效率、多轮检索的收敛性。</p>
+<h3 id="主题二：记忆分层决定-Agent-上限"><a href="#主题二：记忆分层决定-Agent-上限" class="headerlink" title="主题二：记忆分层决定 Agent 上限"></a>主题二：记忆分层决定 Agent 上限</h3><p>书中把记忆分成四层：</p>
+<ul>
+<li><p><strong>In-context</strong>：短期工作记忆，受上下文窗口限制</p>
+</li>
+<li><p><strong>外部</strong>：数据库&#x2F;向量存储，容量大但检索成本高</p>
+</li>
+<li><p><strong>情景记忆</strong>：按时间线记录交互历史，适合复盘和改进</p>
+</li>
+<li><p><strong>语义记忆</strong>：提取长期知识，压缩存储</p>
+</li>
+</ul>
+<p>关键洞察是：<strong>不同层的记忆解决不同问题</strong>。In-context 适合当前任务状态；外部记忆适合大规模知识查询；情景记忆适合分析 Agent 行为模式；语义记忆适合长期知识沉淀。很多 Agent 项目只用了其中 1-2 层，效果自然打折扣。</p>
+<h3 id="主题三：MCP-A2A-正在定义-Agent-互操作标准"><a href="#主题三：MCP-A2A-正在定义-Agent-互操作标准" class="headerlink" title="主题三：MCP + A2A 正在定义 Agent 互操作标准"></a>主题三：MCP + A2A 正在定义 Agent 互操作标准</h3><p>MCP（Model Context Protocol）解决了「Agent 如何调用外部工具」的标准化问题；A2A（Agent-to-Agent Protocol）解决了「Agent 之间如何通信和协作」的问题。</p>
+<p>这两个协议的兴起，标志着 Agent 生态从「单打独斗」走向「协同网络」。书中对协议设计理念、使用场景、局限性的分析，对正在做 Agent 集成的开发者非常有参考价值。</p>
+<h2 id="适合谁读"><a href="#适合谁读" class="headerlink" title="适合谁读"></a>适合谁读</h2><ul>
+<li><p><strong>正在做 Agent 项目的开发者</strong>：你需要的不只是某个框架的教程，而是系统性的架构理解</p>
+</li>
+<li><p><strong>AI 产品经理</strong>：需要理解 Agentic AI 的能力边界、成本结构和产品形态</p>
+</li>
+<li><p><strong>技术负责人</strong>：在评估「要不要投入 Agent」之前，先搞清楚完整的成本模型</p>
+</li>
+<li><p><strong>LLM 研究者</strong>：书中对对齐、推理、RL 的综述质量很高，可以作为快速参考</p>
+</li>
+</ul>
+<h2 id="一句话总结"><a href="#一句话总结" class="headerlink" title="一句话总结"></a>一句话总结</h2><blockquote>
+<p>如果你只想知道「怎么调用一个 AI API」，这本书太重了；但如果你想知道「怎么构建一个能长期运行、可扩展、可协作的 Agentic AI 系统」，这本书是目前最系统的免费参考手册。</p>
+</blockquote>
+<p>全书的免费可读版本已经发布，值得收藏到你的技术书单里。</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>The Hitchhiker’s Guide to Agentic AI: From Foundations to Systems (arXiv)[1]</p>
+</li>
+<li><p>HTML 全文版 (arXiv)[2]</p>
+</li>
+<li><p>PDF 下载 (arXiv)[3]</p>
+</li>
+<li><p>作者：Haggai Roitman (arXiv 主页)[4]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]The Hitchhiker’s Guide to Agentic AI: From Foundations to Systems (arXiv): <em><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.24937">https://arxiv.org/abs/2606.24937</a></em></p>
+<p>[2]HTML 全文版 (arXiv): <em><a target="_blank" rel="noopener" href="https://arxiv.org/html/2606.24937v2">https://arxiv.org/html/2606.24937v2</a></em></p>
+<p>[3]PDF 下载 (arXiv): <em><a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2606.24937">https://arxiv.org/pdf/2606.24937</a></em></p>
+<p>[4]作者：Haggai Roitman (arXiv 主页): <em><a target="_blank" rel="noopener" href="https://arxiv.org/search?searchtype=author&query=Roitman%252C+H">https://arxiv.org/search?searchtype=author&amp;query=Roitman%252C+H</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>从地基到楼宇：Agentic AI 全栈实战手册解读</div>
+      <div>https://maoyu92.github.io/2026/08/24/07 AI笔记/AI写作与发布/a020_从地基到楼宇：Agentic AI 全栈实战手册解读/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年8月24日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/08/24/07%20AI%E7%AC%94%E8%AE%B0/WorkBuddy%E6%8A%80%E8%83%BD/a019_%E6%8A%8A%E4%B9%A6%E8%A3%85%E8%BF%9B%E7%BC%96%E8%BE%91%E5%99%A8%EF%BC%9Abook-to-skill%20%E5%A6%82%E4%BD%95%E6%8A%8A%E6%8A%80%E6%9C%AF%E4%B9%A6%E5%8F%98%E6%88%90%E5%8F%AF%E5%AE%89%E8%A3%85%E7%9A%84%20AI%20%E6%8A%80%E8%83%BD/" title="把书装进编辑器：book-to-skill 如何把技术书变成可安装的 AI 技能">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">把书装进编辑器：book-to-skill 如何把技术书变成可安装的 AI 技能</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/08/15/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a022_Qwen3.8-27B%20%E5%8F%91%E5%B8%83%EF%BC%9A%E6%80%A7%E8%83%BD%E8%B0%83%E7%A0%94%E5%8F%8A%E9%83%A8%E7%BD%B2%E5%BB%BA%E8%AE%AE/" title="Qwen3.8-27B 发布：性能调研及部署建议">
+                        <span class="hidden-mobile">Qwen3.8-27B 发布：性能调研及部署建议</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

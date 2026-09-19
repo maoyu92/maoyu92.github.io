@@ -1,0 +1,887 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="“为什么 AI 做的图文卡片总有一股’AI 味’？因为它做的是网页，不是杂志。”  一、被忽略了一百年的设计智慧做图文内容的人，最怕什么？ 不是没内容，是有内容，做出来的图——丑。 更准确地说，是”正确但无聊”：排版整齐、配色不踩雷、字体大小也对，但就是没有让人停下来的欲望。 问题出在哪？ 绝大多数 AI 生成图文的工具，是用”网页思维”做的：内容往模板里填，版式由框架定，颜色从色板里选。但图文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小红书图文卡片神器：这套Skill解决了我做内容最头疼的问题">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/28/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a145_%E5%B0%8F%E7%BA%A2%E4%B9%A6%E5%9B%BE%E6%96%87%E5%8D%A1%E7%89%87%E7%A5%9E%E5%99%A8%EF%BC%9A%E8%BF%99%E5%A5%97Skill%E8%A7%A3%E5%86%B3%E4%BA%86%E6%88%91%E5%81%9A%E5%86%85%E5%AE%B9%E6%9C%80%E5%A4%B4%E7%96%BC%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="“为什么 AI 做的图文卡片总有一股’AI 味’？因为它做的是网页，不是杂志。”  一、被忽略了一百年的设计智慧做图文内容的人，最怕什么？ 不是没内容，是有内容，做出来的图——丑。 更准确地说，是”正确但无聊”：排版整齐、配色不踩雷、字体大小也对，但就是没有让人停下来的欲望。 问题出在哪？ 绝大多数 AI 生成图文的工具，是用”网页思维”做的：内容往模板里填，版式由框架定，颜色从色板里选。但图文">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-28T14:30:00.000Z">
+<meta property="article:modified_time" content="2026-05-28T14:30:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>小红书图文卡片神器：这套Skill解决了我做内容最头疼的问题 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="小红书图文卡片神器：这套Skill解决了我做内容最头疼的问题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-28 22:30" pubdate>
+          2026年5月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          18 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">小红书图文卡片神器：这套Skill解决了我做内容最头疼的问题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>“为什么 AI 做的图文卡片总有一股’AI 味’？因为它做的是网页，不是杂志。”</p>
+</blockquote>
+<h2 id="一、被忽略了一百年的设计智慧"><a href="#一、被忽略了一百年的设计智慧" class="headerlink" title="一、被忽略了一百年的设计智慧"></a>一、被忽略了一百年的设计智慧</h2><p>做图文内容的人，最怕什么？</p>
+<p>不是没内容，是有内容，做出来的图——丑。</p>
+<p>更准确地说，是”正确但无聊”：排版整齐、配色不踩雷、字体大小也对，但就是没有让人停下来的欲望。</p>
+<p>问题出在哪？</p>
+<p>绝大多数 AI 生成图文的工具，是用”网页思维”做的：内容往模板里填，版式由框架定，颜色从色板里选。但图文卡片完全不是网页——它是杂志、海报、信息流里的1秒钟对决。</p>
+<p>你只有1秒钟，让一个陌生人在滑动中停下来。</p>
+<p>这件事，杂志和海报研究了100年。它们靠的不是”模板”，是经过验证的<strong>版式骨架</strong>、<strong>字号层级</strong>、<strong>留白呼吸感</strong>，以及<strong>图片和文字之间的权力关系</strong>。</p>
+<p>guizang-social-card-skill（以下简称”归藏卡片”）就是在做这件事——把杂志排版100年的积累，压缩进一套 AI Agent 可执行的 Skill 里。</p>
+<hr>
+<h2 id="二、它解决什么问题"><a href="#二、它解决什么问题" class="headerlink" title="二、它解决什么问题"></a>二、它解决什么问题</h2><p>做小红书图文，AI 能帮上忙，但有四个长期痛点：</p>
+<p><strong>痛点1：文字压图是最难的事</strong> 把文字压在图片上，稍不小心就变成”文字糊在图上，看不清图也看不清字”。大多数工具的做法是加一层半透明遮罩——效果敷衍，而且暴露 AI 感。</p>
+<p><strong>痛点2：图片从哪来</strong> 要么让你自己上传，要么用 emoji 顶替，要么 AI 生图——而 AI 生图现在普遍有水印，水印会被平台打标记，标记了就限流。</p>
+<p><strong>痛点3：版式没有灵魂</strong> 大多数图文卡片工具的版式，是”看起来没问题”的版式，不是”让人想停下来看”的版式。区别在哪里？在于留白、呼吸感、字号对比、和图片的主次关系。</p>
+<p><strong>痛点4：多平台尺寸要分别做</strong> 小红书 3:4，公众号头图 21:9，公众号分享卡 1:1——做一套内容要调三套版式，工作量翻三倍。</p>
+<p>归藏卡片把这四个痛点逐一拆掉。</p>
+<hr>
+<h2 id="三、两套视觉系统：叙事用Editorial，结构用Swiss"><a href="#三、两套视觉系统：叙事用Editorial，结构用Swiss" class="headerlink" title="三、两套视觉系统：叙事用Editorial，结构用Swiss"></a>三、两套视觉系统：叙事用Editorial，结构用Swiss</h2><p>这是归藏卡片最核心的设计思想——不是一套模板打天下，而是两套视觉系统，各司其职。</p>
+<h3 id="电子杂志风（Editorial）"><a href="#电子杂志风（Editorial）" class="headerlink" title="电子杂志风（Editorial）"></a>电子杂志风（Editorial）</h3><p>来自 Monocle &#x2F; Kinfolk &#x2F; Cereal 的排版传统：</p>
+<ul>
+<li><p>大留白，衬线大标题</p>
+</li>
+<li><p>版式不对称，文字有呼吸感</p>
+</li>
+<li><p>图片压全屏，标题叠在图上</p>
+</li>
+<li><p>适合：旅行、阅读、生活方式、个人叙事</p>
+</li>
+</ul>
+<h3 id="瑞士国际主义（Swiss）"><a href="#瑞士国际主义（Swiss）" class="headerlink" title="瑞士国际主义（Swiss）"></a>瑞士国际主义（Swiss）</h3><p>来自 Massimo Vignelli 和 Helmut Schmid 的设计一脉：</p>
+<ul>
+<li><p>强网格，无衬线，几何感</p>
+</li>
+<li><p>用色克制但精准</p>
+</li>
+<li><p>极致字号对比</p>
+</li>
+<li><p>适合：产品测评、数据、教程、AI 工具、方法论</p>
+</li>
+</ul>
+<p>两套系统共用同一套工作流：选风格 → 选主题色 → 选版式骨架 → 取图 → 渲染。AI 的任务从”设计”降级为”填充”——成品稳定性立刻上来。</p>
+<hr>
+<h2 id="四、28个版式骨架"><a href="#四、28个版式骨架" class="headerlink" title="四、28个版式骨架"></a>四、28个版式骨架</h2><p>这是归藏卡片的核心资产。</p>
+<p>Editorial 16个版式：</p>
+<ul>
+<li><p>M01 Image-Led Cover（全屏主图）</p>
+</li>
+<li><p>M02-M16：Pipeline、Before&#x2F;After、Duotone、Quote Spread……</p>
+</li>
+</ul>
+<p>Swiss 12个版式：</p>
+<ul>
+<li><p>S01 Hero + Stats</p>
+</li>
+<li><p>S09 KPI Tower</p>
+</li>
+<li><p>S10 H-Bar Chart</p>
+</li>
+<li><p>S12 Matrix + Hero……</p>
+</li>
+</ul>
+<p>每个版式骨架都是经过真实版面校验的 CSS Grid 模板。AI 填充内容时，调用的不是”提示词”，是一个被验证过的骨架——这直接绕过了 AI 在自由版式设计上仍然平庸的问题。</p>
+<hr>
+<h2 id="五、图片从哪里来：优先级逻辑"><a href="#五、图片从哪里来：优先级逻辑" class="headerlink" title="五、图片从哪里来：优先级逻辑"></a>五、图片从哪里来：优先级逻辑</h2><p>归藏卡片有一套明确的图片获取优先级，不走一步算一步，而是提前定好顺序：</p>
+<p><strong>① 用户图优先</strong> 你有好照片，直接用。Skill 会自动识别人脸区域，文字落点主动避让主体。</p>
+<p><strong>② 无图时的备选源</strong> 按这个顺序取：Unsplash → Pexels → Flickr CC → Wallhaven → 直接搜索</p>
+<p>取到的图落本地，同时写 SOURCES.md 记录来源——这不只是版权合规，也是平台运营的基本素养。</p>
+<p><strong>③ AI 生图：克制地用</strong></p>
+<p>这是归藏卡片最有态度的设计决策之一：</p>
+<blockquote>
+<p>“只有前面所有找图渠道都拿不到合适素材时，Skill 才会调用 AI 生图。”</p>
+</blockquote>
+<p>而且生图时会强制带上风格约束词，避免”一眼 AI 插画”的平庸视觉。</p>
+<p>作者的原话是：”我宁可它少用 AI，也不想它把 AI 用成那个让所有图文卡片长得都像姐妹的元凶。”</p>
+<p>这个克制非常重要——现在各大平台已经开始对 AI 生成内容限流，AI 生图普遍带水印标识。归藏卡片的策略让内容天然规避这个问题。</p>
+<hr>
+<h2 id="六、10套主题预设：不允许自定义Hex"><a href="#六、10套主题预设：不允许自定义Hex" class="headerlink" title="六、10套主题预设：不允许自定义Hex"></a>六、10套主题预设：不允许自定义Hex</h2><p>这是另一个有趣的设计决定： Skill 内置了 10 套预设主题色，<strong>不允许自定义 Hex</strong>。</p>
+<p>Editorial 6套：</p>
+<ul>
+<li>墨水经典、靛蓝瓷、森林墨、牛皮纸、沙丘、Midnight Ink 暗色</li>
+</ul>
+<p>Swiss 4套锚点色：</p>
+<ul>
+<li><p>IKB Klein Blue（克莱因蓝）</p>
+</li>
+<li><p>柠檬黄</p>
+</li>
+<li><p>柠檬绿</p>
+</li>
+<li><p>Safety Orange（安全橙）</p>
+</li>
+</ul>
+<p>为什么不允许自定义颜色？</p>
+<p>因为 AI 在”自由配色”上的审美，和网上最常见的配色高度重合——就是那些被用烂了的紫蓝渐变、青色暗色霓虹。内置预设把 AI 能自由发挥的空间收窄，让它在被验证过的色板里做选择，输出自然稳定。</p>
+<hr>
+<h2 id="七、三种尺寸，一套内容一次搞定"><a href="#七、三种尺寸，一套内容一次搞定" class="headerlink" title="七、三种尺寸，一套内容一次搞定"></a>七、三种尺寸，一套内容一次搞定</h2><table>
+<thead>
+<tr>
+<th>尺寸</th>
+<th>比例</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.poster.xhs</td>
+<td>1080×1440（3:4）</td>
+<td>小红书图文</td>
+</tr>
+<tr>
+<td>.poster.wide</td>
+<td>2100×900（21:9）</td>
+<td>公众号头图</td>
+</tr>
+<tr>
+<td>.poster.square</td>
+<td>1080×1080（1:1）</td>
+<td>公众号分享卡</td>
+</tr>
+</tbody></table>
+<p>同一份内容，一次渲染三块，视觉一致，直接发。</p>
+<hr>
+<h2 id="八、内置校验：不是靠猜，是-Playwright-跑真实渲染"><a href="#八、内置校验：不是靠猜，是-Playwright-跑真实渲染" class="headerlink" title="八、内置校验：不是靠猜，是 Playwright 跑真实渲染"></a>八、内置校验：不是靠猜，是 Playwright 跑真实渲染</h2><p>归藏卡片自带 <code>validate-social-deck.mjs</code>，基于 Playwright 跑真实 DOM 测量，不是正则匹配猜结果。</p>
+<p>检测项：</p>
+<ul>
+<li><p>文字溢出</p>
+</li>
+<li><p>字号上限超限</p>
+</li>
+<li><p>4横带密度超标</p>
+</li>
+<li><p>footer 碰撞</p>
+</li>
+</ul>
+<p>6条规则，量化可测。AI 渲染完先给用户看，用户说”帮我跑 validator”，才触发检查——不自动跑，减少无谓干扰。</p>
+<hr>
+<h2 id="九、为什么它值得被认真对待"><a href="#九、为什么它值得被认真对待" class="headerlink" title="九、为什么它值得被认真对待"></a>九、为什么它值得被认真对待</h2><p>作者在项目文档里说了一段话，我读完很有共鸣：</p>
+<blockquote>
+<p>“Skill 生态最大的问题，是绝大多数 Skill 满足于’我能做一个’，很少有人在追求’把这件事做到极致’。一个 Skill 应该是能站起来的小产品。Prompt 十分钟会被同行复制走，产品不会。”</p>
+</blockquote>
+<p>归藏卡片的作者，给这个 Skill 打了版本号（v0.5 &#x2F; v0.9 &#x2F; v0.10 &#x2F; v0.12），每一版都有 CHANGELOG，说明了为什么 v0.10 是一次失败的尝试，以及 v0.12 怎么把它修回来。</p>
+<p>这种文档化的诚意，在 AI 圈子里很少见。</p>
+<p>这让我重新理解了 Skill 这个形态：它不是一段高级提示词，它是一个被认真对待的产品。判断一个 Skill 好不好，看它有没有被它的作者偏爱过。</p>
+<hr>
+<h2 id="十、适合谁用"><a href="#十、适合谁用" class="headerlink" title="十、适合谁用"></a>十、适合谁用</h2><p>✅ 适合：</p>
+<ul>
+<li><p>小红书图文组图（旅行&#x2F;生活方式&#x2F;读书&#x2F;产品测评）</p>
+</li>
+<li><p>公众号封面对（21:9 + 1:1 一次渲染）</p>
+</li>
+<li><p>教程拆页 &#x2F; 数据回顾 &#x2F; 游戏攻略</p>
+</li>
+<li><p>视频号封面 &#x2F; 文章配图</p>
+</li>
+</ul>
+<p>❌ 不适合：</p>
+<ul>
+<li><p>横向翻页 PPT（用归藏 PPT Skill）</p>
+</li>
+<li><p>长视频生成</p>
+</li>
+<li><p>无版式诉求的纯文字编辑</p>
+</li>
+</ul>
+<p>按能力圈分三档，主动说清边界——这是它成熟的地方。</p>
+<hr>
+<h2 id="十一、安装和使用"><a href="#十一、安装和使用" class="headerlink" title="十一、安装和使用"></a>十一、安装和使用</h2><p><code># 安装   npx skills add https://github.com/op7418/guizang-social-card-skill --skill guizang-social-card-skill      # 或者发给 Claude Code / Cursor   帮我安装 guizang-social-card-skill。请把 https://github.com/op7418/guizang-social-card-skill 克隆到 ~/.claude/skills/guizang-social-card-skill      # 触发词   帮我基于这篇文章做一套瑞士风小红书图文，5张，IKB蓝   帮我做一套小红书3:4，标题用电子杂志风   我有3张露营照片，帮我做一套全图风格的小红书图文   </code></p>
+<hr>
+<p><strong>GitHub</strong> <a target="_blank" rel="noopener" href="https://github.com/op7418/guizang-social-card-skill/[1/]">https://github.com/op7418/guizang-social-card-skill\[1\]</a></p>
+<hr>
+<p><em>你用这个 Skill 做内容最头疼的问题是什么？我可以帮你想解决方案。</em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/op7418/guizang-social-card-skill">https://github.com/op7418/guizang-social-card-skill</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>小红书图文卡片神器：这套Skill解决了我做内容最头疼的问题</div>
+      <div>https://maoyu92.github.io/2026/05/28/07 AI笔记/AI写作与发布/a145_小红书图文卡片神器：这套Skill解决了我做内容最头疼的问题/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/29/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a144_OpenSpec%EF%BC%9A%E8%BD%BB%E9%87%8F%E8%A7%84%E6%A0%BC%E5%B1%82%E6%AD%A3%E5%9C%A8%E6%94%B9%E5%8F%98AI%E7%BC%96%E7%A8%8B%E7%9A%84%E6%B8%B8%E6%88%8F%E8%A7%84%E5%88%99/" title="OpenSpec：轻量规格层正在改变AI编程的游戏规则">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">OpenSpec：轻量规格层正在改变AI编程的游戏规则</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/28/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a147_%E7%94%A8%20HTML%20%E5%86%99%E8%A7%86%E9%A2%91%EF%BC%9AHyperFrames%20%E4%B9%9F%E8%AE%B8%E6%98%AF%20AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E5%86%85%E5%AE%B9%E5%B7%A5%E5%8E%82%E6%96%B0%E5%9F%BA%E5%BB%BA/" title="用 HTML 写视频：HyperFrames 也许是 AI 时代的内容工厂新基建">
+                        <span class="hidden-mobile">用 HTML 写视频：HyperFrames 也许是 AI 时代的内容工厂新基建</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

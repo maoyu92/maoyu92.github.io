@@ -1,0 +1,1037 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="提纲决定讲述顺序，版式库决定页面结构，模板 DNA 决定视觉风格——学术 PPT 的本质，是「讲故事」而不是「拼模板」。  如果你经历过：开题答辩前一晚还在调 PPT 母版、组会前 30 分钟还在把论文里的 Figure 抠下来往 PPT 里塞、答辩完被导师吐槽”你这页文字太多，公式都看不清”——那么 scholar-ppt-cn 可能是你等了很久的那款工具。 它不是一个 AI 模板网站，而是一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="破译组会 PPT 的「提纲+模板 DNA」：scholar-ppt-cn 让 ChatGPT 5 分钟出一份可编辑的学术汇报">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/08/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a095_%E7%A0%B4%E8%AF%91%E7%BB%84%E4%BC%9A%20PPT%20%E7%9A%84%E3%80%8C%E6%8F%90%E7%BA%B2+%E6%A8%A1%E6%9D%BF%20DNA%E3%80%8D%EF%BC%9Ascholar-ppt-cn%20%E8%AE%A9%20ChatGPT%205%20%E5%88%86%E9%92%9F%E5%87%BA%E4%B8%80%E4%BB%BD%E5%8F%AF%E7%BC%96%E8%BE%91%E7%9A%84%E5%AD%A6%E6%9C%AF/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="提纲决定讲述顺序，版式库决定页面结构，模板 DNA 决定视觉风格——学术 PPT 的本质，是「讲故事」而不是「拼模板」。  如果你经历过：开题答辩前一晚还在调 PPT 母版、组会前 30 分钟还在把论文里的 Figure 抠下来往 PPT 里塞、答辩完被导师吐槽”你这页文字太多，公式都看不清”——那么 scholar-ppt-cn 可能是你等了很久的那款工具。 它不是一个 AI 模板网站，而是一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/images/4add7ec641dd5830.png">
+<meta property="og:image" content="https://maoyu92.github.io/images/94884bec34ffcbc4.png">
+<meta property="og:image" content="https://maoyu92.github.io/images/c67092969639ee3a.png">
+<meta property="article:published_time" content="2026-06-08T02:10:00.000Z">
+<meta property="article:modified_time" content="2026-06-08T02:10:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/images/4add7ec641dd5830.png">
+  
+  
+  <title>破译组会 PPT 的「提纲+模板 DNA」：scholar-ppt-cn 让 ChatGPT 5 分钟出一份可编辑的学术汇报 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="破译组会 PPT 的「提纲+模板 DNA」：scholar-ppt-cn 让 ChatGPT 5 分钟出一份可编辑的学术汇报"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-08 10:10" pubdate>
+          2026年6月8日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          31 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">破译组会 PPT 的「提纲+模板 DNA」：scholar-ppt-cn 让 ChatGPT 5 分钟出一份可编辑的学术汇报</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>提纲决定讲述顺序，版式库决定页面结构，模板 DNA 决定视觉风格——学术 PPT 的本质，是「讲故事」而不是「拼模板」。</p>
+</blockquote>
+<p>如果你经历过：开题答辩前一晚还在调 PPT 母版、组会前 30 分钟还在把论文里的 Figure 抠下来往 PPT 里塞、答辩完被导师吐槽”你这页文字太多，公式都看不清”——那么 scholar-ppt-cn 可能是你等了很久的那款工具。</p>
+<p>它不是一个 AI 模板网站，而是一套塞进 ChatGPT &#x2F; Codex 里的「中文学术 PPT 工作流 Skill」。作者 deathcats4 在仓库里塞了 <strong>19 份 references 规则文件 + 1 份 5 页参考模板</strong>，把”从论文到可编辑组会 PPT”这件事拆成了 5 步：生产规划表 → Mockup family + variants 蓝图 → 样板页 → 可编辑 PPTX 重建 → montage QA。</p>
+<p>本文把它的核心理念、五步流程、4 类场景、横向对比全部拆给你看。文末附完整安装与使用教程。</p>
+<p><img src="/images/4add7ec641dd5830.png" srcset="/img/loading.gif" lazyload alt="scholar-ppt-cn 5 步生产流程" title="scholar-ppt-cn 5 步生产流程"></p>
+<h2 id="一、组会-PPT-的”千年老问题”"><a href="#一、组会-PPT-的”千年老问题”" class="headerlink" title="一、组会 PPT 的”千年老问题”"></a>一、组会 PPT 的”千年老问题”</h2><p>学术 PPT 和商务 PPT 完全是两个物种。商务 PPT 是”说服”，学术 PPT 是”让评审老师沿清晰的思路快速了解你的研究内容”——来自清华大学《学术 PPT 教程》的定义。</p>
+<p>这就带来几个独特难题：</p>
+<ul>
+<li><p>论文里 Figure 多、公式多、参考文献多，<strong>每一页都得是图+解读+引用</strong>的混合体，不能纯文字</p>
+</li>
+<li><p>中文字体、字号、行距都有「学术规矩」（行间距 1.2 倍、字间距 1 磅、段前 6 磅），套了商务模板就翻车</p>
+</li>
+<li><p>答辩 PPT 和文献精读 PPT 的叙事逻辑完全不同：前者要”问题-方法-结果-贡献”四段式，后者要”作者做了什么-怎么做的-为什么这么做-我学到什么”</p>
+</li>
+<li><p>评审老师会在意<strong>逻辑完整度</strong>：背景→现状→研究空白→方法→结果→讨论→结论，每一环都不能缺</p>
+</li>
+</ul>
+<p>而市面上的 AI PPT 工具（Gamma、Tome、NotebookLM、必优、讯飞智文……）几乎都是为商务场景设计的：</p>
+<ul>
+<li><p>风格偏 marketing，套到学术汇报上立刻”非主流”</p>
+</li>
+<li><p>输出的 PPTX 文字不能逐项编辑，二次修改成本极高</p>
+</li>
+<li><p>完全没有”提纲逻辑”层面的规划，论文给过去直接”翻译”成 PPT，<strong>逻辑全丢</strong></p>
+</li>
+</ul>
+<p>scholar-ppt-cn 正是为了解决这一组问题而生的。</p>
+<h2 id="二、它提出了一个关键概念：模板-DNA"><a href="#二、它提出了一个关键概念：模板-DNA" class="headerlink" title="二、它提出了一个关键概念：模板 DNA"></a>二、它提出了一个关键概念：模板 DNA</h2><p>scholar-ppt-cn 在文档中反复强调 4 句话，<strong>请把它们刻进脑子里</strong>：</p>
+<p><code>提纲决定讲述顺序；   详细版式库决定页面结构；   模板 DNA 决定视觉风格；   image model 或 Python 负责生成。   </code></p>
+<p>最后一句是”工具”，前三句是”方法论”。这是它和所有”AI 一键生成 PPT”工具的最大区别。</p>
+<p><img src="/images/94884bec34ffcbc4.png" srcset="/img/loading.gif" lazyload alt="模板 DNA：把「风格」从玄学变成参数" title="模板 DNA：把「风格」从玄学变成参数"></p>
+<p><strong>模板 DNA 是什么？</strong> 它是一个 PPT 文件里那些”抽象出来还能用”的元素：</p>
+<ul>
+<li><p>16:9 画布、页边距、版心</p>
+</li>
+<li><p>主色 + 辅色 + 点缀色（不是简单”主色是蓝色”，而是”主色用于标题块，辅色用于图表，点缀色用于高亮结论”）</p>
+</li>
+<li><p>标题层级（一级标题多大、二级标题缩进多少）</p>
+</li>
+<li><p>页脚、页码、引用源的呈现方式</p>
+</li>
+<li><p>卡片、边框、分割线、强调带的”语言风格”</p>
+</li>
+<li><p>字体的角色分工（标题用什么字、正文用什么字、注释用什么字）</p>
+</li>
+</ul>
+<p><strong>为什么这事儿重要？</strong> 因为大多数人做学术 PPT 翻车，都翻在”<strong>视觉一致性</strong>“上：东一榔头西一棒槌，每页配色都不一样，每页排版都不一样，看着就”不专业”。模板 DNA 的本质是把”风格”从”感觉”变成”参数”。</p>
+<h2 id="三、5-步生产流程：从论文到可编辑-PPTX"><a href="#三、5-步生产流程：从论文到可编辑-PPTX" class="headerlink" title="三、5 步生产流程：从论文到可编辑 PPTX"></a>三、5 步生产流程：从论文到可编辑 PPTX</h2><p>scholar-ppt-cn 的默认工作流只有 5 步，每一步都有明确的输入输出和 QA 门控：</p>
+<h3 id="3-1-第-1-步：生产规划表（Production-Planning-Table）"><a href="#3-1-第-1-步：生产规划表（Production-Planning-Table）" class="headerlink" title="3.1 第 1 步：生产规划表（Production Planning Table）"></a>3.1 第 1 步：生产规划表（Production Planning Table）</h3><p>这是整个工作流的”中央 artifact”，<strong>不是简单的目录大纲</strong>。它必须把每一页映射到：</p>
+<ul>
+<li><p>编号 + 标题 + 叙事段落 + 沟通任务</p>
+</li>
+<li><p>源素材（Figure、表格、公式、引用段）</p>
+</li>
+<li><p>源素材几何（横版&#x2F;竖版&#x2F;双栏）</p>
+</li>
+<li><p>核心信息（一句话讲明白这一页要说啥）</p>
+</li>
+<li><p>内部版式 archetype（从版式库里选）</p>
+</li>
+<li><p>密度等级（低&#x2F;中&#x2F;高）</p>
+</li>
+<li><p>素材处理方式（保留原图&#x2F;概览+细节&#x2F;拆分&#x2F;要求更高分辨率）</p>
+</li>
+<li><p>风险&#x2F;QA 备注（事实核查、可读性、翻译、缺失素材等）</p>
+</li>
+</ul>
+<p><strong>为什么这步关键？</strong> 它把”内容策划”和”视觉执行”解耦了——先把每一页要讲什么、拿什么讲、用什么版式讲讲清楚，<strong>再去生成</strong>，不会一上来就生成一堆图、然后发现逻辑乱了。</p>
+<h3 id="3-2-第-2-步：Mockup-Family-Variants-蓝图"><a href="#3-2-第-2-步：Mockup-Family-Variants-蓝图" class="headerlink" title="3.2 第 2 步：Mockup Family + Variants 蓝图"></a>3.2 第 2 步：Mockup Family + Variants 蓝图</h3><p>这是 v3.3 引入的正式阶段，<strong>夹在规划表和生成之间</strong>。它要做的事是：</p>
+<ul>
+<li><p><strong>重新确认模板 DNA</strong>：16:9 画布、页面色调、主辅色、背景风格、标题系统、页眉页脚、卡片&#x2F;边框语言、图文比例、字体策略</p>
+</li>
+<li><p><strong>定义 Mockup 家族表</strong>：Family ID（MF-01）、家族名、适用叙事段、适用沟通任务、适用素材几何、对应页码、视觉关键词、主要风险</p>
+</li>
+<li><p><strong>为每个家族至少设计 3 个 variants</strong>：高频家族 4-6 个，每个 variant 要标 Variant ID、版式名、适用素材几何、对应页码、适用场景、禁止滥用</p>
+</li>
+<li><p><strong>Slide-to-Family&#x2F;Variant 映射</strong>：每个规划页对应哪个家族哪个 variant，备选 variant + 选择原因 + 可读性风险</p>
+</li>
+<li><p><strong>选出 5-8 张代表性样张页</strong>：cover、报告地图、大图证据、多面板证据、图表解读、机制讨论、结论（按需）</p>
+</li>
+</ul>
+<p><strong>家族 vs variant 的关系</strong>：家族是”视觉系统单位”，variant 是”具体版式选项”。两者都不是死板模板，可以根据内容灵活调整。</p>
+<p><strong>为什么需要这一步？</strong> 没有它，AI 生成的 PPT 经常<strong>前 5 页是左图右文、后 5 页变成上图下文、最后几页又变成纯文字</strong>——视觉系统是碎的。</p>
+<h3 id="3-3-第-3-步：Image-Model-样板页（路线-A）"><a href="#3-3-第-3-步：Image-Model-样板页（路线-A）" class="headerlink" title="3.3 第 3 步：Image Model 样板页（路线 A）"></a>3.3 第 3 步：Image Model 样板页（路线 A）</h3><p>如果你想让 AI 先给你看几张”风格样张”，就走这条路线：</p>
+<p><code>规划表 → Mockup family + variants 蓝图 → 模板 DNA         → 图像模型生成 full-slide mockup variants         → 用户确认         → 锁定视觉系统         → mockup 派生 archetype         → 可编辑 PPTX 重建   </code></p>
+<p><strong>关键规则</strong>：</p>
+<ul>
+<li><p>每次先生成 1-2 张 pilot 测试视觉系统</p>
+</li>
+<li><p>发现 pilot 加了多余的模板标签 &#x2F; 文字看不清 &#x2F; 骨骼重复就修 prompt</p>
+</li>
+<li><p>之后按 2-3 张小批量生成</p>
+</li>
+<li><p>批与批之间停下来给用户确认，别一口气做完 5-8 张</p>
+</li>
+<li><p><strong>图像模型中的文字是”provisional”的</strong>，最终交付前必须人工检查</p>
+</li>
+<li><p>图像模型可以决定：素材尺度、构图方向、解读区位置、图注位置、视觉节奏</p>
+</li>
+</ul>
+<p><strong>注意：路线 A 的产物是”高完成度视觉稿”，不是可编辑 PPT</strong>。文字、图形、装饰元素不能像原生 PPT 一样逐项编辑——这是 image-first 路线本身的限制。</p>
+<h3 id="3-4-第-4-步：可编辑-PPTX-重建（路线-B）"><a href="#3-4-第-4-步：可编辑-PPTX-重建（路线-B）" class="headerlink" title="3.4 第 4 步：可编辑 PPTX 重建（路线 B）"></a>3.4 第 4 步：可编辑 PPTX 重建（路线 B）</h3><p>如果你想跳过图像生成、直接出可编辑 PPT，走这条路线：</p>
+<p><code>规划表 → Mockup family + variants 蓝图 → 模板 DNA         → 详细版式 archetype 库         → 模板 DNA 参数化         → 可编辑 PPTX         → QA   </code></p>
+<p><strong>路线 B 必备</strong>：模板 DNA + 详细版式 archetype 库。光有 DNA 不够，必须有 archetype。</p>
+<p>这条路线的产物是<strong>完全可编辑的 PPTX</strong>，文字、形状、图表都能二次修改，更适合学术场景（毕竟要插公式、改 Figure）。</p>
+<h3 id="3-5-第-5-步：Montage-QA"><a href="#3-5-第-5-步：Montage-QA" class="headerlink" title="3.5 第 5 步：Montage QA"></a>3.5 第 5 步：Montage QA</h3><p>最后一步把所有页拼起来做”对比蒙太奇”质量检查：</p>
+<ul>
+<li><p>视觉一致性（颜色、字体、间距是否统一）</p>
+</li>
+<li><p>叙事连贯性（前后页是否衔接得上）</p>
+</li>
+<li><p>图文比例（每页信息量是否合理）</p>
+</li>
+<li><p>可读性（字号、对比度、留白）</p>
+</li>
+<li><p>引用完整性（公式编号、参考文献是否齐全）</p>
+</li>
+</ul>
+<p><strong>注意</strong>：QA 必须诚实。如果在 ChatGPT 环境下没有渲染工具，<strong>不要假装做了检查</strong>，要明确说”哪些本地 QA 步骤还需要导出后再做”。</p>
+<h2 id="四、它支持-4-类叙事场景"><a href="#四、它支持-4-类叙事场景" class="headerlink" title="四、它支持 4 类叙事场景"></a>四、它支持 4 类叙事场景</h2><p>scholar-ppt-cn 预设了 4 类 hidden narrative presets（叙事预设），你只要告诉它”做文献汇报 &#x2F; 答辩 &#x2F; 组会 &#x2F; 课程”，它会自动套对应结构：</p>
+<h3 id="4-1-文献汇报-Journal-Club"><a href="#4-1-文献汇报-Journal-Club" class="headerlink" title="4.1 文献汇报 &#x2F; Journal Club"></a>4.1 文献汇报 &#x2F; Journal Club</h3><p>默认叙事顺序（10-15 分钟约 14-18 页，复杂论文 18-24 页）：</p>
+<p><code>封面 → 报告地图/概述 → 背景/引言 → 研究空白/问题        → 目标/贡献 → 研究区/材料/数据/方法 → 结果/证据链        → 讨论/机制/解读 → 结论 → 致谢   </code></p>
+<h3 id="4-2-学位答辩"><a href="#4-2-学位答辩" class="headerlink" title="4.2 学位答辩"></a>4.2 学位答辩</h3><p>默认叙事顺序：</p>
+<p><code>封面 → 提纲 → 背景与意义 → 研究现状        → 研究空白/科学/实践问题 → 目标/内容/贡献        → 技术路线/数据/方法/工作量 → 主要章节/主要结果        → 综合讨论/机制/系统视角 → 结论与展望 → 致谢   </code></p>
+<h3 id="4-3-课题组会"><a href="#4-3-课题组会" class="headerlink" title="4.3 课题组会"></a>4.3 课题组会</h3><p>默认叙事顺序（更轻量）：</p>
+<p><code>封面 → 进展概览 → 研究问题/目标 → 已完成工作        → 关键结果 → 当前问题 → 下一步计划 → 讨论/所需帮助   </code></p>
+<h3 id="4-4-通用课程-主题汇报"><a href="#4-4-通用课程-主题汇报" class="headerlink" title="4.4 通用课程&#x2F;主题汇报"></a>4.4 通用课程&#x2F;主题汇报</h3><p>最简结构：</p>
+<p><code>封面 → 背景 → 问题 → 主体 1 → 主体 2 → 主体 3 → 小结   </code></p>
+<p><strong>关键设计</strong>：如果用户<strong>明确给了提纲或目录</strong>，以用户给的为准，不套预设。</p>
+<h2 id="五、和同类工具的差异"><a href="#五、和同类工具的差异" class="headerlink" title="五、和同类工具的差异"></a>五、和同类工具的差异</h2><p>我把市面上主流的 AI 学术 PPT 工具拉了个横评（截至 2026-06-08）：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>输出</th>
+<th>视觉风格</th>
+<th>可编辑</th>
+<th>中文学术适配</th>
+<th>模板 DNA</th>
+<th>来源</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>scholar-ppt-cn</strong></td>
+<td>可编辑 PPTX</td>
+<td>学术正经</td>
+<td>✅ 全可编辑</td>
+<td>✅ 专门优化</td>
+<td>✅ 显式概念</td>
+<td>deathcats4&#x2F;scholar-ppt-cn[1]</td>
+</tr>
+<tr>
+<td>Gamma</td>
+<td>在线 PPT</td>
+<td>商务 marketing</td>
+<td>⚠️ 文字可改</td>
+<td>❌ 偏西文</td>
+<td>❌ 模板化</td>
+<td>gamma.app</td>
+</tr>
+<tr>
+<td>Tome</td>
+<td>在线 PPT</td>
+<td>创意 marketing</td>
+<td>⚠️ 文字可改</td>
+<td>❌ 偏西文</td>
+<td>❌ 模板化</td>
+<td>tome.app</td>
+</tr>
+<tr>
+<td>NotebookLM</td>
+<td>PPT 草稿</td>
+<td>商务</td>
+<td>❌ 需转 PPTX</td>
+<td>❌ 英文优化</td>
+<td>❌</td>
+<td>notebooklm.google.com</td>
+</tr>
+<tr>
+<td>Codex + Image Gen</td>
+<td>一图一 PPT</td>
+<td>自由</td>
+<td>❌ 全图拼成</td>
+<td>⚠️ 看 prompt</td>
+<td>❌</td>
+<td>OpenAI Codex</td>
+</tr>
+<tr>
+<td>codex-ppt (ningzimu)</td>
+<td>一图一 PPT</td>
+<td>风格统一</td>
+<td>❌ 全图拼成</td>
+<td>❌ 英文为主</td>
+<td>⚠️ 风格锁</td>
+<td>GitHub[2]</td>
+</tr>
+<tr>
+<td>ppt-master (hugohe3)</td>
+<td>可编辑 PPTX</td>
+<td>偏商务</td>
+<td>✅ 全可编辑</td>
+<td>⚠️ 通用</td>
+<td>⚠️ 隐式</td>
+<td>GitHub[3]</td>
+</tr>
+<tr>
+<td>ppt-image-first (NyxTides)</td>
+<td>全图 PPT</td>
+<td>image-first</td>
+<td>❌ 全图拼成</td>
+<td>⚠️ 看 prompt</td>
+<td>⚠️ 风格反演</td>
+<td>GitHub[4]</td>
+</tr>
+<tr>
+<td>Anthropic 官方 pptx skill</td>
+<td>可编辑 PPTX</td>
+<td>通用</td>
+<td>✅ 全可编辑</td>
+<td>⚠️ 通用</td>
+<td>❌</td>
+<td>GitHub[5]</td>
+</tr>
+<tr>
+<td>Gabberflast&#x2F;academic-pptx-skill</td>
+<td>可编辑 PPTX</td>
+<td>学术</td>
+<td>✅</td>
+<td>⚠️ 英文</td>
+<td>❌</td>
+<td>GitHub[6]</td>
+</tr>
+</tbody></table>
+<p><img src="/images/c67092969639ee3a.png" srcset="/img/loading.gif" lazyload alt="AI 学术 PPT 工具横评（2026-06）" title="AI 学术 PPT 工具横评（2026-06）"></p>
+<p><strong>scholar-ppt-cn 的 4 个独门武器</strong>：</p>
+<ol>
+<li><p><strong>“模板 DNA”概念</strong>：把”风格”从玄学变成显式参数，19 份 rules 文件把 DNA 拆得明明白白（CJK 排版、版式 archetype、QA 等）</p>
+</li>
+<li><p><strong>中文学术场景深度适配</strong>：CJK 字体规则、版式 archetype、参考文献引用格式全是中文</p>
+</li>
+<li><p><strong>规划表是中央 artifact</strong>：不是”先 AI 生成再改”，而是”先规划再生成”，避免逻辑翻车</p>
+</li>
+<li><p><strong>Mockup family + variants</strong>：在家族稳定性和变化自由度之间找到平衡，既不会千篇一律，也不会视觉系统碎裂</p>
+</li>
+</ol>
+<h2 id="六、5-分钟上手指南"><a href="#六、5-分钟上手指南" class="headerlink" title="六、5 分钟上手指南"></a>六、5 分钟上手指南</h2><h3 id="6-1-安装（Codex-CLI）"><a href="#6-1-安装（Codex-CLI）" class="headerlink" title="6.1 安装（Codex CLI）"></a>6.1 安装（Codex CLI）</h3><p><code># 1. 克隆仓库   git clone https://github.com/deathcats4/scholar-ppt-cn.git      # 2. 复制 skill 到 Codex skills 目录   cp -r scholar-ppt-cn ~/.codex/skills/scholar-ppt-cn      # 3. 重启 Codex   codex   </code></p>
+<h3 id="6-2-安装（Claude-Code）"><a href="#6-2-安装（Claude-Code）" class="headerlink" title="6.2 安装（Claude Code）"></a>6.2 安装（Claude Code）</h3><p><code>git clone https://github.com/deathcats4/scholar-ppt-cn.git   cp -r scholar-ppt-cn ~/.claude/skills/scholar-ppt-cn   </code></p>
+<h3 id="6-3-第一份组会-PPT"><a href="#6-3-第一份组会-PPT" class="headerlink" title="6.3 第一份组会 PPT"></a>6.3 第一份组会 PPT</h3><p>最简提示词（”这页图太小，字体不对，修一下”是其中一种常用语）：</p>
+<p><code>&quot;参考 templates/scholar-ppt-cn-reference-template.pptx 这份模板，   我有一篇论文要做组会汇报 [附 PDF/链接/标题]，   按 scholar-ppt-cn skill 的默认流程：   1. 先做生产规划表   2. 再做 Mockup family + variants 蓝图   3. 先做 5-8 张视觉样板给我确认   4. 确认后扩展成完整可编辑 PPTX&quot;   </code></p>
+<h3 id="6-4-实战小技巧"><a href="#6-4-实战小技巧" class="headerlink" title="6.4 实战小技巧"></a>6.4 实战小技巧</h3><ul>
+<li><p><strong>路线 A 还是 B？</strong> 想要精美视觉走 A，想要可编辑走 B。第一次用建议走 B，更稳</p>
+</li>
+<li><p><strong>5 页参考模板是关键</strong>：你必须先让它读这份模板提取 DNA，否则出来的 PPT 没有”中文学术味”</p>
+</li>
+<li><p><strong>规划表别省</strong>：哪怕赶时间也要把规划表过一遍，否则后面要返工</p>
+</li>
+<li><p><strong>变体选择</strong>：如果某个家族只有 2 个 variant 不够用，可以让它”为 MF-02 增加 2 个 variants”</p>
+</li>
+</ul>
+<h2 id="七、它的局限"><a href="#七、它的局限" class="headerlink" title="七、它的局限"></a>七、它的局限</h2><ul>
+<li><p><strong>star 数还不多</strong>：截至 2026-06-08 是 3 commits 的新项目，社区反馈有限，需要自己多试</p>
+</li>
+<li><p><strong>路线 A 的文字问题</strong>：图像模型生成的中文可能有错字，最终交付前要逐页校对</p>
+</li>
+<li><p><strong>依赖 AI 模型能力</strong>：底层 GPT-5.5 &#x2F; Codex &#x2F; Claude 的理解力直接决定输出质量</p>
+</li>
+<li><p><strong>5 页参考模板不够丰富</strong>：如果你想要「国科大 PPT 模板」那种风格，需要自己提供参考模板</p>
+</li>
+<li><p><strong>没有直接的”论文 PDF → PPT”按钮</strong>：还是要走规划 + 蓝图 + 生成的完整流程，5 分钟是熟练用户的速度</p>
+</li>
+</ul>
+<h2 id="八、为什么这件事值得做"><a href="#八、为什么这件事值得做" class="headerlink" title="八、为什么这件事值得做"></a>八、为什么这件事值得做</h2><p>学术 PPT 的本质是”让评审老师沿清晰思路快速了解你的研究内容”。它不是”做漂亮的页面”，而是”组织一个故事”。</p>
+<p>scholar-ppt-cn 把这件事<strong>结构化</strong>了：</p>
+<ul>
+<li><p>提纲 → 故事结构</p>
+</li>
+<li><p>模板 DNA → 视觉一致性</p>
+</li>
+<li><p>详细版式库 → 页面节奏</p>
+</li>
+<li><p>Montage QA → 最终一致性</p>
+</li>
+</ul>
+<p>这一套方法论不止适用于学术 PPT，<strong>任何需要”先规划再生成”的内容创作都适用</strong>——产品文档、技术分享、投资汇报、政府报告。AI 时代的核心竞争力不是”会用 AI”，而是”会设计 AI 工作的流程”。</p>
+<p>如果你正为组会 PPT 头疼、为开题答辩熬夜、为文献精读汇报抓狂——先跑通 scholar-ppt-cn 的 5 步流程，把规划表做好，<strong>剩下的 80% 时间你只需要确认视觉系统而不是从零开始排版</strong>。</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>scholar-ppt-cn 仓库（GitHub）[7]</p>
+</li>
+<li><p>5 页参考模板（PPTX）[8]</p>
+</li>
+<li><p>本地工作流文档[9]</p>
+</li>
+<li><p>Anthropic 官方 pptx skill（通用对照）[10]</p>
+</li>
+<li><p>codex-ppt（image-first 对照）[11]</p>
+</li>
+<li><p>ppt-master（可编辑 PPTX 对照）[12]</p>
+</li>
+<li><p>清华大学学术 PPT 教程（PDF）[13]</p>
+</li>
+<li><p>37 Claude PPT Skills 横向评测（powerpoint.md）[14]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]deathcats4&#x2F;scholar-ppt-cn: <em><a target="_blank" rel="noopener" href="https://github.com/deathcats4/scholar-ppt-cn">https://github.com/deathcats4/scholar-ppt-cn</a></em></p>
+<p>[2]GitHub: <em><a target="_blank" rel="noopener" href="https://github.com/ningzimu/codex-ppt-skill">https://github.com/ningzimu/codex-ppt-skill</a></em></p>
+<p>[3]GitHub: <em><a target="_blank" rel="noopener" href="https://github.com/hugohe3/ppt-master">https://github.com/hugohe3/ppt-master</a></em></p>
+<p>[4]GitHub: <em><a target="_blank" rel="noopener" href="https://github.com/NyxTides/ppt-image-first">https://github.com/NyxTides/ppt-image-first</a></em></p>
+<p>[5]GitHub: <em><a target="_blank" rel="noopener" href="https://github.com/anthropics/skills/tree/main/skills/pptx">https://github.com/anthropics/skills/tree/main/skills/pptx</a></em></p>
+<p>[6]GitHub: <em><a target="_blank" rel="noopener" href="https://github.com/Gabberflast/academic-pptx-skill">https://github.com/Gabberflast/academic-pptx-skill</a></em></p>
+<p>[7]scholar-ppt-cn 仓库（GitHub）: <em><a target="_blank" rel="noopener" href="https://github.com/deathcats4/scholar-ppt-cn">https://github.com/deathcats4/scholar-ppt-cn</a></em></p>
+<p>[8]5 页参考模板（PPTX）: <em><a target="_blank" rel="noopener" href="https://github.com/deathcats4/scholar-ppt-cn/blob/main/assets/templates/scholar-ppt-cn-reference-template.pptx">https://github.com/deathcats4/scholar-ppt-cn/blob/main/assets/templates/scholar-ppt-cn-reference-template.pptx</a></em></p>
+<p>[9]本地工作流文档: <em><a target="_blank" rel="noopener" href="https://github.com/deathcats4/scholar-ppt-cn/blob/main/docs/local-workflow.md">https://github.com/deathcats4/scholar-ppt-cn/blob/main/docs/local-workflow.md</a></em></p>
+<p>[10]Anthropic 官方 pptx skill（通用对照）: <em><a target="_blank" rel="noopener" href="https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md">https://github.com/anthropics/skills/blob/main/skills/pptx/SKILL.md</a></em></p>
+<p>[11]codex-ppt（image-first 对照）: <em><a target="_blank" rel="noopener" href="https://github.com/ningzimu/codex-ppt-skill">https://github.com/ningzimu/codex-ppt-skill</a></em></p>
+<p>[12]ppt-master（可编辑 PPTX 对照）: <em><a target="_blank" rel="noopener" href="https://github.com/hugohe3/ppt-master">https://github.com/hugohe3/ppt-master</a></em></p>
+<p>[13]清华大学学术 PPT 教程（PDF）: <em><a target="_blank" rel="noopener" href="http://chengqingli.com/htwrp/_c/Mima-Academic-PPT-CN.pdf">http://chengqingli.com/htwrp\_c/Mima-Academic-PPT-CN.pdf</a></em></p>
+<p>[14]37 Claude PPT Skills 横向评测（powerpoint.md）: <em><a target="_blank" rel="noopener" href="https://powerpoint.md/">https://powerpoint.md</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>破译组会 PPT 的「提纲+模板 DNA」：scholar-ppt-cn 让 ChatGPT 5 分钟出一份可编辑的学术汇报</div>
+      <div>https://maoyu92.github.io/2026/06/08/07 AI笔记/AI写作与发布/a095_破译组会 PPT 的「提纲+模板 DNA」：scholar-ppt-cn 让 ChatGPT 5 分钟出一份可编辑的学术/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/09/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a094_%E8%B1%86%E5%8C%85%E8%AF%B4%E4%BD%A0%E8%83%BD%E8%BF%9B%E9%97%A8%EF%BC%9A%E5%BD%93%20AI%20%E5%BC%80%E5%A7%8B%E7%BB%99%E4%BD%A0%E6%83%85%E7%BB%AA%E4%BB%B7%E5%80%BC/" title="豆包说你能进门：当 AI 开始给你情绪价值">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">豆包说你能进门：当 AI 开始给你情绪价值</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/08/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a096_%E7%8E%8B%E5%BA%A7%E6%98%93%E4%B8%BB%EF%BC%9AAnthropic%209650%20%E4%BA%BF%E5%8F%8D%E8%B6%85%20OpenAI%EF%BC%8C6%20%E6%9C%88%20AI%20%E4%B8%89%E5%9B%BD%E6%9D%80%E5%BC%80%E6%89%93/" title="王座易主：Anthropic 9650 亿反超 OpenAI，6 月 AI 三国杀开打">
+                        <span class="hidden-mobile">王座易主：Anthropic 9650 亿反超 OpenAI，6 月 AI 三国杀开打</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

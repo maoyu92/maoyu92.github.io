@@ -1,0 +1,967 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="EXAM NOTES · 系规学习 · 2026.07 安全建设就是不断采购安全设备？ 先识别业务风险， 再建四大安全体系 第9章 · 信息安全规划 · 架构体系与持续运营 系规24期学习整理 · 第06期 · 综合 案例 论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 从业务风险走向四大体 PART 02 9.1 概述 安全必须围绕业务和风 PART 03">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系规第9章：信息安全规划完整学习笔记">
+<meta property="og:url" content="https://maoyu92.github.io/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a037_%E7%B3%BB%E8%A7%84%E7%AC%AC9%E7%AB%A0%EF%BC%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E8%A7%84%E5%88%92%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="EXAM NOTES · 系规学习 · 2026.07 安全建设就是不断采购安全设备？ 先识别业务风险， 再建四大安全体系 第9章 · 信息安全规划 · 架构体系与持续运营 系规24期学习整理 · 第06期 · 综合 案例 论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 从业务风险走向四大体 PART 02 9.1 概述 安全必须围绕业务和风 PART 03">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a037/8876f715cfee8505.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a037/04fc9ebe8e7c762d.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a037/5a0bf5113a18b973.png">
+<meta property="article:published_time" content="2026-07-26T02:29:00.000Z">
+<meta property="article:modified_time" content="2026-07-26T02:29:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/uploads/ai-notes/a037/8876f715cfee8505.png">
+  
+  
+  <title>系规第9章：信息安全规划完整学习笔记 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="系规第9章：信息安全规划完整学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-26 10:29" pubdate>
+          2026年7月26日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          34 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">系规第9章：信息安全规划完整学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>EXAM NOTES · 系规学习 · 2026.07</p>
+<p>安全建设就是不断采购安全设备？</p>
+<p>先识别业务风险，</p>
+<p>再建四大安全体系</p>
+<p>第9章 · 信息安全规划 · 架构体系与持续运营</p>
+<p>系规24期学习整理 · 第06期 · 综合 案例 论文</p>
+<p>6 PARTS + CONCLUSION</p>
+<p>👉 滑动</p>
+<p>PART 01</p>
+<p>本章地图</p>
+<p>从业务风险走向四大体</p>
+<p>PART 02</p>
+<p>9.1 概述</p>
+<p>安全必须围绕业务和风</p>
+<p>PART 03</p>
+<p>9.2 信息安全架构</p>
+<p>从抽象蓝图到安全保障</p>
+<p>PART 04</p>
+<p>9.3 主要内容</p>
+<p>诉求＋组织、管理、技</p>
+<p>PART 05</p>
+<p>9.3.4—9.3.5 技术与运营体系</p>
+<p>让控制真正持续运行</p>
+<p>PART 06</p>
+<p>9.4 规划案例与三门考试</p>
+<p>把清单变成路线图</p>
+<p>PART &#x2F;&#x2F;&#x2F;</p>
+<p>写在最后</p>
+<p>复习建议</p>
+<p>学习目标</p>
+<p>信息安全规划不是安全产品采购清单，而是以业务战略为起点，结合风险、合规和利益相关方诉求，设计组织、管理、技术和运营相互支撑的纵深防御体系。本文按教材9.1—9.4逐节展开。</p>
+<p>这是“系规学习”的第6期。第9章既有大量综合题技术点，也非常适合案例和论文。学习时抓住一条主线：业务目标—风险与合规—安全架构—四大体系—持续运营和改进。</p>
+<p>01PART</p>
+<p>本章地图：从业务风险走向四大体系</p>
+<p>LEARNING · KEY POINTS</p>
+<p>第9章分为四部分：</p>
+<p>19.1 概述：安全属性、威胁、规划原则和注意事项。</p>
+<p>29.2 信息安全架构：三道安全防线、SABSA和安全保障模型。</p>
+<p>39.3 主要内容：利益相关方诉求，以及组织、管理、技术、运营体系规划。</p>
+<p>49.4 案例：把战略、现状、蓝图和项目路线连成规划闭环。</p>
+<p><img src="/uploads/ai-notes/a037/8876f715cfee8505.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 第9章信息安全规划学习地图</p>
+<p>信息安全规划的定义</p>
+<p>信息安全规划以组织发展战略和信息化规划为基础，结合外部合规与内部管控需要，诊断和评估安全差距，形成安全远景、目标、框架、任务与行动路线。它回答：</p>
+<p>●要保护哪些业务和资产；</p>
+<p>●面临哪些威胁、脆弱性和风险；</p>
+<p>●必须满足哪些法律、监管和合同要求；</p>
+<p>●组织、制度、技术和运营分别如何建设；</p>
+<p>●项目按什么优先级和阶段落地；</p>
+<p>●如何衡量、复盘并持续优化。</p>
+<p>02PART</p>
+<p>9.1 概述：安全必须围绕业务和风险展开</p>
+<p>LEARNING · KEY POINTS</p>
+<p>9.1.1 信息安全的核心属性</p>
+<p>信息安全的基本目标通常包括：</p>
+<p>●机密性：信息不被未授权主体获取；</p>
+<p>●完整性：信息及处理过程准确、完整，未被未授权篡改；</p>
+<p>●可用性：授权主体需要时能够访问并使用信息和系统。</p>
+<p>还可延伸到真实性、可追溯性、不可否认性、可靠性等属性。考试看到“泄露”对应机密性，“篡改”对应完整性，“中断、拒绝服务”对应可用性。</p>
+<p>9.1.2 威胁、脆弱性、风险与控制</p>
+<p>●资产是对组织有价值、需要保护的对象；</p>
+<p>●威胁是可能造成损害的潜在原因；</p>
+<p>●脆弱性是资产或控制中可被威胁利用的弱点；</p>
+<p>●风险是威胁利用脆弱性后造成损失的可能性与影响；</p>
+<p>●控制措施用于降低风险发生概率或影响。</p>
+<p>威胁既可能来自外部攻击、恶意代码、供应链和自然灾害，也可能来自内部误操作、权限滥用、制度缺失和设备故障。安全规划不能只防“黑客”，还要覆盖人员、流程、技术和环境。</p>
+<p>9.1.3 六项规划原则</p>
+<p>1系统性：整体、全面、体系化规划，兼顾当前和长远，不能头痛医头。</p>
+<p>2适用性：与企业文化、信息化现状、安全形势、审计、风险和合规环境衔接。</p>
+<p>3时效性：在规划周期内适时有效。短期处理紧迫风险，中长期通常规划1—3年，远景规划3年以上。</p>
+<p>4确定性：内容明确、无歧义，事项有明确责任主体和执行对象。</p>
+<p>5可行性：措施可落地，符合职责、文化、流程、资源和实施难度。</p>
+<p>6易用性：安全系统不仅安全，还应好用、可用、易用，避免安全措施阻碍正常业务。</p>
+<p>口诀：系、适、时、确、可、易。</p>
+<p>9.1.4 四项注意事项</p>
+<p>1追求有效益的安全：投入与风险匹配，不追求脱离业务的绝对安全；重视意识、教育和培训。</p>
+<p>2信息安全战略校准：安全战略与组织战略保持一致，并充分考虑IT战略，避免冲突。</p>
+<p>3基于业务理解风险：风险分析服务业务决策，完整过程包括风险识别、分析、应对、监控、沟通培训、应急准备、审计改进。</p>
+<p>4识别合规性要求：覆盖法律法规、监管、合同、知识产权、隐私、审计、密码和内部制度要求。</p>
+<p>一句话记忆：讲效益、对战略、懂业务、守合规。</p>
+<p>03PART</p>
+<p>9.2 信息安全架构：从抽象蓝图到安全保障</p>
+<p>LEARNING · KEY POINTS</p>
+<p>信息安全架构是企业架构的子集，用一致的方法描述当前和未来的安全结构、过程、系统、人员及组织，并与业务目标保持一致。</p>
+<p>9.2.1 三道安全防线</p>
+<p>1系统安全架构：从系统自身源头构建安全质量属性，减少对外部防御的单一依赖。</p>
+<p>2安全技术体系架构：建设通用安全基础设施、工具、组件和支持系统，增强整体防御能力。</p>
+<p>3审计架构：通过相对独立的审计能力发现安全及其他风险，验证控制是否有效。</p>
+<p><img src="/uploads/ai-notes/a037/04fc9ebe8e7c762d.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 信息安全三道防线</p>
+<p>安全架构设计的根本目标，是识别系统面临的威胁，评价控制措施，选择合理技术，形成能够提升系统安全性的方案。</p>
+<p>9.2.2 SABSA商业应用安全架构</p>
+<p>SABSA强调从业务属性和风险出发设计安全，而不是从某个产品出发。理解时抓住两个维度：</p>
+<p>●横向回答What、Why、How、Who、Where、When等问题；</p>
+<p>●纵向从业务、概念、逻辑、物理、组件逐步落地，并由服务管理持续运营。</p>
+<p>其生命周期包括：</p>
+<p>1战略与规划；</p>
+<p>2设计，包括逻辑、物理、组件和服务管理架构；</p>
+<p>3实施；</p>
+<p>4管理与衡量。</p>
+<p>管理与衡量要求前期设定绩效目标，运行后比较实际绩效并处理偏差，因此安全架构是闭环而非一次性设计。</p>
+<p>9.2.3 信息系统安全保障模型</p>
+<p>安全保障强调：</p>
+<p>●全生命周期动态安全：安全贯穿规划、建设、运行、变更和退出；</p>
+<p>●综合保障：技术、管理和工程共同实施；</p>
+<p>●以风险和策略为基础：根据风险选择保障要素；</p>
+<p>●服务组织使命：最终目的是保证业务目标和使命实现。</p>
+<p>保障能力成熟度可由低到高理解为非正式、计划跟踪、充分定义、量化控制、持续优化。高成熟度不只是控制更多，而是能够度量、预测、复盘并持续改进。</p>
+<p>04PART</p>
+<p>9.3 主要内容：诉求＋组织、管理、技术、运营</p>
+<p>LEARNING · KEY POINTS</p>
+<p>9.3.1 关注利益相关方安全诉求</p>
+<p>利益相关方包括治理层、管理层、业务部门、员工、客户、合作伙伴、监管机构和社会公众。规划前需要识别：</p>
+<p>●关键业务、信息资产及容忍的中断和损失；</p>
+<p>●隐私、保密、可用和审计要求；</p>
+<p>●法律监管、合同和行业要求；</p>
+<p>●客户信任、品牌声誉和供应链要求；</p>
+<p>●投资预算、管理能力和现有安全基础。</p>
+<p>安全目标应可追溯到业务诉求，不能仅由安全部门凭经验决定。</p>
+<p>9.3.2 信息安全组织体系</p>
+<p>组织体系用于协调推动安全工作、明确角色职责并控制风险，至少包括：</p>
+<p>1最高管理层：治理者与执行管理者，确定方向、资源和重大风险决策；</p>
+<p>2协调机构：由管理层和各部门负责人组成，协调跨部门事项；</p>
+<p>3内部组织：安全主管部门和配合部门，承担日常管理与执行；</p>
+<p>4外部联系：与监管、执法、行业组织、供应商和应急机构保持联系。</p>
+<p>案例中如果“安全仅由IT人员兼职负责、业务部门不参与、重大事件无人决策”，本质上是组织体系和责任机制缺失。</p>
+<p>9.3.3 信息安全管理体系</p>
+<p>信息安全管理体系是方针、原则、目标、方法、计划、程序、过程和资源的集合，特点包括：</p>
+<p>●基于系统、全面、科学的风险评估，强调预防；</p>
+<p>●遵守法律法规、监管和合同要求；</p>
+<p>●全过程动态控制，并平衡控制费用与风险；</p>
+<p>●重点保护关键资产，保障机密性、完整性、可用性和业务连续性；</p>
+<p>●动态、系统、全员参与、制度化并持续改进。</p>
+<p>常见路线包括ISO&#x2F;IEC 27001信息安全管理体系和等级保护体系。ISO&#x2F;IEC 27001着眼整体业务风险并可用于第三方认证；ISO&#x2F;IEC 27002提供控制目标和措施参考。</p>
+<p>等级保护</p>
+<p>等级保护按损害对象和严重程度划分五级：自主保护、指导保护、监督保护、强制保护、专控保护。</p>
+<p>等保2.0体现“一个中心、三重防御”：</p>
+<p>●一个中心：安全管理中心；</p>
+<p>●三重防御：安全计算环境、安全区域边界、安全通信网络。</p>
+<p>实施主要包括：</p>
+<p>1安全定级；</p>
+<p>2基本安全要求分析；</p>
+<p>3系统特定安全要求分析；</p>
+<p>4风险评估；</p>
+<p>5改进和选择安全措施；</p>
+<p>6实施安全保护。</p>
+<p>05PART</p>
+<p>9.3.4—9.3.5 技术与运营体系：让控制真正持续运行</p>
+<p>LEARNING · KEY POINTS</p>
+<p>9.3.4 信息安全技术体系</p>
+<p>主要技术和措施包括身份认证、访问控制、入侵检测、防火墙、网闸、防病毒和数据加密等。</p>
+<p>认证三类因素</p>
+<p>●What you know：密码、PIN等“知道的内容”；</p>
+<p>●What you have：智能卡、手机、动态令牌、USB Key等“拥有的物品”；</p>
+<p>●Who you are：指纹、人脸、虹膜等生物特征。</p>
+<p>双因素认证要组合不同类别的因素，仅使用两个密码不构成真正双因素。</p>
+<p>四种访问控制</p>
+<table>
+<thead>
+<tr>
+<th>机制</th>
+<th>判断依据</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DAC自主访问控制</td>
+<td>客体所有者决定访问规则</td>
+</tr>
+<tr>
+<td>RBAC基于角色访问控制</td>
+<td>用户获得角色，角色关联权限</td>
+</tr>
+<tr>
+<td>Rule-BAC基于规则访问控制</td>
+<td>按主体、请求、客体和环境规则判断</td>
+</tr>
+<tr>
+<td>MAC强制访问控制</td>
+<td>依据安全级别标签和强制策略</td>
+</tr>
+</tbody></table>
+<p>常见设备的边界</p>
+<p>●防火墙进行边界访问控制和数据包过滤；</p>
+<p>●IDS侧重监视、发现和告警，IPS还可主动阻断；</p>
+<p>●网闸用于高安全等级网络之间的隔离与受控数据交换；</p>
+<p>●防病毒应覆盖查杀、更新、集中管理与响应；</p>
+<p>●加密保护传输和存储中的数据，但密钥管理同样重要。</p>
+<p>技术不能替代制度、人员和运营。采购了设备而无人配置、监控和处置，控制仍然无效。</p>
+<p>9.3.5 信息安全运营体系</p>
+<p>安全运营是长期持续过程，重点包括：</p>
+<p>1因需可知：仅授予完成工作所需信息的访问权限，侧重“能看到什么”；</p>
+<p>2最小特权：仅授予完成工作所需操作权限，侧重“能做什么”；</p>
+<p>3职责分离：关键过程由多人制衡，避免个人完全控制；</p>
+<p>4双人控制、岗位轮换、强制休假、特权账户管理；</p>
+<p>5安全培训与意识提升：基础知识、操作规范、模拟演练、持续宣传；</p>
+<p>6应急响应：策略、联络、流程、演练、报告记录；</p>
+<p>7事件处理与恢复：检测、遏制、消除、恢复和证据保全；</p>
+<p>8事后总结与改进：收集信息、分析评估、制定措施、实施、监控效果。</p>
+<p><img src="/uploads/ai-notes/a037/5a0bf5113a18b973.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 信息安全四大体系</p>
+<p>06PART</p>
+<p>9.4 规划案例与三门考试：把清单变成路线图</p>
+<p>LEARNING · KEY POINTS</p>
+<p>信息安全规划三步闭环</p>
+<p>1现状调研与需求分析：从战略目标出发，通过风险评估、合规差距、组织需求、行业实践和新兴威胁明确需求。</p>
+<p>2总体架构与蓝图设计：根据目标和需求设计未来安全架构，提炼建设重点与蓝图。</p>
+<p>3项目规划与实施设计：分析现状与目标差距，形成项目，确定阶段目标、优先级、依赖和实施计划并监督执行。</p>
+<p>综合题</p>
+<p>优先掌握：</p>
+<p>●CIA三属性和风险概念；</p>
+<p>●六项规划原则、四项注意事项；</p>
+<p>●三道安全防线、SABSA生命周期；</p>
+<p>●一个中心三重防御、等保五级和六步；</p>
+<p>●三类认证因素、四种访问控制；</p>
+<p>●因需可知、最小特权、职责分离。</p>
+<p>案例题</p>
+<p>按以下维度扫描材料：</p>
+<p>1是否围绕业务、关键资产、风险和合规确定目标；</p>
+<p>2是否有高层支持、协调机构、职责和外部联系；</p>
+<p>3是否建立方针、制度、风险评估、审计和持续改进；</p>
+<p>4技术是否形成身份、边界、终端、应用、数据、监测和容灾的纵深防御；</p>
+<p>5是否持续运营，包括监控、特权账户、培训、应急、事件和复盘；</p>
+<p>6项目是否有优先级、责任人、预算、指标、计划和依赖。</p>
+<p>回答使用“缺陷—风险—措施”。例如：所有管理员共用一个高权限账户，违反最小特权和责任可追溯要求，可能造成越权及事件无法定责；应实名分配账户、按角色最小授权，启用多因素认证、操作审计和定期复核。</p>
+<p>论文</p>
+<p>可按“业务背景—风险与合规—规划原则—现状评估—总体架构—组织管理技术运营四体系—项目路线—成效衡量—持续改进”展开。论文要说明安全与业务如何平衡，避免写成安全产品说明书。</p>
+<p>闭卷自测</p>
+<p>1信息安全CIA三属性分别是什么？</p>
+<p>2信息安全规划六项原则和四项注意事项是什么？</p>
+<p>3完整风险管理过程包括哪些活动？</p>
+<p>4三道安全防线分别是什么？</p>
+<p>5SABSA生命周期和安全保障模型的核心思想是什么？</p>
+<p>6信息安全组织体系至少包括哪四类组织？</p>
+<p>7等保“一个中心三重防御”和六个实施环节是什么？</p>
+<p>8三类认证因素和四种访问控制如何区分？</p>
+<p>9因需可知、最小特权、职责分离有何区别？</p>
+<p>10信息安全规划三大步骤是什么？</p>
+<p>&#x2F;&#x2F;&#x2F;</p>
+<p>LAST</p>
+<p>写在最后</p>
+<p>SUMMARY · REVIEW SMARTER</p>
+<p>第9章的记忆骨架是：</p>
+<p>业务风险定目标，安全架构画蓝图，组织管理技术运营四体系共同落地，监控应急复盘形成闭环。</p>
+<p>第一轮先背六原则、四注意、三防线、四体系；第二轮补等保、认证、访问控制和运营细节；做案例时始终检查“有没有业务依据、有没有责任、有没有制度、有没有纵深技术、有没有持续运营”。</p>
+<p>我是陈文茂，正在用自己的方式重新整理系统规划与管理师学习资料。</p>
+<p>如果这篇对你有帮助，欢迎点赞、在看、转发。</p>
+<p>既然看到这里了，如果觉得有用，随手点个赞、在看、转发三连吧。</p>
+<p>👍 点赞 👀 在看 ↗ 转发</p>
+<p>THANKS FOR READING</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>系规第9章：信息安全规划完整学习笔记</div>
+      <div>https://maoyu92.github.io/2026/07/26/07 AI笔记/软考系规/a037_系规第9章：信息安全规划完整学习笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a036_%E7%B3%BB%E8%A7%84%E7%AC%AC10%E7%AB%A0%EF%BC%9A%E4%BA%91%E5%8E%9F%E7%94%9F%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="系规第10章：云原生系统规划完整学习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">系规第10章：云原生系统规划完整学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a038_%E7%B3%BB%E8%A7%84%E7%AC%AC8%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E8%B5%84%E6%BA%90%E8%A7%84%E5%88%92%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="系规第8章：数据资源规划完整学习笔记">
+                        <span class="hidden-mobile">系规第8章：数据资源规划完整学习笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,838 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="字节跳动 Lance 3B 多模态模型全解析Lance 是字节跳动智能创作实验室于 2026 年 5 月开源的轻量级原生统一多模态模型，仅 3B 激活参数，实现了图像&#x2F;视频的理解、生成、编辑三大类六项核心任务的统一建模，是目前部署门槛极低的全能型多模态模型之一。 核心亮点   维度 关键信息    模型规模 仅 3B 激活参数，bf16 精度运行约需 6GB 显存   部署门槛 消费级显">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[lapis] 字节跳动 Lance 3B 多模态模型全解析">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/30/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a140_[lapis]%20%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%20Lance%203B%20%E5%A4%9A%E6%A8%A1%E6%80%81%E6%A8%A1%E5%9E%8B%E5%85%A8%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="字节跳动 Lance 3B 多模态模型全解析Lance 是字节跳动智能创作实验室于 2026 年 5 月开源的轻量级原生统一多模态模型，仅 3B 激活参数，实现了图像&#x2F;视频的理解、生成、编辑三大类六项核心任务的统一建模，是目前部署门槛极低的全能型多模态模型之一。 核心亮点   维度 关键信息    模型规模 仅 3B 激活参数，bf16 精度运行约需 6GB 显存   部署门槛 消费级显">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-30T00:50:00.000Z">
+<meta property="article:modified_time" content="2026-05-30T00:50:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>[lapis] 字节跳动 Lance 3B 多模态模型全解析 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="[lapis] 字节跳动 Lance 3B 多模态模型全解析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-30 08:50" pubdate>
+          2026年5月30日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">[lapis] 字节跳动 Lance 3B 多模态模型全解析</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="字节跳动-Lance-3B-多模态模型全解析"><a href="#字节跳动-Lance-3B-多模态模型全解析" class="headerlink" title="字节跳动 Lance 3B 多模态模型全解析"></a>字节跳动 Lance 3B 多模态模型全解析</h1><p>Lance 是字节跳动智能创作实验室于 2026 年 5 月开源的<strong>轻量级原生统一多模态模型</strong>，仅 3B 激活参数，实现了图像&#x2F;视频的理解、生成、编辑三大类六项核心任务的统一建模，是目前部署门槛极低的全能型多模态模型之一。</p>
+<h2 id="核心亮点"><a href="#核心亮点" class="headerlink" title="核心亮点"></a>核心亮点</h2><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>关键信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>模型规模</strong></td>
+<td>仅 3B 激活参数，bf16 精度运行约需 6GB 显存</td>
+</tr>
+<tr>
+<td><strong>部署门槛</strong></td>
+<td>消费级显卡（RTX 3090）、Mac M 系列芯片均可本地运行</td>
+</tr>
+<tr>
+<td><strong>核心能力</strong></td>
+<td>文生图&#x2F;图生图、文生视频&#x2F;视频编辑、图像理解&#x2F;视频理解</td>
+</tr>
+<tr>
+<td><strong>开源协议</strong></td>
+<td>Apache-2.0，支持免费商用</td>
+</tr>
+<tr>
+<td><strong>训练成本</strong></td>
+<td>128 张 A100 GPU 完成训练，效率远低于行业常规方案</td>
+</tr>
+</tbody></table>
+<h2 id="技术架构解析"><a href="#技术架构解析" class="headerlink" title="技术架构解析"></a>技术架构解析</h2><p>Lance 的核心创新在于打破了”理解模型”与”生成模型”割裂的行业现状，采用了多项关键技术实现统一建模：</p>
+<h3 id="1-双流混合专家（MoE）架构"><a href="#1-双流混合专家（MoE）架构" class="headerlink" title="1. 双流混合专家（MoE）架构"></a>1. 双流混合专家（MoE）架构</h3><p>共享底层多模态表征主干，同时为理解任务、生成任务配置独立专家子网络，避免任务间冲突。</p>
+<ul>
+<li><p><strong>理解专家</strong>：处理文本&#x2F;语义视觉 token，负责多模态推理</p>
+</li>
+<li><p><strong>生成专家</strong>：处理 VAE 潜在表示，负责视觉合成与编辑</p>
+</li>
+</ul>
+<h3 id="2-统一交织序列建模"><a href="#2-统一交织序列建模" class="headerlink" title="2. 统一交织序列建模"></a>2. 统一交织序列建模</h3><p>将文本 token、ViT 视觉语义 token、VAE 潜在表示整合为单一序列，统一支撑理解、生成、编辑三类任务。提出<strong>模态感知旋转位置编码（MaPE）</strong>，解决不同模态数据的位置歧义问题。</p>
+<h3 id="3-分阶段多任务训练"><a href="#3-分阶段多任务训练" class="headerlink" title="3. 分阶段多任务训练"></a>3. 分阶段多任务训练</h3><p>从零开始训练，而非拼接现有模型，让不同任务能力相互促进、协同成长。</p>
+<h2 id="核心能力表现"><a href="#核心能力表现" class="headerlink" title="核心能力表现"></a>核心能力表现</h2><h3 id="多任务覆盖（六大核心能力）"><a href="#多任务覆盖（六大核心能力）" class="headerlink" title="多任务覆盖（六大核心能力）"></a>多任务覆盖（六大核心能力）</h3><ul>
+<li><p><strong>图像生成&#x2F;编辑</strong>：文生图、图生图、图像局部修改&#x2F;风格迁移</p>
+</li>
+<li><p><strong>视频生成&#x2F;编辑</strong>：文生视频、视频补全&#x2F;风格修改、背景替换</p>
+</li>
+<li><p><strong>图像&#x2F;视频理解</strong>：图文问答、视频问答、跨模态推理</p>
+</li>
+</ul>
+<h3 id="性能表现"><a href="#性能表现" class="headerlink" title="性能表现"></a>性能表现</h3><p>在 GenEval、VBench 等主流基准测试中，多项指标超越同参数甚至更大规模的模型。3B 参数实现了接近大模型的图像&#x2F;视频生成质量，同时大幅降低部署门槛。</p>
+<h2 id="官方资源与部署"><a href="#官方资源与部署" class="headerlink" title="官方资源与部署"></a>官方资源与部署</h2><table>
+<thead>
+<tr>
+<th>资源类型</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>项目官网</td>
+<td><a target="_blank" rel="noopener" href="https://lance-project.github.io//[1/]">https://lance-project.github.io/\[1\]</a></td>
+</tr>
+<tr>
+<td>GitHub 仓库</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/bytedance/Lance/[2/]">https://github.com/bytedance/Lance\[2\]</a></td>
+</tr>
+<tr>
+<td>HuggingFace 模型库</td>
+<td><a target="_blank" rel="noopener" href="https://huggingface.co/bytedance-research/Lance/[3/]">https://huggingface.co/bytedance-research/Lance\[3\]</a></td>
+</tr>
+<tr>
+<td>技术论文（arXiv）</td>
+<td><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.18678/[4/]">https://arxiv.org/abs/2605.18678\[4\]</a></td>
+</tr>
+</tbody></table>
+<h3 id="本地部署快速上手"><a href="#本地部署快速上手" class="headerlink" title="本地部署快速上手"></a>本地部署快速上手</h3><p><code># 克隆仓库   git clone https://github.com/bytedance/Lance.git   cd Lance      # 安装依赖   pip install -r requirements.txt      # 启动图像生成/编辑界面   python lance_gradio_t2i.py      # 启动视频生成/理解界面   python lance_gradio_t2v_v2t.py   </code></p>
+<p><strong>部署要点：</strong></p>
+<ul>
+<li><p>基础运行环境：Python 3.10+、PyTorch 2.0+</p>
+</li>
+<li><p>显存需求：bf16 精度约 6GB，量化后可进一步降低至 4GB 以内</p>
+</li>
+<li><p>社区支持：已出现多种量化版本，适配 24G 以下消费级显卡</p>
+</li>
+</ul>
+<h2 id="在线-Demo-体验"><a href="#在线-Demo-体验" class="headerlink" title="在线 Demo 体验"></a>在线 Demo 体验</h2><p><strong>HyperAI 超神经在线 Demo</strong></p>
+<p>目前国内可直接访问的第三方在线体验平台，已上线 Lance 的完整功能：</p>
+<ul>
+<li><p>地址：<a target="_blank" rel="noopener" href="https://go.hyper.ai/Okkmw/[5/]">https://go.hyper.ai/Okkmw\[5\]</a></p>
+</li>
+<li><p>支持：文生图&#x2F;图生图、图像理解、基础视频生成与编辑</p>
+</li>
+<li><p>特点：无需本地部署，直接在浏览器中体验</p>
+</li>
+</ul>
+<h2 id="行业意义与应用场景"><a href="#行业意义与应用场景" class="headerlink" title="行业意义与应用场景"></a>行业意义与应用场景</h2><h3 id="行业突破"><a href="#行业突破" class="headerlink" title="行业突破"></a>行业突破</h3><ul>
+<li><p>终结了多模态模型”拼积木”的传统方案，首次在 3B 参数下实现全链路统一建模</p>
+</li>
+<li><p>大幅降低了 AI 视觉应用的部署门槛，让本地端侧的多模态交互成为可能</p>
+</li>
+</ul>
+<h3 id="典型应用场景"><a href="#典型应用场景" class="headerlink" title="典型应用场景"></a>典型应用场景</h3><ul>
+<li><p><strong>轻量级 AI 创作工具</strong>：本地文生图&#x2F;视频、图像编辑</p>
+</li>
+<li><p><strong>端侧智能交互</strong>：手机&#x2F;平板上的多模态问答、内容生成</p>
+</li>
+<li><p><strong>行业轻量化改造</strong>：教育、电商、内容创作领域的低成本 AI 集成</p>
+</li>
+</ul>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ul>
+<li><p>该模型为研究项目，部分功能仍在迭代，生成效果与商用成熟模型存在差距</p>
+</li>
+<li><p>视频生成任务对显存和算力要求高于图像生成，需根据硬件配置调整参数</p>
+</li>
+<li><p>商用需遵守 Apache-2.0 协议，注意模型输出内容的版权合规性</p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<p>如果这篇分享对你有所启发，欢迎关注！期待你的点赞、收藏、转发、推荐或留言～ <strong>微信公众号</strong>：环境猫 er <strong>CSDN</strong> : 细节处有神明 <strong>个人博客</strong>：<a href="https://maoyu92.github.io//[6/]">https://maoyu92.github.io/\[6\]</a></p>
+</blockquote>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://lance-project.github.io/">https://lance-project.github.io/</a></em></p>
+<p>[2]<em><a target="_blank" rel="noopener" href="https://github.com/bytedance/Lance">https://github.com/bytedance/Lance</a></em></p>
+<p>[3]<em><a target="_blank" rel="noopener" href="https://huggingface.co/bytedance-research/Lance">https://huggingface.co/bytedance-research/Lance</a></em></p>
+<p>[4]<em><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.18678">https://arxiv.org/abs/2605.18678</a></em></p>
+<p>[5]<em><a target="_blank" rel="noopener" href="https://go.hyper.ai/Okkmw">https://go.hyper.ai/Okkmw</a></em></p>
+<p>[6]<em><a href="https://maoyu92.github.io/">https://maoyu92.github.io/</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>[lapis] 字节跳动 Lance 3B 多模态模型全解析</div>
+      <div>https://maoyu92.github.io/2026/05/30/07 AI笔记/AI写作与发布/a140_[lapis] 字节跳动 Lance 3B 多模态模型全解析/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/30/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a139_%E3%80%90lapis%E3%80%91%E4%B8%AD%E6%96%87%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" title="【lapis】中文测试文章">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【lapis】中文测试文章</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/29/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a141_%E5%BD%93AI%E5%BC%80%E5%A7%8B%E6%8E%A5%E6%89%8B%E4%B8%80%E5%88%87%EF%BC%8C%E6%88%91%E9%87%8D%E6%96%B0%E5%AE%A1%E8%A7%86%E8%87%AA%E5%B7%B1%E7%9A%84%E4%BB%B7%E5%80%BC/" title="当AI开始接手一切，我重新审视自己的价值">
+                        <span class="hidden-mobile">当AI开始接手一切，我重新审视自己的价值</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,917 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="EXAM NOTES · 系规学习 · 2026.07 把应用装进容器，就算完成云原生？ 先改架构与交付方式， 再建治理、自服务和韧性 第10章 · 云原生系统规划 · 原则模式与实施路线 系规24期学习整理 · 第07期 · 综合 案例 论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 概念、原则、模式、路 PART 02 10.1 发展背景 云原生到底“原生">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系规第10章：云原生系统规划完整学习笔记">
+<meta property="og:url" content="https://maoyu92.github.io/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a036_%E7%B3%BB%E8%A7%84%E7%AC%AC10%E7%AB%A0%EF%BC%9A%E4%BA%91%E5%8E%9F%E7%94%9F%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="EXAM NOTES · 系规学习 · 2026.07 把应用装进容器，就算完成云原生？ 先改架构与交付方式， 再建治理、自服务和韧性 第10章 · 云原生系统规划 · 原则模式与实施路线 系规24期学习整理 · 第07期 · 综合 案例 论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 概念、原则、模式、路 PART 02 10.1 发展背景 云原生到底“原生">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a036/e0342f6903fa93c0.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a036/d02d81066f726587.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a036/e2dc59fecf3573c6.png">
+<meta property="article:published_time" content="2026-07-26T02:30:00.000Z">
+<meta property="article:modified_time" content="2026-07-26T02:30:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/uploads/ai-notes/a036/e0342f6903fa93c0.png">
+  
+  
+  <title>系规第10章：云原生系统规划完整学习笔记 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="系规第10章：云原生系统规划完整学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-26 10:30" pubdate>
+          2026年7月26日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          30 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">系规第10章：云原生系统规划完整学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>EXAM NOTES · 系规学习 · 2026.07</p>
+<p>把应用装进容器，就算完成云原生？</p>
+<p>先改架构与交付方式，</p>
+<p>再建治理、自服务和韧性</p>
+<p>第10章 · 云原生系统规划 · 原则模式与实施路线</p>
+<p>系规24期学习整理 · 第07期 · 综合 案例 论文</p>
+<p>6 PARTS + CONCLUSION</p>
+<p>👉 滑动</p>
+<p>PART 01</p>
+<p>本章地图</p>
+<p>概念、原则、模式、路</p>
+<p>PART 02</p>
+<p>10.1 发展背景</p>
+<p>云原生到底“原生”在</p>
+<p>PART 03</p>
+<p>10.2.1—10.2.2 架构定义与七项原则</p>
+<p>完整学习</p>
+<p>PART 04</p>
+<p>10.2.3 七种架构模式</p>
+<p>不同问题需要不同解法</p>
+<p>PART 05</p>
+<p>10.3 建设规划</p>
+<p>五步路线不能颠倒</p>
+<p>PART 06</p>
+<p>10.4 案例、三门考试与闭卷自测</p>
+<p>完整学习</p>
+<p>PART &#x2F;&#x2F;&#x2F;</p>
+<p>写在最后</p>
+<p>复习建议</p>
+<p>学习目标</p>
+<p>云原生不是“上云＋容器”的新名称，而是面向云重新设计应用架构、交付流程和运行方式，让弹性、韧性、安全、可观测和自动化成为平台能力。本文按教材10.1—10.4逐节展开。</p>
+<p>这是“系规学习”的第7期。第10章篇幅不算最长，但“七原则、七模式、五步骤”很适合综合题和案例题。学习时抓住：为什么云原生—怎样设计—有哪些模式—按什么顺序建设。</p>
+<p>01PART</p>
+<p>本章地图：概念、原则、模式、路线</p>
+<p>LEARNING · KEY POINTS</p>
+<p>110.1 发展背景：云原生、12要素、DevOps和DevSecOps。</p>
+<p>210.2 技术架构：定义、七项原则、七种模式和六项优势。</p>
+<p>310.3 建设规划：顶层规划、分步实施的五步路线。</p>
+<p>410.4 实践案例：按业务特征选择架构和迁移方式。</p>
+<p><img src="/uploads/ai-notes/a036/e0342f6903fa93c0.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 第10章云原生系统规划学习地图</p>
+<p>本章先澄清四个误区</p>
+<p>●使用云主机不等于云原生，应用仍可能是难扩展的传统单体。</p>
+<p>●使用容器不等于微服务，单体应用也能被装进容器。</p>
+<p>●拆成微服务不一定更敏捷，边界错误会带来调用、事务和治理复杂度。</p>
+<p>●DevOps不只是工具流水线，核心是跨团队协作、快速反馈与持续改进。</p>
+<p>02PART</p>
+<p>10.1 发展背景：云原生到底“原生”在哪里</p>
+<p>LEARNING · KEY POINTS</p>
+<p>概念演进</p>
+<p>早期云原生常与12要素、微服务、自服务、API协作、抗脆弱性联系。2015年CNCF成立后，容器、编排和微服务逐渐形成生态。2017年前后常用DevOps、持续交付、微服务、容器概括云原生；随后服务网格、不可变基础设施、声明式API、可观测性等被纳入。</p>
+<p>CNCF语境下，云原生强调：</p>
+<p>●基于容器、服务网格、微服务、不可变基础设施和声明式API构建弹性应用；</p>
+<p>●通过自动化形成高容错、易管理、可观察的松耦合系统；</p>
+<p>●建立开放生态，使应用与具体云厂商服务适度解耦。</p>
+<p>12要素的学习重点</p>
+<p>12要素用于指导适合云平台的应用设计，核心思想包括代码基线统一、依赖显式声明、配置与代码分离、后端服务资源化、构建发布运行分离、无状态进程、端口绑定、水平扩展、快速启停、开发生产一致、日志事件流和管理任务一次性运行。</p>
+<p>考试不一定要求逐字背全，但要理解其方向：无状态、配置外置、环境一致、自动交付、易扩展。</p>
+<p>DevOps与DevSecOps</p>
+<p>DevOps通过开发和运维协作，以自动化流水线和快速反馈缩短交付周期。可用“五个持续”理解其闭环：</p>
+<p>●持续集成；</p>
+<p>●持续部署；</p>
+<p>●持续交付；</p>
+<p>●持续监控；</p>
+<p>●持续反馈。</p>
+<p>DevSecOps把安全嵌入需求、设计、编码、构建、测试、部署和运营全过程。安全不再是上线前最后一次检查，而是开发、测试、运维和安全团队共同责任。</p>
+<p>03PART</p>
+<p>10.2.1—10.2.2 架构定义与七项原则</p>
+<p>LEARNING · KEY POINTS</p>
+<p>云原生架构是一组面向云的架构原则和设计模式，其关键是把弹性、韧性、安全、可观测、灰度等非业务能力尽量从业务代码剥离，交给云基础设施和平台，从而让业务代码更专注业务价值。</p>
+<p>七项设计原则</p>
+<p>1服务化：按生命周期和业务边界拆分单元，以接口契约协作，使服务可独立迭代和水平扩展。</p>
+<p>2弹性：部署规模随业务量自动伸缩，不再只依赖固定容量预留。</p>
+<p>3可观测：通过日志、链路追踪和指标主动理解分布式系统内部状态。</p>
+<p>4韧性：依赖组件异常时系统仍能抵御、降级、隔离和恢复。</p>
+<p>5所有过程自动化：通过声明式配置、面向终态交付，实现构建、部署、配置、运维自动化。</p>
+<p>6零信任：默认不信任内外部主体，以身份为中心持续认证、授权和控制访问。</p>
+<p>7架构持续演进：架构允许随业务、技术和反馈持续变化，而不是一次设计永久冻结。</p>
+<p><img src="/uploads/ai-notes/a036/d02d81066f726587.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 云原生七项设计原则</p>
+<p>记忆骨架：服、弹、观、韧、自、零、演。</p>
+<p>最容易混淆的三组</p>
+<p>●弹性关注负载变化时“规模能否自动调整”；韧性关注故障发生时“系统能否承受和恢复”。</p>
+<p>●监控采集预先定义的状态；可观测性希望从日志、追踪和指标推断未知问题的内部原因。</p>
+<p>●自动化不是写几个脚本，而是以标准、声明式、可重复方式把全过程交给平台执行。</p>
+<p>04PART</p>
+<p>10.2.3 七种架构模式：不同问题需要不同解法</p>
+<p>LEARNING · KEY POINTS</p>
+<p>1. 服务化架构</p>
+<p>以应用模块为粒度划分软件，用接口契约定义关系、标准协议互通，并结合DDD、测试驱动和容器化提高独立交付能力。典型形态：</p>
+<p>●微服务：粒度较小、独立部署、数据自治；</p>
+<p>●小服务：一组关系紧密且可能共享数据的服务组合，避免超大型系统拆得过细。</p>
+<p>拆分依据应是业务边界与生命周期，而不是按技术层或开发人数机械拆分。</p>
+<p>2. Mesh化架构</p>
+<p>服务网格把通信、路由、熔断、安全等中间件能力从业务进程剥离到代理层，使SDK与业务代码解耦，便于跨语言治理和统一升级。它解决的是服务间通信治理，不替代业务服务设计。</p>
+<p>3. Serverless</p>
+<p>Serverless把服务器配置、容量和部署细节交给平台，开发者聚焦函数或业务逻辑。适合事件驱动、突发负载、短时任务等场景，但并非适用于所有应用；长时间运行、强状态、极端低时延或需要深度环境控制时需谨慎。</p>
+<p>4. 存储计算分离</p>
+<p>把有状态存储与无状态计算解耦。计算节点更容易弹性扩缩和替换，数据交由独立存储服务保障持久性、可用性和扩展。无状态应用不涉及自身数据副本一致性，更容易获得良好可用性和分区容错能力。</p>
+<p>5. 分布式事务</p>
+<p>微服务通常拥有私有数据源，一个业务跨多个服务时会出现一致性问题。架构师应根据一致性、可用性、性能和业务补偿能力选择事务模式，不能沿用单库事务思路强行覆盖全部场景。</p>
+<p>6. 可观测架构</p>
+<p>三大支柱：</p>
+<p>●Logging：事件与详细上下文；</p>
+<p>●Tracing：请求跨服务的完整调用链；</p>
+<p>●Metrics：系统量化指标。</p>
+<p>目标是度量SLO并优化SLA。应定义并发度、耗时、可用时长、容量、错误率等服务目标。</p>
+<p>7. 事件驱动架构</p>
+<p>EDA通过带有Schema和服务质量保障的事件实现组件解耦，可用于增强韧性、CQRS、数据变化通知、开放接口、事件流处理和事件触发响应。</p>
+<p>口诀：服、网、无、分、事、观、驱，对应服务化、Mesh、Serverless、存算分离、分布式事务、可观测、事件驱动。</p>
+<p>六项优势</p>
+<p>云原生具有高可扩展性、高可用性、灵活性、安全性、成本效益和高度自动化等优势。但优势不是自动获得的：错误拆分、治理缺失、成本不可见或安全责任不清，反而会增加复杂度。</p>
+<p>05PART</p>
+<p>10.3 建设规划：五步路线不能颠倒</p>
+<p>LEARNING · KEY POINTS</p>
+<p>教材提出“顶层规划＋分步实施”的五步路线：</p>
+<p>1微服务采用及运行环境容器云平台构建；</p>
+<p>2服务管理和治理；</p>
+<p>3持续交付及安全；</p>
+<p>4自服务敏捷响应基础设施；</p>
+<p>5增强生产环境韧性和安全性。</p>
+<p><img src="/uploads/ai-notes/a036/e2dc59fecf3573c6.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 云原生五步建设路线</p>
+<p>第一步：微服务＋容器云</p>
+<p>●识别适合改造的系统和业务边界；</p>
+<p>●使用DDD等方法拆分服务，不追求服务越小越好；</p>
+<p>●建设容器与编排平台，提供部署、资源调度、健康检查、故障恢复和弹性；</p>
+<p>●规划服务器、存储、网络、培训和迁移项目；</p>
+<p>●可参考主数据和通用数据模型设计可复用服务。</p>
+<p>容器平台和微服务改造可以分别立项并多次迭代。不要一次性重写所有系统。</p>
+<p>第二步：服务管理和治理</p>
+<p>建设注册发现、配置、路由、负载均衡、限流、熔断、弹性和API治理。Kubernetes、Service Mesh或相关框架可提供不同层次能力。</p>
+<p>要区分：</p>
+<p>●微服务API主要支撑服务内部协作；</p>
+<p>●OpenAPI通过API网关面向跨平台、跨组织或生态开放。</p>
+<p>第三步：持续交付及安全</p>
+<p>以DevOps构建持续集成、部署、交付、监控、反馈闭环，同时把认证权限、代码扫描、依赖检查、镜像检查、容器、接口和运行时安全嵌入流水线，形成DevSecOps。</p>
+<p>第四步：自服务敏捷基础设施</p>
+<p>基础设施可分为：</p>
+<p>1基础设施资源：统一封装异构云、计算、存储和网络；</p>
+<p>2支撑平台：容器云、持续交付等开发运行运维平台；</p>
+<p>3纯技术工具：消息、日志、配置、监控、告警、认证、权限、调度、AI等公共服务。</p>
+<p>通过门户、目录、模板和API让团队按规则自助获取能力，减少人工工单和重复建设。</p>
+<p>第五步：增强生产韧性和安全</p>
+<p>通过故障注入、混沌工程、限流降级、隔离、备份恢复和应急演练主动发现弱点并修复。混沌工程不是在生产环境随意制造事故，而是在边界、监控、回滚和授权明确的条件下验证假设。</p>
+<p>安全同样持续演进：设计时减少漏洞，流水线中检测，运行时防护，事件后复盘。</p>
+<p>06PART</p>
+<p>10.4 案例、三门考试与闭卷自测</p>
+<p>LEARNING · KEY POINTS</p>
+<p>案例常见问题</p>
+<p>●为追求“先进”一次性拆分所有系统，没有业务优先级和迁移路线；</p>
+<p>●只建容器平台，没有微服务治理、可观测和持续交付；</p>
+<p>●服务颗粒度过细，调用链和分布式事务失控；</p>
+<p>●共享数据库导致服务耦合，或私有数据源后没有一致性策略；</p>
+<p>●仅有CPU监控，没有日志、追踪、SLO和业务指标；</p>
+<p>●流水线速度很快，却没有代码、镜像、权限和运行时安全；</p>
+<p>●扩容依靠人工，公共能力仍通过工单申请；</p>
+<p>●从未做故障演练，所谓高可用只存在设计文档中。</p>
+<p>综合题</p>
+<p>重点识别：</p>
+<p>●云原生概念和DevOps&#x2F;DevSecOps；</p>
+<p>●七项原则及弹性、韧性、可观测区别；</p>
+<p>●七种架构模式的场景；</p>
+<p>●Logging、Tracing、Metrics；</p>
+<p>●五步实施路线和每一步能力。</p>
+<p>案例题答题模板</p>
+<p>1从业务价值和现状评估确定改造范围与优先级；</p>
+<p>2按领域边界拆分服务并建设容器运行平台；</p>
+<p>3建设注册发现、配置、流量、API和服务网格治理；</p>
+<p>4构建CI&#x2F;CD和DevSecOps，统一制品与环境；</p>
+<p>5建立日志、追踪、指标和SLO；</p>
+<p>6沉淀可自助获取的公共技术服务；</p>
+<p>7通过弹性、隔离、降级、混沌演练和安全运营增强生产韧性；</p>
+<p>8分阶段迁移、度量成效并持续演进。</p>
+<p>论文</p>
+<p>可按“背景痛点—现状评估—目标架构—七原则应用—五步路线—风险控制—成效指标—持续演进”组织。应写清旧系统如何渐进迁移、如何处理数据与事务、如何保证业务连续，不能只罗列容器和微服务名词。</p>
+<p>闭卷自测</p>
+<p>1云原生与普通上云、容器化有什么区别？</p>
+<p>2DevOps和DevSecOps的核心是什么？</p>
+<p>3七项设计原则是什么？</p>
+<p>4如何区分弹性、韧性和可观测？</p>
+<p>5七种架构模式分别解决什么问题？</p>
+<p>6Logging、Tracing、Metrics分别提供什么能力？</p>
+<p>7云原生五步建设路线是什么？</p>
+<p>8微服务API和OpenAPI有什么区别？</p>
+<p>9自服务敏捷基础设施包括哪三部分？</p>
+<p>10为什么混沌工程要放在能力成熟后受控开展？</p>
+<p>&#x2F;&#x2F;&#x2F;</p>
+<p>LAST</p>
+<p>写在最后</p>
+<p>SUMMARY · REVIEW SMARTER</p>
+<p>第10章的稳定骨架是：</p>
+<p>七项原则控制方向，七种模式解决问题，五步路线安排建设顺序。</p>
+<p>云原生转型真正改变的是架构、组织协作、交付流程和运营方式。第一轮先背“服弹观韧自零演”和五步路线；第二轮再补七种模式、可观测与每一步的实施细节。</p>
+<p>我是陈文茂，正在用自己的方式重新整理系统规划与管理师学习资料。</p>
+<p>如果这篇对你有帮助，欢迎点赞、在看、转发。</p>
+<p>既然看到这里了，如果觉得有用，随手点个赞、在看、转发三连吧。</p>
+<p>👍 点赞 👀 在看 ↗ 转发</p>
+<p>THANKS FOR READING</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>系规第10章：云原生系统规划完整学习笔记</div>
+      <div>https://maoyu92.github.io/2026/07/26/07 AI笔记/软考系规/a036_系规第10章：云原生系统规划完整学习笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a035_%E7%B3%BB%E8%A7%84%E7%AC%AC11%E7%AB%A0%EF%BC%9A%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E6%B2%BB%E7%90%86%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="系规第11章：信息系统治理完整学习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">系规第11章：信息系统治理完整学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a037_%E7%B3%BB%E8%A7%84%E7%AC%AC9%E7%AB%A0%EF%BC%9A%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E8%A7%84%E5%88%92%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="系规第9章：信息安全规划完整学习笔记">
+                        <span class="hidden-mobile">系规第9章：信息安全规划完整学习笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

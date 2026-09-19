@@ -1,0 +1,902 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="DeepSeek V4 编程能力超越 Claude！国产 AI 掀起 coding 开源革命2026年4月24日，DeepSeek V4 如一颗深水炸弹，炸开了全球AI圈。 Design2Code 92.0分，超越 Claude 3 Opus 与 GPT-4 Turbo；百万级 tokens 超长上下文作为全系标配而非附加功能；训练成本仅 557.6万美元，不到 GPT-4o 的十分之一。 这不是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DeepSeek V4 编程能力超越 Claude！国产 AI 掀起coding开源革命">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/27/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a158_DeepSeek%20V4%20%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E8%B6%85%E8%B6%8A%20Claude%EF%BC%81%E5%9B%BD%E4%BA%A7%20AI%20%E6%8E%80%E8%B5%B7coding%E5%BC%80%E6%BA%90%E9%9D%A9%E5%91%BD/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="DeepSeek V4 编程能力超越 Claude！国产 AI 掀起 coding 开源革命2026年4月24日，DeepSeek V4 如一颗深水炸弹，炸开了全球AI圈。 Design2Code 92.0分，超越 Claude 3 Opus 与 GPT-4 Turbo；百万级 tokens 超长上下文作为全系标配而非附加功能；训练成本仅 557.6万美元，不到 GPT-4o 的十分之一。 这不是">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-27T02:03:00.000Z">
+<meta property="article:modified_time" content="2026-05-27T02:03:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>DeepSeek V4 编程能力超越 Claude！国产 AI 掀起coding开源革命 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="DeepSeek V4 编程能力超越 Claude！国产 AI 掀起coding开源革命"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-27 10:03" pubdate>
+          2026年5月27日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">DeepSeek V4 编程能力超越 Claude！国产 AI 掀起coding开源革命</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="DeepSeek-V4-编程能力超越-Claude！国产-AI-掀起-coding-开源革命"><a href="#DeepSeek-V4-编程能力超越-Claude！国产-AI-掀起-coding-开源革命" class="headerlink" title="DeepSeek V4 编程能力超越 Claude！国产 AI 掀起 coding 开源革命"></a>DeepSeek V4 编程能力超越 Claude！国产 AI 掀起 coding 开源革命</h1><p>2026年4月24日，DeepSeek V4 如一颗深水炸弹，炸开了全球AI圈。</p>
+<p><strong>Design2Code 92.0分</strong>，超越 Claude 3 Opus 与 GPT-4 Turbo；<strong>百万级 tokens 超长上下文</strong>作为全系标配而非附加功能；训练成本仅 <strong>557.6万美元</strong>，不到 GPT-4o 的十分之一。</p>
+<p>这不是国产大模型的偶然冒头，而是从架构层到生态层的一次系统突围。</p>
+<hr>
+<h2 id="一、核心突破：三个数字看懂-V4"><a href="#一、核心突破：三个数字看懂-V4" class="headerlink" title="一、核心突破：三个数字看懂 V4"></a>一、核心突破：三个数字看懂 V4</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>1.6T：参数与架构</p>
+<p>V4-Pro 总参数量 <strong>1.6 万亿（1.6T），激活 49B</strong>；V4-Flash 总参数 2840 亿，激活 13B。主打轻量化部署与高吞吐 API，面向大规模日常推理场景。</p>
+<p>核心架构从传统的 Transformer 升级为 <strong>CSA（压缩稀疏注意力）+ HCA（重度压缩注意力）混合注意力机制</strong>，交替工作：</p>
+<ul>
+<li><p><strong>CSA</strong>：将 100 万 token 的 KV Cache 压缩成 25 万条，再挑出最关键的部分计算注意力</p>
+</li>
+<li><p><strong>HCA</strong>：将 100 万 token 压成 7800 条后做完整注意力</p>
+</li>
+</ul>
+<p>结果：在百万上下文推理中，V4-Pro 单 Token 计算量仅为前代 V3.2 的 **25%**，KV Cache 显存占用降至 **10%**。</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>92%：编程能力</p>
+<p>|<br>基准</p>
+<p> | </p>
+<p>DeepSeek V4-Pro</p>
+<p> | </p>
+<p>对比</p>
+<p> |<br>| — | — | — |<br>| </p>
+<p>HumanEval</p>
+<p> | </p>
+<p>~90%</p>
+<p> | </p>
+<p>超越 Claude 88%、GPT-4 82%</p>
+<p> |<br>| </p>
+<p>Design2Code</p>
+<p> | </p>
+<p>92.0%</p>
+<p> | </p>
+<p>超越 Claude 3 Opus、GPT-4 Turbo</p>
+<p> |<br>| </p>
+<p>SWE-bench Verified</p>
+<p> | </p>
+<p>80.6%</p>
+<p> | </p>
+<p>比肩 Claude Opus 4.6</p>
+<p> |<br>| </p>
+<p>LiveCodeBench (Pass@1)</p>
+<p> | </p>
+<p>93.5%</p>
+<p> | </p>
+<p>开源领域领先</p>
+<p> |</p>
+<p>V4 不仅”答对题”，更关键的是<strong>跨文件级代码逻辑理解能力</strong>——它能看懂一个数万行代码库的结构，提出重构方案，这是初级编程工具做不到的。</p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>557.6 万美元：训练成本</p>
+<p>|<br>模型</p>
+<p> | </p>
+<p>训练算力成本（估算）</p>
+<p> |<br>| — | — |<br>| </p>
+<p>DeepSeek V4</p>
+<p> | <strong>557.6万美元</strong> |<br>| </p>
+<p>GPT-4o（估算）</p>
+<p> | </p>
+<p>1亿~2亿美元</p>
+<p> |<br>| </p>
+<p>Claude Opus 4.x（估算）</p>
+<p> | </p>
+<p>2亿~3亿美元</p>
+<p> |</p>
+<p>差距并非来自”更少努力”，而是<strong>架构创新</strong>带来的效率革命：mHC（流形约束超连接）解决超深网络信号衰减问题，Muon 优化器替换 AdamW，FP4 量化训练解决数值稳定性——每个环节都在压缩成本。</p>
+<hr>
+<h2 id="二、为什么这不只是”又一款国产模型”"><a href="#二、为什么这不只是”又一款国产模型”" class="headerlink" title="二、为什么这不只是”又一款国产模型”"></a>二、为什么这不只是”又一款国产模型”</h2><h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><p>鲶鱼效应：从 V2 到 V4 的技术演进路径</p>
+<p>DeepSeek 不是第一次扮演搅局者。</p>
+<p>|<br>版本</p>
+<p> | </p>
+<p>时间</p>
+<p> | </p>
+<p>核心贡献</p>
+<p> |<br>| — | — | — |<br>| </p>
+<p>V2</p>
+<p> | </p>
+<p>2024年</p>
+<p> | </p>
+<p>MLA（多头潜在注意力），KV Cache 降低 93%</p>
+<p> |<br>| </p>
+<p>V3</p>
+<p> | </p>
+<p>2024年12月</p>
+<p> | </p>
+<p>训练成本 550 万美元，性能对标 GPT-4o</p>
+<p> |<br>| </p>
+<p>R1</p>
+<p> | </p>
+<p>2025年1月</p>
+<p> | </p>
+<p>推理模型，验证 RL + LLM 路径</p>
+<p> |<br>| </p>
+<p>V4</p>
+<p> | </p>
+<p>2026年4月</p>
+<p> | </p>
+<p>CSA&#x2F;HCA + mHC + Engram + 百万上下文全系标配</p>
+<p> |</p>
+<p>每一代都在做同一件事：<strong>让智能更便宜，让长上下文不再是奢侈品。</strong></p>
+<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><p>百万上下文普惠：从”贵族功能”到”基础设施”</p>
+<p>过去，100 万 token 上下文是 OpenAI、Anthropic 的”贵族功能”，收费昂贵且不稳定。V4 将其变为：</p>
+<ul>
+<li><p><strong>默认全系标配</strong>（非付费附加项）</p>
+</li>
+<li><p>**KV Cache 降低到传统方案的 2%**（成本可行）</p>
+</li>
+<li><p><strong>输入缓存命中价格降至 0.02 元&#x2F;百万 token</strong>（比御三家便宜 95%+）</p>
+</li>
+</ul>
+<p>这意味着：<strong>任何开发者都可以用 DeepSeek V4 处理一本《战争与和平》级别的上下文</strong>，这对代码库分析、法律合同审查、财报分析等场景是实质性颠覆。</p>
+<hr>
+<h2 id="三、Agent-时代的新竞争规则"><a href="#三、Agent-时代的新竞争规则" class="headerlink" title="三、Agent 时代的新竞争规则"></a>三、Agent 时代的新竞争规则</h2><h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><p>对话式 AI vs. Agent AI：规则已变</p>
+<p>在纯对话时代，模型质量上限决定一切——Opus 4.6 天下第一，没有然后。</p>
+<p>但在 Agent 时代，竞争维度发生了切换：</p>
+<p><strong>质量 × 稳定性 × 成本 × 高频调用支持度</strong></p>
+<p>当 Claude Sonnet 4.6 在第三方测试中出现<strong>性能下滑、推理深度崩塌 67%</strong> 时，Anthropic 的订阅制定价却无法支撑 Agent 时代的高频调用消耗。</p>
+<p>DeepSeek 的解法是：<strong>在中间层任务（跨文件重构、API 集成、报告生成）用成本+稳定性切走蛋糕</strong>，而非硬碰硬挑战最高难度任务。</p>
+<h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><p>国产算力适配：真正的”闭环”</p>
+<p>V4 另一层战略意义在于<strong>全栈国产算力适配</strong>：</p>
+<p>|<br>国产芯片</p>
+<p> | </p>
+<p>适配成果</p>
+<p> |<br>| — | — |<br>| </p>
+<p>华为昇腾 950PR</p>
+<p> | </p>
+<p>DeepSeek 全面迁移至 CANN 生态</p>
+<p> |<br>| </p>
+<p>寒武纪</p>
+<p> | </p>
+<p>深度优化热点算子，vLLM 框架支持混合并行</p>
+<p> |<br>| </p>
+<p>摩尔线程 MTT S5000</p>
+<p> | </p>
+<p>原生支持 FP8，显存带宽压力降低 50%</p>
+<p> |<br>| </p>
+<p>沐曦</p>
+<p> | </p>
+<p>核心算子优化，国产芯片端 3.4 倍推理加速</p>
+<p> |<br>| </p>
+<p>海光 DTK</p>
+<p> | </p>
+<p>全栈深度调优，超 2000 算子支持</p>
+<p> |</p>
+<p>阿里、字节、腾讯已合计采购昇腾 950PR <strong>超 46 万颗</strong>，占全年预计出货量 60% 以上。</p>
+<p><strong>“够用”二字，在产业链里价值连城。</strong></p>
+<hr>
+<h2 id="四、谁在用-V4？怎么用？"><a href="#四、谁在用-V4？怎么用？" class="headerlink" title="四、谁在用 V4？怎么用？"></a>四、谁在用 V4？怎么用？</h2><h3 id="-7"><a href="#-7" class="headerlink" title=""></a></h3><p>主要应用场景</p>
+<ol>
+<li><p><strong>编程开发</strong>：代码补全、单元测试生成、跨文件重构、Bug 修复</p>
+</li>
+<li><p><strong>长文档处理</strong>：财报分析、合同审查、论文综诉（基于百万上下文）</p>
+</li>
+<li><p><strong>Agent 基础设施</strong>：针对 Claude Code、OpenClaw、CodeBuddy 等主流框架专项优化</p>
+</li>
+<li><p><strong>高并发 API 调用</strong>：V4-Flash 主打吞吐量，适合初创企业和独立开发者</p>
+</li>
+</ol>
+<h3 id="-8"><a href="#-8" class="headerlink" title=""></a></h3><p>价格参考（限时优惠后）</p>
+<p>|<br>模型</p>
+<p> | </p>
+<p>输入价格（缓存命中）</p>
+<p> |<br>| — | — |<br>| </p>
+<p>V4-Flash</p>
+<p> | <strong>0.02 元&#x2F;百万 tokens</strong> |<br>| </p>
+<p>V4-Pro</p>
+<p> | <strong>0.025 元&#x2F;百万 tokens</strong> |</p>
+<p>V4-Pro 单次生成输出支出约为 Claude Opus 4.6 的 **11.6%**（3.48 美元 vs 30.00 美元）。</p>
+<hr>
+<h2 id="五、局限与挑战"><a href="#五、局限与挑战" class="headerlink" title="五、局限与挑战"></a>五、局限与挑战</h2><p>诚实地讲，V4 并非全能：</p>
+<ul>
+<li><p><strong>前端 UI 视觉抛光度</strong>：不如 GPT-5.5 和 Claude 4.7，代码逻辑正确但美学排版相对粗糙</p>
+</li>
+<li><p><strong>复杂并发状态下的输出格式稳定性</strong>：与 LangChain、n8n 等开源工具链适配仍需时间</p>
+</li>
+<li><p><strong>工具调用生态</strong>：需要强制回传 reasoning_content，与部分 Agent 框架的适配有学习成本</p>
+</li>
+<li><p><strong>“深层推理”上限</strong>：涉及数百步连续推导的复杂数学证明，仍可能出错</p>
+</li>
+</ul>
+<p><strong>但这些局限，是在承认其成就的前提下讨论的。</strong> 就像没人会因为法拉利无法运货而否认它的速度。</p>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>DeepSeek V4 的出现，印证了一个越来越清晰的判断：</p>
+<blockquote>
+<p>“</p>
+<p><strong>在 Agent 时代，AI 竞争的本质不是”谁最强”，而是”谁能让更多人用得起、用得好”。</strong></p>
+</blockquote>
+<p>国产大模型不再只是”追赶者”——它们正在定义新的游戏规则：更低的推理成本、更开放的生态适配、更彻底的国产化闭环。</p>
+<p>这条路的终点，不是超越 Opus，而是<strong>证明这条路能走通</strong>。</p>
+<p>只要鲶鱼还在游，整个池子的水就会被搅活。</p>
+<hr>
+<p><em>参考资料：DeepSeek V4 技术报告（官方）、腾讯云开发者社区、零壹AI实验室、爱建证券研报、最话 FunTalk 等，2026年4-5月</em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>DeepSeek V4 编程能力超越 Claude！国产 AI 掀起coding开源革命</div>
+      <div>https://maoyu92.github.io/2026/05/27/07 AI笔记/AI写作与发布/a158_DeepSeek V4 编程能力超越 Claude！国产 AI 掀起coding开源革命/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/27/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a153_GroundingDINO%EF%BC%9A%E7%94%A8%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%A3%80%E6%B5%8B%E4%B8%87%E7%89%A9%EF%BC%8C%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%9A%84%E8%8C%83%E5%BC%8F%E9%9D%A9%E5%91%BD/" title="GroundingDINO：用一句话检测万物，计算机视觉的范式革命">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">GroundingDINO：用一句话检测万物，计算机视觉的范式革命</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/27/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a154_%E4%B8%87%E8%83%BD%E6%8E%A5%E5%8F%A3%EF%BC%9AMCP%E5%8D%8F%E8%AE%AE%E6%AD%A3%E5%9C%A8%E6%88%90%E4%B8%BAAI%20Agent%E7%9A%84%E3%80%8CUSB-C%E3%80%8D/" title="万能接口：MCP协议正在成为AI Agent的「USB-C」">
+                        <span class="hidden-mobile">万能接口：MCP协议正在成为AI Agent的「USB-C」</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1005 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="当你的 RAG 系统因为 PDF 解析错乱而吐出幻觉时，问题不在 LLM，而在喂进去的「食材」根本没洗干净。  一、AI 时代的文档困局过去两年，RAG（检索增强生成）和 AI Agent 的爆炸式增长让「文档理解」从一个边缘需求变成了基础设施级命题。 问题在于：现实世界的文档是一锅乱炖。PDF 里嵌着扫描件，扫描件里藏着手写体，手写体旁边飘着数学公式，公式下面压着三栏排版——人类读者凭经验能自">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文档巴别塔的拆解者：MinerU如何把任意文档变成AI可消化的结构化数据">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/22/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a069_%E6%96%87%E6%A1%A3%E5%B7%B4%E5%88%AB%E5%A1%94%E7%9A%84%E6%8B%86%E8%A7%A3%E8%80%85%EF%BC%9AMinerU%E5%A6%82%E4%BD%95%E6%8A%8A%E4%BB%BB%E6%84%8F%E6%96%87%E6%A1%A3%E5%8F%98%E6%88%90AI%E5%8F%AF%E6%B6%88%E5%8C%96%E7%9A%84%E7%BB%93%E6%9E%84%E5%8C%96%E6%95%B0%E6%8D%AE/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="当你的 RAG 系统因为 PDF 解析错乱而吐出幻觉时，问题不在 LLM，而在喂进去的「食材」根本没洗干净。  一、AI 时代的文档困局过去两年，RAG（检索增强生成）和 AI Agent 的爆炸式增长让「文档理解」从一个边缘需求变成了基础设施级命题。 问题在于：现实世界的文档是一锅乱炖。PDF 里嵌着扫描件，扫描件里藏着手写体，手写体旁边飘着数学公式，公式下面压着三栏排版——人类读者凭经验能自">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/images/abf3ea94745aefb5.png">
+<meta property="article:published_time" content="2026-06-22T02:09:00.000Z">
+<meta property="article:modified_time" content="2026-06-22T02:09:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/images/abf3ea94745aefb5.png">
+  
+  
+  <title>文档巴别塔的拆解者：MinerU如何把任意文档变成AI可消化的结构化数据 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="文档巴别塔的拆解者：MinerU如何把任意文档变成AI可消化的结构化数据"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-22 10:09" pubdate>
+          2026年6月22日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">文档巴别塔的拆解者：MinerU如何把任意文档变成AI可消化的结构化数据</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>当你的 RAG 系统因为 PDF 解析错乱而吐出幻觉时，问题不在 LLM，而在喂进去的「食材」根本没洗干净。</p>
+</blockquote>
+<h2 id="一、AI-时代的文档困局"><a href="#一、AI-时代的文档困局" class="headerlink" title="一、AI 时代的文档困局"></a>一、AI 时代的文档困局</h2><p>过去两年，RAG（检索增强生成）和 AI Agent 的爆炸式增长让「文档理解」从一个边缘需求变成了基础设施级命题。</p>
+<p>问题在于：现实世界的文档是一锅乱炖。PDF 里嵌着扫描件，扫描件里藏着手写体，手写体旁边飘着数学公式，公式下面压着三栏排版——人类读者凭经验能自动纠偏，但 LLM 只会照单全收，然后一本正经地胡说八道。</p>
+<p>传统 OCR 工具（如 Tesseract）能识别字符，但不懂版面结构。PDF 提取库（如 PyPDF2、pdfplumber）能抽文字，但遇到扫描件就抓瞎。而商业方案（如 Adobe Extract API）价格不菲，且数据必须离开本地。</p>
+<p>这就是 <strong>MinerU</strong> 登场的位置。</p>
+<h2 id="二、MinerU-是什么"><a href="#二、MinerU-是什么" class="headerlink" title="二、MinerU 是什么"></a>二、MinerU 是什么</h2><p>MinerU 由上海人工智能实验室 OpenDataLab 团队开源，是一套专为 LLM、RAG 和 AI Agent 场景打造的高精度文档解析引擎。</p>
+<p>一句话概括它的能力：<strong>把 PDF、DOCX、PPTX、XLSX、图片、网页，一键转成结构化 Markdown 或 JSON，输出符合人类阅读顺序，公式变 LaTeX，表格变 HTML。</strong></p>
+<p>自 2024 年 9 月发布首篇技术报告以来，MinerU 已经迭代到 3.4 版本（2026 年 6 月 18 日发布），形成了三引擎并行的架构格局。</p>
+<h2 id="三、三引擎架构：不止一种方式拆文档"><a href="#三、三引擎架构：不止一种方式拆文档" class="headerlink" title="三、三引擎架构：不止一种方式拆文档"></a>三、三引擎架构：不止一种方式拆文档</h2><p><img src="/images/abf3ea94745aefb5.png" srcset="/img/loading.gif" lazyload alt="MinerU 架构图" title="MinerU 架构图"></p>
+<p>MinerU 的核心设计哲学是「因地制宜」——不同文档用不同引擎。</p>
+<h3 id="3-1-Pipeline-引擎：快速稳定的老兵"><a href="#3-1-Pipeline-引擎：快速稳定的老兵" class="headerlink" title="3.1 Pipeline 引擎：快速稳定的老兵"></a>3.1 Pipeline 引擎：快速稳定的老兵</h3><p>Pipeline 是 MinerU 最早也最成熟的引擎，纯 CPU 即可运行，无幻觉风险。</p>
+<p>它的处理管线是经典的：</p>
+<ul>
+<li><p><strong>布局检测</strong>：识别标题、正文、表格、图片、公式等区域</p>
+</li>
+<li><p><strong>OCR 识别</strong>：最新版本升级到 PP-OCRv6，OmniDocBench v1.6 评测中 OCR 指标提升约 11%</p>
+</li>
+<li><p><strong>后处理规则</strong>：精细调校的预处理和后处理规则确保最终结果准确</p>
+</li>
+</ul>
+<p>在 3.4 版本中，Pipeline 引擎的 OCR 处理速度提升约 **100%**，对于批量文档和 OCR 密集型场景是显著利好。</p>
+<h3 id="3-2-VLM-引擎：高精度的新贵"><a href="#3-2-VLM-引擎：高精度的新贵" class="headerlink" title="3.2 VLM 引擎：高精度的新贵"></a>3.2 VLM 引擎：高精度的新贵</h3><p>VLM（视觉语言模型）引擎利用多模态大模型理解文档，精度更高，适合复杂版面。</p>
+<p>支持 vLLM、LMDeploy、MLX 等推理框架，可以在 GPU 上获得最佳性能。</p>
+<h3 id="3-3-Hybrid-引擎：鱼与熊掌兼得"><a href="#3-3-Hybrid-引擎：鱼与熊掌兼得" class="headerlink" title="3.3 Hybrid 引擎：鱼与熊掌兼得"></a>3.3 Hybrid 引擎：鱼与熊掌兼得</h3><p>3.3 版本引入的 Hybrid 引擎是最有意思的创新。它结合了原生文本提取（快速、低幻觉）和 VLM 增强（高精度），并提供 <code>effort</code> 参数让用户按需选择：</p>
+<ul>
+<li><p><strong>medium</strong>（默认）：相比 high 模式精度仅降 0.13%，但在不同平台上速度提升 35%～220%</p>
+</li>
+<li><p><strong>high</strong>：极致精度，支持图片&#x2F;图表分析（image analysis）</p>
+</li>
+</ul>
+<p>这个设计很务实——大部分场景下 medium 已经够好，省下来的时间和算力可以做更有价值的事。</p>
+<h2 id="四、MinerU-能处理什么"><a href="#四、MinerU-能处理什么" class="headerlink" title="四、MinerU 能处理什么"></a>四、MinerU 能处理什么</h2><h3 id="4-1-格式覆盖"><a href="#4-1-格式覆盖" class="headerlink" title="4.1 格式覆盖"></a>4.1 格式覆盖</h3><table>
+<thead>
+<tr>
+<th>输入格式</th>
+<th>处理方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PDF（文本型）</td>
+<td>原生文本提取 + 版面还原</td>
+</tr>
+<tr>
+<td>PDF（扫描型）</td>
+<td>OCR + 版面检测</td>
+</tr>
+<tr>
+<td>DOCX &#x2F; PPTX &#x2F; XLSX</td>
+<td>原生解析</td>
+</tr>
+<tr>
+<td>图片（JPG&#x2F;PNG 等）</td>
+<td>OCR + VLM</td>
+</tr>
+<tr>
+<td>网页</td>
+<td>HTML → Markdown</td>
+</tr>
+</tbody></table>
+<h3 id="4-2-硬核场景"><a href="#4-2-硬核场景" class="headerlink" title="4.2 硬核场景"></a>4.2 硬核场景</h3><ul>
+<li><p><strong>数学公式</strong> → LaTeX 代码，精准还原</p>
+</li>
+<li><p><strong>复杂表格</strong> → HTML 表格，跨页自动合并</p>
+</li>
+<li><p><strong>多栏排版</strong> → 按人类阅读顺序输出</p>
+</li>
+<li><p><strong>手写体</strong> → OCR 识别</p>
+</li>
+<li><p><strong>页眉页脚</strong> → 自动去除，不污染正文</p>
+</li>
+<li><p><strong>109 种语言</strong> → 覆盖全球主流语言</p>
+</li>
+</ul>
+<h3 id="4-3-输出格式"><a href="#4-3-输出格式" class="headerlink" title="4.3 输出格式"></a>4.3 输出格式</h3><ul>
+<li><p><strong>Markdown</strong>：最适合 LLM 消化的格式，直接喂给 RAG 系统</p>
+</li>
+<li><p><strong>JSON</strong>：结构化数据，适合下游程序化处理</p>
+</li>
+</ul>
+<h2 id="五、生态集成：不只是个命令行工具"><a href="#五、生态集成：不只是个命令行工具" class="headerlink" title="五、生态集成：不只是个命令行工具"></a>五、生态集成：不只是个命令行工具</h2><p>MinerU 最让我欣赏的一点是它的生态广度。它不仅仅是一个 <code>pip install mineru</code> 的 Python 库，而是把自己嵌入了整个 AI 工具链的各个节点。</p>
+<h3 id="5-1-AI-编程工具：MCP-Server"><a href="#5-1-AI-编程工具：MCP-Server" class="headerlink" title="5.1 AI 编程工具：MCP Server"></a>5.1 AI 编程工具：MCP Server</h3><p>MinerU 提供了 MCP Server，可以在 Cursor、Claude Desktop、Windsurf 等 AI 编程工具中直接调用。这意味着你在 IDE 里跟 AI 结对编程时，可以直接让它读取并理解 PDF 文档。</p>
+<h3 id="5-2-RAG-框架原生集成"><a href="#5-2-RAG-框架原生集成" class="headerlink" title="5.2 RAG 框架原生集成"></a>5.2 RAG 框架原生集成</h3><p>MinerU 已经被主流 RAG 框架原生支持：</p>
+<ul>
+<li><p><strong>LangChain</strong> &#x2F; <strong>LlamaIndex</strong>：文档加载器</p>
+</li>
+<li><p><strong>Dify</strong> &#x2F; <strong>FastGPT</strong>：知识库文档解析</p>
+</li>
+<li><p><strong>RAGFlow</strong> &#x2F; <strong>RAG-Anything</strong>：深度文档理解</p>
+</li>
+<li><p><strong>Flowise</strong>：低代码 AI 工作流</p>
+</li>
+</ul>
+<h3 id="5-3-多形态产品"><a href="#5-3-多形态产品" class="headerlink" title="5.3 多形态产品"></a>5.3 多形态产品</h3><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>方案</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>零代码</td>
+<td>mineru.net 在线版</td>
+</tr>
+<tr>
+<td>桌面端</td>
+<td>全功能客户端</td>
+</tr>
+<tr>
+<td>开发集成</td>
+<td>Python &#x2F; Go &#x2F; TypeScript SDK</td>
+</tr>
+<tr>
+<td>容器化</td>
+<td>Docker 镜像</td>
+</tr>
+<tr>
+<td>API</td>
+<td>REST API</td>
+</tr>
+</tbody></table>
+<h3 id="5-4-国产算力适配"><a href="#5-4-国产算力适配" class="headerlink" title="5.4 国产算力适配"></a>5.4 国产算力适配</h3><p>支持昇腾、寒武纪、燧原、沐曦、摩尔线程、昆仑芯、天数智芯、瀚博、太初元碁、海光、平头哥等 10+ 国产 AI 芯片，私有化部署无后顾之忧。</p>
+<h2 id="六、版本进化：从-1-0-到-3-4"><a href="#六、版本进化：从-1-0-到-3-4" class="headerlink" title="六、版本进化：从 1.0 到 3.4"></a>六、版本进化：从 1.0 到 3.4</h2><p>MinerU 的迭代速度令人印象深刻，每个版本都踩在关键痛点上：</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>时间</th>
+<th>核心更新</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>v1.0</td>
+<td>2024.09</td>
+<td>首个技术报告发布，Pipeline 引擎问世</td>
+</tr>
+<tr>
+<td>v2.5</td>
+<td>2025</td>
+<td>VLM 引擎引入，多模态文档理解</td>
+</tr>
+<tr>
+<td>v2.5 Pro</td>
+<td>2026</td>
+<td>Hybrid 引擎、MCP Server、国产算力适配</td>
+</tr>
+<tr>
+<td>v3.3</td>
+<td>2026.06.11</td>
+<td>effort 参数、Hybrid 性能优化</td>
+</tr>
+<tr>
+<td>v3.4</td>
+<td>2026.06.18</td>
+<td>PP-OCRv6、OCR 速度翻倍、模型下载优化</td>
+</tr>
+</tbody></table>
+<p>从版本节奏看，团队显然在「精度」和「效率」之间找到了正确的平衡方向——3.3 的 effort 参数让用户自主选择精度&#x2F;速度权衡，3.4 又在 OCR 速度上做了质的提升。</p>
+<h2 id="七、实战：5-分钟上手"><a href="#七、实战：5-分钟上手" class="headerlink" title="七、实战：5 分钟上手"></a>七、实战：5 分钟上手</h2><h3 id="7-1-安装"><a href="#7-1-安装" class="headerlink" title="7.1 安装"></a>7.1 安装</h3><p><code>pip install mineru   </code></p>
+<h3 id="7-2-命令行使用"><a href="#7-2-命令行使用" class="headerlink" title="7.2 命令行使用"></a>7.2 命令行使用</h3><p><code># 解析单个 PDF   mineru -p /path/to/document.pdf -o /path/to/output      # 使用 Hybrid 引擎（高精度模式）   mineru -p document.pdf -o output -b hybrid -e high      # 批量处理   mineru -p /path/to/folder -o /path/to/output   </code></p>
+<h3 id="7-3-Python-API"><a href="#7-3-Python-API" class="headerlink" title="7.3 Python API"></a>7.3 Python API</h3><p><code>from mineru import MinerU      # 初始化（自动检测最佳引擎）   mu = MinerU()      # 解析文档   result = mu.parse(&quot;document.pdf&quot;)      # 获取 Markdown   print(result.markdown)      # 获取 JSON   print(result.json)      # 获取表格   for table in result.tables:       print(table.html)   </code></p>
+<h3 id="7-4-接入-RAG-管线"><a href="#7-4-接入-RAG-管线" class="headerlink" title="7.4 接入 RAG 管线"></a>7.4 接入 RAG 管线</h3><p><code>from langchain.document_loaders import MinerULoader      loader = MinerULoader(&quot;document.pdf&quot;)   documents = loader.load()      # 直接喂给向量数据库   vectorstore.add_documents(documents)   </code></p>
+<h3 id="7-5-MCP-Server-配置"><a href="#7-5-MCP-Server-配置" class="headerlink" title="7.5 MCP Server 配置"></a>7.5 MCP Server 配置</h3><p>在 Claude Desktop 的配置文件中添加：</p>
+<p><code>&#123;     &quot;mcpServers&quot;: &#123;       &quot;mineru&quot;: &#123;         &quot;command&quot;: &quot;uvx&quot;,         &quot;args&quot;: [&quot;mineru-mcp&quot;]       &#125;     &#125;   &#125;   </code></p>
+<p>配置完成后，直接在对话中说「解析这个 PDF」即可。</p>
+<h2 id="八、与同类工具对比"><a href="#八、与同类工具对比" class="headerlink" title="八、与同类工具对比"></a>八、与同类工具对比</h2><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>MinerU</th>
+<th>PyPDF2</th>
+<th>Tesseract</th>
+<th>Unstructured</th>
+<th>Adobe Extract</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>开源</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>扫描件支持</td>
+<td>✅ OCR+VLM</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅ OCR</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>公式→LaTeX</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>部分</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>表格→HTML</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>阅读顺序还原</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>部分</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>多语言</td>
+<td>109种</td>
+<td>-</td>
+<td>100+</td>
+<td>有限</td>
+<td>多语言</td>
+</tr>
+<tr>
+<td>MCP Server</td>
+<td>✅</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>国产算力</td>
+<td>✅</td>
+<td>-</td>
+<td>-</td>
+<td>❌</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>价格</td>
+<td>免费</td>
+<td>免费</td>
+<td>免费</td>
+<td>免费&#x2F;付费</td>
+<td>按量付费</td>
+</tr>
+</tbody></table>
+<p>MinerU 的差异化优势在于：它是一站式方案，不需要拼接多个工具；同时 MCP Server 和国产算力适配让它在中文本土场景中特别有竞争力。</p>
+<h2 id="九、总结"><a href="#九、总结" class="headerlink" title="九、总结"></a>九、总结</h2><p>MinerU 解决的是一个看似无聊、实则致命的问题：<strong>AI 吃不进真实世界的文档</strong>。</p>
+<p>在 RAG 系统越来越普及的今天，文档解析质量直接决定了检索精度和生成质量。用 MinerU 把 PDF 洗成干净的 Markdown，比在 prompt 里写一百行「请忽略乱码」更有效。</p>
+<p>三个关键收获：</p>
+<ul>
+<li><p><strong>引擎选择要匹配场景</strong>：Pipeline 求稳，VLM 求精，Hybrid 求平衡</p>
+</li>
+<li><p><strong>effort 参数很实用</strong>：大部分场景用 medium，省时省算力</p>
+</li>
+<li><p><strong>MCP Server 是杀手级功能</strong>：让 AI 编程工具直接「看懂」文档</p>
+</li>
+</ul>
+<p>对于正在搭建 RAG 系统、知识库、AI Agent 的团队来说，MinerU 应该成为文档处理管线的标配组件。</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>MinerU GitHub 仓库[1]</p>
+</li>
+<li><p>MinerU 官网（在线版 + 客户端）[2]</p>
+</li>
+<li><p>MinerU 技术报告 (arXiv:2409.18839)[3]</p>
+</li>
+<li><p>MinerU 2.5 技术报告 (arXiv:2509.22186)[4]</p>
+</li>
+<li><p>MinerU 2.5 Pro 技术报告 (arXiv:2604.04771)[5]</p>
+</li>
+<li><p>HuggingFace 在线 Demo[6]</p>
+</li>
+<li><p>ModelScope 在线 Demo[7]</p>
+</li>
+<li><p>OpenDataLab 官方[8]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]MinerU GitHub 仓库: <em><a target="_blank" rel="noopener" href="https://github.com/opendatalab/MinerU">https://github.com/opendatalab/MinerU</a></em></p>
+<p>[2]MinerU 官网（在线版 + 客户端）: <em><a target="_blank" rel="noopener" href="https://mineru.net/">https://mineru.net</a></em></p>
+<p>[3]MinerU 技术报告 (arXiv:2409.18839): <em><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2409.18839">https://arxiv.org/abs/2409.18839</a></em></p>
+<p>[4]MinerU 2.5 技术报告 (arXiv:2509.22186): <em><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2509.22186">https://arxiv.org/abs/2509.22186</a></em></p>
+<p>[5]MinerU 2.5 Pro 技术报告 (arXiv:2604.04771): <em><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.04771">https://arxiv.org/abs/2604.04771</a></em></p>
+<p>[6]HuggingFace 在线 Demo: <em><a target="_blank" rel="noopener" href="https://huggingface.co/spaces/opendatalab/MinerU">https://huggingface.co/spaces/opendatalab/MinerU</a></em></p>
+<p>[7]ModelScope 在线 Demo: <em><a target="_blank" rel="noopener" href="https://www.modelscope.cn/studios/OpenDataLab/MinerU">https://www.modelscope.cn/studios/OpenDataLab/MinerU</a></em></p>
+<p>[8]OpenDataLab 官方: <em><a target="_blank" rel="noopener" href="https://opendatalab.com/">https://opendatalab.com</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>文档巴别塔的拆解者：MinerU如何把任意文档变成AI可消化的结构化数据</div>
+      <div>https://maoyu92.github.io/2026/06/22/07 AI笔记/AI写作与发布/a069_文档巴别塔的拆解者：MinerU如何把任意文档变成AI可消化的结构化数据/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/24/07%20AI%E7%AC%94%E8%AE%B0/WorkBuddy%E6%8A%80%E8%83%BD/a068_%E5%88%AB%E5%86%8D%E6%8A%8A%20AI%20%E5%BD%93%E5%B7%A5%E5%85%B7%E7%94%A8%E4%BA%86%EF%BC%9AWorkBuddy%20%E6%8A%8A%E5%8A%9E%E5%85%AC%E5%8A%A9%E6%89%8B%E5%8F%98%E6%88%90%E4%BA%86%E4%B8%80%E4%B8%AA%E2%80%9C%E6%90%AD%E5%AD%90%E2%80%9D/" title="别再把 AI 当工具用了：WorkBuddy 把办公助手变成了一个“搭子”">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">别再把 AI 当工具用了：WorkBuddy 把办公助手变成了一个“搭子”</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/20/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a073_%E5%A6%82%E4%BD%95%E5%88%B6%E4%BD%9C%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A5%BD%E7%9A%84%E6%B5%81%E7%A8%8B%E5%9B%BE/" title="如何制作一个更好的流程图">
+                        <span class="hidden-mobile">如何制作一个更好的流程图</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

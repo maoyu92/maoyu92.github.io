@@ -1,0 +1,760 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="在 AI 技术飞速发展的当下，企业如何系统化、分阶段地将其融入战略与运营？本文借鉴信息系统规划方法论，提出一条客观、可落地的”五级成熟度”演进路径。  一、成熟度模型：AI 转型的”路线图”成熟度模型为企业的能力建设提供了一种结构化的评估与发展框架，描述了组织从初级阶段向理想目标状态发展的过程。对于 AI 转型，一个通用的五级成熟度模型能清晰地指引企业从”浅尝辄止”走向”持续创新”。  这五个等">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI 时代的企业转型：基于成熟度模型的分级演进路径">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/10/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a086_AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E4%BC%81%E4%B8%9A%E8%BD%AC%E5%9E%8B%EF%BC%9A%E5%9F%BA%E4%BA%8E%E6%88%90%E7%86%9F%E5%BA%A6%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%88%86%E7%BA%A7%E6%BC%94%E8%BF%9B%E8%B7%AF%E5%BE%84/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="在 AI 技术飞速发展的当下，企业如何系统化、分阶段地将其融入战略与运营？本文借鉴信息系统规划方法论，提出一条客观、可落地的”五级成熟度”演进路径。  一、成熟度模型：AI 转型的”路线图”成熟度模型为企业的能力建设提供了一种结构化的评估与发展框架，描述了组织从初级阶段向理想目标状态发展的过程。对于 AI 转型，一个通用的五级成熟度模型能清晰地指引企业从”浅尝辄止”走向”持续创新”。  这五个等">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/images/2b99a621f318d5ef.png">
+<meta property="og:image" content="https://maoyu92.github.io/images/6d0cb38f22d9a437.png">
+<meta property="og:image" content="https://maoyu92.github.io/images/b8f6ec62cb501809.png">
+<meta property="article:published_time" content="2026-06-10T00:34:00.000Z">
+<meta property="article:modified_time" content="2026-06-10T00:34:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/images/2b99a621f318d5ef.png">
+  
+  
+  <title>AI 时代的企业转型：基于成熟度模型的分级演进路径 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AI 时代的企业转型：基于成熟度模型的分级演进路径"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-10 08:34" pubdate>
+          2026年6月10日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AI 时代的企业转型：基于成熟度模型的分级演进路径</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>在 AI 技术飞速发展的当下，企业如何系统化、分阶段地将其融入战略与运营？本文借鉴信息系统规划方法论，提出一条客观、可落地的”五级成熟度”演进路径。</p>
+</blockquote>
+<h2 id="一、成熟度模型：AI-转型的”路线图”"><a href="#一、成熟度模型：AI-转型的”路线图”" class="headerlink" title="一、成熟度模型：AI 转型的”路线图”"></a>一、成熟度模型：AI 转型的”路线图”</h2><p>成熟度模型为企业的能力建设提供了一种结构化的评估与发展框架，描述了组织从初级阶段向理想目标状态发展的过程。对于 AI 转型，一个通用的五级成熟度模型能清晰地指引企业从”浅尝辄止”走向”持续创新”。</p>
+<p><img src="/images/2b99a621f318d5ef.png" srcset="/img/loading.gif" lazyload alt="五级成熟度模型：从规划级到引领级的演进路径" title="五级成熟度模型：从规划级到引领级的演进路径"></p>
+<p>这五个等级自低向高分别为：</p>
+<h3 id="1-一级（规划级）：转型意识与基础建设"><a href="#1-一级（规划级）：转型意识与基础建设" class="headerlink" title="1. 一级（规划级）：转型意识与基础建设"></a>1. 一级（规划级）：转型意识与基础建设</h3><p>在这一阶段，企业初步具备 AI 转型意识，开始探索 AI 技术对自身业务的可能性。核心任务是明确 AI 应用的方向与目标，确立转型的基本原则，并对实施 AI 所需的基础条件（数据治理、基础设施、人才储备）进行初步规划。此阶段的关键产出是形成关于 AI 发展的战略性共识和顶层设计蓝图。</p>
+<h3 id="2-二级（规范级）：局部应用与流程优化"><a href="#2-二级（规范级）：局部应用与流程优化" class="headerlink" title="2. 二级（规范级）：局部应用与流程优化"></a>2. 二级（规范级）：局部应用与流程优化</h3><p>基于第一阶段的规划，企业开始在特定业务领域或职能环节（智能客服、自动化报表、精准营销等）引入 AI 技术。重点在于解决具体业务场景的效率问题，实现单一业务的数字化和数据共享。此阶段的特征是”点状”应用，侧重 AI 工具的部署与规范使用，提升局部工作效率。</p>
+<h3 id="3-三级（协同级）：系统集成与数据融合"><a href="#3-三级（协同级）：系统集成与数据融合" class="headerlink" title="3. 三级（协同级）：系统集成与数据融合"></a>3. 三级（协同级）：系统集成与数据融合</h3><p>随着 AI 应用的深入，企业开始意识到”数据孤岛”与”应用孤岛”的制约。此阶段的核心任务是打通不同系统间的壁垒，实现 AI 应用与核心业务系统（ERP、CRM、MES）的集成。通过数据的跨域流动与共享，推动业务协同与流程优化，使 AI 能力从”单点”走向”链式”，实现跨职能、跨部门的协同改进。</p>
+<h3 id="4-四级（优化级）：模型驱动与智能决策"><a href="#4-四级（优化级）：模型驱动与智能决策" class="headerlink" title="4. 四级（优化级）：模型驱动与智能决策"></a>4. 四级（优化级）：模型驱动与智能决策</h3><p>在这一高阶阶段，企业已不再是简单地应用 AI 工具，而是将数据作为核心生产要素，构建并应用算法模型。通过对沉淀的海量数据进行深度挖掘与分析，形成可复用的知识图谱、预测模型和优化算法。AI 能力开始驱动组织的核心决策，实现对业务风险的精准预测、资源配置的动态优化以及客户需求的智能响应。这是从”数据支持”向”智能决策”跃升的关键时期。</p>
+<h3 id="5-五级（引领级）：生态协同与持续创新"><a href="#5-五级（引领级）：生态协同与持续创新" class="headerlink" title="5. 五级（引领级）：生态协同与持续创新"></a>5. 五级（引领级）：生态协同与持续创新</h3><p>达到这一成熟度的企业，AI 已不再是独立的项目或技术，而是融入组织肌理，成为一种智能基因。企业基于数据模型持续驱动业务优化与创新，能够实现内外部能力、资源和市场的多要素融合，构建独特的企业生态价值。AI 能力不仅用于提升自身效率，更成为赋能产业链、构建核心竞争壁垒的战略工具，引领行业发展方向。</p>
+<h2 id="二、演进核心：遵循规律，迭代前行"><a href="#二、演进核心：遵循规律，迭代前行" class="headerlink" title="二、演进核心：遵循规律，迭代前行"></a>二、演进核心：遵循规律，迭代前行</h2><p>正如技术发展遵循客观规律，企业 AI 能力的成长也需要一个过程。组织的下一发展目标并非可以无限度地直接到达理想状态，而是成熟度的下一个阶段。根据”木桶原理”，组织的整体 AI 能力水平取决于其最短板项的状态。</p>
+<p><img src="/images/6d0cb38f22d9a437.png" srcset="/img/loading.gif" lazyload alt="木桶原理：AI 转型取决于数据、技术、人才、组织的最短板" title="木桶原理：AI 转型取决于数据、技术、人才、组织的最短板"></p>
+<p>因此，企业在推进 AI 转型时，必须认识到以下几点：</p>
+<ul>
+<li><p>循序渐进，不可跨越：企业不能希冀一步登天，直接达到”引领级”。每个阶段都有其必须完成的核心任务和需要克服的关键瓶颈，唯有夯实上一级的基础，才能顺利步入下一个更高级别。</p>
+</li>
+<li><p>识别短板，均衡发展：通过成熟度评估，企业能够精准识别自身在数据、技术、人才、组织等各方面的长板与短板。科学的规划应将资源优先投入到弥补短板上，实现能力的均衡发展，避免因某项能力过于薄弱而拖累整体转型进程。</p>
+</li>
+<li><p>需求控制，目标明确：转型过程中，企业的需求是动态且无止境的。成熟度模型提供了对需求进行有效控制的方法，它不是抑制需求，而是帮助组织更加系统地识别需求、精细地定义需求，并为每项需求设定阶段性且可实现的成熟度目标，确保转型工作聚焦、有序。</p>
+</li>
+</ul>
+<h2 id="三、实践方法：借鉴最佳实践，持续迭代"><a href="#三、实践方法：借鉴最佳实践，持续迭代" class="headerlink" title="三、实践方法：借鉴最佳实践，持续迭代"></a>三、实践方法：借鉴最佳实践，持续迭代</h2><p>企业在遵循五级路径实现 AI 转型时，可以充分借鉴成熟的规划与管理方法论：</p>
+<p><img src="/images/b8f6ec62cb501809.png" srcset="/img/loading.gif" lazyload alt="认知-实践-再认知：AI 转型的持续迭代闭环" title="认知-实践-再认知：AI 转型的持续迭代闭环"></p>
+<ul>
+<li><p>借鉴最佳实践：可以参照国家在数字化转型、智能制造等领域发布的成熟度国家标准（如 GB&#x2F;T 43439《信息技术服务 数字化转型 成熟度模型与评估》），并结合自身行业特性，构建个性化、可量化的评估与规划体系。这些标准凝聚了行业最佳实践，能够有效规避发展风险。</p>
+</li>
+<li><p>坚持迭代优化：AI 转型并非一次性项目，而是一个”认知-实践-再认知”的持续过程。应遵循实践论的原则，以实际问题为导向，通过多次迭代逐步逼近理想状态。每个阶段的规划成果都需要通过实践进行验证，并根据反馈持续调整优化，确保规划的动态适应性。</p>
+</li>
+</ul>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>AI 时代的企业转型是一个复杂而长期的过程。通过引入五级成熟度模型，企业能够获得清晰的”路线图”，科学地规划发展路径、有效地管控转型过程、务实地推进能力建设，最终在数字化浪潮中实现持续的智能化升级与高质量发展。</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>《系统规划与管理师教程（第2版）》[1]</p>
+</li>
+<li><p>GB&#x2F;T 43439《信息技术服务 数字化转型 成熟度模型与评估》[2]</p>
+</li>
+<li><p>国务院关于印发《数字化转型行动计划》的通知[3]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]《系统规划与管理师教程（第2版）》: <em><a target="_blank" rel="noopener" href="https://www.tup.com.cn/">https://www.tup.com.cn</a></em></p>
+<p>[2]GB&#x2F;T 43439《信息技术服务 数字化转型 成熟度模型与评估》: <em><a target="_blank" rel="noopener" href="https://openstd.samr.gov.cn/">https://openstd.samr.gov.cn</a></em></p>
+<p>[3]国务院关于印发《数字化转型行动计划》的通知: <em><a target="_blank" rel="noopener" href="https://www.gov.cn/">https://www.gov.cn</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AI 时代的企业转型：基于成熟度模型的分级演进路径</div>
+      <div>https://maoyu92.github.io/2026/06/10/07 AI笔记/软考系规/a086_AI 时代的企业转型：基于成熟度模型的分级演进路径/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/10/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a085_%E4%B8%80%E4%B8%AA%20RL%20%E5%BE%AA%E7%8E%AF%E7%BB%9F%E7%AE%A1%E6%89%80%E6%9C%89%E6%A8%A1%E5%9E%8B%EF%BC%9A%E8%85%BE%E8%AE%AF%E6%B7%B7%E5%85%83%E5%BC%80%E6%BA%90%20UniRL%EF%BC%8C%E6%89%A9%E6%95%A3%E3%80%81LLM%E3%80%81VLM%20%E5%85%A8%E6%90%9E%E5%AE%9A/" title="一个 RL 循环统管所有模型：腾讯混元开源 UniRL，扩散、LLM、VLM 全搞定">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一个 RL 循环统管所有模型：腾讯混元开源 UniRL，扩散、LLM、VLM 全搞定</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/10/07%20AI%E7%AC%94%E8%AE%B0/%E6%97%B6%E5%BA%8F%E4%B8%8E%E7%94%9F%E6%80%81/a088_%E4%BB%8E_%E6%B2%BB%E6%B1%A1_%E5%88%B0_%E8%82%A5%E7%94%B0_%EF%BC%9A%E5%86%9C%E6%9D%91%E7%94%9F%E6%B4%BB%E6%B1%A1%E6%B0%B4%E8%B5%84%E6%BA%90%E5%8C%96%E5%88%A9%E7%94%A8%E6%9C%89%E4%BA%86%E5%9B%BD%E5%AE%B6%E7%BA%A7%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97/" title="从&#34;治污&#34;到&#34;肥田&#34;：农村生活污水资源化利用有了国家级技术指南">
+                        <span class="hidden-mobile">从&#34;治污&#34;到&#34;肥田&#34;：农村生活污水资源化利用有了国家级技术指南</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

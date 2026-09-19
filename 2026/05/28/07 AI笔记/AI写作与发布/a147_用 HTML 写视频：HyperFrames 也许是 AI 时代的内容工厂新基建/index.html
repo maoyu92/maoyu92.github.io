@@ -1,0 +1,841 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="“如果视频也可以用代码写，如果 AI 可以直接生成视频脚本，如果每一次渲染都是确定性的——这就是 HyperFrames 在做的事。”  一、它解决什么问题视频制作一直是个”人力密集型”的活。 你有一个产品要介绍，一个功能要演示，一份数据要动画化。传统流程是：写脚本、找设计、出图、排版、剪辑、配音、渲染。快则两三天，慢则一周。 这里面的卡点是什么？ 不是创意，是执行层的重复劳动。 你有没有遇到过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用 HTML 写视频：HyperFrames 也许是 AI 时代的内容工厂新基建">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/28/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a147_%E7%94%A8%20HTML%20%E5%86%99%E8%A7%86%E9%A2%91%EF%BC%9AHyperFrames%20%E4%B9%9F%E8%AE%B8%E6%98%AF%20AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E5%86%85%E5%AE%B9%E5%B7%A5%E5%8E%82%E6%96%B0%E5%9F%BA%E5%BB%BA/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="“如果视频也可以用代码写，如果 AI 可以直接生成视频脚本，如果每一次渲染都是确定性的——这就是 HyperFrames 在做的事。”  一、它解决什么问题视频制作一直是个”人力密集型”的活。 你有一个产品要介绍，一个功能要演示，一份数据要动画化。传统流程是：写脚本、找设计、出图、排版、剪辑、配音、渲染。快则两三天，慢则一周。 这里面的卡点是什么？ 不是创意，是执行层的重复劳动。 你有没有遇到过">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-28T13:41:00.000Z">
+<meta property="article:modified_time" content="2026-05-28T13:41:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>用 HTML 写视频：HyperFrames 也许是 AI 时代的内容工厂新基建 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="用 HTML 写视频：HyperFrames 也许是 AI 时代的内容工厂新基建"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-28 21:41" pubdate>
+          2026年5月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">用 HTML 写视频：HyperFrames 也许是 AI 时代的内容工厂新基建</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>“如果视频也可以用代码写，如果 AI 可以直接生成视频脚本，如果每一次渲染都是确定性的——这就是 HyperFrames 在做的事。”</p>
+</blockquote>
+<h2 id="一、它解决什么问题"><a href="#一、它解决什么问题" class="headerlink" title="一、它解决什么问题"></a>一、它解决什么问题</h2><p>视频制作一直是个”人力密集型”的活。</p>
+<p>你有一个产品要介绍，一个功能要演示，一份数据要动画化。传统流程是：写脚本、找设计、出图、排版、剪辑、配音、渲染。快则两三天，慢则一周。</p>
+<p>这里面的卡点是什么？</p>
+<p><strong>不是创意，是执行层的重复劳动。</strong></p>
+<p>你有没有遇到过这种情况——一个 30 秒的产品视频，已经做好了，领导说”换个色调”，然后设计师重新调一遍，剪辑重新对一遍，配音重新配一遍。改动不大，但整个流程要重跑。</p>
+<p>问题在于：视频制作没有”代码化”。你没法说”我改一行配置，整条视频重新生成”。</p>
+<p>HyperFrames 试图解决这个问题。它的思路是：<strong>把视频当作代码来处理</strong>。</p>
+<p>你用 HTML 写视频内容，用 CSS 控制样式，用 GSAP 等动画库控制时间轴。最后一行命令，渲染出 MP4。改内容？改代码。改样式？改 CSS。改时间轴？改 <code>data-*</code> 属性。每次都是确定性输出，可以 diff，可以版本化，可以放进 CI&#x2F;CD。</p>
+<hr>
+<h2 id="二、核心机制：HTML-即时间轴"><a href="#二、核心机制：HTML-即时间轴" class="headerlink" title="二、核心机制：HTML 即时间轴"></a>二、核心机制：HTML 即时间轴</h2><p>HyperFrames 的设计非常直觉——你的 HTML 结构就是视频结构。</p>
+<p><code>&lt;div id=&quot;stage&quot;        data-composition-id=&quot;launch&quot;        data-start=&quot;0&quot;        data-width=&quot;1920&quot;        data-height=&quot;1080&quot;&gt;        &lt;!-- 背景视频 clip --&gt;     &lt;video class=&quot;clip&quot;            data-start=&quot;0&quot;            data-duration=&quot;6&quot;            data-track-index=&quot;0&quot;            src=&quot;intro.mp4&quot;            muted playsinline&gt;&lt;/video&gt;        &lt;!-- 标题 clip --&gt;     &lt;h1 id=&quot;title&quot;         class=&quot;clip&quot;         data-start=&quot;1&quot;         data-duration=&quot;4&quot;         data-track-index=&quot;1&quot;&gt;Launch day&lt;/h1&gt;        &lt;!-- 背景音乐 clip --&gt;     &lt;audio data-start=&quot;0&quot;            data-duration=&quot;6&quot;            data-track-index=&quot;2&quot;            data-volume=&quot;0.5&quot;            src=&quot;music.wav&quot;&gt;&lt;/audio&gt;        &lt;script src=&quot;https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js&quot;&gt;&lt;/script&gt;     &lt;script&gt;    const tl = gsap.timeline(&#123; paused: true &#125;);       tl.from(&quot;#title&quot;, &#123; opacity: 0, y: 40, duration: 0.8 &#125;, 1);       window.__timelines = window.__timelines || &#123;&#125;;       window.__timelines.launch = tl;  &lt;/script&gt;   &lt;/div&gt;   </code></p>
+<p>每个有 <code>class=&quot;clip&quot;</code> 的元素，就是一个轨道上的 clip。 <code>data-start</code> 和 <code>data-duration</code> 定义它在时间轴上的位置。 <code>data-track-index</code> 定义它在哪条轨道上。</p>
+<p>用 GSAP 写的动画，通过 <code>window.__timelines</code> 注册给渲染引擎，引擎会在渲染时 seek 到每一帧，捕捉画面，编码成 MP4。</p>
+<p>整个过程：headless Chrome 逐帧渲染 → FFmpeg 编码 → MP4 输出。同样的输入，每次输出完全一致。</p>
+<hr>
+<h2 id="三、AI-Agent-原生支持"><a href="#三、AI-Agent-原生支持" class="headerlink" title="三、AI Agent 原生支持"></a>三、AI Agent 原生支持</h2><p>HyperFrames 最特别的地方，是它的 Agent-first 设计。</p>
+<p>它发布之初就自带 Claude Code skill：</p>
+<p><code>npx skills add heygen-com/hyperframes   </code></p>
+<p>安装后，Claude Code 自动注册一组 slash commands：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/hyperframes</code></td>
+<td>写视频 composition</td>
+</tr>
+<tr>
+<td><code>/hyperframes-cli</code></td>
+<td>dev loop 命令（init&#x2F;lint&#x2F;preview&#x2F;render）</td>
+</tr>
+<tr>
+<td><code>/hyperframes-media</code></td>
+<td>媒体预处理（TTS、文字转语音、去背景）</td>
+</tr>
+<tr>
+<td><code>/gsap</code></td>
+<td>GSAP 时间轴动画帮助</td>
+</tr>
+<tr>
+<td><code>/tailwind</code></td>
+<td>Tailwind v4 项目初始化</td>
+</tr>
+<tr>
+<td><code>/animejs</code> &#x2F; <code>/lottie</code> &#x2F; <code>/three</code></td>
+<td>各自运行时适配</td>
+</tr>
+</tbody></table>
+<p>使用方式就是用自然语言描述你要的视频：</p>
+<blockquote>
+<p>“用 <code>/hyperframes</code> 创建一个 10 秒的产品介绍视频，标题从底部淡入，背景是深色渐变，加上背景音乐。”</p>
+</blockquote>
+<p>AI agent 会自动：搭建项目结构 → 写正确的 HTML + GSAP → lint → preview 预览 → render 出 MP4。</p>
+<p>你不需要知道 HyperFrames 怎么用。你只需要描述你要什么，AI 替你执行整个管线。</p>
+<hr>
+<h2 id="四、和-Remotion-的区别"><a href="#四、和-Remotion-的区别" class="headerlink" title="四、和 Remotion 的区别"></a>四、和 Remotion 的区别</h2><p>HyperFrames 经常被拿来和 Remotion 比较。两者都是用代码写视频的工具，但思路完全不同。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>HyperFrames</th>
+<th>Remotion</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>编写方式</td>
+<td>HTML + CSS + 动画库</td>
+<td>React 组件</td>
+</tr>
+<tr>
+<td>是否需要构建</td>
+<td>不需要，index.html 直接可用</td>
+<td>需要 bundler</td>
+</tr>
+<tr>
+<td>AI Agent 友好度</td>
+<td>原生 HTML，AI 写起来没有门槛</td>
+<td>需要 React 知识</td>
+</tr>
+<tr>
+<td>动画精度</td>
+<td>Seekable，帧级精确</td>
+<td>需要注意 wall-clock 模式</td>
+</tr>
+<tr>
+<td>生态</td>
+<td>新兴，Catalog 刚起步</td>
+<td>成熟，社区活跃</td>
+</tr>
+<tr>
+<td>许可证</td>
+<td>Apache 2.0，完全开源</td>
+<td>Source-available，有限制</td>
+</tr>
+</tbody></table>
+<p>Remotion 的优势在于 React 生态积累深，适合已经用 React 的团队。</p>
+<p>HyperFrames 的优势在于”门槛低”——HTML 是所有前端开发者的通用语言，不需要学习 React，写起来和写网页几乎一样。加上 AI skill 加持，不懂视频的人也能直接生成视频。</p>
+<hr>
+<h2 id="五、真实使用场景"><a href="#五、真实使用场景" class="headerlink" title="五、真实使用场景"></a>五、真实使用场景</h2><p>HyperFrames 在 HeyGen 内部已经跑在生产环境里，社区也有一些团队在用，包括 tldraw 和 TanStack。</p>
+<p>几个典型的落地场景：</p>
+<p><strong>产品发布视频</strong> 每次迭代改个文案或者色调，不用重走设计-剪辑流程。代码改一行，重新 render，MP4 出来直接用。</p>
+<p><strong>数据可视化动画</strong> 把 CSV 数据转成动画图表。AI 读取数据，自动生成对应的动态 bar chart race。数据变了，代码改一行，视频重新生成。</p>
+<p><strong>技术文档转视频</strong> 接上传入的 PDF 或者 Markdown，AI 提取内容，生成带配音和字幕的视频。可以做自动化的”文档转讲解视频”管线。</p>
+<p><strong>PR Walkthrough 视频</strong> 给代码变更配上动画效果、 narration 和字幕。CI 每次 merge 自动 render 一条视频，发给团队 review。</p>
+<p><strong>社交媒体短视频</strong> 9:16 TikTok 风格，带字幕动画和 TTS 配音。Prompt 驱动 AI 全自动生成。</p>
+<hr>
+<h2 id="六、入手路径"><a href="#六、入手路径" class="headerlink" title="六、入手路径"></a>六、入手路径</h2><p>最简单的方式：</p>
+<p><code># 安装 skill   npx skills add heygen-com/hyperframes      # 初始化项目   npx hyperframes init my-video   cd my-video      # 浏览器预览（热重载）   npx hyperframes preview      # 渲染 MP4   npx hyperframes render --output demo.mp4   </code></p>
+<p>依赖：Node.js 22+ 和 FFmpeg。</p>
+<p>更懒人的方式：直接让 AI agent（Claude Code &#x2F; Cursor 等）帮你做所有事。你说”帮我做一个 20 秒的产品介绍视频”，AI 帮你从 0 搭建到 render 完。</p>
+<hr>
+<h2 id="七、它意味着什么"><a href="#七、它意味着什么" class="headerlink" title="七、它意味着什么"></a>七、它意味着什么</h2><p>HyperFrames 背后有一个更大的趋势——<strong>内容的代码化</strong>。</p>
+<p>当你可以用代码控制内容的生成逻辑，内容就不再是”人力产品”，而是”系统输出”。你有一个设计系统，内容生成就跟着系统走。你改了设计系统变量，所有内容自动更新。</p>
+<p>这对于需要持续输出内容的团队来说，价值是巨大的。</p>
+<p>而且 HyperFrames 解决的不只是”效率”问题，它解决的是<strong>一致性问题</strong>。代码化的输出天然带有版本控制、diff、自动化测试的能力。每次渲染可复现，每次修改可追溯。</p>
+<p>AI agent + 代码化内容 + 确定性渲染，这三个东西组合在一起，就是一个可持续运转的内容工厂。</p>
+<p>视频只是起点。</p>
+<hr>
+<p><em>HyperFrames GitHub → <a target="_blank" rel="noopener" href="https://github.com/heygen-com/hyperframes/[1/]">https://github.com/heygen-com/hyperframes\[1\]</a></em> <em>官网 → <a target="_blank" rel="noopener" href="https://hyperframes.heygen.com/[2/]">https://hyperframes.heygen.com\[2\]</a></em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/heygen-com/hyperframes">https://github.com/heygen-com/hyperframes</a></em></p>
+<p>[2]<em><a target="_blank" rel="noopener" href="https://hyperframes.heygen.com/">https://hyperframes.heygen.com</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>用 HTML 写视频：HyperFrames 也许是 AI 时代的内容工厂新基建</div>
+      <div>https://maoyu92.github.io/2026/05/28/07 AI笔记/AI写作与发布/a147_用 HTML 写视频：HyperFrames 也许是 AI 时代的内容工厂新基建/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/28/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a145_%E5%B0%8F%E7%BA%A2%E4%B9%A6%E5%9B%BE%E6%96%87%E5%8D%A1%E7%89%87%E7%A5%9E%E5%99%A8%EF%BC%9A%E8%BF%99%E5%A5%97Skill%E8%A7%A3%E5%86%B3%E4%BA%86%E6%88%91%E5%81%9A%E5%86%85%E5%AE%B9%E6%9C%80%E5%A4%B4%E7%96%BC%E7%9A%84%E9%97%AE%E9%A2%98/" title="小红书图文卡片神器：这套Skill解决了我做内容最头疼的问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">小红书图文卡片神器：这套Skill解决了我做内容最头疼的问题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/28/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a148_AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%9B%B0%E5%B1%80%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88_%E7%B3%BB%E7%BB%9F%E5%8C%96_%E6%AF%94_%E5%A5%BD%E7%9C%8B_%E6%9B%B4%E9%87%8D%E8%A6%81/" title="AI 时代的设计困局：为什么&#34;系统化&#34;比&#34;好看&#34;更重要">
+                        <span class="hidden-mobile">AI 时代的设计困局：为什么&#34;系统化&#34;比&#34;好看&#34;更重要</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

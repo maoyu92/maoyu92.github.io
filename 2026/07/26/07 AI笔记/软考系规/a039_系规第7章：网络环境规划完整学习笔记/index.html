@@ -1,0 +1,1115 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="EXAM NOTES · 系规学习 · 2026.07 网络规划就是画拓扑、选设备？ 先分广域、局域、无线， 再补管理安全与机房 第7章 · 网络环境规划 · 架构技术与规划重点 系规24期学习整理 · 第04期 · 综合 案例 论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 一套基础，三类网络， PART 02 7.1 网络架构和主要技术 先建立共同语言 P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系规第7章：网络环境规划完整学习笔记">
+<meta property="og:url" content="https://maoyu92.github.io/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a039_%E7%B3%BB%E8%A7%84%E7%AC%AC7%E7%AB%A0%EF%BC%9A%E7%BD%91%E7%BB%9C%E7%8E%AF%E5%A2%83%E8%A7%84%E5%88%92%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="EXAM NOTES · 系规学习 · 2026.07 网络规划就是画拓扑、选设备？ 先分广域、局域、无线， 再补管理安全与机房 第7章 · 网络环境规划 · 架构技术与规划重点 系规24期学习整理 · 第04期 · 综合 案例 论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 一套基础，三类网络， PART 02 7.1 网络架构和主要技术 先建立共同语言 P">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a039/78dfb9c19d29a027.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a039/8e586adea9cc202a.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a039/114c598e70f32c01.png">
+<meta property="article:published_time" content="2026-07-26T02:29:00.000Z">
+<meta property="article:modified_time" content="2026-07-26T02:29:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/uploads/ai-notes/a039/78dfb9c19d29a027.png">
+  
+  
+  <title>系规第7章：网络环境规划完整学习笔记 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="系规第7章：网络环境规划完整学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-26 10:29" pubdate>
+          2026年7月26日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          48 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">系规第7章：网络环境规划完整学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>EXAM NOTES · 系规学习 · 2026.07</p>
+<p>网络规划就是画拓扑、选设备？</p>
+<p>先分广域、局域、无线，</p>
+<p>再补管理安全与机房</p>
+<p>第7章 · 网络环境规划 · 架构技术与规划重点</p>
+<p>系规24期学习整理 · 第04期 · 综合 案例 论文</p>
+<p>6 PARTS + CONCLUSION</p>
+<p>👉 滑动</p>
+<p>PART 01</p>
+<p>本章地图</p>
+<p>一套基础，三类网络，</p>
+<p>PART 02</p>
+<p>7.1 网络架构和主要技术</p>
+<p>先建立共同语言</p>
+<p>PART 03</p>
+<p>7.2 广域网规划</p>
+<p>解决跨地域承载</p>
+<p>PART 04</p>
+<p>7.3 局域网规划</p>
+<p>重点不只在交换机</p>
+<p>PART 05</p>
+<p>7.4 无线网规划</p>
+<p>频率、覆盖与容量必须</p>
+<p>PART 06</p>
+<p>7.5 整体重点</p>
+<p>网络建成以后能否管好</p>
+<p>PART &#x2F;&#x2F;&#x2F;</p>
+<p>写在最后</p>
+<p>复习建议</p>
+<p>学习目标</p>
+<p>第7章的技术名词很多，但主线并不乱：先认识网络的框架和协议，再分别规划广域网、局域网、无线网，最后补齐管理、安全、机房、布线、监控和节能。本文按教材7.1—7.5逐节展开，目标是读完即可完成本章第一轮系统学习。</p>
+<p>这是“系规学习”的第4期。本章是综合题的技术高频章，也是案例题的重要来源。学习时不必把自己变成网络工程师，但必须能够识别关键协议、说清三类网络各自的规划重点，并能用管理和安全清单分析案例。</p>
+<p>01PART</p>
+<p>本章地图：一套基础，三类网络，一组保障</p>
+<p>LEARNING · KEY POINTS</p>
+<p>第7章可以压缩成“1＋3＋1”：</p>
+<p>17.1 网络架构和主要技术：建立共同语言，包括五个平台、OSI七层、TCP&#x2F;IP、传输平台和拓扑。</p>
+<p>27.2 广域网规划：解决跨地区、跨管理域的连接和承载。</p>
+<p>37.3 局域网规划：解决园区或组织内部的交换、VLAN、路由和地址分配。</p>
+<p>47.4 无线网规划：解决频率、覆盖、容量、站址和无线组网。</p>
+<p>57.5 网络整体规划重点事项：用网管、安全、机房、布线、监控和节能保障网络长期运行。</p>
+<p><img src="/uploads/ai-notes/a039/78dfb9c19d29a027.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 第7章网络环境规划学习地图</p>
+<p>网络规划到底在规划什么</p>
+<p>网络环境规划要根据客户的网络、业务和管理现状，综合考虑业务演进、财务状况、维护能力、建设步骤、设备折旧和技术趋势，完成：</p>
+<p>●网络架构和覆盖范围规划；</p>
+<p>●技术、设备与组网方式选择；</p>
+<p>●承载能力与业务适应性规划；</p>
+<p>●网络安全、管理维护和配套环境设计；</p>
+<p>●原有网络演进、业务迁移与容灾备份安排。</p>
+<p>最终目标是在客户人、财、物预算范围内，选择性价比较高的架构、技术和设备，做到因地制宜、适度超前，同时满足当前和可预见的未来需求。</p>
+<p>三门考试先抓什么</p>
+<p>●综合题抓OSI七层、TCP&#x2F;IP、IPv4&#x2F;IPv6、拓扑、VLAN、5G三场景、网络管理五功能。</p>
+<p>●案例题抓广域网六项、局域网五个特有重点、无线网五项，以及网管、安全管理清单。</p>
+<p>●论文可用“现状与需求—总体架构—三类网络—管理安全—迁移实施—持续优化”组织网络规划实践。</p>
+<p>02PART</p>
+<p>7.1 网络架构和主要技术：先建立共同语言</p>
+<p>LEARNING · KEY POINTS</p>
+<p>7.1.1 信息网络系统的五个平台</p>
+<p>复杂网络通常用两种方式抽象：一是按业务功能模块划分，二是用网络信息流的七层协议模型抽象。按功能模块划分时，一个相对完整的信息网络系统包括五个平台：</p>
+<table>
+<thead>
+<tr>
+<th>平台</th>
+<th>主要职责</th>
+<th>典型内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>网络传输平台</td>
+<td>高效、准确、安全地传输数据</td>
+<td>传输、路由、交换、有线与无线接入</td>
+</tr>
+<tr>
+<td>网络和应用服务平台</td>
+<td>处理网络服务、管理逻辑、业务逻辑和数据</td>
+<td>DNS、地址分配、OA、Web、邮件、会议等</td>
+</tr>
+<tr>
+<td>安全服务平台</td>
+<td>保护网络、应用和用户</td>
+<td>加解密、防火墙、入侵检测、漏洞扫描、审计、证书</td>
+</tr>
+<tr>
+<td>网络管理和维护平台</td>
+<td>管理、监测和维护整个网络</td>
+<td>网管、告警、性能、配置；对外运营时还需运营系统</td>
+</tr>
+<tr>
+<td>环境系统</td>
+<td>提供能源、空间、安防和物理连接</td>
+<td>机房、环境监控、智能安防、节能、综合布线</td>
+</tr>
+</tbody></table>
+<p>记忆骨架：传、应、安、管、环。注意“网络和应用服务平台”与“网络管理和维护平台”不是一回事：前者支撑业务，后者保障网络运行。</p>
+<p>7.1.2 OSI七层：不仅会背顺序，还要会定位</p>
+<p>OSI模型自下而上是：</p>
+<p>1物理层：规定机械、电气、功能和规程特性，传输比特。</p>
+<p>2数据链路层：在相邻节点间成帧传输，进行差错检测和介质访问控制。</p>
+<p>3网络层：负责逻辑寻址和路由选择，传输数据包。</p>
+<p>4传输层：提供端到端传输，处理可靠性、顺序、拥塞和连接。</p>
+<p>5会话层：建立、管理和终止应用之间的会话。</p>
+<p>6表示层：处理数据表示、格式转换、压缩和加解密。</p>
+<p>7应用层：直接为用户应用提供网络服务。</p>
+<p>自下而上的口诀可记为：物、链、网、传、会、表、应；培训资料常用“物联网传回试用”帮助回忆，但答题必须写规范层名。</p>
+<p><img src="/uploads/ai-notes/a039/8e586adea9cc202a.png" srcset="/img/loading.gif" lazyload></p>
+<p>— OSI与TCP-IP层次对应</p>
+<p>TCP&#x2F;IP四层与常见协议</p>
+<p>教材采用四层结构：</p>
+<p>●网络接口层：对应OSI物理层和数据链路层，典型协议ARP、RARP。</p>
+<p>●网络层：对应OSI网络层，典型协议IP、ICMP、IGMP。</p>
+<p>●传输层：对应OSI传输层及部分会话功能，典型协议TCP、UDP。</p>
+<p>●应用层：综合OSI会话、表示、应用层功能，典型协议HTTP、Telnet、FTP、SMTP、DNS等。</p>
+<p>TCP与UDP对比</p>
+<table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>TCP</th>
+<th>UDP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>连接</td>
+<td>面向连接，传输前建立连接</td>
+<td>无连接，直接发送</td>
+</tr>
+<tr>
+<td>可靠性</td>
+<td>提供确认、重传、顺序控制</td>
+<td>不保证到达与顺序</td>
+</tr>
+<tr>
+<td>开销</td>
+<td>较大</td>
+<td>较小</td>
+</tr>
+<tr>
+<td>适用</td>
+<td>对可靠性要求高的业务</td>
+<td>实时性优先、可容忍少量丢包的业务</td>
+</tr>
+</tbody></table>
+<p>考试中看到“可靠、有序、面向连接”选TCP；看到“无连接、时延低、开销小”优先考虑UDP。</p>
+<p>IPv4、IPv6和路由</p>
+<p>●IPv4地址长度为32位，地址空间有限。</p>
+<p>●IPv6地址长度为128位，扩展地址空间并改进报文与自动配置能力。</p>
+<p>●ARP用于由IP地址解析MAC地址；ICMP用于差错报告和网络诊断。</p>
+<p>●静态路由由管理员手工配置，结构简单、可控，但适应变化能力弱。</p>
+<p>●动态路由能交换路由信息并随链路变化调整。教材将RIP、BGP列入距离矢量类，将OSPF、IS-IS列入链路状态类；应试时以教材表述为准。</p>
+<p>传输平台的四类内容</p>
+<p>网络传输平台一般由以下内容组成：</p>
+<p>1传输媒介：有线的光纤、双绞线、同轴电缆；无线的长波、中波、短波、超短波、微波等。</p>
+<p>2网络传输技术：SDH、PDH、DWDM、HFC、Wi-Fi、数字微波、卫星通信、移动通信等。</p>
+<p>3路由、交换和组网技术：路由侧重跨网络寻址，交换侧重一定范围内基于MAC转发；SDN把控制功能从传统设备中分离并集中控制转发。</p>
+<p>4有线、无线接入技术：PON、EPON、GPON、10G-PON，以及Wi-Fi、蓝牙等。</p>
+<p>六种常见拓扑</p>
+<p>常见网络拓扑包括总线型、星型、环型、树型、网状和复合型。规划时要在安全、可靠的基础上，尽量降低费用、减少时延、提高链路利用率；网络设计原则之一是使交换设备与传输链路总费用尽可能小。</p>
+<p>●总线型结构简单、成本低，但主干故障影响大。</p>
+<p>●星型便于管理和扩展，但中心节点是关键点。</p>
+<p>●环型路径规则，可做保护，但节点或链路处理较复杂。</p>
+<p>●树型适合分层组织，但上层节点影响范围较大。</p>
+<p>●网状冗余和可靠性高，成本与管理复杂度也高。</p>
+<p>●实际大型网络多采用分层的复合型拓扑。</p>
+<p>03PART</p>
+<p>7.2 广域网规划：解决跨地域承载</p>
+<p>LEARNING · KEY POINTS</p>
+<p>广域网是跨地区、省市乃至国家的大规模网络，用来连接局域网、城域网、省网等，可分为运营商广域网和企业&#x2F;行业广域网。</p>
+<p>7.2.1 广域网的一般架构</p>
+<p>典型运营商网络通常包含全国骨干网、省级骨干网、城域网和接入网。IP城域网常采用三层架构：</p>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>主要职责</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>核心层</td>
+<td>提供高速骨干转发和出口连接，承载IDC、CDN等中心节点</td>
+</tr>
+<tr>
+<td>汇聚层</td>
+<td>汇聚区域业务，上联核心、下接接入设备</td>
+</tr>
+<tr>
+<td>接入层</td>
+<td>面向园区、楼宇、家庭和个人用户提供有线或无线接入</td>
+</tr>
+</tbody></table>
+<p>企业网也可采用核心—汇聚—接入的分层思想。中小型网络可以简化层级，但不能因此忽略出口冗余、安全域和可扩展性。</p>
+<p>7.2.2 广域网主要技术</p>
+<p>广域网技术主要围绕TCP&#x2F;IP、多协议标签交换MPLS、虚拟专用网VPN、IP城域网、专线及各种接入技术展开。选型时应关注：</p>
+<p>●业务带宽、时延、抖动、丢包和可用性；</p>
+<p>●多分支互联、互联网出口和云接入需求；</p>
+<p>●专线建设或租用成本；</p>
+<p>●路由收敛、链路冗余和故障切换；</p>
+<p>●与原有网络、运营商及云平台接口兼容性。</p>
+<p>7.2.3 广域网规划六项必背</p>
+<p>1建设背景：为什么建，是新建、扩容、升级还是多网整合。</p>
+<p>2需求分析：用户规模、业务类型、流量流向、性能、安全和管理需求。</p>
+<p>3项目预算：设备、线路建设或租用、配套设施、实施、运维和优化成本。</p>
+<p>4技术方向：功能、性能、成熟度、接口、演进方向和维护能力。</p>
+<p>5网络拓扑结构设计：同时设计物理网络和逻辑网络，大型广域网通常分层并采用复合拓扑。</p>
+<p>6IP地址等逻辑资源规划：统筹IPv4、IPv6、自治系统号、路由、域名等资源。</p>
+<p>记忆骨架：背、需、预、技、拓、址。案例中出现“只买设备、没有流量预测”“没有考虑线路租费”“缺少IPv6地址规划”“单链路无冗余”，都可以对应到这六项指出缺失。</p>
+<p>04PART</p>
+<p>7.3 局域网规划：重点不只在交换机</p>
+<p>LEARNING · KEY POINTS</p>
+<p>局域网覆盖范围相对有限，常见于企业、园区、校园和楼宇。它通常采用以太网交换技术，并通过路由器或三层交换设备连接不同子网及外部网络。</p>
+<p>7.3.1 一般架构与主要技术</p>
+<p>大型园区局域网常采用核心、汇聚、接入三层架构；规模较小时可采用核心&#x2F;汇聚合一的两层架构。主要技术包括以太网交换、VLAN、三层路由、生成树、链路聚合、DHCP、无线接入和网络准入等。</p>
+<p>7.3.2 VLAN六种划分方法</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>按端口划分</td>
+<td>配置简单、适合各种规模；用户换端口后通常需重新配置</td>
+</tr>
+<tr>
+<td>按MAC地址划分</td>
+<td>用户移动后成员身份可保持；初始化配置量大，较适合小型网络</td>
+</tr>
+<tr>
+<td>按网络层协议划分</td>
+<td>可按IP、IPX等协议组织；检查网络层信息带来额外开销</td>
+</tr>
+<tr>
+<td>按IP组播划分</td>
+<td>把一个IP组播组视为一个VLAN，灵活但效率不高</td>
+</tr>
+<tr>
+<td>按策略划分</td>
+<td>可组合端口、MAC、IP、协议等条件，适应管理策略</td>
+</tr>
+<tr>
+<td>按用户定义、非用户授权划分</td>
+<td>按特定用户要求定义，非成员需认证后加入</td>
+</tr>
+</tbody></table>
+<p>口诀：端、MAC、协、组、策、用。VLAN的本质是划分广播域和安全域，规划时应结合业务特性、地理位置与安全要求，而不是为了“看起来整齐”随意切分。</p>
+<p>7.3.3 局域网五个特有重点</p>
+<p>局域网同样要做建设背景、需求、预算、技术、拓扑、地址、安全、网管、机房和布线设计，但还要重点关注：</p>
+<p>1VLAN划分：按业务、位置和安全要求决定划分方式。</p>
+<p>2VLAN编号：统一编码并预留扩展空间，便于管理和排障。</p>
+<p>3VLAN间路由设计：明确哪些VLAN允许互访、通过何处路由、如何实施访问控制。</p>
+<p>4STP设计：在逻辑上发现并阻断二层环路，避免广播风暴；同时规划根桥和冗余链路。</p>
+<p>5DHCP设计：规划地址池、租期、网关、DNS、中继、保留地址和容灾。</p>
+<p>注意：VLAN ID的协议字段是12位，可用编号范围常表述为1—4094；教材正文写“1—4096”。遇到以教材原句设问的考试，以教程表述为准；实际工程配置则应遵循设备和标准的可用范围。</p>
+<p>案例分析的常见问题</p>
+<p>●网络扁平、广播域过大，没有按业务或安全域划分VLAN；</p>
+<p>●核心、汇聚或出口存在单点故障；</p>
+<p>●二层存在环路，却未规划STP或根桥位置；</p>
+<p>●VLAN间全部互通，没有最小权限访问控制；</p>
+<p>●DHCP地址池太小、没有中继或没有冗余；</p>
+<p>●IP地址临时分配、冲突严重、未预留扩展空间；</p>
+<p>●只考虑带宽，没有考虑时延、丢包、终端增长和运维监控。</p>
+<p>05PART</p>
+<p>7.4 无线网规划：频率、覆盖与容量必须一起算</p>
+<p>LEARNING · KEY POINTS</p>
+<p>教材中的无线网包括三类：</p>
+<p>1运营商4G、5G移动通信网；</p>
+<p>2NB-IoT等面向特定场景的专用无线网；</p>
+<p>3Wi-Fi等无线局域网。</p>
+<p>7.4.1 4G与5G</p>
+<p>4G采用OFDM、软件无线电、智能天线、MIMO和基于IP的核心网等技术。5G进一步面向三类典型场景：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>中文</th>
+<th>典型需求与应用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>eMBB</td>
+<td>增强移动宽带</td>
+<td>大带宽、高速率；高清视频、AR&#x2F;VR等</td>
+</tr>
+<tr>
+<td>uRLLC</td>
+<td>超高可靠低时延通信</td>
+<td>极低时延、高可靠；工业控制、远程医疗、自动驾驶</td>
+</tr>
+<tr>
+<td>mMTC</td>
+<td>海量机器类通信</td>
+<td>大规模连接、低功耗；智慧城市、智能家居、环境监测</td>
+</tr>
+</tbody></table>
+<p>口诀：大带宽、低时延、海量连。5G核心网采用服务化、微服务思想，并通过网络切片支持不同场景的差异化能力。</p>
+<p>7.4.2 NB-IoT与无线局域网</p>
+<p>NB-IoT面向低功耗广域物联网，适合海量、低速率、低功耗、覆盖要求较高的终端。Wi-Fi适合局部区域高速无线接入，规划时需考虑标准版本、频段、信道、干扰、接入密度、漫游、认证和有线回传。</p>
+<p>不要只看到“无线”就默认Wi-Fi：远距离、低功耗、大量传感终端可能更适合NB-IoT；极高可靠低时延业务可能面向5G专网；办公室和园区高吞吐接入通常重点规划Wi-Fi。</p>
+<p>7.4.3 无线网五项必背</p>
+<p>无线网除一般网络规划内容外，还要重点关注：</p>
+<p>1无线频率规划：频率是有限、排他的资源，要降低干扰、提高利用效率。</p>
+<p>2无线传输覆盖范围规划：结合建筑、地形、穿透和抗干扰特性消除覆盖盲区。</p>
+<p>3无线传输容量规划：根据用户规模、业务特征和业务量预测容量，不能只保证“有信号”。</p>
+<p>4无线基站站址规划：兼顾覆盖、容量、回传、电源、机房、物业和施工条件。</p>
+<p>5无线组网规划：设计基站、控制、核心网、回传与其他网络的连接关系及冗余。</p>
+<p>记忆骨架：频、覆、容、址、组。</p>
+<p><img src="/uploads/ai-notes/a039/114c598e70f32c01.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 三类网络规划重点对比</p>
+<p>覆盖与容量为什么不能混为一谈</p>
+<p>覆盖回答“能不能收到信号”，容量回答“多人同时使用时能不能满足业务”。增加发射功率可能扩大覆盖，却不一定增加系统容量；单纯增加接入点也可能导致同频干扰。实际规划需要通过现场勘察、预测模型、容量估算和测试优化形成闭环。</p>
+<p>06PART</p>
+<p>7.5 整体重点：网络建成以后能否管好、守住、持续运行</p>
+<p>LEARNING · KEY POINTS</p>
+<p>7.5.1 网络管理五大功能</p>
+<p>国际标准化组织定义的网络管理五大功能是：</p>
+<p>1故障管理：采集告警，判断、定位并支持故障恢复。</p>
+<p>2配置管理：配置网络服务，采集和管理设备配置，使网络整体运行最优。</p>
+<p>3性能管理：采集、分析性能数据，掌握网络和设备运行状况。</p>
+<p>4计费管理：记录网络资源使用情况，控制和监测费用与代价。</p>
+<p>5安全管理：提供设备与网络管理层面的安全功能，保障网络安全运行。</p>
+<p>口诀：故、配、性、计、安。网络管理系统自下而上分为网元&#x2F;网络层、管理应用层、表示层：底层提供受管对象和数据，中层实现管理功能，上层提供人机界面。</p>
+<p>7.5.2 网络安全设计与安全管理</p>
+<p>网络安全设计关注四项：</p>
+<p>●网络结构：结构及安全域划分是否合理；</p>
+<p>●访问控制：边界设备、访问规则和控制粒度是否合理；</p>
+<p>●网络入侵防护：能否监测和防御拒绝服务、扫描、蠕虫等攻击；</p>
+<p>●网络安全审计：能否对设备、流量和用户行为统一记录与分析。</p>
+<p>典型手段包括防火墙、VLAN安全域、IDS&#x2F;IPS、统一日志和SOC。</p>
+<p>安全管理另有五项必背：</p>
+<p>1安全组织和责任；</p>
+<p>2风险管理工作机制；</p>
+<p>3应急处理工作机制；</p>
+<p>4容灾备份工作机制；</p>
+<p>5系统上线、切换办法及安全运维方案。</p>
+<p>要分清“安全设计关注点”和“安全管理机制”：前者偏技术控制，后者偏组织、流程与持续运行。</p>
+<p>7.5.3 机房、布线、监控和节能</p>
+<p>机房建设七项</p>
+<p>机房建设包括机房装修、空调系统、电气系统、接地和防雷系统、消防系统、环境监控系统、节能降耗系统。它是建筑、空调、给排水、强弱电、消防和装饰等多专业协同的工程。</p>
+<p>综合布线三层构成</p>
+<p>综合布线把网络、电话、监控、电源、照明等线路按标准、统一、结构化方式规划。基本构成包括：</p>
+<p>●建筑群子系统；</p>
+<p>●干线子系统；</p>
+<p>●配线子系统。</p>
+<p>设计时要综合考虑建筑性质、业务带宽、线缆距离、终端类型、发展需求、价格和安装条件，并与网络、安全防范和建筑设备监控同步规划。</p>
+<p>机房监控五类子系统</p>
+<p>1机房动力环境系统监测；</p>
+<p>2机房网络设备监控；</p>
+<p>3机房门禁监控；</p>
+<p>4机房环境消防监控；</p>
+<p>5统一运维管理平台。</p>
+<p>节能降耗</p>
+<p>从选址、密封绝热、配风和气流组织、冷热通道、设备能效、动态制冷及智能分析等方面降低能耗。节能不是竣工后的附加优化，而应在规划阶段纳入方案。</p>
+<p>三门考试怎么用</p>
+<p>综合题</p>
+<p>优先默写并识别：</p>
+<p>●五个平台：传、应、安、管、环；</p>
+<p>●OSI七层与TCP&#x2F;IP四层；</p>
+<p>●六种拓扑、VLAN六种划分；</p>
+<p>●广域网六项、局域网五项、无线网五项；</p>
+<p>●5G三场景；</p>
+<p>●网管五功能、安全设计四重点、安全管理五机制。</p>
+<p>案例题</p>
+<p>答“网络规划存在什么问题”时，可按以下顺序扫描材料：</p>
+<p>1是否调查建设背景、用户、业务、流量和管理需求；</p>
+<p>2是否设计分层拓扑、冗余链路、地址和容量；</p>
+<p>3局域网是否规划VLAN、路由、STP、DHCP；</p>
+<p>4无线网是否兼顾频率、覆盖、容量、站址和干扰；</p>
+<p>5是否具备故障、配置、性能、计费和安全管理能力；</p>
+<p>6是否补齐安全域、边界控制、入侵防护、审计、容灾和应急；</p>
+<p>7是否考虑机房、布线、监控、节能、迁移和持续优化。</p>
+<p>写答案时使用“问题＋后果＋改进”的句式。例如：核心出口采用单设备单链路，存在单点故障，可能导致全网业务中断；应采用设备与链路冗余，并验证故障切换机制。</p>
+<p>论文</p>
+<p>可按“背景与目标—现状调研—总体分层架构—广域&#x2F;局域&#x2F;无线方案—管理与安全—机房与配套—迁移实施—监控优化”展开。论文中不要堆协议名，要说明每个选择解决了什么业务问题、如何控制风险、如何验证效果。</p>
+<p>闭卷自测</p>
+<p>1信息网络系统五个平台分别是什么？</p>
+<p>2OSI七层与TCP&#x2F;IP四层如何对应？TCP和UDP有何区别？</p>
+<p>3六种常见拓扑是什么？</p>
+<p>4广域网规划六项主要内容是什么？</p>
+<p>5VLAN六种划分方法和局域网五个特有重点是什么？</p>
+<p>65G三类场景分别面向什么需求？</p>
+<p>7无线网五项重点是什么？</p>
+<p>8网络管理五大功能及三层体系结构是什么？</p>
+<p>9网络安全设计四项关注点和安全管理五项机制是什么？</p>
+<p>10机房建设、综合布线和机房监控分别包括什么？</p>
+<p>&#x2F;&#x2F;&#x2F;</p>
+<p>LAST</p>
+<p>写在最后</p>
+<p>SUMMARY · REVIEW SMARTER</p>
+<p>第7章看似全是协议和设备，真正的学习骨架其实是：</p>
+<p>五个平台＋两套分层模型＋三类网络＋一组运行保障。</p>
+<p>第一轮先把广域网六项、局域网五项、无线网五项和网管五功能默写出来；第二轮再补OSI协议、VLAN、5G、机房和安全细节。做案例时始终回到“需求是否清楚、架构是否合理、容量是否够、运行能否管、安全能否守、故障能否恢复”六个问题。</p>
+<p>我是陈文茂，正在用自己的方式重新整理系统规划与管理师学习资料。</p>
+<p>如果这篇对你有帮助，欢迎点赞、在看、转发。</p>
+<p>既然看到这里了，如果觉得有用，随手点个赞、在看、转发三连吧。</p>
+<p>👍 点赞 👀 在看 ↗ 转发</p>
+<p>THANKS FOR READING</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>系规第7章：网络环境规划完整学习笔记</div>
+      <div>https://maoyu92.github.io/2026/07/26/07 AI笔记/软考系规/a039_系规第7章：网络环境规划完整学习笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a038_%E7%B3%BB%E8%A7%84%E7%AC%AC8%E7%AB%A0%EF%BC%9A%E6%95%B0%E6%8D%AE%E8%B5%84%E6%BA%90%E8%A7%84%E5%88%92%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="系规第8章：数据资源规划完整学习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">系规第8章：数据资源规划完整学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a040_%E7%B3%BB%E8%A7%84%E7%AC%AC4%E7%AB%A0%EF%BC%9A%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E8%A7%84%E5%88%92%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="系规第4章：信息系统规划完整学习笔记">
+                        <span class="hidden-mobile">系规第4章：信息系统规划完整学习笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

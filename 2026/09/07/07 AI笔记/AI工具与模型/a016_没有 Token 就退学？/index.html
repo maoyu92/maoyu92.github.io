@@ -1,0 +1,788 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="“ 决定你能不能跟上这个时代的，不是你有没有那张入场券，而是拿到它之后做了什么。 最近，南京大学计算机学院副教授、博导蒋炎岩，在他 2026 年秋季新课《生成式软件工程》的第一页课件上，用红字写了一句特别扎眼的话： 「没有 Token 的 CS 学生，应该立即退学。」  一句话把 AI 圈和计算机圈都炸了。知乎相关话题冲上热榜，四百多个回答，底下赞成的人居然还不少。有人说”这话说保守了，不如把课时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="没有 Token 就退学？">
+<meta property="og:url" content="https://maoyu92.github.io/2026/09/07/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a016_%E6%B2%A1%E6%9C%89%20Token%20%E5%B0%B1%E9%80%80%E5%AD%A6%EF%BC%9F/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="“ 决定你能不能跟上这个时代的，不是你有没有那张入场券，而是拿到它之后做了什么。 最近，南京大学计算机学院副教授、博导蒋炎岩，在他 2026 年秋季新课《生成式软件工程》的第一页课件上，用红字写了一句特别扎眼的话： 「没有 Token 的 CS 学生，应该立即退学。」  一句话把 AI 圈和计算机圈都炸了。知乎相关话题冲上热榜，四百多个回答，底下赞成的人居然还不少。有人说”这话说保守了，不如把课时">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a016/9e3169b198dcdeda.jpg">
+<meta property="article:published_time" content="2026-09-06T23:37:00.000Z">
+<meta property="article:modified_time" content="2026-09-06T23:37:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/uploads/ai-notes/a016/9e3169b198dcdeda.jpg">
+  
+  
+  <title>没有 Token 就退学？ - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="没有 Token 就退学？"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-09-07 07:37" pubdate>
+          2026年9月7日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">没有 Token 就退学？</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>“</p>
+<p>决定你能不能跟上这个时代的，不是你有没有那张入场券，而是拿到它之后做了什么。</p>
+<p>最近，南京大学计算机学院副教授、博导蒋炎岩，在他 2026 年秋季新课《生成式软件工程》的第一页课件上，用红字写了一句特别扎眼的话：</p>
+<p>「没有 Token 的 CS 学生，应该立即退学。」</p>
+<p><img src="/uploads/ai-notes/a016/9e3169b198dcdeda.jpg" srcset="/img/loading.gif" lazyload></p>
+<p>一句话把 AI 圈和计算机圈都炸了。知乎相关话题冲上热榜，四百多个回答，底下赞成的人居然还不少。有人说”这话说保守了，不如把课时费全换成 Token 按人头发下去；有人说何止计算机系，全专业都应该把怎么用 AI 列为必修；也有人忍不住吐槽——既然 Token 是实验耗材，那化学系的试剂是实验室供的、物理系的器材是学校买的，怎么到了计算机系就得学生自己掏钱？</p>
+<p>我听完的观点很清楚：这句话对一半，另一半很值得补充。</p>
+<p>📌 本文看点</p>
+<p>01</p>
+<p>他说的对的那一半</p>
+<p>02</p>
+<p>自费找资源 &#x3D; 主观能动性</p>
+<p>03</p>
+<p>用 Token 学知识，不是交差</p>
+<p>01</p>
+<p>EMBRACE</p>
+<h3 id="他说的对的部分：你必须主动拥抱-AI"><a href="#他说的对的部分：你必须主动拥抱-AI" class="headerlink" title="他说的对的部分：你必须主动拥抱 AI"></a>他说的对的部分：你必须主动拥抱 AI</h3><p>蒋老师这个人说话难听，但话糙理不糙。他把这句话放在开学第一课，真正想说的其实是：</p>
+<p>「都 2026 年了，学计算机的还不碰 AI 工具、还在用十年前那套方式敲代码，跟行业前沿的差距，已经不是熬夜能补上的了。」</p>
+<p>这不是危言耸听。你看新加坡国立大学直接从 2026&#x2F;27 学年开始，全校所有本科新生不分专业、不分文理，必须修满 12 学分的 AI 相关课程才能毕业。AI 工具，正在从 CS 专业的专业课，变成所有专业的”公共课“。</p>
+<p>所以，要拥抱 AI这件事，我认为完全没问题。在这个时代，Token 和水电网一样，已经是一种基础设施。整个社会一旦习惯了 10 倍速产出，你还在用 1 倍速硬扛，就算勉强能做出东西，大概率也是没有意义的。</p>
+<p>但拥抱 AI如果只停留在我用上了这个层面，那就太浅了。这才是我想补充的部分。</p>
+<p>02</p>
+<p>INITIATIVE</p>
+<h3 id="补充第一点：自费、找免费资源，本质是”主观能动性“"><a href="#补充第一点：自费、找免费资源，本质是”主观能动性“" class="headerlink" title="补充第一点：自费、找免费资源，本质是”主观能动性“"></a>补充第一点：自费、找免费资源，本质是”主观能动性“</h3><p>这门课的规则很简单，蒋老师列了三条：</p>
+<p>1</p>
+<p>禁止古法编程——别再用十年前那套方式敲代码。</p>
+<p>2</p>
+<p>Token 自费——自己花钱买 Token 做作业。</p>
+<p>3</p>
+<p>不需要 Tokenmaxxing——别拿 Token 当水喝，不需要死命烧，要高效地用。</p>
+<p>很多人只看到Token 自费四个字，觉得是在为难学生。但我觉得，这里藏着这整句话里最值钱的那个信息。蒋老师用一句话点破了本质：</p>
+<p>「Token 是 AI 时代的实验耗材，跟化学系的试剂、物理系的器材一个道理。只有自己掏腰包用，才能真正建立起成本、质量、延迟的意识。」</p>
+<p>说白了，Token 自费的重点根本不在钱，而在主动。它逼着你去想：我该用哪个模型？这个任务值不值得烧这么多 token？我能不能先自己想清楚，再让 AI 帮我跑？</p>
+<p>其实这个道理，比上课本身重要得多：</p>
+<p>别等着别人喂</p>
+<p>没有免费的 token，就去找免费的 token；有得用但贵，就去找更便宜的替代；资源不够，就自己去想办法。这是一项可以迁移到任何领域的能力。</p>
+<p>前期要有”压缩“思维</p>
+<p>在窘迫、有限的预算里，你依然能把事情做出来，你才算真正学到了东西。只有当你的能力积累到一定程度，创造的价值明显大于花费时，你才值得上更好的模型、烧得起更多的 Token。</p>
+<p>很多人的问题是：没有的时候抱怨不行，有了之后又无限挥霍。这两种心态，其实都没有用 Token的能力。</p>
+<p>我见过两种花 Token 的方式，差别是天壤之别：</p>
+<p>有人把 AI 当高级搜索框，题目整段复制进去、答案复制粘贴出来。Token 花了不少，独立思考能力反而退化了。</p>
+<p>有人用 AI 代理系统去读整个代码库、自动修 bug、生成测试用例。Token 消耗大，但产出完全不是一个量级。</p>
+<p>同样的 Token，用出什么结果，取决于你这个人行不行。这恰恰印证了那句话：Token 是入门券，但真正的门槛，是在它前面和后面的那个人。</p>
+<p>03</p>
+<p>LEARNING</p>
+<h3 id="补充第二点：用-Token-学知识，而不是交差"><a href="#补充第二点：用-Token-学知识，而不是交差" class="headerlink" title="补充第二点：用 Token 学知识，而不是交差"></a>补充第二点：用 Token 学知识，而不是交差</h3><p>这是我觉得最值得被讲清楚的一点。蒋老师在讲这句狠话之前，先讲了 CS 学生的集体焦虑。其中第一种焦虑，名字就叫AI 替我上大学：</p>
+<p>「老师用豆包出题，学生用豆包做作业，整个过程中，只有学生没有受到训练。假设每门课都开卷、都用 AI 答题，每门课都能拿高分。但等到毕业时才发现——每门课都很好，可自己什么都没学会，第一个就被 AI 取代了。」</p>
+<p>有人把它形容得更扎心：AI 教、AI 学，大家都在 Loop 里假装很忙，只有学校的电费是真的。</p>
+<p>这就是我特别想说的：有了 Token，不等于你就学到了知识。中间必须留下点什么，才叫学习。</p>
+<p>那留下什么？我觉得蒋老师的一句话给了答案——他说这门课想解决的问题是：</p>
+<p>「AI 写代码越来越快之后，人还剩下什么活要干？学生不只是会写代码，还要学会给 AI 拆任务、挑模型、控成本、验结果。模型生成得再快，如果人不知道它写得对不对，照样白搭。」</p>
+<p>以前是让你去背一个语法；现在是为了做成某件事，你需要去掌握更多 AI 的技巧和技能。而在学习这些技能的过程中，你自然而然会接触到相关的知识。这些知识可能不是细节层面的，但它更具备方向性、决策性——你知道该往哪儿走、该让 AI 往哪儿使劲、该怎么判断它给的结果靠不靠谱。</p>
+<p>这才是用算力帮你学习的正确姿势：搜索资料、形成成果，做一个从需求到成果的闭环。而不是拿它当答案机器，把”过程“整个外包出去。</p>
+<p>而且——越依赖 Token，底层功底往往越要命。有个很真实的案例：一个实习生用 AI 三天搓出一个完整的微服务，代码结构漂亮、本地单测全过，看起来潇洒极了。结果压测流量刚到 500 QPS，整个服务瞬间雪崩。扒开代码一看，模型生成的逻辑是跑得通的，但底层塞满了非原子操作、隐藏的数据库锁竞争、全表扫描。没有底层功底的人，AI 把一段带着内存泄漏的代码递到他面前，他根本看不出来。</p>
+<p>这也是我一直认同蒋老师那句 模型生成再快，人不知道它写得对不对，照样白搭”的原因。</p>
+<p>∞</p>
+<p>EPILOGUE</p>
+<h3 id="结论：要”淘汰“的从来不是”没-Token“的人"><a href="#结论：要”淘汰“的从来不是”没-Token“的人" class="headerlink" title="结论：要”淘汰“的从来不是”没 Token“的人"></a>结论：要”淘汰“的从来不是”没 Token“的人</h3><p>所以我对没有 Token 的 CS 学生应该立即退学这句话的评价是：</p>
+<p>它对的部分：在 AI 时代，如果一个人连主动去用算力、主动去拥抱 AI 都不愿意，那他确实会被时代甩开。</p>
+<p>它不完整的部分：真正该被淘汰的，不只是没用Token 的人，还有这三类人——</p>
+<p>1</p>
+<p>有 Token，却只把它当搜索框、被动等别人喂、从不去主动找资源的<strong>被动者</strong>；</p>
+<p>2</p>
+<p>烧了一堆 Token，却什么都没留下、只会”复制粘贴交差“的<strong>空心人</strong>；</p>
+<p>3</p>
+<p>用了 Token，却始终不学底层、不产生价值的<strong>短视者</strong>。</p>
+<p>Token 只是入场券。真正拉开差距的，是主动去凑资源、在有限预算里做出成果的本事，以及把算力真正转化成自身知识和成果的能力。</p>
+<p>这个道理，其实和有没有 AI 没关系。从古到今，那个不等人喂、敢在窘迫里逼自己一把、能把工具变成自己脑子里东西的人，永远跑在最前面。</p>
+<p>共勉。</p>
+<p>END  </p>
+<p>我是<strong>陈文茂</strong>，热衷于分享 AI 观察与干货。</p>
+<p>如果你觉得今天这篇有收获，欢迎<strong>点赞、在看、转发</strong>三连，我们下篇见。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>没有 Token 就退学？</div>
+      <div>https://maoyu92.github.io/2026/09/07/07 AI笔记/AI工具与模型/a016_没有 Token 就退学？/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年9月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/09/07/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a015_%E4%BB%8E%E7%81%B5%E6%84%9F%E5%88%B0%E5%8F%91%E8%A1%A8%EF%BC%9A%E5%BC%80%E6%BA%90%20AI%20%E7%A7%91%E7%A0%94%E5%B7%A5%E4%BD%9C%E5%8F%B0%20Mimir%20%E5%AE%9E%E6%93%8D%E6%8C%87%E5%8D%97/" title="从灵感到发表：开源 AI 科研工作台 Mimir 实操指南">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">从灵感到发表：开源 AI 科研工作台 Mimir 实操指南</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/09/02/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a017_%E5%85%8D%E5%90%91%E9%87%8F%E5%BA%93%EF%BC%8C%E7%85%A7%E6%A0%B7%E6%90%9C%E7%B4%A2%EF%BC%9ASirchmunk%20%E6%8A%8A%20RAG%20%E6%8B%89%E5%9B%9E%E2%80%9C%E5%8E%9F%E5%A7%8B%E6%95%B0%E6%8D%AE%E2%80%9D/" title="免向量库，照样搜索：Sirchmunk 把 RAG 拉回“原始数据”">
+                        <span class="hidden-mobile">免向量库，照样搜索：Sirchmunk 把 RAG 拉回“原始数据”</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

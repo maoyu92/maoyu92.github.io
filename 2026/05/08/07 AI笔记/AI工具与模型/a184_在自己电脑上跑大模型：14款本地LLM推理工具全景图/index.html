@@ -1,0 +1,985 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="在自己电脑上跑大模型：14款本地LLM推理工具全景图大模型浪潮里，有一类需求越来越强烈：我不想把数据发给OpenAI，我想在自己的电脑上跑模型。 隐私考量、网络延迟、离线使用、降低成本……理由有很多，工具也很多。 今天整理一份本地LLM推理工具全景图，覆盖推理引擎、桌面GUI、高性能服务、综合管理四大类，共14款工具。  一、推理引擎（底层性能）1. llama.cppGitHub: https:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在自己电脑上跑大模型：14款本地LLM推理工具全景图">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/08/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a184_%E5%9C%A8%E8%87%AA%E5%B7%B1%E7%94%B5%E8%84%91%E4%B8%8A%E8%B7%91%E5%A4%A7%E6%A8%A1%E5%9E%8B%EF%BC%9A14%E6%AC%BE%E6%9C%AC%E5%9C%B0LLM%E6%8E%A8%E7%90%86%E5%B7%A5%E5%85%B7%E5%85%A8%E6%99%AF%E5%9B%BE/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="在自己电脑上跑大模型：14款本地LLM推理工具全景图大模型浪潮里，有一类需求越来越强烈：我不想把数据发给OpenAI，我想在自己的电脑上跑模型。 隐私考量、网络延迟、离线使用、降低成本……理由有很多，工具也很多。 今天整理一份本地LLM推理工具全景图，覆盖推理引擎、桌面GUI、高性能服务、综合管理四大类，共14款工具。  一、推理引擎（底层性能）1. llama.cppGitHub: https:">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-07T16:24:00.000Z">
+<meta property="article:modified_time" content="2026-05-07T16:24:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>在自己电脑上跑大模型：14款本地LLM推理工具全景图 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="在自己电脑上跑大模型：14款本地LLM推理工具全景图"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-08 00:24" pubdate>
+          2026年5月8日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">在自己电脑上跑大模型：14款本地LLM推理工具全景图</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="在自己电脑上跑大模型：14款本地LLM推理工具全景图"><a href="#在自己电脑上跑大模型：14款本地LLM推理工具全景图" class="headerlink" title="在自己电脑上跑大模型：14款本地LLM推理工具全景图"></a>在自己电脑上跑大模型：14款本地LLM推理工具全景图</h1><p>大模型浪潮里，有一类需求越来越强烈：<strong>我不想把数据发给OpenAI，我想在自己的电脑上跑模型</strong>。</p>
+<p>隐私考量、网络延迟、离线使用、降低成本……理由有很多，工具也很多。</p>
+<p>今天整理一份<strong>本地LLM推理工具全景图</strong>，覆盖推理引擎、桌面GUI、高性能服务、综合管理四大类，共14款工具。</p>
+<hr>
+<h2 id="一、推理引擎（底层性能）"><a href="#一、推理引擎（底层性能）" class="headerlink" title="一、推理引擎（底层性能）"></a>一、推理引擎（底层性能）</h2><h3 id="1-llama-cpp"><a href="#1-llama-cpp" class="headerlink" title="1. llama.cpp"></a>1. llama.cpp</h3><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/ggml-org/llama.cpp/[1/]">https://github.com/ggml-org/llama.cpp\[1\]</a></p>
+<p>本地LLM的”安卓内核”，几乎所有本地推理工具的底层都依赖它。</p>
+<ul>
+<li><p><strong>纯C&#x2F;C++实现</strong>，跨平台，支持CPU和GPU推理</p>
+</li>
+<li><p>支持GGUF格式模型（高效量化）</p>
+</li>
+<li><p>最轻量、最灵活，适合嵌入式设备</p>
+</li>
+<li><p>几乎所有桌面GUI工具的底层都基于它</p>
+</li>
+</ul>
+<h3 id="2-Ollama"><a href="#2-Ollama" class="headerlink" title="2. Ollama"></a>2. Ollama</h3><p><strong>官网</strong>: <a target="_blank" rel="noopener" href="https://ollama.com/[2/]">https://ollama.com\[2\]</a></p>
+<p>“本地模型的Docker”，一句话启动任意模型：</p>
+<p><code>ollama run llama3.2   </code></p>
+<ul>
+<li><p>一键下载和运行模型</p>
+</li>
+<li><p>支持OpenAI兼容API</p>
+</li>
+<li><p>模型库丰富（Llama、Mistral、Gemma等）</p>
+</li>
+<li><p>最流行的本地推理工具之一</p>
+</li>
+</ul>
+<h3 id="3-llamafile"><a href="#3-llamafile" class="headerlink" title="3. llamafile"></a>3. llamafile</h3><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/Mozilla-Ocho/llamafile/[3/]">https://github.com/Mozilla-Ocho/llamafile\[3\]</a></p>
+<p>“把模型变成一个可执行文件”：</p>
+<ul>
+<li><p><strong>单个可执行文件</strong>，无需安装</p>
+</li>
+<li><p>跨平台（Windows&#x2F;macOS&#x2F;Linux）</p>
+</li>
+<li><p>极简主义设计</p>
+</li>
+<li><p>适合追求简单快速的用户</p>
+</li>
+</ul>
+<h3 id="4-MLX（Apple-Silicon专用）"><a href="#4-MLX（Apple-Silicon专用）" class="headerlink" title="4. MLX（Apple Silicon专用）"></a>4. MLX（Apple Silicon专用）</h3><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/ml-explore/mlx/[4/]">https://github.com/ml-explore/mlx\[4\]</a></p>
+<p>苹果自研芯片的机器学习框架：</p>
+<ul>
+<li><p>针对Apple Silicon优化（M系列芯片）</p>
+</li>
+<li><p>高效利用统一内存架构</p>
+</li>
+<li><p>支持Mac上本地推理</p>
+</li>
+</ul>
+<hr>
+<h2 id="二、桌面GUI（一键安装）"><a href="#二、桌面GUI（一键安装）" class="headerlink" title="二、桌面GUI（一键安装）"></a>二、桌面GUI（一键安装）</h2><h3 id="5-LM-Studio"><a href="#5-LM-Studio" class="headerlink" title="5. LM Studio"></a>5. LM Studio</h3><p><strong>官网</strong>: <a target="_blank" rel="noopener" href="https://lmstudio.ai/[5/]">https://lmstudio.ai\[5\]</a></p>
+<p>最知名的本地LLM桌面应用之一：</p>
+<ul>
+<li><p>点点点就能运行模型</p>
+</li>
+<li><p>内置聊天界面</p>
+</li>
+<li><p>提供OpenAI兼容API</p>
+</li>
+<li><p>支持模型下载和管理</p>
+</li>
+<li><p>支持GPU加速</p>
+</li>
+</ul>
+<h3 id="6-Jan"><a href="#6-Jan" class="headerlink" title="6. Jan"></a>6. Jan</h3><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/janhq/jan/[6/]">https://github.com/janhq/jan\[6\]</a></p>
+<p>开源的本地ChatGPT替代：</p>
+<ul>
+<li><p>完全免费开源</p>
+</li>
+<li><p>支持本地和云端模型</p>
+</li>
+<li><p>线程式对话管理</p>
+</li>
+<li><p>支持多API提供商</p>
+</li>
+</ul>
+<h3 id="7-GPT4All"><a href="#7-GPT4All" class="headerlink" title="7. GPT4All"></a>7. GPT4All</h3><p><strong>官网</strong>: <a target="_blank" rel="noopener" href="https://gpt4all.io/[7/]">https://gpt4all.io\[7\]</a></p>
+<p>面向普通用户的本地AI：</p>
+<ul>
+<li><p>专为本地使用设计</p>
+</li>
+<li><p>开源免费</p>
+</li>
+<li><p>支持多种模型</p>
+</li>
+<li><p>界面简洁易用</p>
+</li>
+</ul>
+<h3 id="8-Msty"><a href="#8-Msty" class="headerlink" title="8. Msty"></a>8. Msty</h3><p><strong>官网</strong>: <a target="_blank" rel="noopener" href="https://msty.app/[8/]">https://msty.app\[8\]</a></p>
+<p>本地LLM的统一工作区：</p>
+<ul>
+<li><p>支持多模型同时运行</p>
+</li>
+<li><p>内置RAG功能</p>
+</li>
+<li><p>适合需要本地知识库的用户</p>
+</li>
+</ul>
+<hr>
+<h2 id="三、高性能服务（适合部署）"><a href="#三、高性能服务（适合部署）" class="headerlink" title="三、高性能服务（适合部署）"></a>三、高性能服务（适合部署）</h2><h3 id="9-vLLM"><a href="#9-vLLM" class="headerlink" title="9. vLLM"></a>9. vLLM</h3><p><strong>官网</strong>: <a target="_blank" rel="noopener" href="https://vllm.ai/[9/]">https://vllm.ai\[9\]</a></p>
+<p>高性能推理服务框架：</p>
+<ul>
+<li><p>PagedAttention技术，推理速度极快</p>
+</li>
+<li><p>支持Tensor Parallel分布式推理</p>
+</li>
+<li><p>适合生产环境部署</p>
+</li>
+<li><p>多数云服务商后端用它</p>
+</li>
+</ul>
+<h3 id="10-SGLang"><a href="#10-SGLang" class="headerlink" title="10. SGLang"></a>10. SGLang</h3><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/sgl-project/SGLang/[10/]">https://github.com/sgl-project/SGLang\[10\]</a></p>
+<p>新晋高性能推理框架：</p>
+<ul>
+<li><p>支持RadixAttention（自动前缀缓存）</p>
+</li>
+<li><p>更友好的API设计</p>
+</li>
+<li><p>支持长上下文</p>
+</li>
+<li><p>性能与vLLM相当</p>
+</li>
+</ul>
+<h3 id="11-TGI（Text-Generation-Inference）"><a href="#11-TGI（Text-Generation-Inference）" class="headerlink" title="11. TGI（Text Generation Inference）"></a>11. TGI（Text Generation Inference）</h3><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/huggingface/text-generation-inference/[11/]">https://github.com/huggingface/text-generation-inference\[11\]</a></p>
+<p>HuggingFace官方推理服务器：</p>
+<ul>
+<li><p>HuggingFace官方出品</p>
+</li>
+<li><p>支持Flash Attention</p>
+</li>
+<li><p>支持连续批处理</p>
+</li>
+<li><p>适合与HuggingFace生态结合</p>
+</li>
+</ul>
+<hr>
+<h2 id="四、综合管理平台（界面-功能）"><a href="#四、综合管理平台（界面-功能）" class="headerlink" title="四、综合管理平台（界面+功能）"></a>四、综合管理平台（界面+功能）</h2><h3 id="12-Open-WebUI"><a href="#12-Open-WebUI" class="headerlink" title="12. Open WebUI"></a>12. Open WebUI</h3><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/open-webui/open-webui/[12/]">https://github.com/open-webui/open-webui\[12\]</a></p>
+<p>本地ChatGPT的开源替代：</p>
+<ul>
+<li><p>类似ChatGPT的网页界面</p>
+</li>
+<li><p>支持多种LLM后端（Ollama、vLLM等）</p>
+</li>
+<li><p>支持RAG知识库</p>
+</li>
+<li><p>支持多用户和权限管理</p>
+</li>
+<li><p>功能最全面的本地LLM管理平台</p>
+</li>
+</ul>
+<h3 id="13-AnythingLLM"><a href="#13-AnythingLLM" class="headerlink" title="13. AnythingLLM"></a>13. AnythingLLM</h3><p><strong>官网</strong>: <a target="_blank" rel="noopener" href="https://anythingllm.com/[13/]">https://anythingllm.com\[13\]</a></p>
+<p>专注RAG的本地LLM应用：</p>
+<ul>
+<li><p>开箱即用的RAG知识库</p>
+</li>
+<li><p>支持多种文档格式</p>
+</li>
+<li><p>支持多模型（Ollama、OpenAI等）</p>
+</li>
+<li><p>适合企业私有化部署</p>
+</li>
+</ul>
+<h3 id="14-LocalAI"><a href="#14-LocalAI" class="headerlink" title="14. LocalAI"></a>14. LocalAI</h3><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/mudler/LocalAI/[14/]">https://github.com/mudler/LocalAI\[14\]</a></p>
+<p>让本地模型提供OpenAI兼容API：</p>
+<ul>
+<li><p>完全兼容OpenAI API格式</p>
+</li>
+<li><p>支持语音、图片生成等多模态</p>
+</li>
+<li><p>Kubernetes友好</p>
+</li>
+<li><p>适合需要API兼容性的场景</p>
+</li>
+</ul>
+<hr>
+<h2 id="五、特别推荐：llama-cpp-desktop"><a href="#五、特别推荐：llama-cpp-desktop" class="headerlink" title="五、特别推荐：llama-cpp-desktop"></a>五、特别推荐：llama-cpp-desktop</h2><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/Qiao-920/llama-cpp-desktop/[15/]">https://github.com/Qiao-920/llama-cpp-desktop\[15\]</a></p>
+<p>如果你用Windows系统，llama-cpp-desktop是llama.cpp的<strong>桌面控制面板</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>本地直连</td>
+<td>启动llama.cpp原版目录里的llama-server.exe</td>
+</tr>
+<tr>
+<td>OpenAI兼容</td>
+<td><a target="_blank" rel="noopener" href="http://127.0.0.1:8080/v1/[16/]">http://127.0.0.1:8080/v1\[16\]</a> 可接入OpenClaw等客户端</td>
+</tr>
+<tr>
+<td>桌面聊天</td>
+<td>内置聊天界面，支持流式回复、历史对话、搜索</td>
+</tr>
+<tr>
+<td>附件入口</td>
+<td>支持图片、文本、PDF附件</td>
+</tr>
+<tr>
+<td>托盘后台</td>
+<td>关闭后隐藏托盘，服务继续运行</td>
+</tr>
+<tr>
+<td>参数配置</td>
+<td>支持模型路径、上下文、GPU层数、线程等</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="总结：如何选择"><a href="#总结：如何选择" class="headerlink" title="总结：如何选择"></a>总结：如何选择</h2><table>
+<thead>
+<tr>
+<th>需求</th>
+<th>推荐工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>最快的速度（生产环境）</td>
+<td>vLLM &#x2F; SGLang</td>
+</tr>
+<tr>
+<td>最简单的安装（新手）</td>
+<td>Ollama</td>
+</tr>
+<tr>
+<td>最好看的界面</td>
+<td>LM Studio</td>
+</tr>
+<tr>
+<td>完全开源免费</td>
+<td>GPT4All &#x2F; Jan</td>
+</tr>
+<tr>
+<td>需要RAG知识库</td>
+<td>AnythingLLM &#x2F; Open WebUI</td>
+</tr>
+<tr>
+<td>Windows用户</td>
+<td>llama-cpp-desktop</td>
+</tr>
+<tr>
+<td>苹果Mac用户</td>
+<td>MLX + Ollama</td>
+</tr>
+<tr>
+<td>需要API兼容性</td>
+<td>LocalAI</td>
+</tr>
+</tbody></table>
+<p>本地LLM的生态已经非常成熟，无论你是想要最简单的使用体验，还是最高性能的生产部署，都能找到合适的工具。</p>
+<hr>
+<p><em>本文来源：稍后阅读清单深度调研 · 小欧整理</em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/ggml-org/llama.cpp">https://github.com/ggml-org/llama.cpp</a></em></p>
+<p>[2]<em><a target="_blank" rel="noopener" href="https://ollama.com/">https://ollama.com</a></em></p>
+<p>[3]<em><a target="_blank" rel="noopener" href="https://github.com/Mozilla-Ocho/llamafile">https://github.com/Mozilla-Ocho/llamafile</a></em></p>
+<p>[4]<em><a target="_blank" rel="noopener" href="https://github.com/ml-explore/mlx">https://github.com/ml-explore/mlx</a></em></p>
+<p>[5]<em><a target="_blank" rel="noopener" href="https://lmstudio.ai/">https://lmstudio.ai</a></em></p>
+<p>[6]<em><a target="_blank" rel="noopener" href="https://github.com/janhq/jan">https://github.com/janhq/jan</a></em></p>
+<p>[7]<em><a target="_blank" rel="noopener" href="https://gpt4all.io/">https://gpt4all.io</a></em></p>
+<p>[8]<em><a target="_blank" rel="noopener" href="https://msty.app/">https://msty.app</a></em></p>
+<p>[9]<em><a target="_blank" rel="noopener" href="https://vllm.ai/">https://vllm.ai</a></em></p>
+<p>[10]<em><a target="_blank" rel="noopener" href="https://github.com/sgl-project/SGLang">https://github.com/sgl-project/SGLang</a></em></p>
+<p>[11]<em><a target="_blank" rel="noopener" href="https://github.com/huggingface/text-generation-inference">https://github.com/huggingface/text-generation-inference</a></em></p>
+<p>[12]<em><a target="_blank" rel="noopener" href="https://github.com/open-webui/open-webui">https://github.com/open-webui/open-webui</a></em></p>
+<p>[13]<em><a target="_blank" rel="noopener" href="https://anythingllm.com/">https://anythingllm.com</a></em></p>
+<p>[14]<em><a target="_blank" rel="noopener" href="https://github.com/mudler/LocalAI">https://github.com/mudler/LocalAI</a></em></p>
+<p>[15]<em><a target="_blank" rel="noopener" href="https://github.com/Qiao-920/llama-cpp-desktop">https://github.com/Qiao-920/llama-cpp-desktop</a></em></p>
+<p>[16]<em><a target="_blank" rel="noopener" href="http://127.0.0.1:8080/v1">http://127.0.0.1:8080/v1</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>在自己电脑上跑大模型：14款本地LLM推理工具全景图</div>
+      <div>https://maoyu92.github.io/2026/05/08/07 AI笔记/AI工具与模型/a184_在自己电脑上跑大模型：14款本地LLM推理工具全景图/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/08/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a182_%E4%BB%8E0%E8%AE%AD%E7%BB%83%E4%B8%80%E4%B8%AA_%E8%83%BD%E5%90%AC%E8%83%BD%E8%AF%B4%E8%83%BD%E7%9C%8B_%E7%9A%84%E6%A8%A1%E5%9E%8B%EF%BC%9AMiniMind-O%E4%B8%8E%E5%BE%AE%E8%BD%AF174%E4%B8%AASkill%E4%BD%93%E7%B3%BB/" title="从0训练一个&#34;能听能说能看&#34;的模型：MiniMind-O与微软174个Skill体系">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">从0训练一个&#34;能听能说能看&#34;的模型：MiniMind-O与微软174个Skill体系</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/08/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a185_%E7%94%A8React%E5%86%99%E5%8A%A8%E7%94%BB%E8%A7%86%E9%A2%91%EF%BC%8C%E7%94%A8%E7%85%A7%E7%89%87%E5%81%9A%E5%8D%A1%E9%80%9AIP%EF%BC%9A4%E6%AC%BE%E5%88%9B%E6%84%8F%E5%B7%A5%E5%85%B7%E8%AE%A9%E8%AE%BE%E8%AE%A1%E5%B8%88%E6%95%88%E7%8E%87%E7%BF%BB%E5%80%8D/" title="用React写动画视频，用照片做卡通IP：4款创意工具让设计师效率翻倍">
+                        <span class="hidden-mobile">用React写动画视频，用照片做卡通IP：4款创意工具让设计师效率翻倍</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

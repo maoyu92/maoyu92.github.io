@@ -1,0 +1,953 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="写论文还在一个字一个字地憋？有一套开源工具，能让 AI 帮你完成从文献调研到论文投稿的全流程——139 个技能，覆盖生物信息、化学信息、临床研究、地理空间等几乎所有学科。  一、科研人的痛点：流程太长，工具太散做科研的人都知道，一篇论文的诞生要经历多少环节： 文献调研 → 选题 → 大纲 → 撰写 → 修改 → 同行评审 → 格式调整 → 投稿 每个环节都有对应的工具，但这些工具彼此割裂。你用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="139个AI科研技能包：从文献调研到论文投稿的全流程武器库">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/02/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a110_139%E4%B8%AAAI%E7%A7%91%E7%A0%94%E6%8A%80%E8%83%BD%E5%8C%85%EF%BC%9A%E4%BB%8E%E6%96%87%E7%8C%AE%E8%B0%83%E7%A0%94%E5%88%B0%E8%AE%BA%E6%96%87%E6%8A%95%E7%A8%BF%E7%9A%84%E5%85%A8%E6%B5%81%E7%A8%8B%E6%AD%A6%E5%99%A8%E5%BA%93/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="写论文还在一个字一个字地憋？有一套开源工具，能让 AI 帮你完成从文献调研到论文投稿的全流程——139 个技能，覆盖生物信息、化学信息、临床研究、地理空间等几乎所有学科。  一、科研人的痛点：流程太长，工具太散做科研的人都知道，一篇论文的诞生要经历多少环节： 文献调研 → 选题 → 大纲 → 撰写 → 修改 → 同行评审 → 格式调整 → 投稿 每个环节都有对应的工具，但这些工具彼此割裂。你用">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-02T15:22:00.000Z">
+<meta property="article:modified_time" content="2026-06-02T15:22:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>139个AI科研技能包：从文献调研到论文投稿的全流程武器库 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="139个AI科研技能包：从文献调研到论文投稿的全流程武器库"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-02 23:22" pubdate>
+          2026年6月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">139个AI科研技能包：从文献调研到论文投稿的全流程武器库</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>写论文还在一个字一个字地憋？有一套开源工具，能让 AI 帮你完成从文献调研到论文投稿的全流程——139 个技能，覆盖生物信息、化学信息、临床研究、地理空间等几乎所有学科。</p>
+</blockquote>
+<h2 id="一、科研人的痛点：流程太长，工具太散"><a href="#一、科研人的痛点：流程太长，工具太散" class="headerlink" title="一、科研人的痛点：流程太长，工具太散"></a>一、科研人的痛点：流程太长，工具太散</h2><p>做科研的人都知道，一篇论文的诞生要经历多少环节：</p>
+<p>文献调研 → 选题 → 大纲 → 撰写 → 修改 → 同行评审 → 格式调整 → 投稿</p>
+<p>每个环节都有对应的工具，但这些工具彼此割裂。你用 Semantic Scholar 找文献，用 Zotero 管理引用，用 LaTeX 排版，用 Grammarly 检查语法，用 Overleaf 协作……光是工具切换就要消耗大量精力。</p>
+<p>最近，GitHub 上出现了两个项目，试图用 AI Agent 技能包的方式，把这个全流程串起来：</p>
+<ul>
+<li><p><strong>academic-shcolar-skills</strong>（学术研究技能包）：端到端的研究到论文工作流</p>
+</li>
+<li><p><strong>academic-skills</strong>（学术技能集合）：139 个覆盖各学科的 Agent 技能</p>
+</li>
+</ul>
+<h2 id="二、项目一：academic-shcolar-skills（端到端研究工作流）"><a href="#二、项目一：academic-shcolar-skills（端到端研究工作流）" class="headerlink" title="二、项目一：academic-shcolar-skills（端到端研究工作流）"></a>二、项目一：academic-shcolar-skills（端到端研究工作流）</h2><h3 id="2-1-核心定位"><a href="#2-1-核心定位" class="headerlink" title="2.1 核心定位"></a>2.1 核心定位</h3><p>这是一个<strong>研究到论文的全流程工作流套件</strong>，专为 AI 编程 Agent 设计。</p>
+<p>它不是简单的”帮你写论文”，而是把科研流程拆解成了 10 个阶段，每个阶段都有专门的 Agent 团队负责。</p>
+<h3 id="2-2-四大核心模块"><a href="#2-2-四大核心模块" class="headerlink" title="2.2 四大核心模块"></a>2.2 四大核心模块</h3><p><strong>① Deep Research（深度调研）—— 13 人研究团队</strong></p>
+<p>这不是一个简单的搜索工具，而是一个由 13 个 Agent 组成的虚拟研究团队：</p>
+<ul>
+<li><p>苏格拉底式引导模式（逐步追问，不直接给答案）</p>
+</li>
+<li><p>PRISMA 系统性综述支持</p>
+</li>
+<li><p>意图检测（理解你真正想问什么）</p>
+</li>
+<li><p>对话健康监控（防止跑偏）</p>
+</li>
+<li><p>跨模型交叉验证（可选）</p>
+</li>
+<li><p>Semantic Scholar API 文献验证</p>
+</li>
+</ul>
+<p><strong>② Academic Paper（学术论文）—— 12 人写作团队</strong></p>
+<p>从大纲到成稿的完整写作支持：</p>
+<ul>
+<li><p>风格校准（适配不同期刊&#x2F;会议的写作风格）</p>
+</li>
+<li><p>写作质量检查</p>
+</li>
+<li><p>LaTeX 格式加固</p>
+</li>
+<li><p>可视化图表生成</p>
+</li>
+<li><p>修改教练（逐句反馈）</p>
+</li>
+<li><p>引用格式转换</p>
+</li>
+<li><p>防泄露协议（防止 AI 痕迹被检测）</p>
+</li>
+</ul>
+<p><strong>③ Academic Paper Reviewer（论文评审）—— 7 人评审委员会</strong></p>
+<p>模拟同行评审的多视角审查：</p>
+<ul>
+<li><p>主编（EIC）+ 3 个动态审稿人 + 魔鬼代言人</p>
+</li>
+<li><p>0-100 分质量评分</p>
+</li>
+<li><p>让步阈值协议（什么时候该妥协）</p>
+</li>
+<li><p>攻击强度保持（保持批评的尖锐度）</p>
+</li>
+<li><p>R&amp;R 可追溯矩阵</p>
+</li>
+</ul>
+<p><strong>④ Academic Pipeline（学术管线）—— 10 阶段编排器</strong></p>
+<p>把上面三个模块串联成完整流程：</p>
+<p>10 个阶段，每个阶段都有自适应检查点、声明验证、Material Passport（材料护照），以及可选的跨模型完整性验证。</p>
+<h3 id="2-3-安装方式"><a href="#2-3-安装方式" class="headerlink" title="2.3 安装方式"></a>2.3 安装方式</h3><p><strong>Claude Code（推荐）：</strong></p>
+<p><code># 在 Claude Code 中   /plugin marketplace add crazymsn/academic-shcolar-skills   /plugin install academic-research-skills      # 然后运行   /ars-plan   </code></p>
+<p><strong>传统安装：</strong></p>
+<p>把四个文件夹复制到 <code>.claude/skills/</code>：</p>
+<ul>
+<li><p><code>deep-research/</code></p>
+</li>
+<li><p><code>academic-paper/</code></p>
+</li>
+<li><p><code>academic-paper-reviewer/</code></p>
+</li>
+<li><p><code>academic-pipeline/</code></p>
+</li>
+</ul>
+<h3 id="2-4-支持的-Agent-平台"><a href="#2-4-支持的-Agent-平台" class="headerlink" title="2.4 支持的 Agent 平台"></a>2.4 支持的 Agent 平台</h3><table>
+<thead>
+<tr>
+<th>平台</th>
+<th>支持状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude Code</td>
+<td>✅ 原生支持</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td>✅ 通过路由技能支持</td>
+</tr>
+<tr>
+<td>OpenCode</td>
+<td>✅ 通过项目配置支持</td>
+</tr>
+</tbody></table>
+<h2 id="三、项目二：academic-skills（139-个学科技能包）"><a href="#三、项目二：academic-skills（139-个学科技能包）" class="headerlink" title="三、项目二：academic-skills（139 个学科技能包）"></a>三、项目二：academic-skills（139 个学科技能包）</h2><h3 id="3-1-核心定位"><a href="#3-1-核心定位" class="headerlink" title="3.1 核心定位"></a>3.1 核心定位</h3><p>这是一个**学术技能的”超市”**——139 个技能目录，覆盖几乎所有学科领域。</p>
+<h3 id="3-2-学科覆盖"><a href="#3-2-学科覆盖" class="headerlink" title="3.2 学科覆盖"></a>3.2 学科覆盖</h3><p>这不是几个通用技能的简单集合，而是按学科细分的专业技能库：</p>
+<p><strong>生命科学：</strong></p>
+<ul>
+<li><p>生物信息学、基因组学、单细胞分析、多组学工作流</p>
+</li>
+<li><p>Biopython、Scanpy、scvi-tools、CellxGene</p>
+</li>
+</ul>
+<p><strong>化学与药物：</strong></p>
+<ul>
+<li><p>化学信息学、药物发现、分子建模、蛋白质工程</p>
+</li>
+<li><p>RDKit、Cobrapy、Benchling</p>
+</li>
+</ul>
+<p><strong>数据科学与AI：</strong></p>
+<ul>
+<li><p>科学 Python 包：scikit-learn、PyMC、NetworkX、Dask</p>
+</li>
+<li><p>机器学习、预测、强化学习、模型解释</p>
+</li>
+</ul>
+<p><strong>临床与医学：</strong></p>
+<ul>
+<li><p>临床研究、治疗方案、法规写作、医学影像</p>
+</li>
+<li><p>临床决策支持、临床报告</p>
+</li>
+</ul>
+<p><strong>地球与空间科学：</strong></p>
+<ul>
+<li><p>地理空间科学、遥感、材料科学、物理、天文学</p>
+</li>
+<li><p>Astropy、BIDS</p>
+</li>
+</ul>
+<p><strong>学术写作：</strong></p>
+<ul>
+<li><p>文献综述、同行评审、科学写作、海报、幻灯片</p>
+</li>
+<li><p>引用管理、文档处理</p>
+</li>
+</ul>
+<h3 id="3-3-安装方式"><a href="#3-3-安装方式" class="headerlink" title="3.3 安装方式"></a>3.3 安装方式</h3><p><code># 预览可用技能   npx skills add crazymsn/academic-skills --list --full-depth      # 安装所有技能（Claude Code 项目级）   npx skills add crazymsn/academic-skills --skill &#39;*&#39; --agent claude-code --copy -y --full-depth      # 安装所有技能（全局）   npx skills add crazymsn/academic-skills --skill &#39;*&#39; --agent claude-code --global --copy -y --full-depth      # 安装单个技能   npx skills add crazymsn/academic-skills --skill scanpy --agent claude-code --copy -y --full-depth   </code></p>
+<h3 id="3-4-安全审查"><a href="#3-4-安全审查" class="headerlink" title="3.4 安全审查"></a>3.4 安全审查</h3><p>每个技能都包含 <code>SKILL.md</code> 文件，可能影响 AI Agent 的行为（运行命令、安装包、网络请求等）。项目提供了安全扫描工具：</p>
+<p><code># 安全扫描   uv pip install cisco-ai-skill-scanner   skill-scanner scan academic-skills --use-behavioral   </code></p>
+<h2 id="四、两个项目的关系"><a href="#四、两个项目的关系" class="headerlink" title="四、两个项目的关系"></a>四、两个项目的关系</h2><table>
+<thead>
+<tr>
+<th>维度</th>
+<th>academic-shcolar-skills</th>
+<th>academic-skills</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>定位</td>
+<td>端到端研究工作流</td>
+<td>学科技能百科全书</td>
+</tr>
+<tr>
+<td>技能数量</td>
+<td>4 个核心模块</td>
+<td>139 个学科技能</td>
+</tr>
+<tr>
+<td>侧重点</td>
+<td>流程编排（怎么写）</td>
+<td>学科知识（写什么）</td>
+</tr>
+<tr>
+<td>适合谁</td>
+<td>需要完整论文工作流的研究者</td>
+<td>需要特定学科技能的研究者</td>
+</tr>
+<tr>
+<td>许可证</td>
+<td>CC BY-NC 4.0（非商业）</td>
+<td>MIT（自由使用）</td>
+</tr>
+<tr>
+<td>Star</td>
+<td>16</td>
+<td>15</td>
+</tr>
+</tbody></table>
+<p><strong>最佳实践</strong>：两个项目配合使用——用 <code>academic-shcolar-skills</code> 管理整体流程，用 <code>academic-skills</code> 提供特定学科的专业技能。</p>
+<h2 id="五、对科研工作流的影响"><a href="#五、对科研工作流的影响" class="headerlink" title="五、对科研工作流的影响"></a>五、对科研工作流的影响</h2><h3 id="5-1-效率提升"><a href="#5-1-效率提升" class="headerlink" title="5.1 效率提升"></a>5.1 效率提升</h3><ul>
+<li><p>文献调研：从几天缩短到几小时</p>
+</li>
+<li><p>论文撰写：从几周缩短到几天</p>
+</li>
+<li><p>同行评审模拟：从找人帮忙缩短到即时可用</p>
+</li>
+</ul>
+<h3 id="5-2-质量保障"><a href="#5-2-质量保障" class="headerlink" title="5.2 质量保障"></a>5.2 质量保障</h3><ul>
+<li><p>多 Agent 交叉验证减少遗漏</p>
+</li>
+<li><p>防泄露协议降低 AI 检测风险</p>
+</li>
+<li><p>Material Passport 确保可追溯性</p>
+</li>
+</ul>
+<h3 id="5-3-民主化"><a href="#5-3-民主化" class="headerlink" title="5.3 民主化"></a>5.3 民主化</h3><ul>
+<li><p>降低科研工具的使用门槛</p>
+</li>
+<li><p>让没有资源的团队也能获得专业级支持</p>
+</li>
+<li><p>覆盖从本科到博士的全阶段需求</p>
+</li>
+</ul>
+<h2 id="六、局限性与注意事项"><a href="#六、局限性与注意事项" class="headerlink" title="六、局限性与注意事项"></a>六、局限性与注意事项</h2><ul>
+<li><p><strong>非商业许可</strong>：academic-shcolar-skills 使用 CC BY-NC 4.0，商业用途需注意</p>
+</li>
+<li><p><strong>技能安全</strong>：139 个技能中可能包含执行命令的脚本，安装前需审查</p>
+</li>
+<li><p><strong>AI 痕迹</strong>：虽然有防泄露协议，但仍需人工润色</p>
+</li>
+<li><p><strong>学科深度</strong>：通用技能多，深度专业技能需要自己补充</p>
+</li>
+</ul>
+<h2 id="七、结语"><a href="#七、结语" class="headerlink" title="七、结语"></a>七、结语</h2><p>从 139 个学科技能到 10 阶段论文管线，这两个项目代表了 AI 辅助科研的一个新方向：<strong>不是替代研究者，而是给研究者装上”技能外挂”。</strong></p>
+<p>当 AI 能帮你做文献调研、写初稿、模拟评审、调整格式时，研究者可以把精力集中在真正需要人类智慧的地方——提出问题、设计实验、解读结果。</p>
+<p>这，才是 AI 在科研中应有的角色。</p>
+<hr>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>GitHub: crazymsn&#x2F;academic-shcolar-skills[1]</p>
+</li>
+<li><p>GitHub: crazymsn&#x2F;academic-skills[2]</p>
+</li>
+<li><p>Agent Skills 生态[3]</p>
+</li>
+<li><p>Academic Writing Shouldn’t Be a Solo Act（作者博客）[4]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]GitHub: crazymsn&#x2F;academic-shcolar-skills: <em><a target="_blank" rel="noopener" href="https://github.com/crazymsn/academic-shcolar-skills">https://github.com/crazymsn/academic-shcolar-skills</a></em></p>
+<p>[2]GitHub: crazymsn&#x2F;academic-skills: <em><a target="_blank" rel="noopener" href="https://github.com/crazymsn/academic-skills">https://github.com/crazymsn/academic-skills</a></em></p>
+<p>[3]Agent Skills 生态: <em><a target="_blank" rel="noopener" href="https://agentskills.io/">https://agentskills.io/</a></em></p>
+<p>[4]Academic Writing Shouldn’t Be a Solo Act（作者博客）: <em><a target="_blank" rel="noopener" href="https://open.substack.com/pub/edwardwu223235/p/academic-writing-shouldnt-be-a-solo">https://open.substack.com/pub/edwardwu223235/p/academic-writing-shouldnt-be-a-solo</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>139个AI科研技能包：从文献调研到论文投稿的全流程武器库</div>
+      <div>https://maoyu92.github.io/2026/06/02/07 AI笔记/AI写作与发布/a110_139个AI科研技能包：从文献调研到论文投稿的全流程武器库/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/03/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a109_73%E5%AE%B6%E5%9B%AD%E5%8C%BA%E7%9A%84_%E7%BB%BF%E8%89%B2%E5%8D%87%E7%BA%A7%E8%B5%9B_%EF%BC%9A2026%E5%B9%B4%E7%94%9F%E6%80%81%E5%B7%A5%E4%B8%9A%E5%9B%AD%E5%8C%BA%E5%88%9B%E5%BB%BA%E5%90%AF%E5%8A%A8/" title="73家园区的&#34;绿色升级赛&#34;：2026年生态工业园区创建启动">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">73家园区的&#34;绿色升级赛&#34;：2026年生态工业园区创建启动</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/02/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a111_%E4%B8%80%E4%B8%AACLAUDE.md%E8%AE%A9AI%E7%BC%96%E7%A8%8B%E5%B0%91%E7%8A%AF%E9%94%99%EF%BC%9AKarpathy%E4%BA%B2%E6%8E%88%E7%9A%84%E5%9B%9B%E6%9D%A1%E9%93%81%E5%BE%8B/" title="一个CLAUDE.md让AI编程少犯错：Karpathy亲授的四条铁律">
+                        <span class="hidden-mobile">一个CLAUDE.md让AI编程少犯错：Karpathy亲授的四条铁律</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

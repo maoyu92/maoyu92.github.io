@@ -1,0 +1,806 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="“你让 AI 写一段文案，它给你一个 60 分的初稿。你让它画一个界面，它给你一个 60 分的界面。但 60 分乘以 60 分——你的产品离’好看’越来越远，离’AI slop’越来越近。”  一、你可能没意识到的”AI slop”问题你有没有这种体验—— 让 Claude 帮你写一段前端代码。它三秒钟给你吐出来：Inter 字体，紫色渐变，卡片式布局，四个字总结——“敷衍好看”。 让 Curs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI 时代的设计困局：为什么&quot;系统化&quot;比&quot;好看&quot;更重要">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/28/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a148_AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%9B%B0%E5%B1%80%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88_%E7%B3%BB%E7%BB%9F%E5%8C%96_%E6%AF%94_%E5%A5%BD%E7%9C%8B_%E6%9B%B4%E9%87%8D%E8%A6%81/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="“你让 AI 写一段文案，它给你一个 60 分的初稿。你让它画一个界面，它给你一个 60 分的界面。但 60 分乘以 60 分——你的产品离’好看’越来越远，离’AI slop’越来越近。”  一、你可能没意识到的”AI slop”问题你有没有这种体验—— 让 Claude 帮你写一段前端代码。它三秒钟给你吐出来：Inter 字体，紫色渐变，卡片式布局，四个字总结——“敷衍好看”。 让 Curs">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-28T00:50:00.000Z">
+<meta property="article:modified_time" content="2026-05-28T00:50:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>AI 时代的设计困局：为什么&#34;系统化&#34;比&#34;好看&#34;更重要 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="AI 时代的设计困局：为什么&#34;系统化&#34;比&#34;好看&#34;更重要"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-28 08:50" pubdate>
+          2026年5月28日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">AI 时代的设计困局：为什么&#34;系统化&#34;比&#34;好看&#34;更重要</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>“你让 AI 写一段文案，它给你一个 60 分的初稿。你让它画一个界面，它给你一个 60 分的界面。但 60 分乘以 60 分——你的产品离’好看’越来越远，离’AI slop’越来越近。”</p>
+</blockquote>
+<h2 id="一、你可能没意识到的”AI-slop”问题"><a href="#一、你可能没意识到的”AI-slop”问题" class="headerlink" title="一、你可能没意识到的”AI slop”问题"></a>一、你可能没意识到的”AI slop”问题</h2><p>你有没有这种体验——</p>
+<p>让 Claude 帮你写一段前端代码。它三秒钟给你吐出来：Inter 字体，紫色渐变，卡片式布局，四个字总结——“敷衍好看”。</p>
+<p>让 Cursor 帮你生成一个登录页。它交出的答卷，永远在意料之中：白色的底，蓝色的按钮，规规矩矩的表单，规规矩矩的 header。</p>
+<p>你一看，说不上哪里不对，但就是觉得——没有灵魂。</p>
+<p>这就是”AI slop”——AI 生成的那种大批量同质化、没有辨识度的设计。它不是错，它是”正确但无聊”。就像高考作文里的”万能素材”，背熟了能拿基础分，但永远拿不了高分。</p>
+<p>为什么？</p>
+<p>因为 AI 是统计模型。它学的是互联网上最多人用的设计模式。所以当它输出的时候，它天然倾向于最常见的选项——而最常见的选项，往往是最没有特色的选项。</p>
+<p>这不是 AI 的缺陷。这是它的”均值回归”本能。</p>
+<hr>
+<h2 id="二、”好看”不是答案，”系统化”才是"><a href="#二、”好看”不是答案，”系统化”才是" class="headerlink" title="二、”好看”不是答案，”系统化”才是"></a>二、”好看”不是答案，”系统化”才是</h2><p>问题来了：怎么破？</p>
+<p>你可能会说——那我调一调提示词，给 AI 更清晰的指令，让它生成”更好看”的界面。</p>
+<p>但这其实走错了方向。</p>
+<p>因为你越追求”更好看”，AI 越会在”好看”这个维度上继续均值回归。它不知道你的品牌是什么，不知道你的用户是谁，不知道你想传递什么感觉——它只知道，什么样的设计在网上被最多人点赞。</p>
+<p>真正有效的解法，不是”让 AI 生成更好看的东西”——而是”让 AI 在一个约束体系里生成东西”。</p>
+<p>换句话说：<strong>你要的不是更好的 AI，是更清晰的系统。</strong></p>
+<p>当你给 AI 一套完整的设计系统——字体规范、色板、间距规则、动效模式、组件边界——AI 就不是在”凭空创作”了，它是在”在规则内填空”。</p>
+<p>这个填空的过程，AI 的均值回归问题自然消解。因为约束本身，就是差异化的来源。</p>
+<p>你建立的不是一套”好看的设计”，而是一套”只有你能用的系统”。AI 在系统内工作，输出自然带着你的品牌印记，而不是网上的公共财产。</p>
+<hr>
+<h2 id="三、Anthropic-官方-Skill-做了什么"><a href="#三、Anthropic-官方-Skill-做了什么" class="headerlink" title="三、Anthropic 官方 Skill 做了什么"></a>三、Anthropic 官方 Skill 做了什么</h2><p>Anthropic 的 Claude Code 里有一个官方 Skill，叫 <code>frontend-design</code>。</p>
+<p>它的核心思路，不是教 AI “怎么配色更好看”，而是给 AI 建立一套<strong>设计思维框架</strong>：</p>
+<ul>
+<li><p><strong>Purpose</strong>：这个界面解决什么问题？谁用？</p>
+</li>
+<li><p><strong>Tone</strong>：确定一个极端的美学方向——极简、复古、奢华、幼稚、杂志风……选一个，然后彻底执行。</p>
+</li>
+<li><p><strong>Constraints</strong>：技术限制是什么？</p>
+</li>
+<li><p><strong>Differentiation</strong>：这个东西最让人记住的一点是什么？</p>
+</li>
+</ul>
+<p>在这个框架下，AI 不再是”随机生成一个看起来还行的界面”，而是”在明确的意图下设计一个有记忆点的界面”。</p>
+<p>它还特别强调了<strong>字体选择</strong>的重要性——不要用 Arial &#x2F; Inter &#x2F; Roboto，要用”有性格的字体”，而且要区分标题字体和正文字体。</p>
+<p>这背后的逻辑是：字体是设计辨识度最核心的元素之一。你把字体换掉，整个界面的气质就变了。</p>
+<hr>
+<h2 id="四、Impeccable：把设计系统变成-AI-能理解的”词汇”"><a href="#四、Impeccable：把设计系统变成-AI-能理解的”词汇”" class="headerlink" title="四、Impeccable：把设计系统变成 AI 能理解的”词汇”"></a>四、Impeccable：把设计系统变成 AI 能理解的”词汇”</h2><p>Paul Bakaus 做了一个更进一步的 Skill，叫 <strong>Impeccable</strong>，GitHub 上已经破万星。</p>
+<p>它的核心思路是：设计系统不应该是一份”参考文档”，而应该是一套”AI 能执行的词汇”。</p>
+<p>Impeccable 包含 7 个领域的设计参考文件：</p>
+<ul>
+<li><p><strong>Typography</strong>：字体配对、模块化比例</p>
+</li>
+<li><p><strong>Color &amp; Contrast</strong>：OKLCH 色彩空间、隐性色调、暗黑模式</p>
+</li>
+<li><p><strong>Spatial Design</strong>：间距系统、网格、视觉层级</p>
+</li>
+<li><p><strong>Motion Design</strong>：缓动曲线、交错动画、减少动效模式</p>
+</li>
+<li><p><strong>Interaction Design</strong>：表单、焦点状态、加载模式</p>
+</li>
+<li><p><strong>Responsive Design</strong>：移动优先、流式设计、容器查询</p>
+</li>
+<li><p><strong>UX Writing</strong>：按钮标签、错误信息、空状态</p>
+</li>
+</ul>
+<p>每一个文件，都把设计决策转化成了 AI 能理解的<strong>精确指令</strong>。</p>
+<p>比如颜色部分，它明确说：</p>
+<ul>
+<li><p>不要用灰色文字配彩色背景（看起来褪色），要用背景色的色调版本</p>
+</li>
+<li><p>不要用纯黑（#000）和纯白（#fff）——大自然的颜色从不纯</p>
+</li>
+<li><p>不要用”AI 色板”：青色配深色、紫蓝渐变、霓虹点缀</p>
+</li>
+</ul>
+<p>这些规则听起来像设计课的内容，但它的真实价值在于——**把”品味”翻译成”规则”**。</p>
+<p>你不需要训练 AI 有审美。你只需要告诉它，什么是错的，什么不能做。当约束足够清晰，输出自然不会跑偏。</p>
+<hr>
+<h2 id="五、为什么这代表了一个更大的转变"><a href="#五、为什么这代表了一个更大的转变" class="headerlink" title="五、为什么这代表了一个更大的转变"></a>五、为什么这代表了一个更大的转变</h2><p>AI 时代，设计工作的重心正在发生转移。</p>
+<p>以前，一个设计师的核心竞争力是”审美”——你知道什么是好看的，什么是不好看的。你能判断，这个配色很优雅，这个排版很大气。</p>
+<p>但当 AI 能替你生成界面的时候，”审美”本身的价值被重新定义了。</p>
+<p>因为 AI 生成的东西，基础分不会太差。但它缺乏的是<strong>一致性</strong>——今天生成一个风格，明天生成另一个风格，三个月后你的产品看起来像几个不同的人设计的。</p>
+<p>这时候，”系统化能力”就比”审美能力”更值钱了。</p>
+<p>你能建立一套规范，让 AI 在这套规范内持续输出——这比你能做一张好看的图，重要得多。</p>
+<p>反过来想：AI 帮你把”执行层”的事情做了。你的价值，从”做出来”变成了”设计规则”——你决定用什么字体、用什么色板、用什么间距、什么动效节奏。</p>
+<p>这是设计师往”产品思维”的跃迁，也是 AI 时代最稀缺的一种能力。</p>
+<hr>
+<h2 id="六、结语：约束产生差异"><a href="#六、结语：约束产生差异" class="headerlink" title="六、结语：约束产生差异"></a>六、结语：约束产生差异</h2><p>回到开头的问题：怎么让 AI 的输出不再”AI slop”？</p>
+<p>答案不是调提示词，不是换模型，不是花更多时间打磨输出。</p>
+<p>答案是一个听起来有点反直觉的方法——</p>
+<p><strong>更少的自由，更多的约束。</strong></p>
+<p>当你建立了一套清晰的设计系统，你不是在限制 AI 的能力，你是在给它一个”只有你能用的模具”。</p>
+<p>AI 在模具里工作，输出就带着你的品牌印记。</p>
+<p>最终，不是 AI 替你做设计——是 AI 在你的系统里，做了大量的执行工作。</p>
+<p>你真正投入时间的，是系统的搭建。而系统的价值，是可复用的——你的每一次产品迭代，都在用同一套规则说话。</p>
+<p>这不是”让 AI 帮你做设计”。这是”用 AI 放大你的设计系统”。</p>
+<hr>
+<p><em>附：Impeccable GitHub → <a target="_blank" rel="noopener" href="https://github.com/pbakaus/impeccable/[1/]">https://github.com/pbakaus/impeccable\[1\]</a> | Anthropic frontend-design Skill → <a target="_blank" rel="noopener" href="https://github.com/anthropics/skills/tree/main/skills/frontend-design/[2/]">https://github.com/anthropics/skills/tree/main/skills/frontend-design\[2\]</a></em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/pbakaus/impeccable">https://github.com/pbakaus/impeccable</a></em></p>
+<p>[2]<em><a target="_blank" rel="noopener" href="https://github.com/anthropics/skills/tree/main/skills/frontend-design">https://github.com/anthropics/skills/tree/main/skills/frontend-design</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>AI 时代的设计困局：为什么&#34;系统化&#34;比&#34;好看&#34;更重要</div>
+      <div>https://maoyu92.github.io/2026/05/28/07 AI笔记/AI写作与发布/a148_AI 时代的设计困局：为什么_系统化_比_好看_更重要/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/28/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a147_%E7%94%A8%20HTML%20%E5%86%99%E8%A7%86%E9%A2%91%EF%BC%9AHyperFrames%20%E4%B9%9F%E8%AE%B8%E6%98%AF%20AI%20%E6%97%B6%E4%BB%A3%E7%9A%84%E5%86%85%E5%AE%B9%E5%B7%A5%E5%8E%82%E6%96%B0%E5%9F%BA%E5%BB%BA/" title="用 HTML 写视频：HyperFrames 也许是 AI 时代的内容工厂新基建">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">用 HTML 写视频：HyperFrames 也许是 AI 时代的内容工厂新基建</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/28/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a149_%E5%BD%93%20AI%20%E5%85%85%E6%96%A5%E7%9D%80%E6%88%91%E4%BB%AC%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87/" title="当 AI 充斥着我们的上下文">
+                        <span class="hidden-mobile">当 AI 充斥着我们的上下文</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

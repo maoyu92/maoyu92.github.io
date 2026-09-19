@@ -1,0 +1,998 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="EXAM NOTES · 系规学习 · 2026.07 服务管理就是接工单、修故障？ 从需求和SLA开始， 贯穿设计运营退役改进 第12章 · 信息系统服务管理 · 全生命周期 系规24期学习整理 · 第09期 · 综合 案例 论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 五阶段贯穿服务全生命 PART 02 12.1 服务战略规划 先把服务承诺说清楚 PA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="系规第12章：信息系统服务管理完整学习笔记">
+<meta property="og:url" content="https://maoyu92.github.io/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a034_%E7%B3%BB%E8%A7%84%E7%AC%AC12%E7%AB%A0%EF%BC%9A%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E7%AE%A1%E7%90%86%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="EXAM NOTES · 系规学习 · 2026.07 服务管理就是接工单、修故障？ 从需求和SLA开始， 贯穿设计运营退役改进 第12章 · 信息系统服务管理 · 全生命周期 系规24期学习整理 · 第09期 · 综合 案例 论文 6 PARTS + CONCLUSION 👉 滑动 PART 01 本章地图 五阶段贯穿服务全生命 PART 02 12.1 服务战略规划 先把服务承诺说清楚 PA">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a034/fa241058cd4a2c13.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a034/98d0e125a47ff44e.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a034/e970e638baac8bd1.png">
+<meta property="article:published_time" content="2026-07-26T02:32:00.000Z">
+<meta property="article:modified_time" content="2026-07-26T02:32:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/uploads/ai-notes/a034/fa241058cd4a2c13.png">
+  
+  
+  <title>系规第12章：信息系统服务管理完整学习笔记 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="系规第12章：信息系统服务管理完整学习笔记"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-26 10:32" pubdate>
+          2026年7月26日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          37 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">系规第12章：信息系统服务管理完整学习笔记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>EXAM NOTES · 系规学习 · 2026.07</p>
+<p>服务管理就是接工单、修故障？</p>
+<p>从需求和SLA开始，</p>
+<p>贯穿设计运营退役改进</p>
+<p>第12章 · 信息系统服务管理 · 全生命周期</p>
+<p>系规24期学习整理 · 第09期 · 综合 案例 论文</p>
+<p>6 PARTS + CONCLUSION</p>
+<p>👉 滑动</p>
+<p>PART 01</p>
+<p>本章地图</p>
+<p>五阶段贯穿服务全生命</p>
+<p>PART 02</p>
+<p>12.1 服务战略规划</p>
+<p>先把服务承诺说清楚</p>
+<p>PART 03</p>
+<p>12.2 服务设计实现</p>
+<p>模式＋人员、资源、技</p>
+<p>PART 04</p>
+<p>12.3 服务运营提升</p>
+<p>不仅交付服务，还要经</p>
+<p>PART 05</p>
+<p>12.4 服务退役终止</p>
+<p>服务结束不等于责任瞬</p>
+<p>PART 06</p>
+<p>12.5 持续改进与监督</p>
+<p>用数据证明服务真的变</p>
+<p>PART &#x2F;&#x2F;&#x2F;</p>
+<p>写在最后</p>
+<p>复习建议</p>
+<p>学习目标</p>
+<p>信息系统服务管理不是“出了故障再修”，而是从服务目录、需求和SLA开始，设计人员、资源、技术、过程，经营客户与成本，安全退役，并通过测量、回顾和改进形成全生命周期闭环。</p>
+<p>这是“系规学习”的第9期。第12章是全书最密集的章节之一，综合题清单多、案例题权重高，也能支撑服务管理类论文。本文按12.1—12.5完整展开。</p>
+<p>01PART</p>
+<p>本章地图：五阶段贯穿服务全生命周期</p>
+<p>LEARNING · KEY POINTS</p>
+<p>1服务战略规划：明确能提供什么、客户要什么、承诺到什么级别。</p>
+<p>2服务设计实现：选择服务模式，设计人员、资源、技术、过程。</p>
+<p>3服务运营提升：经营关系、营销服务、度量成本并管理收支。</p>
+<p>4服务退役终止：沟通移交、控制风险、回收资源、处置信息。</p>
+<p>5持续改进与监督：风险、测量、质量、回顾和改进贯穿始终。</p>
+<p><img src="/uploads/ai-notes/a034/fa241058cd4a2c13.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 第12章服务管理生命周期</p>
+<p>一条贯穿全章的逻辑</p>
+<p>目录定义能力 → 需求表达期望 → SLA形成承诺 → 四要素保障交付 → 运营数据证明结果 → 退役安全收尾 → 测量回顾驱动改进。</p>
+<p>02PART</p>
+<p>12.1 服务战略规划：先把服务承诺说清楚</p>
+<p>LEARNING · KEY POINTS</p>
+<p>12.1.1 三项规划设计活动</p>
+<p>1服务目录管理；</p>
+<p>2服务需求识别；</p>
+<p>3服务级别设计。</p>
+<p>需方结合目录提出需求，供方兼顾成本与定价设计服务级别，最终形成SLA、OLA和支持合同。</p>
+<p>12.1.2 服务目录管理</p>
+<p>服务目录是供方所提供服务的集中、统一信息源，用于管理客户期望，并支撑需求识别和协议制定。</p>
+<p>六个步骤：</p>
+<p>1成立管理小组：至少包括市场销售、系统规划管理、服务工程人员；</p>
+<p>2列举服务清单：包含正在提供和准备提供的服务；</p>
+<p>3确定服务类别与代码：按技术对象或服务性质分类并唯一编码；</p>
+<p>4编制服务详述：描述内容、目标、级别、方式和技术实现；</p>
+<p>5评审并发布：形成交付和管理基准；</p>
+<p>6完善目录：随市场需求、能力和技术变化持续更新。</p>
+<p>口诀：成、列、类、述、发、完。</p>
+<p>12.1.3 六类服务需求</p>
+<p>1可用性需求：业务能容忍多久中断，中断造成什么损失；</p>
+<p>2连续性需求：重大中断后如何维持和恢复关键业务；</p>
+<p>3服务能力需求：当前和未来容量、性能与响应能力；</p>
+<p>4信息安全需求：机密性、完整性、可用性；</p>
+<p>5价格需求：设备、软件、人力、第三方支持、管理等成本与定价；</p>
+<p>6服务报告需求：面向不同受众报告什么、何时报告、采用何种格式。</p>
+<p>三个可用性指标</p>
+<p>●MTBF平均无故障时间＝系统运行时间÷故障次数，越长越可靠；</p>
+<p>●MTTR平均故障修复时间＝故障耗时÷故障次数，越短越易恢复；</p>
+<p>●MTBSI平均故障间隔＝MTBF＋MTTR，两次相邻事件间隔。</p>
+<p>串联系统可靠性为各组件可靠性相乘；并联系统可靠性为`1－各组件同时失败的概率`。</p>
+<p>12.1.4 SLA、OLA和UC</p>
+<table>
+<thead>
+<tr>
+<th>文档</th>
+<th>关系与作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SLA服务级别协议</td>
+<td>供方与客户之间，约定质量、性能、职责和目标，具有正式约束</td>
+</tr>
+<tr>
+<td>OLA运营级别协议</td>
+<td>供方内部部门之间，分解支撑SLA所需的后台责任</td>
+</tr>
+<tr>
+<td>UC支持合同</td>
+<td>与外部供方相关的正式合同，在服务要求上增加法律责任、权利和义务</td>
+</tr>
+</tbody></table>
+<p>SLA目标必须适度、可测、可承担成本。只写“保障稳定、及时响应”而没有指标、时间窗、例外和责任，不是可执行SLA。</p>
+<p>03PART</p>
+<p>12.2 服务设计实现：模式＋人员、资源、技术、过程</p>
+<p>LEARNING · KEY POINTS</p>
+<p><img src="/uploads/ai-notes/a034/98d0e125a47ff44e.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 服务设计四要素</p>
+<p>12.2.1 四种服务方式</p>
+<p>●远程集中监控；</p>
+<p>●远程技术支持；</p>
+<p>●上门技术支持；</p>
+<p>●驻场技术支持。</p>
+<p>选择时检查三点：与可用性、连续性、安全需求一致；供方人员资源与模式匹配；能够随需求变化组合调整。</p>
+<p>12.2.2 人员要素</p>
+<p>设计范围包括岗位职责、人员绩效和培训，目标是让组织、数量、能力、稳定性与连续性满足服务。</p>
+<p>三类岗位：</p>
+<p>●管理岗：管理客户需求、服务过程和结果；</p>
+<p>●技术支持岗：提供专业诊断与解决能力；</p>
+<p>●操作岗：按规范和手册执行服务台、监控、值守等交付活动。</p>
+<p>绩效方案五步：</p>
+<p>1确定差异化指标；</p>
+<p>2明确信息来源；</p>
+<p>3制定计算方法；</p>
+<p>4定义考核周期；</p>
+<p>5设计公开、反馈和激励策略。</p>
+<p>培训活动包括需求分析、内容设计、实施过程、效果评价。内容涵盖管理、技术、工具、过程、交付与应急；形式可用授课、实操、研讨、在线学习等。</p>
+<p>12.2.3 资源要素</p>
+<p>1服务工具：监控工具、过程管理工具、自动化和安全等其他工具；</p>
+<p>2服务台：服务职能而非服务过程，是需方与供方的统一联系点；</p>
+<p>3备件库：设计响应级别、供应商、出入库与可用性管理；</p>
+<p>4知识库：沉淀常见问题、原因和解决方法，支持添加、更新、查询、共享和生命周期管理。</p>
+<p>服务台要有统一渠道、专人受理，并整合接收、记录、分类、跟踪、反馈、监督和考核机制。</p>
+<p>12.2.4 技术要素</p>
+<p>从三方面设计：</p>
+<p>●技术研发：识别技术储备和新技术应用，估算成本并编制预算；</p>
+<p>●发现问题的技术：明确监控对象、指标、阈值，建设仿真测试环境；</p>
+<p>●解决问题的技术：制定标准操作流程、验证方案并完成知识转移。</p>
+<p>监控不是工具装上就完成，必须先从业务和SLA反推对象、阈值、告警分级和处置动作。</p>
+<p>12.2.5 八个管理过程</p>
+<p>1服务级别管理：目录、SLA、考核和改进；</p>
+<p>2服务报告管理：建立、审批、分发、归档报告；</p>
+<p>3事件管理：尽快恢复正常服务，受理—分类分级—支持—诊断—解决—跟踪—关闭；</p>
+<p>4问题管理：识别事件根因并防止重复发生；</p>
+<p>5配置管理：识别和维护配置项及其关系，保证配置数据可靠；</p>
+<p>6变更管理：评估、批准、计划和控制变更风险；</p>
+<p>7发布管理：规划、构建、测试、部署和验证发布；</p>
+<p>8信息安全管理：按安全要求控制服务全过程。</p>
+<p>事件管理关注“尽快恢复”，问题管理关注“找到根因”；不能因为事件关闭就停止根因分析。</p>
+<p>04PART</p>
+<p>12.3 服务运营提升：不仅交付服务，还要经营关系和成本</p>
+<p>LEARNING · KEY POINTS</p>
+<p>12.3.1 三类业务关系</p>
+<p>业务关系管理包括客户关系、供应商关系和第三方关系。</p>
+<p>客户关系活动：</p>
+<p>●定期沟通与日常沟通；</p>
+<p>●高层拜访；</p>
+<p>●投诉和表扬管理；</p>
+<p>●Case by Case与公开满意度调查；</p>
+<p>●在不影响合同、贴合需求、成本可控且自身有能力的前提下提供增值服务。</p>
+<p>供应商管理要建立互信协作，明确评价、绩效、风险、升级和替代机制；第三方关系要明确接口、责任和信息传递，防止多方服务出现责任空档。</p>
+<p>12.3.2 服务营销四阶段</p>
+<p>1启动准备：知识、客户、产品、现有服务和营销计划准备；</p>
+<p>2调研交流：访谈高层和业务人员，识别真实需求并形成方案；</p>
+<p>3能力展示：展示产品、案例与服务能力，持续沟通；</p>
+<p>4服务达成：谈判并签订协议，转入持续服务。</p>
+<p>营销不是夸大能力，而是让客户需求与供方可交付的目录、级别、成本相匹配。</p>
+<p>12.3.3 四类服务成本</p>
+<p>1直接人力成本：项目人员报酬、社保规费、福利；</p>
+<p>2直接非人力成本：特定项目的办公、差旅、培训、业务、采购、租赁；</p>
+<p>3间接人力成本：管理、PMO、配置与质量保证等非项目人员分摊；</p>
+<p>4间接非人力成本：不因某个项目终止而消失的通用场地、设备、软件等分摊。</p>
+<p>判断关键：能否直接、唯一归属于该项目；项目结束后费用是否仍存在。</p>
+<p>12.3.4 预算、核算和结算</p>
+<p>预算包括收入和开支，作用是计划资金、协调活动、分配资源、授权开支、控制费用和评价效果。</p>
+<p>预算三步：</p>
+<p>1识别收入项与开支项；</p>
+<p>2划分项目执行阶段；</p>
+<p>3形成预算表。</p>
+<p>执行中依据人员、服务台、备件、工具、知识库、研发和过程管理等开支进行核算；结算则依据合同、服务结果、验收与核算数据确认应收应付。预算是计划，核算记录实际，结算完成对外或内部资金确认。</p>
+<p>12.3.5 外包六项收益</p>
+<p>●成本效益；</p>
+<p>●效率提升；</p>
+<p>●降低风险；</p>
+<p>●专注主营业务；</p>
+<p>●管理简单；</p>
+<p>●提升满意度。</p>
+<p>但外包不等于转移最终责任。需方仍要保留治理、供应商管理、数据安全、连续性和退出能力。</p>
+<p>05PART</p>
+<p>12.4 服务退役终止：服务结束不等于责任瞬间消失</p>
+<p>LEARNING · KEY POINTS</p>
+<p>12.4.1 四类沟通会议</p>
+<p>1服务终止计划编制会议；</p>
+<p>2服务终止计划评审会议；</p>
+<p>3移交会议；</p>
+<p>4经验交流会。</p>
+<p>终止计划应包含条件、目标、成功要素、角色职责、约束风险、里程碑交付物、活动分解、完成标准、终止时间、服务接口处理、安全审查，以及遗留事件、问题和变更的处置。</p>
+<p>12.4.2 四类退役风险</p>
+<p>1数据风险：泄露、篡改、滥用、违规传输、非法访问；</p>
+<p>2业务连续性风险：人员提前流失、交接不完整、继任团队理解偏差；</p>
+<p>3法律法规风险：合同、知识产权、数据和监管义务未清；</p>
+<p>4信息安全风险：账户权限未撤销、介质和资料未清理、保密责任中断。</p>
+<p>应建立风险清单、评估等级，对高风险制定责任人、措施、触发条件和验证方式。</p>
+<p>12.4.3 资源回收</p>
+<p>●文件归档：日志、计划、函件、会议、报告、合同和技术文档；</p>
+<p>●财务资源：结清账目并撤销项目编码；</p>
+<p>●人力资源：按计划释放、重新分配并保障关键人员交接；</p>
+<p>●基础设施：回收设备、工具、许可证、场地和备件，恢复可用状态。</p>
+<p>12.4.4 信息处置</p>
+<p>先明确服务数据和文档所有权，再转移或清除；必要时清除或销毁介质。</p>
+<p>信息处理步骤：</p>
+<p>1建立资产或介质清单；</p>
+<p>2按敏感程度、所有权和法规制定方案；</p>
+<p>3受控执行并记录参与人、方式、位置和结果；</p>
+<p>4检查残余信息并由相关方确认。</p>
+<p>删除文件名或普通格式化通常不足以安全清除敏感数据，应采用符合要求的方法并保留证据。</p>
+<p>06PART</p>
+<p>12.5 持续改进与监督：用数据证明服务真的变好</p>
+<p>LEARNING · KEY POINTS</p>
+<p>持续改进贯穿全生命周期，包括服务风险管理、测量、质量管理、回顾和改进。</p>
+<p>12.5.1 服务风险管理</p>
+<p>风险来源包括人员、技术、资源、过程和其他方面。管理活动涵盖策划、组织、领导、协调和控制，并应动态维护风险清单。</p>
+<p>12.5.2 服务测量</p>
+<p>目标是监视、测量和评审服务及管理目标，识别与计划的差距，为改进提供依据。测量对象覆盖：</p>
+<p>●人员：能力、培训、招聘、绩效、储备、职责、工作量和稳定性；</p>
+<p>●资源：工具、服务台、知识库、备件库；</p>
+<p>●技术：研发、监控、测试、解决问题和知识转移能力；</p>
+<p>●过程：SLA、报告、事件、问题、配置、变更、发布和安全过程。</p>
+<p>测量必须定义指标口径、数据源、频率、责任人、目标值和异常处置，避免只统计“看起来容易收集”的数据。</p>
+<p>12.5.3 服务质量管理</p>
+<p>GB&#x2F;T 33850服务质量模型的五类特性：</p>
+<p>1安全性；</p>
+<p>2可靠性；</p>
+<p>3响应性；</p>
+<p>4有形性；</p>
+<p>5友好性。</p>
+<p>评价四步：确定需求、指标选型、实施评价、结果分级。</p>
+<p>质量管理活动：</p>
+<p>●质量策划：目标、职责权限、时间和策划文件；</p>
+<p>●质量检查：满意度、质量保证、内审、管理评审、日常检查和质量培训；</p>
+<p>●质量改进：根据问题确定方向、目标、措施并跟踪效果。</p>
+<p>12.5.4 服务回顾</p>
+<p>服务回顾把测量数据转化为共同认识。四级机制：</p>
+<p>●一级：重大或特殊事件，按需；</p>
+<p>●二级：项目月度例会；</p>
+<p>●三级：季度运营回顾；</p>
+<p>●四级：年度合作回顾。</p>
+<p>与客户回顾合同、目标、SLA、绩效、满意度、范围、需求变化和行动计划；团队内部回顾计划、疑难工单、问题、KPI和下一周期安排。重大项目还应复盘。</p>
+<p>12.5.5 服务改进</p>
+<p>改进生命周期：</p>
+<p>1改进设计：定义可测目标、识别输入和措施、编制计划；</p>
+<p>2改进实施：按责任、资源、时间和风险执行并记录；</p>
+<p>3改进验证：比较改进前后指标，确认目标和客户价值。</p>
+<p>改进来源包括测量回顾、客户差距、投诉满意度、审核评审、KPI趋势、员工建议、业务技术变化和过程反馈。</p>
+<p><img src="/uploads/ai-notes/a034/e970e638baac8bd1.png" srcset="/img/loading.gif" lazyload></p>
+<p>— 服务持续改进闭环</p>
+<p>三门考试怎么用</p>
+<p>综合题</p>
+<p>重点背：目录六步、需求六类、SLA&#x2F;OLA&#x2F;UC、PTRP四要素、四种服务模式、八个过程、成本四类、退役四风险、质量五特性、改进三阶段。</p>
+<p>案例题</p>
+<p>按生命周期扫描：战略阶段是否有目录、需求和SLA；设计是否匹配PTRP；运营是否管关系、成本和供应商；退役是否有计划、风险、回收与信息处置；持续改进是否有指标、回顾、计划和验证。</p>
+<p>示例：服务台只记录电话，没有统一分类、跟踪、升级和反馈，导致请求丢失且无法度量；应建立统一联系点和工单流程，定义分级、升级、SLA计时、满意度与关闭验证。</p>
+<p>论文</p>
+<p>可按“背景需求—服务战略—服务模式—PTRP设计—运营与关系—测量质量—改进成效”展开。若写外包服务，应补供方管理、数据安全、连续性和退出机制。</p>
+<p>闭卷自测</p>
+<p>1服务目录管理六步是什么？</p>
+<p>2六类服务需求及MTBF、MTTR、MTBSI含义是什么？</p>
+<p>3SLA、OLA、UC如何区分？</p>
+<p>4人员、资源、技术、过程分别设计什么？</p>
+<p>5八个服务管理过程是什么？事件和问题管理有何区别？</p>
+<p>6业务关系三类、服务营销四阶段是什么？</p>
+<p>7四类成本和预算三步是什么？</p>
+<p>8服务退役四类风险、四类资源回收是什么？</p>
+<p>9服务质量五特性和四级回顾机制是什么？</p>
+<p>10服务改进三阶段是什么？</p>
+<p>&#x2F;&#x2F;&#x2F;</p>
+<p>LAST</p>
+<p>写在最后</p>
+<p>SUMMARY · REVIEW SMARTER</p>
+<p>第12章不是25张孤立清单，而是一条完整链路：</p>
+<p>以需求和SLA定义承诺，以PTRP设计能力，以关系与成本经营服务，以退役控制尾部风险，以测量回顾验证并持续改进。</p>
+<p>第一轮先掌握五阶段和关键清单；第二轮再按案例把每个问题定位到生命周期阶段、要素和过程。</p>
+<p>我是陈文茂，正在用自己的方式重新整理系统规划与管理师学习资料。</p>
+<p>如果这篇对你有帮助，欢迎点赞、在看、转发。</p>
+<p>既然看到这里了，如果觉得有用，随手点个赞、在看、转发三连吧。</p>
+<p>👍 点赞 👀 在看 ↗ 转发</p>
+<p>THANKS FOR READING</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>系规第12章：信息系统服务管理完整学习笔记</div>
+      <div>https://maoyu92.github.io/2026/07/26/07 AI笔记/软考系规/a034_系规第12章：信息系统服务管理完整学习笔记/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a033_%E7%B3%BB%E8%A7%84%E7%AC%AC13%E7%AB%A0%EF%BC%9A%E4%BA%BA%E5%91%98%E7%AE%A1%E7%90%86%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="系规第13章：人员管理完整学习笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">系规第13章：人员管理完整学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/26/07%20AI%E7%AC%94%E8%AE%B0/%E8%BD%AF%E8%80%83%E7%B3%BB%E8%A7%84/a035_%E7%B3%BB%E8%A7%84%E7%AC%AC11%E7%AB%A0%EF%BC%9A%E4%BF%A1%E6%81%AF%E7%B3%BB%E7%BB%9F%E6%B2%BB%E7%90%86%E5%AE%8C%E6%95%B4%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="系规第11章：信息系统治理完整学习笔记">
+                        <span class="hidden-mobile">系规第11章：信息系统治理完整学习笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

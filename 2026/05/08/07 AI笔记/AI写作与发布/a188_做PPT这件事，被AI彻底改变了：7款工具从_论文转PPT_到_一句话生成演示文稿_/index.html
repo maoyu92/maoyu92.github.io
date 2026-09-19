@@ -1,0 +1,960 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="做PPT这件事，被AI彻底改变了：7款工具从”论文转PPT”到”一句话生成演示文稿”做PPT，大概是职场人最不想做但又不得不做的工作之一。 从零开始排版、调整配色、找配图……一个10页的汇报PPT，做起来要半天，改起来更要命。 现在，AI把这件事情彻底改变了——论文可以自动转PPT，一句话就能生成演示文稿，现有的PPT还能转成网页版直接分享。 今天介绍7款相关工具，覆盖从”把论文变成PPT”到”一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="做PPT这件事，被AI彻底改变了：7款工具从&quot;论文转PPT&quot;到&quot;一句话生成演示文稿&quot;">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/08/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a188_%E5%81%9APPT%E8%BF%99%E4%BB%B6%E4%BA%8B%EF%BC%8C%E8%A2%ABAI%E5%BD%BB%E5%BA%95%E6%94%B9%E5%8F%98%E4%BA%86%EF%BC%9A7%E6%AC%BE%E5%B7%A5%E5%85%B7%E4%BB%8E_%E8%AE%BA%E6%96%87%E8%BD%ACPPT_%E5%88%B0_%E4%B8%80%E5%8F%A5%E8%AF%9D%E7%94%9F%E6%88%90%E6%BC%94%E7%A4%BA%E6%96%87%E7%A8%BF_/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="做PPT这件事，被AI彻底改变了：7款工具从”论文转PPT”到”一句话生成演示文稿”做PPT，大概是职场人最不想做但又不得不做的工作之一。 从零开始排版、调整配色、找配图……一个10页的汇报PPT，做起来要半天，改起来更要命。 现在，AI把这件事情彻底改变了——论文可以自动转PPT，一句话就能生成演示文稿，现有的PPT还能转成网页版直接分享。 今天介绍7款相关工具，覆盖从”把论文变成PPT”到”一">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-07T16:09:00.000Z">
+<meta property="article:modified_time" content="2026-05-07T16:09:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>做PPT这件事，被AI彻底改变了：7款工具从&#34;论文转PPT&#34;到&#34;一句话生成演示文稿&#34; - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="做PPT这件事，被AI彻底改变了：7款工具从&#34;论文转PPT&#34;到&#34;一句话生成演示文稿&#34;"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-08 00:09" pubdate>
+          2026年5月8日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">做PPT这件事，被AI彻底改变了：7款工具从&#34;论文转PPT&#34;到&#34;一句话生成演示文稿&#34;</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="做PPT这件事，被AI彻底改变了：7款工具从”论文转PPT”到”一句话生成演示文稿”"><a href="#做PPT这件事，被AI彻底改变了：7款工具从”论文转PPT”到”一句话生成演示文稿”" class="headerlink" title="做PPT这件事，被AI彻底改变了：7款工具从”论文转PPT”到”一句话生成演示文稿”"></a>做PPT这件事，被AI彻底改变了：7款工具从”论文转PPT”到”一句话生成演示文稿”</h1><p>做PPT，大概是职场人最不想做但又不得不做的工作之一。</p>
+<p>从零开始排版、调整配色、找配图……一个10页的汇报PPT，做起来要半天，改起来更要命。</p>
+<p>现在，AI把这件事情彻底改变了——<strong>论文可以自动转PPT，一句话就能生成演示文稿，现有的PPT还能转成网页版直接分享</strong>。</p>
+<p>今天介绍7款相关工具，覆盖从”把论文变成PPT”到”一句话生成完整路演PPT”的完整场景。</p>
+<hr>
+<h2 id="1-Paper2Slides：港大开源-·-论文-报告一键转PPT-海报"><a href="#1-Paper2Slides：港大开源-·-论文-报告一键转PPT-海报" class="headerlink" title="1. Paper2Slides：港大开源 · 论文&#x2F;报告一键转PPT&#x2F;海报"></a>1. Paper2Slides：港大开源 · 论文&#x2F;报告一键转PPT&#x2F;海报</h2><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/HKUDS/Paper2Slides/[1/]">https://github.com/HKUDS/Paper2Slides\[1\]</a> <strong>标签</strong>: PPT · AI工具 · 港大 · 开源</p>
+<h3 id="它是什么"><a href="#它是什么" class="headerlink" title="它是什么"></a>它是什么</h3><p>Paper2Slides 是香港大学开源的文档转演示工具，核心能力：<strong>把论文、报告、文档一键变成专业的PPT或海报</strong>。</p>
+<p>支持处理 PDF、Word、Excel、PowerPoint、Markdown 等多种格式，一次性上传多个文件也没问题。</p>
+<h3 id="有什么用"><a href="#有什么用" class="headerlink" title="有什么用"></a>有什么用</h3><p><strong>传统方式：</strong> 读论文 → 手动提炼重点 → 复制粘贴到PPT → 调整格式 → 反复修改 一套流程下来，一篇20页论文的PPT要花3-4小时。</p>
+<p><strong>Paper2Slides方式：</strong></p>
+<p><code>python -m paper2slides --input paper.pdf --output slides --style doraemon --length medium --fast --parallel 2   </code></p>
+<p>一条命令，10分钟内出完整PPT。</p>
+<p><strong>4步智能流水线：</strong></p>
+<ol>
+<li><p><strong>RAG解析</strong> — 用RAG技术精准提取文档内容，构建可检索知识库</p>
+</li>
+<li><p><strong>结构分析</strong> — 识别文档中的图表、数据、层级结构</p>
+</li>
+<li><p><strong>内容规划</strong> — 生成优化的幻灯片布局和内容组织策略</p>
+</li>
+<li><p><strong>视觉生成</strong> — 渲染专业级演示材料</p>
+</li>
+</ol>
+<p><strong>支持自定义风格：</strong> 可以用自然语言描述你想要的风格，比如：</p>
+<blockquote>
+<p>“Studio Ghibli anime style with warm whimsical aesthetic. Use soft watercolor Morandi tones with light cream background, muted sage green and dusty pink accents.”</p>
+</blockquote>
+<p>也可以直接用内置风格：学术风（academic）、哆啦A梦风（doraemon）。</p>
+<p><strong>智能断点续传：</strong> 如果中途被打断，重新运行同一命令会自动从上次进度继续，不用重头来。</p>
+<p><strong>支持并行生成：</strong> 加 <code>--parallel 2</code> 参数可以同时生成2张幻灯片，速度翻倍。</p>
+<h3 id="适合谁"><a href="#适合谁" class="headerlink" title="适合谁"></a>适合谁</h3><ul>
+<li><p>学术研究人员（论文汇报、学术分享）</p>
+</li>
+<li><p>需要做研究报告的分析师</p>
+</li>
+<li><p>任何需要把长文档变成演示材料的人</p>
+</li>
+</ul>
+<hr>
+<h2 id="2-Frontend-Slides：Claude-Code演示文稿技能-·-13-5K-stars"><a href="#2-Frontend-Slides：Claude-Code演示文稿技能-·-13-5K-stars" class="headerlink" title="2. Frontend Slides：Claude Code演示文稿技能 · 13.5K stars"></a>2. Frontend Slides：Claude Code演示文稿技能 · 13.5K stars</h2><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/zarazhangrui/frontend-slides/[2/]">https://github.com/zarazhangrui/frontend-slides\[2\]</a> <strong>预览</strong>: <a target="_blank" rel="noopener" href="https://frontend-design-skills-showcase.pages.dev/[3/]">https://frontend-design-skills-showcase.pages.dev\[3\]</a> <strong>标签</strong>: PPT · 演示文稿 · Claude · React · 13.5K stars</p>
+<h3 id="它是什么-1"><a href="#它是什么-1" class="headerlink" title="它是什么"></a>它是什么</h3><p>Frontend Slides 是一个 Claude Code 技能，专门用来<strong>用自然语言描述需求，AI直接生成精美的网页演示文稿</strong>。</p>
+<p>核心特点：<strong>零依赖</strong>——生成的是单个HTML文件，内嵌CSS&#x2F;JS，不需要npm、不需要构建工具、不需要任何框架。</p>
+<h3 id="有什么用-1"><a href="#有什么用-1" class="headerlink" title="有什么用"></a>有什么用</h3><p><strong>传统方式：</strong> 打开PowerPoint → 选择模板 → 手动添加内容 → 调整格式 → 导出 → 发现字体不对、配色不对……</p>
+<p><strong>Frontend Slides方式：</strong></p>
+<ol>
+<li><p>告诉AI你想做什么：”帮我做一个AI创业公司的融资路演PPT”</p>
+</li>
+<li><p>AI生成3种视觉风格预览，让你选</p>
+</li>
+<li><p>AI按你选的风格生成完整演示文稿</p>
+</li>
+<li><p>自动在浏览器打开预览</p>
+</li>
+</ol>
+<p><strong>12种精心设计的视觉风格：</strong></p>
+<ul>
+<li><p>Bold Signal — 自信、高impact、深色卡片</p>
+</li>
+<li><p>Electric Studio — 干净专业、分屏布局</p>
+</li>
+<li><p>Creative Voltage — 活力、复古现代、电蓝+霓虹</p>
+</li>
+<li><p>Dark Botanical — 优雅、精致、暖色调</p>
+</li>
+<li><p>Notebook Tabs — 编辑感、组织感、彩色标签纸张</p>
+</li>
+<li><p>Pastel Geometry — 友好、易接近、竖向胶囊</p>
+</li>
+<li><p>Neon Cyber — 未来感、粒子背景、霓虹光晕</p>
+</li>
+<li><p>Terminal Green — 开发者风格、黑客美学</p>
+</li>
+<li><p>Swiss Modern — 极简、博豪斯风格、几何</p>
+</li>
+<li><p>Paper &amp; Ink — 文学感、首字母下沉、引文块</p>
+</li>
+<li><p>……</p>
+</li>
+</ul>
+<p><strong>支持PPT文件转换：</strong> 上传现有的PPT文件 → AI提取所有文字、图片、备注 → 选择风格 → 生成网页版演示文稿</p>
+<p><strong>分享和导出：</strong></p>
+<ul>
+<li><p>一条命令部署到Vercel，获得永久分享链接（支持手机&#x2F;平板&#x2F;电脑）</p>
+</li>
+<li><p>一条命令导出为PDF（适合邮件、打印）</p>
+</li>
+</ul>
+<h3 id="适合谁-1"><a href="#适合谁-1" class="headerlink" title="适合谁"></a>适合谁</h3><ul>
+<li><p>没有设计背景但需要做演示的创业者&#x2F;产品经理</p>
+</li>
+<li><p>程序员想用代码方式做演示</p>
+</li>
+<li><p>想让PPT有网页动画效果的人</p>
+</li>
+</ul>
+<hr>
+<h2 id="3-oh-my-ppt：本地优先AI-PPT生成器-·-不依赖云"><a href="#3-oh-my-ppt：本地优先AI-PPT生成器-·-不依赖云" class="headerlink" title="3. oh-my-ppt：本地优先AI PPT生成器 · 不依赖云"></a>3. oh-my-ppt：本地优先AI PPT生成器 · 不依赖云</h2><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/arcsin1/oh-my-ppt/[4/]">https://github.com/arcsin1/oh-my-ppt\[4\]</a> <strong>标签</strong>: PPT · 本地优先 · 桌面应用 · AI生成 · 无云锁定</p>
+<h3 id="它是什么-2"><a href="#它是什么-2" class="headerlink" title="它是什么"></a>它是什么</h3><p>oh-my-ppt 是一款<strong>本地优先的AI PPT生成和编辑工具</strong>，有桌面应用版本，核心特点：<strong>所有数据都存在本地，不上传到云端</strong>，适合对数据隐私敏感的用户。</p>
+<h3 id="有什么用-2"><a href="#有什么用-2" class="headerlink" title="有什么用"></a>有什么用</h3><p><strong>一句话生成PPT：</strong> 输入主题和需求 → AI自动规划大纲 + 配色 + 排版 → 直接出完整PPT</p>
+<p><strong>支持多种输入方式：</strong></p>
+<ul>
+<li><p>📝 直接输入主题描述</p>
+</li>
+<li><p>📄 上传txt&#x2F;md&#x2F;csv&#x2F;docx文档 → AI解析后生成PPT</p>
+</li>
+<li><p>📥 导入现有PPTX文件 → 在应用内转换为可编辑的HTML页面</p>
+</li>
+</ul>
+<p><strong>内置30+风格Skill：</strong> 极简白、赛博霓虹、包豪斯、日式简约、小红书白……也可以自定义风格。</p>
+<p><strong>对话式精准修改：</strong> 不需要重做！可以直接说：</p>
+<ul>
+<li><p>“标题换个颜色”</p>
+</li>
+<li><p>“加个数据图表”</p>
+</li>
+<li><p>“第三页加个动画效果”</p>
+</li>
+</ul>
+<p><strong>动画支持：</strong> 内置Anime.js v4动画引擎，支持页面切换动画和元素入场动画，适合做”演示”而不是”静态展示”。</p>
+<p><strong>支持本地Ollama模型：</strong> 如果想完全离线使用，可以配置本地Ollama，用自己的本地LLM来生成内容。推荐14B以上的模型。</p>
+<p><strong>多格式导出：</strong></p>
+<ul>
+<li><p>PDF：适合分享、归档</p>
+</li>
+<li><p>PNG：批量导出所有页面图片，适合插入公众号&#x2F;Notion</p>
+</li>
+<li><p>PPTX：导出为可编辑的PowerPoint文件</p>
+</li>
+</ul>
+<h3 id="适合谁-2"><a href="#适合谁-2" class="headerlink" title="适合谁"></a>适合谁</h3><ul>
+<li><p>对数据隐私有要求（不想上传到云端）</p>
+</li>
+<li><p>需要经常做PPT的职场人</p>
+</li>
+<li><p>想要”对话式修改”而不是反复重做</p>
+</li>
+</ul>
+<hr>
+<h2 id="4-html-ppt-skill：HTML-PPT制作工具-·-可作为AI-Agent-Skill"><a href="#4-html-ppt-skill：HTML-PPT制作工具-·-可作为AI-Agent-Skill" class="headerlink" title="4. html-ppt-skill：HTML PPT制作工具 · 可作为AI Agent Skill"></a>4. html-ppt-skill：HTML PPT制作工具 · 可作为AI Agent Skill</h2><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/lewislulu/html-ppt-skill/[5/]">https://github.com/lewislulu/html-ppt-skill\[5\]</a> <strong>标签</strong>: PPT · HTML · AI技能</p>
+<h3 id="它是什么-3"><a href="#它是什么-3" class="headerlink" title="它是什么"></a>它是什么</h3><p>html-ppt-skill 是一个用<strong>HTML制作PPT的AI技能</strong>，可以用在各种AI编程工具中。它的核心思路：<strong>PPT不是用拖拽做的，是用HTML&#x2F;CSS写的</strong>。</p>
+<h3 id="有什么用-3"><a href="#有什么用-3" class="headerlink" title="有什么用"></a>有什么用</h3><ul>
+<li><p>生成单个HTML文件PPT，浏览器直接打开就能演示</p>
+</li>
+<li><p>支持作为AI Agent Skill使用，嵌入到各种AI编程工作流</p>
+</li>
+<li><p>代码简洁，易于自定义</p>
+</li>
+</ul>
+<h3 id="适合谁-3"><a href="#适合谁-3" class="headerlink" title="适合谁"></a>适合谁</h3><ul>
+<li><p>程序员背景的用户</p>
+</li>
+<li><p>想用代码方式制作和控制PPT的人</p>
+</li>
+</ul>
+<hr>
+<h2 id="5-open-slide：面向AI-Agent的幻灯片框架"><a href="#5-open-slide：面向AI-Agent的幻灯片框架" class="headerlink" title="5. open-slide：面向AI Agent的幻灯片框架"></a>5. open-slide：面向AI Agent的幻灯片框架</h2><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/AI-Meet/open-slide/[6/]">https://github.com/AI-Meet/open-slide\[6\]</a> <strong>标签</strong>: 幻灯片 · React · AI原生 · Agent · PPT</p>
+<h3 id="它是什么-4"><a href="#它是什么-4" class="headerlink" title="它是什么"></a>它是什么</h3><p>open-slide 是一个<strong>AI原生的幻灯片框架</strong>，核心理念：<strong>用自然语言描述需求，Agent直接写React代码生成演示文稿</strong>。</p>
+<h3 id="有什么用-4"><a href="#有什么用-4" class="headerlink" title="有什么用"></a>有什么用</h3><p>传统做PPT：打开软件 → 选择模板 → 拖拽元素 → 调整格式</p>
+<p>open-slide方式：告诉AI你想要什么 → AI写React代码 → 生成可交互的演示文稿</p>
+<p>彻底摆脱传统PPT拖拽限制，<strong>用代码的精确性做演示文稿</strong>。</p>
+<h3 id="适合谁-4"><a href="#适合谁-4" class="headerlink" title="适合谁"></a>适合谁</h3><ul>
+<li><p>有React基础的用户</p>
+</li>
+<li><p>想做可交互、动态演示的人</p>
+</li>
+</ul>
+<hr>
+<h2 id="6-BaizeAI-talks：技术演讲幻灯片分享社区"><a href="#6-BaizeAI-talks：技术演讲幻灯片分享社区" class="headerlink" title="6. BaizeAI&#x2F;talks：技术演讲幻灯片分享社区"></a>6. BaizeAI&#x2F;talks：技术演讲幻灯片分享社区</h2><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/BaizeAI/talks/[7/]">https://github.com/BaizeAI/talks\[7\]</a> <strong>官网</strong>: <a target="_blank" rel="noopener" href="https://baizeai.github.io/talks//[8/]">https://baizeai.github.io/talks/\[8\]</a> <strong>标签</strong>: 幻灯片 · 技术演讲 · PPT</p>
+<h3 id="它是什么-5"><a href="#它是什么-5" class="headerlink" title="它是什么"></a>它是什么</h3><p>BaizeAI&#x2F;talks 是一个<strong>技术演讲幻灯片的分享社区</strong>，收集了大量优质的技术大会分享PPT，供学习和参考。</p>
+<h3 id="有什么用-5"><a href="#有什么用-5" class="headerlink" title="有什么用"></a>有什么用</h3><ul>
+<li><p>观看和学习优质技术演讲的幻灯片</p>
+</li>
+<li><p>了解技术圈最新动态和趋势</p>
+</li>
+<li><p>寻找演示设计的参考灵感</p>
+</li>
+</ul>
+<h3 id="适合谁-5"><a href="#适合谁-5" class="headerlink" title="适合谁"></a>适合谁</h3><ul>
+<li><p>想学习优质PPT设计的人</p>
+</li>
+<li><p>技术从业者想了解行业动态</p>
+</li>
+</ul>
+<hr>
+<h2 id="7-Flipbook：AI-Agent翻页动画书-·-MCP驱动-·-X上很火"><a href="#7-Flipbook：AI-Agent翻页动画书-·-MCP驱动-·-X上很火" class="headerlink" title="7. Flipbook：AI Agent翻页动画书 · MCP驱动 · X上很火"></a>7. Flipbook：AI Agent翻页动画书 · MCP驱动 · X上很火</h2><p><strong>GitHub</strong>: <a target="_blank" rel="noopener" href="https://github.com/jonradoff/flipbook/[9/]">https://github.com/jonradoff/flipbook\[9\]</a> <strong>标签</strong>: Flipbook · MCP · AI动画 · X热门</p>
+<h3 id="它是什么-6"><a href="#它是什么-6" class="headerlink" title="它是什么"></a>它是什么</h3><p>Flipbook 是一款基于<strong>MCP（Model Context Protocol）驱动的AI翻页动画书工具</strong>，最近在X（Twitter）上很火。</p>
+<h3 id="有什么用-6"><a href="#有什么用-6" class="headerlink" title="有什么用"></a>有什么用</h3><p>通过MCP协议，AI Agent可以创建精美的翻页动画书效果，适合做：</p>
+<ul>
+<li><p>产品演示</p>
+</li>
+<li><p>故事叙述</p>
+</li>
+<li><p>教学内容的可视化展示</p>
+</li>
+</ul>
+<h3 id="适合谁-6"><a href="#适合谁-6" class="headerlink" title="适合谁"></a>适合谁</h3><ul>
+<li><p>想做有创意的演示效果</p>
+</li>
+<li><p>MCP生态的用户</p>
+</li>
+</ul>
+<hr>
+<h2 id="总结：如何选择"><a href="#总结：如何选择" class="headerlink" title="总结：如何选择"></a>总结：如何选择</h2><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐工具</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>把论文&#x2F;报告转成PPT</td>
+<td>Paper2Slides（港大开源）</td>
+</tr>
+<tr>
+<td>一句话生成精美演示文稿</td>
+<td>Frontend Slides（Claude Code）</td>
+</tr>
+<tr>
+<td>本地优先、不想上传云端</td>
+<td>oh-my-ppt（桌面应用）</td>
+</tr>
+<tr>
+<td>用代码方式做PPT</td>
+<td>html-ppt-skill &#x2F; open-slide</td>
+</tr>
+<tr>
+<td>学习优质技术演讲设计</td>
+<td>BaizeAI&#x2F;talks</td>
+</tr>
+<tr>
+<td>创意翻页动画效果</td>
+<td>Flipbook（MCP驱动）</td>
+</tr>
+</tbody></table>
+<p>这7款工具覆盖了从”把现成文档变PPT”到”一句话生成完整演示文稿”的全场景。做PPT这件事，终于可以交给AI了。</p>
+<hr>
+<p><em>本文来源：稍后阅读清单深度调研 · 小欧整理</em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/HKUDS/Paper2Slides">https://github.com/HKUDS/Paper2Slides</a></em></p>
+<p>[2]<em><a target="_blank" rel="noopener" href="https://github.com/zarazhangrui/frontend-slides">https://github.com/zarazhangrui/frontend-slides</a></em></p>
+<p>[3]<em><a target="_blank" rel="noopener" href="https://frontend-design-skills-showcase.pages.dev/">https://frontend-design-skills-showcase.pages.dev</a></em></p>
+<p>[4]<em><a target="_blank" rel="noopener" href="https://github.com/arcsin1/oh-my-ppt">https://github.com/arcsin1/oh-my-ppt</a></em></p>
+<p>[5]<em><a target="_blank" rel="noopener" href="https://github.com/lewislulu/html-ppt-skill">https://github.com/lewislulu/html-ppt-skill</a></em></p>
+<p>[6]<em><a target="_blank" rel="noopener" href="https://github.com/AI-Meet/open-slide">https://github.com/AI-Meet/open-slide</a></em></p>
+<p>[7]<em><a target="_blank" rel="noopener" href="https://github.com/BaizeAI/talks">https://github.com/BaizeAI/talks</a></em></p>
+<p>[8]<em><a target="_blank" rel="noopener" href="https://baizeai.github.io/talks/">https://baizeai.github.io/talks/</a></em></p>
+<p>[9]<em><a target="_blank" rel="noopener" href="https://github.com/jonradoff/flipbook">https://github.com/jonradoff/flipbook</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>做PPT这件事，被AI彻底改变了：7款工具从&#34;论文转PPT&#34;到&#34;一句话生成演示文稿&#34;</div>
+      <div>https://maoyu92.github.io/2026/05/08/07 AI笔记/AI写作与发布/a188_做PPT这件事，被AI彻底改变了：7款工具从_论文转PPT_到_一句话生成演示文稿_/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/08/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a186_%E8%AE%A9AI%E7%9C%9F%E6%AD%A3%E8%AF%BB%E6%87%82%E4%BD%A0%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%9A4%E6%AC%BE%E7%9F%A5%E8%AF%86%E5%9B%BE%E8%B0%B1%E4%B8%8ERAG%E5%B7%A5%E5%85%B7%E8%AE%A9%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%88%90%E4%B8%BA%E9%A1%B9%E7%9B%AE%E4%B8%93%E5%AE%B6/" title="让AI真正读懂你的代码：4款知识图谱与RAG工具让大模型成为项目专家">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">让AI真正读懂你的代码：4款知识图谱与RAG工具让大模型成为项目专家</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/07/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a189_%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E6%8E%A8%E8%8D%90%20PPT%20Master%EF%BC%9A%E7%9C%9F%E6%AD%A3%E5%8F%AF%E7%BC%96%E8%BE%91%E7%9A%84%20AI%20PPT%20%E5%B7%A5%E4%BD%9C%E6%B5%81/" title="为什么我推荐 PPT Master：真正可编辑的 AI PPT 工作流">
+                        <span class="hidden-mobile">为什么我推荐 PPT Master：真正可编辑的 AI PPT 工作流</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

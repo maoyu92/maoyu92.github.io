@@ -1,0 +1,888 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="garden-skills 上手指途：ConardLi 的开源 Agent 技能花园如果你正在使用 Claude Code、Cursor、Codex 等 AI 编码 Agent，有没有想过——能不能把优质的「技能包」像插件一样一行命令装上，让 Agent 自动获得某类专业能力？ ConardLi&#x2F;garden-skills 正是为此而生。这是一个专注生产级的 Agent Skills 开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="garden-skills 上手指途：ConardLi 的开源 Agent 技能花园">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/22/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a167_garden-skills%20%E4%B8%8A%E6%89%8B%E6%8C%87%E9%80%94%EF%BC%9AConardLi%20%E7%9A%84%E5%BC%80%E6%BA%90%20Agent%20%E6%8A%80%E8%83%BD%E8%8A%B1%E5%9B%AD/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="garden-skills 上手指途：ConardLi 的开源 Agent 技能花园如果你正在使用 Claude Code、Cursor、Codex 等 AI 编码 Agent，有没有想过——能不能把优质的「技能包」像插件一样一行命令装上，让 Agent 自动获得某类专业能力？ ConardLi&#x2F;garden-skills 正是为此而生。这是一个专注生产级的 Agent Skills 开">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/images/7da71b6e1bbedbbb.png">
+<meta property="og:image" content="https://maoyu92.github.io/images/f6ac082986bf6055.png">
+<meta property="article:published_time" content="2026-05-22T06:39:00.000Z">
+<meta property="article:modified_time" content="2026-05-22T06:39:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/images/7da71b6e1bbedbbb.png">
+  
+  
+  <title>garden-skills 上手指途：ConardLi 的开源 Agent 技能花园 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="garden-skills 上手指途：ConardLi 的开源 Agent 技能花园"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-22 14:39" pubdate>
+          2026年5月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          14 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">garden-skills 上手指途：ConardLi 的开源 Agent 技能花园</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="garden-skills-上手指途：ConardLi-的开源-Agent-技能花园"><a href="#garden-skills-上手指途：ConardLi-的开源-Agent-技能花园" class="headerlink" title="garden-skills 上手指途：ConardLi 的开源 Agent 技能花园"></a>garden-skills 上手指途：ConardLi 的开源 Agent 技能花园</h1><p>如果你正在使用 Claude Code、Cursor、Codex 等 AI 编码 Agent，有没有想过——能不能把优质的「技能包」像插件一样一行命令装上，让 Agent 自动获得某类专业能力？</p>
+<p><strong>ConardLi&#x2F;garden-skills</strong> 正是为此而生。这是一个专注生产级的 Agent Skills 开源集合，目前收录了 4 个技能，覆盖网页设计、视频演示、图像生成和本地知识库检索四大场景。</p>
+<p><img src="/images/7da71b6e1bbedbbb.png" srcset="/img/loading.gif" lazyload alt="花园技能全景图" title="花园技能全景图"></p>
+<hr>
+<h2 id="先搞懂：什么是-Skill？"><a href="#先搞懂：什么是-Skill？" class="headerlink" title="先搞懂：什么是 Skill？"></a>先搞懂：什么是 Skill？</h2><p>简单说，Skill 是 Agent 可以按需加载的「自包含技能包」。它的标准结构如下：</p>
+<p><code>&lt;skill-name&gt;/   ├── SKILL.md       ← 必需：什么时候用 + 怎么用   ├── README.md      ← 给人看的文档   ├── references/    ← 可选：Agent 按需加载的扩展文档   ├── scripts/       ← 可选：确定性可执行脚本   └── assets/       ← 可选：模板、字体、图标等   </code></p>
+<p>一个 SKILL.md（YAML frontmatter + 指令）配合可选的辅助文件，就构成了一个完整的技能单元。Agent 会根据 frontmatter 里的 description 决定是否激活这个 Skill——所以 description 就是你和 Agent 之间的契约。</p>
+<hr>
+<h2 id="四个核心-Skill，总有一款适合你"><a href="#四个核心-Skill，总有一款适合你" class="headerlink" title="四个核心 Skill，总有一款适合你"></a>四个核心 Skill，总有一款适合你</h2><h3 id="🌐-web-design-engineer：设计工程师级别的网页构建"><a href="#🌐-web-design-engineer：设计工程师级别的网页构建" class="headerlink" title="🌐 web-design-engineer：设计工程师级别的网页构建"></a>🌐 web-design-engineer：设计工程师级别的网页构建</h3><p><strong>类别</strong>：设计 &#x2F; 前端<br><strong>适合场景</strong>：网页、落地页、仪表盘、交互原型、HTML 幻灯片、动画、UI 样机、数据可视化</p>
+<p>这是整个仓库我最关注的一个 Skill。它的核心理念是：把 AI 当作「设计工程师」而非「工具人」来用——先理解产品上下文，再声明设计系统，尽早展示 v0，然后完整构建并验证结果。</p>
+<p><strong>六步设计工作流</strong>：</p>
+<ol>
+<li><p><strong>需求</strong>：理解用户要什么</p>
+</li>
+<li><p><strong>上下文</strong>：建立产品感知</p>
+</li>
+<li><p><strong>设计系统</strong>：声明颜色、字体、间距等 token</p>
+</li>
+<li><p><strong>v0</strong>：快速出早期原型</p>
+</li>
+<li><p><strong>完整构建</strong>：响应式布局 + 动效 + 交互细节</p>
+</li>
+<li><p><strong>验证</strong>：检查与设计系统的偏差</p>
+</li>
+</ol>
+<p>亮点功能：</p>
+<ul>
+<li><p>内置「反 AI 俗套清单」，避免千篇一律的生成式 UI</p>
+</li>
+<li><p>覆盖 HTML &#x2F; CSS &#x2F; JavaScript &#x2F; React 原型</p>
+</li>
+<li><p>支持 oklch() 配色、container queries、reduced-motion 等现代 CSS 特性</p>
+</li>
+<li><p>提供高级模式参考（设备框、幻灯片引擎、动画时间线、仪表盘等）</p>
+</li>
+</ul>
+<blockquote>
+<p>如果你经常需要让 AI 生成「拿得出手」的网页界面，这个 Skill 几乎是必装的。</p>
+</blockquote>
+<hr>
+<h3 id="🎬-web-video-presentation：录屏级的网页演示构建"><a href="#🎬-web-video-presentation：录屏级的网页演示构建" class="headerlink" title="🎬 web-video-presentation：录屏级的网页演示构建"></a>🎬 web-video-presentation：录屏级的网页演示构建</h3><p><strong>类别</strong>：网页视频 &#x2F; 演示工程<br><strong>适合场景</strong>：口播稿转视频、课程、产品演示、talk 录制</p>
+<p>这个 Skill 把文章或口播稿变成可录屏的网页演示（Vite + React + TypeScript），核心亮点是「口播节拍」与「视觉 Step」的精准对齐——每个视觉暂停点都对应一段口播内容，方便录课或做演示视频。</p>
+<p><strong>亮点功能</strong>：</p>
+<ul>
+<li><p>固定 1920×1080 舞台，按视口缩放，录屏效果稳定</p>
+</li>
+<li><p>点击 &#x2F; 键盘驱动的 chapter&#x2F;step 游标</p>
+</li>
+<li><p>硬 checkpoint 在稿子、主题、outline、开发模式、可选音频合成前强制暂停确认</p>
+</li>
+<li><p>悬浮才出现的进度控制，录屏时画面干净</p>
+</li>
+<li><p>基于 token 的多主题架构（paper-press &#x2F; terminal-green 等视觉风格）</p>
+</li>
+</ul>
+<hr>
+<h3 id="🖼️-gpt-image-2：结构化图像生成提示词工程"><a href="#🖼️-gpt-image-2：结构化图像生成提示词工程" class="headerlink" title="🖼️ gpt-image-2：结构化图像生成提示词工程"></a>🖼️ gpt-image-2：结构化图像生成提示词工程</h3><p><strong>类别</strong>：图像生成 &#x2F; Prompt 工程<br><strong>适合场景</strong>：海报、UI 样机、产品图、信息图、学术图、技术架构图、漫画、头像、分镜、品牌板</p>
+<p>面向 GPT Image 2 与 OpenAI 兼容图像接口的聚焦型 Skill，最大特点是对「运行模式」的三段式探测：</p>
+<ul>
+<li><p><strong>Mode A</strong>：Garden 本地生图，完整保存 prompt 与生成图片</p>
+</li>
+<li><p><strong>Mode B</strong>：委托宿主原生图像工具出图</p>
+</li>
+<li><p><strong>Mode C</strong>：纯提示词顾问模式（无图像工具时降级）</p>
+</li>
+</ul>
+<p>内置 18 大类、80+ 个结构化提示词模板，覆盖图像生成和编辑全场景，并配套专门工作流与脚本。</p>
+<hr>
+<h3 id="📚-kb-retriever：本地知识库检索"><a href="#📚-kb-retriever：本地知识库检索" class="headerlink" title="📚 kb-retriever：本地知识库检索"></a>📚 kb-retriever：本地知识库检索</h3><p><strong>类别</strong>：检索 &#x2F; 本地知识库<br><strong>适合场景</strong>：从本地 knowledge&#x2F; 目录回答问题，从 Markdown、文本、PDF、Excel 中提取证据</p>
+<p>这个 Skill 的核心哲学是「谨慎、渐进、可溯源」——不直接加载整文件，而是先走分层索引缩小候选范围，再带来源回答问题。</p>
+<p><strong>亮点功能</strong>：</p>
+<ul>
+<li><p>通过 data_structure.md 分层文件先导航知识库，再进入内容检索</p>
+</li>
+<li><p>PDF 和 Excel 强制「先学习再处理」，必须先读 reference 文档</p>
+</li>
+<li><p>最多 5 轮检索轮次，探索有边界、不发散</p>
+</li>
+<li><p>内置 grep、pdftotext、pdfplumber、pandas 工作流</p>
+</li>
+<li><p>答案带来源标注，方便回查原文</p>
+</li>
+</ul>
+<hr>
+<h2 id="五种安装方式，总有一款适合你"><a href="#五种安装方式，总有一款适合你" class="headerlink" title="五种安装方式，总有一款适合你"></a>五种安装方式，总有一款适合你</h2><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>说明</th>
+<th>推荐场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>A. skills CLI（npx）</strong></td>
+<td>一行命令，自动识别 Agent 类型</td>
+<td>任意场景，推荐默认</td>
+</tr>
+<tr>
+<td><strong>B. Claude Code 插件市场</strong></td>
+<td>订阅插件包，一键装一组</td>
+<td>Claude Code 用户</td>
+</tr>
+<tr>
+<td><strong>C. Releases 钉版本 .zip</strong></td>
+<td>SHA-256 校验，不可变版本</td>
+<td>CI &#x2F; 内网 &#x2F; 可复现部署</td>
+</tr>
+<tr>
+<td><strong>D. git clone 手动拷贝</strong></td>
+<td>直接复制 skill 文件夹</td>
+<td>本地 hack &#x2F; 二次开发</td>
+</tr>
+<tr>
+<td><strong>E. Git Submodule</strong></td>
+<td>作为上游依赖引入</td>
+<td>嵌进更大项目</td>
+</tr>
+</tbody></table>
+<p>最推荐的方式是用 <strong>npx skills add</strong>：</p>
+<p><code># 一次装上整个仓库（4 个 Skill）   npx skills add ConardLi/garden-skills      # 只装某一个 Skill   npx skills add ConardLi/garden-skills -s web-design-engineer      # 装到全局而不是当前项目   npx skills add ConardLi/garden-skills -s gpt-image-2 --global      # 指定目标 Agent   npx skills add ConardLi/garden-skills -s kb-retriever -a claude-code   </code></p>
+<p>CI &#x2F; 生产环境建议钉版本：</p>
+<p><code>SKILL=web-design-engineer   VERSION=1.1.0      curl -fsSL -o &quot;$&#123;SKILL&#125;.zip&quot; \     &quot;https://github.com/ConardLi/garden-skills/releases/download/$&#123;SKILL&#125;-v$&#123;VERSION&#125;/$&#123;SKILL&#125;-$&#123;VERSION&#125;.zip&quot;      # 校验后解压   shasum -a 256 -c &quot;$&#123;SKILL&#125;.zip.sha256&quot;   unzip -q &quot;$&#123;SKILL&#125;.zip&quot; -d .claude/skills/   </code></p>
+<p><img src="/images/f6ac082986bf6055.png" srcset="/img/loading.gif" lazyload alt="安装流程图" title="安装流程图"></p>
+<hr>
+<h2 id="Agent-兼容性一览"><a href="#Agent-兼容性一览" class="headerlink" title="Agent 兼容性一览"></a>Agent 兼容性一览</h2><table>
+<thead>
+<tr>
+<th>Agent &#x2F; Runtime</th>
+<th>Skill 路径</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Claude Code</td>
+<td><code>.claude/skills/&lt;name&gt;/</code></td>
+<td>✅ 已验证</td>
+</tr>
+<tr>
+<td>Claude.ai 网页端</td>
+<td>Settings → Capabilities → Skills</td>
+<td>✅ 已验证</td>
+</tr>
+<tr>
+<td>Cursor</td>
+<td><code>.agents/skills/&lt;name&gt;/</code></td>
+<td>✅ 已验证</td>
+</tr>
+<tr>
+<td>Codex CLI</td>
+<td><code>.codex/skills/&lt;name&gt;/</code></td>
+<td>✅ 已验证</td>
+</tr>
+<tr>
+<td>Gemini CLI</td>
+<td>extension manifest</td>
+<td>✅ 已验证</td>
+</tr>
+<tr>
+<td>OpenCode</td>
+<td><code>.opencode/skills/&lt;name&gt;/</code></td>
+<td>✅ 已验证</td>
+</tr>
+</tbody></table>
+<p>SKILL.md 格式本身是跨 Agent 可移植的——只要你的 Agent 支持 Skill 体系，把文件夹放进它扫描的目录就行。</p>
+<hr>
+<h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>garden-skills 是一个难得的开源 Agent Skills 集合，作者 ConardLi 不仅提供了高质量的 Skill 实现，还有完善的文档、版本管理（SHA-256 校验的不可变 release）和多语言 README（中文&#x2F;英文&#x2F;日文）。</p>
+<p>如果你想让 AI Agent 在特定任务上更专业、更稳定，与其反复在 System Prompt 里写规则，不如试试直接装一个 Skill。</p>
+<p><strong>GitHub 地址</strong>：<a target="_blank" rel="noopener" href="https://github.com/ConardLi/garden-skills/[1/]">https://github.com/ConardLi/garden-skills\[1\]</a></p>
+<hr>
+<p><em>如果觉得有帮助，欢迎去 GitHub 点个 Star ⭐</em></p>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/ConardLi/garden-skills">https://github.com/ConardLi/garden-skills</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>garden-skills 上手指途：ConardLi 的开源 Agent 技能花园</div>
+      <div>https://maoyu92.github.io/2026/05/22/07 AI笔记/AI写作与发布/a167_garden-skills 上手指途：ConardLi 的开源 Agent 技能花园/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/23/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a166_2026%E5%B9%B4AI%20Agent%E6%96%B0%E9%A3%8E%E5%90%91%EF%BC%9A%E7%BC%96%E7%A8%8B%E9%9C%B8%E6%9D%83%E8%90%BD%E5%B9%95%EF%BC%8C%E8%B0%81%E6%9D%A5%E6%8E%A5%E6%A3%92/" title="2026年AI Agent新风向：编程霸权落幕，谁来接棒">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">2026年AI Agent新风向：编程霸权落幕，谁来接棒</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/22/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a168_%E5%AE%9D%E7%8E%89%E6%8A%80%E8%83%BD%E5%8C%85%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8D%97%EF%BC%9A6%E4%B8%AA%E6%8A%80%E8%83%BD%E6%92%91%E8%B5%B7%E5%85%AC%E4%BC%97%E5%8F%B7%E5%88%9B%E4%BD%9C%E5%85%A8%E6%B5%81%E7%A8%8B/" title="宝玉技能包上手指南：6个技能撑起公众号创作全流程">
+                        <span class="hidden-mobile">宝玉技能包上手指南：6个技能撑起公众号创作全流程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

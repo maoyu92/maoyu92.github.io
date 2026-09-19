@@ -1,0 +1,1025 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="一家中国公司刚刚把”AI 写训练框架”从 PPT 搬到了生产车间，产出的第一个作品就是 1B 打败 2B——而且真的能装进你手机里。  一句话定位MiniCPM5-1B 是面壁智能联合清华大学、OpenBMB 开源社区于 2026 年 5 月 19 日发布的端侧文本基座大模型，1B 稠密 Transformer，INT4 量化后体积仅 0.5GB——能跑在手机、浏览器，甚至纯 CPU 环境。 但">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1B 打败 2B：MiniCPM5-1B 是怎么把端侧 AI 拉进「真香定律」的？">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/01/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a115_1B%20%E6%89%93%E8%B4%A5%202B%EF%BC%9AMiniCPM5-1B%20%E6%98%AF%E6%80%8E%E4%B9%88%E6%8A%8A%E7%AB%AF%E4%BE%A7%20AI%20%E6%8B%89%E8%BF%9B%E3%80%8C%E7%9C%9F%E9%A6%99%E5%AE%9A%E5%BE%8B%E3%80%8D%E7%9A%84%EF%BC%9F/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="一家中国公司刚刚把”AI 写训练框架”从 PPT 搬到了生产车间，产出的第一个作品就是 1B 打败 2B——而且真的能装进你手机里。  一句话定位MiniCPM5-1B 是面壁智能联合清华大学、OpenBMB 开源社区于 2026 年 5 月 19 日发布的端侧文本基座大模型，1B 稠密 Transformer，INT4 量化后体积仅 0.5GB——能跑在手机、浏览器，甚至纯 CPU 环境。 但">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-01T08:38:00.000Z">
+<meta property="article:modified_time" content="2026-06-01T08:38:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>1B 打败 2B：MiniCPM5-1B 是怎么把端侧 AI 拉进「真香定律」的？ - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="1B 打败 2B：MiniCPM5-1B 是怎么把端侧 AI 拉进「真香定律」的？"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-01 16:38" pubdate>
+          2026年6月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">1B 打败 2B：MiniCPM5-1B 是怎么把端侧 AI 拉进「真香定律」的？</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>一家中国公司刚刚把”AI 写训练框架”从 PPT 搬到了生产车间，产出的第一个作品就是 1B 打败 2B——而且真的能装进你手机里。</p>
+</blockquote>
+<h2 id="一句话定位"><a href="#一句话定位" class="headerlink" title="一句话定位"></a>一句话定位</h2><p><strong>MiniCPM5-1B</strong> 是面壁智能联合清华大学、OpenBMB 开源社区于 2026 年 5 月 19 日发布的端侧文本基座大模型，1B 稠密 Transformer，INT4 量化后体积仅 0.5GB——能跑在手机、浏览器，甚至纯 CPU 环境。</p>
+<p>但这 0.5GB 里藏着的不是”又一个被压缩的小模型”，而是一个<strong>全新的研发范式</strong>：</p>
+<blockquote>
+<p><strong>让 AI 自己写训练框架，训练出更强的模型，再用更强的模型生成更好的框架与数据——循环加速，自进化飞轮。</strong></p>
+</blockquote>
+<h2 id="1B-打败-2B：不是营销，是-4-个榜单的共识"><a href="#1B-打败-2B：不是营销，是-4-个榜单的共识" class="headerlink" title="1B 打败 2B：不是营销，是 4 个榜单的共识"></a>1B 打败 2B：不是营销，是 4 个榜单的共识</h2><p>过去我们总觉得”模型越大 &#x3D; 模型越强”。MiniCPM5-1B 用一连串数据把这个等式砸得稀碎。</p>
+<h3 id="AA-Index-17-9：1B-反超-2B"><a href="#AA-Index-17-9：1B-反超-2B" class="headerlink" title="AA-Index 17.9：1B 反超 2B"></a>AA-Index 17.9：1B 反超 2B</h3><p>Artificial Analysis Intelligence Index（AA-Index）是国际权威第三方模型评测榜单。MiniCPM5-1B 的<strong>得分 17.9</strong>，超越所有 2B 参数以下模型——包括参数翻倍的 Qwen3.5-2B（16.3 分）。</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>参数</th>
+<th>AA-Index 分数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>MiniCPM5-1B</strong></td>
+<td>1B</td>
+<td><strong>17.9</strong></td>
+</tr>
+<tr>
+<td>Qwen3.5-2B</td>
+<td>2B</td>
+<td>16.3</td>
+</tr>
+<tr>
+<td>LFM2.5-1.2B-Thinking</td>
+<td>1.2B</td>
+<td>显著低</td>
+</tr>
+</tbody></table>
+<h3 id="LCB-Pro-22-68：代码能力的”代际碾压”"><a href="#LCB-Pro-22-68：代码能力的”代际碾压”" class="headerlink" title="LCB-Pro 22.68：代码能力的”代际碾压”"></a>LCB-Pro 22.68：代码能力的”代际碾压”</h3><p>更狠的是代码能力。在 LCB-Pro（LiveCodeBench Pro，编程竞赛级评测）上：</p>
+<ul>
+<li><p><strong>MiniCPM5-1B：22.68</strong></p>
+</li>
+<li><p><strong>Qwen3.5-2B：0.00</strong>（是的，零分）</p>
+</li>
+<li><p><strong>LFM2.5-1.2B-Thinking：6.19</strong></p>
+</li>
+</ul>
+<p>Qwen3.5-2B 在编程竞赛级题目上<strong>直接交白卷</strong>，而 MiniCPM5-1B 拿了 22.68 分——这已经不是”略胜一筹”，是”<strong>代际碾压</strong>“。</p>
+<h3 id="7-维横评：平均分-7-分"><a href="#7-维横评：平均分-7-分" class="headerlink" title="7 维横评：平均分 +7 分"></a>7 维横评：平均分 +7 分</h3><p>OpenBMB 公开的 7 维度横评（推理 &#x2F; 知识 &#x2F; 代码 &#x2F; 指令跟随 &#x2F; 数学 &#x2F; 逻辑 &#x2F; Agentic），MiniCPM5-1B 平均分 <strong>42.57</strong>，而同尺寸最高水平只有 35.61。优势集中在三个领域：</p>
+<ul>
+<li><p>✅ <strong>Agentic 工具调用</strong>：同尺寸最强</p>
+</li>
+<li><p>✅ <strong>代码生成</strong>：LCB-Pro 22.68 碾压</p>
+</li>
+<li><p>✅ <strong>竞赛数学</strong>：领先</p>
+</li>
+</ul>
+<p>这意味着 1B 模型不仅能在”智能密度”维度反超 2B，还能在<strong>生产场景最关心的代码与工具调用维度</strong>做出”以小博大”。</p>
+<h2 id="双模式推理：1-份权重-2-种行为"><a href="#双模式推理：1-份权重-2-种行为" class="headerlink" title="双模式推理：1 份权重 &#x3D; 2 种行为"></a>双模式推理：1 份权重 &#x3D; 2 种行为</h2><p>MiniCPM5-1B 用了<strong>标准 LlamaForCausalLM 架构</strong>（业内最广泛兼容，零迁移成本），但内置了一个有意思的设计——<strong>Think &#x2F; No Think 双模式</strong>。</p>
+<p><code># 切换深度推理   inputs = tokenizer.apply_chat_template(       messages,       enable_thinking=True,   # 深度思考模式       ...   )      # 切换快速响应   inputs = tokenizer.apply_chat_template(       messages,       enable_thinking=False,  # 快速对话模式       ...   )   </code></p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>适用场景</th>
+<th>采样参数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Think</strong></td>
+<td>数学、代码、复杂逻辑</td>
+<td>temperature&#x3D;0.9, top_p&#x3D;0.95</td>
+</tr>
+<tr>
+<td><strong>No Think</strong></td>
+<td>对话、问答、工具调用</td>
+<td>temperature&#x3D;0.7, top_p&#x3D;0.95</td>
+</tr>
+</tbody></table>
+<p><strong>端侧价值</strong>：1 份权重 &#x3D; 2 种行为，按需切换——简单任务走 No Think 省电省时间，复杂任务走 Think 拿质量。维护成本、存储成本、调度复杂度全部减半。</p>
+<h2 id="工具调用：SGLang-原生支持"><a href="#工具调用：SGLang-原生支持" class="headerlink" title="工具调用：SGLang 原生支持"></a>工具调用：SGLang 原生支持</h2><p>MiniCPM5-1B 以 <strong>XML 格式</strong>产出工具调用，配合 SGLang 内置的 <code>minicpm5 parser</code>，自动转成 OpenAI 兼容的 <code>tool_calls</code> 字段：</p>
+<p><code>python -m sglang.launch_server \       --model-path openbmb/MiniCPM5-1B \       --port 30000 --tool-call-parser minicpm5   </code></p>
+<p><strong>Coding Agent 价值</strong>：工具调用 + 代码能力双第一，<strong>是端侧 Coding Agent 的最佳基座候选</strong>。</p>
+<h2 id="AI-自进化飞轮：行业首个”AI-写训练框架”"><a href="#AI-自进化飞轮：行业首个”AI-写训练框架”" class="headerlink" title="AI 自进化飞轮：行业首个”AI 写训练框架”"></a>AI 自进化飞轮：行业首个”AI 写训练框架”</h2><p>如果说 1B 打败 2B 是结果，那么真正让这个结果”可复现、可迭代”的是背后的<strong>Forge Engineering 范式</strong>。</p>
+<h3 id="ForgeTrain：行业首个-AI-编写的生产级训练框架"><a href="#ForgeTrain：行业首个-AI-编写的生产级训练框架" class="headerlink" title="ForgeTrain：行业首个 AI 编写的生产级训练框架"></a>ForgeTrain：行业首个 AI 编写的生产级训练框架</h3><p>MiniCPM5-1B 的 Base 模型由 <strong>ForgeTrain</strong> 预训练完成——这是<strong>全球首个完全由 AI 编写、并成功训练出工业生产级模型的大模型训练框架</strong>。</p>
+<p><strong>关键事实</strong>：</p>
+<ul>
+<li><p><strong>零人工代码介入</strong>：人类只设定目标（如”在昇腾 910B 上训练 1B 模型”），后续代码生成、测试、调优全在 AI 主导的闭环中完成</p>
+</li>
+<li><p>**H100 比 Megatron-LM 快 10%**：直接等效降低 10% 算力成本</p>
+</li>
+<li><p>**昇腾比 MindSpeed 加速 10%**：在国产芯片上也跑出比官方框架更优的速度</p>
+</li>
+<li><p><strong>适配周期 3-5 天</strong>：在昇腾系列上仅用 3-5 天跑通（传统团队通常需要数周到数月）</p>
+</li>
+</ul>
+<h3 id="L0-L4-数据治理：从”原料”到”精料”"><a href="#L0-L4-数据治理：从”原料”到”精料”" class="headerlink" title="L0-L4 数据治理：从”原料”到”精料”"></a>L0-L4 数据治理：从”原料”到”精料”</h3><p>数据是大模型的”食物”。面壁与清华、OpenBMB 联合推出 <strong>L0-L4 分级数据治理框架</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>含义</th>
+<th>治理目标</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>L0</td>
+<td>原始数据</td>
+<td>源头粗筛</td>
+</tr>
+<tr>
+<td>L1</td>
+<td>标准化数据</td>
+<td>去重、格式统一</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>清洗数据</td>
+<td>低质过滤</td>
+</tr>
+<tr>
+<td>L3</td>
+<td>高价值数据</td>
+<td><strong>Ultra-FineWeb-L3 关键数据集</strong></td>
+</tr>
+<tr>
+<td>L4</td>
+<td>知识级数据</td>
+<td>结构化知识</td>
+</tr>
+</tbody></table>
+<p><strong>核心理念</strong>：「<strong>人类定义标准、AI 执行操作</strong>」。把数据从”粗放式清洗”升级为”精准分级”。</p>
+<p>配合开源的 <strong>Ultra-FineWeb</strong> 数据集（超 1T tokens，<strong>中文部分开源最大</strong>），MiniCPM5-1B 的”食物”是高密度的精料，而非海量的低质原料。</p>
+<h3 id="自进化飞轮（核心机制）"><a href="#自进化飞轮（核心机制）" class="headerlink" title="自进化飞轮（核心机制）"></a>自进化飞轮（核心机制）</h3><p><code>强基座模型       │       ├─→ 用 ForgeTrain 生成更好的训练框架       │       └─→ 从海量语料筛选更好的 L3 训练数据      新框架 + 新数据       │       └─→ 训练出下一代更强的模型 ──→ 回到强基座模型   </code></p>
+<p>模型越强 → 生成的框架与数据越优 → 下一代模型更强 → 循环加速。</p>
+<blockquote>
+<p>这不是 PPT 上的”AI 制造 AI”概念，是已经<strong>跑通一整轮、产出 MiniCPM5-1B 工业级模型</strong>的工程范式。</p>
+</blockquote>
+<h2 id="后训练黑科技：RL-OPD-更聪明-更节制"><a href="#后训练黑科技：RL-OPD-更聪明-更节制" class="headerlink" title="后训练黑科技：RL + OPD &#x3D; 更聪明 + 更节制"></a>后训练黑科技：RL + OPD &#x3D; 更聪明 + 更节制</h2><p>MiniCPM5-1B 的后训练分三步：<strong>SFT → RL → OPD</strong>。SFT 之外的两个环节最值得讲。</p>
+<h3 id="RL：两阶段长度调度"><a href="#RL：两阶段长度调度" class="headerlink" title="RL：两阶段长度调度"></a>RL：两阶段长度调度</h3><p>数学、代码、指令跟随三类任务上，<strong>两阶段长度调度</strong>：</p>
+<ul>
+<li><p><strong>阶段 1</strong>：宽松长度上限，鼓励探索推理路径</p>
+</li>
+<li><p><strong>阶段 2</strong>：收紧长度上限，抑制冗余生成</p>
+</li>
+</ul>
+<p>避免了大模型常见的”啰嗦病”——一个简单问题给出一万字。</p>
+<h3 id="OPD：On-Policy-Distillation"><a href="#OPD：On-Policy-Distillation" class="headerlink" title="OPD：On-Policy Distillation"></a>OPD：On-Policy Distillation</h3><p>把多个 RL teacher 学到的能力<strong>蒸馏回同一个发布模型</strong>，而不是部署多个小模型：</p>
+<ul>
+<li><p>在强化学习框架中使用<strong>反向 KL 散度</strong>作为优势估计值</p>
+</li>
+<li><p>师生 logits 做<strong>双边 top-k 采样</strong>后计算反向 KL</p>
+</li>
+<li><p>平衡监督信号准确性和训练效率</p>
+</li>
+</ul>
+<h3 id="量化收益"><a href="#量化收益" class="headerlink" title="量化收益"></a>量化收益</h3><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>提升幅度</th>
+<th>实际意义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>平均分（数学&#x2F;代码&#x2F;指令）</td>
+<td><strong>↑16 分</strong></td>
+<td>质量大幅提升</td>
+</tr>
+<tr>
+<td>回复触顶 max-tokens 比例</td>
+<td><strong>↓29 个百分点</strong></td>
+<td>更”节制”</td>
+</tr>
+</tbody></table>
+<p><strong>端侧意义</strong>：更短的回复 &#x3D; 更少的 token &#x3D; 更省电 &#x3D; 更省时。触顶比例下降 29%，直接转化为”用户等待时间减少 29%”。</p>
+<h2 id="部署生态：7-后端-5-微调-9-芯片"><a href="#部署生态：7-后端-5-微调-9-芯片" class="headerlink" title="部署生态：7 后端 + 5 微调 + 9 芯片"></a>部署生态：7 后端 + 5 微调 + 9 芯片</h2><p>MiniCPM5-1B 的部署生态是同尺寸模型中<strong>最完整的</strong>。</p>
+<h3 id="7-大推理后端"><a href="#7-大推理后端" class="headerlink" title="7 大推理后端"></a>7 大推理后端</h3><table>
+<thead>
+<tr>
+<th>后端</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Transformers</td>
+<td>本地 Python 推理，CPU + GPU</td>
+</tr>
+<tr>
+<td>vLLM</td>
+<td>NVIDIA GPU 首选，OpenAI server</td>
+</tr>
+<tr>
+<td>SGLang</td>
+<td><strong>推荐用于工具调用</strong>（内置 minicpm5 parser）</td>
+</tr>
+<tr>
+<td>llama.cpp</td>
+<td>GGUF，CPU&#x2F;GPU 本地推理</td>
+</tr>
+<tr>
+<td>Ollama</td>
+<td>一行命令拉起本地模型</td>
+</tr>
+<tr>
+<td>LM Studio</td>
+<td>Mac 桌面应用</td>
+</tr>
+<tr>
+<td>MLX</td>
+<td>Apple Silicon 优化</td>
+</tr>
+<tr>
+<td><strong>ArcLight</strong></td>
+<td><strong>面壁自研</strong>，纯 CPU 也能流畅跑</td>
+</tr>
+</tbody></table>
+<h3 id="5-大微调框架"><a href="#5-大微调框架" class="headerlink" title="5 大微调框架"></a>5 大微调框架</h3><p>TRL、LLaMA-Factory、ms-swift、unsloth、xtuner——<strong>中文社区主流微调栈全支持</strong>。</p>
+<h3 id="9-种-AI-芯片（FlagOS-Day-0-适配）"><a href="#9-种-AI-芯片（FlagOS-Day-0-适配）" class="headerlink" title="9 种 AI 芯片（FlagOS Day-0 适配）"></a>9 种 AI 芯片（FlagOS Day-0 适配）</h3><p>众智 FlagOS 社区通过 vLLM-plugin-FL + FlagGems 完成多芯片 Day-0 适配：</p>
+<ul>
+<li><p><strong>数据中心芯片</strong>：NVIDIA、华为昇腾、海光、昆仑芯、平头哥、摩尔线程、沐曦、天数智芯</p>
+</li>
+<li><p><strong>端侧芯片</strong>：<strong>ARM 板端</strong>（int8 &#x2F; bf16 &#x2F; fp32 三种精度）——<strong>首次实现 ARM Day-0 适配</strong></p>
+</li>
+</ul>
+<p><strong>多款芯片的 TTFT（首 token 延迟）低于 NVIDIA H20 原生基线</strong>——国产芯片性能已可对标 NVIDIA。</p>
+<h3 id="Agent-Skills（差异化亮点）"><a href="#Agent-Skills（差异化亮点）" class="headerlink" title="Agent Skills（差异化亮点）"></a>Agent Skills（差异化亮点）</h3><p>在 Cursor &#x2F; Claude Code 中，<strong>一句话完成部署</strong>：</p>
+<p><code>@minicpm5-deploy 用 vLLM 在 8000 端口起 openbmb/MiniCPM5-1B   @minicpm5-finetune 用 unsloth + LoRA 微调 /data/my_chat.jsonl，输出到 ./out   </code></p>
+<p>Agent 读取顶层 Skill，根据目标后端、硬件、数据路径选择对应子 Skill 与 cookbook，自动执行命令并回报结果。</p>
+<p>**这是 MiniCPM5-1B 区别于其他开源模型的”杀手锏”**——把”部署”这个最易劝退的环节，封装成了 Agent 原语。</p>
+<h2 id="商业与生态价值"><a href="#商业与生态价值" class="headerlink" title="商业与生态价值"></a>商业与生态价值</h2><h3 id="1-端侧-AI-应用的三大爆发点"><a href="#1-端侧-AI-应用的三大爆发点" class="headerlink" title="1. 端侧 AI 应用的三大爆发点"></a>1. 端侧 AI 应用的三大爆发点</h3><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>适用性</th>
+<th>商业价值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Coding Agent</strong></td>
+<td>工具调用 + 代码双第一</td>
+<td>本地 IDE 助手、自动化编程</td>
+</tr>
+<tr>
+<td><strong>手机 AI 助手</strong></td>
+<td>0.5GB + 离线可用</td>
+<td>替代部分云端依赖，节省 API 成本</td>
+</tr>
+<tr>
+<td><strong>隐私敏感行业</strong></td>
+<td>本地推理</td>
+<td>金融、医疗、政务的合规首选</td>
+</tr>
+</tbody></table>
+<h3 id="2-对国产-AI-芯片生态的推动"><a href="#2-对国产-AI-芯片生态的推动" class="headerlink" title="2. 对国产 AI 芯片生态的推动"></a>2. 对国产 AI 芯片生态的推动</h3><ul>
+<li><p>FlagOS 9 芯片 Day-0 适配 &#x3D; <strong>多芯片生态从”能用”到”好用”</strong></p>
+</li>
+<li><p>ARM 端侧 Day-0 适配 &#x3D; <strong>打破”高性能推理 &#x3D; GPU 专属”</strong></p>
+</li>
+<li><p>MiniCPM5-1B 是「<strong>模型-系统-芯片</strong>」三层贯通的<strong>明星示范模型</strong></p>
+</li>
+</ul>
+<h3 id="3-对面壁智能-OpenBMB-的战略价值"><a href="#3-对面壁智能-OpenBMB-的战略价值" class="headerlink" title="3. 对面壁智能 &#x2F; OpenBMB 的战略价值"></a>3. 对面壁智能 &#x2F; OpenBMB 的战略价值</h3><ul>
+<li><p>国产开源端侧模型 <strong>第一梯队</strong>（与 Qwen、GLM、Kimi 并列）</p>
+</li>
+<li><p>首个落地”AI 写训练框架”的团队，<strong>全球范围领先</strong></p>
+</li>
+<li><p>1T tokens 中文高质量语料 &#x3D; <strong>中文端侧模型的制高点</strong></p>
+</li>
+</ul>
+<h2 id="局限与诚实标注"><a href="#局限与诚实标注" class="headerlink" title="局限与诚实标注"></a>局限与诚实标注</h2><p>我们不能只唱赞歌。几个必须诚实标注的局限：</p>
+<ol>
+<li><p><strong>AA-Index 17.9 是综合分</strong>，生产场景真实能力需要 PoC 验证；极复杂多步推理 &#x2F; 长上下文理解仍是 1B 模型的软肋</p>
+</li>
+<li><p><strong>ForgeTrain 的”行业首个”</strong> 是相对论断（英伟达 VibeTensor 自标”研究级”反向印证，但严格的”生产级第一”还需要更多第三方验证）</p>
+</li>
+<li><p><strong>自进化飞轮的加速倍率</strong>未量化，需要观察 MiniCPM5-1.5B &#x2F; 5-2B 等后续版本的迭代速度</p>
+</li>
+<li><p><strong>端侧真机实测性能</strong>（如某型号手机的 token&#x2F;s）公开数据较少，需要等待社区实测</p>
+</li>
+</ol>
+<h2 id="写在最后：端侧-AI-的”真香定律”"><a href="#写在最后：端侧-AI-的”真香定律”" class="headerlink" title="写在最后：端侧 AI 的”真香定律”"></a>写在最后：端侧 AI 的”真香定律”</h2><p>过去端侧 AI 一直被一个等式困住：</p>
+<blockquote>
+<p><strong>模型小 &#x3D; 能力弱</strong></p>
+</blockquote>
+<p>MiniCPM5-1B 打破了这一刻板印象——0.5GB 体积跑出 2B 能力，AI 自写训练框架让”小而强”可复现，9 芯片 + ARM Day-0 适配让”端到端全栈”成为现实。</p>
+<p>它不只是一个模型，它是「<strong>AI 自进化飞轮</strong>」的首个工业级证明。</p>
+<p>当 AI 接管编码、接管框架、接管数据治理时，人类工程师的真正价值将不再是”写代码”，而是”<strong>定义目标</strong>“——“我要在昇腾 910B 上训练 1B 模型”，剩下的交给 AI。</p>
+<p>这才是 MiniCPM5-1B 真正让人兴奋的地方。</p>
+<blockquote>
+<p><strong>相关链接</strong></p>
+<ul>
+<li><p>Hugging Face 模型：<a target="_blank" rel="noopener" href="https://huggingface.co/openbmb/MiniCPM5-1B/[1/]">https://huggingface.co/openbmb/MiniCPM5-1B\[1\]</a></p>
+</li>
+<li><p>GitHub 仓库：<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/MiniCPM/[2/]">https://github.com/OpenBMB/MiniCPM\[2\]</a></p>
+</li>
+<li><p>ForgeTrain 框架：<a target="_blank" rel="noopener" href="https://github.com/OpenBMB/ForgeTrain/[3/]">https://github.com/OpenBMB/ForgeTrain\[3\]</a></p>
+</li>
+<li><p>UltraData 平台：<a target="_blank" rel="noopener" href="https://ultradata.openbmb.cn//[4/]">https://ultradata.openbmb.cn/\[4\]</a></p>
+</li>
+<li><p>ModelScope 镜像：<a target="_blank" rel="noopener" href="https://modelscope.cn/models/OpenBMB/MiniCPM5-1B/[5/]">https://modelscope.cn/models/OpenBMB/MiniCPM5-1B\[5\]</a></p>
+</li>
+<li><p>FlagOS 跨芯片生态：<a target="_blank" rel="noopener" href="https://flagos.io//[6/]">https://flagos.io/\[6\]</a></p>
+</li>
+<li><p>AA-Index 榜单：<a target="_blank" rel="noopener" href="https://artificialanalysis.ai//[7/]">https://artificialanalysis.ai/\[7\]</a></p>
+</li>
+</ul>
+</blockquote>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<em><a target="_blank" rel="noopener" href="https://huggingface.co/openbmb/MiniCPM5-1B">https://huggingface.co/openbmb/MiniCPM5-1B</a></em></p>
+<p>[2]<em><a target="_blank" rel="noopener" href="https://github.com/OpenBMB/MiniCPM">https://github.com/OpenBMB/MiniCPM</a></em></p>
+<p>[3]<em><a target="_blank" rel="noopener" href="https://github.com/OpenBMB/ForgeTrain">https://github.com/OpenBMB/ForgeTrain</a></em></p>
+<p>[4]<em><a target="_blank" rel="noopener" href="https://ultradata.openbmb.cn/">https://ultradata.openbmb.cn/</a></em></p>
+<p>[5]<em><a target="_blank" rel="noopener" href="https://modelscope.cn/models/OpenBMB/MiniCPM5-1B">https://modelscope.cn/models/OpenBMB/MiniCPM5-1B</a></em></p>
+<p>[6]<em><a target="_blank" rel="noopener" href="https://flagos.io/">https://flagos.io/</a></em></p>
+<p>[7]<em><a target="_blank" rel="noopener" href="https://artificialanalysis.ai/">https://artificialanalysis.ai/</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>1B 打败 2B：MiniCPM5-1B 是怎么把端侧 AI 拉进「真香定律」的？</div>
+      <div>https://maoyu92.github.io/2026/06/01/07 AI笔记/AI工具与模型/a115_1B 打败 2B：MiniCPM5-1B 是怎么把端侧 AI 拉进「真香定律」的？/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/01/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a118_%E9%9C%B8%E6%A6%9C%20GitHub%20%E7%9A%84%E5%85%8D%E8%B4%B9%E7%A5%9E%E5%99%A8%EF%BC%81%E4%B8%80%E9%94%AE%E7%94%9F%E6%88%90%E7%9F%AD%E8%A7%86%E9%A2%91%EF%BC%8C%E6%88%90%E6%9C%AC%E4%B8%8D%E5%88%B0%205%20%E6%AF%9B%E9%92%B1/" title="霸榜 GitHub 的免费神器！一键生成短视频，成本不到 5 毛钱">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">霸榜 GitHub 的免费神器！一键生成短视频，成本不到 5 毛钱</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/01/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a116_Hermes%20Agent%20%E5%85%A8%E5%B9%B3%E5%8F%B0%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97%EF%BC%9A%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%EF%BC%8C%E6%94%AF%E6%8C%81%E9%A3%9E%E4%B9%A6%E6%8E%A5%E5%85%A5/" title="Hermes Agent 全平台安装配置指南：国内镜像一键部署，支持飞书接入">
+                        <span class="hidden-mobile">Hermes Agent 全平台安装配置指南：国内镜像一键部署，支持飞书接入</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

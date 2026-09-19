@@ -1,0 +1,914 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="Obsidian Better Export PDF 插件深度评测：技术栈与 PDF 优化全解 “ 本文深度调研 Obsidian 插件 Better Export PDF，从技术栈、核心功能、适用场景等维度全面解析，适合需要将笔记导出为高质量 PDF 的用户参考。   1. 项目基本信息Better Export PDF 是 Obsidian 生态中最受欢迎的 PDF 导出增强插件之一，与官方导">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Obsidian Better Export PDF 插件深度评测：技术栈与 PDF 优化全解">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/01/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a117_Obsidian%20Better%20Export%20PDF%20%E6%8F%92%E4%BB%B6%E6%B7%B1%E5%BA%A6%E8%AF%84%E6%B5%8B%EF%BC%9A%E6%8A%80%E6%9C%AF%E6%A0%88%E4%B8%8E%20PDF%20%E4%BC%98%E5%8C%96%E5%85%A8%E8%A7%A3/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="Obsidian Better Export PDF 插件深度评测：技术栈与 PDF 优化全解 “ 本文深度调研 Obsidian 插件 Better Export PDF，从技术栈、核心功能、适用场景等维度全面解析，适合需要将笔记导出为高质量 PDF 的用户参考。   1. 项目基本信息Better Export PDF 是 Obsidian 生态中最受欢迎的 PDF 导出增强插件之一，与官方导">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-01T00:54:00.000Z">
+<meta property="article:modified_time" content="2026-06-01T00:54:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>Obsidian Better Export PDF 插件深度评测：技术栈与 PDF 优化全解 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Obsidian Better Export PDF 插件深度评测：技术栈与 PDF 优化全解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-01 08:54" pubdate>
+          2026年6月1日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Obsidian Better Export PDF 插件深度评测：技术栈与 PDF 优化全解</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="Obsidian-Better-Export-PDF-插件深度评测：技术栈与-PDF-优化全解"><a href="#Obsidian-Better-Export-PDF-插件深度评测：技术栈与-PDF-优化全解" class="headerlink" title="Obsidian Better Export PDF 插件深度评测：技术栈与 PDF 优化全解"></a>Obsidian Better Export PDF 插件深度评测：技术栈与 PDF 优化全解</h1><blockquote>
+<p>“</p>
+<p>本文深度调研 Obsidian 插件 Better Export PDF，从技术栈、核心功能、适用场景等维度全面解析，适合需要将笔记导出为高质量 PDF 的用户参考。</p>
+</blockquote>
+<hr>
+<h2 id="1-项目基本信息"><a href="#1-项目基本信息" class="headerlink" title="1. 项目基本信息"></a>1. 项目基本信息</h2><p><strong>Better Export PDF</strong> 是 Obsidian 生态中最受欢迎的 PDF 导出增强插件之一，与官方导出相比增加了导出预览、书签导航、页码、PDF 元数据等大量实用功能。</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GitHub</strong></td>
+<td>l1xnan&#x2F;obsidian-better-export-pdf</td>
+</tr>
+<tr>
+<td><strong>最近更新</strong></td>
+<td>2026年4月19日（v2.0.0.beta.1）</td>
+</tr>
+<tr>
+<td><strong>维护状态</strong></td>
+<td>🟢 活跃维护</td>
+</tr>
+<tr>
+<td><strong>技术栈</strong></td>
+<td>Svelte 5 + Vite + TypeScript + Electron</td>
+</tr>
+<tr>
+<td><strong>Pandoc 依赖</strong></td>
+<td>❌ 无需 Pandoc</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>“</p>
+<p>⚠️ 注意：网上曾有 <code>mProjectXYZ/better-export-pdf</code> 仓库，但该项目已停更或转移，实际活跃项目为 <code>l1xnan/obsidian-better-export-pdf</code>。</p>
+</blockquote>
+<hr>
+<h2 id="2-技术栈：如何实现-PDF-导出？"><a href="#2-技术栈：如何实现-PDF-导出？" class="headerlink" title="2. 技术栈：如何实现 PDF 导出？"></a>2. 技术栈：如何实现 PDF 导出？</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>2.1 核心方案：Electron 内置 API</p>
+<p>该插件<strong>完全不依赖 Pandoc、Puppeteer 或 Playwright</strong>，而是直接调用 Electron 的 <code>webview.printToPDF</code> API：</p>
+<figure class="highlight mathematica"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mathematica"><span class="hljs-variable">Markdown</span> 文件 → <span class="hljs-variable">Obsidian</span> 渲染 <span class="hljs-variable">DOM</span> → <span class="hljs-variable">webview</span><span class="hljs-operator">.</span><span class="hljs-variable">printToPDF</span><span class="hljs-punctuation">(</span><span class="hljs-punctuation">)</span> → <span class="hljs-built_in">PDF</span><br></code></pre></td></tr></table></figure>
+
+<p>这是该插件与另一款知名插件 <code>obsidian-enhancing-export</code>（基于 Pandoc）的根本区别。</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>2.2 技术依赖</p>
+<ul>
+<li><p>**pdf-lib (^1.17.1)**：注入 PDF 书签、元数据</p>
+</li>
+<li><p><strong>deepmerge</strong>：多文件合并时配置合并</p>
+</li>
+<li><p><strong>p-limit</strong>：批量导出时的并发控制</p>
+</li>
+<li><p><strong>Svelte 5</strong>：v2.0 版本重构了前端 UI</p>
+</li>
+</ul>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>2.3 v2.0 渲染引擎升级</p>
+<p>2026年4月发布的 v2.0 是一个重大架构升级：</p>
+<ul>
+<li><p><strong>v1.x</strong>：基于 WebView 模拟打印，常出现样式冲突和渲染异常</p>
+</li>
+<li><p><strong>v2.0</strong>：直接在主页面渲染，可预览真实 PDF 效果，从根本上解决了样式兼容问题</p>
+</li>
+</ul>
+<hr>
+<h2 id="3-核心功能拆解"><a href="#3-核心功能拆解" class="headerlink" title="3. 核心功能拆解"></a>3. 核心功能拆解</h2><h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><p>3.1 vs 官方 PDF 导出</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>官方导出</th>
+<th>Better Export PDF</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>导出预览</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>书签&#x2F;大纲</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>自定义边距</td>
+<td>有限</td>
+<td>✅ 完整支持</td>
+</tr>
+<tr>
+<td>页码</td>
+<td>需手动 CSS</td>
+<td>✅ 模板化</td>
+</tr>
+<tr>
+<td>PDF 元数据</td>
+<td>❌</td>
+<td>✅ front matter</td>
+</tr>
+<tr>
+<td>内部链接导出</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>多文件合并</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>批量导出</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+</tbody></table>
+<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><p>3.2 特色功能</p>
+<p><strong>📌 书签&#x2F;大纲</strong>：自动从 h1-h6 标题生成 PDF bookmarks，点击可跳转导航</p>
+<p><strong>📌 页码</strong>：通过 header&#x2F;footer 模板插入页码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">style</span>=<span class="hljs-string">&quot;width:100vw;font-size:10px;text-align:center;&quot;</span>&gt;</span>  <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;pageNumber&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> / <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;totalPages&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>📌 PDF 元数据</strong>：在文章 front matter 中定义 title、author、keywords 等：</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs brainfuck"><span class="hljs-literal">---</span><span class="hljs-comment">title: 文档标题author: 作者名keywords: 标签1</span><span class="hljs-string">,</span><span class="hljs-comment"> 标签2</span><span class="hljs-literal">---</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>📌 CSS Snippets</strong>：支持在导出时选择性启用未全局启用的 CSS snippet，精细控制导出样式</p>
+<p><strong>📌 单页导出</strong>：可将所有内容导出到一个自定义尺寸的单页 PDF</p>
+<hr>
+<h2 id="4-主题-样式系统"><a href="#4-主题-样式系统" class="headerlink" title="4. 主题&#x2F;样式系统"></a>4. 主题&#x2F;样式系统</h2><p>Better Export PDF 完全复用 Obsidian 的主题系统，导出效果与阅读模式一致。</p>
+<p><strong>自定义样式示例：</strong></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-keyword">@media</span> print &#123;  <span class="hljs-selector-tag">body</span> &#123;    <span class="hljs-attr">--font-text-override</span>: <span class="hljs-string">&quot;Times New Roman&quot;</span> <span class="hljs-meta">!important</span>;    <span class="hljs-attr">--font-text-size</span>: <span class="hljs-number">18px</span> <span class="hljs-meta">!important</span>;    <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Times New Roman&quot;</span> <span class="hljs-meta">!important</span>;  &#125;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>该插件支持在导出对话框中选择已编写好的 CSS snippet，无需全局启用即可临时应用，非常灵活。</p>
+<hr>
+<h2 id="5-适用场景与局限"><a href="#5-适用场景与局限" class="headerlink" title="5. 适用场景与局限"></a>5. 适用场景与局限</h2><h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><p>✅ 适合的场景</p>
+<ul>
+<li><p>技术文档、教程导出为带书签导航的 PDF</p>
+</li>
+<li><p>需要显示页码的正式文档输出</p>
+</li>
+<li><p>批量导出整个文件夹的笔记为 PDF</p>
+</li>
+<li><p>通过目录文件将多个笔记合并为一个 PDF</p>
+</li>
+<li><p>导出前预览最终 PDF 效果</p>
+</li>
+</ul>
+<h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><p>❌ 局限</p>
+<ul>
+<li><p>仅限桌面端（移动端无法使用）</p>
+</li>
+<li><p>不支持 HTML&#x2F;EPUB&#x2F;DOCX 等格式（仅 PDF）</p>
+</li>
+<li><p>多文件自动合并不能保证顺序，需通过目录文件控制</p>
+</li>
+</ul>
+<hr>
+<h2 id="6-安装方法"><a href="#6-安装方法" class="headerlink" title="6. 安装方法"></a>6. 安装方法</h2><p><strong>方式一：社区插件市场</strong> <code>设置 → 第三方插件 → 社区插件市场 → 搜索 &quot;Better Export PDF&quot;</code></p>
+<p><strong>方式二：手动安装</strong> 从 GitHub Releases 下载 .zip，解压到 <code>&#123;Vault&#125;/.obsidian/plugins/</code></p>
+<p><strong>方式三：BRAT</strong> 安装 BRAT 插件后添加仓库地址</p>
+<hr>
+<h2 id="7-对公众号和飞书场景的价值"><a href="#7-对公众号和飞书场景的价值" class="headerlink" title="7. 对公众号和飞书场景的价值"></a>7. 对公众号和飞书场景的价值</h2><h3 id="-7"><a href="#-7" class="headerlink" title=""></a></h3><p>知识库导出</p>
+<table>
+<thead>
+<tr>
+<th>需求</th>
+<th>是否满足</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>md → 高质量 PDF</td>
+<td>✅ 完全满足</td>
+</tr>
+<tr>
+<td>飞书知识库文档导出</td>
+<td>✅ 可导出 PDF 后上传</td>
+</tr>
+<tr>
+<td>公众号配图</td>
+<td>⚠️ 适合技术文档类公众号</td>
+</tr>
+<tr>
+<td>多格式输出</td>
+<td>❌ 建议搭配 obsidian-enhancing-export</td>
+</tr>
+</tbody></table>
+<h3 id="-8"><a href="#-8" class="headerlink" title=""></a></h3><p>工作流建议</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros">Obsidian 笔记    ↓Better <span class="hljs-built_in">Export</span> PDF → 高质量 PDF → 飞书/公众号上传    ↓（如需多格式）obsidian-enhancing-<span class="hljs-built_in">export</span> → docx/html → 飞书文档<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="8-总结"><a href="#8-总结" class="headerlink" title="8. 总结"></a>8. 总结</h2><p>Better Export PDF 是 Obsidian 生态中<strong>最成熟的 PDF 导出增强插件</strong>，v2.0 版本的架构升级解决了长期以来的样式兼容问题。对于需要将笔记输出为专业 PDF 的用户，这是几乎必装的工具。唯一需要注意的是它专注于 PDF 单一格式，如需 docx&#x2F;html 等多格式输出，建议搭配 <code>obsidian-enhancing-export</code>（基于 Pandoc）组合使用。</p>
+<hr>
+<p><strong>参考链接</strong></p>
+<ul>
+<li><p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/l1xnan/obsidian-better-export-pdf/[1/]">https://github.com/l1xnan/obsidian-better-export-pdf\[1\]</a></p>
+</li>
+<li><p>插件市场：Obsidian 社区插件搜索 “Better Export PDF”</p>
+</li>
+</ul>
+<hr>
+<p><em>本文由小欧整理，调研时间 2026年6月</em></p>
+<h3 id="-9"><a href="#-9" class="headerlink" title=""></a></h3><p>引用链接</p>
+<p>[1]<em><a target="_blank" rel="noopener" href="https://github.com/l1xnan/obsidian-better-export-pdf">https://github.com/l1xnan/obsidian-better-export-pdf</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Obsidian Better Export PDF 插件深度评测：技术栈与 PDF 优化全解</div>
+      <div>https://maoyu92.github.io/2026/06/01/07 AI笔记/AI写作与发布/a117_Obsidian Better Export PDF 插件深度评测：技术栈与 PDF 优化全解/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/01/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a116_Hermes%20Agent%20%E5%85%A8%E5%B9%B3%E5%8F%B0%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97%EF%BC%9A%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E4%B8%80%E9%94%AE%E9%83%A8%E7%BD%B2%EF%BC%8C%E6%94%AF%E6%8C%81%E9%A3%9E%E4%B9%A6%E6%8E%A5%E5%85%A5/" title="Hermes Agent 全平台安装配置指南：国内镜像一键部署，支持飞书接入">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hermes Agent 全平台安装配置指南：国内镜像一键部署，支持飞书接入</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/31/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a119_%E5%8C%97%E5%A4%A7%E5%9B%A2%E9%98%9F%E5%BC%80%E6%BA%90%20AutoSci%EF%BC%9A%E4%B8%80%E4%B8%AA%E8%AE%A9%20AI%20%E5%AD%A6%E4%BC%9A_%E6%8C%81%E7%BB%AD%E5%81%9A%E7%A7%91%E7%A0%94_%E7%9A%84%E9%A1%B9%E7%9B%AE/" title="北大团队开源 AutoSci：一个让 AI 学会&#34;持续做科研&#34;的项目">
+                        <span class="hidden-mobile">北大团队开源 AutoSci：一个让 AI 学会&#34;持续做科研&#34;的项目</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

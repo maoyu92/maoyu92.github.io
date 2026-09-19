@@ -1,0 +1,919 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="引言2026年春天，一组数据震动了全球AI圈：中国AI大模型的周Token调用量达到12.96万亿，是美国的4.27倍，连续五周超越美国。全球调用量排名前六的模型，全部来自中国。 这不是偶然的爆发，而是一场酝酿已久的结构性逆转。 从DeepSeek V4以1&#x2F;30的价格挑战GPT-5.5，到阿里Qwen3.6 Plus登顶全球调用量榜首，再到MiniMax M2.7成为首个”自我进化”的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="潮水的方向：中国大模型的集体崛起与全球AI格局重塑">
+<meta property="og:url" content="https://maoyu92.github.io/2026/06/05/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a103_%E6%BD%AE%E6%B0%B4%E7%9A%84%E6%96%B9%E5%90%91%EF%BC%9A%E4%B8%AD%E5%9B%BD%E5%A4%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%9B%86%E4%BD%93%E5%B4%9B%E8%B5%B7%E4%B8%8E%E5%85%A8%E7%90%83AI%E6%A0%BC%E5%B1%80%E9%87%8D%E5%A1%91/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="引言2026年春天，一组数据震动了全球AI圈：中国AI大模型的周Token调用量达到12.96万亿，是美国的4.27倍，连续五周超越美国。全球调用量排名前六的模型，全部来自中国。 这不是偶然的爆发，而是一场酝酿已久的结构性逆转。 从DeepSeek V4以1&#x2F;30的价格挑战GPT-5.5，到阿里Qwen3.6 Plus登顶全球调用量榜首，再到MiniMax M2.7成为首个”自我进化”的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-06-04T19:02:00.000Z">
+<meta property="article:modified_time" content="2026-06-04T19:02:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>潮水的方向：中国大模型的集体崛起与全球AI格局重塑 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="潮水的方向：中国大模型的集体崛起与全球AI格局重塑"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-05 03:02" pubdate>
+          2026年6月5日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          25 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">潮水的方向：中国大模型的集体崛起与全球AI格局重塑</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>2026年春天，一组数据震动了全球AI圈：<strong>中国AI大模型的周Token调用量达到12.96万亿，是美国的4.27倍</strong>，连续五周超越美国。全球调用量排名前六的模型，全部来自中国。</p>
+<p>这不是偶然的爆发，而是一场酝酿已久的结构性逆转。</p>
+<p>从DeepSeek V4以1&#x2F;30的价格挑战GPT-5.5，到阿里Qwen3.6 Plus登顶全球调用量榜首，再到MiniMax M2.7成为首个”自我进化”的开源模型——中国大模型正在以一种前所未有的方式，重新定义全球AI竞争的规则。</p>
+<p>今天这篇文章，我们来拆解这场崛起背后的逻辑。</p>
+<h2 id="一、12-96万亿Token：一个改变格局的数字"><a href="#一、12-96万亿Token：一个改变格局的数字" class="headerlink" title="一、12.96万亿Token：一个改变格局的数字"></a>一、12.96万亿Token：一个改变格局的数字</h2><p>根据全球最大AI模型API聚合平台OpenRouter的最新数据：</p>
+<ul>
+<li><p><strong>中国AI大模型周调用量</strong>：12.96万亿Token（环比增长31.48%）</p>
+</li>
+<li><p><strong>美国AI大模型周调用量</strong>：3.03万亿Token（环比仅增0.76%）</p>
+</li>
+<li><p><strong>中国是美国的4.27倍</strong>，差距还在持续扩大</p>
+</li>
+</ul>
+<p>更令人震撼的是，全球调用量排名前六的模型全部来自中国：</p>
+<table>
+<thead>
+<tr>
+<th>排名</th>
+<th>模型</th>
+<th>厂商</th>
+<th>周调用量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Qwen3.6 Plus (free)</td>
+<td>阿里</td>
+<td>4.6万亿</td>
+</tr>
+<tr>
+<td>2</td>
+<td>MiMo-V2-Pro</td>
+<td>小米</td>
+<td>3.08万亿</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Qwen3.6 Plus Preview</td>
+<td>阿里</td>
+<td>1.64万亿</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Step 3.5 Flash (free)</td>
+<td>阶跃星辰</td>
+<td>1.26万亿</td>
+</tr>
+<tr>
+<td>5</td>
+<td>M2.7</td>
+<td>MiniMax</td>
+<td>1.19万亿</td>
+</tr>
+<tr>
+<td>6</td>
+<td>V3.2</td>
+<td>DeepSeek</td>
+<td>1.19万亿</td>
+</tr>
+</tbody></table>
+<p>一个关键细节：**这个平台上47%的用户来自美国，中国开发者仅占6%**。也就是说，是美国的开发者在用脚投票，选择了中国的模型。</p>
+<p>OpenRouter首席运营官Chris Clark直言：中国模型在美国公司运行的Agent工作流中”占比不成比例地高”。</p>
+<h2 id="二、DeepSeek-V4：当”价格屠夫”再次出手"><a href="#二、DeepSeek-V4：当”价格屠夫”再次出手" class="headerlink" title="二、DeepSeek V4：当”价格屠夫”再次出手"></a>二、DeepSeek V4：当”价格屠夫”再次出手</h2><p>4月24日，等了15个月，DeepSeek终于发布了V4预览版。</p>
+<p>这一次，DeepSeek不只是做了一个更好的模型，而是做了一个<strong>基础设施级别的发布</strong>。</p>
+<h3 id="1-6万亿参数，百万上下文标配"><a href="#1-6万亿参数，百万上下文标配" class="headerlink" title="1.6万亿参数，百万上下文标配"></a>1.6万亿参数，百万上下文标配</h3><p>DeepSeek-V4分为两个版本：</p>
+<ul>
+<li><p><strong>V4-Pro</strong>：总参数1.6万亿，激活49B，定位高性能任务</p>
+</li>
+<li><p><strong>V4-Flash</strong>：总参数2840亿，激活13B，主打低成本高吞吐</p>
+</li>
+</ul>
+<p>1.6万亿参数刷新了Kimi 2.6的1万亿规模，成为国产开源模型最大参数规模。但真正重要的是：<strong>100万Token的上下文窗口，从Pro版的专属特权变成了所有官方服务的标配</strong>。</p>
+<p>过去，百万上下文是Google Gemini的独占优势。V4把它打成了”基础配置”。</p>
+<h3 id="成本：GPT-5-5的1-32"><a href="#成本：GPT-5-5的1-32" class="headerlink" title="成本：GPT-5.5的1&#x2F;32"></a>成本：GPT-5.5的1&#x2F;32</h3><p>DeepSeek的定价策略再次让行业震惊：</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>输入价格（百万Token）</th>
+<th>输出价格（百万Token）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DeepSeek V4-Flash</td>
+<td>1元（缓存0.2元）</td>
+<td>2元</td>
+</tr>
+<tr>
+<td>DeepSeek V4-Pro</td>
+<td>12元（缓存1元）</td>
+<td>24元</td>
+</tr>
+<tr>
+<td>GPT-5.5</td>
+<td>—</td>
+<td>约30美元（≈216元）</td>
+</tr>
+<tr>
+<td>Claude Opus 4.7</td>
+<td>—</td>
+<td>约75美元（≈540元）</td>
+</tr>
+</tbody></table>
+<p><strong>V4-Flash的输出价格仅为GPT-5.5的1&#x2F;108，Claude Opus 4.7的1&#x2F;270。</strong></p>
+<p>更关键的是，这还只是过渡价。DeepSeek在技术报告中明确写道：”预计下半年昇腾950超节点批量上市后，Pro版价格会大幅下调。”</p>
+<h3 id="技术突破：稀疏注意力革命"><a href="#技术突破：稀疏注意力革命" class="headerlink" title="技术突破：稀疏注意力革命"></a>技术突破：稀疏注意力革命</h3><p>V4的核心技术创新在于注意力机制的重构：</p>
+<ul>
+<li><p><strong>CSA压缩稀疏注意力</strong>：每4个Token的KV缓存合并为一条摘要，每个query只挑最相关的top-k条计算注意力</p>
+</li>
+<li><p><strong>HCA重压缩注意力</strong>：每128个Token合并为一条，对剩余摘要做稠密注意力</p>
+</li>
+<li><p>两种机制交替叠用，形成”粗粒度+细粒度、稀疏+稠密”的组合方案</p>
+</li>
+</ul>
+<p>效果：在1M Token上下文设置下，V4-Pro的单Token推理FLOPs只有V3.2的**27%<strong>，KV Cache只有</strong>10%**。</p>
+<p><strong>这不是简单的参数堆叠，而是一次”参数规模、激活效率、上下文长度”三者的重新平衡。</strong></p>
+<h3 id="国产算力验证"><a href="#国产算力验证" class="headerlink" title="国产算力验证"></a>国产算力验证</h3><p>技术报告中最值得关注的一句话是：**”我们在英伟达GPU和华为昇腾NPU两个平台上均验证了细粒度EP方案。”**</p>
+<p>这是DeepSeek首次在正式技术文档中将华为昇腾与英伟达并列写入硬件验证清单。V4的MoE专家权重和稀疏注意力索引器都采用FP4精度，恰好是华为昇腾950PR芯片的原生支持精度。</p>
+<p>DeepSeek正在给自己留出第二条路——CUDA不再是唯一选择。</p>
+<h2 id="三、Qwen3-6-Plus：编程能力最强的国产模型"><a href="#三、Qwen3-6-Plus：编程能力最强的国产模型" class="headerlink" title="三、Qwen3.6 Plus：编程能力最强的国产模型"></a>三、Qwen3.6 Plus：编程能力最强的国产模型</h2><p>4月2日，阿里千问发布Qwen3.6-Plus，被定位为”当下中国编程能力最强的模型”。</p>
+<p>从发布节奏看，千问3.5于2月发布，不足一个半月Qwen3.6即告问世，折射出国产大模型迭代加速进入白热化阶段。</p>
+<h3 id="性能匹敌Claude-Opus-4-5"><a href="#性能匹敌Claude-Opus-4-5" class="headerlink" title="性能匹敌Claude Opus 4.5"></a>性能匹敌Claude Opus 4.5</h3><p>Qwen3.6-Plus的核心突破集中在两个维度：</p>
+<ul>
+<li><p><strong>编程能力</strong>：在SWE-bench真实编程任务、Terminal-Bench 2.0终端编程、NL2Repo长程编程任务中，表现与Claude Opus 4.5全面匹敌</p>
+</li>
+<li><p><strong>Agent能力</strong>：可自主拆解前端网页开发、仓库级复杂任务，完成”测试—修改—交付”的全闭环工作流</p>
+</li>
+</ul>
+<p>更值得关注的是，它支持<strong>100万Token的上下文窗口</strong>，可基于界面截图、设计稿直接生成代码，打通”看懂界面—生成代码—调用工具完成修改”的完整链路。</p>
+<h3 id="登顶全球调用量榜首"><a href="#登顶全球调用量榜首" class="headerlink" title="登顶全球调用量榜首"></a>登顶全球调用量榜首</h3><p>Qwen3.6 Plus发布后迅速引爆开发者社区。在OpenRouter平台上，它以<strong>4.6万亿Token的周调用量</strong>位居全球第一，创下单模型周调用量历史纪录。</p>
+<p>阿里千问3.6系列在发布一周内即强势占据两席（Qwen3.6 Plus和Preview版本），折射出新模型在全球开发者社区的热度之高。</p>
+<p>根据弗若斯特沙利文报告，在中国大模型B端市场，千问系列的日均Token调用量占比32.1%位列第一，领先字节豆包（21.3%）和DeepSeek（18.4%）。</p>
+<h2 id="四、MiniMax-M2-7：AI开始”自我进化”"><a href="#四、MiniMax-M2-7：AI开始”自我进化”" class="headerlink" title="四、MiniMax M2.7：AI开始”自我进化”"></a>四、MiniMax M2.7：AI开始”自我进化”</h2><p>如果说DeepSeek V4和Qwen3.6 Plus代表了性能和价格的极致，那么MiniMax M2.7则打开了一扇全新的门。</p>
+<h3 id="首个自我进化的AI模型"><a href="#首个自我进化的AI模型" class="headerlink" title="首个自我进化的AI模型"></a>首个自我进化的AI模型</h3><p>M2.7最革命性的突破在于：<strong>它是业界首个AI深度参与迭代自己模型的系统。</strong></p>
+<p>M2.7能够：</p>
+<ul>
+<li><p>自行构建复杂的智能体控制框架（AgentHarness）</p>
+</li>
+<li><p>基于复杂技能（Skills）、工具检索工具（ToolSearchtool）等能力，完成高度复杂的生产力任务</p>
+</li>
+<li><p>自动收集反馈、构建评估集，持续优化自身架构、技能和记忆机制</p>
+</li>
+</ul>
+<p>在优化编程能力时，M2.7可以自主运行超100轮循环，最终实现<strong>30%性能提升</strong>。</p>
+<h3 id="开源首日全生态适配"><a href="#开源首日全生态适配" class="headerlink" title="开源首日全生态适配"></a>开源首日全生态适配</h3><p>M2.7开源首日，华为昇腾、摩尔线程、沐曦、崑崙芯、NVIDIA、TogetherAI、Fireworks、Ollama等海内外芯片厂商及推理平台即完成模型接入与推理适配。</p>
+<p>在SWE-Pro基准测试中得分56.22%，接近GPT-5.3-Codex水平。</p>
+<h2 id="五、Token经济学：从”问答工具”到”生产力燃料”"><a href="#五、Token经济学：从”问答工具”到”生产力燃料”" class="headerlink" title="五、Token经济学：从”问答工具”到”生产力燃料”"></a>五、Token经济学：从”问答工具”到”生产力燃料”</h2><p>Token调用量的爆发式增长，背后是一场使用模式的根本转变。</p>
+<h3 id="编程类任务占比超50"><a href="#编程类任务占比超50" class="headerlink" title="编程类任务占比超50%"></a>编程类任务占比超50%</h3><p>根据OpenRouter与a16z联合发布的百万亿Token实证研究报告：</p>
+<ul>
+<li><p><strong>编程类任务</strong>从2024年初占总用量的11%跃升至超过50%</p>
+</li>
+<li><p>Agent驱动的自动化工作流产生了平台上过半的输出Token</p>
+</li>
+<li><p>大量调用AI的使用者，并非普通终端用户，而是<strong>专业开发者和行业专家</strong></p>
+</li>
+</ul>
+<p>AI的角色正在从一个提供简单信息的”问答工具”，进化为能够深度参与工作流的”生产力工具”。</p>
+<h3 id="“Token通胀”概念"><a href="#“Token通胀”概念" class="headerlink" title="“Token通胀”概念"></a>“Token通胀”概念</h3><p>国联民生证券提出了”Token通胀”这一概念——不是Token变贵，而是单位时间内、单位用户的Token消耗结构性上升。三大趋势驱动：</p>
+<ol>
+<li><p>**从”问答”到”干活”**：编程场景天然具有”长上下文、多轮迭代、大量输出”的特征</p>
+</li>
+<li><p><strong>Agent技术兴起</strong>：Agent主动规划、检索、执行、反思，多次调用模型</p>
+</li>
+<li><p><strong>推理强度上升</strong>：深度思考、长链路推理显著提高Token消耗</p>
+</li>
+</ol>
+<p><strong>Token不是传统互联网时代边际成本几乎为零的”流量”，而是执行生产任务时必不可少的”燃料”。</strong></p>
+<h2 id="六、为什么是中国？"><a href="#六、为什么是中国？" class="headerlink" title="六、为什么是中国？"></a>六、为什么是中国？</h2><p>中国大模型的崛起并非偶然，而是多重因素协同作用的结果。</p>
+<h3 id="1-技术路线：MoE架构的红利"><a href="#1-技术路线：MoE架构的红利" class="headerlink" title="1. 技术路线：MoE架构的红利"></a>1. 技术路线：MoE架构的红利</h3><p>以DeepSeek、Qwen为代表的中国模型广泛采用MoE（混合专家）架构。门控网络智能判断任务性质，只激活一小部分最相关的专家网络参与计算。</p>
+<p>这种”按需激活”模式，可以让推理时的显存占用降低60%，推理吞吐量提升19倍。</p>
+<h3 id="2-成本优势：1-30的价格"><a href="#2-成本优势：1-30的价格" class="headerlink" title="2. 成本优势：1&#x2F;30的价格"></a>2. 成本优势：1&#x2F;30的价格</h3><p>MiniMax M2.5的输出价格为1.1美元&#x2F;百万Token，Claude Opus 4.6为25美元——差距22.7倍。</p>
+<p>全球开发者在成本敏感的自动化场景中做出了<strong>理性的价格选择</strong>。</p>
+<h3 id="3-垂直整合：从芯片到应用"><a href="#3-垂直整合：从芯片到应用" class="headerlink" title="3. 垂直整合：从芯片到应用"></a>3. 垂直整合：从芯片到应用</h3><p>以阿里”通义-云-芯”体系为代表，中国AI厂商正在探索模型算法、云计算基础设施、AI芯片的深度协同设计。</p>
+<h3 id="4-应用场景爆发"><a href="#4-应用场景爆发" class="headerlink" title="4. 应用场景爆发"></a>4. 应用场景爆发</h3><p>字节跳动旗下豆包大模型日均Token使用量已突破120万亿——<strong>一家公司贡献了全国总量的绝大部分</strong>。</p>
+<p>AI视频创作（Seedance 2.0）、AI漫剧、AI编程等消费级内容场景率先引爆规模。</p>
+<h2 id="七、冷思考：崛起之下的隐忧"><a href="#七、冷思考：崛起之下的隐忧" class="headerlink" title="七、冷思考：崛起之下的隐忧"></a>七、冷思考：崛起之下的隐忧</h2><h3 id="起步差距仍然存在"><a href="#起步差距仍然存在" class="headerlink" title="起步差距仍然存在"></a>起步差距仍然存在</h3><p>DeepSeek在技术报告中坦承：V4在复杂指令遵循、格式美观、极端摘要等方面仍有提升空间。总体约落后前沿闭源模型3-6个月。</p>
+<h3 id="人才流失压力"><a href="#人才流失压力" class="headerlink" title="人才流失压力"></a>人才流失压力</h3><p>DeepSeek核心研发团队约100多人，已有5位核心技术大牛流向字节、腾讯、小米等公司。对一家不到200人的公司来说，这类流动影响深远。</p>
+<h3 id="商业化挑战"><a href="#商业化挑战" class="headerlink" title="商业化挑战"></a>商业化挑战</h3><p>开源路线意味着更薄的利润空间。OpenAI、Anthropic可以通过订阅、API、企业服务建立商业闭环；DeepSeek没有这些现成的商业缓冲层。</p>
+<h3 id="Token不等于创新"><a href="#Token不等于创新" class="headerlink" title="Token不等于创新"></a>Token不等于创新</h3><p>中欧国际工商学院杨蔚副教授提醒：<strong>Token消耗量不等于AI转型的成效</strong>。古德哈特定律告诉我们——当一个度量标准变成目标，它就不再是好的度量标准。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>2026年的春天，中国大模型完成了一次历史性的跨越。</p>
+<p>从调用量超越美国，到DeepSeek V4把价格打到地板，从Qwen3.6 Plus登顶全球编程榜，到MiniMax M2.7开启”自我进化”时代——这不是一家公司的胜利，而是一个生态的崛起。</p>
+<p>黄仁勋说：”没有算力，就无法生成Token；没有Token，就无法带来收入增长。”</p>
+<p>而中国的回答是：<strong>用1&#x2F;30的成本，生成同样甚至更好的Token。</strong></p>
+<p>潮水的方向已经改变。接下来的问题是——当中国模型越来越强、越来越便宜，全球AI的竞争格局会走向何方？</p>
+<hr>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ul>
+<li><p>OpenRouter全球大模型调用量数据[1]</p>
+</li>
+<li><p>DeepSeek V4技术报告[2]</p>
+</li>
+<li><p>阿里千问Qwen3.6发布[3]</p>
+</li>
+<li><p>MiniMax M2.7开源[4]</p>
+</li>
+<li><p>OpenRouter &amp; a16z 百万亿Token实证研究[5]</p>
+</li>
+<li><p>中欧商学院：日均140万亿Token背后的4大趋势[6]</p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]OpenRouter全球大模型调用量数据: <em><a target="_blank" rel="noopener" href="https://openrouter.ai/rankings">https://openrouter.ai/rankings</a></em></p>
+<p>[2]DeepSeek V4技术报告: <em><a target="_blank" rel="noopener" href="https://api-docs.deepseek.com/">https://api-docs.deepseek.com/</a></em></p>
+<p>[3]阿里千问Qwen3.6发布: <em><a target="_blank" rel="noopener" href="https://www.aliyun.com/product/tongyi">https://www.aliyun.com/product/tongyi</a></em></p>
+<p>[4]MiniMax M2.7开源: <em><a target="_blank" rel="noopener" href="https://www.minimax.io/news/minimax-m27-en">https://www.minimax.io/news/minimax-m27-en</a></em></p>
+<p>[5]OpenRouter &amp; a16z 百万亿Token实证研究: <em><a target="_blank" rel="noopener" href="https://a16z.com/state-of-ai/">https://a16z.com/state-of-ai/</a></em></p>
+<p>[6]中欧商学院：日均140万亿Token背后的4大趋势: <em><a target="_blank" rel="noopener" href="https://cn.ceibs.edu/new-papers-columns/28895">https://cn.ceibs.edu/new-papers-columns/28895</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>潮水的方向：中国大模型的集体崛起与全球AI格局重塑</div>
+      <div>https://maoyu92.github.io/2026/06/05/07 AI笔记/AI工具与模型/a103_潮水的方向：中国大模型的集体崛起与全球AI格局重塑/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/06/06/07%20AI%E7%AC%94%E8%AE%B0/%E6%97%B6%E5%BA%8F%E4%B8%8E%E7%94%9F%E6%80%81/a101_%E5%86%9C%E6%9D%91%E6%B1%A1%E6%B0%B4%E6%B2%BB%E7%90%86%E8%A7%A3%E9%A2%98%EF%BC%9A%E4%BA%BA%E5%B7%A5%E6%B9%BF%E5%9C%B0%E6%8A%80%E6%9C%AF%E6%8C%87%E5%8D%97%E8%AE%A9%E6%B1%A1%E6%B0%B4%E5%8F%98%E6%99%AF%E8%A7%82/" title="农村污水治理解题：人工湿地技术指南让污水变景观">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">农村污水治理解题：人工湿地技术指南让污水变景观</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/06/05/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a104_110%E4%BA%BF%E5%90%A8%E5%9B%BA%E5%BA%9F%E6%80%8E%E4%B9%88%E6%B2%BB%EF%BC%9F%E5%8D%81%E4%BA%94%E4%BA%94%E5%9B%BA%E5%BA%9F%E9%98%B2%E6%B2%BB%E8%A7%84%E5%88%92%E5%87%BA%E7%82%89/" title="110亿吨固废怎么治？十五五固废防治规划出炉">
+                        <span class="hidden-mobile">110亿吨固废怎么治？十五五固废防治规划出炉</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

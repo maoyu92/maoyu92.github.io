@@ -1,0 +1,781 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="刚刚过去的一周（2026年5月19日–23日），AI Agent 领域迎来了一次技术大爆发。Google 在 I&#x2F;O 大会上宣布进入「Agentic Gemini 时代」，DeepMind 将 AlphaEvolve 扩展到更多领域，而arXiv 则集中上线了一批直指生产环境痛点的论文。 这5项技术突破，每一个都解决了一个长期阻碍 AI Agent 大规模落地的核心问题。它们不是实验室里">
+<meta property="og:type" content="article">
+<meta property="og:title" content="刚刚！AI Agent 迎来5大重磅新技术，2026年5月这周彻底改变了游戏规则">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/28/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a150_%E5%88%9A%E5%88%9A%EF%BC%81AI%20Agent%20%E8%BF%8E%E6%9D%A55%E5%A4%A7%E9%87%8D%E7%A3%85%E6%96%B0%E6%8A%80%E6%9C%AF%EF%BC%8C2026%E5%B9%B45%E6%9C%88%E8%BF%99%E5%91%A8%E5%BD%BB%E5%BA%95%E6%94%B9%E5%8F%98%E4%BA%86%E6%B8%B8%E6%88%8F%E8%A7%84%E5%88%99/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="刚刚过去的一周（2026年5月19日–23日），AI Agent 领域迎来了一次技术大爆发。Google 在 I&#x2F;O 大会上宣布进入「Agentic Gemini 时代」，DeepMind 将 AlphaEvolve 扩展到更多领域，而arXiv 则集中上线了一批直指生产环境痛点的论文。 这5项技术突破，每一个都解决了一个长期阻碍 AI Agent 大规模落地的核心问题。它们不是实验室里">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/images/aa03691d24385aff.png">
+<meta property="og:image" content="https://maoyu92.github.io/images/c3b9d88a236865bc.png">
+<meta property="article:published_time" content="2026-05-28T00:03:00.000Z">
+<meta property="article:modified_time" content="2026-05-28T00:03:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/images/aa03691d24385aff.png">
+  
+  
+  <title>刚刚！AI Agent 迎来5大重磅新技术，2026年5月这周彻底改变了游戏规则 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="刚刚！AI Agent 迎来5大重磅新技术，2026年5月这周彻底改变了游戏规则"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-28 08:03" pubdate>
+          2026年5月28日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">刚刚！AI Agent 迎来5大重磅新技术，2026年5月这周彻底改变了游戏规则</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>刚刚过去的一周（2026年5月19日–23日），AI Agent 领域迎来了一次技术大爆发。Google 在 I&#x2F;O 大会上宣布进入「Agentic Gemini 时代」，DeepMind 将 AlphaEvolve 扩展到更多领域，而arXiv 则集中上线了一批直指生产环境痛点的论文。</p>
+<p>这5项技术突破，每一个都解决了一个长期阻碍 AI Agent 大规模落地的核心问题。它们不是实验室里的demo，而是<strong>已经可以在生产环境落地的技术方案</strong>。</p>
+<p>本文逐一解析。</p>
+<hr>
+<h2 id="一、自进化Agent：让AI自己修复自己的代码"><a href="#一、自进化Agent：让AI自己修复自己的代码" class="headerlink" title="一、自进化Agent：让AI自己修复自己的代码"></a>一、自进化Agent：让AI自己修复自己的代码</h2><p>传统 Agent 一旦部署，就像被「冻住」了一样——同样的失败模式会反复出现，直到人工介入修复。而自进化 Agent 打破了这个循环。</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>MOSS：源代码级别的自我改写</p>
+<p>本周最引人注目的论文是 <strong>MOSS</strong>（Self-Evolution through Source-Level Rewriting in Autonomous Agent Systems）。核心思想是：Agent 能识别自身逻辑中的弱点，直接改写源代码的特定模块，通过自动化测试验证变更，然后部署改进后的版本。</p>
+<p>这不是调 Prompt，也不是更新权重。Agent 直接修改自己的 Python 或 TypeScript 源文件，形成一个闭环——每次任务执行都可能为未来的任务改进系统。</p>
+<p>MOSS 在 OpenClaw 真实环境中验证：经过一轮自我改写，四项任务平均分数从 0.25 提升至 0.61，且全程<strong>无需人工干预</strong>。</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>Ratchet：防止改着改着把自己改崩了</p>
+<p>配套论文 <strong>Ratchet</strong> 提供了「最小卫生配方」，确保自进化 Agent 保持稳定。它引入了<strong>非发散性分析</strong>（non-divergence analysis）——防止 Agent 把自己的代码改坏，保证不会低于之前的基准分数。</p>
+<p>打个比方：Ratchet 就像是给自我修复机器人装上了一道安全锁——可以进化，但不能退化。</p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>对生产的意义</p>
+<p>现在的 Agent 改进流程是：人工查看日志 → 识别失败模式 → 手动更新代码&#x2F;Prompt → 等待发版。有了自进化能力，这个循环被完全自动化。一个编程 Agent 如果在某类 TypeScript 重构任务上失败了，下次遇到同类任务时，它会自己修补工具调用逻辑，<strong>无需等待开发者介入</strong>。</p>
+<hr>
+<h2 id="二、API级托管Agent：让Agent真正「24小时待命」"><a href="#二、API级托管Agent：让Agent真正「24小时待命」" class="headerlink" title="二、API级托管Agent：让Agent真正「24小时待命」"></a>二、API级托管Agent：让Agent真正「24小时待命」</h2><p>Google I&#x2F;O 2026 引入了 <strong>Managed Agents in Gemini API</strong>，将 Agent 编排从客户端迁移到了服务器端。</p>
+<p>此前，构建主动式 Agent 意味着必须自己运维基础设施：一台服务器保持 Agent 循环活跃、在会话之间持久化状态、根据时间表或事件触发动作。托管 Agent 则在 API 层面处理所有这些工作。</p>
+<p>你只需定义 Agent 的工具、指令和触发器。Google 在服务器端运行 Agent 循环，<strong>7×24小时</strong>，无需保持客户端连接，状态自动跨会话持久化。</p>
+<p>Anthropic 的动作方向一致——新发布的金融服务 Agent（5月5日）以及与 Blackstone 和 Goldman Sachs 合作的企业 AI 服务公司（5月4日），都表明<strong>托管式、永远在线的 Agent 基础设施正在成为企业 AI 部署的默认模式</strong>。</p>
+<h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><p>对生产的意义</p>
+<p>托管 Agent 消除了「Agent 托管」问题。不再需要维护 WebSocket 连接，不再需要自定义状态序列化，不再需要自己写调度器。提供商负责可用性，你只负责业务逻辑。</p>
+<p>⚠️ 需要注意的是：当 Agent 的状态保存在提供商服务器上时，厂商锁定会增加。缓解策略：通过网关路由 Agent 的 LLM 调用，保持智能层的可移植性；通过 MCP（Model Context Protocol）定义工具，使其与任何托管环境兼容。</p>
+<hr>
+<h2 id="三、工作流编译进模型权重：成本降低两个数量级"><a href="#三、工作流编译进模型权重：成本降低两个数量级" class="headerlink" title="三、工作流编译进模型权重：成本降低两个数量级"></a>三、工作流编译进模型权重：成本降低两个数量级</h2><p>论文 <strong>Compiling Agentic Workflows into LLM Weights</strong> 展示了一个令人惊叹的成果：将一个多步骤 Agent 管道（规划器、研究员、写手、审核员）蒸馏为一个单一的微调模型，一次前向传播即可产生等效输出。</p>
+<p>技术路径：运行 Agent 工作流数千次 → 收集输入输出对 → 在这些对上微调一个小型模型。结果：<strong>接近前沿模型质量，成本降低两个数量级</strong>。</p>
+<p>具体数字：</p>
+<ul>
+<li><p>原来的多 Agent 研究工作流每次执行成本：**$0.50**（4次 LLM 调用 + 工具调用 + 迭代）</p>
+</li>
+<li><p>编译后的单一模型每次执行成本：**$0.005**</p>
+</li>
+<li><p>延迟从 <strong>30秒降至2秒</strong></p>
+</li>
+</ul>
+<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><p>对生产的意义</p>
+<p>不是所有 Agent 任务都需要完整的自主能力。很多工作流在运行几周后会稳定为可预测的模式。一旦你确认了模式，就可以编译它。对于80%遵循常见模式的请求，路由到编译模型；对于边缘情况，保留完整的 Agent 管道。</p>
+<p><img src="/images/aa03691d24385aff.png" srcset="/img/loading.gif" lazyload alt="工作流编译示意图" title="工作流编译示意图"></p>
+<hr>
+<h2 id="四、推测式规划：彻底消除Agent等待感"><a href="#四、推测式规划：彻底消除Agent等待感" class="headerlink" title="四、推测式规划：彻底消除Agent等待感"></a>四、推测式规划：彻底消除Agent等待感</h2><p><strong>IdleSpec</strong>（Exploiting Idle Time via Speculative Planning for LLM Agents）解决的是 Agent 用户体验中最令人头疼的问题：<strong>步骤之间的等待时间</strong>。</p>
+<p>当 Agent 调用工具（API请求、文件读取、数据库查询）时，在等待响应期间会有一段死时间。IdleSpec 将这段死时间变得富有成效——在等待工具结果的同时，Agent 会<strong>推测性地为每种可能的工具结果生成多个候选下一步行动</strong>。</p>
+<p>当实际结果到达时，Agent 将其与预先计算的候选方案匹配，立即继续执行。如果推测正确（论文显示成功率为 60-80%），用户感知到的步骤间延迟<strong>接近零</strong>。</p>
+<p>IdleSpec 在 GAIA 和 FRAMES 基准上，使用 Gemini-2.5-Flash 实现了 <strong>55.6% 的平均准确率</strong>，比不使用空闲时间利用的基线方法高出 5.1%。</p>
+<h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><p>对生产的意义</p>
+<p><strong>Agent 延迟是用户排名第一的抱怨。</strong> 一个五步 Agent 工作流，即使 LLM 响应速度很快，如果每步工具调用需要2秒，总耗时也超过10秒。IdleSpec 将多步工作流的感知延迟降低一半以上。</p>
+<p>实施建议：先在最高频的工具调用上启动推测式规划。对于编程 Agent，文件读取几乎总是成功的；对于 API Agent，大多数调用返回 200。将推测式规划调用路由到快速便宜的模型（如 Haiku 或 GPT-4o-mini），主 Agent 保持在推理模型上。</p>
+<hr>
+<h2 id="五、多Agent安全护栏：防止一颗老鼠屎坏了一锅粥"><a href="#五、多Agent安全护栏：防止一颗老鼠屎坏了一锅粥" class="headerlink" title="五、多Agent安全护栏：防止一颗老鼠屎坏了一锅粥"></a>五、多Agent安全护栏：防止一颗老鼠屎坏了一锅粥</h2><p>随着多 Agent 系统进入生产环境，一类新的安全问题浮出水面。当 Agent 之间通过 KV 缓存共享或消息传递共享上下文时，<strong>一个被攻破或产生幻觉的 Agent 会污染整个系统</strong>。</p>
+<p><strong>LCGuard</strong>（Latent Communication Guard for Safe KV Sharing in Multi-Agent Systems）引入了一个验证层，位于多 Agent 管道中 Agent 之间。在一个 Agent 的输出进入另一个 Agent 的上下文之前，LCGuard 会根据安全约束对其进行检查，且不增加关键路径延迟。</p>
+<p>配套论文 <strong>ExComm</strong>（Exploration-Stage Communication for Error-Resilient Agentic Test-Time Scaling）从另一个角度解决同一问题：改进 Agent 在探索阶段的通信方式，使一个 Agent 推理中的错误不会级联传播到其他 Agent。</p>
+<h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><p>对生产的意义</p>
+<p>如果你运行一个编程 Agent，它将子任务委托给专家 Agent（安全审查员、测试编写员、文档 Agent），其中一个 Agent 的幻觉可能将错误信息传播给其他人。LCGuard 风格的验证防止这种级联，且不拖慢正常执行路径。</p>
+<p>实施建议：在多 Agent 工作流中的 Agent 交接处添加轻量级验证步骤。使用快速模型检查一个 Agent 的输出在传递给下一个 Agent 之前是否内部一致。这些验证调用可以路由到 Haiku 级模型，成本极低，主要 Agent 保持在前沿模型上。</p>
+<hr>
+<h2 id="这五项技术如何组合使用"><a href="#这五项技术如何组合使用" class="headerlink" title="这五项技术如何组合使用"></a>这五项技术如何组合使用</h2><p>这五项技术并非孤立的进步，它们可以组合成新一代 Agent 架构：</p>
+<p><strong>第一步：</strong> 用你偏好的 SDK（Claude Agent SDK、OpenAI Agents SDK、Google ADK）构建完整 Agent 管道。</p>
+<p><strong>第二步：</strong> 加入自进化能力，让 Agent 从自己的失败中学习，无需人工干预。</p>
+<p><strong>第三步：</strong> 使用推测式规划，将感知延迟降低一半。</p>
+<p><strong>第四步：</strong> 在 Agent 交接处部署 LCGuard 风格验证，防止错误级联。</p>
+<p><strong>第五步：</strong> 将稳定的工作流编译为轻量级模型处理常见情况，边缘情况保留完整管道。</p>
+<p><img src="/images/c3b9d88a236865bc.png" srcset="/img/loading.gif" lazyload alt="工作流编译对比图" title="工作流编译对比图"></p>
+<p>这五项技术的共同主题是：<strong>你需要一个能根据任务将 Agent 工作流的不同部分路由到不同模型和提供商的网关</strong>。自我改进步骤需要高推理能力，推测式规划需要速度和低成本，验证需要可靠性，生产执行需要质量和延迟的最佳平衡。</p>
+<p>Agent 时代不是即将来临——<strong>它已经在这周发货了</strong>。</p>
+<hr>
+<p><em>参考资料：arXiv MOSS 论文（2605.22794）、IdleSpec 论文（2605.22154）、Requesty.ai 五项技术周报（May 2026）、Google I&#x2F;O 2026 主题演讲</em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>刚刚！AI Agent 迎来5大重磅新技术，2026年5月这周彻底改变了游戏规则</div>
+      <div>https://maoyu92.github.io/2026/05/28/07 AI笔记/AI写作与发布/a150_刚刚！AI Agent 迎来5大重磅新技术，2026年5月这周彻底改变了游戏规则/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/28/07%20AI%E7%AC%94%E8%AE%B0/%E5%85%B6%E4%BB%96/a149_%E5%BD%93%20AI%20%E5%85%85%E6%96%A5%E7%9D%80%E6%88%91%E4%BB%AC%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87/" title="当 AI 充斥着我们的上下文">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">当 AI 充斥着我们的上下文</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/28/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a151_%E5%88%80%E5%B0%96%E4%B8%8A%E8%B7%B3%E8%88%9E%EF%BC%9A%E8%BE%B9%E7%BC%98%E8%AE%A1%E7%AE%97%E7%9B%92%E4%B8%8A%E7%9A%84%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%BC%82%E5%B8%B8%E8%AF%86%E5%88%AB%E5%AE%9E%E8%B7%B5/" title="刀尖上跳舞：边缘计算盒上的大模型异常识别实践">
+                        <span class="hidden-mobile">刀尖上跳舞：边缘计算盒上的大模型异常识别实践</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

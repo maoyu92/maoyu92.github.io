@@ -1,0 +1,827 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="如果你已经在用 OpenAI Codex CLI 或 Codex 桌面端，但希望换成小米 MiMo 或 DeepSeek，又不想折腾配置——mimo2codex 或许正是你要的工具。  一、它解决什么问题OpenAI Codex 的官方文档只支持小米 MiMo 的 wire_api &#x3D; &quot;chat&quot; 模式。但更新版本的 Codex 对此直接报错，官方解决办法是回退 Codex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mimo2codex：一款让 OpenAI Codex 无缝接入 MiMo &#x2F; DeepSeek 的本地代理">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/31/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a121_mimo2codex%EF%BC%9A%E4%B8%80%E6%AC%BE%E8%AE%A9%20OpenAI%20Codex%20%E6%97%A0%E7%BC%9D%E6%8E%A5%E5%85%A5%20MiMo%20_%20DeepSeek%20%E7%9A%84%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%90%86/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="如果你已经在用 OpenAI Codex CLI 或 Codex 桌面端，但希望换成小米 MiMo 或 DeepSeek，又不想折腾配置——mimo2codex 或许正是你要的工具。  一、它解决什么问题OpenAI Codex 的官方文档只支持小米 MiMo 的 wire_api &#x3D; &quot;chat&quot; 模式。但更新版本的 Codex 对此直接报错，官方解决办法是回退 Codex">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-31T04:02:00.000Z">
+<meta property="article:modified_time" content="2026-05-31T04:02:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>mimo2codex：一款让 OpenAI Codex 无缝接入 MiMo / DeepSeek 的本地代理 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="mimo2codex：一款让 OpenAI Codex 无缝接入 MiMo / DeepSeek 的本地代理"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-31 12:02" pubdate>
+          2026年5月31日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">mimo2codex：一款让 OpenAI Codex 无缝接入 MiMo / DeepSeek 的本地代理</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>如果你已经在用 OpenAI Codex CLI 或 Codex 桌面端，但希望换成小米 MiMo 或 DeepSeek，又不想折腾配置——mimo2codex 或许正是你要的工具。</p>
+</blockquote>
+<h2 id="一、它解决什么问题"><a href="#一、它解决什么问题" class="headerlink" title="一、它解决什么问题"></a>一、它解决什么问题</h2><p>OpenAI Codex 的官方文档只支持小米 MiMo 的 <code>wire_api = &quot;chat&quot;</code> 模式。但更新版本的 Codex 对此直接报错，官方解决办法是<strong>回退 Codex 版本</strong>——代价是丢失宠物功能、新桌面端支持以及工具修复。</p>
+<p>mimo2codex 的思路很直接：<strong>不修改 Codex，也不修改 MiMo，在中间加一层协议翻译</strong>。</p>
+<p>具体来说：Codex 使用的是 Responses API，MiMo（以及大多数国内模型）只支持 Chat Completions。mimo2codex 实时做双向翻译，Codex 以为自己在和原生后端通信，实际上请求已经被翻译发往 MiMo 或 DeepSeek。</p>
+<h2 id="二、mimo2codex-是什么"><a href="#二、mimo2codex-是什么" class="headerlink" title="二、mimo2codex 是什么"></a>二、mimo2codex 是什么</h2><p>一句话概括：</p>
+<blockquote>
+<p>本地 HTTP 代理，让 OpenAI Codex CLI &#x2F; 桌面端接入小米 MiMo、DeepSeek，以及任意 OpenAI Chat Completions 兼容模型。</p>
+</blockquote>
+<p><strong>三种安装方式</strong>：</p>
+<p><code># 方式1：npm 一行安装   npm install -g mimo2codex      # 方式2：Linux/macOS curl   curl -fsSL https://raw.githubusercontent.com/7as0nch/mimo2codex/main/scripts/install.sh | bash      # 方式3：Windows PowerShell   irm https://raw.githubusercontent.com/7as0nch/mimo2codex/main/scripts/install.ps1 | iex   </code></p>
+<p>桌面端（macOS &#x2F; Windows）也有安装包，下载后后台运行，开机自启，无需终端操作。</p>
+<h2 id="三、核心功能一览"><a href="#三、核心功能一览" class="headerlink" title="三、核心功能一览"></a>三、核心功能一览</h2><h3 id="支持的模型"><a href="#支持的模型" class="headerlink" title="支持的模型"></a>支持的模型</h3><table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>模型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MiMo</td>
+<td>mimo-v2.5-pro、mimo-v2-flash</td>
+</tr>
+<tr>
+<td>DeepSeek</td>
+<td>deepseek-v4-pro（默认）、deepseek-v4-flash、deepseek-chat、deepseek-reasoner</td>
+</tr>
+<tr>
+<td>通用</td>
+<td>Qwen &#x2F; GLM &#x2F; Kimi &#x2F; Ollama &#x2F; vLLM &#x2F; LM Studio 等（配置 providers.json）</td>
+</tr>
+</tbody></table>
+<h3 id="核心能力"><a href="#核心能力" class="headerlink" title="核心能力"></a>核心能力</h3><p><strong>多 provider 路由</strong>：一个进程同时支持 MiMo + DeepSeek，根据请求中的 model 字段自动分发，互不干扰。</p>
+<p><strong>协议实时翻译</strong>：Responses API ↔ Chat Completions 双向翻译，支持 streaming SSE 返回。</p>
+<p><strong>Tool calling</strong>：function tools、parallel calls、local_shell、MCP namespace 全部支持。</p>
+<p><strong>Web search</strong>：Codex 的 <code>web_search</code> &#x2F; <code>web_search_preview</code> 自动翻译为 MiMo 原生 web_search builtin。如果账号未开通插件，自动 strip 后重试并记住结果，后续请求直接跳过，无需配置。</p>
+<p><strong>Vision（多模态）</strong>：只有 mimo-v2.5 &#x2F; mimo-v2-omni 支持；非 vision 模型自动 strip 图片并加占位符。</p>
+<p><strong>Reasoning passthrough</strong>：MiMo 的 <code>reasoning_content</code> 多轮正确回传。加 <code>--no-reasoning</code> 参数可以隐藏 terminal 输出（推理过程不显示），但跨轮次传递仍然保留。</p>
+<p><strong>Admin Web UI</strong>：浏览器访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8788/admin/%EF%BC%8C%E6%9F%A5%E7%9C%8B/[1/]">http://127.0.0.1:8788/admin/，查看\[1\]</a> dashboard、聊天记录、模型目录、设置。</p>
+<p><strong>SQLite 持久化</strong>：聊天记录、token 统计、模型别名、运行时设置全部存入 <code>~/.mimo2codex/data.db</code>。</p>
+<p><strong>Codex Enable</strong>：Web UI 内一键写入 <code>~/.codex/auth.json</code> + <code>config.toml</code>，无需手动编辑配置文件。</p>
+<p><strong>mimoskill</strong>：Python 脚本（stdlib only，无外部依赖），补充 MiMo 原生不支持的能力——OCR、图像生成、宠物生成。</p>
+<h2 id="四、如何使用"><a href="#四、如何使用" class="headerlink" title="四、如何使用"></a>四、如何使用</h2><h3 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h3><p><code>export MIMO_API_KEY=sk-xxx...xxx    # 小米 MiMo key   export DS_API_KEY=sk-xxx...xxx     # DeepSeek key（可选）   mimo2codex   </code></p>
+<p>启动后访问 <a target="_blank" rel="noopener" href="http://127.0.0.1:8788/admin/%EF%BC%8C%E7%82%B9%E5%87%BB/[2/]">http://127.0.0.1:8788/admin/，点击\[2\]</a> <strong>Codex Enable</strong>，一键完成认证配置，Codex 即可使用。</p>
+<h3 id="配置通用-provider"><a href="#配置通用-provider" class="headerlink" title="配置通用 provider"></a>配置通用 provider</h3><p>编辑 <code>~/.mimo2codex/providers.json</code>：</p>
+<p><code>&#123;     &quot;providers&quot;: [       &#123;         &quot;id&quot;: &quot;qwen&quot;,         &quot;displayName&quot;: &quot;Qwen (DashScope)&quot;,         &quot;baseUrl&quot;: &quot;https://dashscope.aliyuncs.com/compatible-mode/v1&quot;,         &quot;envKey&quot;: &quot;QWEN_API_KEY&quot;,         &quot;defaultModel&quot;: &quot;qwen3-max&quot;       &#125;     ]   &#125;   </code></p>
+<p>然后：</p>
+<p><code>QWEN_API_KEY=*** mimo2codex --model qwen   </code></p>
+<h2 id="五、技术原理"><a href="#五、技术原理" class="headerlink" title="五、技术原理"></a>五、技术原理</h2><h3 id="请求流程"><a href="#请求流程" class="headerlink" title="请求流程"></a>请求流程</h3><p><code>Codex CLI → mimo2codex (:8788)       → selectProvider（按 model 字段匹配 provider）       → reqToChat（Responses API → Chat Completions）       → 上游 HTTP 调用（MiMo / DeepSeek / 通用 provider）       → respToResponses / streamToSSE（Chat Completions → Responses API SSE）       → Codex   </code></p>
+<h3 id="关键技术细节"><a href="#关键技术细节" class="headerlink" title="关键技术细节"></a>关键技术细节</h3><p><strong>per-request 路由</strong>：请求中 model 字段匹配到哪个 provider 的目录，就发往哪个 provider，不匹配才 fallback 到默认 provider。</p>
+<p><strong>parallel_tool_calls 自动开启</strong>：MiMo 默认不开启 parallel tool calls，mimo2codex 强制开启，减少 round-trips，提升工具调用效率。</p>
+<p><strong>context overflow 友好处理</strong>：上游返回 400（context window exceeded）时，自动重写为双语气提示，引导用户使用 Codex 的 <code>/compact</code> 命令压缩上下文。</p>
+<p><strong>MiMo key 自动路由</strong>：<code>tp-*</code> 前缀的 key 路由到 token-plan 主机，<code>sk-*</code> 前缀路由到按量付费主机，透明分流。</p>
+<p><strong>Admin UI 配置优先级</strong>：CLI flag &#x2F; 环境变量 → Admin DB 设置 → 默认值。Web UI 修改设置无需重启，即时生效。</p>
+<h2 id="六、同类产品对比"><a href="#六、同类产品对比" class="headerlink" title="六、同类产品对比"></a>六、同类产品对比</h2><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>支持的 Provider</th>
+<th>协议翻译</th>
+<th>Admin UI</th>
+<th>特色</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>mimo2codex</strong></td>
+<td>MiMo、DeepSeek、Qwen、GLM、Kimi、Ollama 等</td>
+<td>Responses ↔ Chat Completions</td>
+<td>✅ Web UI + SQLite</td>
+<td>MiMo 深度适配，Codex Enable 一键配置</td>
+</tr>
+<tr>
+<td>OpenRouter</td>
+<td>广泛</td>
+<td>—</td>
+<td>—</td>
+<td>在线服务，无需本地部署</td>
+</tr>
+<tr>
+<td>claude-code-router</td>
+<td>Claude 系</td>
+<td>Anthropic ↔ OpenAI</td>
+<td>—</td>
+<td>面向 Claude</td>
+</tr>
+</tbody></table>
+<p>mimo2codex 的差异化在于：专门针对 <strong>小米 MiMo</strong> 做了深度适配（web_search 转发、parallel_tool_calls 强制开启、reasoning_content 多轮回传、key 自动路由），同时通过 generic provider 机制支持任意 OpenAI Chat Completions 兼容模型。</p>
+<h2 id="七、注意事项"><a href="#七、注意事项" class="headerlink" title="七、注意事项"></a>七、注意事项</h2><ul>
+<li><p><code>/hatch</code> 宠物生成无法通过代理实现，需要 mimoskill 补充</p>
+</li>
+<li><p>DeepSeek deepseek-chat &#x2F; deepseek-reasoner 模型已 deprecated（2026-07-24），alias 为 v4-flash</p>
+</li>
+<li><p>Admin UI 只读环境变量，API key 必须通过环境变量注入，不要在 UI 里填 key</p>
+</li>
+<li><p>代理运行在 <code>127.0.0.1</code>，不暴露到外网，本地安全使用</p>
+</li>
+</ul>
+<hr>
+<p><strong>相关链接</strong>：</p>
+<ul>
+<li><p>GitHub：<a target="_blank" rel="noopener" href="https://github.com/7as0nch/mimo2codex/[3/]">https://github.com/7as0nch/mimo2codex\[3\]</a></p>
+</li>
+<li><p>下载（桌面端）：<a target="_blank" rel="noopener" href="https://mimodoc.chengj.online/download/[4/]">https://mimodoc.chengj.online/download\[4\]</a></p>
+</li>
+<li><p>详细文档：<a target="_blank" rel="noopener" href="https://github.com/7as0nch/mimo2codex/tree/main/doc/[5/]">https://github.com/7as0nch/mimo2codex/tree/main/doc\[5\]</a></p>
+</li>
+</ul>
+<h3 id="引用链接"><a href="#引用链接" class="headerlink" title="引用链接"></a>引用链接</h3><p>[1]<a target="_blank" rel="noopener" href="http://127.0.0.1:8788/admin/%EF%BC%8C%E6%9F%A5%E7%9C%8B">http://127.0.0.1:8788/admin/，查看</a>: <em><a target="_blank" rel="noopener" href="http://127.0.0.1:8788/admin/%EF%BC%8C%E6%9F%A5%E7%9C%8B">http://127.0.0.1:8788/admin/%EF%BC%8C%E6%9F%A5%E7%9C%8B</a></em></p>
+<p>[2]<a target="_blank" rel="noopener" href="http://127.0.0.1:8788/admin/%EF%BC%8C%E7%82%B9%E5%87%BB">http://127.0.0.1:8788/admin/，点击</a>: <em><a target="_blank" rel="noopener" href="http://127.0.0.1:8788/admin/%EF%BC%8C%E7%82%B9%E5%87%BB">http://127.0.0.1:8788/admin/%EF%BC%8C%E7%82%B9%E5%87%BB</a></em></p>
+<p>[3]<em><a target="_blank" rel="noopener" href="https://github.com/7as0nch/mimo2codex">https://github.com/7as0nch/mimo2codex</a></em></p>
+<p>[4]<em><a target="_blank" rel="noopener" href="https://mimodoc.chengj.online/download">https://mimodoc.chengj.online/download</a></em></p>
+<p>[5]<em><a target="_blank" rel="noopener" href="https://github.com/7as0nch/mimo2codex/tree/main/doc">https://github.com/7as0nch/mimo2codex/tree/main/doc</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>mimo2codex：一款让 OpenAI Codex 无缝接入 MiMo / DeepSeek 的本地代理</div>
+      <div>https://maoyu92.github.io/2026/05/31/07 AI笔记/AI工具与模型/a121_mimo2codex：一款让 OpenAI Codex 无缝接入 MiMo _ DeepSeek 的本地代理/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/31/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a120_%E7%A7%91%E7%A0%94%20Agent%20%E9%9B%86%E4%BD%93%E8%A7%89%E9%86%92%EF%BC%9AAutoSci%20%E8%83%BD%E5%90%A6%E8%AE%A9%20AI%20%E5%AD%A6%E4%BC%9A_%E6%8C%81%E7%BB%AD%E5%81%9A%E7%A7%91%E7%A0%94_%EF%BC%9F/" title="科研 Agent 集体觉醒：AutoSci 能否让 AI 学会&#34;持续做科研&#34;？">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">科研 Agent 集体觉醒：AutoSci 能否让 AI 学会&#34;持续做科研&#34;？</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/31/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a122_%E5%9D%90%E7%9D%80%E5%86%99%E4%BB%A3%E7%A0%81out%E4%BA%86%EF%BC%9AHiTerm%20%E8%AE%A9%E4%BD%A0%E7%94%A8%E6%89%8B%E6%9C%BA%E8%AF%AD%E9%9F%B3%E9%81%A5%E6%8E%A7%20AI%20%E7%BC%96%E7%A8%8B/" title="坐着写代码out了：HiTerm 让你用手机语音遥控 AI 编程">
+                        <span class="hidden-mobile">坐着写代码out了：HiTerm 让你用手机语音遥控 AI 编程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

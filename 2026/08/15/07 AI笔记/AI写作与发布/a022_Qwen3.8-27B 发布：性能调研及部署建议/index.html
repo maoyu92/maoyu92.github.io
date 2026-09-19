@@ -1,0 +1,955 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="分析 Qwen3.8-27B 的官方评分、代际性能提升、不同量化版本的质量差距与显存占用，并给出普通服务器和 DGX Spark 部署建议。   Qwen3.8-27B 正式开放权重。相比 Qwen3.6-27B，它在编码 Agent、终端任务、专业工作和长周期执行上的官方评分明显提高；与此同时，BF16、NVFP4 和不同 GGUF 量化版本之间存在巨大的内存差距。本文把性能分数、版本差距、显">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qwen3.8-27B 发布：性能调研及部署建议">
+<meta property="og:url" content="https://maoyu92.github.io/2026/08/15/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a022_Qwen3.8-27B%20%E5%8F%91%E5%B8%83%EF%BC%9A%E6%80%A7%E8%83%BD%E8%B0%83%E7%A0%94%E5%8F%8A%E9%83%A8%E7%BD%B2%E5%BB%BA%E8%AE%AE/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="分析 Qwen3.8-27B 的官方评分、代际性能提升、不同量化版本的质量差距与显存占用，并给出普通服务器和 DGX Spark 部署建议。   Qwen3.8-27B 正式开放权重。相比 Qwen3.6-27B，它在编码 Agent、终端任务、专业工作和长周期执行上的官方评分明显提高；与此同时，BF16、NVFP4 和不同 GGUF 量化版本之间存在巨大的内存差距。本文把性能分数、版本差距、显">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/images/4df28684ba9ed8af.png">
+<meta property="og:image" content="https://maoyu92.github.io/images/1bcb287f55eb8409.png">
+<meta property="article:published_time" content="2026-08-15T06:10:00.000Z">
+<meta property="article:modified_time" content="2026-08-15T06:10:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/images/4df28684ba9ed8af.png">
+  
+  
+  <title>Qwen3.8-27B 发布：性能调研及部署建议 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Qwen3.8-27B 发布：性能调研及部署建议"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-08-15 14:10" pubdate>
+          2026年8月15日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Qwen3.8-27B 发布：性能调研及部署建议</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>分析 Qwen3.8-27B 的官方评分、代际性能提升、不同量化版本的质量差距与显存占用，并给出普通服务器和 DGX Spark 部署建议。</p>
+</blockquote>
+<blockquote>
+<p>Qwen3.8-27B 正式开放权重。相比 Qwen3.6-27B，它在编码 Agent、终端任务、专业工作和长周期执行上的官方评分明显提高；与此同时，BF16、NVFP4 和不同 GGUF 量化版本之间存在巨大的内存差距。本文把性能分数、版本差距、显存账和部署路线一次算清楚。</p>
+</blockquote>
+<h2 id="一、先说结论"><a href="#一、先说结论" class="headerlink" title="一、先说结论"></a>一、先说结论</h2><p>Qwen3.8-27B 的官方成绩说明它不是一次小修小补，尤其是代码 Agent 和复杂任务执行，相比 Qwen3.6-27B 有明显跃升。但选部署版本时不能只看榜单：官方成绩来自高精度权重，3-bit、4-bit 量化是否保留这些能力，还需要单独验证。</p>
+<p>如果目标是在普通 16GB 显卡上“先跑起来”，Unsloth 的 <code>UD-Q3_K_XL</code> GGUF 是值得尝试的方案；如果部署目标是公司服务器或 DGX Spark，建议完全不同：<strong>第一版使用官方 BF16 建立质量基线，稳定后再评估 NVFP4 或 4-bit。</strong></p>
+<p>理由很简单。Qwen3.8-27B 的官方 BF16 safetensors 合计约 55.56GB，也就是约 51.75GiB；DGX Spark 提供 128GB CPU&#x2F;GPU 一致性统一内存，容量上完全放得下。此时一上来就用 3-bit，省下来的内存没有立刻转化为业务价值，却会提前引入量化误差和兼容性变量。</p>
+<p>真正需要先验证的，是新模型在 GB10、ARM64、CUDA 13 和最新推理框架上的适配，而不是“能不能挤进内存”。</p>
+<h2 id="二、Qwen3-8-27B-到底更新了什么"><a href="#二、Qwen3-8-27B-到底更新了什么" class="headerlink" title="二、Qwen3.8-27B 到底更新了什么"></a>二、Qwen3.8-27B 到底更新了什么</h2><p>Qwen3.8-27B 是一个 27B 稠密模型，共 64 层。它沿用混合注意力架构：每四层构成一组，其中三层使用 Gated DeltaNet，一层使用完整注意力。全模型一共有 16 个完整注意力层。</p>
+<p>这套结构带来两个直接影响。</p>
+<p>第一，模型仍然是稠密 27B，每个 token 都要经过完整参数路径。它不像小激活参数的 MoE 那样天然追求极高解码速度，但部署逻辑更直接，也避免了专家路由带来的额外复杂度。</p>
+<p>第二，KV cache 只由 16 个完整注意力层持续增长。按 4 个 KV heads、256 head dimension 和 FP16 粗略估算，KV cache 约为每 token 64KiB，262K token 大约需要 16GiB。这个数字只是 KV 部分，并不包含 DeltaNet 状态、视觉编码器、激活、CUDA graph 和框架缓存，但它足以说明：Qwen3.8 的长上下文并不是“免费”，只是比传统 64 层全注意力模型友好得多。</p>
+<p>模型原生支持 262,144 token，并可通过 YaRN 扩展到 1,000,000 token。官方同时提醒，当前框架普遍采用静态 YaRN，扩展参数可能影响短文本表现。因此，1M 更适合作为专项能力，而不应该成为默认启动配置。</p>
+<h2 id="三、Qwen3-8-27B-的评分到底提升了多少"><a href="#三、Qwen3-8-27B-的评分到底提升了多少" class="headerlink" title="三、Qwen3.8-27B 的评分到底提升了多少"></a>三、Qwen3.8-27B 的评分到底提升了多少</h2><p>官方模型卡把 Qwen3.8-27B 与 Qwen3.6-27B、Qwen3.7-Plus 放在同一套表格中。选取与企业部署最相关的项目，可以看到下面的差距：</p>
+<table>
+<thead>
+<tr>
+<th>测试项目</th>
+<th>Qwen3.8-27B</th>
+<th>Qwen3.6-27B</th>
+<th>Qwen3.7-Plus</th>
+<th>相比 3.6 的提升</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Terminal Bench 2.1</td>
+<td>73.0</td>
+<td>63.4</td>
+<td>64.0</td>
+<td>+9.6</td>
+</tr>
+<tr>
+<td>SWE-bench Pro</td>
+<td>61.7</td>
+<td>53.5</td>
+<td>57.6</td>
+<td>+8.2</td>
+</tr>
+<tr>
+<td>QwenSWEBench</td>
+<td>79.0</td>
+<td>49.3</td>
+<td>59.2</td>
+<td>+29.7</td>
+</tr>
+<tr>
+<td>LiveCodeBench v6</td>
+<td>90.3</td>
+<td>83.9</td>
+<td>89.6</td>
+<td>+6.4</td>
+</tr>
+<tr>
+<td>CoWorkBench</td>
+<td>70.7</td>
+<td>61.0</td>
+<td>65.1</td>
+<td>+9.7</td>
+</tr>
+<tr>
+<td>JobBench</td>
+<td>33.4</td>
+<td>21.8</td>
+<td>27.6</td>
+<td>+11.6</td>
+</tr>
+<tr>
+<td>IFBench</td>
+<td>79.5</td>
+<td>69.1</td>
+<td>79.1</td>
+<td>+10.4</td>
+</tr>
+<tr>
+<td>GPQA Diamond</td>
+<td>89.2</td>
+<td>87.8</td>
+<td>90.3</td>
+<td>+1.4</td>
+</tr>
+</tbody></table>
+<p>如果把比较范围扩大到同期模型，Muse Glimmer-30B 和 Opus 4.6 Max 是两个很有价值的参照：前者是 2026 年 8 月新发布的约 29.6B 开放权重多模态模型，同样面向本地 Agent；后者则代表闭源前沿模型的能力上限。下面统一采用 Qwen 官方模型卡中的同表数据，避免混用不同团队复测时的提示词、脚手架与推理预算。</p>
+<p><img src="/images/4df28684ba9ed8af.png" srcset="/img/loading.gif" lazyload alt="Qwen3.8-27B 官方五模型评分对比：包含 Qwen3.6-27B、Qwen3.7-Plus、Muse Glimmer-30B 和 Opus 4.6 Max" title="Qwen3.8-27B 官方五模型评分对比：包含 Qwen3.6-27B、Qwen3.7-Plus、Muse Glimmer-30B 和 Opus 4.6 Max"></p>
+<p><em>图 1：Qwen3.8-27B 在 12 项指标中的 8 项取得最高分，优势主要集中在代码执行与 Agent 任务。数据来自 Qwen3.8-27B 官方模型卡，Muse 模型信息参考其 官方模型卡。不同基准不可横向比较。</em></p>
+<p>这组数据呈现出三个特征。</p>
+<p>第一，最大提升不在传统知识问答，而在代码仓库、终端、协同工作和专业任务。QwenSWEBench 比 Qwen3.6 高 29.7 分，JobBench 高 11.6 分，说明这代模型的主要升级方向是“把任务做完”，而不只是“回答得像”。</p>
+<p>第二，Qwen3.8-27B 在多个 Agent 项目上超过了 Qwen3.7-Plus，例如 SWE-bench Pro 高 4.1 分、CoWorkBench 高 5.6 分、QwenSWEBench 高 19.8 分。这让 27B 稠密模型具备了更强的本地部署价值。</p>
+<p>第三，它并非所有项目都领先。GPQA Diamond 为 89.2，低于 Qwen3.7-Plus 的 90.3。也就是说，Qwen3.8 的优势更偏工程执行和工作流可靠性，而不是在所有纯推理项目上全面碾压。</p>
+<p>Muse Glimmer-30B 的角色也需要看清。它在这张表里没有压过 Qwen3.8，但官方提供低于 20GB 的约 4-bit 权重，并把 24GB～32GB 消费级硬件、本地多模态 Agent 和 DFlash 推测解码作为重点方向。对于公司的 DGX Spark，它更适合作为“本地运行效率和框架成熟度”的对照组，而不是只用综合分数判定输赢。Opus 4.6 Max 则相反：它在 Terminal Bench、NL2Repo、GPQA 和 HLE 等项目领先，但属于云端闭源模型，不能与本地开放权重方案直接比较部署成本。</p>
+<p>但有一个数字特别容易被误传：官方表中的 79.0 对应 <code>QwenSWEBench</code>，不是 <code>SWE-bench Verified</code>。不同 benchmark、不同 harness 和不同上下文设置不能混为一谈。更不能拿官方 BF16 分数，直接代表某个 3-bit GGUF 的实际能力。</p>
+<p>所以，正确做法不是继续堆榜单，而是建立一套贴近公司任务的固定题集：代码仓库修改、内部文档问答、工具调用、长任务恢复、图片与表格理解，各自单独评分。官方分数用于判断趋势，公司题集才用于决定是否上线。</p>
+<h2 id="四、不同版本的性能和显存差距"><a href="#四、不同版本的性能和显存差距" class="headerlink" title="四、不同版本的性能和显存差距"></a>四、不同版本的性能和显存差距</h2><p>Unsloth 已经提供 NVFP4 和多种 GGUF。下表中的大小来自 Hugging Face 仓库实际文件；“建议可用内存”包含了基本运行余量，但不代表在最大上下文和高并发下仍然充足。</p>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>权重大小</th>
+<th>建议可用 VRAM&#x2F;统一内存</th>
+<th>质量与性能判断</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BF16</td>
+<td>约 51.75GiB</td>
+<td>80GB；生产建议 96GB+</td>
+<td>官方评分基线，质量最高</td>
+</tr>
+<tr>
+<td>Q8_0 GGUF</td>
+<td>约 27.05GiB</td>
+<td>32GB 起，48GB 更稳</td>
+<td>通常接近高精度，但压缩收益有限</td>
+</tr>
+<tr>
+<td>NVFP4</td>
+<td>约 21.81GiB</td>
+<td>24GB 很紧，建议 32GB+</td>
+<td>Blackwell 原生方向，需验证首日框架兼容性</td>
+</tr>
+<tr>
+<td>Q6_K GGUF</td>
+<td>约 21.31GiB</td>
+<td>24GB～32GB</td>
+<td>质量风险较低，体积仍偏大</td>
+</tr>
+<tr>
+<td>UD-Q5_K_XL</td>
+<td>约 18.83GiB</td>
+<td>24GB</td>
+<td>质量和体积之间偏保守的选择</td>
+</tr>
+<tr>
+<td>UD-Q4_K_XL</td>
+<td>约 16.69GiB</td>
+<td>24GB</td>
+<td>适合作为 4-bit 质量优先方案</td>
+</tr>
+<tr>
+<td>Q4_K_M</td>
+<td>约 15.93GiB</td>
+<td>24GB</td>
+<td>常规 4-bit 平衡点</td>
+</tr>
+<tr>
+<td>IQ4_XS</td>
+<td>约 14.63GiB</td>
+<td>16GB 极限，建议 20GB+</td>
+<td>单 16GB 卡余量很小</td>
+</tr>
+<tr>
+<td>UD-Q3_K_XL</td>
+<td>约 12.52GiB</td>
+<td>16GB</td>
+<td>低显存首选，但复杂任务要回归</td>
+</tr>
+<tr>
+<td>UD-Q2_K_XL</td>
+<td>约 9.94GiB</td>
+<td>12GB～16GB</td>
+<td>体积最友好，质量风险明显增加</td>
+</tr>
+</tbody></table>
+<p><img src="/images/1bcb287f55eb8409.png" srcset="/img/loading.gif" lazyload alt="Qwen3.8-27B 不同权重版本的文件体积与建议可用内存" title="Qwen3.8-27B 不同权重版本的文件体积与建议可用内存"></p>
+<p><em>图 2：权重文件体积不等于实际显存占用。建议内存还需为 KV cache、激活、多模态组件和并发请求留出余量。</em></p>
+<p>从“实际速度”看，不能简单认为文件越小就一定越快。GGUF 的速度还取决于 GPU offload 比例、量化 kernel、内存带宽和 CPU 参与程度；NVFP4 是否真正领先，也取决于推理框架有没有走到 GB10&#x2F;Blackwell 的优化路径。对 DGX Spark 来说，BF16 能直接放下，因此应先测 BF16，再用相同输入比较 NVFP4 的 TTFT、tokens&#x2F;s 和任务成功率。</p>
+<p>量化质量目前也不能从文件名直接推导。一般而言，Q8、Q6 更接近高精度；Q5、Q4 是常见平衡区；Q3 开始更需要关注代码、工具调用和长上下文稳定性；Q2 只适合显存优先、且允许明显质量风险的场景。Qwen3.8 刚发布，尚不应把 Qwen3.5 同架构的 KLD 结果直接当作 Qwen3.8 的最终结论。</p>
+<h3 id="上下文还会吃掉多少内存"><a href="#上下文还会吃掉多少内存" class="headerlink" title="上下文还会吃掉多少内存"></a>上下文还会吃掉多少内存</h3><p>按 16 个完整注意力层、4 个 KV heads、head dimension 256 和 FP16 KV cache 粗略估算：</p>
+<table>
+<thead>
+<tr>
+<th>上下文长度</th>
+<th>FP16 KV cache 估算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>8K</td>
+<td>约 0.5GiB</td>
+</tr>
+<tr>
+<td>32K</td>
+<td>约 2GiB</td>
+</tr>
+<tr>
+<td>64K</td>
+<td>约 4GiB</td>
+</tr>
+<tr>
+<td>128K</td>
+<td>约 8GiB</td>
+</tr>
+<tr>
+<td>262K</td>
+<td>约 16GiB</td>
+</tr>
+</tbody></table>
+<p>这还没有计算 DeltaNet 状态、激活、视觉编码器、CUDA graph 和并发请求。多模态 GGUF 还需要额外加载约 0.86GiB 的 <code>mmproj</code>。因此，“权重刚好能放下”通常并不等于“服务能够稳定运行”。</p>
+<h2 id="五、为什么-DGX-Spark-更适合作为主方案"><a href="#五、为什么-DGX-Spark-更适合作为主方案" class="headerlink" title="五、为什么 DGX Spark 更适合作为主方案"></a>五、为什么 DGX Spark 更适合作为主方案</h2><p>DGX Spark 使用 GB10 Grace Blackwell Superchip，配备 128GB LPDDR5x 一致性统一内存。它的价值不只是“内存大”，而是 CPU 和 GPU 共享同一内存空间，减少传统工作站在主存与显存之间搬运大模型的麻烦。</p>
+<p>对 Qwen3.8-27B 来说，一台 Spark 已经足够完成 BF16 单机部署。粗略扣除 52GiB 权重和 16GiB 的 262K FP16 KV cache，仍有空间留给系统、视觉编码器和框架开销。是否能把 262K 全量上下文与高并发同时打开，还要看 vLLM 实际的 cache 分配和服务参数，但容量本身并不是主要矛盾。</p>
+<p>更关键的是，DGX Spark 是 ARM64 平台。很多网上复制来的 Docker 命令默认针对 x86_64，即使镜像名一样，也不代表包含适用于 GB10 SM12.1 的内核。部署时应以 NVIDIA 的 DGX Spark vLLM playbook 为基础，选择最新 ARM64&#x2F;Blackwell 镜像，或者按 playbook 从源码构建。</p>
+<p>Qwen3.8 又是发布当天的新模型，旧版 NVIDIA vLLM 容器未必已经带上相应架构、chat template、reasoning parser 和多模态处理逻辑。<strong>锁版本，比盲目追最新版更重要：模型 commit、vLLM commit、Transformers 版本和容器 digest 都要记录。</strong></p>
+<h2 id="六、建议的-DGX-Spark-落地顺序"><a href="#六、建议的-DGX-Spark-落地顺序" class="headerlink" title="六、建议的 DGX Spark 落地顺序"></a>六、建议的 DGX Spark 落地顺序</h2><h3 id="01-先跑-BF16-纯文本基线"><a href="#01-先跑-BF16-纯文本基线" class="headerlink" title="01　先跑 BF16 纯文本基线"></a>01　先跑 BF16 纯文本基线</h3><p>第一阶段只验证模型能稳定启动、OpenAI-compatible API 正常、思考内容能正确拆分。context 先设为 32K，不开视觉，不开 1M YaRN，不急着上 speculative decoding。</p>
+<p>启动参数可按下面的思路配置，镜像名需要替换为公司验证过的 DGX Spark ARM64 vLLM 镜像：</p>
+<p><code>docker run --rm --gpus all --ipc=host \     -p 8000:8000 \     -v $HOME/.cache/huggingface:/root/.cache/huggingface \     &lt;dgx-spark-vllm-image&gt; \     Qwen/Qwen3.8-27B \     --served-model-name qwen3.8-27b \     --max-model-len 32768 \     --gpu-memory-utilization 0.80 \     --reasoning-parser qwen3   </code></p>
+<p>这条命令是参数模板，不是可以不经验证直接投产的固定版本。Qwen 官方已经给出 vLLM 和 SGLang 的 Qwen3.8 recipe，实际部署应以当日 recipe 为准。</p>
+<h3 id="02-加入公司真实任务回归"><a href="#02-加入公司真实任务回归" class="headerlink" title="02　加入公司真实任务回归"></a>02　加入公司真实任务回归</h3><p>至少准备五类题：代码修改、工具调用、长文档检索、多轮任务恢复、图片或图表理解。每类记录成功率、首 token 延迟、输出速度、峰值统一内存和失败原因。</p>
+<p>Qwen3.8 默认开启 thinking，并支持 <code>reasoning_effort</code> 的 <code>xhigh</code>、<code>medium</code>、<code>low</code> 三档，还会默认保留历史 thinking。对 Agent 工作流而言，较低 reasoning effort 不一定让整个任务更快；单轮虽然短了，但重试可能更多。因此要测“完成一个任务的总耗时”，而不是只看每轮 tokens&#x2F;s。</p>
+<h3 id="03-逐步打开多模态和长上下文"><a href="#03-逐步打开多模态和长上下文" class="headerlink" title="03　逐步打开多模态和长上下文"></a>03　逐步打开多模态和长上下文</h3><p>纯文本稳定后再加载视觉编码器，测试内部 PDF 截图、表格、流程图和界面截图。context 从 32K 提升到 64K、128K，再到原生 262K。每一步都重新测并发和 TTFT。</p>
+<p>1M YaRN 放在最后。只有当业务真的存在 262K 以上输入，才值得接受静态 YaRN 对短文本可能带来的影响。</p>
+<h3 id="04-最后评估-NVFP4"><a href="#04-最后评估-NVFP4" class="headerlink" title="04　最后评估 NVFP4"></a>04　最后评估 NVFP4</h3><p>NVFP4 的意义不是“让模型能装下”，而是争取更高吞吐、更低内存占用和更多 KV cache。切换后必须与 BF16 使用同一题集 A&#x2F;B 对比。如果质量变化可接受，再把 NVFP4 作为生产候选；否则 BF16 在 DGX Spark 上本来就是完全合理的方案。</p>
+<p>GGUF 更适合 llama.cpp、LM Studio 或普通工作站试用。到了 DGX Spark，不建议把 GGUF 当成首选生产格式，否则容易绕开 vLLM&#x2F;SGLang 在并发调度、连续批处理和 OpenAI API 服务上的优势。</p>
+<h2 id="七、最终建议"><a href="#七、最终建议" class="headerlink" title="七、最终建议"></a>七、最终建议</h2><p>Qwen3.8-27B 值得纳入公司本地模型候选，尤其适合代码 Agent、专业工作流、多模态文档理解和需要数据不出内网的场景。</p>
+<p>如果只有 16GB 级别显卡，优先试 <code>UD-Q3_K_XL</code>，把它当作低成本验证环境；如果已经计划采购或使用 DGX Spark，则直接从官方 BF16 开始，建立可靠基线，然后再用 NVFP4换吞吐。</p>
+<p>部署成败的关键，不是把模型文件下载下来，而是三件事：<strong>框架是否真正适配 GB10，内部任务是否比上一代更好，服务在目标并发和上下文下是否稳定。</strong></p>
+<p>这三件事通过以后，Qwen3.8-27B 才算真正“部署成功”。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li><p>Qwen3.8-27B 官方模型卡</p>
+</li>
+<li><p>Muse Glimmer-30B 官方模型卡</p>
+</li>
+<li><p>Claude Opus 4.6 官方介绍</p>
+</li>
+<li><p>Unsloth Qwen3.8-27B NVFP4</p>
+</li>
+<li><p>Unsloth Qwen3.8-27B GGUF 文件列表</p>
+</li>
+<li><p>vLLM Qwen3.8 Recipe</p>
+</li>
+<li><p>SGLang Qwen3.8 Cookbook</p>
+</li>
+<li><p>NVIDIA DGX Spark Quick Start Guide</p>
+</li>
+<li><p>NVIDIA DGX Spark vLLM Playbook</p>
+</li>
+<li><p>DGX Spark Release Notes</p>
+</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Qwen3.8-27B 发布：性能调研及部署建议</div>
+      <div>https://maoyu92.github.io/2026/08/15/07 AI笔记/AI写作与发布/a022_Qwen3.8-27B 发布：性能调研及部署建议/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年8月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/08/24/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a020_%E4%BB%8E%E5%9C%B0%E5%9F%BA%E5%88%B0%E6%A5%BC%E5%AE%87%EF%BC%9AAgentic%20AI%20%E5%85%A8%E6%A0%88%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%8C%E8%A7%A3%E8%AF%BB/" title="从地基到楼宇：Agentic AI 全栈实战手册解读">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">从地基到楼宇：Agentic AI 全栈实战手册解读</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/08/13/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a023_DeepSeek%20%E5%AE%98%E6%96%B9%20Agent%20Harness%EF%BC%8C%E7%AE%80%E5%8D%95%E8%AF%95%E4%BA%86%E4%B8%80%E4%B8%8B/" title="DeepSeek 官方 Agent Harness，简单试了一下">
+                        <span class="hidden-mobile">DeepSeek 官方 Agent Harness，简单试了一下</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

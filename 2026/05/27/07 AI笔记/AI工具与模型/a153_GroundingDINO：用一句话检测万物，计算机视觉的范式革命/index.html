@@ -1,0 +1,953 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="GroundingDINO：用一句话检测万物，计算机视觉的范式革命 “ 你只需要告诉AI”找一只猫”，它就能在任意图片中精确定位那只猫——哪怕它从未见过这张图片、这只猫。  这不是Demo，不是实验室玩具，而是已经上线两年、GitHub数万星、ECCV 2024正式发表的成熟技术。 它叫GroundingDINO，来自IDEA Research（国际数字经济研究院），是目前最流行的开放集目标检测模">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GroundingDINO：用一句话检测万物，计算机视觉的范式革命">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/27/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a153_GroundingDINO%EF%BC%9A%E7%94%A8%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%A3%80%E6%B5%8B%E4%B8%87%E7%89%A9%EF%BC%8C%E8%AE%A1%E7%AE%97%E6%9C%BA%E8%A7%86%E8%A7%89%E7%9A%84%E8%8C%83%E5%BC%8F%E9%9D%A9%E5%91%BD/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="GroundingDINO：用一句话检测万物，计算机视觉的范式革命 “ 你只需要告诉AI”找一只猫”，它就能在任意图片中精确定位那只猫——哪怕它从未见过这张图片、这只猫。  这不是Demo，不是实验室玩具，而是已经上线两年、GitHub数万星、ECCV 2024正式发表的成熟技术。 它叫GroundingDINO，来自IDEA Research（国际数字经济研究院），是目前最流行的开放集目标检测模">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-27T13:53:00.000Z">
+<meta property="article:modified_time" content="2026-05-27T13:53:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>GroundingDINO：用一句话检测万物，计算机视觉的范式革命 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GroundingDINO：用一句话检测万物，计算机视觉的范式革命"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-27 21:53" pubdate>
+          2026年5月27日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GroundingDINO：用一句话检测万物，计算机视觉的范式革命</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="GroundingDINO：用一句话检测万物，计算机视觉的范式革命"><a href="#GroundingDINO：用一句话检测万物，计算机视觉的范式革命" class="headerlink" title="GroundingDINO：用一句话检测万物，计算机视觉的范式革命"></a>GroundingDINO：用一句话检测万物，计算机视觉的范式革命</h1><blockquote>
+<p>“</p>
+<p>你只需要告诉AI”找一只猫”，它就能在任意图片中精确定位那只猫——哪怕它从未见过这张图片、这只猫。</p>
+</blockquote>
+<p>这不是Demo，不是实验室玩具，而是已经上线两年、GitHub数万星、ECCV 2024正式发表的成熟技术。</p>
+<p>它叫<strong>GroundingDINO</strong>，来自IDEA Research（国际数字经济研究院），是目前<strong>最流行的开放集目标检测模型</strong>，没有之一。</p>
+<hr>
+<h2 id="一、传统目标检测的困境"><a href="#一、传统目标检测的困境" class="headerlink" title="一、传统目标检测的困境"></a>一、传统目标检测的困境</h2><p>在GroundingDINO出现之前，目标检测有一个根本性限制：<strong>你只能检测训练过的类别</strong>。</p>
+<p>用YOLO训练了猫和狗的检测器，它就只能检测猫和狗。你想检测”消防栓”？对不起，重新标注数据、重新训练。想检测1000种物体？那就需要1000个类别的标注数据，成本巨大。</p>
+<p>这叫<strong>封闭集检测（Closed-Set Detection）</strong>。</p>
+<p>现实世界呢？物体种类是无限的。用户的需求是多变的。你不可能为每个需求都标注一套数据。</p>
+<p>GroundingDINO的解法很简单粗暴：<strong>把语言能力塞进检测器</strong>。</p>
+<p>你用自然语言描述想检测什么，模型就去图里找什么。不需要训练，不需要标注，直接<strong>零样本检测（Zero-Shot Detection）</strong>。</p>
+<hr>
+<h2 id="二、GroundingDINO-的技术架构"><a href="#二、GroundingDINO-的技术架构" class="headerlink" title="二、GroundingDINO 的技术架构"></a>二、GroundingDINO 的技术架构</h2><p>GroundingDINO 的架构设计非常巧妙，它把两个原本独立的模型家族——<strong>DINO</strong>（纯视觉检测器）和<strong>GLIP</strong>（语言-视觉对齐模型）——融合到了一起。</p>
+<p>整个模型由五个核心模块组成：</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>1. 文本骨干网络（Text Backbone）</p>
+<p>接收自然语言输入，提取文本特征。支持任意长度、任意语言的描述，比如”一只戴墨镜的猫”或”a red car parked near a tree”。</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>2. 图像骨干网络（Image Backbone）</p>
+<p>处理输入图像，提取多尺度视觉特征。基于Swin Transformer构建。</p>
+<h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>3. 特征增强器（Feature Enhancer）</p>
+<p>这是关键创新点。它在文本特征和视觉特征之间进行<strong>深度交叉融合</strong>——让视觉特征”理解”语言描述，同时让文本特征”看到”图像内容。</p>
+<h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><p>4. 语言引导的查询选择（Language-Guided Query Selection）</p>
+<p>用语言信息来引导检测器”关注”图像中最相关的区域，而不是盲目扫描全图。</p>
+<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><p>5. 跨模态解码器（Cross-Modality Decoder）</p>
+<p>在语言和视觉两个模态之间进行迭代解码，最终输出精确的边界框和对应的文本短语。</p>
+<p>简单来说：**传统检测器是”看图找框”，GroundingDINO是”看图听话找框”**。</p>
+<hr>
+<h2 id="三、性能有多强？"><a href="#三、性能有多强？" class="headerlink" title="三、性能有多强？"></a>三、性能有多强？</h2><p>来看硬数据：</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>骨干网络</th>
+<th>训练数据</th>
+<th>COCO AP（零样本）</th>
+<th>COCO AP（微调）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>GroundingDINO-T</td>
+<td>Swin-T</td>
+<td>O365+GoldG+Cap4M</td>
+<td><strong>48.4</strong></td>
+<td><strong>57.2</strong></td>
+</tr>
+<tr>
+<td>GroundingDINO-B</td>
+<td>Swin-B</td>
+<td>COCO+O365+GoldG+Cap4M+OpenImage+ODinW-35+RefCOCO</td>
+<td><strong>56.7</strong></td>
+<td><strong>63.0</strong></td>
+</tr>
+</tbody></table>
+<p><strong>48.4 AP 零样本是什么概念？</strong></p>
+<p>在COCO数据集上，很多专门训练的封闭集检测器也就这个水平。而GroundingDINO根本没见过COCO的训练数据，纯靠语言理解就达到了同等性能。</p>
+<p>更厉害的是**ODinW（Object Detection in the Wild）**测试——这是一个包含35个不同领域真实场景的检测基准，GroundingDINO的零样本表现直接碾压了大量专门微调过的模型。</p>
+<hr>
+<h2 id="四、真正的杀手级应用：万物检测-万物分割"><a href="#四、真正的杀手级应用：万物检测-万物分割" class="headerlink" title="四、真正的杀手级应用：万物检测+万物分割"></a>四、真正的杀手级应用：万物检测+万物分割</h2><p>GroundingDINO单独使用已经很强了，但它的真正威力在于<strong>和其他模型组合</strong>，形成了一个完整的开放世界感知流水线。</p>
+<h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><p>GroundingDINO + SAM &#x3D; 万物分割</p>
+<p>这是目前最火的组合：</p>
+<ol>
+<li><p>GroundingDINO用文字描述找到目标物体的位置（检测框）</p>
+</li>
+<li><p>SAM（Segment Anything）根据检测框进行像素级精确分割</p>
+</li>
+<li><p>输出：任意物体的精确分割掩码</p>
+</li>
+</ol>
+<p>这个组合叫<strong>Grounded-SAM</strong>，GitHub上超过1万星。你给它一句话”分割所有穿红衣服的人”，它就能做到。</p>
+<h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><p>GroundingDINO + SAM 2 &#x3D; 万物追踪</p>
+<p>最新版本Grounded SAM 2把分割升级为<strong>视频追踪</strong>——在视频中持续追踪任意指定物体。</p>
+<h3 id="-7"><a href="#-7" class="headerlink" title=""></a></h3><p>GroundingDINO + Stable Diffusion &#x3D; 智能图像编辑</p>
+<ol>
+<li><p>GroundingDINO定位要编辑的区域</p>
+</li>
+<li><p>Stable Diffusion对指定区域进行重绘</p>
+</li>
+<li><p>实现：把”一只狗”变成”一只猫”，而保持背景不变</p>
+</li>
+</ol>
+<h3 id="-8"><a href="#-8" class="headerlink" title=""></a></h3><p>GroundingDINO + GLIGEN &#x3D; 精细图像编辑</p>
+<p>更精确的版本，支持边界框级别的精细控制，比如”在这个位置放一只鸟，在那个位置放一朵花”。</p>
+<hr>
+<h2 id="五、为什么说它是范式革命？"><a href="#五、为什么说它是范式革命？" class="headerlink" title="五、为什么说它是范式革命？"></a>五、为什么说它是范式革命？</h2><p>GroundingDINO改变了目标检测的基本假设：</p>
+<p><strong>以前：检测器是”专用工具”</strong></p>
+<ul>
+<li><p>检测猫的就检测猫</p>
+</li>
+<li><p>检测车的就检测车</p>
+</li>
+<li><p>想检测新类别？重新标注、重新训练</p>
+</li>
+</ul>
+<p><strong>现在：检测器是”通用接口”</strong></p>
+<ul>
+<li><p>你描述什么，它就检测什么</p>
+</li>
+<li><p>不需要训练数据，不需要标注</p>
+</li>
+<li><p>一个模型覆盖无限类别</p>
+</li>
+</ul>
+<p>这意味着什么？</p>
+<h3 id="-9"><a href="#-9" class="headerlink" title=""></a></h3><p>1. 数据标注成本归零</p>
+<p>以前标注一张图需要几分钟，现在只需要一句话。结合SAM，可以自动生成高质量标注数据。</p>
+<h3 id="-10"><a href="#-10" class="headerlink" title=""></a></h3><p>2. 长尾场景有了出路</p>
+<p>那些数据稀缺的检测场景（工业缺陷检测、罕见病灶识别等），不再需要大量数据，一句话就能检测。</p>
+<h3 id="-11"><a href="#-11" class="headerlink" title=""></a></h3><p>3. 多模态应用成为标配</p>
+<p>任何需要”看图找东西”的AI应用，GroundingDINO都是基础设施。机器人、自动驾驶、智能监控、AR&#x2F;VR……全都绕不开它。</p>
+<h3 id="-12"><a href="#-12" class="headerlink" title=""></a></h3><p>4. Agent的视觉能力</p>
+<p>当AI Agent需要”看懂”屏幕截图、UI界面、文档图片时，GroundingDINO提供了精确的视觉定位能力。</p>
+<hr>
+<h2 id="六、GroundingDINO-1-5：更强的版本"><a href="#六、GroundingDINO-1-5：更强的版本" class="headerlink" title="六、GroundingDINO 1.5：更强的版本"></a>六、GroundingDINO 1.5：更强的版本</h2><p>IDEA Research在2024年下半年发布了<strong>GroundingDINO 1.5</strong>，带来了显著提升：</p>
+<ul>
+<li><p><strong>更大的模型</strong>：Pro版本使用更大规模的训练数据和模型参数</p>
+</li>
+<li><p><strong>更强的零样本能力</strong>：在多个基准上超越前代</p>
+</li>
+<li><p><strong>Few-Shot学习能力</strong>：只需要几个示例就能适应新场景</p>
+</li>
+<li><p><strong>API可用</strong>：通过DeepDataSpace提供在线API服务</p>
+</li>
+</ul>
+<p>GroundingDINO 1.5 Pro在多个few-shot迁移测试中表现优异，证明了它作为”强few-shot学习器”的潜力。</p>
+<hr>
+<h2 id="七、上手指南"><a href="#七、上手指南" class="headerlink" title="七、上手指南"></a>七、上手指南</h2><h3 id="-13"><a href="#-13" class="headerlink" title=""></a></h3><p>环境要求</p>
+<ul>
+<li><p>Python 3.8+</p>
+</li>
+<li><p>PyTorch 1.10+</p>
+</li>
+<li><p>CUDA 11.3+（也支持纯CPU模式）</p>
+</li>
+</ul>
+<h3 id="-14"><a href="#-14" class="headerlink" title=""></a></h3><p>安装</p>
+<p><code>git clone https://github.com/IDEA-Research/GroundingDINO.git   cd GroundingDINO   pip install -e .   </code></p>
+<h3 id="-15"><a href="#-15" class="headerlink" title=""></a></h3><p>下载预训练权重</p>
+<p><code>mkdir weights &amp;&amp; cd weights   wget https://github.com/IDEA-Research/GroundingDINO/releases/download/v0.1.0-alpha/groundingdino_swint_ogc.pth   </code></p>
+<h3 id="-16"><a href="#-16" class="headerlink" title=""></a></h3><p>使用示例</p>
+<p><code>from groundingdino.util.inference import load_model, load_image, predict, annotate   import cv2      model = load_model(       &quot;groundingdino/config/GroundingDINO_SwinT_OGC.py&quot;,       &quot;weights/groundingdino_swint_ogc.pth&quot;   )      image_source, image = load_image(&quot;your_image.jpg&quot;)      boxes, logits, phrases = predict(       model=model,       image=image,       caption=&quot;a cat . a dog .&quot;,       box_threshold=0.35,       text_threshold=0.25   )      annotated_frame = annotate(       image_source=image_source,       boxes=boxes,       logits=logits,       phrases=phrases   )   cv2.imwrite(&quot;result.jpg&quot;, annotated_frame)   </code></p>
+<p>注意：描述中的句号 <code>.</code> 是用来分隔不同检测类别的。</p>
+<h3 id="-17"><a href="#-17" class="headerlink" title=""></a></h3><p>与SAM组合使用</p>
+<p><code># Grounded-SAM   git clone https://github.com/IDEA-Research/Grounded-Segment-Anything.git   cd Grounded-Segment-Anything   pip install -e segment_anything   # 运行grounded_sam_demo.py   </code></p>
+<h3 id="-18"><a href="#-18" class="headerlink" title=""></a></h3><p>命令行使用</p>
+<p><code>python demo/inference_on_a_image.py \       -c groundingdino/config/GroundingDINO_SwinT_OGC.py \       -p weights/groundingdino_swint_ogc.pth \       -i your_image.jpg \       -o output_dir \       -t &quot;chair . person . dog .&quot;   </code></p>
+<hr>
+<h2 id="八、生态与社区"><a href="#八、生态与社区" class="headerlink" title="八、生态与社区"></a>八、生态与社区</h2><p>GroundingDINO已经成为计算机视觉开源生态的核心基础设施：</p>
+<ul>
+<li><p><strong>GitHub Stars</strong>：超过35,000（主仓库）</p>
+</li>
+<li><p><strong>HuggingFace集成</strong>：已集成到Transformers库，支持<code>pipeline</code>直接调用</p>
+</li>
+<li><p><strong>论文引用</strong>：ECCV 2024正式发表，引用量持续增长</p>
+</li>
+<li><p><strong>下游应用</strong>：</p>
+<ul>
+<li><p><strong>Roboflow</strong>：集成到自动标注流水线</p>
+</li>
+<li><p><strong>Autodistill</strong>：用GroundingDINO自动训练YOLOv8</p>
+</li>
+<li><p><strong>ComfyUI</strong>：成为AI绘图工作流的标配节点</p>
+</li>
+<li><p><strong>LangSAM</strong>：与SAM组合的一站式API</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>IDEA Research团队还开源了整个”Grounding”家族：</p>
+<ul>
+<li><p><strong>Grounding DINO</strong>：开放集检测</p>
+</li>
+<li><p><strong>Grounded SAM</strong>：开放集分割</p>
+</li>
+<li><p><strong>Grounded SAM 2</strong>：开放集视频追踪</p>
+</li>
+<li><p><strong>DINO</strong>：纯视觉检测器（前代作品）</p>
+</li>
+</ul>
+<hr>
+<h2 id="九、局限性与挑战"><a href="#九、局限性与挑战" class="headerlink" title="九、局限性与挑战"></a>九、局限性与挑战</h2><p>当然，GroundingDINO也不是完美的：</p>
+<ol>
+<li><p><strong>推理速度</strong>：相比YOLO等轻量检测器，GroundingDINO的推理速度较慢，不适合实时场景（每秒几帧到十几帧）</p>
+</li>
+<li><p><strong>细粒度区分</strong>：对于非常相似的物体（比如不同品种的鸟），区分能力有限</p>
+</li>
+<li><p><strong>复杂描述</strong>：对长句、复合描述的理解可能不稳定</p>
+</li>
+<li><p><strong>边缘部署</strong>：模型较大，在移动端和边缘设备上部署有挑战</p>
+</li>
+</ol>
+<p>但瑕不掩瑜，这些问题正在通过模型优化、蒸馏、量化等方式逐步解决。</p>
+<hr>
+<h2 id="十、未来展望"><a href="#十、未来展望" class="headerlink" title="十、未来展望"></a>十、未来展望</h2><p>GroundingDINO代表了目标检测的未来方向：<strong>语言驱动的视觉感知</strong>。</p>
+<p>随着多模态大模型的发展，我们可以预见：</p>
+<ol>
+<li><p><strong>检测器即Agent</strong>：未来的目标检测器不仅能检测，还能推理、解释、行动</p>
+</li>
+<li><p><strong>世界模型的感知层</strong>：GroundingDINO为世界模型提供了精确的物体级感知</p>
+</li>
+<li><p><strong>机器人视觉标配</strong>：机器人需要理解自然语言指令并定位物体，GroundingDINO是最佳选择</p>
+</li>
+<li><p><strong>自动标注飞轮</strong>：GroundingDINO + SAM + 人工审核的流水线，将数据标注效率提升100倍</p>
+</li>
+</ol>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>GroundingDINO用一个简单而优雅的思路——<strong>把语言引入检测器</strong>——解决了目标检测领域几十年的难题。</p>
+<p>它不是最大的模型，不是最快的模型，但它可能是<strong>最有影响力的视觉模型之一</strong>。因为它让”检测任意物体”从一个研究问题变成了一个工程问题。</p>
+<p><strong>一句话检测万物，这就是GroundingDINO。</strong></p>
+<hr>
+<h2 id="📚-参考资料"><a href="#📚-参考资料" class="headerlink" title="📚 参考资料"></a>📚 参考资料</h2><ul>
+<li><p><strong>论文</strong>：Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection[1]（ECCV 2024）</p>
+</li>
+<li><p><strong>GitHub</strong>：<a target="_blank" rel="noopener" href="https://github.com/IDEA-Research/GroundingDINO/[2/]">https://github.com/IDEA-Research/GroundingDINO\[2\]</a></p>
+</li>
+<li><p><strong>Grounding DINO 1.5 API</strong>：<a target="_blank" rel="noopener" href="https://github.com/IDEA-Research/Grounding-DINO-1.5-API/[3/]">https://github.com/IDEA-Research/Grounding-DINO-1.5-API\[3\]</a></p>
+</li>
+<li><p><strong>Grounded SAM 2</strong>：<a target="_blank" rel="noopener" href="https://github.com/IDEA-Research/Grounded-SAM-2/[4/]">https://github.com/IDEA-Research/Grounded-SAM-2\[4\]</a></p>
+</li>
+<li><p><strong>HuggingFace Demo</strong>：<a target="_blank" rel="noopener" href="https://huggingface.co/spaces/ShilongLiu/Grounding/_DINO/_demo/[5/]">https://huggingface.co/spaces/ShilongLiu/Grounding\_DINO\_demo\[5\]</a></p>
+</li>
+<li><p><strong>Colab Demo</strong>：<a target="_blank" rel="noopener" href="https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/zero-shot-object-detection-with-grounding-dino.ipynb/[6/]">https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/zero-shot-object-detection-with-grounding-dino.ipynb\[6\]</a></p>
+</li>
+<li><p><strong>DINO（前代）</strong>：<a target="_blank" rel="noopener" href="https://github.com/IDEA-Research/DINO/[7/]">https://github.com/IDEA-Research/DINO\[7\]</a></p>
+</li>
+<li><p><strong>GLIP（相关工作）</strong>：<a target="_blank" rel="noopener" href="https://github.com/microsoft/GLIP/[8/]">https://github.com/microsoft/GLIP\[8\]</a></p>
+</li>
+</ul>
+<hr>
+<p><em>本文由小欧自动调研生成，基于GitHub项目、论文、技术博客等多源信息综合整理。</em></p>
+<h3 id="-19"><a href="#-19" class="headerlink" title=""></a></h3><p>引用链接</p>
+<p>[1]Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection: <em><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2303.05499">https://arxiv.org/abs/2303.05499</a></em></p>
+<p>[2]<em><a target="_blank" rel="noopener" href="https://github.com/IDEA-Research/GroundingDINO">https://github.com/IDEA-Research/GroundingDINO</a></em></p>
+<p>[3]<em><a target="_blank" rel="noopener" href="https://github.com/IDEA-Research/Grounding-DINO-1.5-API">https://github.com/IDEA-Research/Grounding-DINO-1.5-API</a></em></p>
+<p>[4]<em><a target="_blank" rel="noopener" href="https://github.com/IDEA-Research/Grounded-SAM-2">https://github.com/IDEA-Research/Grounded-SAM-2</a></em></p>
+<p>[5]<em><a target="_blank" rel="noopener" href="https://huggingface.co/spaces/ShilongLiu/Grounding/_DINO/_demo">https://huggingface.co/spaces/ShilongLiu/Grounding\_DINO\_demo</a></em></p>
+<p>[6]<em><a target="_blank" rel="noopener" href="https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/zero-shot-object-detection-with-grounding-dino.ipynb">https://colab.research.google.com/github/roboflow-ai/notebooks/blob/main/notebooks/zero-shot-object-detection-with-grounding-dino.ipynb</a></em></p>
+<p>[7]<em><a target="_blank" rel="noopener" href="https://github.com/IDEA-Research/DINO">https://github.com/IDEA-Research/DINO</a></em></p>
+<p>[8]<em><a target="_blank" rel="noopener" href="https://github.com/microsoft/GLIP">https://github.com/microsoft/GLIP</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GroundingDINO：用一句话检测万物，计算机视觉的范式革命</div>
+      <div>https://maoyu92.github.io/2026/05/27/07 AI笔记/AI工具与模型/a153_GroundingDINO：用一句话检测万物，计算机视觉的范式革命/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/27/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a152_%E6%88%91%E7%94%A8%20Google%20%E7%9A%84%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B%E5%81%9A%E4%BA%86%E4%B8%AA%E6%B5%8B%E8%AF%95%EF%BC%8C%E7%BB%93%E6%9E%9C%E5%87%BA%E4%B9%8E%E6%84%8F%E6%96%99/" title="我用 Google 的时间序列模型做了个测试，结果出乎意料">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">我用 Google 的时间序列模型做了个测试，结果出乎意料</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/27/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a158_DeepSeek%20V4%20%E7%BC%96%E7%A8%8B%E8%83%BD%E5%8A%9B%E8%B6%85%E8%B6%8A%20Claude%EF%BC%81%E5%9B%BD%E4%BA%A7%20AI%20%E6%8E%80%E8%B5%B7coding%E5%BC%80%E6%BA%90%E9%9D%A9%E5%91%BD/" title="DeepSeek V4 编程能力超越 Claude！国产 AI 掀起coding开源革命">
+                        <span class="hidden-mobile">DeepSeek V4 编程能力超越 Claude！国产 AI 掀起coding开源革命</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

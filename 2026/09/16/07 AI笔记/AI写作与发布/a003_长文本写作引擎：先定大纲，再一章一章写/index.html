@@ -1,0 +1,786 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="长稿一次写到底，结构容易漂移。改成大纲先确认、一章一文件，再用 pandoc 出 docx。  让 AI 一口气写三万字，前两章往往让你很满意。 到第五章，它开始把前面讲过的观点换个说法再讲一遍；第八章冒出一个数字，跟第三章对不上；同一个模块，前面叫「调度器」，后面变成「调度中心」；章节序号也可能从「四」跳回「二」。 我试过几轮，每次都发现：真正花时间的不是写，是核对前后有没有打架。后来我换了个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="长文本写作引擎：先定大纲，再一章一章写">
+<meta property="og:url" content="https://maoyu92.github.io/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a003_%E9%95%BF%E6%96%87%E6%9C%AC%E5%86%99%E4%BD%9C%E5%BC%95%E6%93%8E%EF%BC%9A%E5%85%88%E5%AE%9A%E5%A4%A7%E7%BA%B2%EF%BC%8C%E5%86%8D%E4%B8%80%E7%AB%A0%E4%B8%80%E7%AB%A0%E5%86%99/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="长稿一次写到底，结构容易漂移。改成大纲先确认、一章一文件，再用 pandoc 出 docx。  让 AI 一口气写三万字，前两章往往让你很满意。 到第五章，它开始把前面讲过的观点换个说法再讲一遍；第八章冒出一个数字，跟第三章对不上；同一个模块，前面叫「调度器」，后面变成「调度中心」；章节序号也可能从「四」跳回「二」。 我试过几轮，每次都发现：真正花时间的不是写，是核对前后有没有打架。后来我换了个">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a003/2e8670dd57885309.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a003/b023794092a31b8d.png">
+<meta property="og:image" content="https://maoyu92.github.io/uploads/ai-notes/a003/3c2382f51e42d1dc.png">
+<meta property="article:published_time" content="2026-09-16T07:35:00.000Z">
+<meta property="article:modified_time" content="2026-09-16T07:35:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://maoyu92.github.io/uploads/ai-notes/a003/2e8670dd57885309.png">
+  
+  
+  <title>长文本写作引擎：先定大纲，再一章一章写 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="长文本写作引擎：先定大纲，再一章一章写"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-09-16 15:35" pubdate>
+          2026年9月16日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">长文本写作引擎：先定大纲，再一章一章写</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>长稿一次写到底，结构容易漂移。改成大纲先确认、一章一文件，再用 pandoc 出 docx。</p>
+</blockquote>
+<p>让 AI 一口气写三万字，前两章往往让你很满意。</p>
+<p>到第五章，它开始把前面讲过的观点换个说法再讲一遍；第八章冒出一个数字，跟第三章对不上；同一个模块，前面叫「调度器」，后面变成「调度中心」；章节序号也可能从「四」跳回「二」。</p>
+<p>我试过几轮，每次都发现：真正花时间的不是写，是核对前后有没有打架。后来我换了个笨办法——不追求一次写完，先把大纲定死，再一章一章往下推。</p>
+<p>我把这半年攒下来的技能陆续上架到了 WorkBuddy，一共 11 个，这是第 7 篇，讲长文本写作引擎。</p>
+<h2 id="一、问题在哪"><a href="#一、问题在哪" class="headerlink" title="一、问题在哪"></a>一、问题在哪</h2><p>一次生成的长文，崩的地方通常不是单段质量，而是一致性。</p>
+<p>单段写得好不好，取决于模型当下那几百字的状态；一致性却要求它记住几万字之前说过什么。这两件事的难度不在一个量级上。</p>
+<p>我遇到过的三种典型失效：</p>
+<p><strong>结构漂移</strong>。该讲接口设计的章节，写着写着跑去讲部署，因为材料里的知识点本来是网状的，没有锚点就会各自发散。</p>
+<p><strong>车轱辘话</strong>。每一章开头都重新介绍一遍背景，读起来像十篇短文拼成的合集。</p>
+<p><strong>前后矛盾</strong>。术语、编号、口径、结论，越往后越容易跟前面冲突，而且很难靠通读一遍全部揪出来。</p>
+<p>这三个问题的共同点是：一致性全靠上下文里的记忆撑着，窗口一长，记忆就开始丢。</p>
+<p>技能文档里给的解法很朴素：<strong>把一致性从记忆里挪到文件里</strong>。先产出一份你确认过的大纲，再把章节拆成一个个独立文件，每次只写一章，写完一章汇报一次。每写一章都能回头翻大纲和已完成的部分，锚点在文件里，不会随上下文漂移。</p>
+<p>拆开看，它治的是三件不同的事。</p>
+<p>大纲治结构漂移。章节边界一旦写进文件，写到一半跑题会被大纲拽回来，因为「这一章该讲什么」是有定论的，不靠临场发挥。</p>
+<p>一章一文件治车轱辘话。每章都有明确的开头和结尾，背景介绍只在第一章出现，后面引用前面的结论就行，不会每章重新铺一遍。</p>
+<p>写完一章汇报一次治前后矛盾。术语、编号、口径在写新章之前先被摆到台面上，冲突在当章就被发现，不用等全稿写完再回头大海捞针。</p>
+<p><img src="/uploads/ai-notes/a003/2e8670dd57885309.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="二、它能做什么"><a href="#二、它能做什么" class="headerlink" title="二、它能做什么"></a>二、它能做什么</h2><p>按文档里的定位，它管的是长篇技术文档（教材、研究报告、技术手册）的系统化写作，链路是：材料输入 → 大纲 → 分章迭代 → docx 输出。拆开说是五件事。</p>
+<p><strong>多格式材料先入库</strong>。docx、txt、md、代码文件、PDF、零散笔记都可以当素材来源，先提取整理成一份工作底稿。这里要提一句：技能描述里把 docx、txt、md、代码、PDF 都写进了输入，而能力清单（v0.1）里明确列出的已支持格式是 .docx、纯文本和 Markdown；扫描版 PDF 和代码解析被放在计划里。</p>
+<p><strong>大纲先过你的眼</strong>。它读材料、起草大纲、标出哪些章节需要展开，然后停下来等你确认。文档里写得很硬：大纲必须经用户确认后才进入写作。这一步看着多余——真正省时间的恰恰是这一步。</p>
+<p><strong>分章迭代写</strong>。一次只写一章，一章一个文件。写作风格按学术、专业语体来：用「一、二、三」中文序号，不用项目符号；保持正式的书面语；章节之间要写过渡。写完一章汇报一次。</p>
+<p><strong>合并与套模板</strong>。全部章节确认后合并，用 pandoc 转成 .docx；可以拿一份现成文档当模板，让字体、标题层级、编号样式跟着模板走。命名冲突也会处理：加 <code>-new</code> 或者递增版本号。</p>
+<p><strong>保留全部过程文件</strong>。除了最终 docx，素材底稿、大纲、每一章、模板都会留在工作目录里，方便审阅和后续改版。版本号按 <code>v0.x</code> 递增，原文件有自动备份。</p>
+<p>文档里还留了一个技术教材的示例，我照着理解了一遍：输入是一份教材草稿、一些代码样例和研究笔记；大纲阶段确认「核心功能模块详解」这一章需要展开；写作阶段六个模块逐章迭代出来；排版阶段直接拿草稿本身当模板，最后输出加了完整编号和格式的新版本。整个过程里，原始草稿没有被覆盖，中间文件也都留着。</p>
+<h2 id="三、五步流程"><a href="#三、五步流程" class="headerlink" title="三、五步流程"></a>三、五步流程</h2><p>文档把整件事拆成五个阶段：输入处理、大纲开发、分章写作、合并排版、交付。对话里对应几个明确的节点，我按自己的用法排一下。</p>
+<p>材料进（init、add-source）：给出主题和材料，建立工作目录与知识库，材料一份一份提取录入。</p>
+<p>大纲出（outline）：自动起草大纲，等你确认。砍章节、调顺序、补要求，都在这一步做。这一步过了，后面的分歧成本才会低。</p>
+<p>分章写（develop）：按大纲一章一章写，写完一章汇报一次，跑偏了当场就能改。</p>
+<p>看进度（status）：随时问它写到哪了，它会给出已完成和待写章节的清单。</p>
+<p>合并交付（compile）：全部确认后用 pandoc 合并输出，同时交出全套过程文件。</p>
+<p><img src="/uploads/ai-notes/a003/b023794092a31b8d.png" srcset="/img/loading.gif" lazyload></p>
+<p>我自己的用法是：大纲那一步盯得最紧，分章阶段基本放手。大纲错了，后面几十页都是白写；大纲对了，单章水准差不到哪去。</p>
+<h2 id="四、怎么调用"><a href="#四、怎么调用" class="headerlink" title="四、怎么调用"></a>四、怎么调用</h2><p>技能市场安装之后，在对话里说人话就能触发。技能文档里写明：它没有独立 CLI，全部通过对话驱动。</p>
+<p>可以这么说：</p>
+<ul>
+<li><p>「我要写一份设备运维技术手册，材料在这几个 docx 里，先帮我出大纲」</p>
+</li>
+<li><p>「按大纲开始写第二章，写完把这一章的要点告诉我」</p>
+</li>
+<li><p>「现在写到哪了，还差哪几章」</p>
+</li>
+</ul>
+<p>第一句话说清三件事，后面会顺很多：写什么、材料在哪、大概多长。材料给得越具体，大纲越贴合；只说一句「帮我写本书」，出来的大纲只能是大路货。</p>
+<p>如果你更习惯手动控制，文档里给了两条命令，可以直接复制。</p>
+<p>第一步，用现成文档做模板。样式跟着模板走，比在正文里手动调格式省事得多：</p>
+<p><code>cp original.docx my-template-projectname.docx   </code></p>
+<p>第二步，全部章节确认之后，合并转成 docx：</p>
+<p><code>pandoc input.md -o output.docx --reference-doc=my-template.docx   </code></p>
+<p>跑完之后，工作目录里留下来的东西大致是这些：</p>
+<p><img src="/uploads/ai-notes/a003/3c2382f51e42d1dc.png" srcset="/img/loading.gif" lazyload></p>
+<p>技能还支持一份配置文件，把写作口径固定下来，省得每次重说：</p>
+<p><code>writing_style: academic      # academic / technical / business / creative   numbering_format: chinese    # chinese / arabic / roman   template_file: my-template.docx   version_prefix: v   auto_backup: true   preserve_intermediates: true   </code></p>
+<h2 id="五、边界与注意"><a href="#五、边界与注意" class="headerlink" title="五、边界与注意"></a>五、边界与注意</h2><p>这一节说直白一点。</p>
+<p><strong>它不替你提供事实</strong>。材料里没有的内容，它写不出来；硬写就是编。所以资料给多厚，章节就有多实。指望它凭一个标题写出一本教材，拿到的多半是漂亮但空洞的段落。</p>
+<p><strong>PDF 和代码解析还在路上</strong>。技能描述里列了 PDF、代码文件这些输入，但 v0.1 的能力清单写的是 .docx、纯文本、Markdown，路线图里 v0.2 才把 PDF 和代码文件支持列进去。我这次测下来，稳妥的做法是先把材料转成 docx 或 Markdown 再喂给它。</p>
+<p><strong>依赖要自己装</strong>。pandoc 和 Python 是必须的，Linux、macOS、Windows 都能装，但技能不会替你装。pandoc 不在，最后那步转 docx 就走不通。</p>
+<p><strong>它不是「一键长文」按钮</strong>。大纲要你确认，章节要你审，要求要在对话里说清楚。它省掉的是组织结构、交叉引用和排版对齐这些机械动作，判断仍然是你的事。</p>
+<p><strong>语体可配，但它按长文档设计</strong>。配置里的 writing_style 有 academic、technical、business、creative 四档，序号格式有中文、阿拉伯、罗马三种可选。不过它的长处是章节多、篇幅长的结构化文档；营销文案、口播稿这类短平快的东西，用它并不划算，那是另一类工具的活。</p>
+<p><strong>它也能接着旧稿往下写</strong>。文档里的示例就是从一份已有的教材草稿出发，补写需要展开的模块，最后输出一个新的版本号。也就是说，改版、续写、补章这些场景它同样能接，而且原始文件不会被覆盖。</p>
+<p><strong>图表、目录、引用还没做</strong>。mermaid 流程图、封面页、自动目录、交叉引用链接、BibTeX 引用管理、术语索引、多语言、批注审阅这些，文档里列在计划增强和路线图里，属于计划，不是现在就能用的功能。</p>
+<p><strong>版本管理只管命名</strong>。冲突时加 <code>-new</code> 或递增版本号，它是文件级的管理，不做内容 diff，也不会生成修订记录。</p>
+<p>另外，技能里确实写了防跑飞的安全措施：文件格式校验、模板兼容性检查、内容长度校验、磁盘空间监控，以及自动备份、长任务检查点保存、出问题回滚。但这些是文件层面的兜底，三万字级别的稿子，人工审阅的时间该留还是得留。</p>
+<p>我现在的判断很简单：<strong>长文的瓶颈从来不是生成速度，而是前后一致</strong>。先定大纲、再分章写，就是把这件事从运气变成流程。</p>
+<hr>
+<p>我是文茂，热衷于分享 AI 工具与开发者生态观察。觉得有用欢迎点赞、在看、转发三连。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB/" class="category-chain-item">经验分享</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>长文本写作引擎：先定大纲，再一章一章写</div>
+      <div>https://maoyu92.github.io/2026/09/16/07 AI笔记/AI写作与发布/a003_长文本写作引擎：先定大纲，再一章一章写/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年9月16日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a004_%E7%A7%91%E6%8A%80%E7%BC%96%E8%BE%91%E9%A3%8E%E6%8E%92%E7%89%88%EF%BC%9A%E6%AD%A3%E6%96%87%E6%88%91%E5%8F%AA%E7%94%A8%E7%95%99%E7%99%BD%E5%92%8C%E5%B1%82%E7%BA%A7/" title="科技编辑风排版：正文我只用留白和层级">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">科技编辑风排版：正文我只用留白和层级</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/09/16/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a005_%E5%85%AC%E4%BC%97%E5%8F%B7%E5%B0%81%E9%9D%A2%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%9A%E6%88%91%E5%8F%97%E5%A4%9F%E4%BA%86%E6%AF%8F%E6%AC%A1%E9%83%BD%E5%9C%A8%E8%B0%83%E5%AD%97%E5%8F%B7/" title="公众号封面生成器：我受够了每次都在调字号">
+                        <span class="hidden-mobile">公众号封面生成器：我受够了每次都在调字号</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,871 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="MCP协议：AI时代的”万能接口”，正在重写开发者规则2026年5月，AI圈最火的概念不是某个新模型发布，而是一个”接口协议”——MCP（Model Context Protocol）。 它被称作AI世界的”USB-C接口”：一种让AI模型无缝连接外部工具、数据和服务的开放标准。没有MCP，AI Agent就像一个只能”自言自语”的聪明人；有了MCP，它终于能操控真实的软件世界。 这不只是另一个”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MCP协议：AI时代的&quot;万能接口&quot;，正在重写开发者规则">
+<meta property="og:url" content="https://maoyu92.github.io/2026/05/25/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a157_MCP%E5%8D%8F%E8%AE%AE%EF%BC%9AAI%E6%97%B6%E4%BB%A3%E7%9A%84_%E4%B8%87%E8%83%BD%E6%8E%A5%E5%8F%A3_%EF%BC%8C%E6%AD%A3%E5%9C%A8%E9%87%8D%E5%86%99%E5%BC%80%E5%8F%91%E8%80%85%E8%A7%84%E5%88%99/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="MCP协议：AI时代的”万能接口”，正在重写开发者规则2026年5月，AI圈最火的概念不是某个新模型发布，而是一个”接口协议”——MCP（Model Context Protocol）。 它被称作AI世界的”USB-C接口”：一种让AI模型无缝连接外部工具、数据和服务的开放标准。没有MCP，AI Agent就像一个只能”自言自语”的聪明人；有了MCP，它终于能操控真实的软件世界。 这不只是另一个”">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-05-25T01:08:00.000Z">
+<meta property="article:modified_time" content="2026-05-25T01:08:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>MCP协议：AI时代的&#34;万能接口&#34;，正在重写开发者规则 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MCP协议：AI时代的&#34;万能接口&#34;，正在重写开发者规则"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-05-25 09:08" pubdate>
+          2026年5月25日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">MCP协议：AI时代的&#34;万能接口&#34;，正在重写开发者规则</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="MCP协议：AI时代的”万能接口”，正在重写开发者规则"><a href="#MCP协议：AI时代的”万能接口”，正在重写开发者规则" class="headerlink" title="MCP协议：AI时代的”万能接口”，正在重写开发者规则"></a>MCP协议：AI时代的”万能接口”，正在重写开发者规则</h1><p>2026年5月，AI圈最火的概念不是某个新模型发布，而是一个”接口协议”——MCP（Model Context Protocol）。</p>
+<p>它被称作AI世界的”USB-C接口”：一种让AI模型无缝连接外部工具、数据和服务的开放标准。没有MCP，AI Agent就像一个只能”自言自语”的聪明人；有了MCP，它终于能操控真实的软件世界。</p>
+<p>这不只是另一个”开发者工具”。它的生态扩张速度，已经开始动摇AI应用的底层逻辑。</p>
+<hr>
+<h2 id="一、MCP是什么？为什么突然爆火？"><a href="#一、MCP是什么？为什么突然爆火？" class="headerlink" title="一、MCP是什么？为什么突然爆火？"></a>一、MCP是什么？为什么突然爆火？</h2><h3 id=""><a href="#" class="headerlink" title=""></a></h3><p>从”硬编码”到”即插即用”</p>
+<p>在MCP出现之前，AI连接外部工具是一件极其痛苦的事。</p>
+<p>每当AI需要访问一个外部系统——比如查询数据库、调用GitHub API、读取Figma设计稿——开发者都必须为这个特定系统写一段”胶水代码”，把AI和工具强行粘在一起。这段代码只对这个系统有效，换一个工具就得重来一遍。</p>
+<p>MCP做的事情，就是把这个过程<strong>标准化</strong>。</p>
+<p>它的原理并不复杂：MCP Server暴露工具的描述schema（描述这个工具能做什么、怎么调用），MCP Client（Claude Cursor、VS Code等）读取schema后，AI模型自己决定何时调用哪个工具。开发者不需要为每个工具单独写代码——AI自己看菜谱、自己点菜。</p>
+<h3 id="-1"><a href="#-1" class="headerlink" title=""></a></h3><p>三个组件，一张图说清楚</p>
+<p>MCP生态有三层：</p>
+<table>
+<thead>
+<tr>
+<th>组件</th>
+<th>角色</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>MCP Host</strong></td>
+<td>AI应用本身</td>
+<td>Claude Desktop、Cursor、VS Code Copilot</td>
+</tr>
+<tr>
+<td><strong>MCP Client</strong></td>
+<td>协议中间层</td>
+<td>嵌入在Host里，负责握手通信</td>
+</tr>
+<tr>
+<td><strong>MCP Server</strong></td>
+<td>工具提供者</td>
+<td>GitHub Server、File System Server、Figma Server</td>
+</tr>
+</tbody></table>
+<p>类比USB：Host是电脑接口，Client是USB控制器，Server是外设设备。只要符合MCP协议，任何外设都可以即插即用。</p>
+<hr>
+<h2 id="二、谁在支持MCP？生态地图"><a href="#二、谁在支持MCP？生态地图" class="headerlink" title="二、谁在支持MCP？生态地图"></a>二、谁在支持MCP？生态地图</h2><p>MCP的支持者列表，几乎就是2026年AI市场的半壁江山：</p>
+<p><strong>AI应用层（Host）</strong></p>
+<ul>
+<li><p>Claude（Anthropic）桌面应用</p>
+</li>
+<li><p>ChatGPT（OpenAI）</p>
+</li>
+<li><p>Cursor、VS Code（通过Copilot）</p>
+</li>
+<li><p>GitHub Agent</p>
+</li>
+<li><p>Zed IDE</p>
+</li>
+</ul>
+<p><strong>开发工具层</strong></p>
+<ul>
+<li><p>LangChain</p>
+</li>
+<li><p>OpenAI Agents SDK</p>
+</li>
+<li><p>Microsoft Foundry</p>
+</li>
+<li><p>MCP Jam</p>
+</li>
+</ul>
+<p><strong>Server生态（部分）</strong></p>
+<ul>
+<li><p><strong>GitHub MCP</strong>：issues、PR、branch管理，直接在AI里操控repo</p>
+</li>
+<li><p><strong>File System MCP</strong>：让AI读写本地文件</p>
+</li>
+<li><p><strong>Figma MCP</strong>：AI读取设计稿，直接问”这个按钮的色值是多少”</p>
+</li>
+<li><p><strong>E2B MCP</strong>：代码沙盒执行，安全隔离的云端运行环境</p>
+</li>
+<li><p><strong>Sentry MCP</strong>：直接查询线上崩溃日志，AI帮你分析Bug</p>
+</li>
+<li><p><strong>Vercel&#x2F;Netlify MCP</strong>：部署状态查询，一句话回滚版本</p>
+</li>
+<li><p><strong>Context7 MCP</strong>：抓取最新文档到AI context，解决知识陈旧问题</p>
+</li>
+<li><p><strong>Semgrep MCP</strong>：代码安全扫描，直接集成到AI工作流</p>
+</li>
+</ul>
+<p>更夸张的是，市场上已经出现了<strong>MCP Server聚合平台</strong>，收录超过1000个MCP服务器。Anthropic官方甚至在5月初宣布了面向金融服务业的Agent托管服务，其中MCP是核心架构层。</p>
+<hr>
+<h2 id="三、MCP为什么重要：三个维度"><a href="#三、MCP为什么重要：三个维度" class="headerlink" title="三、MCP为什么重要：三个维度"></a>三、MCP为什么重要：三个维度</h2><h3 id="-2"><a href="#-2" class="headerlink" title=""></a></h3><p>1. 开发效率：写一次，跑 everywhere</p>
+<p>以前接入10个外部工具，需要写10套定制集成代码。现在只需要：</p>
+<ol>
+<li><p>找到对应的MCP Server</p>
+</li>
+<li><p>配置到AI应用中</p>
+</li>
+<li><p>AI自动识别工具，自己调用</p>
+</li>
+</ol>
+<p>GitHub MCP为例：AI可以直接帮你创建分支、提交PR、查看issues、分析代码——不需要任何额外代码。</p>
+<h3 id="-3"><a href="#-3" class="headerlink" title=""></a></h3><p>2. Agent落地：MCP是”最后一公里”</p>
+<p>业界公认，Agent落地最难的不是”AI够不够聪明”，而是<strong>AI能不能真正操控外部系统</strong>。</p>
+<p>MCP解决的就是这个问题。它让Agent的”工具调用”变成了一个可组合的开放生态。OpenClaw的龙虾助手能够操控飞书文档、日历、云盘，正是因为飞书开放了MCP兼容接口。</p>
+<h3 id="-4"><a href="#-4" class="headerlink" title=""></a></h3><p>3. 安全与标准化：取代硬编码的”隐形收益”</p>
+<p>当每个工具都用硬编码方式接入AI，数据安全审计几乎不可能——工具的权限边界完全取决于代码怎么写。</p>
+<p>MCP强制所有工具通过同一个协议交互，权限边界清晰、可审计、可撤销。这意味着企业IT团队终于能用统一的方式管理AI的”伸手范围”。</p>
+<hr>
+<h2 id="四、2026年5月技术前沿：五大新动态"><a href="#四、2026年5月技术前沿：五大新动态" class="headerlink" title="四、2026年5月技术前沿：五大新动态"></a>四、2026年5月技术前沿：五大新动态</h2><h3 id="-5"><a href="#-5" class="headerlink" title=""></a></h3><p>动态1：MCP协议规范重大更新</p>
+<p>2026年5月，Model Context Protocol官方发布了自发布以来最大幅度的协议修订（RC版本），新增了对多Agent并发调用、流式工具响应、权限分级等企业级功能的支持。</p>
+<p>这次更新被业界视为MCP从”开发者玩具”向”企业级基础设施”跨越的标志。</p>
+<h3 id="-6"><a href="#-6" class="headerlink" title=""></a></h3><p>动态2：MCP安全成为独立议题</p>
+<p>随着MCP在生产环境中的广泛部署，安全问题开始集中爆发。Reddit网络安全社区本周密集讨论了真实场景中的MCP安全漏洞模式，包括：</p>
+<ul>
+<li><p>Agent权限过度授予导致的数据泄露</p>
+</li>
+<li><p>MCP Server间信任链断裂</p>
+</li>
+<li><p>恶意MCP Server的供应链攻击</p>
+</li>
+</ul>
+<p>学术界也出现了专门的安全框架（LCGuard），在多Agent KV共享场景下增加验证层，防止一个受损Agent污染整个系统。</p>
+<h3 id="-7"><a href="#-7" class="headerlink" title=""></a></h3><p>动态3：自进化Agent + MCP的组合</p>
+<p>MOSS（自进化Agent）框架本周引发关注：Agent不仅调用MCP工具，还能量化自己的失败模式，自动重写工具调用逻辑。这意味着AI的工作流不再是静态配置，而是动态自我优化。</p>
+<h3 id="-8"><a href="#-8" class="headerlink" title=""></a></h3><p>动态4：国产厂商跟进MCP生态</p>
+<p>阿里云、华为等国内头部厂商的AI平台已开始对接MCP协议。趣丸科技在5月透露，其AI音乐和数字人平台已通过MCP接入第三方插件市场，实现工具生态的快速扩展。</p>
+<h3 id="-9"><a href="#-9" class="headerlink" title=""></a></h3><p>动态5：托管Agent时代，MCP是默认架构</p>
+<p>Google I&#x2F;O 2026发布的Gemini API托管Agent，默认支持MCP工具定义。这意味着”服务器端运行的24&#x2F;7 Agent”将成为默认部署模式——而这类Agent的核心架构层，正是MCP。</p>
+<hr>
+<h2 id="五、MCP的局限与挑战"><a href="#五、MCP的局限与挑战" class="headerlink" title="五、MCP的局限与挑战"></a>五、MCP的局限与挑战</h2><p>诚实地看，MCP远非完美：</p>
+<p><strong>协议碎片化</strong>：市场上存在多个MCP Server实现，质量参差不齐，AI在不同Server间的表现可能差异巨大。</p>
+<p><strong>安全风险被放大</strong>：当AI拥有直接操控外部系统的能力时，一次错误的工具调用可能造成实际业务损失。MCP协议层的宽松授权机制是一把双刃剑。</p>
+<p><strong>厂商锁定</strong>：虽然MCP是开放协议，但AI应用对MCP的支持程度不一，有些厂商的”MCP兼容”只是做了表面适配。</p>
+<p><strong>复杂场景下的调试困难</strong>：当一个多步骤Agent工作流涉及多个MCP Server时，出现问题时的排查路径非常复杂。</p>
+<hr>
+<h2 id="六、开发者如何入门MCP？"><a href="#六、开发者如何入门MCP？" class="headerlink" title="六、开发者如何入门MCP？"></a>六、开发者如何入门MCP？</h2><h3 id="-10"><a href="#-10" class="headerlink" title=""></a></h3><p>快速上手路径</p>
+<ol>
+<li><p><strong>选一个支持MCP的AI应用</strong>：Claude Desktop（免费）或Cursor（更推荐，开发者友好度高）</p>
+</li>
+<li><p><strong>安装第一个MCP Server</strong>：推荐从 GitHub MCP 或 File System MCP 开始</p>
+</li>
+<li><p><strong>写一个简单的MCP Server</strong>：官方提供了Python&#x2F;TypeScript SDK，15分钟可以跑通一个Hello World</p>
+</li>
+<li><p><strong>探索Server生态</strong>：去 mcp.so[1] 或 GitHub 搜索 awesome-mcp-servers</p>
+</li>
+</ol>
+<h3 id="-11"><a href="#-11" class="headerlink" title=""></a></h3><p>推荐学习资源</p>
+<ul>
+<li><p>官方文档：modelcontextprotocol.io（结构清晰，有完整 Getting Started）</p>
+</li>
+<li><p>The 2026 Guide to MCP Ecosystem（GetKnit，图文并茂）</p>
+</li>
+<li><p>Building MCP Servers from Scratch（Level Up Coding，5月更新）</p>
+</li>
+</ul>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>如果2025年是”AI Agent元年”，2026年正在发生的事情是：为Agent建设”基础设施”。</p>
+<p>MCP之所以重要，不是因为它有多复杂，而是在于它解决了一个真实的瓶颈——AI和真实世界之间那条”最后一公里”的路。</p>
+<p>USB-C接口的意义不只是让手机能充电，而是让所有设备第一次有了一个统一的物理接口标准。MCP正在AI世界做同样的事。</p>
+<p><strong>那个曾经”只能自言自语”的聪明人，正在获得操控真实世界的触手。</strong></p>
+<hr>
+<p><em>参考资料：Model Context Protocol 官方文档（modelcontextprotocol.io）、GetKnit Ecosystem Guide、Builder.io Best MCP Servers 2026、Requesty AI Agent Techniques May 2026、Steve Kinney AI Development Course、Reddit r&#x2F;cybersecurity 等，2026年5月</em></p>
+<h3 id="-12"><a href="#-12" class="headerlink" title=""></a></h3><p>引用链接</p>
+<p>[1]mcp.so: <em><a target="_blank" rel="noopener" href="https://modelcontextprotocol.io/">https://modelcontextprotocol.io</a></em></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MCP协议：AI时代的&#34;万能接口&#34;，正在重写开发者规则</div>
+      <div>https://maoyu92.github.io/2026/05/25/07 AI笔记/AI工具与模型/a157_MCP协议：AI时代的_万能接口_，正在重写开发者规则/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年5月25日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/05/25/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a156_Kimi%20WebBridge%EF%BC%9A%E6%9C%88%E4%B9%8B%E6%9A%97%E9%9D%A2%E7%BB%99AI%E8%A3%85%E4%B8%8A%E4%BA%86%E4%B8%80%E5%8F%8C_%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B9%8B%E6%89%8B_/" title="Kimi WebBridge：月之暗面给AI装上了一双&#34;浏览器之手&#34;">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Kimi WebBridge：月之暗面给AI装上了一双&#34;浏览器之手&#34;</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/05/24/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a159_PPT%20Master%20%E2%80%94%20AI%20%E7%94%9F%E6%88%90%E5%8E%9F%E7%94%9F%E5%8F%AF%E7%BC%96%E8%BE%91%20PPTX/" title="PPT Master — AI 生成原生可编辑 PPTX">
+                        <span class="hidden-mobile">PPT Master — AI 生成原生可编辑 PPTX</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

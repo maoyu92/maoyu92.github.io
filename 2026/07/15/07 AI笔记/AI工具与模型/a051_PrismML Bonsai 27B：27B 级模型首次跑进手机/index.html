@@ -1,0 +1,1308 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="陈文茂">
+  <meta name="keywords" content="python,eco">
+  <meta name="referrer" content="no-referrer" />
+  
+    <meta name="description" content="“              27B 参数      的模型压缩到      3.9 GB      同时保留 90% 的推理能力——这扇门一旦推开，本地模型的格局就彻底改变了              —— 实测手记                    7 月 14 日，PrismML 发布了基于 Qwen3.6-27B 的 Bonsai 27B 模型，提供 1-bit 和 Ternary 两">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PrismML Bonsai 27B：27B 级模型首次跑进手机">
+<meta property="og:url" content="https://maoyu92.github.io/2026/07/15/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a051_PrismML%20Bonsai%2027B%EF%BC%9A27B%20%E7%BA%A7%E6%A8%A1%E5%9E%8B%E9%A6%96%E6%AC%A1%E8%B7%91%E8%BF%9B%E6%89%8B%E6%9C%BA/index.html">
+<meta property="og:site_name" content="wallflowers">
+<meta property="og:description" content="“              27B 参数      的模型压缩到      3.9 GB      同时保留 90% 的推理能力——这扇门一旦推开，本地模型的格局就彻底改变了              —— 实测手记                    7 月 14 日，PrismML 发布了基于 Qwen3.6-27B 的 Bonsai 27B 模型，提供 1-bit 和 Ternary 两">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-07-15T06:43:00.000Z">
+<meta property="article:modified_time" content="2026-07-15T06:43:00.000Z">
+<meta property="article:author" content="wenmao">
+<meta property="article:tag" content="python,eco">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>PrismML Bonsai 27B：27B 级模型首次跑进手机 - wallflowers</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"maoyu92.github.io","root":"/","version":"1.9.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":"true=","img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":"2cc5b9cda6e86ed03ba865b808b69ae7","google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+    <!-- Baidu Analytics -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?2cc5b9cda6e86ed03ba865b808b69ae7";
+          var s = document.getElementsByTagName("script")[0];
+          s.parentNode.insertBefore(hm, s);
+        })();
+      }
+    </script>
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>wallflowers</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/%E9%A6%96%E9%A1%B5.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="PrismML Bonsai 27B：27B 级模型首次跑进手机"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-07-15 14:43" pubdate>
+          2026年7月15日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">PrismML Bonsai 27B：27B 级模型首次跑进手机</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>“    </p>
+<p>   </p>
+<p>     27B 参数      的模型压缩到      3.9 GB      同时保留 90% 的推理能力——这扇门一旦推开，本地模型的格局就彻底改变了    </p>
+<p>   </p>
+<p>     —— 实测手记    </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     7 月 14 日，PrismML 发布了基于 Qwen3.6-27B 的 Bonsai 27B 模型，提供 1-bit 和 Ternary 两个极端量化版本。    </p>
+<p>   </p>
+<p>     1-bit 版本仅 3.9 GB，可在 iPhone 17 Pro Max 上运行；Ternary 版本 7.2 GB，保留 95% 全精度性能，面向笔记本和台式机部署。    </p>
+<p>   </p>
+<p>     我在双 RTX 5070 Ti 上完整部署了 Ternary 版本并做了全维度实测，本文是完整的部署记录和性能评估。    </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     📌 本文看点    </p>
+<p>   </p>
+<p>     </p>
+<p>       </p>
+<p>01</p>
+<p>       </p>
+<p>极端量化实测</p>
+<p>     </p>
+<p>     </p>
+<p>       </p>
+<p>02</p>
+<p>       </p>
+<p>76 tok&#x2F;s 的 27B</p>
+<p>     </p>
+<p>     </p>
+<p>       </p>
+<p>03</p>
+<p>       </p>
+<p>262K 上下文实测</p>
+<p>     </p>
+<p>   </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>       
+   </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       01        </p>
+<p>         </p>
+<p>           INTRO          </p>
+<p>         </p>
+<h3 id="Bonsai-27B-是什么"><a href="#Bonsai-27B-是什么" class="headerlink" title="Bonsai 27B 是什么"></a>Bonsai 27B 是什么</h3><p>       </p>
+<p>     </p>
+<p>   </p>
+<p>   </p>
+<p>     Bonsai 27B 基于阿里巴巴的 <strong>Qwen3.6-27B</strong>（Hybrid Attention 架构，约 75% Linear Attention + 25% Full Attention），PrismML 在此之上做了端到端的极端量化。两个版本的核心区别：    </p>
+<p>       </p>
+<p>                                                                                                                                                                                   </p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>1-bit Bonsai 27B</th>
+<th>Ternary Bonsai 27B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>量化格式</td>
+<td>Q1_0_g128</td>
+<td>Q2_0_g128</td>
+</tr>
+<tr>
+<td>真实比特&#x2F;权重</td>
+<td><strong>1.125 bpw</strong></td>
+<td>1.71 bpw</td>
+</tr>
+<tr>
+<td>部署体积</td>
+<td><strong>3.9 GB</strong></td>
+<td>7.2 GB</td>
+</tr>
+<tr>
+<td>15项基准总分</td>
+<td>76.11</td>
+<td><strong>80.49</strong></td>
+</tr>
+<tr>
+<td>保留性能 (vs FP16)</td>
+<td>89.5%</td>
+<td><strong>94.6%</strong></td>
+</tr>
+<tr>
+<td>上下文长度</td>
+<td>262K tokens</td>
+<td>262K tokens</td>
+</tr>
+<tr>
+<td>视觉输入</td>
+<td>✅ 支持</td>
+<td>✅ 支持</td>
+</tr>
+<tr>
+<td>目标设备</td>
+<td>iPhone 17 Pro Max</td>
+<td>笔记本&#x2F;台式机</td>
+</tr>
+</tbody></table>
+<p>   </p>
+<p>       </p>
+<p>     1-bit 版本的真正意义    </p>
+<p>   </p>
+<p>     27B 模型装在 3.9 GB 里跑在手机上——这是最令人震惊的数字。对比一下各精度体积：    </p>
+<p>   </p>
+<p>     </p>
+<p>       1        </p>
+<p>FP16 精度：<strong>54 GB</strong>——需要数据中心级 GPU</p>
+<p>     </p>
+<p>     </p>
+<p>       2        </p>
+<p>常规 4-bit（Q4_K_XL）：<strong>17.6 GB</strong>——笔记本勉强能用，手机不可能</p>
+<p>     </p>
+<p>     </p>
+<p>       3        </p>
+<p>常规 2-bit（IQ2_XXS）：<strong>9.4 GB</strong>——但真实 bpw 是 2.8，标签虚标</p>
+<p>     </p>
+<p>     </p>
+<p>       4        </p>
+<p><strong>Bonsai 1-bit：3.9 GB</strong>——真 1.125 bpw，嵌入层到 LM Head 全部二值，没有高精度后门</p>
+<p>     </p>
+<p>   </p>
+<p>   </p>
+<p>     PrismML 特意指出了行业潜规则：很多模型标称的 「2-bit」实际平均位宽是 2.8 bpw（因为使用了高精度逃逸口）。Bonsai 的 1-bit 没有这种后门。1-bit 版本在 iPhone 17 Pro Max 上实测约 11 tok&#x2F;s，足以做交互式对话。    </p>
+<p>       </p>
+<p>     Ternary 版本的质量    </p>
+<p>   </p>
+<p>     Ternary 版本是 质量导向的选择，7.2 GB 部署体积，94.6% 的 FP16 基准性能。关键能力保留率极高：数学（GSM8K 96.06，超过 FP16 的 95.30）、编码（HumanEval+ 93.90 vs 95.12）、工具调用（BFCL v3 74.41 vs 77.10，保留率 96.5%）。    </p>
+<p>       </p>
+<p>     和当前最强竞品对比：    </p>
+<p>   </p>
+<p>                                                                                                                                                                             </p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>bpw</th>
+<th>体积</th>
+<th>基准分</th>
+<th>vs FP16</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Qwen3.6 Q4_K_XL</td>
+<td>5.2</td>
+<td>17.6 GB</td>
+<td>84.99</td>
+<td>99.9%</td>
+</tr>
+<tr>
+<td>Gemma4-31B QAT</td>
+<td>6.0</td>
+<td>23.3 GB</td>
+<td>83.41</td>
+<td>98.0%</td>
+</tr>
+<tr>
+<td>Qwen3.6 IQ2_XXS</td>
+<td>2.8</td>
+<td>9.4 GB</td>
+<td>72.73</td>
+<td>85.5%</td>
+</tr>
+<tr>
+<td><strong>Ternary Bonsai 27B</strong></td>
+<td>1.71</td>
+<td>5.9 GB</td>
+<td><strong>80.49</strong></td>
+<td><strong>94.6%</strong></td>
+</tr>
+<tr>
+<td>1-bit Bonsai 27B</td>
+<td>1.125</td>
+<td>3.9 GB</td>
+<td>76.11</td>
+<td>89.5%</td>
+</tr>
+</tbody></table>
+<p>   </p>
+<p>   </p>
+<p>     Ternary Bonsai 以 5.9 GB 做到 80.49 分，比 IQ2_XXS 少 3.5 GB 却高 7.76 分——极端量化的收益在此刻体现得淋漓尽致。    </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>       
+   </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       02        </p>
+<p>         </p>
+<p>           DEPLOYMENT          </p>
+<p>         </p>
+<h3 id="部署实录"><a href="#部署实录" class="headerlink" title="部署实录"></a>部署实录</h3><p>       </p>
+<p>     </p>
+<p>   </p>
+<p>   </p>
+<p>     由于 PrismML 的 Q2_0_g128 量化格式需要定制化 CUDA kernel，<strong>无法直接通过 Ollama 加载</strong>。部署过程分为编译 PrismML 的 llama.cpp 分支和运行 llama-server 两步。    </p>
+<p>   </p>
+<p>     </p>
+<p>       1        </p>
+<p><strong>编译</strong>：从 PrismML GitHub 克隆 llama.cpp 分支，启用 CUDA 后端（设置 CMAKE_CUDA_ARCHITECTURES&#x3D;89）。约 3 分钟编译 185 个 CUDA kernel 文件。</p>
+<p>     </p>
+<p>     </p>
+<p>       2        </p>
+<p><strong>GPU 绑定</strong>：llama-server 绑定到 GPU1（--main-gpu 1 –split-mode none），端口 8002，避免与 GPU0 上的 Ollama 冲突。</p>
+<p>     </p>
+<p>     </p>
+<p>       3        </p>
+<p><strong>视觉塔</strong>：可选加载 629 MB 的 mmproj（4-bit HQQ 视觉投影层），支持图片输入。</p>
+<p>     </p>
+<p>     </p>
+<p>       4        </p>
+<p><strong>systemd 服务</strong>：开机自启，故障自动恢复。</p>
+<p>     </p>
+<p>   </p>
+<p>       </p>
+<p>     最终资源占用：    </p>
+<p>   </p>
+<p>     </p>
+<p>       </p>
+<p>GPU0</p>
+<p>       </p>
+<p>8.5 GB &#x2F; 16 GB</p>
+<p>       </p>
+<p>Ollama + vLLM</p>
+<p>     </p>
+<p>     </p>
+<p>       </p>
+<p>GPU1</p>
+<p>       </p>
+<p>9.5 GB &#x2F; 16 GB</p>
+<p>       </p>
+<p>Bonsai 27B Ternary</p>
+<p>     </p>
+<p>   </p>
+<p>   </p>
+<p>     GPU1 原来空着约 15.8 GB，现在只用了不到 10 GB，还有大量余量给 KV cache 和并行请求。    </p>
+<p>       </p>
+<p>     </p>
+<p>       ！踩坑提示 🕳      </p>
+<p>     </p>
+<p>       编译时若未设置 CMAKE_CUDA_ARCHITECTURES，cmake 会编译所有 CUDA arch（约 185 个 kernel 文件），耗时 15 分钟以上。限制为 sm_89（RTX 5070 Ti）后只需 3–5 分钟。      </p>
+<p>   </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>       
+   </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       03        </p>
+<p>         </p>
+<p>           BENCHMARK          </p>
+<p>         </p>
+<h3 id="性能测评"><a href="#性能测评" class="headerlink" title="性能测评"></a>性能测评</h3><p>       </p>
+<p>     </p>
+<p>   </p>
+<p>   </p>
+<p>     以下测试均基于双 5070 Ti 上 GPU1 独占运行的 Ternary Bonsai 27B，对比同一台机器上通过 Ollama 运行的 gemma4 e4b（8B 模型，GPU0）。    </p>
+<p>       </p>
+<p>                                                                                                                                                                                                       </p>
+<table>
+<thead>
+<tr>
+<th>测试场景</th>
+<th>Bonsai 27B Ternary</th>
+<th>gemma4 e4b</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Prefill 速度</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>短文本 ~30 tokens</td>
+<td>68.3 tok&#x2F;s</td>
+<td>24.6 tok&#x2F;s</td>
+</tr>
+<tr>
+<td>中等 ~30 tokens</td>
+<td><strong>142.0 tok&#x2F;s</strong></td>
+<td>107.5 tok&#x2F;s</td>
+</tr>
+<tr>
+<td>长上下文 3428 tokens</td>
+<td><strong>1675.1 tok&#x2F;s</strong></td>
+<td>—（超时）</td>
+</tr>
+<tr>
+<td>生成速度</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>100 tokens</td>
+<td><strong>76.2 tok&#x2F;s</strong></td>
+<td>67.1 tok&#x2F;s</td>
+</tr>
+<tr>
+<td>400 tokens</td>
+<td><strong>76.9 tok&#x2F;s</strong></td>
+<td>74.6 tok&#x2F;s</td>
+</tr>
+<tr>
+<td>首 Token 延迟</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>短文本</td>
+<td><strong>0.28s</strong></td>
+<td>1.22s</td>
+</tr>
+<tr>
+<td>中等文本</td>
+<td><strong>0.20s</strong></td>
+<td>0.33s</td>
+</tr>
+</tbody></table>
+<p>   </p>
+<p>       </p>
+<p>   </p>
+<p>     — Bonsai 27B vs gemma4 e4b 性能对比（tok&#x2F;s × 首 Token 延迟）    </p>
+<p>   </p>
+<p>     Bonsai 27B 的生成速度稳定在 <strong>76–77 tok&#x2F;s</strong>，作为 27B 模型居然比 8B 的 gemma4 e4b 还快。原因清晰：Bonsai 走 GPU1 独占 + llama-server 直接 CUDA 推理，而 e4b 走 Ollama，后者有 Go 语言桥接和模型调度开销。    </p>
+<p>       </p>
+<p>     视觉识别    </p>
+<p>   </p>
+<p>     </p>
+<p>       </p>
+<p>905.3</p>
+<p>       </p>
+<p>Prefill tok&#x2F;s（含视觉）</p>
+<p>     </p>
+<p>     </p>
+<p>       </p>
+<p>0.46B</p>
+<p>       </p>
+<p>视觉塔参数量（27 blocks）</p>
+<p>     </p>
+<p>   </p>
+<p>   </p>
+<p>     Bonsai 的视觉是 「能用」级别——通过 4-bit HQQ 量化的 0.46B 参数视觉塔实现。能正确识别景物、文字等基本要素，更适合辅助性任务（识图理解文档&#x2F;截图），而非专业图像分析。    </p>
+<p>       </p>
+<p>     工具调用    </p>
+<p>   </p>
+<p>     Bonsai 27B 的官方基准在 BFCL v3 上达到 74.41（FP16 为 77.10），保留率达 96.5%——是所有能力中保留率最高的。    </p>
+<p>   </p>
+<p>     </p>
+<p>       实测：要求模型调用 get_current_time 函数查询北京时间 → 模型正确返回 get_current_time({“city”: “北京”})，参数格式完全正确，可直接对接 Hermes 等 Agent 框架。      </p>
+<p>   </p>
+<p>       </p>
+<p>     与 gemma4 e4b 的定位对比    </p>
+<p>   </p>
+<p>     需要明确：<strong>Bonsai 27B（27B 参数）和 gemma4 e4b（8B 参数）不是同一定位</strong>。直接比「谁强」不公平，以下是对比维度：    </p>
+<p>   </p>
+<p>                                                                                                                                                                         </p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>Bonsai 27B</th>
+<th>gemma4 e4b</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>参数规模</td>
+<td>27B</td>
+<td>8B</td>
+</tr>
+<tr>
+<td>部署体积</td>
+<td><strong>7.2 GB</strong></td>
+<td>9.6 GB</td>
+</tr>
+<tr>
+<td>推理速度</td>
+<td><strong>76.9 tok&#x2F;s</strong></td>
+<td>74.6 tok&#x2F;s</td>
+</tr>
+<tr>
+<td>上下文</td>
+<td><strong>262K</strong></td>
+<td>4K–8K</td>
+</tr>
+<tr>
+<td>视觉</td>
+<td>✅ 支持</td>
+<td>✅ 支持</td>
+</tr>
+<tr>
+<td>工具调用</td>
+<td>✅ BFCL 74.41</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>目标场景</td>
+<td><strong>长上下文&#x2F;Agent</strong></td>
+<td>日常快速问答</td>
+</tr>
+</tbody></table>
+<p>   </p>
+<p>   </p>
+<p>     如果你日常跑的都是短文本对话，e4b 更合适。但一旦涉及长文档分析、多轮 Agentic 工作流，Bonsai 的 262K 上下文就是质变。    </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>       
+   </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       04        </p>
+<p>         </p>
+<p>           EXPERIENCE          </p>
+<p>         </p>
+<h3 id="使用体验"><a href="#使用体验" class="headerlink" title="使用体验"></a>使用体验</h3><p>       </p>
+<p>     </p>
+<p>   </p>
+<p>       </p>
+<p>     长上下文实测    </p>
+<p>   </p>
+<p>     262K 上下文的具体含义：可以一次性输入整本小说、整个代码仓库，或者一小时会议的完整转写稿——模型从头到尾都能看到。    </p>
+<p>       </p>
+<p>                                                                                                                                           </p>
+<table>
+<thead>
+<tr>
+<th>上下文长度</th>
+<th>Ternary Bonsai</th>
+<th>常规 Q4_K_XL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>4K</td>
+<td>8.4 GB</td>
+<td>19.2 GB</td>
+</tr>
+<tr>
+<td>10K</td>
+<td>8.7 GB</td>
+<td>19.6 GB</td>
+</tr>
+<tr>
+<td>100K</td>
+<td>10.1 GB</td>
+<td>25.6 GB</td>
+</tr>
+<tr>
+<td>262K</td>
+<td><strong>~12.8 GB</strong></td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p>   </p>
+<p>   </p>
+<p>     在 262K 上下文下仅需约 12.8 GB 峰值显存——我的双 5070 Ti 单卡 16 GB 都够用。这是 Hybrid Attention + 4-bit KV cache 压缩共同作用的结果。    </p>
+<p>       </p>
+<p>     DSpark 推测解码    </p>
+<p>   </p>
+<p>     Bonsai 27B 内置了一个 DSpark 推测解码 drafter，六层 block-parallel transformer，在 CUDA 路径上可实现约 1.34x–1.37x 的端到端加速。Drafter 使用 Q4_1 量化（1.95 GB 可选加载），与目标模型共享嵌入层和输出头，验证过程保持输出分布不变——drafter 精度只影响速度，不影响输出质量。目前只在 CUDA 批量推理路径上生效。    </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>       
+   </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       ∞        </p>
+<p>         </p>
+<p>           THE END          </p>
+<p>         </p>
+<h3 id="总结与建议"><a href="#总结与建议" class="headerlink" title="总结与建议"></a>总结与建议</h3><p>       </p>
+<p>     </p>
+<p>   </p>
+<p>   </p>
+<p>     PrismML Bonsai 27B 是极端量化的里程碑。它证明了三件事：    </p>
+<p>   </p>
+<p>     </p>
+<p>       1        </p>
+<p>1-bit 权重可以承载 27B 级推理——AIME 数学 &gt;87、编码 &gt;81，知识密集型任务没有崩溃</p>
+<p>     </p>
+<p>     </p>
+<p>       2        </p>
+<p>27B 模型可以上手机——3.9 GB 部署体积在物理上可行</p>
+<p>     </p>
+<p>     </p>
+<p>       3        </p>
+<p>Agentic 能力在极端量化下保持最好——工具调用的保留率（96.5%）高于知识&#x2F;推理能力</p>
+<p>     </p>
+<p>   </p>
+<p>       </p>
+<p>     综合评分：    </p>
+<p>   </p>
+<p>                                                                                                                                                                         </p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>评分</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>技术创新</td>
+<td><strong>★★★★★</strong></td>
+<td>端到端 1-bit 权重的工程奇迹</td>
+</tr>
+<tr>
+<td>部署便利</td>
+<td>★★★☆☆</td>
+<td>需要编译专用 llama.cpp 分支</td>
+</tr>
+<tr>
+<td>推理速度</td>
+<td>★★★★☆</td>
+<td>76 tok&#x2F;s，27B 里优秀</td>
+</tr>
+<tr>
+<td>质量保留</td>
+<td>★★★★☆</td>
+<td>95% FP16，数学&#x2F;编码几乎无损</td>
+</tr>
+<tr>
+<td>长上下文</td>
+<td><strong>★★★★★</strong></td>
+<td>262K，Hybrid Attention 效果显著</td>
+</tr>
+<tr>
+<td>生态系统</td>
+<td>★★★☆☆</td>
+<td>需专用 kernel，Ollama 暂不支持</td>
+</tr>
+<tr>
+<td>综合</td>
+<td><strong>★★★★☆</strong></td>
+<td>技术开创性大于实用紧迫性</td>
+</tr>
+</tbody></table>
+<p>   </p>
+<p>       </p>
+<p>     本地该不该部署？    </p>
+<p>   </p>
+<p>     </p>
+<p>                          如果你的主要需求是 Agentic 工作流和长文档分析              </p>
+<p>     </p>
+<p>       → ✅ 强烈推荐，262K 上下文是质变。      </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>                          如果你的 GPU 显存充裕（≥16 GB）              </p>
+<p>     </p>
+<p>       → ✅ Ternary 版本部署简单、效果好。      </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>                          如果你只想快速问答              </p>
+<p>     </p>
+<p>       → ❌ gemma4 e4b 或类似 7–8B 模型更合适。      </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>                          如果追求手机端部署              </p>
+<p>     </p>
+<p>       → ⏳ 等 1-bit 版本通过 MLX Swift 进入主流。      </p>
+<p>   </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     </p>
+<p>       <br>       END          
+     </p>
+<p>   </p>
+<p> </p>
+<p>   </p>
+<p>   </p>
+<p>     我是 ，一个热衷于探索本地 AI 部署极致的开发者。    </p>
+<p>   </p>
+<p>     如果你觉得今天这篇有收获，欢迎      <strong>点赞、在看、转发</strong>      三连，我们下篇见。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>PrismML Bonsai 27B：27B 级模型首次跑进手机</div>
+      <div>https://maoyu92.github.io/2026/07/15/07 AI笔记/AI工具与模型/a051_PrismML Bonsai 27B：27B 级模型首次跑进手机/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>陈文茂</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年7月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/07/15/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%A8%A1%E5%9E%8B/a050_Bonsai%2027B%EF%BC%9A27B%20%E7%BA%A7%E6%A8%A1%E5%9E%8B%E9%A6%96%E6%AC%A1%E8%B7%91%E8%BF%9B%E6%89%8B%E6%9C%BA%EF%BC%8C%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E7%9A%84%E6%96%B0%E7%BA%AA%E5%85%83/" title="Bonsai 27B：27B 级模型首次跑进手机，本地部署的新纪元">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Bonsai 27B：27B 级模型首次跑进手机，本地部署的新纪元</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/07/13/07%20AI%E7%AC%94%E8%AE%B0/AI%E5%86%99%E4%BD%9C%E4%B8%8E%E5%8F%91%E5%B8%83/a052_AI%E7%BC%96%E7%A8%8B%E7%9A%84%E3%80%8C%E4%B8%8A%E5%B2%97%E8%AF%81%E3%80%8D%EF%BC%9A233K%E6%98%9F%E6%96%B9%E6%B3%95%E8%AE%BA%EF%BC%8C%E8%AE%A918%E6%AC%BE%E5%9B%BD%E4%BA%A7%E5%B7%A5%E5%85%B7%E7%9C%9F%E6%AD%A3%E4%BC%9A%E5%B9%B2%E6%B4%BB/" title="AI编程的「上岗证」：233K星方法论，让18款国产工具真正会干活">
+                        <span class="hidden-mobile">AI编程的「上岗证」：233K星方法论，让18款国产工具真正会干活</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
